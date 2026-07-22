@@ -7,6 +7,21 @@ no releases; this is the running record of what was built and why.
 
 ## Log
 
+### Session block → HTML appendix; found a Quarto appendix-numbering bug — 2026-07-22
+
+From a screenshot: moved `penguins-report.qmd`'s closing `<details>` Session block into the **HTML
+appendix** via Quarto's native `## Session {.appendix .unnumbered}` (after References, keeps the
+fold). Needed `.unnumbered` because `number-sections: true` numbered it "**4** Session" — which
+surprised us enough to investigate. A subagent built an MRE + read the Quarto source (direct clone of
+`quarto-dev/quarto-cli`): confirmed a **plausible bug** — `.appendix` headings are numbered as
+ordinary body sections, and worse, an `.appendix` heading placed before a later body heading
+**consumes a body number** (real sections read 1, 3 — 2 is eaten). Root cause: the class-based HTML
+appendix (`format-html-appendix.ts`, a DOM move that ignores numbering) and the metadata-based
+"Appendix A" lettering (`crossref/sections.lua`, gated on a file-level flag for book/manuscript
+appendix *files*, unreachable from the `.appendix` *class*) never meet; unchanged on `main`
+(1.10-dev). Draft: `.claude/archive/issues/2026-07-22-quarto-appendix-numbering.md` — **not filed**,
+verify vs 1.10.x first. (Our `.unnumbered` workaround stands.)
+
 ### Lab solution: point at the real `starter.qmd`, drop the inline mock-up — 2026-07-22
 
 Resolved the "should the solution be a real `.qmd`?" question. Tested `{{< embed >}}` for the inline
