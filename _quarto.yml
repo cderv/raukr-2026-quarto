@@ -1,0 +1,67 @@
+# RaukR 2026 Quarto — project config
+# Website project; brand (_brand.yml) is auto-discovered at project root. Pages default to
+# format: html; each slide deck overrides with format: revealjs in its own front-matter
+# (replace semantics — keeps a doc single-format, avoids the multi-format preview conflict).
+project:
+  type: website
+  output-dir: _site
+  # Render only the site pages — repo meta-docs (README, .claude/** incl. the work log) aren't listed.
+  render:
+    - index.qmd
+    - setup.qmd
+    - LICENSE.md
+    - slides/*/index.qmd
+    - labs/*/index.qmd
+    # Shared Day-1 assets (WP0): the running HTML report and the branded Typst PDF payoff.
+    # Listed explicitly so a full `quarto render` builds and validates them (the globs above
+    # only match each folder's index.qmd). sample-typst.qmd renders to PDF, not a site page.
+    - labs/quarto/penguins-report.qmd
+    - labs/quarto/sample-typst.qmd
+    # WP2 Day-1 lab: the shipped Part-2 starter (a known-good Part-1 report to cite).
+    - labs/quarto/starter.qmd
+    # Day-2 "Demos — if time": the static `format: dashboard` page (opened/linked from the deck).
+    - labs/quarto-projects/dashboard.qmd
+
+lang: en
+
+# Fail fast on a too-old CLI. We target current stable 1.9.x; Typst article/margin layout
+# is 1.9-only (marginalia), so 1.9 is a hard floor, not a target.
+quarto-required: ">=1.9.0"
+
+website:
+  title: "RaukR 2026 · Quarto"
+  description: >-
+    Two Quarto sessions at RaukR 2026 (Advanced R for Bioinformatics, Visby) —
+    Introduction to Quarto and Quarto projects.
+  navbar:
+    left:
+      - text: "Home"
+        href: index.qmd
+      - text: "Setup"
+        href: setup.qmd
+      - text: "Day 1 · Intro"
+        menu:
+          - text: "Slides"
+            href: slides/quarto/index.qmd
+          - text: "Lab"
+            href: labs/quarto/index.qmd
+      - text: "Day 2 · Projects"
+        menu:
+          - text: "Slides"
+            href: slides/quarto-projects/index.qmd
+          - text: "Lab"
+            href: labs/quarto-projects/index.qmd
+
+format:
+  html:
+    theme: [default, theme-html.scss]   # +defensive Albert Sans → system-sans fallback
+    toc: true
+    toc-location: right
+    toc-depth: 4
+    number-sections: true
+    lightbox: auto
+    code-copy: true
+    code-overflow: wrap
+
+execute:
+  freeze: auto

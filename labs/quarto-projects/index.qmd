@@ -1,0 +1,234 @@
+---
+title: "Quarto projects — Lab"
+subtitle: "RaukR 2026 · Day 2"
+author: ""
+date: ""
+---
+
+```{r}
+#| label: setup
+#| message: false
+# Renders the target figure shown further down this page — you'll do the actual
+# work inside starter/, not here. This cell is not step zero.
+library(dplyr)
+library(ggplot2)
+data(penguins)
+penguins <- penguins |> filter(!is.na(bill_len), !is.na(bill_dep), !is.na(body_mass))
+```
+
+::: {.callout-note}
+## Scope
+Turn a set of `.qmd` into a Quarto **project**: a navigable, **branded website**, then make its
+builds reproducible with **freeze** and render it to a publishable folder. Two challenges, one
+project — each is its own hands-on part, with a break between them. Publishing to
+GitHub Pages / CI is a **watch-me demo**, not a per-participant step (the auth cliff would strand a
+room of 40). Everything runs on base-R `datasets::penguins` (R ≥ 4.5) — no data to download.
+
+**Packages:** `dplyr`, `ggplot2`, plus the `knitr`/`rmarkdown` engine every `.qmd` with R code needs.
+If you've done the **[Setup page](../../setup.qmd)** (with its one-command `quarto check`), you're
+ready; otherwise install them once from R: `install.packages(c("dplyr", "ggplot2"))`. Optional branded
+plots use the **`brand.yml`** package (`install.packages("brand.yml")`).
+:::
+
+**Starting point — a shipped set of pages.** You don't start from a blank folder. This lab ships **`starter/`** — in your cloned repo, the
+**`labs/quarto-projects/starter/`** folder — two content pages that already render on their own but
+are **not yet a project**:
+
+- `starter/index.qmd` — a home page;
+- `starter/analysis.qmd` — a penguins analysis with a figure and a table.
+
+**`cd starter/` first**, then render one page to confirm it works: `quarto render analysis.qmd` gives
+a normal HTML page — `analysis.html` right next to its source, since `starter/` isn't a project yet.
+Do **every** render in this lab from inside `starter/` so they all land in the same place. (Don't
+render from the repo root: the workshop repo has its **own** `_quarto.yml` there — a website with
+`output-dir: _site` — so a render at the root sends the output to the repo's `_site/…`, *not* next to
+the source. `cd starter/` first so that trap can't bite.) Your job across the two challenges is to make
+the folder a *site*, then ship it. A finished reference is in **`solution/`** if you get stuck or fall
+behind — nobody is stranded by the break.
+
+## Website Challenge
+
+> **Goal:** turn the `starter/` pages into a navigable, **branded website** that renders locally to a
+> `_site/` folder.
+
+::: {.callout-note icon=false}
+## {{< fa clipboard-list >}} Tasks
+1. In `starter/`, create a **`_quarto.yml`** that declares the project and a website with navigation:
+   ```yaml
+   project:
+     type: website
+     output-dir: _site
+   website:
+     title: "Penguin Lab"
+     navbar:
+       left:
+         - href: index.qmd
+           text: Home
+         - href: analysis.qmd
+           text: Analysis
+   format:
+     html:
+       theme: cosmo
+   ```
+2. **Render the whole folder** — from inside `starter/`, run `quarto render` (or `quarto preview`).
+   Because a `_quarto.yml` is now present, Quarto treats the folder as one project and builds **both**
+   pages into `_site/`.
+3. **Brand it.** Add a `starter/_brand.yml` so the site shares one palette:
+   ```yaml
+   color:
+     palette:
+       teal: "#4C979F"
+     primary: teal
+   typography:
+     fonts:
+       - family: Albert Sans
+         source: google
+     base:
+       family: Albert Sans
+   ```
+   Re-render — the navbar and headings pick up the palette automatically.
+4. *(stretch)* Two things make the **within-page versus across-page** rule concrete. First, on
+   `analysis.qmd`, drop `@tbl-means` into a sentence — it resolves to *Table 1* because the reference
+   and its table share **one page** (exactly as yesterday). Second, notice `index.qmd` **already**
+   links to the analysis with a plain Markdown link — `[analysis](analysis.qmd)`: that's deliberate,
+   because **across** pages there is no auto-numbering (a *book* feature, not a website one), so a
+   plain link is how you connect website pages.
+:::
+
+::: {.callout-note appearance="simple" icon=false}
+## {{< fa circle-check >}} You should see
+A `starter/_site/` folder with **two linked pages** and a **top navbar** (Home · Analysis); after the
+brand step, the navbar and headings turn **teal** with Albert Sans (the plot keeps its default species
+colors — branding an R plot is a separate `brand.yml`-package step, out of scope today). If you did the stretch,
+the analysis page also shows a live **Table 1** reference (from `@tbl-means`) and the home page carries
+a plain link into the analysis. Opening `_site/index.html` shows the home page; the navbar moves you to
+the analysis page, whose figure is:
+:::
+
+```{r}
+#| label: fig-target
+#| echo: false
+#| fig-width: 6
+#| fig-height: 3.2
+#| fig-cap: "The analysis page's figure — body mass by species."
+#| fig-alt: >-
+#|   Boxplot of penguin body mass in grams for Adelie, Chinstrap and Gentoo species; Gentoo is
+#|   clearly the heaviest, Adelie and Chinstrap overlap.
+ggplot(penguins, aes(species, body_mass, fill = species)) +
+  geom_boxplot(show.legend = FALSE) +
+  labs(x = NULL, y = "Body mass (g)")
+```
+
+::: {.callout-tip collapse="true"}
+## Hint
+- The `_quarto.yml` must sit **inside `starter/`** — Quarto uses the *nearest* `_quarto.yml` as the
+  project root, so this makes `starter/` its own project (independent of the workshop repo, which has
+  its own `_quarto.yml` at *its* root).
+- `navbar:` items are `href` + `text`; `sidebar: { contents: auto }` builds a menu from the folder's
+  files instead.
+- `_brand.yml` is **auto-discovered** at the project root — no header line needed; just re-render.
+- `quarto render` with no file argument builds the **whole project**; `quarto render index.qmd`
+  builds one page.
+:::
+
+**The `solution/` folder is a reference, not a checklist.** The complete, known-good project lives there
+(in your cloned repo): open it to compare your `_quarto.yml` / `_brand.yml`, or copy it wholesale if you
+fell behind.
+
+## Ship it Challenge
+
+> **Goal:** make the project's builds **reproducible** with `freeze`, then render it to a publishable
+> `_site/` folder. (Publishing to Pages is the watch-me demo — you produce the folder.)
+
+::: {.callout-note}
+## Starting point
+Keep going with your Website Challenge `starter/`. If you didn't finish it, open the ready-made
+**`solution/`** project — a complete Part-1 site — and do the steps below in there. Nobody is stranded.
+:::
+
+::: {.callout-note icon=false}
+## {{< fa clipboard-list >}} Tasks
+1. Add **freeze** to your project's `_quarto.yml` so unchanged pages aren't re-executed on every build:
+   ```yaml
+   execute:
+     freeze: auto      # re-execute a document only when its own source changes
+   ```
+2. **See the skip.** Run `quarto render` once (the code runs; `_freeze/` is written). Run
+   `quarto render` **again without editing** — the R cell is **skipped**, its result reused from
+   `_freeze/` (the log shows no compute). For a *visible* tell, drop a cell with
+   `cat(format(Sys.time()))` on `analysis.qmd`: on the frozen second render the printed timestamp does
+   **not** change — a pass/fail you can see, not just an absence in the log. Now change the plot's
+   **code** on `analysis.qmd` and re-render — only *that* page re-runs (and the timestamp finally ticks).
+3. Find the shipped site under **`_site/`** — that folder *is* what you publish. Point any static host
+   at it (GitHub Pages, Netlify, an internal server).
+4. *(note, not a step)* `renv::snapshot()` writes an `renv.lock` that pins the packages — the second
+   reproducibility leg, so a teammate (or CI) rebuilds the same environment.
+:::
+
+::: {.callout-note appearance="simple" icon=false}
+## {{< fa circle-check >}} You should see
+On the **second** render (no edits between them), the log shows the R cell **skipped** — reused from
+`_freeze/`, and the `cat(format(Sys.time()))` line prints the **same** time it did on the first render.
+That frozen timestamp (and the quiet log) is exactly what lets CI render the site with no R at all;
+edit a page's code, and only that page re-runs — its timestamp finally advancing.
+:::
+
+::: {.callout-tip collapse="true"}
+## Hint
+- `freeze: auto` re-executes a document when its **source** changes (prose or code) and reuses
+  `_freeze/` when it hasn't — so an *unchanged* page never re-runs. `freeze: true` goes further: never
+  re-execute on a project build (the CI mode).
+- Frozen results live in `_freeze/` — commit that folder so CI can render without R.
+- `output-dir` (default `_site`) is the whole deliverable: publish the folder, don't rebuild on the host.
+:::
+
+```{r}
+#| label: sol-ship
+#| code-fold: true
+#| code-summary: "Solution — the freeze block and the render flow"
+#| eval: false
+# add to your project's _quarto.yml:
+execute:
+  freeze: auto
+
+# optional visible tell — put this in a cell on analysis.qmd:
+#   cat(format(Sys.time()))       # frozen render reuses the old value, so the time stays put
+
+# from inside the project folder (i.e. after `cd starter/`):
+#   quarto render                 # 1st build: runs the code, writes _freeze/ and _site/
+#   quarto render                 # 2nd build, no edits: cell skipped, timestamp unchanged
+#   # ...change the plot's code on analysis.qmd, render again: only that page re-runs (time ticks)...
+#
+# publish = point a host at _site/  (watch-me: quarto publish gh-pages, auth pre-flighted)
+```
+
+## Troubleshooting
+
+::: {.callout-tip collapse="true" icon=false}
+## {{< fa wrench >}} If a render misbehaves
+- **Rendered, but can't find the HTML?** You're probably at the **repo root** — the workshop's *own*
+  `_quarto.yml` there is a website with `output-dir: _site`, so your output went to the repo's `_site/…`,
+  not next to the source. `cd starter/` first so your project's `_quarto.yml` governs the render.
+- **YAML is indentation-sensitive.** If rendering fails *before* any code runs, check `_quarto.yml`
+  for stray spaces, tabs, or unmatched quotes.
+- **"No project" / pages don't link?** The `_quarto.yml` must be **inside your project folder**, and
+  `href:` paths are relative to the source folder, **not** `_site/`.
+- **Brand not applied?** `_brand.yml` must be at the project root; re-render after adding it. For
+  **plots**, the palette needs `library(brand.yml)` + `theme_brand_ggplot2()` — the file alone doesn't
+  reach ggplot.
+- **A cross-reference shows `?@…`?** The cell label must start `fig-`/`tbl-`/`eq-` and be unique — and
+  remember it only resolves **within one page** on a website.
+- **Freeze didn't skip the cell?** It skips only when the source is **unchanged** since the last build
+  — any edit (prose or code) re-runs that page. Delete `_freeze/` to force a clean rebuild.
+- **Missing package?** `install.packages("<name>")` (or `renv::restore()`) and render again.
+:::
+
+<details>
+<summary>Session</summary>
+
+```{r}
+#| label: session
+sessionInfo()
+```
+
+</details>

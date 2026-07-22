@@ -1,0 +1,284 @@
+---
+title: "Introduction to Quarto — Lab"
+subtitle: "RaukR 2026 · Day 1"
+author: ""
+date: ""
+---
+
+::: {.callout-note}
+## Scope
+Build one penguins document with the authoring extras, then **cite it** and render it as a
+**branded Typst PDF**. Two challenges, one document — each is its own hands-on part, with the
+between-parts break in between. This is your **manuscript / team-project path** — the same route from
+an analysis to a submittable write-up. Everything runs on **base-R `datasets::penguins`** (R ≥ 4.5)
+— no data to download.
+
+**Packages:** `dplyr`, `ggplot2`, `gt`, `ggokabeito` (a colour-blind-safe palette — see the
+Accessibility box below), plus the `knitr`/`rmarkdown` engine every `.qmd` with R code needs. If
+you've done the **[Setup page](../../setup.qmd)** (with its one-command `quarto check`), you're ready;
+otherwise install them once from R:
+`install.packages(c("dplyr", "ggplot2", "gt", "ggokabeito"))`. The citation payoff also uses the
+shared `references.bib` and `apa.csl` shipped in this folder.
+:::
+
+Start every document with this setup — the challenges below assume it:
+
+```{r}
+#| label: setup
+#| message: false
+library(dplyr)
+library(ggplot2)
+library(gt)
+library(ggokabeito)   # colour-blind-safe (Okabe-Ito) scale -- see the Accessibility box
+
+data(penguins)
+penguins <- penguins |> filter(!is.na(bill_len), !is.na(bill_dep))
+```
+
+::: {.callout-tip collapse="true"}
+## Coming from R Markdown? (2-minute aside — optional)
+You do **not** need to convert anything to work natively in Quarto — start with `.qmd` directly.
+But if you have an `.Rmd` you want to bring over:
+
+- it renders **as-is** — Quarto reads `.Rmd` too;
+- cell options move from the chunk header to the `#|` "hash-pipe" (one YAML option per line);
+- `knitr::convert_chunk_header("doc.Rmd", output = "doc.qmd")` does the mechanical part.
+
+That's the whole migration. The rest of this lab is native `.qmd`.
+:::
+
+## Authoring Challenge
+
+> **Goal:** a penguins report with a cross-referenced **figure**, a cross-referenced **table**, a
+> **margin** element, and a display **equation** — rendered to HTML.
+
+::: {.callout-note icon=false}
+## {{< fa clipboard-list >}} Tasks
+1. Create a new `.qmd` **inside `labs/quarto/`** in your cloned repo (next to `references.bib` /
+   `apa.csl`, so Part 2's paths and branding resolve later) with `format: html` and the setup cell
+   at the top of this page.
+2. Add a scatter plot of `bill_len` versus `bill_dep` colored by `species`. Give its cell
+   `#| label: fig-bill` and a `#| fig-cap:`, then — **in the prose, outside the cell** — refer to
+   it with `@fig-bill`.
+3. Add a summary table. The `gt` plumbing is below; your job is the **cross-reference mechanic** —
+   give the cell `#| label: tbl-summary` and a `#| tbl-cap:`, then refer to it with `@tbl-summary`.
+   ```r
+   penguins |>
+     summarise(bill_len = mean(bill_len), bill_dep = mean(bill_dep), .by = species) |>
+     gt()
+   ```
+4. Put the species counts in the **margin** with the cell option `#| column: margin`.
+5. *(stretch)* Add the bill-shape ratio as a display equation, referenced with `@eq-ratio`. **Escape
+   the underscores** — inside `$$…$$`, `bill_len` may render as a subscript (depending on the math
+   renderer), so write:
+   ```markdown
+   $$
+   \text{ratio} = \frac{\text{bill\_len}}{\text{bill\_dep}}
+   $$ {#eq-ratio}
+   ```
+6. Render to HTML (`quarto render your-doc.qmd`, or the editor's Render/Preview).
+:::
+
+::: {.callout-tip icon=false}
+## {{< fa universal-access >}} Make it accessible
+The worked report does all three — do the same in yours:
+
+- add a `#| fig-alt:` to every figure;
+- add `scale_color_okabe_ito()` (from `ggokabeito`) to your plot, keeping `shape = species`;
+- add `axe: {output: document}` under `format: html`, re-preview, and a WCAG report appears on the
+  page (drop it again before you publish). See
+  [Quarto's accessibility docs](https://quarto.org/docs/output-formats/html-accessibility.html).
+:::
+
+::: {.callout-note appearance="simple" icon=false}
+## {{< fa circle-check >}} You should see
+A numbered **Figure 1** (the bill scatter, three separate clusters), a numbered **Table 1**, the
+counts sitting in the right margin, and an **Equation 1** — with `@fig-bill` / `@tbl-summary` /
+`@eq-ratio` rendering as live "Figure 1" / "Table 1" / "Equation 1" links. Your finished figure
+looks like this:
+:::
+
+```{r}
+#| label: fig-target
+#| echo: false
+#| fig-width: 6
+#| fig-height: 3.4
+#| fig-cap: "Target: bill length versus depth by species."
+#| fig-alt: >-
+#|   Scatter plot of bill depth against bill length for three penguin species in distinct colors;
+#|   the species form largely separate clusters.
+ggplot(penguins, aes(bill_len, bill_dep, color = species, shape = species)) +
+  geom_point(alpha = 0.8) +
+  scale_color_okabe_ito() +
+  labs(x = "Bill length (mm)", y = "Bill depth (mm)") +
+  theme_minimal(base_size = 12)
+```
+
+::: {.callout-tip collapse="true"}
+## Hint
+- A cell becomes a cross-referenceable figure/table only when its label **starts with**
+  `fig-` / `tbl-` / `eq-` and is **unique** in the document.
+- `column: margin` is a **cell option** (`#|`) for a cell, or a `::: {.column-margin}` div for
+  prose.
+- Display math with a label: `$$ … $$ {#eq-ratio}` — reference it with `@eq-ratio`.
+:::
+
+<!-- The key cells live in `_solution-authoring.R` and are pulled in below via the `#| file:` cell
+     option (source-only: `eval: false`), so this fold is a single, drift-resistant source rather than
+     a hand-copied mock-up. Keep that file in sync with `penguins-report.qmd`. -->
+```{r}
+#| label: sol-authoring
+#| code-fold: true
+#| code-summary: "Solution — the key cells"
+#| eval: false
+#| file: _solution-authoring.R
+```
+
+The cross-references and the equation live in the **body Markdown**, outside any cell:
+
+``` markdown
+@fig-bill shows bill shape by species; @tbl-summary gives the per-species means.
+
+$$
+\text{ratio} = \frac{\text{bill\_len}}{\text{bill\_dep}}
+$$ {#eq-ratio}
+```
+
+**[`penguins-report.qmd`](penguins-report.qmd) is a reference, not a checklist.** The complete worked
+document goes beyond the tasks (a margin culmen figure, a `glimpse`, section labels) and also adds the
+citations from the next challenge. Prefer to open the whole thing in your editor? Take the source:
+
+<!-- Raw-GitHub download button -- RaukR house pattern (see project-context.md; no `downloadthis`
+     extension). The URL hard-codes owner/repo/branch: it goes live once this branch merges to `main`,
+     and must switch to `NBISweden/raukr-2026/...` when the material folds into the NBIS course site. -->
+<a class="btn btn-primary btn-sm" href="https://raw.githubusercontent.com/cderv/raukr-2026-quarto/refs/heads/main/labs/quarto/penguins-report.qmd" role="button" target="_blank">{{< fa download >}} penguins-report.qmd</a>
+
+## Citations Challenge
+
+> **Goal:** cite the report, then render the *same document* as a **branded Typst PDF** — the
+> manuscript payoff, no LaTeX.
+
+::: {.callout-note}
+## Starting point
+If you finished the Authoring Challenge, keep going on your own document. Otherwise open
+**`labs/quarto/starter.qmd`** in your editor — a known-good Part-1 report — and add the citations to
+that. Nobody is stranded by the break.
+:::
+
+::: {.callout-note icon=false}
+## {{< fa clipboard-list >}} Tasks
+1. Point the document header at the shared bibliography and citation style:
+   ```yaml
+   bibliography: references.bib
+   csl: apa.csl
+   ```
+2. Cite the data source in prose with `@gorman2014`. Find (or add) the sentence ending
+   *"…collected at Palmer Station, Antarctica."* and insert the citation before the period:
+   `Antarctica [@gorman2014].` (don't paste a second copy).
+3. Add a **References** section where the list should appear:
+   ```markdown
+   ## References {.unnumbered}
+
+   ::: {#refs}
+   :::
+   ```
+4. Give it a real **title block** so the PDF reads as a paper — **replace** your document's
+   `author:` line with:
+   ```yaml
+   author:
+     - name: Your Name
+       affiliation: Your Lab, Your University
+   ```
+5. Render to HTML and confirm the citation resolves to *(Gorman et al., 2014)* with a formatted
+   reference list.
+6. Switch the output to **Typst** and render a branded PDF. *(Heads-up: you'll see a stack of
+   `unknown font family` warnings as it renders — they're harmless; the Troubleshooting box below
+   explains them.)* Two routes:
+   - **CLI** — leave the header as-is and force the target:
+     ```bash
+     quarto render your-doc.qmd --to typst
+     ```
+   - **Editor Render button** — set `format: typst` in the YAML header first, *then* click Render.
+     The button renders whatever `format:` is declared, so while the header still says `format: html`
+     the button gives you HTML, **not** a PDF.
+
+   Where the PDF lands: rendering the shipped `starter.qmd` writes the PDF under `_site/…` (it's in
+   the site's render list); a brand-new doc renders the PDF next to its source.
+:::
+
+::: {.callout-note appearance="simple" icon=false}
+## {{< fa circle-check >}} You should see
+In-text **(Gorman et al., 2014)**, a **References** section formatted in APA, and — in the Typst
+PDF — the same citation and reference list, typeset with the RaukR palette. No `?@gorman2014` or
+`[?]` markers anywhere.
+:::
+
+::: {.callout-tip collapse="true"}
+## Hint
+- The `@key` in `[@gorman2014]` must match a key in `references.bib` **exactly**.
+- `csl:` sets the style (here APA). Swap the file to restyle every citation at once.
+- Typst reads the `.bib` itself, so keep bibliography fields plain — avoid LaTeX macros like
+  `\emph{}` in titles.
+- On the first Typst render, Quarto downloads the brand's Google fonts; give it a moment and a
+  network connection.
+:::
+
+```{r}
+#| label: sol-citations
+#| code-fold: true
+#| code-summary: "Solution — the header and the cite"
+#| eval: false
+# In the YAML header:
+#   bibliography: references.bib
+#   csl: apa.csl
+#
+# In prose:
+#   The data come from Palmer Station, Antarctica [@gorman2014].
+#
+# A References section (the list renders inside the #refs div):
+#   ## References {.unnumbered}
+#   ::: {#refs}
+#   :::
+#
+# For the branded PDF (the project _brand.yml styles it), either force the target from the CLI:
+#   quarto render your-doc.qmd --to typst
+# or set `format: typst` in the header and use the editor's Render button.
+```
+
+The complete cited HTML is [`penguins-report.qmd`](penguins-report.qmd); the branded Typst PDF —
+with R-side `theme_brand_*` styling — is [`sample-typst.qmd`](sample-typst.qmd) (the link opens the
+rendered PDF, not a web page).
+
+## Troubleshooting
+
+::: {.callout-tip collapse="true" icon=false}
+## {{< fa wrench >}} If a render misbehaves
+- **YAML is indentation-sensitive.** If rendering fails *before* any code runs, check the YAML
+  header for stray spaces, tabs, or unmatched quotes.
+- **Missing package?** `install.packages("<name>")` (or `renv::restore()`) and render again.
+- **A figure doesn't appear?** Check the path is relative to the `.qmd` and the filename matches
+  exactly (case included).
+- **A cross-reference shows `?@…`?** The cell label must start with `fig-`/`tbl-`/`eq-` and be
+  unique, and the `@ref` must match it.
+- **A citation shows `?@gorman2014` or `[?]`?** The `@key` doesn't match a key in `references.bib`,
+  or `bibliography:` isn't set.
+- **Do I need to install Typst?** No — Typst is bundled in Quarto ≥ 1.9, so there's nothing extra to
+  install (no LaTeX either); check `quarto --version`.
+- **Typst PDF looks unbranded / wrong fonts?** Confirm `_brand.yml` is at the project root and you
+  have network on the first render (Quarto fetches the Google fonts once).
+- **Typst prints `unknown font family` warnings?** Harmless — a plain `gt` table emits them for its
+  default font stack; the PDF still builds. (The fully brand-styled table via `theme_brand_*` is in
+  `sample-typst.qmd`.)
+- **Prefer to stay in HTML first?** Render HTML, get it right, *then* switch to `format: typst` —
+  the content is the same.
+:::
+
+<details>
+<summary>Session</summary>
+
+```{r}
+#| label: session
+sessionInfo()
+```
+
+</details>

@@ -1,0 +1,443 @@
+---
+title: "Quarto projects"
+subtitle: "RaukR 2026 · Day 2 — beyond one file"
+author: "Christophe Dervieux"
+format:
+  revealjs:
+    theme: [default, ../../theme.scss]
+    width: 1280
+    height: 720
+    slide-level: 2
+    incremental: false
+    echo: true
+    slide-number: true
+# TODO(logos): drop the RaukR + NBIS/SciLifeLab corner logos into _brand.yml once the
+# asset files land (braid the tracker). Deck is authored against the current brand meanwhile.
+---
+
+```{r}
+#| label: setup
+#| include: false
+library(dplyr)
+library(ggplot2)
+data(penguins)
+penguins <- penguins |> filter(!is.na(bill_len), !is.na(bill_dep), !is.na(body_mass))
+```
+
+## Learning Outcomes
+
+Yesterday: one `.qmd` → a branded PDF. Today, the other axis — **one file to many**. You will be able to:
+
+- **structure** several `.qmd` into one Quarto **project** with shared config (`_quarto.yml`);
+- **build** a navigable, **branded website** — within-page cross-references, reproducible builds;
+- **publish** it — and explain how **freeze** lets it rebuild without re-running R.
+
+By the end: the same penguins data — a fresh set of pages grown into a **website your team can publish**.
+
+::: notes
+- **Frame:** Day 1 took one `.qmd` all the way to a branded PDF. Day 2 is the other axis — one file
+  to many, tied together by config, then shipped. This is the machinery behind your team project's
+  site.
+:::
+
+## How today works
+
+**Same shape as yesterday** — two rounds of **watch → follow along → your turn**, each ending in a
+**~45-minute Challenge** in the lab (solutions folded in), with a **break** between the rounds.
+
+Watch for the **Follow along** / **Your turn** callouts — they flag every switch.
+
+::: notes
+- **Quick recap, don't re-teach** — they saw this shape yesterday. Same two rounds; the **Follow
+  along** / **Your turn** callouts flag every switch. One breath, then into Part 1.
+:::
+
+# Part 1 — Build & structure a project {.center}
+
+From one file to a whole site.
+
+## Why a *project*? {#why-project}
+
+::: {.callout-note title="Follow along"}
+Open your editor — from here we build one project together.
+:::
+
+One `.qmd` renders alone. A **project** is a folder Quarto treats as one unit — shared config, one
+build, one output folder:
+
+:::: {.columns}
+::: {.column width="52%"}
+``` {.yaml filename="_quarto.yml"}
+# at the project root
+project:
+  type: website
+  output-dir: _site  # everything renders here
+format:
+  html:
+    theme: [default, custom.scss]
+```
+:::
+::: {.column width="48%"}
+::: {.incremental}
+- `quarto render` builds the **whole** folder, not one file.
+- Header options set **once** apply to every page.
+- **`output-dir`** — the folder the built site lands in (`_site` by default); publish *that*.
+:::
+:::
+::::
+
+::: aside
+Quarto uses the **nearest `_quarto.yml`** up the tree as the project root — the workshop repo already
+has one, so *your* project is the `starter/` subfolder.
+:::
+
+::: notes
+- **Say:** "Day 1 was one file. Today: many files, one project. Open your editor — we build one together."
+- **Do:** show a minimal `_quarto.yml` — `project: type: website` + `output-dir`. "This folder is now one unit; `render` builds all of it, not one file."
+- **Say (relevance):** the team project is many pages — this is how they hang together.
+:::
+
+## Directory metadata — `_metadata.yml` {#metadata}
+
+Yesterday a header set the defaults and a cell overrode them. `_metadata.yml` is that **same idea,
+one scope wider** — options for every page in a **folder**, so you don't repeat them in each header:
+
+``` {.yaml filename="analysis/_metadata.yml"}
+# applies to every .qmd in analysis/
+execute:
+  echo: false
+  warning: false
+format:
+  html:
+    code-fold: true
+```
+
+Same narrow-wins rule, now across files: **document header** > `_metadata.yml` > `_quarto.yml`.
+Set defaults wide, override narrow.
+
+::: aside
+Today's lab project is flat (a couple of pages at the root), so there's no folder to scope — reach for
+`_metadata.yml` when a **subfolder** of pages shares options.
+:::
+
+::: notes
+- **Callback (don't re-teach):** they learned header-vs-cell precedence yesterday (`#execution`).
+  Don't re-derive "defaults wide, override narrow" — just widen it to the file/folder/project scope.
+- **Say:** "Same rule as yesterday's header-beats-nothing / cell-beats-header — now a folder file
+  sits between the page and the project."
+:::
+
+## Websites — pages & navigation {#websites}
+
+You already set `type: website` — that makes the folder a **site**: its pages share one navbar and
+sidebar. You describe that navigation once, and Quarto builds it:
+
+``` {.yaml filename="_quarto.yml"}
+website:
+  title: "Penguin Lab"
+  # top bar — one entry per page
+  navbar:
+    left:
+      - href: index.qmd
+        text: Home
+      - href: analysis.qmd
+        text: Analysis
+  # side menu, built from the files
+  sidebar:
+    contents: auto
+```
+
+. . .
+
+`contents: auto` even builds the sidebar from the folder — you don't hand-list pages.
+
+::: {.aside}
+**Listings** turn a folder of pages into an auto-generated index (a blog, a gallery of reports) —
+`listing:` on a page. One slide's worth; more in the linked resources.
+:::
+
+::: notes
+- **Do:** add the `website:` block live — navbar + sidebar — render, show the nav appear.
+- **Say:** "You declare the nav once: the navbar you list, the sidebar `contents: auto` builds from the files — Quarto generates both."
+- **Say (sets up next slide):** "each page renders on its own — that independence is exactly why cross-refs behave differently across pages."
+- **Helpers:** flag the classic trap now — links are relative to the *source*, not `_site` — so it lands before the lab.
+:::
+
+## Cross-references across a project {#xrefs}
+
+::: {.callout-warning title="Eyes up — not a live *Follow along*"}
+The next few slides are concept — no need to type along.
+:::
+
+Within **one page**, `@fig-`, `@tbl-`, `@eq-` resolve to a numbered, linked reference — exactly as
+on Day 1. (Section headings work the same way with `@sec-`.)
+
+. . .
+
+Across **different website pages**, they do **not** auto-number: a website renders each page on its
+own, so link between pages with ordinary Markdown links and the **navbar/sidebar** instead:
+
+``` markdown
+See the [analysis page](analysis.qmd) for the model.
+```
+
+::: {.callout-note title="Project-wide numbering is a *book*"}
+If you need "Figure 3.2" to resolve *across* chapters, that's `type: book` — Quarto renders a book as
+one unit with global numbering. A **website** keeps per-page numbering.
+:::
+
+::: notes
+- **Pre-flight (not spoken):** if unsure on your installed Quarto, test one cross-page `@fig-`
+  before the session — historically a website does not resolve it. Keep that check off the slide.
+:::
+
+## One brand → the whole project: `_brand.yml` {#brand}
+
+You wrote `_brand.yml` yesterday to brand one **Typst PDF**. Drop that **same file at the project
+root** and Quarto **auto-discovers** it — no header line, no per-page config:
+
+:::: {.columns}
+::: {.column width="54%"}
+``` {.yaml filename="_brand.yml"}
+color:
+  palette:
+    teal: "#4C979F"
+  primary: teal
+typography:
+  fonts:
+    - family: Albert Sans
+      source: google
+  base:
+    family: Albert Sans
+```
+:::
+::: {.column width="46%"}
+- **Every page and every deck** inherits it from that one root file — you never name it in a page.
+- Add a page tomorrow? Branded on render — nothing to wire up.
+- Need an exception? `brand: false` opts a page out; `brand: other.yml` points it elsewhere.
+:::
+::::
+
+::: notes
+- **Callback (don't re-derive):** they built this file yesterday for the PDF. Today's *new* angle is
+  **scale** — one root file themes the whole multi-page project. Widen the scope; don't re-teach the file.
+- **Do:** show the site before / after dropping `_brand.yml` at the root — navbar + headings go teal
+  in one re-render.
+- **Say:** "You wrote this yesterday. Put it at the project root and every page *and* deck inherits it
+  — brand once, not per file."
+- **R plots (only if asked):** a plot still needs `theme_brand_ggplot2()` — same as yesterday; the
+  lab's stretch covers it.
+- **Escape hatch (if asked):** `brand: false` opts a page out; `brand: other.yml` points it
+  elsewhere — the default is all-in, these are the overrides.
+- **Precision:** "every page/deck" = every *supported-format* output (html, revealjs, typst,
+  dashboard); an unsupported format just isn't branded — don't say "every output".
+- **Placement:** this is Part-1 project config, not the Part-2 tail.
+- **Helpers:** the lab installs `brand.yml` with `install.packages()` (not `pak`).
+:::
+
+## Your turn {#your-turn-1}
+
+::: {.callout-tip title="Your turn — ~45 min, then a break"}
+Head to the **[Lab](../../labs/quarto-projects/index.qmd#website-challenge)** and the **Website
+Challenge**: turn a set of `.qmd` into a navigable, **branded website** — `_quarto.yml`, a navbar, and
+the shared brand. ~45 min, then a **break** — back after.
+:::
+
+You can now structure files into a branded, navigable **website** — after the break we make its builds
+reproducible and **ship** it.
+
+::: notes
+- **Say (handoff):** "Over to you — Website Challenge: `_quarto.yml`, a navbar, the shared brand. ~45 min, then we break — back at 15:30. Helpers are roaming."
+- **Helpers:** first thing to check — are they `cd`'d into `starter/`? A render from the repo root rebuilds the *workshop* site into the repo `_site/`, not their project. (Secondary: page links are source-relative, not `_site`.) Anyone behind can open the shipped `solution/` — a finished Part-1 site — and start Part 2 clean.
+:::
+
+# Part 2 — Scale & ship {.center}
+
+Make builds reproducible, then publish — how your team ships its project.
+
+::: notes
+- **Welcome back** (after the break): "Before the break you built a branded, navigable site. Now we make its builds *reproducible* — freeze + renv — then ship it."
+- One-sentence recap; don't re-teach Part 1.
+:::
+
+## Freeze — don't re-run the slow stuff {#freeze}
+
+::: {.callout-note title="Follow along"}
+Back in your project's `_quarto.yml`.
+:::
+
+Day 1 I teased **freeze** — here's the full story. Compute can be slow: you don't want every prose
+edit to re-run a 20-minute model fit. Two tools, easily confused:
+
+::: {.incremental}
+- **`cache`** — the **compute engine's** cache, not Quarto's: it defers to *knitr* (R) / *Jupyter Cache*.
+  Per-**cell**, kept until that cell's code changes — and it works in a **single document**.
+- **`freeze`** — **Quarto's** own switch, *not* about compute: it sets *when* a document re-executes.
+  **Project-only** — rendering one file always runs it. Results live in `_freeze/`, refreshed only
+  when its source changes; commit it and **CI** *(the automated build)* rebuilds with **no R at all**.
+:::
+
+. . .
+
+``` yaml
+# _quarto.yml
+execute:
+  freeze: auto        # re-execute a document only when its source changes
+```
+
+That's `freeze: auto`, the sane setting to adopt — a page re-runs only when its own source changes. **`freeze: true`**
+hands you full control instead → next slide.
+
+::: notes
+- **Say (motivation):** "Compute can be slow — you don't want a prose typo to re-run a 20-minute model fit." *(Localize to the room: a sequence alignment, a long MCMC, a big simulation.)*
+- **Do:** the contrast is the point — **cache** = the *engine's* cache (knitr for R / Jupyter Cache), per-cell, works in a single doc; **freeze** = *Quarto's* switch, project-only, re-executes a doc only when its source changes. (Verified vs quarto.org `docs/projects/code-execution.html`.) Protect this distinction.
+- **Do:** show `freeze: auto` in `_quarto.yml`; "re-runs a page only when *that page* changed."
+- **If asked — why not just cache everything?** cache is per-cell and can go stale across a shared repo; freeze commits whole-document results for reproducible, R-free CI rebuilds. Different jobs.
+- **Say (payoff):** commit `_freeze/` and **CI** *(a build that runs on every push)* rebuilds the site with **no R at all**.
+- **Teaser:** the next slide is `freeze: true` — the render-on-demand workflow.
+:::
+
+## The freeze workflow — you hold the trigger {#freeze-workflow}
+
+With **`freeze: true`**, a project build **never runs R** — it always reuses `_freeze/`. You refresh a
+page only when you choose to, by rendering that one file (a single-file render always executes):
+
+``` {.yaml filename="_quarto.yml"}
+execute:
+  freeze: true
+```
+
+``` bash
+quarto render analysis.qmd     # runs the code, rewrites _freeze/ — commit it with your change
+```
+
+. . .
+
+The loop: **edit a page → render that one file → commit `_freeze/`**. The project build and **CI**
+stay **R-free** — only the page you touched recomputes. That's exactly how **quarto.org** itself
+is built.
+
+. . .
+
+`freeze: auto` instead lets the *build* recompute any changed (or not-yet-frozen) page — convenient,
+but `true` keeps the trigger in your hands.
+
+::: notes
+- **Anchor (real):** quarto.org runs `freeze: true` — verified in `quarto-dev/quarto-web/_quarto.yml`;
+  contributors render the changed file locally and commit `_freeze/`, enforced by a `check-freeze.sh`
+  git hook — the *same* discipline this workshop repo uses.
+- **Say:** "true = the build never runs R; *you* decide when a page recomputes, by rendering it directly."
+- **Do:** edit a cell on `analysis.qmd` → `quarto render analysis.qmd` → show `_freeze/` change + the
+  timestamp tick; a full project render leaves it untouched.
+- **Contrast (lab uses `auto`):** `auto` = the build recomputes changed pages for you (the sane setting,
+  what the lab sets); `true` = deterministic CI + manual refresh (the CI mode).
+- **If asked:** a `production` render profile can set `freeze: false` to force a full re-execution.
+:::
+
+## Reproducibility has two legs {#renv}
+
+`freeze` pins the **results**. It doesn't pin **what produced them** — the package versions:
+
+:::: {.columns}
+::: {.column width="50%"}
+- **`freeze`** → `_freeze/` — *"don't re-run the slow compute."*
+- **`renv.lock`** → *"pin the packages, so the team rebuilds the same environment."*
+:::
+::: {.column width="50%"}
+``` r
+renv::init()       # once, to start tracking
+renv::snapshot()   # write renv.lock
+renv::restore()    # rebuild the same env
+```
+:::
+::::
+
+Together: a colleague (or CI) rebuilds the *same* site, with or without re-running the analysis.
+
+::: notes
+- **Timing:** renv is the first thing to drop if short on time — the cache-vs-freeze contrast is the point of this beat, protect that.
+- **Say:** "freeze pins the *results*; renv.lock pins *what produced them* — the package versions. You want both."
+:::
+
+## Publishing {#publishing}
+
+The hands-on part is small: **render, then point a host at `output-dir`.**
+
+``` bash
+quarto render              # builds the whole project into _site/
+```
+
+- Push `_site/` to any static host — GitHub Pages, Netlify, an internal server.
+- `quarto publish gh-pages` and **GitHub Actions** automate it, rendering from the committed
+  `_freeze/` with **no R needed in CI**.
+
+::: {.callout-warning title="Watch-me — not a live *Your turn*"}
+You do the **`render` + `output-dir`** half; I'll **show** the publish step on a ready-made repo — it
+needs a GitHub login and builds asynchronously (push, then wait for the green check).
+:::
+
+::: notes
+- **Frame (why watch-me — don't narrate the logistics):** a live `publish gh-pages` across 40 laptops means GitHub auth and a repo each — a lot of per-person setup for one demo, and Pages/Actions rebuilds asynchronously (push, then wait for the green check), so there's nothing synchronous to watch anyway. Foreground the CI *story*; keep auth off the hands-on path.
+- **Say (keep these distinct):** "`quarto publish gh-pages` renders here on my machine and pushes the result; **GitHub Actions** is the path that rebuilds from the committed `_freeze/` with no R on the runner."
+- **Do (if demoing live):** state the auth prerequisite first (GitHub login + a repo); otherwise just show the green check on the pre-provisioned repo.
+:::
+
+## Your turn {#your-turn-2}
+
+::: {.callout-tip title="Your turn — regroup in ~45 min"}
+Back to the **[Lab](../../labs/quarto-projects/index.qmd#ship-it-challenge)**, the **Ship it Challenge**: render your
+project to `_site/` and open it — a publishable folder. (Publishing to Pages is the watch-me demo.)
+:::
+
+::: notes
+- **Say (handoff):** "Last stretch — Ship it Challenge: render your project to `_site/` and open it, a publishable folder. Publishing to Pages is my watch-me demo, not your job. ~45 min; helpers are up."
+- **Helpers:** the tell that freeze is working — the *second* project render doesn't re-execute the page at all (no chunk output scrolls by); the compute is served from `_freeze/`. Behind? Open the shipped `solution/` project and start from there.
+:::
+
+## What you can do now {#wrap-up}
+
+You can now:
+
+- structure `.qmd` into a **project** — `_quarto.yml`, `_metadata.yml`, `output-dir`;
+- build a **branded website** with navigation, and know why cross-page refs differ from a book;
+- make builds **reproducible** (`freeze` + `renv.lock`) and **publish** the output folder.
+
+. . .
+
+**You've built the two axes:** one document to a branded PDF (Day 1), one folder to a published site
+(Day 2) — everything your **team project** needs.
+
+## Demos — if time {#demos}
+
+Extra topics, if we have time:
+
+::: {.incremental}
+- **Book versus website** — ~90% shared machinery; pick a **book** when you need one linear read with
+  global numbering, a **website** otherwise. *(1 decision, not a new toolset.)*
+- **Dashboards** — `format: dashboard` arranges plots/tables/valueboxes into a static layout (rows,
+  columns, cards) — share results with a collaborator who won't open R.
+  [See one](../../labs/quarto-projects/dashboard.qmd){target="_blank"} *(static — no server)*.
+- **Interactivity** — an **htmlwidget** (`plotly`, `leaflet`) is pure R and self-contained; **OJS**
+  *(Observable JS — a browser-side, non-R path)* and **Shinylive** *(Shiny running in the browser,
+  no server)* are links, not live builds.
+:::
+
+::: notes
+- **Timing:** cut-able tail — trim from the bottom if under ~5 min left; all watch-me, nothing built live.
+- **Do:** for the dashboard, open the [See one] link and name the four regions — two valueboxes across
+  the top, a card with the boxplot, and a two-tab panel (the whole layout model: rows / columns /
+  cards / valueboxes / tabsets).
+:::
+
+## Thank you! {.center}
+
+Questions?
+
+**Learn more:** [Projects](https://quarto.org/docs/projects/quarto-projects.html) ·
+[Websites](https://quarto.org/docs/websites/) ·
+[Freeze](https://quarto.org/docs/projects/code-execution.html#freeze) ·
+[Publishing](https://quarto.org/docs/publishing/)
+
+::: {.smaller}
+Slides + lab: this site · Christophe Dervieux · [GitHub `@cderv`](https://github.com/cderv) · [cderv@posit.co](mailto:cderv@posit.co)
+:::

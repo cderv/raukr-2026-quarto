@@ -1,0 +1,52 @@
+/*-- scss:defaults --*/
+// RaukR flat look — a thin layer over _brand.yml (which carries the palette + fonts).
+// Keep this minimal: brand does the colors/type; this only adds the flat, dotted-background feel.
+$border-radius: 0 !default;
+
+// Type scale — match the RaukR house deck (NBISweden/raukr-2026 assets/css/slides.scss) so these
+// slides sit visually alongside the school's own. We reconstruct the numbers here (root + heading
+// ramp) rather than vendoring their CC BY-NC-SA SCSS. Quarto's 40px default was never a deliberate
+// choice and reads oversized next to the house 27px.
+$presentation-font-size-root: 27px !default;
+$presentation-h1-font-size: 1.802em !default;
+$presentation-h2-font-size: 1.602em !default;
+$presentation-h3-font-size: 1.424em !default;
+$presentation-h4-font-size: 1.266em !default;
+$presentation-h5-font-size: 1.125em !default;
+$presentation-h6-font-size: 1em !default;
+$code-block-font-size: 0.7em !default;
+
+/*-- scss:rules --*/
+.reveal {
+  // Brand font is Albert Sans (Google Fonts). If it fails to load (offline, or flaky room wifi at
+  // the event), Quarto's brand value `--r-main-font: Albert Sans` has no generic family, so the
+  // browser drops to its default *serif*. Re-declare the vars with a system SANS fallback so a
+  // font-load failure degrades to sans, not Times.
+  --r-main-font: "Albert Sans", system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --r-heading-font: "Albert Sans", system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+
+  // Light dotted background, RaukR house look.
+  background-image: radial-gradient(#d1e5e6 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+.reveal .slide-number {
+  background-color: transparent;
+}
+
+// Two code blocks back-to-back — a header snippet plus the prose/example that uses it (the
+// citations and multi-format slides) — otherwise collapse into one box with only a hairline
+// between them. Give consecutive code blocks vertical breathing room. Quarto wraps each block
+// differently depending on features: bare `div.sourceCode` (no line numbers), a
+// `.code-copy-outer-scaffold` (line-numbered blocks with the copy button), or a
+// `.code-with-filename` (filename tab). Cover every adjacency between those wrappers.
+.reveal {
+  $code-wrappers: "div.sourceCode", ".code-copy-outer-scaffold", ".code-with-filename";
+  @each $prev in $code-wrappers {
+    @each $next in $code-wrappers {
+      #{$prev} + #{$next} {
+        margin-top: 0.8em;
+      }
+    }
+  }
+}

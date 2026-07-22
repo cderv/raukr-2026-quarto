@@ -1,0 +1,175 @@
+---
+title: "Setup"
+subtitle: "What to install before the sessions"
+number-sections: false
+---
+
+You need a working R + Quarto toolchain and an editor. Everything below is standard; if you
+already render Quarto documents from R, you are ready.
+
+::: {.callout-note appearance="simple"}
+## Setup at a glance
+Four steps, top to bottom — each links to its details below:
+
+1. [**Install**](#software) R ≥ 4.5, Quarto ≥ 1.9, and an editor.
+2. [**Get the materials**](#get-the-materials) — one line of R, no git or GitHub account needed.
+3. [**Install the R packages**](#r-packages) — `renv::restore()` from the project.
+4. [**Check it works**](#check-your-setup) — `quarto check` plus a couple of R lines.
+
+Do steps 2–4 **before you arrive** — walking in with the toolchain already in place means we start on the content, not the install.
+:::
+
+## Software
+
+- **R ≥ 4.5.0.** The running dataset (`penguins`) ships in base R only since 4.5 — check with
+  `R.version.string`. The exercises use the base-R names (`bill_len`, `bill_dep`, …), so R ≥ 4.5
+  is the smoothest path; if you truly can't upgrade, see the fallback below.
+- **Quarto ≥ 1.9.** Check with `quarto --version`; get it from
+  <https://quarto.org/docs/get-started/>. (1.9 is required — the Typst margin/article layout we
+  use on Day 1 landed in 1.9.)
+- **An editor with Quarto support** — [Positron](https://positron.posit.co/), VS Code (+ the
+  Quarto extension), or RStudio. All work; we drive Quarto from the command line too
+  (`quarto preview` / `quarto render`), so the editor is your choice.
+
+::: {.callout-tip}
+Typst (the modern PDF path we use on Day 1) ships **inside** Quarto — there is nothing extra to
+install, no LaTeX.
+:::
+
+::: {.callout-warning collapse="true"}
+## Stuck on R < 4.5? (dataset fallback)
+The exercises assume base R's `penguins`. If you genuinely can't get to R ≥ 4.5, install
+[`palmerpenguins`](https://allisonhorst.github.io/palmerpenguins/) and rename its columns to the
+base-R names the material uses — then every snippet works unchanged:
+
+```r
+# install.packages("palmerpenguins")
+library(dplyr)
+penguins <- palmerpenguins::penguins |>
+  rename(
+    bill_len    = bill_length_mm,
+    bill_dep    = bill_depth_mm,
+    flipper_len = flipper_length_mm,
+    body_mass   = body_mass_g
+  )
+```
+
+Run this once at the top of a document (or your session) before the exercise code. Upgrading R is
+still the cleaner path if you can.
+:::
+
+## Get the materials
+
+The exercises build on files in this repo — starter documents, the completed reference projects, and
+the citation assets (`references.bib`, `apa.csl`). The easiest way to get everything — **no git, no
+GitHub account, nothing to unzip by hand**, identical on Windows/macOS/Linux — is **`use_course()`**
+from R:
+
+```r
+# install.packages("usethis")   # once, if you don't have it
+usethis::use_course("cderv/raukr-2026-quarto")
+```
+
+**What it does**, so nothing surprises you:
+
+1. picks a sensible spot — your **Desktop** by default — and prints where it's about to download. To
+   put it elsewhere, cancel and re-run with a path, e.g.
+   `use_course("cderv/raukr-2026-quarto", destdir = "~/projects")`.
+2. downloads the repo as a ZIP, **unpacks it for you** into a new project folder (it prints the exact
+   name), and asks *"Shall we delete the ZIP file?"* — say **yes**.
+3. **opens the project** — a new RStudio session, or (in Positron / VS Code) the folder; if it
+   doesn't pop open, open the folder it printed yourself.
+
+You land inside the project, with `renv.lock` and every lab file in place. Run the **R packages** and
+**Check** steps below **from there** — that folder is the "project root" they refer to.
+
+::: {.callout-tip collapse="true"}
+## Prefer git? (optional)
+Clone it instead — same files, plus a live link to any updates:
+
+```sh
+git clone https://github.com/cderv/raukr-2026-quarto.git
+cd raukr-2026-quarto
+```
+
+Then open the folder in your editor. The steps below run from the project root either way.
+:::
+
+## R packages
+
+This repo pins its R dependencies with [**renv**](https://rstudio.github.io/renv/), so you can
+recreate the exact environment. From the repo root:
+
+```r
+# install.packages("renv")   # if you don't have it
+renv::restore()
+```
+
+When you first open the project, renv prints a few bootstrap lines ending in a reminder to run
+`renv::restore()` — that's expected, just run it.
+
+That installs the locked versions (`knitr`, `rmarkdown`, `ggplot2`, `dplyr`, `gt`, plus
+`brand.yml`, `ggrepel`, `prismatic` for the branded Typst payoff, and their dependencies) into a
+project-local library — it won't touch your other R projects.
+
+::: {.callout-note collapse="true"}
+## Not using renv?
+You can install the same packages the plain way:
+
+```r
+install.packages(c(
+  "knitr", "rmarkdown", "ggplot2", "dplyr", "gt",
+  "brand.yml", "ggrepel", "prismatic"
+))
+```
+
+Or with [**pak**](https://pak.r-lib.org/) — same list, but it installs in parallel, prefers
+binaries, and sorts out system dependencies for you:
+
+```r
+# install.packages("pak")   # once, if you don't have it
+pak::pak(c(
+  "knitr", "rmarkdown", "ggplot2", "dplyr", "gt",
+  "brand.yml", "ggrepel", "prismatic"
+))
+```
+:::
+
+## Check your setup
+
+The single command that proves the whole toolchain — including the **knitr engine** (the `knitr` +
+`rmarkdown` packages that a `.qmd` with R code needs) — is:
+
+```sh
+quarto check
+```
+
+It reports your Quarto version, checks the install, and **renders a small knitr test document**. You
+want to see the `knitr` / `rmarkdown` versions and a line reading `Checking Knitr engine
+render......OK`. If instead you see `rmarkdown: (None)` (or `The rmarkdown package is not available
+in this R installation`), your R packages aren't installed yet — do the [R packages](#r-packages)
+step above and re-run.
+
+Then confirm the R side:
+
+```r
+R.version.string            # want >= 4.5.0
+"penguins" %in% ls("package:datasets")   # want TRUE on R >= 4.5
+```
+
+(Your **Quarto** version was already printed by `quarto check` above — or run `quarto --version` in a
+terminal.)
+
+::: {.callout-note}
+## Pre-warm the Typst fonts (once, before the session)
+The **first** Typst render downloads the brand's Google fonts (Albert Sans / Fira Mono). Trigger it
+once ahead of time — after `renv::restore()` — so the fonts are already cached and your first render
+in the session is instant. The simplest way is to render the shipped branded sample:
+
+```sh
+quarto render labs/quarto/sample-typst.qmd
+```
+
+Non-blocking: if you skip it, the first render at the session just takes a little longer (given a
+network connection).
+:::

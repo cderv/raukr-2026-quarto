@@ -1,0 +1,99 @@
+---
+title: "Penguin bill dimensions"
+subtitle: "Part-2 starter — a finished Part-1 document, ready to cite"
+author: "Your name"          # ← replace with your own before rendering
+format: html
+---
+
+<!--
+This is the KNOWN-GOOD Part-2 starter (running-order rule 2): a complete Part-1 penguins report —
+a cross-referenced figure and table, a margin element, and a display equation — with NO citations
+yet. Open it at the start of Part 2 (whether or not you finished your own Part-1 document) and add
+the citation + Typst payoff on top of it. The fully cited version is `penguins-report.qmd`.
+-->
+
+```{r}
+#| label: setup
+#| message: false
+library(dplyr)
+library(ggplot2)
+library(gt)
+library(ggokabeito)   # colour-blind-safe (Okabe-Ito) scale for the species colours
+
+# Base-R penguins — zero install on R >= 4.5. Drop rows with missing bill measurements.
+data(penguins)
+penguins <- penguins |> filter(!is.na(bill_len), !is.na(bill_dep))
+```
+
+## The data
+
+We measured **`{r} nrow(penguins)`** penguins of `{r} length(unique(penguins$species))` species —
+`{r} knitr::combine_words(levels(penguins$species))` — collected at Palmer Station, Antarctica. The
+species are not evenly represented:
+
+```{r}
+#| label: counts
+#| column: margin
+penguins |>
+  count(species, name = "n") |>
+  knitr::kable()
+```
+
+## Bill shape separates the species
+
+@fig-bill shows that within a species the bill has a characteristic shape, so the species form
+clusters.
+
+```{r}
+#| label: fig-bill
+#| fig-cap: "Bill length versus depth, colored by species."
+#| fig-alt: >-
+#|   Scatter plot of bill depth against bill length for penguins of three species, each drawn in a
+#|   distinct color and shape; the three species form largely separate clusters.
+ggplot(penguins, aes(bill_len, bill_dep, color = species, shape = species)) +
+  geom_point(alpha = 0.8) +
+  scale_color_okabe_ito() +   # colour-blind-safe palette; shape also encodes species
+  labs(x = "Bill length (mm)", y = "Bill depth (mm)", color = "Species", shape = "Species") +
+  theme_minimal(base_size = 12)
+```
+
+A compact descriptor of bill shape is the length-to-depth ratio (@eq-ratio):
+
+$$
+\text{ratio} = \frac{\text{bill\_len}}{\text{bill\_dep}}
+$$ {#eq-ratio}
+
+## Mean measurements
+
+@tbl-summary reports the mean bill measurements and body mass per species.
+
+```{r}
+#| label: tbl-summary
+#| tbl-cap: "Mean measurements per species."
+penguins |>
+  summarise(
+    n = n(),
+    bill_len = mean(bill_len),
+    bill_dep = mean(bill_dep),
+    body_mass = mean(body_mass, na.rm = TRUE),
+    .by = species
+  ) |>
+  gt() |>
+  cols_label(species = "Species", n = "N", bill_len = "Bill length (mm)",
+             bill_dep = "Bill depth (mm)", body_mass = "Body mass (g)") |>
+  fmt_number(columns = c(bill_len, bill_dep), decimals = 1) |>
+  fmt_number(columns = body_mass, decimals = 0)
+```
+
+<!-- Part 2 picks up here: add `bibliography:` + `csl:` and a `[@gorman2014]` citation, then a
+     References section, then switch to `format: typst` for the branded PDF. -->
+
+<details>
+<summary>Session</summary>
+
+```{r}
+#| label: session
+sessionInfo()
+```
+
+</details>

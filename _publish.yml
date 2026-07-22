@@ -1,0 +1,4 @@
+- source: project
+  posit-connect-cloud:
+    - id: 019f5c4d-f1c7-0d48-88b9-b10861a493e7
+      url: https://connect.posit.cloud/cderv/content/019f5c4d-f1c7-0d48-88b9-b10861a493e7

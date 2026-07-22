@@ -1,0 +1,67 @@
+# --- Quarto ---
+**/.quarto/
+/.quarto/
+/_site*/
+/_book*/
+**/*.quarto_ipynb
+**/*.rmarkdown
+**/mathjax-config.js
+/.luarc.json
+
+# _freeze/ is versioned for its per-doc execute-results/*.json — the R compute cache, the core of
+# freeze that lets CI reuse results without re-running R. Its site_libs/ are regenerable and NOT
+# meant to be committed (confirmed against quarto-cli via DeepWiki): Quarto repopulates them from
+# its own install on every render, and they aren't strictly required for a no-engine render — so
+# committing them is just ~5 MB of churn. Keep them out of git.
+# Note: site_libs/ can also carry htmlwidget (plotly/leaflet) libs; per DeepWiki still not strictly
+# required off-engine — but if a frozen widget ever fails to load on CI, un-ignore / track its lib.
+/_freeze/site_libs/
+
+# Stray render libs written next to source when a single file is rendered outside the site build
+# (the site build puts them in _site/site_libs/). Regenerable — never commit.
+/site_libs/
+
+# Per-doc figure working dirs written next to source on render (typst needs the figure on disk).
+# Quarto restores these from _freeze/ — the canonical frozen copies live under _freeze/. Not sources.
+**/*_files/
+# SVGs emitted by typst-render (output-directory: typst-figures). Regenerated on every render and
+# published from _site/ — never committed (matches tuto-quarto-typst-rr-2026).
+**/typst-figures/
+# Composed Typst source from keep-typ, if ever re-enabled — a build artifact, not a source.
+**/*.typ
+# knitr intermediate written next to source on render (e.g. by a reviewer verifying a page).
+# Regenerated on every render; the frozen results live under _freeze/. Not a source.
+**/*.knit.md
+# Rendered HTML written next to source when a single .qmd is rendered outside the project
+# (the site build puts pages in _site/). HTML is always generated here, never a source.
+**/*.html
+
+# --- R ---
+.Rproj.user/
+**/.Rproj.user/
+.Rhistory
+.RData
+.Ruserdata
+
+# --- braid (issue tracker) — the doc id in .braid.toml is a bearer token ---
+.braid.toml
+.braid-stragglers.jsonl
+
+# --- local visual-review tooling (Playwright screenshots; never committed) ---
+/.review-shots/
+/node_modules/
+/package.json
+/package-lock.json
+
+# --- editor / OS ---
+.DS_Store
+.positai
+
+# --- throwaway repo clones used by review agents (do NOT commit; clean after) ---
+/rr-2023/
+/typst-rr-2026/
+/user2024-talk/
+/user2024-tutorial/
+/raukr-2025-quarto/
+/raukr-2025/
+/raukr-2026/

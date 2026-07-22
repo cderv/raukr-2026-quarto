@@ -1,0 +1,15 @@
+# Keep dev-only scaffolding out of the ZIP that GitHub serves.
+#
+# `git archive` (which powers github.com/<repo>/zipball/HEAD — the archive that
+# usethis::use_course() downloads, and the "Download ZIP" button) honours
+# `export-ignore`, so files marked below are stripped from that ZIP while staying
+# fully versioned in the repo. Participants who `use_course()` get only the
+# workshop materials; the dev scaffold stays behind the curtain.
+#
+# NOTE: this affects archives only, NOT `git clone` — a clone still gets
+# everything. The recommended path in setup.qmd is use_course(), which is clean.
+
+/.claude          export-ignore
+/.vscode          export-ignore
+/_publish.yml     export-ignore
+/.gitattributes   export-ignore
