@@ -250,11 +250,18 @@ rendered PDF, not a web page).
 
 > **Goal:** turn a report into a *parameterized* one — a single source that renders a **separate
 > report per species** by passing the species in at render time. This is the "one QC report per
-> sample / one summary per cohort" pattern. Fully optional, self-service — skip it if you're out of
-> time.
+> sample / one summary per cohort" pattern. Fully optional — skip it if you're short on time.
 
 A **parameter** is a value declared in the YAML that your code can read as `params$…`. Change the
 value at render time and the *same document* produces a different report — no copy-paste.
+
+::: {.callout-note}
+## Starting point
+The fastest path: open the shipped **`penguins-by-species.qmd`** (in your cloned `labs/quarto/`) — a
+complete parameterized report — and just **render it for different species** (Task 5). Want to build
+it yourself instead? Add the pieces below to a copy of your Part-1 report — and point your
+figure/table cells at the filtered **`one`**, not `penguins`, so they track the parameter too.
+:::
 
 ::: {.callout-note icon=false}
 ## {{< fa clipboard-list >}} Tasks
@@ -263,9 +270,10 @@ value at render time and the *same document* produces a different report — no 
    params:
      species: Gentoo
    ```
-2. **Use it to filter** in your setup cell — `params$species` is just a value:
+2. **Use it to filter** in your setup cell — `params$species` is just a value (keep the same NA guard
+   as the rest of the lab), then plot **`one`** instead of `penguins`:
    ```r
-   one <- penguins |> filter(species == params$species)
+   one <- penguins |> filter(species == params$species, !is.na(bill_len), !is.na(bill_dep))
    ```
 3. **Build a heading from the parameter** with `#| output: asis` (it writes the cell's text output
    as raw Markdown, so `cat()` becomes a real heading):
@@ -273,20 +281,24 @@ value at render time and the *same document* produces a different report — no 
    ```{{r}}
    #| echo: false
    #| output: asis
-   cat("## ", params$species, "at a glance\n")
+   cat("##", params$species, "at a glance\n")
    ```
    ````
-4. **Make the caption track the parameter** with `!expr` (evaluate R in a cell option):
+4. **Make the caption — and the alt text — track the parameter** with `!expr`. Cell options are
+   YAML, so to run R there you tag the value `!expr` (and keep a `fig-alt`, always):
    ```yaml
    #| fig-cap: !expr paste0("Bill length versus depth for ", params$species, " penguins.")
+   #| fig-alt: !expr paste0("Scatter plot of bill depth against bill length for ", params$species, " penguins.")
    ```
 5. **Render a different species from the CLI** — same `quarto render` you used for the Typst PDF,
-   with `-P name:value` (no Render button for this; the parameter override is a command-line thing):
+   with `-P name:value` (no Render button for this; the parameter override is command-line only).
+   Run it from inside `labs/quarto/` (or give the full path from the repo root):
    ```bash
    quarto render penguins-by-species.qmd -P species:Adelie
    quarto render penguins-by-species.qmd -P species:Chinstrap
    ```
-   With no `-P`, the default (`Gentoo`) is used.
+   With no `-P`, the default (`Gentoo`) is used. Like the Part-1 report earlier, this file is in the
+   site's render list, so the HTML lands under **`_site/labs/quarto/`**, not next to the source.
 :::
 
 ::: {.callout-note appearance="simple" icon=false}

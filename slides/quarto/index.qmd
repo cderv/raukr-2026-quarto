@@ -454,7 +454,7 @@ quarto render  report.qmd   # one-off render
 - **RStudio**, **Positron**, and **VS Code** all work. The **visual editor** (WYSIWYM — *what you
   see is what you mean*) is built into the **RStudio IDE**, and comes to **Positron and VS Code**
   through the **Quarto extension**.
-- The same `quarto render` also takes **`-P key:value`** — override a document *parameter* to get
+- The same `quarto render` also takes **`-P name:value`** — override a document *parameter* to get
   one report per sample or species from a single source. *(Optional bonus in today's lab.)*
 
 ::: notes

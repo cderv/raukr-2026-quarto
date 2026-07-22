@@ -7,6 +7,24 @@ no releases; this is the running record of what was built and why.
 
 ## Log
 
+### Params-bonus review cycle (panel) + slide MENTION + fixes — 2026-07-22
+
+Ran the four-reviewer panel against the new parameterized-report bonus (tag `params`, ref bee98ea):
+**0 P0**, and every syntax claim render-verified (asis→numbered heading, `!expr` in fig-cap *and*
+fig-alt, `-P species:` colon form, no freeze/website stale-artifact trap). Applied the full fix set
+(reports + ledger in `.claude/archive/reviews/`): (1) the new file had regressed to the legacy
+`` `r …` `` inline — migrated both spans to the braced house form (technique + language P1); (2) slide
+`-P key:value` → `-P name:value` to match the lab (language P1); (3) the beginner's real find — the
+bonus read as "modify a document" but only cohered against the shipped solution — closed by anchoring
+a "Starting point" box on `penguins-by-species.qmd`, telling DIY builders to plot the filtered `one`,
+and adding the `_site/…` output-location + working-dir note (3 P1s, one reframe). Cheap P2s folded in:
+Session appendix on the new file, `cat("##", …)` double-space, `fig-alt: !expr` taught alongside
+`fig-cap` + a one-clause "why `!expr`", NA guard in the task snippet, register trims. Also added the
+**Day-1 slide MENTION** (deferred from the build): one `-P name:value` bullet on `## Running & editing`
+(where `quarto render` is already on screen) + a cut-first notes cue; fit-checked 720/720. All
+executable `.qmd` re-rendered, braced inline re-verified as executing, `-P species:Chinstrap`
+re-verified end-to-end; `_freeze/` staged.
+
 ### Parameterized-report exercise — Day-1 lab optional bonus (closes the one coverage gap) — 2026-07-22
 
 Closed **the tracker**, the one topic NBIS teaches as a full hands-on (`labs/quarto:467-539`) that
