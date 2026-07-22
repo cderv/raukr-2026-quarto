@@ -20,7 +20,7 @@ site render list (validated now by the exercises-repo CI, kept under `labs/` as 
 step-0 path/framing updates. **Panel:** 1 P0 + 3 P1 (deduped from 6 across 4 reviewers) + ~8 P2, **all
 applied**. The **P0** (technique): `use_course("owner/repo@ref")` is **unsupported** — usethis builds
 `.../zipball/HEAD` and 404s (verified vs r-lib/usethis `R/course.R`). Fix (Christophe's call):
-the plain shorthand `use_course("cderv/raukr-quarto-exercises")` → **`main` = current edition** (clean
+the plain shorthand `use_course("cderv/raukr-2026-quarto-exercises")` → **`main` = current edition** (clean
 folder name; during the live Aug-2026 sessions `main` IS the 2026 content); download buttons retargeted
 to `/main/`; **`raukr-2026` demoted from a handout pin to an archival snapshot cut when 2027 starts**
 (plan §3/§4/§8 revised — the branch-semantics answer to Christophe's earlier question, corrected once
@@ -55,7 +55,7 @@ DESCRIPTION); the **explicit 9-package `renv.lock` is byte-identical to the cour
 adds no R deps, so the "heavy site lock" worry doesn't hold — shipped as its own file for an
 independent participant contract; ZIP still tiny); the **Day-2 solution `_brand.yml` is a deliberately
 minimal teaching brand** (copied verbatim, never overwritten with root). Deferred to next increments:
-the **handoff** (create the public `cderv/raukr-quarto-exercises` repo — out of this session's GitHub
+the **handoff** (create the public `cderv/raukr-2026-quarto-exercises` repo — out of this session's GitHub
 scope — + push `exercises/` + wire CI + the site zip-mirror) and the **reviewed migration** (rewrite
 `setup.qmd` + both lab pages + `_quarto.yml` render list + slide step-0, deleting the `cd starter/`
 apparatus; `/start-workshop` + the post-build run-labs gate before freeze).
@@ -63,7 +63,7 @@ apparatus; `/start-workshop` + the post-build run-labs gate before freeze).
 ### Exercise-delivery dry-run — GO/NO-GO gate: **GO** (the tracker) — 2026-07-22
 
 Ran the pre-build go/no-go for the exercise externalization (plan `2026-07-22-exercise-delivery.md`).
-Method: since the `cderv/raukr-quarto-exercises` repo doesn't exist yet, built a **faithful simulation
+Method: since the `cderv/raukr-2026-quarto-exercises` repo doesn't exist yet, built a **faithful simulation
 of the `use_course()` unpacked layout** in scratch (plain folder, NO root `_quarto.yml`; `day1-intro/`
 with a SIBLING `_brand.yml`+bib+csl; `day2-projects/` shipped WITHOUT `_quarto.yml`; `solutions/` as
 siblings) and ran the **real renders** with the renv library exposed as the participant's user library.

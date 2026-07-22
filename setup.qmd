@@ -60,22 +60,22 @@ still the cleaner path if you can.
 
 ## Get the materials
 
-The hands-on files live in a small **exercises folder** (the top `raukr-quarto-exercises` folder) —
+The hands-on files live in a small **exercises folder** (the top `raukr-2026-quarto-exercises` folder) —
 the starter documents, the reference solutions, and the citation assets (`references.bib`, `apa.csl`).
 The easiest way to get it — **no git, no GitHub account, nothing to unzip by hand**, identical on
 Windows/macOS/Linux — is **`use_course()`** from R:
 
 ```r
 # install.packages("usethis")   # once, if you don't have it
-usethis::use_course("cderv/raukr-quarto-exercises")
+usethis::use_course("cderv/raukr-2026-quarto-exercises")
 ```
 
 **What it does**, so nothing surprises you:
 
 1. picks a sensible spot — your **Desktop** by default — and prints where it's about to download. To
    put it elsewhere, cancel and re-run with a path, e.g.
-   `use_course("cderv/raukr-quarto-exercises", destdir = "~/projects")`.
-2. downloads a ZIP, **unpacks it for you** into a folder called `raukr-quarto-exercises` (it prints
+   `use_course("cderv/raukr-2026-quarto-exercises", destdir = "~/projects")`.
+2. downloads a ZIP, **unpacks it for you** into a folder called `raukr-2026-quarto-exercises` (it prints
    the exact path), and asks *"Shall we delete the ZIP file?"* — say **No**, and keep it: it's your
    one-click reset (see below).
 3. **opens the folder** — a new RStudio session, or (in Positron / VS Code) the folder; if it doesn't
@@ -83,7 +83,7 @@ usethis::use_course("cderv/raukr-quarto-exercises")
 
 ::: {.callout-important}
 ## Which folder to open — and when
-`use_course()` drops you in the **top folder** (`raukr-quarto-exercises`). Do the next two steps —
+`use_course()` drops you in the **top folder** (`raukr-2026-quarto-exercises`). Do the next two steps —
 **R packages** and **Check** — from there, now, before the session.
 
 **When the session starts**, open the day folder for that day — **not** the top folder:
@@ -102,12 +102,12 @@ top folder (try first).
 If an attempt goes sideways, get a **fresh** copy of the day folder — don't try to unzip over your
 working copy:
 
-- **re-run** `usethis::use_course("cderv/raukr-quarto-exercises")` — it makes a new, numbered folder
+- **re-run** `usethis::use_course("cderv/raukr-2026-quarto-exercises")` — it makes a new, numbered folder
   and leaves your old attempt untouched; **or**
 - unzip the ZIP you kept to a **new** location.
 
 If `use_course()` can't reach GitHub (blocked network / firewall), use the browser: the green **Code ▸
-Download ZIP** button on <https://github.com/cderv/raukr-quarto-exercises>, then unzip.
+Download ZIP** button on <https://github.com/cderv/raukr-2026-quarto-exercises>, then unzip.
 :::
 
 ## R packages
@@ -138,7 +138,7 @@ pak::pak(c(
 ::: {.callout-note collapse="true"}
 ## Prefer pinned versions? (optional, `renv`)
 The exercises ship an `renv.lock` recording exact package versions. From the **top**
-`raukr-quarto-exercises` folder (where `renv.lock` sits):
+`raukr-2026-quarto-exercises` folder (where `renv.lock` sits):
 
 ```r
 # install.packages("renv")   # if you don't have it
@@ -153,7 +153,7 @@ is the simpler path that works in any folder. Pick one; you don't need both.
 
 ## Check your setup
 
-The exercises folder ships a one-shot check. From the **top** `raukr-quarto-exercises` folder, run:
+The exercises folder ships a one-shot check. From the **top** `raukr-2026-quarto-exercises` folder, run:
 
 ```r
 source("00-check-setup.R")

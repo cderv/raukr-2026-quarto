@@ -76,13 +76,13 @@ the small exercises repo.)
 | Decision | Options | Recommendation |
 |---|---|---|
 | **Source of truth** | (A) keep canonical files in the course repo, a **sync script** generates+pushes the exercises repo; (B) **move** files out entirely, course repo keeps only lab prose | **(A) sync.** Keeps files where they're already render-validated + embedded in lab pages, keeps the Day-1 flat layout the old plan showed must not be reshaped, one edit point. Reuse the old plan's **role-manifest sync** (`§4` there) — it already solved the flat-Day-1 / split-Day-2 asymmetry. Cost: a second repo + a sync script + CI drift-guard. |
-| **Versioning** | (A) year-in-name repo; (B) **year-agnostic repo + edition branches** | **(B).** Year-agnostic repo; `main` = current edition. **Branch semantics (REVISED 2026-07-22 after the delivery review):** the Setup command is the plain shorthand **`use_course("cderv/raukr-quarto-exercises")`**, which downloads **`main`** (clean folder `raukr-quarto-exercises/`; during the live Aug-2026 sessions `main` IS the 2026 content). ⚠️ **`use_course()` does NOT support the `@ref` shorthand** — `owner/repo@raukr-2026` builds `.../zipball/HEAD` and 404s (verified vs r-lib/usethis `R/course.R`; delivery-technique P0). So we do **not** pin an edition branch in the printed handout. **Freeze** = freeze `main` for the session window (the sync stops pushing). `raukr-2026` becomes an **archival snapshot** cut from `main` *when 2027 work starts* (`git branch raukr-2026 main`), so every edition stays reachable; anyone wanting the frozen 2026 later uses a **full branch URL** (`use_course("https://github.com/cderv/raukr-quarto-exercises/archive/raukr-2026.zip")` — the documented full-URL form; note it unpacks to `raukr-quarto-exercises-raukr-2026/`). 2027 handout = same plain shorthand (now `main` = 2027). Trade-off accepted: a 2026 handout re-run in 2027 gets 2027 content — marginal for a live workshop, and bought back by clean UX + supported syntax. |
+| **Versioning** | (A) **year-in-name repo** (one repo per edition); (B) year-agnostic repo + edition branches | **(A) — REVISED 2026-07-22 (round 2, ratified by Christophe).** Originally leaned (B), but **`use_course()` does NOT support the `@ref`/branch shorthand** (`owner/repo@raukr-2026` builds `.../zipball/HEAD` → 404; verified vs r-lib/usethis `R/course.R`; delivery-technique P0) — and that shorthand *was* (B)'s whole longevity mechanism. **(A) gives the same permanence more simply:** one repo per edition, **`cderv/raukr-2026-quarto-exercises`** (mirrors the course repo `raukr-2026-quarto`), delivered by the plain, supported shorthand **`use_course("cderv/raukr-2026-quarto-exercises")`** → downloads `main`, unpacks to a correctly-named `raukr-2026-quarto-exercises/`. A printed 2026 handout resolves **forever** (the repo is frozen after the event; content meaning never changes). **2027 = a NEW repo** `cderv/raukr-2027-quarto-exercises` (spin up via "Use this template" from 2026's), repoint the one Setup line + the sync target. No branches, no freeze-a-branch, no archival-snapshot dance. Cost: one repo per year — but that's clean, self-contained per-edition archival. |
 | **renv for participants** | (A) drop it (robustness); (B) ship a small `renv.lock` in the exercises repo | **(B) with the plain-install fallback kept** (as today). renv.lock-as-truth is a house rule; the 8 packages are small binaries. Offer `install.packages(c(...))` for anyone renv trips up. Revisit only if a dry-run shows Windows renv friction. |
 | **Template repo** | flag now vs post-course only | **Flag it** (one checkbox) as the instructor-reuse on-ramp; delivery still `use_course`. Template = reuse-by-others (account, offline from the session); `use_course` = live attendee delivery (no account). Each used where it's strong. |
 
 ## 4. What to build (and migrate)
 
-**New — the exercises repo `cderv/raukr-quarto-exercises` (public, CC BY 4.0):**
+**New — the exercises repo `cderv/raukr-2026-quarto-exercises` (public, CC BY 4.0):**
 `README.md` (participant quickstart + instructor on-ramp), `.Rproj`, per-day `.Rproj`s, `renv.lock` +
 `DESCRIPTION` (the 8 packages), `00-check-setup.R`, `day1-intro/`, `day2-projects/` (ships WITHOUT
 `_quarto.yml` — creating it IS the Day-2 exercise), `solutions/day{1,2}/`, and
@@ -92,12 +92,12 @@ Flag as a **template repository**.
 
 **New — in the course repo:** a **role-manifest sync script** (adapt the old plan's `sync-labs.R`
 manifest + the tuto's `sync-exercices.R` / `is_artifact()` artifact-stripping) + a `just exercises`
-recipe + a CI drift-guard; it force-pushes the assembled layout to the exercises repo's **`main`**
-(the rolling current edition), which is what Setup's plain `use_course(...)` shorthand downloads and
-what the lab download-buttons' `.../raukr-quarto-exercises/main/...` raw URLs resolve to (see §3 versioning).
+recipe + a CI drift-guard; it force-pushes the assembled layout to the exercises repo's **`main`**,
+which is what Setup's plain `use_course("cderv/raukr-2026-quarto-exercises")` shorthand downloads and
+what the lab download-buttons' `.../raukr-2026-quarto-exercises/main/...` raw URLs resolve to (see §3).
 
 **Migration edits in the course repo:**
-- `setup.qmd` — retarget "Get the materials" to `use_course("cderv/raukr-quarto-exercises@raukr-2026")`;
+- `setup.qmd` — retarget "Get the materials" to `use_course("cderv/raukr-2026-quarto-exercises")`;
   "keep the ZIP" advice; the `00-check-setup.R` / `sample-typst.qmd` verification (pre-warm); Plan-B/C
   fallbacks; keep the plain-install fallback.
 - `labs/quarto/index.qmd` — Task 1 → "create `my-report.qmd` inside your open `day1-intro/` folder";
@@ -143,7 +143,7 @@ prose) are now separate. Bought: a trap that cannot fire, a zip ~100× smaller, 
 one-click instructor reuse, and per-edition pins that keep every past handout working.
 
 ## 8. Build order
-1. Create `cderv/raukr-quarto-exercises` (public, CC BY, template flag); scaffold README/.Rproj/
+1. Create `cderv/raukr-2026-quarto-exercises` (public, CC BY, template flag); scaffold README/.Rproj/
    DESCRIPTION/renv; write `00-check-setup.R`.
 2. Write the course-repo role-manifest **sync script** + `just exercises`; run it; commit first synced state.
 3. **Empirically verify** a single-file Typst render in `day1-intro/` picks up the sibling `_brand.yml`
@@ -154,13 +154,13 @@ one-click instructor reuse, and per-edition pins that keep every past handout wo
 6. Rewrite `setup.qmd` + both lab pages + slide step-0 frames; delete the `cd starter/` machinery.
 7. **End-to-end dry run on a clean machine** via `run-labs` against a real `use_course()` unpack; both
    reset paths. Fix friction.
-8. ~Aug 1: **freeze `main`** (the sync stops force-pushing; Setup uses the plain
-   `use_course("cderv/raukr-quarto-exercises")` shorthand → `main`), declare content freeze; load USB
-   sticks; print the "open this folder" screenshots into the decks. (`raukr-2026` is cut as an archival
-   snapshot from `main` only when 2027 work begins — see §3.)
+8. ~Aug 1: **freeze the exercises repo** (the sync stops force-pushing to
+   `cderv/raukr-2026-quarto-exercises`; Setup uses the plain `use_course("cderv/raukr-2026-quarto-exercises")`
+   shorthand), declare content freeze; load USB sticks; print the "open this folder" screenshots into the
+   decks. (2027 = a new `raukr-2027-quarto-exercises` repo — see §3.)
 
 ## Critical files
 - `setup.qmd` · `labs/quarto/index.qmd` · `labs/quarto-projects/index.qmd` · `_quarto.yml` (render list)
 - `.claude/plans/2026-07-21-companion-package-scoping.md` (the no-package rationale + the manifest-sync
   design to reuse; the `check_setup()` spec to translate into `00-check-setup.R`)
-- New repo `cderv/raukr-quarto-exercises` + a course-repo `tools/sync-exercises.R` (or `pkg/data-raw/`-style)
+- New repo `cderv/raukr-2026-quarto-exercises` + a course-repo `tools/sync-exercises.R` (or `pkg/data-raw/`-style)
