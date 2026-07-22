@@ -331,3 +331,24 @@ one reframe: anchor on `penguins-by-species.qmd`, name the DIY caveat (plot `one
 All touched executable `.qmd` re-rendered; braced inline re-verified as executing (not literal);
 `-P species:Chinstrap` re-verified end-to-end with the added Session cell; `_freeze/` staged; `#running`
 re-fit-checked 720/720. No deferrals.
+
+## Cycle 2026-07-22 — exercise-delivery migration (`delivery` tag, ref `1a8c757`)
+
+Panel over the `use_course()` externalization migration (setup.qmd + both labs + `_quarto.yml` + both
+decks; sync infra as context). **1 P0** caught — the primary obtain command was broken — plus a
+folder-naming/ordering knot and stale old-model residue. All applied in `68e78a2`; the P0 fix also
+**revised the §3 branch semantics** (plain `use_course` shorthand → `main`, not an `@raukr-2026` pin,
+since usethis rejects the `@ref` form). Christophe chose the shorthand→`main` approach + apply-all.
+
+| Review file | Verdict (1-line) | Disposition | Applied → where |
+|---|---|---|---|
+| `review-2026-07-22-delivery-technique.md` | Structurally sound but the primary obtain command is broken; 1 P0 / 1 P1 / 2 P2 | ✅ applied | **P0:** `use_course('owner/repo@ref')` unsupported → plain shorthand `use_course('cderv/raukr-quarto-exercises')` (main); buttons → `/main/`; plan §3/4/8 revised (`68e78a2`). **P1:** stale `_site/` note `slides/quarto/index.qmd:677`. **P2:** renv caveat strengthened |
+| `review-2026-07-22-delivery-pedagogue.md` | Pedagogically ready after one P1; net cognitive-load reduction; 0 P0 / 1 P1 / 3 P2 | ✅ applied | **P1:** same `:677` stale note (dedup w/ technique). **P2:** slide `solution/`→`solutions/day2/` (`:394`). *Lost in-browser payoff-preview noted, accepted (inline target figs remain)* |
+| `review-2026-07-22-delivery-beginner.md` | No blockers; trap structurally gone; 0 P0 / 2 P1 / 3 P2 | ✅ applied | **P1:** phantom `starter/` in `labs/quarto-projects/solution/index.qmd:10`→`day2-projects/` (re-synced); setup open-day-folder-vs-check-from-top **ordering** fixed (sequence cue). **P2:** Day-1 Scope install adds knitr/rmarkdown; download-buttons-404-until-pushed = known handoff |
+| `review-2026-07-22-delivery-language.md` | Ship-ready prose, one consistency knot; 0 P0 / 2 P1 / 5 P2 | ✅ applied | **P1:** top folder named three ways → defined once + "top folder" throughout (`setup.qmd`). **P2:** UK `colour`; `your-doc.qmd`→`my-report.qmd`; presenter "strand a room of 40" reframed; "venue firewall"→neutral; bare `solutions/`→`solutions/day1|day2` |
+
+**Triage:** 1 P0 + 3 P1 (deduped from 6) + ~8 P2, **all applied** (Christophe: shorthand→main + apply-all).
+The P0 was a real regression the migration introduced (the `@ref` spec form) — the kind a post-build
+`run-labs` against a real `use_course()` unpack (plan §8 step 7) would also have caught. Site re-render
+green (8 targets); `_freeze/` refreshed; `exercises/` re-synced + drift-guard green; no slide fit-checks
+needed (only speaker notes changed this round).

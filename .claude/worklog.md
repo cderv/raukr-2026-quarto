@@ -7,6 +7,35 @@ no releases; this is the running record of what was built and why.
 
 ## Log
 
+### Delivery migration + review cycle — labs/setup/slides retargeted to use_course(); panel fixes (the tracker) — 2026-07-22
+
+Migrated the course-repo prose + config to the externalized exercises model (commit `1a8c757`), then
+ran the `/start-workshop` panel (tag `delivery`) and applied its findings (commit `68e78a2`).
+**Migration:** `setup.qmd` "Get the materials" → `use_course()` the small exercises repo, open the
+**day folder** (`day1-intro/` | `day2-projects/`), keep-the-ZIP, fresh-folder reset; **plain-install
+primary** (9 pkgs incl. the previously-missing `ggokabeito`) since the day folders aren't renv projects;
+check via `00-check-setup.R`. Both labs rewritten to work in the day folders; the entire Day-2
+`cd starter/` / repo-root-render / **nested-trap apparatus deleted**; the four Day-1 files left the
+site render list (validated now by the exercises-repo CI, kept under `labs/` as sync source); slide
+step-0 path/framing updates. **Panel:** 1 P0 + 3 P1 (deduped from 6 across 4 reviewers) + ~8 P2, **all
+applied**. The **P0** (technique): `use_course("owner/repo@ref")` is **unsupported** — usethis builds
+`.../zipball/HEAD` and 404s (verified vs r-lib/usethis `R/course.R`). Fix (Christophe's call):
+the plain shorthand `use_course("cderv/raukr-quarto-exercises")` → **`main` = current edition** (clean
+folder name; during the live Aug-2026 sessions `main` IS the 2026 content); download buttons retargeted
+to `/main/`; **`raukr-2026` demoted from a handout pin to an archival snapshot cut when 2027 starts**
+(plan §3/§4/§8 revised — the branch-semantics answer to Christophe's earlier question, corrected once
+the `@ref` limitation surfaced). **P1s:** the `setup.qmd` folder-naming/ordering knot (top folder had
+three names; "open the day folder" preceded "run the check from the top folder" — now named once +
+sequenced); a stale `_site/`-split speaker note (`slides/quarto/index.qmd:677`); a phantom `starter/`
+reference in the Day-2 solution (`labs/quarto-projects/solution/index.qmd:10` → `day2-projects/`,
+re-synced). **P2s:** UK `colour`, `your-doc.qmd`→`my-report.qmd`, presenter "strand a room of 40"
+reframed, "venue firewall"→neutral, bare `solutions/`→`solutions/day1|day2`, Day-1 Scope install adds
+`knitr`/`rmarkdown`, renv caveat now warns it won't reach the day folders, slide `solution/`→
+`solutions/day2/`. Site re-render green (8 targets); `_freeze/` refreshed; `exercises/` re-synced +
+drift-guard green. **Accepted trade-off** (pedagogue P2, no change): the four files off the site render
+list means no in-browser preview of the finished report / branded PDF — participants render locally; the
+inline target-figure previews remain. Reviews + dispositions: `.claude/archive/reviews/` (ledger updated).
+
 ### Exercises sync foundation — the use_course() payload, generated + drift-guarded (the tracker) — 2026-07-22
 
 First build increment after the GO gate: the **course-repo machinery that assembles the participant
