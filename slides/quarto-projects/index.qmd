@@ -87,8 +87,8 @@ format:
 ::::
 
 ::: aside
-Quarto uses the **nearest `_quarto.yml`** up the tree as the project root — the workshop repo already
-has one, so *your* project is the `starter/` subfolder.
+Quarto uses the **nearest `_quarto.yml`** up the tree as the project root — you add one to
+`day2-projects/`, and nothing sits above it, so that folder *is* your project.
 :::
 
 ::: notes
@@ -248,7 +248,7 @@ reproducible and **ship** it.
 
 ::: notes
 - **Say (handoff):** "Over to you — Website Challenge: `_quarto.yml`, a navbar, the shared brand. ~45 min, then we break — back at 15:30. Helpers are roaming."
-- **Helpers:** first thing to check — are they `cd`'d into `starter/`? A render from the repo root rebuilds the *workshop* site into the repo `_site/`, not their project. (Secondary: page links are source-relative, not `_site`.) Anyone behind can open the shipped `solution/` — a finished Part-1 site — and start Part 2 clean.
+- **Helpers:** first thing to check — are they working **inside `day2-projects/`** with their new `_quarto.yml`, so `quarto render` builds the project (not a stray single page)? (Secondary: page links are source-relative, not `_site`.) Anyone behind can open the shipped `solutions/day2/` — a finished Part-1 site — and start Part 2 clean.
 :::
 
 # Part 2 — Scale & ship {.center}

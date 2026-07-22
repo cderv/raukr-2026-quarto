@@ -12,16 +12,12 @@ project:
     - LICENSE.md
     - slides/*/index.qmd
     - labs/*/index.qmd
-    # Shared Day-1 assets (WP0): the running HTML report and the branded Typst PDF payoff.
-    # Listed explicitly so a full `quarto render` builds and validates them (the globs above
-    # only match each folder's index.qmd). sample-typst.qmd renders to PDF, not a site page.
-    - labs/quarto/penguins-report.qmd
-    - labs/quarto/sample-typst.qmd
-    # WP2 Day-1 lab: the shipped Part-2 starter (a known-good Part-1 report to cite).
-    - labs/quarto/starter.qmd
-    # Day-1 lab optional bonus: the parameterized report (renders once with default params).
-    - labs/quarto/penguins-by-species.qmd
-    # Day-2 "Demos — if time": the static `format: dashboard` page (opened/linked from the deck).
+    # The Day-1 working/reference files (starter.qmd, penguins-report.qmd, sample-typst.qmd,
+    # penguins-by-species.qmd) are NOT rendered on the site: they ship in the participant exercises
+    # repo (cderv/raukr-quarto-exercises), where its render-check CI validates them. They stay under
+    # labs/quarto/ as the sync source (tools/sync-exercises.R) but leave the site render list.
+    # Day-2 "Demos — if time": the static `format: dashboard` page (opened/linked from the deck) —
+    # a site-only demo, so it stays.
     - labs/quarto-projects/dashboard.qmd
 
 lang: en

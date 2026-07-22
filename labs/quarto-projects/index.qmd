@@ -9,7 +9,7 @@ date: ""
 #| label: setup
 #| message: false
 # Renders the target figure shown further down this page — you'll do the actual
-# work inside starter/, not here. This cell is not step zero.
+# work inside your day2-projects/ folder, not here. This cell is not step zero.
 library(dplyr)
 library(ggplot2)
 data(penguins)
@@ -25,35 +25,33 @@ GitHub Pages / CI is a **watch-me demo**, not a per-participant step (the auth c
 room of 40). Everything runs on base-R `datasets::penguins` (R ≥ 4.5) — no data to download.
 
 **Packages:** `dplyr`, `ggplot2`, plus the `knitr`/`rmarkdown` engine every `.qmd` with R code needs.
-If you've done the **[Setup page](../../setup.qmd)** (with its one-command `quarto check`), you're
+If you've done the **[Setup page](../../setup.qmd)** (with its `00-check-setup.R` check), you're
 ready; otherwise install them once from R: `install.packages(c("dplyr", "ggplot2"))`. Optional branded
 plots use the **`brand.yml`** package (`install.packages("brand.yml")`).
 :::
 
-**Starting point — a shipped set of pages.** You don't start from a blank folder. This lab ships **`starter/`** — in your cloned repo, the
-**`labs/quarto-projects/starter/`** folder — two content pages that already render on their own but
-are **not yet a project**:
+**Starting point — a shipped set of pages.** You don't start from a blank folder. Open your
+**`day2-projects/`** folder from the exercises download (double-click `day2-projects.Rproj` — see the
+[Setup page](../../setup.qmd#get-the-materials)). It holds two content pages that already render on
+their own but are **not yet a project**:
 
-- `starter/index.qmd` — a home page;
-- `starter/analysis.qmd` — a penguins analysis with a figure and a table.
+- `index.qmd` — a home page;
+- `analysis.qmd` — a penguins analysis with a figure and a table.
 
-**`cd starter/` first**, then render one page to confirm it works: `quarto render analysis.qmd` gives
-a normal HTML page — `analysis.html` right next to its source, since `starter/` isn't a project yet.
-Do **every** render in this lab from inside `starter/` so they all land in the same place. (Don't
-render from the repo root: the workshop repo has its **own** `_quarto.yml` there — a website with
-`output-dir: _site` — so a render at the root sends the output to the repo's `_site/…`, *not* next to
-the source. `cd starter/` first so that trap can't bite.) Your job across the two challenges is to make
-the folder a *site*, then ship it. A finished reference is in **`solution/`** if you get stuck or fall
-behind — nobody is stranded by the break.
+Render one page to confirm it works: `quarto render analysis.qmd` gives a normal HTML page —
+`analysis.html` right next to its source, since the folder isn't a project *yet*. Your job across the
+two challenges is to make it a *site*, then ship it. Everything you render lands inside
+`day2-projects/`; there's no project folder above it, so nothing redirects your output. A finished
+reference is in **`solutions/day2/`** if you get stuck or fall behind — nobody is stranded by the break.
 
 ## Website Challenge
 
-> **Goal:** turn the `starter/` pages into a navigable, **branded website** that renders locally to a
+> **Goal:** turn the `day2-projects/` pages into a navigable, **branded website** that renders locally to a
 > `_site/` folder.
 
 ::: {.callout-note icon=false}
 ## {{< fa clipboard-list >}} Tasks
-1. In `starter/`, create a **`_quarto.yml`** that declares the project and a website with navigation:
+1. In `day2-projects/`, create a **`_quarto.yml`** that declares the project and a website with navigation:
    ```yaml
    project:
      type: website
@@ -70,10 +68,10 @@ behind — nobody is stranded by the break.
      html:
        theme: cosmo
    ```
-2. **Render the whole folder** — from inside `starter/`, run `quarto render` (or `quarto preview`).
+2. **Render the whole folder** — from inside `day2-projects/`, run `quarto render` (or `quarto preview`).
    Because a `_quarto.yml` is now present, Quarto treats the folder as one project and builds **both**
    pages into `_site/`.
-3. **Brand it.** Add a `starter/_brand.yml` so the site shares one palette:
+3. **Brand it.** Add a `day2-projects/_brand.yml` so the site shares one palette:
    ```yaml
    color:
      palette:
@@ -97,7 +95,7 @@ behind — nobody is stranded by the break.
 
 ::: {.callout-note appearance="simple" icon=false}
 ## {{< fa circle-check >}} You should see
-A `starter/_site/` folder with **two linked pages** and a **top navbar** (Home · Analysis); after the
+A `day2-projects/_site/` folder with **two linked pages** and a **top navbar** (Home · Analysis); after the
 brand step, the navbar and headings turn **teal** with Albert Sans (the plot keeps its default species
 colors — branding an R plot is a separate `brand.yml`-package step, out of scope today). If you did the stretch,
 the analysis page also shows a live **Table 1** reference (from `@tbl-means`) and the home page carries
@@ -121,9 +119,9 @@ ggplot(penguins, aes(species, body_mass, fill = species)) +
 
 ::: {.callout-tip collapse="true"}
 ## Hint
-- The `_quarto.yml` must sit **inside `starter/`** — Quarto uses the *nearest* `_quarto.yml` as the
-  project root, so this makes `starter/` its own project (independent of the workshop repo, which has
-  its own `_quarto.yml` at *its* root).
+- The `_quarto.yml` must sit **inside `day2-projects/`** — Quarto uses the *nearest* `_quarto.yml` as
+  the project root, so this makes `day2-projects/` its own project. There's no `_quarto.yml` in any
+  folder above it, so nothing else can claim your pages.
 - `navbar:` items are `href` + `text`; `sidebar: { contents: auto }` builds a menu from the folder's
   files instead.
 - `_brand.yml` is **auto-discovered** at the project root — no header line needed; just re-render.
@@ -131,9 +129,9 @@ ggplot(penguins, aes(species, body_mass, fill = species)) +
   builds one page.
 :::
 
-**The `solution/` folder is a reference, not a checklist.** The complete, known-good project lives there
-(in your cloned repo): open it to compare your `_quarto.yml` / `_brand.yml`, or copy it wholesale if you
-fell behind.
+**The `solutions/day2/` folder is a reference, not a checklist.** The complete, known-good project lives
+there in your exercises download: open it to compare your `_quarto.yml` / `_brand.yml`, or copy it
+wholesale if you fell behind.
 
 ## Ship it Challenge
 
@@ -142,8 +140,8 @@ fell behind.
 
 ::: {.callout-note}
 ## Starting point
-Keep going with your Website Challenge `starter/`. If you didn't finish it, open the ready-made
-**`solution/`** project — a complete Part-1 site — and do the steps below in there. Nobody is stranded.
+Keep going with your Website Challenge `day2-projects/`. If you didn't finish it, open the ready-made
+**`solutions/day2/`** project — a complete Part-1 site — and do the steps below in there. Nobody is stranded.
 :::
 
 ::: {.callout-note icon=false}
@@ -194,7 +192,7 @@ execute:
 # optional visible tell — put this in a cell on analysis.qmd:
 #   cat(format(Sys.time()))       # frozen render reuses the old value, so the time stays put
 
-# from inside the project folder (i.e. after `cd starter/`):
+# from inside your project folder (day2-projects/):
 #   quarto render                 # 1st build: runs the code, writes _freeze/ and _site/
 #   quarto render                 # 2nd build, no edits: cell skipped, timestamp unchanged
 #   # ...change the plot's code on analysis.qmd, render again: only that page re-runs (time ticks)...
@@ -206,14 +204,14 @@ execute:
 
 ::: {.callout-tip collapse="true" icon=false}
 ## {{< fa wrench >}} If a render misbehaves
-- **Rendered, but can't find the HTML?** You're probably at the **repo root** — the workshop's *own*
-  `_quarto.yml` there is a website with `output-dir: _site`, so your output went to the repo's `_site/…`,
-  not next to the source. `cd starter/` first so your project's `_quarto.yml` governs the render.
+- **Rendered, but can't find the HTML?** Before you add `_quarto.yml`, a single-page render writes
+  the HTML **next to its source** in `day2-projects/`; once `_quarto.yml` is present, a project render
+  collects both pages under `day2-projects/_site/`. Look in those two places.
 - **YAML is indentation-sensitive.** If rendering fails *before* any code runs, check `_quarto.yml`
   for stray spaces, tabs, or unmatched quotes.
-- **"No project" / pages don't link?** The `_quarto.yml` must be **inside your project folder**, and
+- **"No project" / pages don't link?** The `_quarto.yml` must be **inside `day2-projects/`**, and
   `href:` paths are relative to the source folder, **not** `_site/`.
-- **Brand not applied?** `_brand.yml` must be at the project root; re-render after adding it. For
+- **Brand not applied?** `_brand.yml` must be in `day2-projects/` (the project root); re-render after adding it. For
   **plots**, the palette needs `library(brand.yml)` + `theme_brand_ggplot2()` — the file alone doesn't
   reach ggplot.
 - **A cross-reference shows `?@…`?** The cell label must start `fig-`/`tbl-`/`eq-` and be unique — and

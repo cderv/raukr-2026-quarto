@@ -13,8 +13,8 @@ Four steps, top to bottom — each links to its details below:
 
 1. [**Install**](#software) R ≥ 4.5, Quarto ≥ 1.9, and an editor.
 2. [**Get the materials**](#get-the-materials) — one line of R, no git or GitHub account needed.
-3. [**Install the R packages**](#r-packages) — `renv::restore()` from the project.
-4. [**Check it works**](#check-your-setup) — `quarto check` plus a couple of R lines.
+3. [**Install the R packages**](#r-packages) — one `install.packages()` line.
+4. [**Check it works**](#check-your-setup) — `source("00-check-setup.R")` from the exercises folder.
 
 Do steps 2–4 **before you arrive** — walking in with the toolchain already in place means we start on the content, not the install.
 :::
@@ -60,66 +60,63 @@ still the cleaner path if you can.
 
 ## Get the materials
 
-The exercises build on files in this repo — starter documents, the completed reference projects, and
-the citation assets (`references.bib`, `apa.csl`). The easiest way to get everything — **no git, no
-GitHub account, nothing to unzip by hand**, identical on Windows/macOS/Linux — is **`use_course()`**
-from R:
+The hands-on files live in a small **exercises folder** — the starter documents, the reference
+solutions, and the citation assets (`references.bib`, `apa.csl`). The easiest way to get it — **no
+git, no GitHub account, nothing to unzip by hand**, identical on Windows/macOS/Linux — is
+**`use_course()`** from R:
 
 ```r
 # install.packages("usethis")   # once, if you don't have it
-usethis::use_course("cderv/raukr-2026-quarto")
+usethis::use_course("cderv/raukr-quarto-exercises@raukr-2026")
 ```
 
 **What it does**, so nothing surprises you:
 
 1. picks a sensible spot — your **Desktop** by default — and prints where it's about to download. To
    put it elsewhere, cancel and re-run with a path, e.g.
-   `use_course("cderv/raukr-2026-quarto", destdir = "~/projects")`.
-2. downloads the repo as a ZIP, **unpacks it for you** into a new project folder (it prints the exact
-   name), and asks *"Shall we delete the ZIP file?"* — say **yes**.
-3. **opens the project** — a new RStudio session, or (in Positron / VS Code) the folder; if it
-   doesn't pop open, open the folder it printed yourself.
+   `use_course("cderv/raukr-quarto-exercises@raukr-2026", destdir = "~/projects")`.
+2. downloads a ZIP, **unpacks it for you** into a folder called `raukr-quarto-exercises` (it prints
+   the exact path), and asks *"Shall we delete the ZIP file?"* — say **No**, and keep it: it's your
+   one-click reset (see below).
+3. **opens the folder** — a new RStudio session, or (in Positron / VS Code) the folder; if it doesn't
+   pop open, open the folder it printed yourself.
 
-You land inside the project, with `renv.lock` and every lab file in place. Run the **R packages** and
-**Check** steps below **from there** — that folder is the "project root" they refer to.
+::: {.callout-important}
+## Open the **day folder**, not the top folder
+The exercises folder holds one self-contained folder per day. Open the one for the session — **not**
+the top `raukr-quarto-exercises` folder:
+
+- **Day 1** → open **`day1-intro/`** (double-click `day1-intro.Rproj`).
+- **Day 2** → open **`day2-projects/`** (double-click `day2-projects.Rproj`).
+
+Each day folder is its own working directory with its own brand and assets, so your renders land
+**right next to your files** — there's no project folder above them to capture the output. One
+download covers both days; the reference answers are in `solutions/` (try first).
+:::
 
 ::: {.callout-tip collapse="true"}
-## Prefer git? (optional)
-Clone it instead — same files, plus a live link to any updates:
+## Reset without losing work (no git needed)
+If an attempt goes sideways, get a **fresh** copy of the day folder — don't try to unzip over your
+working copy:
 
-```sh
-git clone https://github.com/cderv/raukr-2026-quarto.git
-cd raukr-2026-quarto
-```
+- **re-run** `usethis::use_course("cderv/raukr-quarto-exercises@raukr-2026")` — it makes a new,
+  numbered folder and leaves your old attempt untouched; **or**
+- unzip the ZIP you kept to a **new** location.
 
-Then open the folder in your editor. The steps below run from the project root either way.
+If `use_course()` can't reach GitHub (venue firewall), use the browser: the green **Code ▸ Download
+ZIP** button on <https://github.com/cderv/raukr-quarto-exercises/tree/raukr-2026>, then unzip.
 :::
 
 ## R packages
 
-This repo pins its R dependencies with [**renv**](https://rstudio.github.io/renv/), so you can
-recreate the exact environment. From the repo root:
-
-```r
-# install.packages("renv")   # if you don't have it
-renv::restore()
-```
-
-When you first open the project, renv prints a few bootstrap lines ending in a reminder to run
-`renv::restore()` — that's expected, just run it.
-
-That installs the locked versions (`knitr`, `rmarkdown`, `ggplot2`, `dplyr`, `gt`, plus
-`brand.yml`, `ggrepel`, `prismatic` for the branded Typst payoff, and their dependencies) into a
-project-local library — it won't touch your other R projects.
-
-::: {.callout-note collapse="true"}
-## Not using renv?
-You can install the same packages the plain way:
+The exercises use nine R packages. The simplest path — and the one that works no matter which day
+folder you open — is a plain install into your R library:
 
 ```r
 install.packages(c(
-  "knitr", "rmarkdown", "ggplot2", "dplyr", "gt",
-  "brand.yml", "ggrepel", "prismatic"
+  "dplyr", "ggplot2", "gt", "ggokabeito",   # content + a colour-blind-safe scale
+  "brand.yml", "ggrepel", "prismatic",      # R-side branding for the Typst payoff
+  "knitr", "rmarkdown"                      # the engine every .qmd with R code needs
 ))
 ```
 
@@ -129,47 +126,53 @@ binaries, and sorts out system dependencies for you:
 ```r
 # install.packages("pak")   # once, if you don't have it
 pak::pak(c(
-  "knitr", "rmarkdown", "ggplot2", "dplyr", "gt",
-  "brand.yml", "ggrepel", "prismatic"
+  "dplyr", "ggplot2", "gt", "ggokabeito",
+  "brand.yml", "ggrepel", "prismatic",
+  "knitr", "rmarkdown"
 ))
 ```
+
+::: {.callout-note collapse="true"}
+## Prefer pinned versions? (optional, `renv`)
+The exercises ship an `renv.lock` recording exact package versions. From the **top**
+`raukr-quarto-exercises` folder (where `renv.lock` sits):
+
+```r
+# install.packages("renv")   # if you don't have it
+renv::restore()
+```
+
+`renv` builds a **project-local** library at that top folder — handy for exact reproducibility, but
+the plain `install.packages()` above is the simpler path when you open the day folders directly. Pick
+one; you don't need both.
 :::
 
 ## Check your setup
 
-The single command that proves the whole toolchain — including the **knitr engine** (the `knitr` +
-`rmarkdown` packages that a `.qmd` with R code needs) — is:
-
-```sh
-quarto check
-```
-
-It reports your Quarto version, checks the install, and **renders a small knitr test document**. You
-want to see the `knitr` / `rmarkdown` versions and a line reading `Checking Knitr engine
-render......OK`. If instead you see `rmarkdown: (None)` (or `The rmarkdown package is not available
-in this R installation`), your R packages aren't installed yet — do the [R packages](#r-packages)
-step above and re-run.
-
-Then confirm the R side:
+The exercises folder ships a one-shot check. From the **top** `raukr-quarto-exercises` folder, run:
 
 ```r
-R.version.string            # want >= 4.5.0
-"penguins" %in% ls("package:datasets")   # want TRUE on R >= 4.5
+source("00-check-setup.R")
 ```
 
-(Your **Quarto** version was already printed by `quarto check` above — or run `quarto --version` in a
-terminal.)
+It verifies R ≥ 4.5, Quarto ≥ 1.9, the nine packages, and the base-R `penguins` data, then **renders
+the Day-1 Typst sample** (`day1-intro/sample-typst.qmd`) — which proves the knitr + Typst chain
+end-to-end and **caches the brand's Google fonts** (Albert Sans / Fira Mono), so your first render in
+the session is instant instead of pausing to download them. Every line should read `[ok]`.
 
-::: {.callout-note}
-## Pre-warm the Typst fonts (once, before the session)
-The **first** Typst render downloads the brand's Google fonts (Albert Sans / Fira Mono). Trigger it
-once ahead of time — after `renv::restore()` — so the fonts are already cached and your first render
-in the session is instant. The simplest way is to render the shipped branded sample:
+::: {.callout-tip collapse="true"}
+## Prefer to check by hand?
+The one command that proves the toolchain — including the **knitr engine** (the `knitr` + `rmarkdown`
+packages a `.qmd` with R code needs) — is `quarto check`: it reports your Quarto version and renders a
+small knitr test document (look for `Checking Knitr engine render......OK`). If you see
+`rmarkdown: (None)`, your R packages aren't installed yet — do the [R packages](#r-packages) step and
+re-run. Then confirm the R side:
 
-```sh
-quarto render labs/quarto/sample-typst.qmd
+```r
+R.version.string                          # want >= 4.5.0
+"penguins" %in% ls("package:datasets")    # want TRUE on R >= 4.5
 ```
 
-Non-blocking: if you skip it, the first render at the session just takes a little longer (given a
-network connection).
+And pre-warm the fonts once by rendering the sample yourself:
+`quarto render day1-intro/sample-typst.qmd`.
 :::

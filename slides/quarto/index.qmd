@@ -577,7 +577,7 @@ are formatted (APA, Vancouver, a journal's own style). Swap the `csl:` file, res
 - **Say:** "One `.bib` key in your prose becomes a formatted citation *and* an auto-built reference
   list — swap the `csl:` file and the whole style changes."
 - **Helpers:** the `.bib` path is relative to the document — the follow-along file must sit in
-  `labs/quarto/` next to `references.bib`/`apa.csl`. A `[?]` in the text means a wrong `@key`, or
+  `day1-intro/` next to `references.bib`/`apa.csl`. A `[?]` in the text means a wrong `@key`, or
   `bibliography:` not set in the header.
 :::
 

@@ -15,10 +15,16 @@ an analysis to a submittable write-up. Everything runs on **base-R `datasets::pe
 
 **Packages:** `dplyr`, `ggplot2`, `gt`, `ggokabeito` (a colour-blind-safe palette — see the
 Accessibility box below), plus the `knitr`/`rmarkdown` engine every `.qmd` with R code needs. If
-you've done the **[Setup page](../../setup.qmd)** (with its one-command `quarto check`), you're ready;
+you've done the **[Setup page](../../setup.qmd)** (with its `00-check-setup.R` check), you're ready;
 otherwise install them once from R:
 `install.packages(c("dplyr", "ggplot2", "gt", "ggokabeito"))`. The citation payoff also uses the
-shared `references.bib` and `apa.csl` shipped in this folder.
+shared `references.bib` and `apa.csl` that ship in your **`day1-intro/`** folder.
+:::
+
+::: {.callout-tip appearance="simple"}
+You are working in the **`day1-intro/`** folder from the exercises download (open `day1-intro.Rproj`)
+— see the [Setup page](../../setup.qmd#get-the-materials). Everything you render lands right next to
+your files.
 :::
 
 Start every document with this setup — the challenges below assume it:
@@ -54,7 +60,7 @@ That's the whole migration. The rest of this lab is native `.qmd`.
 
 ::: {.callout-note icon=false}
 ## {{< fa clipboard-list >}} Tasks
-1. Create a new `.qmd` **inside `labs/quarto/`** in your cloned repo (next to `references.bib` /
+1. Create `my-report.qmd` **inside your open `day1-intro/` folder** (next to `references.bib` /
    `apa.csl`, so Part 2's paths and branding resolve later) with `format: html` and the setup cell
    at the top of this page.
 2. Add a scatter plot of `bill_len` versus `bill_dep` colored by `species`. Give its cell
@@ -124,12 +130,12 @@ ggplot(penguins, aes(bill_len, bill_dep, color = species, shape = species)) +
 :::
 
 **The complete, runnable solution is `starter.qmd`** — a known-good Part-1 report with all these cells.
-Open it from your cloned `labs/quarto/` to compare, or take the source:
+It's already in your `day1-intro/` folder; open it there to compare, or take the source:
 
 <!-- Raw-GitHub download button -- RaukR house pattern (see project-context.md; no `downloadthis`).
-     The URL hard-codes owner/repo/branch: it goes live once this branch merges to `main`, and must
-     switch to `NBISweden/raukr-2026/...` when the material folds into the NBIS course site. -->
-<a class="btn btn-primary btn-sm" href="https://raw.githubusercontent.com/cderv/raukr-2026-quarto/refs/heads/main/labs/quarto/starter.qmd" role="button" target="_blank">{{< fa download >}} starter.qmd</a>
+     Points at the exercises repo's edition branch; goes live once cderv/raukr-quarto-exercises@raukr-2026
+     is pushed (the file also ships locally in every participant's day1-intro/). -->
+<a class="btn btn-primary btn-sm" href="https://raw.githubusercontent.com/cderv/raukr-quarto-exercises/raukr-2026/day1-intro/starter.qmd" role="button" target="_blank">{{< fa download >}} starter.qmd</a>
 
 The cross-references and the equation live in the **body Markdown**, outside any cell:
 
@@ -141,14 +147,15 @@ $$
 $$ {#eq-ratio}
 ```
 
-**[`penguins-report.qmd`](penguins-report.qmd) is a reference, not a checklist.** The complete worked
+**`solutions/day1/penguins-report.qmd` is a reference, not a checklist.** The complete worked
 document goes beyond the tasks (a margin culmen figure, a `glimpse`, section labels) and also adds the
-citations from the next challenge. Prefer to open the whole thing in your editor? Take the source:
+citations from the next challenge. It's in your exercises `solutions/day1/` folder — try the challenge
+first, then open it to compare; or take the source:
 
-<!-- Raw-GitHub download button -- RaukR house pattern (see project-context.md; no `downloadthis`
-     extension). The URL hard-codes owner/repo/branch: it goes live once this branch merges to `main`,
-     and must switch to `NBISweden/raukr-2026/...` when the material folds into the NBIS course site. -->
-<a class="btn btn-primary btn-sm" href="https://raw.githubusercontent.com/cderv/raukr-2026-quarto/refs/heads/main/labs/quarto/penguins-report.qmd" role="button" target="_blank">{{< fa download >}} penguins-report.qmd</a>
+<!-- Raw-GitHub download button -- RaukR house pattern (see project-context.md; no `downloadthis`).
+     Points at the exercises repo's edition branch; goes live once cderv/raukr-quarto-exercises@raukr-2026
+     is pushed (the file also ships locally in solutions/day1/). -->
+<a class="btn btn-primary btn-sm" href="https://raw.githubusercontent.com/cderv/raukr-quarto-exercises/raukr-2026/solutions/day1/penguins-report.qmd" role="button" target="_blank">{{< fa download >}} penguins-report.qmd</a>
 
 ## Citations Challenge
 
@@ -158,7 +165,7 @@ citations from the next challenge. Prefer to open the whole thing in your editor
 ::: {.callout-note}
 ## Starting point
 If you finished the Authoring Challenge, keep going on your own document. Otherwise open
-**`labs/quarto/starter.qmd`** in your editor — a known-good Part-1 report — and add the citations to
+**`day1-intro/starter.qmd`** in your editor — a known-good Part-1 report — and add the citations to
 that. Nobody is stranded by the break.
 :::
 
@@ -199,8 +206,8 @@ that. Nobody is stranded by the break.
      The button renders whatever `format:` is declared, so while the header still says `format: html`
      the button gives you HTML, **not** a PDF.
 
-   Where the PDF lands: rendering the shipped `starter.qmd` writes the PDF under `_site/…` (it's in
-   the site's render list); a brand-new doc renders the PDF next to its source.
+   Where the PDF lands: **right next to its source** in `day1-intro/` — there's no project folder
+   above to redirect it, so `starter.qmd` gives `starter.pdf`, `my-report.qmd` gives `my-report.pdf`.
 :::
 
 ::: {.callout-note appearance="simple" icon=false}
@@ -242,9 +249,8 @@ PDF — the same citation and reference list, typeset with the RaukR palette. No
 # or set `format: typst` in the header and use the editor's Render button.
 ```
 
-The complete cited HTML is [`penguins-report.qmd`](penguins-report.qmd); the branded Typst PDF —
-with R-side `theme_brand_*` styling — is [`sample-typst.qmd`](sample-typst.qmd) (the link opens the
-rendered PDF, not a web page).
+The complete cited HTML is `solutions/day1/penguins-report.qmd`; the branded Typst PDF — with R-side
+`theme_brand_*` styling — is `day1-intro/sample-typst.qmd` (render it to see the branded PDF payoff).
 
 ## Bonus — one report per species (optional) {#sec-parameters}
 
@@ -257,7 +263,7 @@ value at render time and the *same document* produces a different report — no 
 
 ::: {.callout-note}
 ## Starting point
-The fastest path: open the shipped **`penguins-by-species.qmd`** (in your cloned `labs/quarto/`) — a
+The fastest path: open the shipped **`penguins-by-species.qmd`** (in your `day1-intro/` folder) — a
 complete parameterized report — and just **render it for different species** (Task 5). Want to build
 it yourself instead? Add the pieces below to a copy of your Part-1 report — and point your
 figure/table cells at the filtered **`one`**, not `penguins`, so they track the parameter too.
@@ -292,13 +298,13 @@ figure/table cells at the filtered **`one`**, not `penguins`, so they track the 
    ```
 5. **Render a different species from the CLI** — same `quarto render` you used for the Typst PDF,
    with `-P name:value` (no Render button for this; the parameter override is command-line only).
-   Run it from inside `labs/quarto/` (or give the full path from the repo root):
+   Run it from inside `day1-intro/`:
    ```bash
    quarto render penguins-by-species.qmd -P species:Adelie
    quarto render penguins-by-species.qmd -P species:Chinstrap
    ```
-   With no `-P`, the default (`Gentoo`) is used. Like the Part-1 report earlier, this file is in the
-   site's render list, so the HTML lands under **`_site/labs/quarto/`**, not next to the source.
+   With no `-P`, the default (`Gentoo`) is used. The HTML lands **next to the source** in
+   `day1-intro/` — `penguins-by-species.html`.
 :::
 
 ::: {.callout-note appearance="simple" icon=false}
@@ -316,13 +322,13 @@ caption, and point count are **all** about Adelie — nothing says Gentoo. Chang
   would show as a printed code result, not a heading.
 :::
 
-**The complete, runnable solution is [`penguins-by-species.qmd`](penguins-by-species.qmd)** — open it
-from your cloned `labs/quarto/` and render it with different `-P species:` values, or take the source:
+**The complete, runnable solution is `penguins-by-species.qmd`** — it's in your `day1-intro/` folder;
+open it and render with different `-P species:` values, or take the source:
 
 <!-- Raw-GitHub download button -- RaukR house pattern (see project-context.md; no `downloadthis`).
-     The URL hard-codes owner/repo/branch: it goes live once this branch merges to `main`, and must
-     switch to `NBISweden/raukr-2026/...` when the material folds into the NBIS course site. -->
-<a class="btn btn-primary btn-sm" href="https://raw.githubusercontent.com/cderv/raukr-2026-quarto/refs/heads/main/labs/quarto/penguins-by-species.qmd" role="button" target="_blank">{{< fa download >}} penguins-by-species.qmd</a>
+     Points at the exercises repo's edition branch; goes live once cderv/raukr-quarto-exercises@raukr-2026
+     is pushed (the file also ships locally in day1-intro/). -->
+<a class="btn btn-primary btn-sm" href="https://raw.githubusercontent.com/cderv/raukr-quarto-exercises/raukr-2026/day1-intro/penguins-by-species.qmd" role="button" target="_blank">{{< fa download >}} penguins-by-species.qmd</a>
 
 ## Troubleshooting
 
@@ -339,8 +345,8 @@ from your cloned `labs/quarto/` and render it with different `-P species:` value
   or `bibliography:` isn't set.
 - **Do I need to install Typst?** No — Typst is bundled in Quarto ≥ 1.9, so there's nothing extra to
   install (no LaTeX either); check `quarto --version`.
-- **Typst PDF looks unbranded / wrong fonts?** Confirm `_brand.yml` is at the project root and you
-  have network on the first render (Quarto fetches the Google fonts once).
+- **Typst PDF looks unbranded / wrong fonts?** Confirm `_brand.yml` is in your `day1-intro/` folder
+  (next to the `.qmd`) and you have network on the first render (Quarto fetches the Google fonts once).
 - **Typst prints `unknown font family` warnings?** Harmless — a plain `gt` table emits them for its
   default font stack; the PDF still builds. (The fully brand-styled table via `theme_brand_*` is in
   `sample-typst.qmd`.)
