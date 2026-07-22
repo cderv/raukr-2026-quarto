@@ -117,7 +117,7 @@ hands-on = the two payoff exercises (a cited doc, then that doc as a branded Typ
 | Topic | Notes |
 |-------|-------|
 | Rmd → Quarto migration | **go quick** (2026 = native-first): hash-pipe, `convert_chunk_header()`, `.Rmd` renders as-is — a short reassurance for people with Rmd baggage, not a segment _(exists)_ |
-| Parameters | **demoted from DEMO** (panel): a from-scratch build with no reusable asset, and overriding params needs the **CLI** (`quarto render doc.qmd -P k:v`) not a Render button. Better home is **Day 2**, where the CLI/projects framing already lives (technique P1-1/P2-6, pedagogue P1-2) _(new)_ |
+| Parameters | **BUILT 2026-07-22 as a Day-1 lab optional bonus** (the tracker), superseding the earlier "→ Day 2" note here. The CLI-override was the reason to defer to Day 2, but Day-1 *already* runs `quarto render … --to typst` from the terminal, so `-P species:…` is the same muscle — no reason to move it. Kept optional/MENTION-level (no spare core time). See `labs/quarto/index.qmd` § "Bonus — one report per species" + `penguins-by-species.qmd`; plan `2026-07-22-parameterized-report-exercise.md` _(built)_ |
 | Shortcodes | **demoted from DEMO** (panel): fold into a single ~3-min quick-win if time, else a link. `embed`, `include`, `video` _(new)_ |
 | Code presentation niceties | `code-annotation`, `code-line-numbers`, `code-fold` _(new)_ |
 | Lightbox | `lightbox: auto` for zoomable figures — easy modern win _(new)_ |
@@ -183,7 +183,7 @@ the tour, never the hands-on.
 | `_metadata.yml` | directory metadata — **promoted to a shown slide** in the `_quarto.yml` CORE beat (load-bearing for the NBIS fold-in; coverage projects GAP 2). _(new)_ |
 | Profiles | `--profile`, `_quarto-<p>.yml` — one slide/link, don't demo _(new)_ |
 | Books | **demoted DEMO→MENTION** (coverage projects): ~90% shared machinery with Websites; teach only the **book-vs-website decision** (1 slide) + typst-2026 book as the resources link _(new)_ |
-| Parameters | moved here from Day 1 — pairs naturally with the CLI/projects framing; `params:` + `quarto render -P k:v` per sample/cohort _(new)_ |
+| ~~Parameters~~ | **superseded** — landed on **Day 1** as an optional lab bonus 2026-07-22 (the tracker), not here. See the Day-1 table above _(resolved)_ |
 | Shinylive | interactive-app teaser — link + a pre-built cached example at most, never a live build (technique P1-4) _(new)_ |
 | renv / reproducible env | **added** (coverage projects GAP 1) — one slide inside the Freeze CORE beat: `renv.lock` = the 2nd reproducibility leg (pin *what* runs) _(new)_ |
 | Website tools | **added** (coverage projects) — one bundled slide: drafts · search-is-free · redirects; social cards/404 → resources _(new)_ |
@@ -328,7 +328,7 @@ list, not from the exercise.
 |------|-------|------|---------|
 | 5 | frame + project hook | My | "this is how your team publishes its project" |
 | 17 | concept + live demo | My + Our | Freeze (motivation-first: don't re-run slow compute) · **watch-me** `publish`/CI on a pre-provisioned repo |
-| 48 | hands-on | Your | **the payoff**: `quarto render` + `output-dir` on your project (publish = watch-me, auth pre-flighted). **Room now for a parameterized-report step** (strand `the tracker`) if it lands here |
+| 48 | hands-on | Your | **the payoff**: `quarto render` + `output-dir` on your project (publish = watch-me, auth pre-flighted). _(The parameterized-report step once floated for here landed on **Day 1** instead, 2026-07-22 — the tracker.)_ |
 | 15 | recap + demos (now reliably happen, not just "if time") | My | Books / Dashboards / an htmlwidget — **after** the payoff, cut-able |
 
 ---
@@ -348,8 +348,9 @@ runs long, trim a *tour* beat, never the render payoff (rules 1–2).
 > **Slot-length update (2026-07-21).** Both Day-2 parts are now **90 min** (verified times, § Time
 > budget). Per **Option A**, the extra ~30 min/part goes to **hands-on**, not concept — so these
 > per-beat **concept+demo ceilings (~18 / ~15) STAND**; what grows is the hands-on (30 → ~48) and the
-> post-payoff demo tail (now reliably happens, ~15 min, not "if time"). The **parameterized-report
-> exercise** (strand `the tracker`) is a candidate Part-2 hands-on step in that enlarged window.
+> post-payoff demo tail (now reliably happens, ~15 min, not "if time"). _(The **parameterized-report
+> exercise** once floated as a Day-2 Part-2 step landed instead on **Day 1** as an optional lab bonus,
+> 2026-07-22 — the tracker.)_
 
 **Part 1 — build & structure (concept+demo ~18 min ceiling):**
 

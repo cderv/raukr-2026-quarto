@@ -1,0 +1,17 @@
+{
+  "hash": "d3b823cc2adca982602b7222ec72177d",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"Penguins — single-species report\"\nformat: html\nparams:\n  species: Gentoo\n---\n\n\n::: {.cell}\n\n```{.r .cell-code}\nlibrary(dplyr)\nlibrary(ggplot2)\n\ndata(penguins)\none <- penguins |>\n  filter(species == params$species, !is.na(bill_len), !is.na(bill_dep))\n```\n:::\n\n\nThis report covers **Gentoo** penguins only. It was built by passing `species` as a\n**parameter**, so the *same* source file renders one report per species — change the parameter, not\nthe document.\n\n##  Gentoo at a glance\n\n\n::: {.cell}\n::: {.cell-output-display}\n![Bill length versus depth for Gentoo penguins.](penguins-by-species_files/figure-html/fig-bill-1.png){#fig-bill fig-alt='Scatter plot of bill depth against bill length for Gentoo penguins; each point is one bird.' width=672}\n:::\n:::\n\n\n123 Gentoo penguins had both bill measurements recorded.\n",
+    "supporting": [
+      "penguins-by-species_files"
+    ],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

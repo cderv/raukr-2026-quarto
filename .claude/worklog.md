@@ -7,6 +7,24 @@ no releases; this is the running record of what was built and why.
 
 ## Log
 
+### Parameterized-report exercise — Day-1 lab optional bonus (closes the one coverage gap) — 2026-07-22
+
+Closed **the tracker**, the one topic NBIS teaches as a full hands-on (`labs/quarto:467-539`) that
+we'd neither taught nor mentioned — it read as an unclosed loop, not a decision. Studied placement
+(cloned NBIS raukr-2025 for the real source; the "1:1 re-skin" was generous — the NBIS walkthrough is
+thin, embeds an external report, never shows the filter chunk or the `-P` override, so it was a
+rebuild from fragments). **Decision: Day-1, optional self-service bonus** after the Citations
+Challenge — resolving the strand's core Day-1-vs-Day-2 question. Key finding that killed the old
+Day-2-MENTION plan: the "params needs the CLI → Day 2" rationale is **moot** because Day-1 *already*
+runs `quarto render … --to typst` from the terminal (Citations step), so `-P species:…` is the same
+muscle already on Day 1. Kept it **optional/MENTION-level** (topic-store had params at MENTION; Part 1
+and Part 2 have no spare core time — the panel's P1 protected the Typst payoff). Built + tested:
+`labs/quarto/penguins-by-species.qmd` (`params:` + `params$species` filter + `#| output: asis`
+dynamic heading + `!expr` caption/alt + inline `r params$species`); verified `-P species:Adelie`
+tracks all four param sites with zero Gentoo leak; added to the render list + `_freeze/`. Plan:
+`.claude/plans/2026-07-22-parameterized-report-exercise.md`. Deferred (not a gap): an optional Day-1
+slide MENTION — kept out to avoid touching deck timing/fit in this lab-only unit.
+
 ### Session block → HTML appendix; found a Quarto appendix-numbering bug — 2026-07-22
 
 From a screenshot: moved `penguins-report.qmd`'s closing `<details>` Session block into the **HTML
