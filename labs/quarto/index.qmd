@@ -270,8 +270,10 @@ rendered PDF, not a web page).
   the content is the same.
 :::
 
+## Session {.appendix .unnumbered}
+
 <details>
-<summary>Session</summary>
+<summary>Session info</summary>
 
 ```{r}
 #| label: session

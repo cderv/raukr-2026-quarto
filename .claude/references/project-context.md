@@ -173,7 +173,12 @@ and file citations are in the review that produced them; the essentials:
     double it. **No custom icon** on Scope / Starting-point / the Rmd aside (one-off orientation
     boxes) — they keep their default type icon. `{{< fa download >}}` / `file-pdf` on genuine
     asset/PDF links only.
-- Close every lab with a `<details>` **Session** block running `sessionInfo()`.
+- Close every lab/report with a **`## Session {.appendix .unnumbered}`** section wrapping a
+  `<details>` `sessionInfo()` fold. The `.appendix` gives it a header and tucks it into the HTML
+  appendix block (out of the page TOC), instead of a bare headerless `<details>` dangling after the
+  last section (which read as part of that section). `.unnumbered` is required because
+  `number-sections: true` otherwise labels it (e.g. "4 Session") **and** an `.appendix` heading even
+  eats a body section number — a Quarto bug: `archive/issues/2026-07-22-quarto-appendix-numbering.md`.
 - Datasets: built-in first; large data via a styled download button, not committed; use `here`
   for project-root-relative paths.
 

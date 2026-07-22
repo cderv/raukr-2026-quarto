@@ -223,8 +223,10 @@ execute:
 - **Missing package?** `install.packages("<name>")` (or `renv::restore()`) and render again.
 :::
 
+## Session {.appendix .unnumbered}
+
 <details>
-<summary>Session</summary>
+<summary>Session info</summary>
 
 ```{r}
 #| label: session

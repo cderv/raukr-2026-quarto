@@ -88,8 +88,10 @@ penguins |>
 <!-- Part 2 picks up here: add `bibliography:` + `csl:` and a `[@gorman2014]` citation, then a
      References section, then switch to `format: typst` for the branded PDF. -->
 
+## Session {.appendix .unnumbered}
+
 <details>
-<summary>Session</summary>
+<summary>Session info</summary>
 
 ```{r}
 #| label: session
