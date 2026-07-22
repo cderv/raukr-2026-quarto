@@ -1,0 +1,65 @@
+# Rot canary for the RaukR 2026 Quarto exercises: render everything a participant renders, and assert
+# the structural invariants the delivery relies on. Runs on push, on PRs, and weekly (between-years
+# drift). This file ships INSIDE the exercises repo (generated there by the course-repo sync).
+name: render-check
+
+on:
+  push:
+    branches: [main, "raukr-*"]
+  pull_request:
+  schedule:
+    - cron: "17 6 * * 1"   # Mondays 06:17 UTC -- weekly rot canary
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  render-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # --- structural invariants (the whole delivery rests on these) ---
+      - name: Assert NO _quarto.yml at or above the day starters
+        run: |
+          set -eu
+          # No project file at the repo root, in day1-intro/, or in day2-projects/ -- that absence is
+          # what makes the nested-project trap impossible. Solutions MAY have their own (they are
+          # sibling folders, never captured).
+          for f in _quarto.yml day1-intro/_quarto.yml day2-projects/_quarto.yml; do
+            if [ -f "$f" ]; then echo "::error::$f must not exist (nested-project trap)"; exit 1; fi
+          done
+          echo "ok: no _quarto.yml at or above the starters"
+
+      - name: Assert the ZIP payload stays tiny (bad-WiFi budget)
+        run: |
+          set -eu
+          # codeload serves `git archive` (honours .gitattributes export-ignore). Keep it small so 40
+          # concurrent pulls survive venue WiFi. Threshold generous; trips only on a real regression
+          # (a stray _freeze/, an _extensions/ vendor, a committed PDF).
+          bytes=$(git archive --format=zip HEAD | wc -c)
+          echo "archive: $bytes bytes"
+          if [ "$bytes" -gt 2000000 ]; then echo "::error::ZIP is $bytes B (> 2 MB) -- something heavy got committed"; exit 1; fi
+
+      - uses: quarto-dev/quarto-actions/setup@v2
+
+      - uses: r-lib/actions/setup-r@v2
+        with:
+          use-public-rspm: true
+
+      - uses: r-lib/actions/setup-renv@v2
+
+      # --- render everything a participant renders ---
+      - name: Render Day-1 Typst payoff (also warms the brand font)
+        run: quarto render day1-intro/sample-typst.qmd
+
+      - name: Render Day-1 solution (cited HTML report)
+        run: quarto render solutions/day1/penguins-report.qmd
+
+      - name: Render Day-2 solution (the website project)
+        working-directory: solutions/day2
+        run: quarto render
+
+      - name: Confirm the Typst PDF was produced
+        run: test -f day1-intro/sample-typst.pdf || { echo "::error::sample-typst.pdf missing"; exit 1; }

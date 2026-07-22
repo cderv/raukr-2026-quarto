@@ -65,3 +65,10 @@
 /raukr-2025-quarto/
 /raukr-2025/
 /raukr-2026/
+
+# --- generated exercises tree (tools/sync-exercises.R) ---
+# The committed exercises/ is content only; the sync strips render output and renders happen in
+# throwaway copies. Ignore any in-place render churn so it can't be committed or trip the drift-guard.
+/exercises/**/_site/
+/exercises/**/*.pdf
+/exercises/**/*.html

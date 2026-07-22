@@ -23,6 +23,14 @@ render:
 preview:
     quarto preview
 
+# Regenerate the participant exercises tree (exercises/) from labs/ + tools/exercises-scaffold/
+exercises:
+    Rscript tools/sync-exercises.R
+
+# Verify exercises/ is in sync with its sources (regenerate + fail on drift) — same command as CI
+exercises-check:
+    Rscript tools/sync-exercises.R --check
+
 # Remove build artifacts
 [unix]
 clean:
