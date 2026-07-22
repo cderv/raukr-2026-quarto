@@ -35,6 +35,13 @@ reframed, "venue firewall"→neutral, bare `solutions/`→`solutions/day1|day2`,
 drift-guard green. **Accepted trade-off** (pedagogue P2, no change): the four files off the site render
 list means no in-browser preview of the finished report / branded PDF — participants render locally; the
 inline target-figure previews remain. Reviews + dispositions: `.claude/archive/reviews/` (ledger updated).
+**Versioning follow-through (commit `564466c`):** with the `@ref` limitation established, Christophe
+chose a **year-in-name repo** over the year-agnostic-repo + edition-branch model — `cderv/raukr-quarto-exercises`
+→ **`cderv/raukr-2026-quarto-exercises`** (mirrors the course repo `raukr-2026-quarto`). Same permanence,
+simpler: plain `use_course("cderv/raukr-2026-quarto-exercises")` (supported shorthand, correct folder
+name), freeze = freeze the repo, 2027 = a new repo via "Use this template". Swept every reference (setup,
+lab buttons → `/raukr-2026-quarto-exercises/main/`, sync target, scaffold, plan §3/§4/§8). Plan §3
+versioning revised to Option A. *(The worklog name references above are shown as the final name.)*
 
 ### Exercises sync foundation — the use_course() payload, generated + drift-guarded (the tracker) — 2026-07-22
 
