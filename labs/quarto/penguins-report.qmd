@@ -129,8 +129,10 @@ penguins |>
 ::: {#refs}
 :::
 
+## Session {.appendix .unnumbered}
+
 <details>
-<summary>Session</summary>
+<summary>Session info</summary>
 
 ```{r}
 #| label: session
