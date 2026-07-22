@@ -4,8 +4,9 @@
 sessions. Produced 2026-07-22 from a Fable design panel (robustness-first + reuse-first; a
 pedagogy-first agent did not return in time — its UX refinements are folded in from what we know and
 flagged where thin) + the scout facts + the prior scoping plan
-`2026-07-21-companion-package-scoping.md`. **Status: PROPOSED — awaiting Christophe's ratification of
-the open decisions (§4) before build.***
+`2026-07-21-companion-package-scoping.md`. **Status: APPROVED — the four §3 decisions were RATIFIED by
+Christophe (2026-07-22) as recommended. Build is tracked as braid strand `the tracker` and is BLOCKED
+BY the go/no-go `run-labs` + setup dry-run, strand `the tracker` (§8 step 7) — do the dry-run first.***
 
 ## 0. Why this exists
 
@@ -70,7 +71,7 @@ nested-trap problem. So its **"no package" verdict stands and is reinforced**, b
 `use_course("cderv/raukr-2026-quarto")` — the whole repo, trap and all; the fix is to retarget it at
 the small exercises repo.)
 
-## 3. Recommended resolutions of the open decisions
+## 3. Resolutions of the open decisions — RATIFIED 2026-07-22 (as recommended)
 
 | Decision | Options | Recommendation |
 |---|---|---|
