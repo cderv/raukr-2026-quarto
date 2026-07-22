@@ -7,6 +7,36 @@ no releases; this is the running record of what was built and why.
 
 ## Log
 
+### Exercise-delivery dry-run — GO/NO-GO gate: **GO** (the tracker) — 2026-07-22
+
+Ran the pre-build go/no-go for the exercise externalization (plan `2026-07-22-exercise-delivery.md`).
+Method: since the `cderv/raukr-quarto-exercises` repo doesn't exist yet, built a **faithful simulation
+of the `use_course()` unpacked layout** in scratch (plain folder, NO root `_quarto.yml`; `day1-intro/`
+with a SIBLING `_brand.yml`+bib+csl; `day2-projects/` shipped WITHOUT `_quarto.yml`; `solutions/` as
+siblings) and ran the **real renders** with the renv library exposed as the participant's user library.
+**All 5 plan assumptions hold on Linux → GO.** (1) Nested trap is **structurally gone** — no ancestor
+project, `sample-typst.pdf` lands next to its source, no `_site/` up the tree; wrong-folder render from
+the root is a benign no-op. (2) Sibling `_brand.yml` **discovered by both Quarto (font injected into the
+`.typ`) and R `read_brand_yml()`** — `pal()` calls succeeded — even when Quarto is invoked from the
+unpack root (knitr localizes wd to the `.qmd`); **no explicit `brand:` front-matter needed** (answers
+§8 step 3). (3) **Font pre-warm confirmed** — Quarto auto-fetches Albert Sans from Google Fonts into
+`.quarto/typst/fonts/` on first render (unknown-font warnings are only the absent CSS fallback stack);
+the setup-time render IS the pre-warm, offline-safe after. (4) **`00-check-setup.R` prototyped + ran
+green** end-to-end from the unpack root; surfaced one fix — it must **shell out to the Quarto CLI, not
+`quarto::quarto_render()`** (`{quarto}` isn't one of the 8 packages). Validated script saved at
+`.claude/archive/prototypes/00-check-setup.R` to lift into the build. (5) **Day-2 self-seeds** (zero
+day1 references) and renders to its own local `_site/`; **reset refinement** — re-extracting the ZIP
+does NOT remove participant-created cruft (a broken `_quarto.yml` survives), so the clean reset is a
+**fresh folder** (re-`use_course()` auto-suffix), not extract-over. **One untestable assumption:**
+Windows `renv::restore()` friction (Linux-only sandbox) — low risk (P3M binaries + plain-install
+fallback), the single residual to check with a real Windows tester before the ~Aug 1 freeze; not a
+build blocker. Plan-rec deltas (none change the GO) posted on the strand + folded into the tracker:
+drop the "add `brand:` if not" contingency; check-setup shells out; lead reset with re-`use_course()`;
+the exercises-repo `renv.lock` must be generated FRESH from the 8-package `DESCRIPTION` (not this
+repo's 155 KB site lock). The full run-labs student pass belongs at §8 step 7 (against a REAL
+`use_course()` unpack) **after** the repo + rewritten prose exist — this structural dry-run is the
+pre-build gate; the student-agent run is the post-build gate. Gate closed **GO**; unblocks the tracker.
+
 ### Params-bonus review cycle (panel) + slide MENTION + fixes — 2026-07-22
 
 Ran the four-reviewer panel against the new parameterized-report bonus (tag `params`, ref bee98ea):
