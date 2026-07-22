@@ -76,7 +76,7 @@ the small exercises repo.)
 | Decision | Options | Recommendation |
 |---|---|---|
 | **Source of truth** | (A) keep canonical files in the course repo, a **sync script** generates+pushes the exercises repo; (B) **move** files out entirely, course repo keeps only lab prose | **(A) sync.** Keeps files where they're already render-validated + embedded in lab pages, keeps the Day-1 flat layout the old plan showed must not be reshaped, one edit point. Reuse the old plan's **role-manifest sync** (`§4` there) — it already solved the flat-Day-1 / split-Day-2 asymmetry. Cost: a second repo + a sync script + CI drift-guard. |
-| **Versioning** | (A) year-in-name repo; (B) **year-agnostic repo + edition branches** (`@raukr-2026`) | **(B).** `use_course("cderv/raukr-quarto-exercises@raukr-2026")` printed in 2026 handouts keeps resolving forever; 2027 = branch `main`, change one Setup line. Strong longevity win, ~free. |
+| **Versioning** | (A) year-in-name repo; (B) **year-agnostic repo + edition branches** (`@raukr-2026`) | **(B).** `use_course("cderv/raukr-quarto-exercises@raukr-2026")` printed in 2026 handouts keeps resolving forever; 2027 = cut `raukr-2027` from `main`, change one Setup line. Strong longevity win, ~free. **Branch semantics (clarified 2026-07-22):** `main` is the **rolling current edition** — the sync's force-push target, the `Use this template` default, and what a bare `use_course("cderv/raukr-quarto-exercises")` grabs. `raukr-2026` is a **copy of `main`** (create it at repo-init: `git branch raukr-2026 main`), kept rolling until the Friday-before freeze, then **frozen**. The handout + Setup **pin `@raukr-2026`** (not `main`) — a printed URL is permanent, so it must resolve to the *frozen* 2026 content even after `main` rolls to 2027; `use_course` resolves a branch ref via the same codeload zip as Plan-B. Hotfix a frozen edition by additive cherry-pick (§6.1). |
 | **renv for participants** | (A) drop it (robustness); (B) ship a small `renv.lock` in the exercises repo | **(B) with the plain-install fallback kept** (as today). renv.lock-as-truth is a house rule; the 8 packages are small binaries. Offer `install.packages(c(...))` for anyone renv trips up. Revisit only if a dry-run shows Windows renv friction. |
 | **Template repo** | flag now vs post-course only | **Flag it** (one checkbox) as the instructor-reuse on-ramp; delivery still `use_course`. Template = reuse-by-others (account, offline from the session); `use_course` = live attendee delivery (no account). Each used where it's strong. |
 
@@ -92,7 +92,8 @@ Flag as a **template repository**.
 
 **New — in the course repo:** a **role-manifest sync script** (adapt the old plan's `sync-labs.R`
 manifest + the tuto's `sync-exercices.R` / `is_artifact()` artifact-stripping) + a `just exercises`
-recipe + a CI drift-guard; it force-pushes the assembled layout to the exercises repo.
+recipe + a CI drift-guard; it force-pushes the assembled layout to the exercises repo's **`main`**
+(the rolling current edition); `raukr-2026` is mirrored from `main` until freeze (see §3 versioning).
 
 **Migration edits in the course repo:**
 - `setup.qmd` — retarget "Get the materials" to `use_course("cderv/raukr-quarto-exercises@raukr-2026")`;
@@ -152,8 +153,9 @@ one-click instructor reuse, and per-edition pins that keep every past handout wo
 6. Rewrite `setup.qmd` + both lab pages + slide step-0 frames; delete the `cd starter/` machinery.
 7. **End-to-end dry run on a clean machine** via `run-labs` against a real `use_course()` unpack; both
    reset paths. Fix friction.
-8. ~Aug 1: cut the `raukr-2026` edition branch, pin it on Setup, declare content freeze; load USB
-   sticks; print the "open this folder" screenshots into the decks.
+8. ~Aug 1: **freeze** the `raukr-2026` edition branch (created at repo-init as a rolling copy of
+   `main`; stop mirroring `main` into it now), confirm Setup pins `@raukr-2026`, declare content
+   freeze; load USB sticks; print the "open this folder" screenshots into the decks.
 
 ## Critical files
 - `setup.qmd` · `labs/quarto/index.qmd` · `labs/quarto-projects/index.qmd` · `_quarto.yml` (render list)
