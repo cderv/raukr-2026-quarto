@@ -391,7 +391,7 @@ project to `_site/` and open it — a publishable folder. (Publishing to Pages i
 
 ::: notes
 - **Say (handoff):** "Last stretch — Ship it Challenge: render your project to `_site/` and open it, a publishable folder. Publishing to Pages is my watch-me demo, not your job. ~45 min; helpers are up."
-- **Helpers:** the tell that freeze is working — the *second* project render doesn't re-execute the page at all (no chunk output scrolls by); the compute is served from `_freeze/`. Behind? Open the shipped `solution/` project and start from there.
+- **Helpers:** the tell that freeze is working — the *second* project render doesn't re-execute the page at all (no chunk output scrolls by); the compute is served from `_freeze/`. Behind? Open the shipped `solutions/day2/` project and start from there.
 :::
 
 ## What you can do now {#wrap-up}

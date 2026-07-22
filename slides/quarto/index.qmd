@@ -674,7 +674,7 @@ finish with a **publication-ready article** — a cite-able, branded PDF you cou
 
 ::: notes
 - **Say (handoff):** "Last stretch — Citations Challenge: add a `.bib`, render a branded Typst PDF, and you walk out with a publication-ready article — a branded, cite-able PDF. ~30 min; helpers are up."
-- **Helpers:** the `.bib` key must match `@key` exactly; the Typst Google-font fetch needs network on the first render; a missing `csl:` falls back to Typst's native style. "Where's my PDF?" is usually the output-location split — the shipped `starter.qmd` renders under `_site/…`, but a brand-new doc renders next to its source. All covered by the lab's hint/solution.
+- **Helpers:** the `.bib` key must match `@key` exactly; the Typst Google-font fetch needs network on the first render; a missing `csl:` falls back to Typst's native style. "Where's my PDF?" — in `day1-intro/` it lands next to its source (`starter.qmd` → `starter.pdf`, `my-report.qmd` → `my-report.pdf`), no `_site/` redirect. All covered by the lab's hint/solution.
 :::
 
 ## What you can do now {#wrap-up}

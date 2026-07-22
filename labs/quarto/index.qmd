@@ -17,7 +17,7 @@ an analysis to a submittable write-up. Everything runs on **base-R `datasets::pe
 Accessibility box below), plus the `knitr`/`rmarkdown` engine every `.qmd` with R code needs. If
 you've done the **[Setup page](../../setup.qmd)** (with its `00-check-setup.R` check), you're ready;
 otherwise install them once from R:
-`install.packages(c("dplyr", "ggplot2", "gt", "ggokabeito"))`. The citation payoff also uses the
+`install.packages(c("dplyr", "ggplot2", "gt", "ggokabeito", "knitr", "rmarkdown"))`. The citation payoff also uses the
 shared `references.bib` and `apa.csl` that ship in your **`day1-intro/`** folder.
 :::
 
@@ -63,7 +63,7 @@ That's the whole migration. The rest of this lab is native `.qmd`.
 1. Create `my-report.qmd` **inside your open `day1-intro/` folder** (next to `references.bib` /
    `apa.csl`, so Part 2's paths and branding resolve later) with `format: html` and the setup cell
    at the top of this page.
-2. Add a scatter plot of `bill_len` versus `bill_dep` colored by `species`. Give its cell
+2. Add a scatter plot of `bill_len` versus `bill_dep` coloured by `species`. Give its cell
    `#| label: fig-bill` and a `#| fig-cap:`, then — **in the prose, outside the cell** — refer to
    it with `@fig-bill`.
 3. Add a summary table. The `gt` plumbing is below; your job is the **cross-reference mechanic** —
@@ -82,7 +82,7 @@ That's the whole migration. The rest of this lab is native `.qmd`.
    \text{ratio} = \frac{\text{bill\_len}}{\text{bill\_dep}}
    $$ {#eq-ratio}
    ```
-6. Render to HTML (`quarto render your-doc.qmd`, or the editor's Render/Preview).
+6. Render to HTML (`quarto render my-report.qmd`, or the editor's Render/Preview).
 :::
 
 ::: {.callout-tip icon=false}
@@ -111,7 +111,7 @@ looks like this:
 #| fig-height: 3.4
 #| fig-cap: "Target: bill length versus depth by species."
 #| fig-alt: >-
-#|   Scatter plot of bill depth against bill length for three penguin species in distinct colors;
+#|   Scatter plot of bill depth against bill length for three penguin species in distinct colours;
 #|   the species form largely separate clusters.
 ggplot(penguins, aes(bill_len, bill_dep, color = species, shape = species)) +
   geom_point(alpha = 0.8) +
@@ -133,9 +133,9 @@ ggplot(penguins, aes(bill_len, bill_dep, color = species, shape = species)) +
 It's already in your `day1-intro/` folder; open it there to compare, or take the source:
 
 <!-- Raw-GitHub download button -- RaukR house pattern (see project-context.md; no `downloadthis`).
-     Points at the exercises repo's edition branch; goes live once cderv/raukr-quarto-exercises@raukr-2026
-     is pushed (the file also ships locally in every participant's day1-intro/). -->
-<a class="btn btn-primary btn-sm" href="https://raw.githubusercontent.com/cderv/raukr-quarto-exercises/raukr-2026/day1-intro/starter.qmd" role="button" target="_blank">{{< fa download >}} starter.qmd</a>
+     Points at the exercises repo (main = current edition); goes live once cderv/raukr-quarto-exercises
+     is created (the file also ships locally in every participant's day1-intro/). -->
+<a class="btn btn-primary btn-sm" href="https://raw.githubusercontent.com/cderv/raukr-quarto-exercises/main/day1-intro/starter.qmd" role="button" target="_blank">{{< fa download >}} starter.qmd</a>
 
 The cross-references and the equation live in the **body Markdown**, outside any cell:
 
@@ -153,9 +153,9 @@ citations from the next challenge. It's in your exercises `solutions/day1/` fold
 first, then open it to compare; or take the source:
 
 <!-- Raw-GitHub download button -- RaukR house pattern (see project-context.md; no `downloadthis`).
-     Points at the exercises repo's edition branch; goes live once cderv/raukr-quarto-exercises@raukr-2026
-     is pushed (the file also ships locally in solutions/day1/). -->
-<a class="btn btn-primary btn-sm" href="https://raw.githubusercontent.com/cderv/raukr-quarto-exercises/raukr-2026/solutions/day1/penguins-report.qmd" role="button" target="_blank">{{< fa download >}} penguins-report.qmd</a>
+     Points at the exercises repo (main = current edition); goes live once cderv/raukr-quarto-exercises
+     is created (the file also ships locally in solutions/day1/). -->
+<a class="btn btn-primary btn-sm" href="https://raw.githubusercontent.com/cderv/raukr-quarto-exercises/main/solutions/day1/penguins-report.qmd" role="button" target="_blank">{{< fa download >}} penguins-report.qmd</a>
 
 ## Citations Challenge
 
@@ -326,9 +326,9 @@ caption, and point count are **all** about Adelie — nothing says Gentoo. Chang
 open it and render with different `-P species:` values, or take the source:
 
 <!-- Raw-GitHub download button -- RaukR house pattern (see project-context.md; no `downloadthis`).
-     Points at the exercises repo's edition branch; goes live once cderv/raukr-quarto-exercises@raukr-2026
-     is pushed (the file also ships locally in day1-intro/). -->
-<a class="btn btn-primary btn-sm" href="https://raw.githubusercontent.com/cderv/raukr-quarto-exercises/raukr-2026/day1-intro/penguins-by-species.qmd" role="button" target="_blank">{{< fa download >}} penguins-by-species.qmd</a>
+     Points at the exercises repo (main = current edition); goes live once cderv/raukr-quarto-exercises
+     is created (the file also ships locally in day1-intro/). -->
+<a class="btn btn-primary btn-sm" href="https://raw.githubusercontent.com/cderv/raukr-quarto-exercises/main/day1-intro/penguins-by-species.qmd" role="button" target="_blank">{{< fa download >}} penguins-by-species.qmd</a>
 
 ## Troubleshooting
 
