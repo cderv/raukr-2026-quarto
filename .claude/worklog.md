@@ -7,6 +7,19 @@ no releases; this is the running record of what was built and why.
 
 ## Log
 
+### Lab solution: point at the real `starter.qmd`, drop the inline mock-up — 2026-07-22
+
+Resolved the "should the solution be a real `.qmd`?" question. Tested `{{< embed >}}` for the inline
+key-cells glance: it **works** (pulls the real fig-bill cell's code + output) but is **messy for R
+docs** — emits `Unable to resolve crossref` warnings, and embedding `starter.qmd#fig-bill` into
+`index.qmd` would risk a duplicate `fig-bill` label. And a separate inline excerpt (`_solution-authoring.R`
+via `#| file:`) just **relocates the drift** it was meant to kill. Key realization: the real,
+complete, **tested** (in the render list) Part-1 solution already exists — **`starter.qmd`**. So:
+dropped the excerpt + the `.R` snippet + embed, and pointed the Authoring-Challenge solution at
+`starter.qmd` (open-from-clone + a raw-GitHub download button, RaukR house pattern). Also fixed
+`starter.qmd`'s `fig-bill` to be colour-blind-safe (it lagged the rest). `penguins-report.qmd` keeps
+its own reference download (the fuller Part-1+2 doc). No `downloadthis`, no embed, no mock-up.
+
 ### Register the accessibility learnings — brand.md, a strand, Quarto issue drafts — 2026-07-22
 
 Closing the "is this all captured?" gaps from this session's a11y work:

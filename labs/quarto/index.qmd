@@ -123,16 +123,13 @@ ggplot(penguins, aes(bill_len, bill_dep, color = species, shape = species)) +
 - Display math with a label: `$$ … $$ {#eq-ratio}` — reference it with `@eq-ratio`.
 :::
 
-<!-- The key cells live in `_solution-authoring.R` and are pulled in below via the `#| file:` cell
-     option (source-only: `eval: false`), so this fold is a single, drift-resistant source rather than
-     a hand-copied mock-up. Keep that file in sync with `penguins-report.qmd`. -->
-```{r}
-#| label: sol-authoring
-#| code-fold: true
-#| code-summary: "Solution — the key cells"
-#| eval: false
-#| file: _solution-authoring.R
-```
+**The complete, runnable solution is `starter.qmd`** — a known-good Part-1 report with all these cells.
+Open it from your cloned `labs/quarto/` to compare, or take the source:
+
+<!-- Raw-GitHub download button -- RaukR house pattern (see project-context.md; no `downloadthis`).
+     The URL hard-codes owner/repo/branch: it goes live once this branch merges to `main`, and must
+     switch to `NBISweden/raukr-2026/...` when the material folds into the NBIS course site. -->
+<a class="btn btn-primary btn-sm" href="https://raw.githubusercontent.com/cderv/raukr-2026-quarto/refs/heads/main/labs/quarto/starter.qmd" role="button" target="_blank">{{< fa download >}} starter.qmd</a>
 
 The cross-references and the equation live in the **body Markdown**, outside any cell:
 
