@@ -7,6 +7,30 @@ no releases; this is the running record of what was built and why.
 
 ## Log
 
+### Exercises sync foundation — the use_course() payload, generated + drift-guarded (the tracker) — 2026-07-22
+
+First build increment after the GO gate: the **course-repo machinery that assembles the participant
+exercises tree**, staged as a generated-but-committed `exercises/` dir (commit `5ed10fb`). Built
+`tools/exercises-scaffold/` (README, `DESCRIPTION`, `renv.lock`, `00-check-setup.R`, three `.Rproj`,
+`.gitattributes` solutions export-ignore dial, and the exercises-repo `render-check.yml` CI) +
+`tools/sync-exercises.R` — a **role-manifest sync** (the only write path) that maps the flat Day-1
+`labs/quarto/` and split Day-2 `labs/quarto-projects/` sources into `day1-intro/`, `day2-projects/`
+(shipped WITHOUT `_quarto.yml` — creating it is the exercise), and sibling `solutions/day{1,2}/`,
+with artifact-stripping, clean rebuild, and a `--check` drift mode. Wired `just exercises` /
+`exercises-check` + a course-repo `exercises-sync.yml` **drift-guard** (verified both ways: green when
+synced, exit 1 naming the drifted file otherwise). **Proven end-to-end against the REAL sync output**
+— Day-1 Typst payoff, Day-1 cited HTML solution, Day-2 website project, and `00-check-setup.R` all
+render green from the generated tree. Findings updating the gate's build notes: **packages = 9 not 8**
+(`ggokabeito`, the CVD-safe species scale, is used by the Day-1 content — corrected the check-setup +
+DESCRIPTION); the **explicit 9-package `renv.lock` is byte-identical to the course lock** (revealjs
+adds no R deps, so the "heavy site lock" worry doesn't hold — shipped as its own file for an
+independent participant contract; ZIP still tiny); the **Day-2 solution `_brand.yml` is a deliberately
+minimal teaching brand** (copied verbatim, never overwritten with root). Deferred to next increments:
+the **handoff** (create the public `cderv/raukr-quarto-exercises` repo — out of this session's GitHub
+scope — + push `exercises/` + wire CI + the site zip-mirror) and the **reviewed migration** (rewrite
+`setup.qmd` + both lab pages + `_quarto.yml` render list + slide step-0, deleting the `cd starter/`
+apparatus; `/start-workshop` + the post-build run-labs gate before freeze).
+
 ### Exercise-delivery dry-run — GO/NO-GO gate: **GO** (the tracker) — 2026-07-22
 
 Ran the pre-build go/no-go for the exercise externalization (plan `2026-07-22-exercise-delivery.md`).
