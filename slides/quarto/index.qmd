@@ -454,11 +454,15 @@ quarto render  report.qmd   # one-off render
 - **RStudio**, **Positron**, and **VS Code** all work. The **visual editor** (WYSIWYM — *what you
   see is what you mean*) is built into the **RStudio IDE**, and comes to **Positron and VS Code**
   through the **Quarto extension**.
+- The same `quarto render` also takes **`-P name:value`** — override a document *parameter* to get
+  one report per sample or species from a single source. *(Optional bonus in today's lab.)*
 
 ::: notes
 - **Do:** run `quarto preview report.qmd` live — save an edit, show the browser reload; then
   `quarto render` for the one-off.
 - **Say:** "Drive it from the CLI, in whatever editor you like — RStudio, Positron, VS Code."
+- **Params (MENTION, cut-first):** name-check `-P` here, where `quarto render` is on screen — the
+  optional lab bonus does it hands-on (one report per species). Don't dwell; it isn't a taught beat.
 - **Timing:** keep it tight — the room knows cells and Jenny Bryan covers the IDE. Part 1 lands
   inside its ~18–20 min budget.
 :::

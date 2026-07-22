@@ -7,6 +7,42 @@ no releases; this is the running record of what was built and why.
 
 ## Log
 
+### Params-bonus review cycle (panel) + slide MENTION + fixes — 2026-07-22
+
+Ran the four-reviewer panel against the new parameterized-report bonus (tag `params`, ref bee98ea):
+**0 P0**, and every syntax claim render-verified (asis→numbered heading, `!expr` in fig-cap *and*
+fig-alt, `-P species:` colon form, no freeze/website stale-artifact trap). Applied the full fix set
+(reports + ledger in `.claude/archive/reviews/`): (1) the new file had regressed to the legacy
+`` `r …` `` inline — migrated both spans to the braced house form (technique + language P1); (2) slide
+`-P key:value` → `-P name:value` to match the lab (language P1); (3) the beginner's real find — the
+bonus read as "modify a document" but only cohered against the shipped solution — closed by anchoring
+a "Starting point" box on `penguins-by-species.qmd`, telling DIY builders to plot the filtered `one`,
+and adding the `_site/…` output-location + working-dir note (3 P1s, one reframe). Cheap P2s folded in:
+Session appendix on the new file, `cat("##", …)` double-space, `fig-alt: !expr` taught alongside
+`fig-cap` + a one-clause "why `!expr`", NA guard in the task snippet, register trims. Also added the
+**Day-1 slide MENTION** (deferred from the build): one `-P name:value` bullet on `## Running & editing`
+(where `quarto render` is already on screen) + a cut-first notes cue; fit-checked 720/720. All
+executable `.qmd` re-rendered, braced inline re-verified as executing, `-P species:Chinstrap`
+re-verified end-to-end; `_freeze/` staged.
+
+### Parameterized-report exercise — Day-1 lab optional bonus (closes the one coverage gap) — 2026-07-22
+
+Closed **the tracker**, the one topic NBIS teaches as a full hands-on (`labs/quarto:467-539`) that
+we'd neither taught nor mentioned — it read as an unclosed loop, not a decision. Studied placement
+(cloned NBIS raukr-2025 for the real source; the "1:1 re-skin" was generous — the NBIS walkthrough is
+thin, embeds an external report, never shows the filter chunk or the `-P` override, so it was a
+rebuild from fragments). **Decision: Day-1, optional self-service bonus** after the Citations
+Challenge — resolving the strand's core Day-1-vs-Day-2 question. Key finding that killed the old
+Day-2-MENTION plan: the "params needs the CLI → Day 2" rationale is **moot** because Day-1 *already*
+runs `quarto render … --to typst` from the terminal (Citations step), so `-P species:…` is the same
+muscle already on Day 1. Kept it **optional/MENTION-level** (topic-store had params at MENTION; Part 1
+and Part 2 have no spare core time — the panel's P1 protected the Typst payoff). Built + tested:
+`labs/quarto/penguins-by-species.qmd` (`params:` + `params$species` filter + `#| output: asis`
+dynamic heading + `!expr` caption/alt + inline `r params$species`); verified `-P species:Adelie`
+tracks all four param sites with zero Gentoo leak; added to the render list + `_freeze/`. Plan:
+`.claude/plans/2026-07-22-parameterized-report-exercise.md`. Deferred (not a gap): an optional Day-1
+slide MENTION — kept out to avoid touching deck timing/fit in this lab-only unit.
+
 ### Session block → HTML appendix; found a Quarto appendix-numbering bug — 2026-07-22
 
 From a screenshot: moved `penguins-report.qmd`'s closing `<details>` Session block into the **HTML

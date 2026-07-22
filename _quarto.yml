@@ -19,6 +19,8 @@ project:
     - labs/quarto/sample-typst.qmd
     # WP2 Day-1 lab: the shipped Part-2 starter (a known-good Part-1 report to cite).
     - labs/quarto/starter.qmd
+    # Day-1 lab optional bonus: the parameterized report (renders once with default params).
+    - labs/quarto/penguins-by-species.qmd
     # Day-2 "Demos — if time": the static `format: dashboard` page (opened/linked from the deck).
     - labs/quarto-projects/dashboard.qmd
 

@@ -259,12 +259,16 @@ reproducibility · Dashboards (`format: dashboard`, with a runnable `dashboard.q
 their engine-diagram idea) · projects · freeze (theirs thin at `site lab #443`; ours: cache-vs-freeze
 + "CI renders without R") · publishing (ours watch-me, not a live per-laptop `quarto publish`).
 
-**The one real gap — Parameters.** It's the single topic NBIS teaches as a full hands-on that we
-have **neither taught nor mentioned** anywhere (Day 1 or 2, slides or labs). `topic-store.md` planned
-it as a Day-2 MENTION "riding inside the CLI framing," but nothing was built — so it reads as an
-unclosed loop, not a decision. **Christophe's lean (2026-07-21): add as a lab exercise, likely
-Day 1, not the Day-2 project lab.** Study strand: **braid `the tracker`** (where exactly, the
-CLI-override tension, and the iris→penguins re-skin of NBIS `labs/quarto:471-599`).
+**The one real gap — Parameters. → CLOSED 2026-07-22 (the tracker).** Was the single topic NBIS
+teaches as a full hands-on that we'd neither taught nor mentioned. **Built as a Day-1 lab optional
+bonus** (`labs/quarto/index.qmd` § "Bonus — one report per species" + tested reference
+`penguins-by-species.qmd`). Placement resolved: Day-1 (single-doc feature + Christophe's lean), and
+the old "params needs the CLI → Day 2" rationale was **moot** — Day-1 already runs `quarto render …
+--to typst` from the terminal, so `-P species:…` is the same muscle. Kept optional/MENTION-level
+(no spare core time; the panel's P1 protected the Typst payoff). Note: the "iris→penguins re-skin
+1:1" of NBIS `labs/quarto:467-539` was generous — that walkthrough is thin (embeds an external
+report, never shows the filter chunk or the `-P` override), so it was a rebuild from fragments.
+Plan: `.claude/plans/2026-07-22-parameterized-report-exercise.md`.
 
 
 ### raukr-2025 back-check (2026-07-21)

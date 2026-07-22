@@ -305,3 +305,29 @@ braced inline form `` `{r} …` `` (verified vs quarto.org) drove a repo-wide in
 double-brace-escape lesson (`slides.md` §5). `sample-typst.qmd` inline reverted (un-refreezable
 in-sandbox `gt` error). All touched executable `.qmd` re-rendered + fit-checked 720/720. Deferred =
 presenter-judgment / subjective P2s only — non-blocking.
+
+## Cycle 2026-07-22 — params panel (ref bee98ea): the new parameterized-report bonus
+
+First panel against the Day-1 **parameterized-report** optional bonus (the tracker: `penguins-by-species.qmd`,
+the lab `## Bonus` section, the `#running` slide MENTION). **0 P0 anywhere.** Technique empirically
+verified every syntax claim (asis→numbered heading, `!expr` in both `fig-cap`/`fig-alt`, `-P species:`
+colon form) and confirmed **no freeze/website stale-artifact trap** (an explicit single-file render
+always honours `-P`). Convergent P1s: the new file used the legacy `` `r …` `` inline (technique +
+language) against the settled braced house form, and a slide/lab `-P` placeholder mismatch (language).
+The beginner panel found the real UX seam — the bonus was written as "modify a document" but only
+cohered against the shipped solution.
+
+| Review file | Verdict (1-line) | Disposition | Applied → where |
+|---|---|---|---|
+| `review-2026-07-22-params-technique.md` | Technically sound, all claims render-verified; 0 P0 / 1 P1 / 4 P2 | ✅ applied | **P1:** legacy→braced inline (`penguins-by-species.qmd:19,42`). **P2:** Session appendix added to the file; `cat("##", …)` double-space; `fig-alt: !expr` shown alongside `fig-cap` in the task. `!expr`-is-knitr = note only |
+| `review-2026-07-22-params-beginner.md` | Safe as optional; *doing* it exposed a file/output seam; 0 P0 / 3 P1 / 2 P2 | ✅ applied | **P1 (all three, one fix):** added a "Starting point" box anchoring the shipped `penguins-by-species.qmd`; Task 2 now says plot `one` not `penguins`; Task 5 gained the `_site/…` output-location + working-dir note. **P2:** `!expr` "why" clause added; double-space fixed |
+| `review-2026-07-22-params-language.md` | Solid, no P0; 2 cross-file consistency P1s; 0 P0 / 2 P1 / 2 P2 | ✅ applied | **P1:** braced inline (as above); slide `-P key:value` → `-P name:value` to match the lab. **P2:** "a command-line thing" → "command-line only"; dropped "self-service" from the goal |
+| `review-2026-07-22-params-pedagogue.md` | Pedagogically ready, ship it; 0 P0 / 0 P1 / 2 P2 | ✅ applied / ☑️ confirmed | **P2:** NA guard added to the task-2 filter snippet (matches the reference). Fit-check of `#running` = already done (720/720), re-confirmed after the placeholder edit |
+
+**Triage:** 0 P0; applied the full set (1 P1 idiom regression + the beginner UX seam + the cheap
+cross-reviewer P2s) — all reviewer-specified, no judgment call. The beginner's three P1s shared one
+root cause (bonus written as "modify a doc", only coherent against the shipped file) and were closed by
+one reframe: anchor on `penguins-by-species.qmd`, name the DIY caveat (plot `one`), add the output note.
+All touched executable `.qmd` re-rendered; braced inline re-verified as executing (not literal);
+`-P species:Chinstrap` re-verified end-to-end with the added Session cell; `_freeze/` staged; `#running`
+re-fit-checked 720/720. No deferrals.
