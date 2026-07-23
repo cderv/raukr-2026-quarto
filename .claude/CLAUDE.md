@@ -65,7 +65,12 @@ Website pages `format: html`, slides `format: revealjs` (avoids the multi-format
 add `fig-alt`. The **full RaukR house style** — slide structure, `. . .` incremental, mode-marker
 callouts ("Follow along" / "Your turn"), `## Learning Outcomes` open / "What you can do now" close,
 lab `code-fold` solution + `<details>` Session block — is in **`project-context.md` § Content
-patterns** (pedagogy rationale: `workshop-pacing.md`). The **slide-craft gotchas** — fit-check every
+patterns** (pedagogy rationale: `workshop-pacing.md`). The **house voice** — write like Christophe
+(short declarative spine, asides in parentheses not em-dashes, plain warm words) and strip the LLM
+tells that keep re-introducing spoken-register clutter (stacked em-dash asides, voice-over tails,
+reassurance narration) — is the path-scoped rule **`.claude/rules/prose-voice.md`** (auto-surfaced on
+prose `.qmd`), with the full profile + before/after in **`.claude/references/house-voice.md`**. The
+**slide-craft gotchas** — fit-check every
 changed slide (`.claude/scripts/slide-shot.mjs`), `.center`-slide layout, `code-line-numbers`,
 `filename`, consecutive-code-block spacing — are the path-scoped rule **`.claude/rules/slides.md`**
 (auto-surfaced when editing `slides/**/*.qmd`). Day-2+ decks are **follow-ups** for the same cohort —
@@ -83,7 +88,8 @@ editing `_brand.yml` or the theme SCSS).
   scope), `workshop-pacing` (pedagogy), `multi-day-workshop-scaffold` (skeleton + spin-up checklist
   for a new multi-day workshop), `sandbox-setup` (environment), `quarto-doc-sources`,
   `prior-art-inventory`, `typst-render-diagrams` (Typst/fletcher diagram recipe + deploy gotchas),
-  `colorblind-safe-palettes` (CVD-safe ggplot palette best-practice + recipes).
+  `colorblind-safe-palettes` (CVD-safe ggplot palette best-practice + recipes), `house-voice`
+  (how Christophe writes + the LLM-tell strip-list; paired with the `prose-voice` rule).
 - **Skills** → `.claude/skills/`: `quarto-authoring`, `quarto-alt-text`, `brand-yml`.
 - **Agents** → `.claude/agents/`: the four `workshop-reviewer-*`. **Command:** `/start-workshop`.
 - **Archive** → `.claude/archive/`: `plans/`, `reviews/` (+ its disposition ledger `README.md`),

@@ -41,7 +41,24 @@ The main thread briefs you with:
 
 ## Register / plain language
 
-Push toward clear, spoken, professional English. Concretely:
+The canonical target is the **house voice** — `.claude/references/house-voice.md` (Christophe's own
+profile + the machine-tell list). Read it; the checks below are its operational edge. The one
+principle: **written prose states; the presenter's voice lives in `::: notes`.**
+
+**Top priority — spoken register leaking into written text.** Flag, in participant-facing prose
+(NOT `::: notes`):
+- **Em-dash asides (the #1 tell).** Any mid-sentence `—`/`--` interjection, *especially* two dashes
+  splitting subject from verb (`The way — X, Y, Z — is …`) or a dramatic trailing `— punch.` Propose
+  his substitutes: a `(…)` parenthesis, a `:` colon, or a full stop + new sentence. A plain
+  `term — gloss` slide bullet is fine — don't over-correct those.
+- **Machine tells** (from house-voice §"tells to strip"): participial voice-over tails
+  (`…, making it easy to X`), reassurance narration (`(so nothing surprises you)`, `no magic here`),
+  antithesis flips (`not just X, it's Y`), signposting (`It's worth noting that`, reflexive `In short`),
+  `;` semicolons, and corporate verbs.
+- **French typography in English** (copy-edit, not register): a space before `?` `!` `:` `;`
+  (`publications ?`) is the *espace insécable* leaking in — an error to remove, never a voice trait.
+
+Then the classic register fixes. Concretely:
 
 - `in order to` → `to`; `utilize` → `use`; `leverage` → `use`
 - `it is important to note that …` → cut or make direct
@@ -109,8 +126,12 @@ a reword would touch meaning, mark it ⚠️ and leave the rewrite to a human.
 Read + Grep. Useful greps to start the hunt for tics:
 
 ```bash
+# Em-dash asides & dramatic dashes (the #1 spoken-register tell) — then judge each in context
+grep -rnE '—|--' --include='*.qmd' . | grep -v '_freeze/'
+# French typography leaking into English — space before ? ! : ; (an error, not a voice trait)
+grep -rnE ' [?!]' --include='*.qmd' .
 # Corporate / stiff phrasing
-grep -rniE '\b(in order to|utilize|leverage|it is important to note|in the event that|at this point in time|in terms of|with regard to|facilitate)\b' \
+grep -rniE '\b(in order to|utilize|leverage|it is important to note|in the event that|at this point in time|in terms of|with regard to|facilitate|streamline|seamless|robust)\b' \
   --include='*.qmd' --include='*.md'
 # Doubled words
 grep -rEn '\b(\w+) \1\b' --include='*.qmd' --include='*.md'

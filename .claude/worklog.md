@@ -7,6 +7,40 @@ no releases; this is the running record of what was built and why.
 
 ## Log
 
+### House-voice rule — codify Christophe's prose voice + strip the LLM tells — 2026-07-23
+
+Christophe flagged a stacked em-dash aside in `setup.qmd` ("The easiest way to get it — no git, no
+GitHub account, nothing to unzip by hand, identical on … — is `use_course()`") as off-voice, and asked
+to learn his real style from prior repos and bake it into the language rule — plus strip Claude's own
+writing tells.
+
+1. **Corpus study.** Cloned six authored repos into `/workspace` (`raukr-2025-quarto`,
+`raukr-2023-quarto`, `raukr-2021-rmd-boost`, `user2024-tutorial-quarto`, `rmd-to-quarto-workshop`,
+`r-bucket`) and ran three parallel analysis agents (two voice profiles + one tic-catalog of the current
+repo). Key finding: **across ~2600 lines of his prose there are zero in-sentence em-dashes** — his aside
+device is the **parenthesis** (often two per sentence), the **colon** into examples/lists/code, or a
+split "But …" sentence; no semicolons; plain warm words ("benefit from", not "leverage"); surgical
+semantic bold. The stacked em-dash aside is a **Claude/LLM tell**, not his voice.
+2. **New reference `references/house-voice.md`** — the profile (positive) + the machine-tell
+strip-list (negative) + a punctuation-substitution table + before/after worked examples. Also nails the
+**French-typography copy-edit**: a space before `?`/`!`/`:`/`;` is the *espace insécable* leaking into
+English — an error to remove, **not** a voice trait (per Christophe's steer).
+3. **New path-scoped rule `rules/prose-voice.md`** (auto-surfaced on `setup.qmd`, `index.qmd`,
+`labs/**`, `slides/**`) — the operational short list, so authoring binds to the voice, not just review.
+4. **Wired it in:** `agents/workshop-reviewer-language.md` now leads its register section with the
+em-dash-aside / machine-tell / French-spacing checks (+ greps for `—`, ` ?`, ` !`); `CLAUDE.md` Authoring
++ references index point at the rule/reference.
+5. **Worked proof — `setup.qmd` swept.** Rewrote every genuine stacked-dash / voice-over / trailing-dash
+offender into his parenthesis/colon/split style (incl. the canonical line and "**What it does**, so
+nothing surprises you:" → "**What it does:**"). Renders clean. Kept the legitimate `label — gloss` list
+bullets.
+
+**Still open (next pass, user-steered):** the tic-catalog found **93 genuine offenders** total; the two
+decks (`slides/quarto`, `slides/quarto-projects`, ~28/27 each) and the two labs still carry them. Decks
+need slide fit-checks and labs need an exercises re-sync, so those sweep in the review loop rather than
+one big diff. Recurring beats to retire repo-wide: "— no LaTeX", "— no data to download", "nobody is
+stranded by the break", "is a reference, not a checklist".
+
 ### Handoff finished — exercises repo populated, CI green, publish recipe, run-labs gate PASS (the tracker) — 2026-07-23
 
 Completed the cross-repo handoff for the exercise-delivery externalization, in a session scoped to
