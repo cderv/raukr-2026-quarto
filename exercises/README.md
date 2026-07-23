@@ -14,7 +14,7 @@ In R (RStudio or Positron), one line — it downloads a ZIP, unpacks it to your 
 
 ```r
 # install.packages("usethis")
-usethis::use_course("cderv/raukr-2026-quarto-exercices")
+usethis::use_course("cderv/raukr-2026-quarto-exercises")
 ```
 
 Answer **No** when it offers to delete the ZIP — keep it as your reset button (see below). No R?
@@ -61,7 +61,7 @@ renv::restore()                     install.packages(c(
 
 If an attempt goes sideways, get a **fresh folder** — don't try to extract over your working copy:
 
-- Re-run `usethis::use_course("cderv/raukr-2026-quarto-exercices")` — it makes a new,
+- Re-run `usethis::use_course("cderv/raukr-2026-quarto-exercises")` — it makes a new,
   numbered folder and leaves your old attempt untouched; or
 - Unzip the ZIP you kept to a **new** location.
 

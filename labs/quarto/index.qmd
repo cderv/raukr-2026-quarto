@@ -133,9 +133,9 @@ ggplot(penguins, aes(bill_len, bill_dep, color = species, shape = species)) +
 It's already in your `day1-intro/` folder; open it there to compare, or take the source:
 
 <!-- Raw-GitHub download button -- RaukR house pattern (see project-context.md; no `downloadthis`).
-     Points at the exercises repo (main = current edition); goes live once cderv/raukr-2026-quarto-exercices
+     Points at the exercises repo (main = current edition); goes live once cderv/raukr-2026-quarto-exercises
      is created (the file also ships locally in every participant's day1-intro/). -->
-<a class="btn btn-primary btn-sm" href="https://raw.githubusercontent.com/cderv/raukr-2026-quarto-exercices/main/day1-intro/starter.qmd" role="button" target="_blank">{{< fa download >}} starter.qmd</a>
+<a class="btn btn-primary btn-sm" href="https://raw.githubusercontent.com/cderv/raukr-2026-quarto-exercises/main/day1-intro/starter.qmd" role="button" target="_blank">{{< fa download >}} starter.qmd</a>
 
 The cross-references and the equation live in the **body Markdown**, outside any cell:
 
@@ -153,9 +153,9 @@ citations from the next challenge. It's in your exercises `solutions/day1/` fold
 first, then open it to compare; or take the source:
 
 <!-- Raw-GitHub download button -- RaukR house pattern (see project-context.md; no `downloadthis`).
-     Points at the exercises repo (main = current edition); goes live once cderv/raukr-2026-quarto-exercices
+     Points at the exercises repo (main = current edition); goes live once cderv/raukr-2026-quarto-exercises
      is created (the file also ships locally in solutions/day1/). -->
-<a class="btn btn-primary btn-sm" href="https://raw.githubusercontent.com/cderv/raukr-2026-quarto-exercices/main/solutions/day1/penguins-report.qmd" role="button" target="_blank">{{< fa download >}} penguins-report.qmd</a>
+<a class="btn btn-primary btn-sm" href="https://raw.githubusercontent.com/cderv/raukr-2026-quarto-exercises/main/solutions/day1/penguins-report.qmd" role="button" target="_blank">{{< fa download >}} penguins-report.qmd</a>
 
 ## Citations Challenge
 
@@ -326,9 +326,9 @@ caption, and point count are **all** about Adelie — nothing says Gentoo. Chang
 open it and render with different `-P species:` values, or take the source:
 
 <!-- Raw-GitHub download button -- RaukR house pattern (see project-context.md; no `downloadthis`).
-     Points at the exercises repo (main = current edition); goes live once cderv/raukr-2026-quarto-exercices
+     Points at the exercises repo (main = current edition); goes live once cderv/raukr-2026-quarto-exercises
      is created (the file also ships locally in day1-intro/). -->
-<a class="btn btn-primary btn-sm" href="https://raw.githubusercontent.com/cderv/raukr-2026-quarto-exercices/main/day1-intro/penguins-by-species.qmd" role="button" target="_blank">{{< fa download >}} penguins-by-species.qmd</a>
+<a class="btn btn-primary btn-sm" href="https://raw.githubusercontent.com/cderv/raukr-2026-quarto-exercises/main/day1-intro/penguins-by-species.qmd" role="button" target="_blank">{{< fa download >}} penguins-by-species.qmd</a>
 
 ## Troubleshooting
 

@@ -3,7 +3,7 @@
 - **Date:** 2026-07-23
 - **Reviewer:** labrun participant-sim (project-novice persona; fluent R/dplyr/ggplot2, first Quarto *project*)
 - **Source of instructions (only):** `labs/quarto/index.qmd`
-- **Work dir:** unpacked `raukr-2026-quarto-exercices/day1-intro/` (the `use_course()` "Desktop" tree)
+- **Work dir:** unpacked `raukr-2026-quarto-exercises/day1-intro/` (the `use_course()` "Desktop" tree)
 - **Toolchain:** Quarto 1.9.38, R present, content packages on library path.
 - **Artifacts produced:** `my-report.html`, `my-report.pdf` (branded Typst), `penguins-by-species.html` (×3 species). All renders exit 0.
 
@@ -37,7 +37,7 @@ A real beginner can finish this lab solo, including the Typst payoff and the par
 
 12. **Bonus — parameterized `penguins-by-species.qmd`** · Took the lab's "fastest path": rendered the shipped file with `-P species:Adelie`, `-P species:Chinstrap`, and bare (default). · Each HTML is exclusively its species (Adelie→only Adelie, Chinstrap→only Chinstrap, default→only Gentoo); exit 0 each. · `worked-fine` · The "render the shipped file first, build-it-yourself is optional" framing is the right on-ramp; the `-P name:value` checkpoint is unambiguous.
 
-13. **Migrated-prose spot-checks (per launch brief)** · Output locations ("lands right next to your files" / PDF "right next to its source in `day1-intro/`") — **accurate**, confirmed for `.html` and `.pdf`. Day-folder framing / `.Rproj` — **accurate**. **Download-button URLs** point at `raw.githubusercontent.com/cderv/raukr-2026-quarto-exercices/main/…`; the HTML comment admits the repo "goes live once created", so these would **404 today**, but the files all ship locally so a participant never needs them — low risk, worth a note. **Reset story**: the lab has **no reset/"start over" section at all** — nothing in `index.qmd` tells a participant how to get back to a clean `day1-intro/` if they mangle `starter.qmd`/`penguins-by-species.qmd` in place. · `ambiguous` · Not blocking, but the "reset story" the brief asked about is simply absent from the lab prose.
+13. **Migrated-prose spot-checks (per launch brief)** · Output locations ("lands right next to your files" / PDF "right next to its source in `day1-intro/`") — **accurate**, confirmed for `.html` and `.pdf`. Day-folder framing / `.Rproj` — **accurate**. **Download-button URLs** point at `raw.githubusercontent.com/cderv/raukr-2026-quarto-exercises/main/…`; the HTML comment admits the repo "goes live once created", so these would **404 today**, but the files all ship locally so a participant never needs them — low risk, worth a note. **Reset story**: the lab has **no reset/"start over" section at all** — nothing in `index.qmd` tells a participant how to get back to a clean `day1-intro/` if they mangle `starter.qmd`/`penguins-by-species.qmd` in place. · `ambiguous` · Not blocking, but the "reset story" the brief asked about is simply absent from the lab prose.
 
 ## Tag counts
 
@@ -60,4 +60,4 @@ A real beginner can finish this lab solo, including the Typst payoff and the par
 
 3. **`labs/quarto/index.qmd` § (whole page) — add a short "reset / start over" note.** There is currently **no** guidance for recovering a clean `day1-intro/` after editing the shipped `starter.qmd` / `penguins-by-species.qmd` in place. Given the lab tells people to edit those shipped files directly ("open `day1-intro/starter.qmd` … and add the citations to that"), a one-line reset story (re-download, or `git checkout`, or "work on a copy") would save a stuck participant.
 
-4. **`labs/quarto/index.qmd` § download buttons (Authoring + Bonus)** — the three `raw.githubusercontent.com/cderv/raukr-2026-quarto-exercices/main/…` buttons **404 until the repo is public**. The prose already says the files "ship locally", so consider softening the button copy to "(also in your `day1-intro/` folder)" so a participant who clicks and gets a 404 isn't confused — or gate the buttons on the repo going live.
+4. **`labs/quarto/index.qmd` § download buttons (Authoring + Bonus)** — the three `raw.githubusercontent.com/cderv/raukr-2026-quarto-exercises/main/…` buttons **404 until the repo is public**. The prose already says the files "ship locally", so consider softening the button copy to "(also in your `day1-intro/` folder)" so a participant who clicks and gets a 404 isn't confused — or gate the buttons on the repo going live.

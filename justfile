@@ -33,7 +33,7 @@ exercises-check:
 
 # Sync + publish exercises/ to the participant repo's main (pass a URL to retarget a new year)
 [confirm("Publish exercises/ to the exercises repo main? This pushes a fresh sync.")]
-publish-exercises repo="https://github.com/cderv/raukr-2026-quarto-exercices.git": exercises
+publish-exercises repo="https://github.com/cderv/raukr-2026-quarto-exercises.git": exercises
     Rscript tools/publish-exercises.R "{{ repo }}"
 
 # Remove build artifacts

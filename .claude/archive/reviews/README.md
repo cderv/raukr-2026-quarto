@@ -356,7 +356,7 @@ needed (only speaker notes changed this round).
 ## Cycle 2026-07-23 — run-labs FINAL gate against a real `use_course()` unpack (`labrun` tag)
 
 Plan §8 step 7: the post-handoff pre-freeze gate. Two `student-participant` agents walked Day-1 and
-Day-2 **from a faithful `use_course()` unpack** (`git archive` of the pushed `cderv/raukr-2026-quarto-exercices`
+Day-2 **from a faithful `use_course()` unpack** (`git archive` of the pushed `cderv/raukr-2026-quarto-exercises`
 `main` = exactly what codeload serves), following only the lab prose, rendering for real, packages
 exposed as the participant's user library. **Both labs completed with ZERO blockers**; migrated prose
 matches the delivered tree exactly (day-folder framing, no `starter/`/`cd` apparatus, `.Rproj` present,

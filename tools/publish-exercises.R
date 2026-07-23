@@ -2,7 +2,7 @@
 # publish-exercises.R -- push the generated exercises/ tree to the participant exercises repo.
 #
 # The repeatable sync from this course repo (source of truth) to the delivery repo
-# `cderv/raukr-2026-quarto-exercices` (what `usethis::use_course()` downloads). Run `just exercises`
+# `cderv/raukr-2026-quarto-exercises` (what `usethis::use_course()` downloads). Run `just exercises`
 # first (the `publish-exercises` recipe does) so exercises/ is current; this script then mirrors that
 # tree onto the exercises repo's `main` as ONE clean commit and pushes.
 #
@@ -16,10 +16,10 @@
 # Usage:
 #   Rscript tools/publish-exercises.R [repo-url]
 #   just publish-exercises                      # default repo
-#   just publish-exercises https://github.com/cderv/raukr-2027-quarto-exercices.git
+#   just publish-exercises https://github.com/cderv/raukr-2027-quarto-exercises.git
 
 args <- commandArgs(trailingOnly = TRUE)
-DEFAULT_REPO <- "https://github.com/cderv/raukr-2026-quarto-exercices.git"
+DEFAULT_REPO <- "https://github.com/cderv/raukr-2026-quarto-exercises.git"
 REPO <- if (length(args) >= 1 && nzchar(args[[1]])) args[[1]] else DEFAULT_REPO
 BRANCH <- "main"
 SRC    <- "exercises"
@@ -47,7 +47,7 @@ if (!dir.exists(SRC))
 sha <- tryCatch(git("rev-parse", "--short", "HEAD"), error = function(e) "unknown")
 
 # --- clone the delivery repo into a scratch dir -------------------------------------------------
-tmp <- file.path(tempdir(), "raukr-exercices-publish")
+tmp <- file.path(tempdir(), "raukr-exercises-publish")
 unlink(tmp, recursive = TRUE, force = TRUE)
 cat(sprintf("publish-exercises: cloning %s (%s)...\n", REPO, BRANCH))
 git("clone", "--depth", "1", "--branch", BRANCH, REPO, tmp)
