@@ -426,15 +426,16 @@ the navbar hamburger, solution code copyable (23 buttons Day-1 / 13 Day-2).
 |---|---|---|
 | `review-2026-07-23-margin-docs-technique.md` | Clean delta, nothing blocking; merge verified, URLs live, no multi-format conflict. 0/0/3 | ☑️ confirmed — P2s = cross-page TOC-side seam (keep, recommended), `reference-location` non-substitute (no-op), 2-file positional render fragility (test-only, not a repo defect) |
 | `review-2026-07-23-margin-docs-pedagogue.md` | Ship it; margin docs right altitude/dose, left TOC neutral-positive, struggle preserved, Scope trim clean hand-off. 0/0/3 | ☑️ confirmed — P2s = implicit "when stuck" cue (leave, low-noise is correct for this audience), help-ladder facilitation note (presenter brief), narrow-laptop fit-check (closed by beginner's shots) |
-| `review-2026-07-23-margin-docs-beginner.md` | Clean win, no blockers; links right every time, reflow good, solutions copyable. 0/0/3 | ☑️ confirmed / ⏳ — aside anchored at Goal scrolls off on wide screens (converges w/ pedagogue); Scope leans on Setup (Troubleshooting nets it); a11y-box link stays inline |
-| `review-2026-07-23-margin-docs-language.md` | Ship it; pointers house-voice clean + byte-consistent across both labs. 0/0/2 | ⏳ — 2 optional word nits ("run through"→"work through" both labs; "stretch"→"step") |
+| `review-2026-07-23-margin-docs-beginner.md` | Clean win, no blockers; links right every time, reflow good, solutions copyable. 0/0/3 | ☑️ confirmed / ✅ applied (`d687ab1`) — converged margin-aside relocation done; Scope-leans-on-Setup (Troubleshooting nets it) + a11y-box-inline left as noted |
+| `review-2026-07-23-margin-docs-language.md` | Ship it; pointers house-voice clean + byte-consistent across both labs. 0/0/2 | ✅ applied (`d687ab1`) — "run through"→"work through" both labs; **"stretch" kept** (task-marker vocab) |
 
 **Triage (consolidated for cderv):** 0 P0 / 0 P1 — GO to merge. **Converged P2** (pedagogue + beginner):
-the margin aside anchors at the challenge *Goal*, so on wide screens it scrolls off before the learner is
-deep in a task — optionally move it beside the *Tasks* callout so it tracks the work (both reviewers note a
-scroll-up is cheap, so low stakes). **Language nits optional:** "run through"→"work through" is a safe
-ESL-plain win (apply to both labs in sync); **"stretch" kept** — the labs already use `(stretch)` as a
-task marker throughout Day 1, so it is established vocabulary here, not undefined jargon (the reviewer did
-not see that usage). **Leave/facilitation:** TOC-side seam (technique recommends keeping — other pages have
-no margin content), a11y-link-inline (inside a callout, not a numbered challenge), help-ladder note
-(presenter brief, not source). Awaiting go-ahead on the applied set; cycle otherwise GO.
+the margin aside anchored at the challenge *Goal*, so on wide screens it scrolled off before the learner is
+deep in a task. **Applied on go-ahead in `d687ab1`:** each aside moved *inside* its Tasks callout (outer
+fence bumped to `::::`, `.column-margin` nested), so it now floats in the right margin aligned with the
+tasks and stays in view while working — verified across all five challenges. Also applied: "run
+through"→"work through" in both labs' Scope (plainer ESL register). **"stretch" kept** — the labs already
+use `(stretch)` as a task marker throughout Day 1, so it is established vocabulary here, not undefined
+jargon (the reviewer did not see that usage). **Left as noted:** TOC-side seam (technique recommends
+keeping — other pages have no margin content), a11y-link-inline (inside a callout, not a numbered
+challenge), help-ladder facilitation note (presenter brief, not source). **Cycle CLOSED — GO to merge.**

@@ -30,6 +30,11 @@ dispositions in the reviews ledger. Only converged P2: the aside anchors at the 
 wide screens (optionally move beside Tasks). Website-only index pages, so the `exercises/` payload is
 untouched (drift-guard green).
 
+**Polish applied on go-ahead (`d687ab1`):** moved each "Quarto docs" aside *inside* its Tasks callout
+(outer fence → `::::`, `.column-margin` nested), so it now floats aligned with the tasks and stays in view
+while working (all five challenges verified with screenshots); "run through the Setup page" → "work
+through" in both labs. "stretch" kept (established `(stretch)` task-marker vocab). Cycle closed, GO to merge.
+
 ### Voice-review cycle (`voice` tag) — panel validated the sweep; residues applied — 2026-07-23
 
 Ran the four-agent panel (`/start-workshop`) against `b9ccc53` to review the house-voice sweep.
