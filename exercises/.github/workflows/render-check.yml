@@ -58,8 +58,11 @@ jobs:
         run: quarto render solutions/day1/penguins-report.qmd
 
       - name: Render Day-2 solution (the website project)
-        working-directory: solutions/day2
-        run: quarto render
+        # Render from the repo root (like the Day-1 steps) so the root renv library that
+        # setup-renv restored stays on the path. A `working-directory: solutions/day2` here
+        # launches R inside a subdir that is NOT an renv project, so it never activates the
+        # root library and the render dies with "no package called 'rmarkdown'".
+        run: quarto render solutions/day2
 
       - name: Confirm the Typst PDF was produced
         run: test -f day1-intro/sample-typst.pdf || { echo "::error::sample-typst.pdf missing"; exit 1; }
