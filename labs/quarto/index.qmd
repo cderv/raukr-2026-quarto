@@ -8,12 +8,12 @@ date: ""
 ::: {.callout-note}
 ## Scope
 Build one penguins document with the authoring extras, then **cite it** and render it as a
-**branded Typst PDF**. Two challenges, one document — each is its own hands-on part, with the
-between-parts break in between. This is your **manuscript / team-project path** — the same route from
-an analysis to a submittable write-up. Everything runs on **base-R `datasets::penguins`** (R ≥ 4.5)
-— no data to download.
+**branded Typst PDF**. Two challenges, one document: each is its own hands-on part, with the
+between-parts break in between. This is your **manuscript / team-project path**, the same route from
+an analysis to a submittable write-up. Everything runs on **base-R `datasets::penguins`** (R ≥ 4.5),
+so there's no data to download.
 
-**Packages:** `dplyr`, `ggplot2`, `gt`, `ggokabeito` (a colour-blind-safe palette — see the
+**Packages:** `dplyr`, `ggplot2`, `gt`, `ggokabeito` (a colour-blind-safe palette, see the
 Accessibility box below), plus the `knitr`/`rmarkdown` engine every `.qmd` with R code needs. If
 you've done the **[Setup page](../../setup.qmd)** (with its `00-check-setup.R` check), you're ready;
 otherwise install them once from R:
@@ -22,12 +22,12 @@ shared `references.bib` and `apa.csl` that ship in your **`day1-intro/`** folder
 :::
 
 ::: {.callout-tip appearance="simple"}
-You are working in the **`day1-intro/`** folder from the exercises download (open `day1-intro.Rproj`)
-— see the [Setup page](../../setup.qmd#get-the-materials). Everything you render lands right next to
+You are working in the **`day1-intro/`** folder from the exercises download (open `day1-intro.Rproj`).
+See the [Setup page](../../setup.qmd#get-the-materials). Everything you render lands right next to
 your files.
 :::
 
-Start every document with this setup — the challenges below assume it:
+Start every document with this setup (the challenges below assume it):
 
 ```{r}
 #| label: setup
@@ -42,8 +42,8 @@ penguins <- penguins |> filter(!is.na(bill_len), !is.na(bill_dep))
 ```
 
 ::: {.callout-tip collapse="true"}
-## Coming from R Markdown? (2-minute aside — optional)
-You do **not** need to convert anything to work natively in Quarto — start with `.qmd` directly.
+## Coming from R Markdown? (optional, 2-minute aside)
+You do **not** need to convert anything to work natively in Quarto. Start with `.qmd` directly.
 But if you have an `.Rmd` you want to bring over:
 
 - it renders **as-is** — Quarto reads `.Rmd` too;
@@ -56,7 +56,7 @@ That's the whole migration. The rest of this lab is native `.qmd`.
 ## Authoring Challenge
 
 > **Goal:** a penguins report with a cross-referenced **figure**, a cross-referenced **table**, a
-> **margin** element, and a display **equation** — rendered to HTML.
+> **margin** element, and a display **equation**, rendered to HTML.
 
 ::: {.callout-note icon=false}
 ## {{< fa clipboard-list >}} Tasks
@@ -64,9 +64,9 @@ That's the whole migration. The rest of this lab is native `.qmd`.
    `apa.csl`, so Part 2's paths and branding resolve later) with `format: html` and the setup cell
    at the top of this page.
 2. Add a scatter plot of `bill_len` versus `bill_dep` coloured by `species`. Give its cell
-   `#| label: fig-bill` and a `#| fig-cap:`, then — **in the prose, outside the cell** — refer to
-   it with `@fig-bill`.
-3. Add a summary table. The `gt` plumbing is below; your job is the **cross-reference mechanic** —
+   `#| label: fig-bill` and a `#| fig-cap:`, then refer to it with `@fig-bill` **in the prose,
+   outside the cell**.
+3. Add a summary table. The `gt` plumbing is below. Your job is the **cross-reference mechanic**:
    give the cell `#| label: tbl-summary` and a `#| tbl-cap:`, then refer to it with `@tbl-summary`.
    ```r
    penguins |>
@@ -75,7 +75,7 @@ That's the whole migration. The rest of this lab is native `.qmd`.
    ```
 4. Put the species counts in the **margin** with the cell option `#| column: margin`.
 5. *(stretch)* Add the bill-shape ratio as a display equation, referenced with `@eq-ratio`. **Escape
-   the underscores** — inside `$$…$$`, `bill_len` may render as a subscript (depending on the math
+   the underscores**: inside `$$…$$`, `bill_len` may render as a subscript (depending on the math
    renderer), so write:
    ```markdown
    $$
@@ -87,7 +87,7 @@ That's the whole migration. The rest of this lab is native `.qmd`.
 
 ::: {.callout-tip icon=false}
 ## {{< fa universal-access >}} Make it accessible
-The worked report does all three — do the same in yours:
+The worked report does all three. Do the same in yours:
 
 - add a `#| fig-alt:` to every figure;
 - add `scale_color_okabe_ito()` (from `ggokabeito`) to your plot, keeping `shape = species`;
@@ -99,7 +99,7 @@ The worked report does all three — do the same in yours:
 ::: {.callout-note appearance="simple" icon=false}
 ## {{< fa circle-check >}} You should see
 A numbered **Figure 1** (the bill scatter, three separate clusters), a numbered **Table 1**, the
-counts sitting in the right margin, and an **Equation 1** — with `@fig-bill` / `@tbl-summary` /
+counts sitting in the right margin, and an **Equation 1**, with `@fig-bill` / `@tbl-summary` /
 `@eq-ratio` rendering as live "Figure 1" / "Table 1" / "Equation 1" links. Your finished figure
 looks like this:
 :::
@@ -126,10 +126,10 @@ ggplot(penguins, aes(bill_len, bill_dep, color = species, shape = species)) +
   `fig-` / `tbl-` / `eq-` and is **unique** in the document.
 - `column: margin` is a **cell option** (`#|`) for a cell, or a `::: {.column-margin}` div for
   prose.
-- Display math with a label: `$$ … $$ {#eq-ratio}` — reference it with `@eq-ratio`.
+- Display math with a label `$$ … $$ {#eq-ratio}`, referenced with `@eq-ratio`.
 :::
 
-**The complete, runnable solution is `starter.qmd`** — a known-good Part-1 report with all these cells.
+**The complete, runnable solution is `starter.qmd`**, a known-good Part-1 report with all these cells.
 It's already in your `day1-intro/` folder; open it there to compare, or take the source:
 
 <!-- Raw-GitHub download button -- RaukR house pattern (see project-context.md; no `downloadthis`).
@@ -149,8 +149,8 @@ $$ {#eq-ratio}
 
 **`solutions/day1/penguins-report.qmd` is a reference, not a checklist.** The complete worked
 document goes beyond the tasks (a margin culmen figure, a `glimpse`, section labels) and also adds the
-citations from the next challenge. It's in your exercises `solutions/day1/` folder — try the challenge
-first, then open it to compare; or take the source:
+citations from the next challenge. It's in your exercises `solutions/day1/` folder. Try the challenge
+first, then open it to compare, or take the source:
 
 <!-- Raw-GitHub download button -- RaukR house pattern (see project-context.md; no `downloadthis`).
      Points at the exercises repo (main = current edition); goes live once cderv/raukr-2026-quarto-exercises
@@ -159,14 +159,14 @@ first, then open it to compare; or take the source:
 
 ## Citations Challenge
 
-> **Goal:** cite the report, then render the *same document* as a **branded Typst PDF** — the
+> **Goal:** cite the report, then render the *same document* as a **branded Typst PDF**: the
 > manuscript payoff, no LaTeX.
 
 ::: {.callout-note}
 ## Starting point
 If you finished the Authoring Challenge, keep going on your own document. Otherwise open
-**`day1-intro/starter.qmd`** in your editor — a known-good Part-1 report — and add the citations to
-that. Nobody is stranded by the break.
+**`day1-intro/starter.qmd`** in your editor (a known-good Part-1 report) and add the citations to
+that.
 :::
 
 ::: {.callout-note icon=false}
@@ -186,7 +186,7 @@ that. Nobody is stranded by the break.
    ::: {#refs}
    :::
    ```
-4. Give it a real **title block** so the PDF reads as a paper — **replace** your document's
+4. Give it a real **title block** so the PDF reads as a paper. **Replace** your document's
    `author:` line with:
    ```yaml
    author:
@@ -195,8 +195,8 @@ that. Nobody is stranded by the break.
    ```
 5. Render to HTML and confirm the citation resolves to *(Gorman et al., 2014)* with a formatted
    reference list.
-6. Switch the output to **Typst** and render a branded PDF. *(Heads-up: you'll see a stack of
-   `unknown font family` warnings as it renders — they're harmless; the Troubleshooting box below
+6. Switch the output to **Typst** and render a branded PDF. *(You'll see a stack of
+   `unknown font family` warnings as it renders. They're harmless: the Troubleshooting box below
    explains them.)* Two routes:
    - **CLI** — leave the header as-is and force the target:
      ```bash
@@ -206,14 +206,14 @@ that. Nobody is stranded by the break.
      The button renders whatever `format:` is declared, so while the header still says `format: html`
      the button gives you HTML, **not** a PDF.
 
-   Where the PDF lands: **right next to its source** in `day1-intro/` — there's no project folder
+   Where the PDF lands: **right next to its source** in `day1-intro/`. There's no project folder
    above to redirect it, so `starter.qmd` gives `starter.pdf`, `my-report.qmd` gives `my-report.pdf`.
 :::
 
 ::: {.callout-note appearance="simple" icon=false}
 ## {{< fa circle-check >}} You should see
-In-text **(Gorman et al., 2014)**, a **References** section formatted in APA, and — in the Typst
-PDF — the same citation and reference list, typeset with the RaukR palette. No `?@gorman2014` or
+In-text **(Gorman et al., 2014)**, a **References** section formatted in APA, and, in the Typst
+PDF, the same citation and reference list, typeset with the RaukR palette. No `?@gorman2014` or
 `[?]` markers anywhere.
 :::
 
@@ -221,8 +221,8 @@ PDF — the same citation and reference list, typeset with the RaukR palette. No
 ## Hint
 - The `@key` in `[@gorman2014]` must match a key in `references.bib` **exactly**.
 - `csl:` sets the style (here APA). Swap the file to restyle every citation at once.
-- Typst reads the `.bib` itself, so keep bibliography fields plain — avoid LaTeX macros like
-  `\emph{}` in titles.
+- Typst reads the `.bib` itself, so keep bibliography fields plain (avoid LaTeX macros like
+  `\emph{}` in titles).
 - On the first Typst render, Quarto downloads the brand's Google fonts; give it a moment and a
   network connection.
 :::
@@ -230,7 +230,7 @@ PDF — the same citation and reference list, typeset with the RaukR palette. No
 ```{r}
 #| label: sol-citations
 #| code-fold: true
-#| code-summary: "Solution — the header and the cite"
+#| code-summary: "Solution: the header and the cite"
 #| eval: false
 # In the YAML header:
 #   bibliography: references.bib
@@ -249,24 +249,24 @@ PDF — the same citation and reference list, typeset with the RaukR palette. No
 # or set `format: typst` in the header and use the editor's Render button.
 ```
 
-The complete cited HTML is `solutions/day1/penguins-report.qmd`; the branded Typst PDF — with R-side
-`theme_brand_*` styling — is `day1-intro/sample-typst.qmd` (render it to see the branded PDF payoff).
+The complete cited HTML is `solutions/day1/penguins-report.qmd`. The branded Typst PDF (with R-side
+`theme_brand_*` styling) is `day1-intro/sample-typst.qmd` (render it to see the branded PDF payoff).
 
 ## Bonus — one report per species (optional) {#sec-parameters}
 
-> **Goal:** turn a report into a *parameterized* one — a single source that renders a **separate
+> **Goal:** turn a report into a *parameterized* one: a single source that renders a **separate
 > report per species** by passing the species in at render time. This is the "one QC report per
-> sample / one summary per cohort" pattern. Fully optional — skip it if you're short on time.
+> sample / one summary per cohort" pattern. Fully optional, so skip it if you're short on time.
 
 A **parameter** is a value declared in the YAML that your code can read as `params$…`. Change the
-value at render time and the *same document* produces a different report — no copy-paste.
+value at render time and the *same document* produces a different report. No copy-paste.
 
 ::: {.callout-note}
 ## Starting point
-The fastest path: open the shipped **`penguins-by-species.qmd`** (in your `day1-intro/` folder) — a
-complete parameterized report — and just **render it for different species** (Task 5). Want to build
-it yourself instead? Add the pieces below to a copy of your Part-1 report — and point your
-figure/table cells at the filtered **`one`**, not `penguins`, so they track the parameter too.
+The fastest path: open the shipped **`penguins-by-species.qmd`** (in your `day1-intro/` folder), a
+complete parameterized report, and just **render it for different species** (Task 5). Want to build
+it yourself instead? Add the pieces below to a copy of your Part-1 report, and point your
+figure/table cells at the filtered **`one`** (not `penguins`) so they track the parameter too.
 :::
 
 ::: {.callout-note icon=false}
@@ -276,7 +276,7 @@ figure/table cells at the filtered **`one`**, not `penguins`, so they track the 
    params:
      species: Gentoo
    ```
-2. **Use it to filter** in your setup cell — `params$species` is just a value (keep the same NA guard
+2. **Use it to filter** in your setup cell. `params$species` is just a value (keep the same NA guard
    as the rest of the lab), then plot **`one`** instead of `penguins`:
    ```r
    one <- penguins |> filter(species == params$species, !is.na(bill_len), !is.na(bill_dep))
@@ -290,40 +290,40 @@ figure/table cells at the filtered **`one`**, not `penguins`, so they track the 
    cat("##", params$species, "at a glance\n")
    ```
    ````
-4. **Make the caption — and the alt text — track the parameter** with `!expr`. Cell options are
+4. **Make the caption (and the alt text) track the parameter** with `!expr`. Cell options are
    YAML, so to run R there you tag the value `!expr` (and keep a `fig-alt`, always):
    ```yaml
    #| fig-cap: !expr paste0("Bill length versus depth for ", params$species, " penguins.")
    #| fig-alt: !expr paste0("Scatter plot of bill depth against bill length for ", params$species, " penguins.")
    ```
-5. **Render a different species from the CLI** — same `quarto render` you used for the Typst PDF,
-   with `-P name:value` (no Render button for this; the parameter override is command-line only).
+5. **Render a different species from the CLI**: same `quarto render` you used for the Typst PDF,
+   with `-P name:value` (no Render button for this, since the parameter override is command-line only).
    Run it from inside `day1-intro/`:
    ```bash
    quarto render penguins-by-species.qmd -P species:Adelie
    quarto render penguins-by-species.qmd -P species:Chinstrap
    ```
    With no `-P`, the default (`Gentoo`) is used. The HTML lands **next to the source** in
-   `day1-intro/` — `penguins-by-species.html`.
+   `day1-intro/`, as `penguins-by-species.html`.
 :::
 
 ::: {.callout-note appearance="simple" icon=false}
 ## {{< fa circle-check >}} You should see
 Rendering with `-P species:Adelie` gives a report whose title sentence, section heading, figure
-caption, and point count are **all** about Adelie — nothing says Gentoo. Change the one word after
+caption, and point count are **all** about Adelie. Nothing says Gentoo. Change the one word after
 `species:` and the whole report follows.
 :::
 
 ::: {.callout-tip collapse="true"}
 ## Hint
-- Parameters **must have defaults** — `params$species` has to resolve when no `-P` is passed.
+- Parameters **must have defaults**: `params$species` has to resolve when no `-P` is passed.
 - `-P` takes `name:value` (`-P species:Adelie`). Pass several with repeated `-P` flags.
 - `#| output: asis` is what lets code *emit Markdown* (a heading here); without it, `cat()` output
   would show as a printed code result, not a heading.
 :::
 
-**The complete, runnable solution is `penguins-by-species.qmd`** — it's in your `day1-intro/` folder;
-open it and render with different `-P species:` values, or take the source:
+**The complete, runnable solution is `penguins-by-species.qmd`**. It's in your `day1-intro/` folder.
+Open it and render with different `-P species:` values, or take the source:
 
 <!-- Raw-GitHub download button -- RaukR house pattern (see project-context.md; no `downloadthis`).
      Points at the exercises repo (main = current edition); goes live once cderv/raukr-2026-quarto-exercises
@@ -343,15 +343,15 @@ open it and render with different `-P species:` values, or take the source:
   unique, and the `@ref` must match it.
 - **A citation shows `?@gorman2014` or `[?]`?** The `@key` doesn't match a key in `references.bib`,
   or `bibliography:` isn't set.
-- **Do I need to install Typst?** No — Typst is bundled in Quarto ≥ 1.9, so there's nothing extra to
-  install (no LaTeX either); check `quarto --version`.
+- **Do I need to install Typst?** No. Typst is bundled in Quarto ≥ 1.9, so there's nothing extra to
+  install (no LaTeX either). Check `quarto --version`.
 - **Typst PDF looks unbranded / wrong fonts?** Confirm `_brand.yml` is in your `day1-intro/` folder
   (next to the `.qmd`) and you have network on the first render (Quarto fetches the Google fonts once).
-- **Typst prints `unknown font family` warnings?** Harmless — a plain `gt` table emits them for its
-  default font stack; the PDF still builds. (The fully brand-styled table via `theme_brand_*` is in
+- **Typst prints `unknown font family` warnings?** Harmless: a plain `gt` table emits them for its
+  default font stack, and the PDF still builds. (The fully brand-styled table via `theme_brand_*` is in
   `sample-typst.qmd`.)
-- **Prefer to stay in HTML first?** Render HTML, get it right, *then* switch to `format: typst` —
-  the content is the same.
+- **Prefer to stay in HTML first?** Render HTML, get it right, *then* switch to `format: typst`.
+  The content is the same.
 :::
 
 ## Session {.appendix .unnumbered}

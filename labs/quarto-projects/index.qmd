@@ -20,9 +20,9 @@ penguins <- penguins |> filter(!is.na(bill_len), !is.na(bill_dep), !is.na(body_m
 ## Scope
 Turn a set of `.qmd` into a Quarto **project**: a navigable, **branded website**, then make its
 builds reproducible with **freeze** and render it to a publishable folder. Two challenges, one
-project — each is its own hands-on part, with a break between them. Publishing to
-GitHub Pages / CI is a **watch-me demo**, not a per-participant step — publishing needs an account and
-auth setup, so we run it once up front. Everything runs on base-R `datasets::penguins` (R ≥ 4.5) — no data to download.
+project: each is its own hands-on part, with a break between them. Publishing to
+GitHub Pages / CI is a **watch-me demo**, not a per-participant step (publishing needs an account and
+auth setup, so we run it once up front). Everything runs on base-R `datasets::penguins` (R ≥ 4.5), so there's no data to download.
 
 **Packages:** `dplyr`, `ggplot2`, plus the `knitr`/`rmarkdown` engine every `.qmd` with R code needs.
 If you've done the **[Setup page](../../setup.qmd)** (with its `00-check-setup.R` check), you're
@@ -30,19 +30,19 @@ ready; otherwise install them once from R: `install.packages(c("dplyr", "ggplot2
 plots use the **`brand.yml`** package (`install.packages("brand.yml")`).
 :::
 
-**Starting point — a shipped set of pages.** You don't start from a blank folder. Open your
-**`day2-projects/`** folder from the exercises download (double-click `day2-projects.Rproj` — see the
+**Starting point: a shipped set of pages.** You don't start from a blank folder. Open your
+**`day2-projects/`** folder from the exercises download (double-click `day2-projects.Rproj`, see the
 [Setup page](../../setup.qmd#get-the-materials)). It holds two content pages that already render on
 their own but are **not yet a project**:
 
 - `index.qmd` — a home page;
 - `analysis.qmd` — a penguins analysis with a figure and a table.
 
-Render one page to confirm it works: `quarto render analysis.qmd` gives a normal HTML page —
-`analysis.html` right next to its source, since the folder isn't a project *yet*. Your job across the
+Render one page to confirm it works: `quarto render analysis.qmd` gives a normal HTML page
+(`analysis.html` right next to its source), since the folder isn't a project *yet*. Your job across the
 two challenges is to make it a *site*, then ship it. Everything you render lands inside
-`day2-projects/`; there's no project folder above it, so nothing redirects your output. A finished
-reference is in **`solutions/day2/`** if you get stuck or fall behind — nobody is stranded by the break.
+`day2-projects/`. There's no project folder above it, so nothing redirects your output. A finished
+reference is in **`solutions/day2/`** if you get stuck or fall behind.
 
 ## Website Challenge
 
@@ -68,7 +68,7 @@ reference is in **`solutions/day2/`** if you get stuck or fall behind — nobody
      html:
        theme: cosmo
    ```
-2. **Render the whole folder** — from inside `day2-projects/`, run `quarto render` (or `quarto preview`).
+2. **Render the whole folder**: from inside `day2-projects/`, run `quarto render` (or `quarto preview`).
    Because a `_quarto.yml` is now present, Quarto treats the folder as one project and builds **both**
    pages into `_site/`.
 3. **Brand it.** Add a `day2-projects/_brand.yml` so the site shares one palette:
@@ -84,11 +84,11 @@ reference is in **`solutions/day2/`** if you get stuck or fall behind — nobody
      base:
        family: Albert Sans
    ```
-   Re-render — the navbar and headings pick up the palette automatically.
+   Re-render. The navbar and headings pick up the palette automatically.
 4. *(stretch)* Two things make the **within-page versus across-page** rule concrete. First, on
-   `analysis.qmd`, drop `@tbl-means` into a sentence — it resolves to *Table 1* because the reference
+   `analysis.qmd`, drop `@tbl-means` into a sentence: it resolves to *Table 1* because the reference
    and its table share **one page** (exactly as yesterday). Second, notice `index.qmd` **already**
-   links to the analysis with a plain Markdown link — `[analysis](analysis.qmd)`: that's deliberate,
+   links to the analysis with a plain Markdown link, `[analysis](analysis.qmd)`. That's deliberate,
    because **across** pages there is no auto-numbering (a *book* feature, not a website one), so a
    plain link is how you connect website pages.
 :::
@@ -97,7 +97,7 @@ reference is in **`solutions/day2/`** if you get stuck or fall behind — nobody
 ## {{< fa circle-check >}} You should see
 A `day2-projects/_site/` folder with **two linked pages** and a **top navbar** (Home · Analysis); after the
 brand step, the navbar and headings turn **teal** with Albert Sans (the plot keeps its default species
-colours — branding an R plot is a separate `brand.yml`-package step, out of scope today). If you did the stretch,
+colours, since branding an R plot is a separate `brand.yml`-package step, out of scope today). If you did the stretch,
 the analysis page also shows a live **Table 1** reference (from `@tbl-means`) and the home page carries
 a plain link into the analysis. Opening `_site/index.html` shows the home page; the navbar moves you to
 the analysis page, whose figure is:
@@ -108,7 +108,7 @@ the analysis page, whose figure is:
 #| echo: false
 #| fig-width: 6
 #| fig-height: 3.2
-#| fig-cap: "The analysis page's figure — body mass by species."
+#| fig-cap: "The analysis page's figure: body mass by species."
 #| fig-alt: >-
 #|   Boxplot of penguin body mass in grams for Adelie, Chinstrap and Gentoo species; Gentoo is
 #|   clearly the heaviest, Adelie and Chinstrap overlap.
@@ -119,12 +119,12 @@ ggplot(penguins, aes(species, body_mass, fill = species)) +
 
 ::: {.callout-tip collapse="true"}
 ## Hint
-- The `_quarto.yml` must sit **inside `day2-projects/`** — Quarto uses the *nearest* `_quarto.yml` as
+- The `_quarto.yml` must sit **inside `day2-projects/`**: Quarto uses the *nearest* `_quarto.yml` as
   the project root, so this makes `day2-projects/` its own project. There's no `_quarto.yml` in any
   folder above it, so nothing else can claim your pages.
-- `navbar:` items are `href` + `text`; `sidebar: { contents: auto }` builds a menu from the folder's
+- `navbar:` items are `href` + `text`. `sidebar: { contents: auto }` builds a menu from the folder's
   files instead.
-- `_brand.yml` is **auto-discovered** at the project root — no header line needed; just re-render.
+- `_brand.yml` is **auto-discovered** at the project root: no header line needed, just re-render.
 - `quarto render` with no file argument builds the **whole project**; `quarto render index.qmd`
   builds one page.
 :::
@@ -136,12 +136,12 @@ wholesale if you fell behind.
 ## Ship it Challenge
 
 > **Goal:** make the project's builds **reproducible** with `freeze`, then render it to a publishable
-> `_site/` folder. (Publishing to Pages is the watch-me demo — you produce the folder.)
+> `_site/` folder. (Publishing to Pages is the watch-me demo. You produce the folder.)
 
 ::: {.callout-note}
 ## Starting point
 Keep going with your Website Challenge `day2-projects/`. If you didn't finish it, open the ready-made
-**`solutions/day2/`** project — a complete Part-1 site — and do the steps below in there. Nobody is stranded.
+**`solutions/day2/`** project (a complete Part-1 site) and do the steps below in there.
 :::
 
 ::: {.callout-note icon=false}
@@ -152,38 +152,38 @@ Keep going with your Website Challenge `day2-projects/`. If you didn't finish it
      freeze: auto      # re-execute a document only when its own source changes
    ```
 2. **See the skip.** Run `quarto render` once (the code runs; `_freeze/` is written). Run
-   `quarto render` **again without editing** — the R cell is **skipped**, its result reused from
+   `quarto render` **again without editing**: the R cell is **skipped**, its result reused from
    `_freeze/` (the log shows no compute). For a *visible* tell, drop a cell with
    `cat(format(Sys.time()))` on `analysis.qmd`: on the frozen second render the printed timestamp does
-   **not** change — a pass/fail you can see, not just an absence in the log. Now change the plot's
-   **code** on `analysis.qmd` and re-render — only *that* page re-runs (and the timestamp finally ticks).
-3. Find the shipped site under **`_site/`** — that folder *is* what you publish. Point any static host
+   **not** change: a pass/fail you can see, not just an absence in the log. Now change the plot's
+   **code** on `analysis.qmd` and re-render: only *that* page re-runs (and the timestamp finally ticks).
+3. Find the shipped site under **`_site/`**: that folder *is* what you publish. Point any static host
    at it (GitHub Pages, Netlify, an internal server).
-4. *(note, not a step)* `renv::snapshot()` writes an `renv.lock` that pins the packages — the second
+4. *(note, not a step)* `renv::snapshot()` writes an `renv.lock` that pins the packages: the second
    reproducibility leg, so a teammate (or CI) rebuilds the same environment.
 :::
 
 ::: {.callout-note appearance="simple" icon=false}
 ## {{< fa circle-check >}} You should see
-On the **second** render (no edits between them), the log shows the R cell **skipped** — reused from
-`_freeze/`, and the `cat(format(Sys.time()))` line prints the **same** time it did on the first render.
-That frozen timestamp (and the quiet log) is exactly what lets CI render the site with no R at all;
-edit a page's code, and only that page re-runs — its timestamp finally advancing.
+On the **second** render (no edits between them), the log shows the R cell **skipped** (reused from
+`_freeze/`), and the `cat(format(Sys.time()))` line prints the **same** time it did on the first render.
+That frozen timestamp (and the quiet log) is exactly what lets CI render the site with no R at all.
+Edit a page's code, and only that page re-runs, its timestamp finally advancing.
 :::
 
 ::: {.callout-tip collapse="true"}
 ## Hint
 - `freeze: auto` re-executes a document when its **source** changes (prose or code) and reuses
-  `_freeze/` when it hasn't — so an *unchanged* page never re-runs. `freeze: true` goes further: never
+  `_freeze/` when it hasn't, so an *unchanged* page never re-runs. `freeze: true` goes further: never
   re-execute on a project build (the CI mode).
-- Frozen results live in `_freeze/` — commit that folder so CI can render without R.
+- Frozen results live in `_freeze/`: commit that folder so CI can render without R.
 - `output-dir` (default `_site`) is the whole deliverable: publish the folder, don't rebuild on the host.
 :::
 
 ```{r}
 #| label: sol-ship
 #| code-fold: true
-#| code-summary: "Solution — the freeze block and the render flow"
+#| code-summary: "Solution: the freeze block and the render flow"
 #| eval: false
 # add to your project's _quarto.yml:
 execute:
@@ -205,19 +205,19 @@ execute:
 ::: {.callout-tip collapse="true" icon=false}
 ## {{< fa wrench >}} If a render misbehaves
 - **Rendered, but can't find the HTML?** Before you add `_quarto.yml`, a single-page render writes
-  the HTML **next to its source** in `day2-projects/`; once `_quarto.yml` is present, a project render
+  the HTML **next to its source** in `day2-projects/`. Once `_quarto.yml` is present, a project render
   collects both pages under `day2-projects/_site/`. Look in those two places.
 - **YAML is indentation-sensitive.** If rendering fails *before* any code runs, check `_quarto.yml`
   for stray spaces, tabs, or unmatched quotes.
 - **"No project" / pages don't link?** The `_quarto.yml` must be **inside `day2-projects/`**, and
   `href:` paths are relative to the source folder, **not** `_site/`.
-- **Brand not applied?** `_brand.yml` must be in `day2-projects/` (the project root); re-render after adding it. For
-  **plots**, the palette needs `library(brand.yml)` + `theme_brand_ggplot2()` — the file alone doesn't
-  reach ggplot.
-- **A cross-reference shows `?@…`?** The cell label must start `fig-`/`tbl-`/`eq-` and be unique — and
+- **Brand not applied?** `_brand.yml` must be in `day2-projects/` (the project root). Re-render after adding it. For
+  **plots**, the palette needs `library(brand.yml)` + `theme_brand_ggplot2()` (the file alone doesn't
+  reach ggplot).
+- **A cross-reference shows `?@…`?** The cell label must start `fig-`/`tbl-`/`eq-` and be unique, and
   remember it only resolves **within one page** on a website.
-- **Freeze didn't skip the cell?** It skips only when the source is **unchanged** since the last build
-  — any edit (prose or code) re-runs that page. Delete `_freeze/` to force a clean rebuild.
+- **Freeze didn't skip the cell?** It skips only when the source is **unchanged** since the last build:
+  any edit (prose or code) re-runs that page. Delete `_freeze/` to force a clean rebuild.
 - **Missing package?** `install.packages("<name>")` (or `renv::restore()`) and render again.
 :::
 

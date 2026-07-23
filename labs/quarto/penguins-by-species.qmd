@@ -17,7 +17,7 @@ one <- penguins |>
 ```
 
 This report covers **`{r} params$species`** penguins only. It was built by passing `species` as a
-**parameter**, so the *same* source file renders one report per species — change the parameter, not
+**parameter**, so the *same* source file renders one report per species. Change the parameter, not
 the document.
 
 ```{r}

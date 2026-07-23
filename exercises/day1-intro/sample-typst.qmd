@@ -78,7 +78,7 @@ penguins <- penguins |> filter(!is.na(bill_len), !is.na(bill_dep), !is.na(body_m
 The base-R `penguins` dataset records body measurements for `r nrow(penguins)` penguins of three
 species collected at Palmer Station, Antarctica [@gorman2014]. It reached the R community first
 through the **palmerpenguins** package [@horst2020]. Here we ask a simple question: **does bill
-shape tell the species apart?** — and render the answer as a branded PDF with **Typst**, a modern
+shape tell the species apart?** We render the answer as a branded PDF with **Typst**, a modern
 typesetting system that ships inside Quarto, so there is no LaTeX in the loop.
 
 # Species at a glance
@@ -147,13 +147,13 @@ ggplot(penguins, aes(x = bill_len, y = bill_dep, color = species, shape = specie
   theme_brand_ggplot2(brand)
 ```
 
-The three species separate cleanly in bill shape — the manuscript-ready version of the same figure
-from the running HTML report, now in a branded PDF.
+The three species separate cleanly in bill shape. This is the manuscript-ready version of the same
+figure from the running HTML report, now in a branded PDF.
 
 # Conclusion
 
 One `.qmd`, one `_brand.yml`, and `format: typst`: a cite-able, typeset document with the RaukR
-palette carried through layout, tables, and figures — the Day-1 climax in one command.
+palette carried through layout, tables, and figures: the Day-1 climax in one command.
 
 ## References {.unnumbered}
 
