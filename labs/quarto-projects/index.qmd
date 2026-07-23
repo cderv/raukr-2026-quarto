@@ -21,13 +21,12 @@ penguins <- penguins |> filter(!is.na(bill_len), !is.na(bill_dep), !is.na(body_m
 Turn a set of `.qmd` into a Quarto **project**: a navigable, **branded website**, then make its
 builds reproducible with **freeze** and render it to a publishable folder. Two challenges, one
 project: each is its own hands-on part, with a break between them. Publishing to
-GitHub Pages / CI is a **watch-me demo**, not a per-participant step (publishing needs an account and
-auth setup, so we run it once up front). Everything runs on base-R `datasets::penguins` (R ≥ 4.5), so there's no data to download.
+GitHub Pages / CI is a **watch-me demo**, not a per-participant step (it needs an account, so we run
+it once up front). Everything runs on base-R `datasets::penguins` (R ≥ 4.5), so there's no data to download.
 
-**Packages:** `dplyr`, `ggplot2`, plus the `knitr`/`rmarkdown` engine every `.qmd` with R code needs.
-If you've done the **[Setup page](../../setup.qmd)** (with its `00-check-setup.R` check), you're
-ready; otherwise install them once from R: `install.packages(c("dplyr", "ggplot2"))`. Optional branded
-plots use the **`brand.yml`** package (`install.packages("brand.yml")`).
+**Before you start:** run through the **[Setup page](../../setup.qmd)** if you haven't. Its
+`00-check-setup.R` confirms R, Quarto, and the packages this lab uses. The optional branded-plot
+stretch also uses `brand.yml`.
 :::
 
 **Starting point: a shipped set of pages.** You don't start from a blank folder. Open your
