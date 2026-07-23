@@ -232,6 +232,7 @@ figure. (`#| output-location: column` is **slide-only**: a revealjs placement, n
 `gt` (or `knitr::kable`) turns a data frame into a table; a `#| label: tbl-` makes it referenceable.
 
 ```{r}
+#| echo: fenced
 #| label: tbl-summary
 #| tbl-cap: "Mean bill length per species."
 penguins |>

@@ -7,6 +7,15 @@ no releases; this is the running record of what was built and why.
 
 ## Log
 
+### Tables slide — show the cell options via `echo: fenced` — 2026-07-23
+
+Day-1 Tables slide (`#tables`) teaches "a `#| label: tbl-` makes it referenceable", but the default
+echo strips the `#|` options from the shown code, so the one line the slide is about was invisible.
+Added `#| echo: fenced` to the `tbl-summary` cell: the echoed code now renders the fenced delimiters
+plus `#| label:` / `#| tbl-cap:` (Quarto drops the `echo: fenced` line itself, so no meta-noise).
+Re-rendered and fit-checked (`slide-shot` → 720/720, no horizontal clip). Left the Figures slide as
+a plain echo on purpose — its six options + longer plot would overflow if fenced. Freeze re-staged.
+
 ### Margin docs pointers + collapsible solutions — reviewed clean, GO to merge — 2026-07-23
 
 Christophe asked to use the article margin to point participants at the right Quarto doc for each lab
