@@ -7,6 +7,29 @@ no releases; this is the running record of what was built and why.
 
 ## Log
 
+### Margin docs pointers + collapsible solutions — reviewed clean, GO to merge — 2026-07-23
+
+Christophe asked to use the article margin to point participants at the right Quarto doc for each lab
+challenge. Added a compact `::: {.column-margin}` "Quarto docs" aside (book icon + 1–2 canonical guide
+links) at each challenge in both labs — Cross-references/Article-layout, Citations/Typst, Parameters
+(Day 1); Websites/Brand, Freeze/Publishing (Day 2). URLs sourced from `quarto.org/llms.txt` and
+cross-checked against Context7; the freeze link corrected to `code-execution.html#freeze` (llms.txt
+mislabels it "caching"). Margin content collided with the right-side TOC (screenshotted), so moved the
+TOC left (`toc-location: left`, a page-level `format: html:` override that merges) on both labs to free
+the right gutter. Same session also converted the solution blocks from `{r}` + `#| eval: false`
+comment-cells (uncopyable, rendered as commented-out R) to `:::: {.callout-note collapse="true"}` with
+real fenced `yaml`/`markdown`/`bash`, and trimmed the Scope callouts to a Setup pointer. Commits
+`04715c6..c7d97e3`.
+
+Ran the four-agent panel (`margin-docs` tag, ref `c7d97e3`). **Unanimous ship-it, 0 P0 / 0 P1:**
+technique 0/0/3 (page-level format merge verified, 9/9 URLs live incl. the `#freeze` anchor, `::::`/`:::`
++ literal `::: {#refs}` render correctly, freeze clean), pedagogue 0/0/3 (right altitude/dose, struggle
+preserved), beginner 0/0/3 (reflow good 600–1600px, left TOC folds into the navbar, solutions copyable —
+23/13 copy buttons), language 0/0/2 (pointers house-voice clean + consistent across both labs). Reports +
+dispositions in the reviews ledger. Only converged P2: the aside anchors at the Goal so it scrolls off on
+wide screens (optionally move beside Tasks). Website-only index pages, so the `exercises/` payload is
+untouched (drift-guard green).
+
 ### Voice-review cycle (`voice` tag) — panel validated the sweep; residues applied — 2026-07-23
 
 Ran the four-agent panel (`/start-workshop`) against `b9ccc53` to review the house-voice sweep.
