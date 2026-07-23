@@ -111,7 +111,7 @@ summary_tbl |>
 ```
 
 `r summary_tbl$species[which.max(summary_tbl$body_mass)]` is the heaviest on average, at
-`r format(round(max(summary_tbl$body_mass)), big.mark = " ")` g — the
+`r format(round(max(summary_tbl$body_mass)), big.mark = " ")` g, the
 `#highlight(fill: rgb("#D1E5E6"))[large-bodied]`{=typst} species of the three.
 
 # Bill length versus depth

@@ -117,7 +117,7 @@ no matter which day folder you open):
 
 ```r
 install.packages(c(
-  "dplyr", "ggplot2", "gt", "ggokabeito",   # content + a colour-blind-safe scale
+  "dplyr", "ggplot2", "gt", "ggokabeito",   # content + a color-blind-safe scale
   "brand.yml", "ggrepel", "prismatic",      # R-side branding for the Typst payoff
   "knitr", "rmarkdown"                      # the engine every .qmd with R code needs
 ))

@@ -10,8 +10,8 @@ csl: apa.csl
 This is the **shared running document** for Day 1: a small penguins report that carries the
 authoring value-adds (figures, cross-references, a `gt` table, margin layout, math) and then the
 citation payoff. The Day-1 lab grows a version of it; the payoff then renders it as a branded PDF
-with **Typst** — a modern typesetting system that ships inside Quarto, so there is no LaTeX to
-install. Dataset: base-R `datasets::penguins` (R ≥ 4.5) — columns `bill_len`, `bill_dep`,
+with **Typst** (a modern typesetting system that ships inside Quarto, so there is no LaTeX to
+install). Dataset: base-R `datasets::penguins` (R ≥ 4.5), columns `bill_len`, `bill_dep`,
 `flipper_len`, `body_mass`.
 :::
 
@@ -21,7 +21,7 @@ install. Dataset: base-R `datasets::penguins` (R ≥ 4.5) — columns `bill_len`
 library(dplyr)
 library(ggplot2)
 library(gt)
-library(ggokabeito)   # colour-blind-safe (Okabe-Ito) scale for the species colours
+library(ggokabeito)   # color-blind-safe (Okabe-Ito) scale for the species colors
 
 # Base-R penguins — zero install on R >= 4.5. Drop the rows with missing measurements
 # so figures and summaries stay clean.
@@ -32,7 +32,7 @@ penguins <- penguins |> filter(!is.na(bill_len), !is.na(bill_dep))
 ## The data {#sec-data}
 
 We use the `penguins` dataset: body measurements for `{r} nrow(penguins)` penguins of
-`{r} length(unique(penguins$species))` species — `{r} knitr::combine_words(levels(penguins$species))` —
+`{r} length(unique(penguins$species))` species (`{r} knitr::combine_words(levels(penguins$species))`),
 collected at Palmer Station, Antarctica [@gorman2014]. The data reached R first through the
 **palmerpenguins** package [@horst2020] and now ships in base R's `datasets`.
 
@@ -53,7 +53,7 @@ penguins |>
 
 ## Bill length and depth {#sec-bill}
 
-Each penguin's bill is summarized by two measurements — **length** and **depth** (the *culmen*,
+Each penguin's bill is summarized by two measurements: **length** and **depth** (the *culmen*,
 @fig-culmen). Depth is the vertical thickness at the base; length runs from base to tip.
 
 ```{r}
@@ -85,7 +85,7 @@ shape, so the species separate cleanly.
 #|   shape distinguishes them.
 ggplot(penguins, aes(x = bill_len, y = bill_dep, color = species, shape = species)) +
   geom_point(alpha = 0.8) +
-  scale_color_okabe_ito() +   # colour-blind-safe palette; shape also encodes species
+  scale_color_okabe_ito() +   # color-blind-safe palette; shape also encodes species
   labs(x = "Bill length (mm)", y = "Bill depth (mm)", color = "Species", shape = "Species") +
   theme_minimal(base_size = 12)
 ```

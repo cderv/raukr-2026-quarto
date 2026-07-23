@@ -97,7 +97,7 @@ reference is in **`solutions/day2/`** if you get stuck or fall behind.
 ## {{< fa circle-check >}} You should see
 A `day2-projects/_site/` folder with **two linked pages** and a **top navbar** (Home · Analysis); after the
 brand step, the navbar and headings turn **teal** with Albert Sans (the plot keeps its default species
-colours, since branding an R plot is a separate `brand.yml`-package step, out of scope today). If you did the stretch,
+colors, since branding an R plot is a separate `brand.yml`-package step, out of scope today). If you did the stretch,
 the analysis page also shows a live **Table 1** reference (from `@tbl-means`) and the home page carries
 a plain link into the analysis. Opening `_site/index.html` shows the home page; the navbar moves you to
 the analysis page, whose figure is:

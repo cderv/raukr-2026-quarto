@@ -172,7 +172,6 @@ The next few slides are concept, no need to type along.
 Within **one page**, `@fig-`, `@tbl-`, `@eq-` resolve to a numbered, linked reference, exactly as
 on Day 1. (Section headings work the same way with `@sec-`.)
 
-
 . . .
 
 Across **different website pages**, they do **not** auto-number: a website renders each page on its
