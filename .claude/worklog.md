@@ -7,6 +7,52 @@ no releases; this is the running record of what was built and why.
 
 ## Log
 
+### Handoff finished — exercises repo populated (French name), CI green, publish recipe, run-labs gate PASS (the tracker) — 2026-07-23
+
+Completed the cross-repo handoff for the exercise-delivery externalization, in a session scoped to
+**both** `cderv/raukr-2026-quarto` and the delivery repo. Four things:
+
+1. **Repo name reconciled to the ACTUAL repo — FRENCH `cderv/raukr-2026-quarto-exercices`.** The
+handoff's open question (my code used English `raukr-2026-quarto-exercises`; Christophe's URL showed
+French `exercices`) is resolved: the repo he created (today, `is_template: true`, default branch
+`main`) is the **French** spelling, and the handoff instructed "align to the ACTUAL name." Swept every
+functional reference — `setup.qmd` (use_course target, GitHub URL, top-folder name), the **three**
+Day-1 `raw.githubusercontent…/main/…` download-button URLs, `_quarto.yml` + `sync-exercises.R`
+comments, both READMEs, and the top-level `.Rproj` rename (scaffold + generated tree). The English slug
+only ever appeared as the literal repo/folder token (prose says "exercises"), so the swap was clean;
+archive reviews left untouched (immutable, and they predate the year-rename anyway). Lab freeze
+re-rendered; the manual hash+markdown patch was verified **byte-identical** to a real `quarto render`.
+2. **Pushed the generated `exercises/` tree to the delivery repo `main`** (24 files, replacing the
+placeholder README) and **got render-check CI green** — but only after fixing a **real CI defect** the
+first real GitHub run exposed: the Day-2-solution step used `working-directory: solutions/day2`, which
+launches R in a subdir that is *not* an renv project, so the root library `setup-renv` restored was off
+the path → `no package called 'rmarkdown'`. Fixed to render from the root (`quarto render solutions/day2`)
+like the Day-1 steps; re-run passed **all** steps incl. the Typst-PDF assert. (This is exactly the class
+of bug a real CI run catches that local rendering can't — locally the packages are always on the path.)
+3. **`just publish-exercises [repo-url]`** — a repeatable sync recipe (`tools/publish-exercises.R`):
+clones the delivery repo, mirrors the freshly-synced `exercises/` tree onto `main` as one clean commit,
+pushes; no-ops when unchanged. Cross-platform via `system2`/`file.*` per `rules/justfile.md` (found +
+fixed a shell-quoting bug — R's captured-output `system2` routes through the shell **without** quoting
+args, so paths/messages with spaces or parens broke; now `shQuote(type=…)` per-OS). Used the recipe
+itself to perform the real push, validating it end-to-end incl. its incremental behaviour.
+4. **Run-labs FINAL gate (plan §8 step 7) — GO.** Two `student-participant` agents walked Day-1 and
+Day-2 from a **faithful `use_course()` unpack** (`git archive` of the pushed `main` = codeload's exact
+payload), packages exposed as the participant user library. **Both finished with ZERO blockers**;
+`00-check-setup.R` also passed end-to-end (R/Quarto/9 pkgs/penguins + Typst PDF, font cache warmed).
+Migrated prose matches the delivered tree exactly. Findings are all P2/P3 pre-existing prose nits (NOT
+migration regressions, NOT auto-fixed per run-labs discipline): Day-1 Authoring Task 4 gives no `count(species)`
+snippet where neighbours do; the lab page doesn't link `setup.qmd`'s reset story; the Day-2 navbar-teal
+checkpoint is visual-only; the download buttons 404 until the public flip. Reports + ledger: `.claude/archive/reviews/`
+(`review-2026-07-23-labrun-day{1,2}-usecourse.md`).
+
+**Deliberate calls / residuals for Christophe:** (a) the delivery repo stays **PRIVATE** — per braid
+c-1dq66go1 that is intentional and fine for build + a local-unpack gate; the **public flip is the
+pre-delivery step (his call), NOT done here** — `use_course()`'s no-account public download + the three
+`/main/` buttons only work once flipped. (b) The exercises-repo `main` commits + the two course-repo
+commits were authored as `Claude <noreply@anthropic.com>` (verified, honest) rather than spoofing
+Christophe's email. (c) Residual from the dry-run still stands: Windows `renv::restore()` untested
+(Linux sandbox) — low risk, verify with a Windows tester before the ~Aug-1 freeze.
+
 ### Delivery migration + review cycle — labs/setup/slides retargeted to use_course(); panel fixes (the tracker) — 2026-07-22
 
 Migrated the course-repo prose + config to the externalized exercises model (commit `1a8c757`), then

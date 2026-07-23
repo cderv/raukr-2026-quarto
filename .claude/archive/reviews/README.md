@@ -352,3 +352,31 @@ The P0 was a real regression the migration introduced (the `@ref` spec form) —
 `run-labs` against a real `use_course()` unpack (plan §8 step 7) would also have caught. Site re-render
 green (8 targets); `_freeze/` refreshed; `exercises/` re-synced + drift-guard green; no slide fit-checks
 needed (only speaker notes changed this round).
+
+## Cycle 2026-07-23 — run-labs FINAL gate against a real `use_course()` unpack (`labrun` tag)
+
+Plan §8 step 7: the post-handoff pre-freeze gate. Two `student-participant` agents walked Day-1 and
+Day-2 **from a faithful `use_course()` unpack** (`git archive` of the pushed `cderv/raukr-2026-quarto-exercices`
+`main` = exactly what codeload serves), following only the lab prose, rendering for real, packages
+exposed as the participant's user library. **Both labs completed with ZERO blockers**; migrated prose
+matches the delivered tree exactly (day-folder framing, no `starter/`/`cd` apparatus, `.Rproj` present,
+output-location + reset notes all true; siblings `solutions/` not peeked). Artifacts produced: Day-1
+`my-report.html` + branded Typst `my-report.pdf` + `penguins-by-species.html` (×3 species); Day-2 a full
+branded `_site/` with working navbar + a correct freeze demo.
+
+| Report file | Verdict (1-line) | Disposition |
+|---|---|---|
+| `review-2026-07-23-labrun-day1-usecourse.md` | 0 BLOCKER; all artifacts render; 2 had-to-infer / 1 ambiguous | ☑️ gate PASS — polish findings recorded, not auto-fixed (run-labs triage) |
+| `review-2026-07-23-labrun-day2-usecourse.md` | 0 BLOCKER; branded `_site/` + freeze demo behave as documented | ☑️ gate PASS — one visual-only checkpoint noted |
+
+**Findings (all P2/P3, pre-existing prose nits — none a migration regression; NOT auto-fixed, per
+`/run-labs` recommend-and-await discipline):** (1) Day-1 Authoring Task 4 ("species counts in the
+**margin**") supplies no R code while every neighbour does — a dplyr-fluent participant infers
+`count(species)`, a less-fluent one may stall (`labs/quarto/index.qmd`, Authoring Challenge). (2) The
+Day-1 lab page has no "start over" pointer though it edits shipped files in place — `setup.qmd` has the
+reset story; the lab doesn't link it. (3) Day-2 Website "navbar turns teal" is a visual-only checkpoint —
+a CLI-only participant has no textual confirmation; one "open `_site/index.html` / `quarto preview`" line
+would close it (`labs/quarto-projects/index.qmd`, "You should see"). (4) The three Day-1 download buttons
+404 until the repo is flipped **public** — **expected**, that is the pre-delivery step; files ship in the
+download, so no one is blocked. **Gate verdict: GO for freeze** (public flip + Windows `renv::restore()`
+tester remain the only pre-delivery residuals).
