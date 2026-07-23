@@ -3,6 +3,9 @@ title: "Introduction to Quarto — Lab"
 subtitle: "RaukR 2026 · Day 1"
 author: ""
 date: ""
+format:
+  html:
+    toc-location: left   # free the right margin for the "Quarto docs" pointers
 ---
 
 ::: {.callout-note}
@@ -53,6 +56,12 @@ That's the whole migration. The rest of this lab is native `.qmd`.
 
 > **Goal:** a penguins report with a cross-referenced **figure**, a cross-referenced **table**, a
 > **margin** element, and a display **equation**, rendered to HTML.
+
+::: {.column-margin}
+{{< fa book-open >}} **Quarto docs**
+
+[Cross-references](https://quarto.org/docs/authoring/cross-references.html) · [Article layout](https://quarto.org/docs/authoring/article-layout.html)
+:::
 
 ::: {.callout-note icon=false}
 ## {{< fa clipboard-list >}} Tasks
@@ -156,6 +165,12 @@ first, then open it to compare, or take the source:
 ## Citations Challenge
 
 > **Goal:** cite the report, then render the *same document* as a **branded Typst PDF**.
+
+::: {.column-margin}
+{{< fa book-open >}} **Quarto docs**
+
+[Citations](https://quarto.org/docs/authoring/citations.html) · [Typst](https://quarto.org/docs/output-formats/typst.html)
+:::
 
 ::: {.callout-note}
 ## Starting point
@@ -264,6 +279,12 @@ The complete cited HTML is `solutions/day1/penguins-report.qmd`. The branded Typ
 > **Goal:** turn a report into a *parameterized* one: a single source that renders a **separate
 > report per species** by passing the species in at render time. This is the "one QC report per
 > sample / one summary per cohort" pattern. Fully optional, so skip it if you're short on time.
+
+::: {.column-margin}
+{{< fa book-open >}} **Quarto docs**
+
+[Parameters](https://quarto.org/docs/computations/parameters.html)
+:::
 
 A **parameter** is a value declared in the YAML that your code can read as `params$…`. Change the
 value at render time and the *same document* produces a different report. No copy-paste.

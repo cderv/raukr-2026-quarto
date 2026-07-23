@@ -3,6 +3,9 @@ title: "Quarto projects — Lab"
 subtitle: "RaukR 2026 · Day 2"
 author: ""
 date: ""
+format:
+  html:
+    toc-location: left   # free the right margin for the "Quarto docs" pointers
 ---
 
 ```{r}
@@ -47,6 +50,12 @@ reference is in **`solutions/day2/`** if you get stuck or fall behind.
 
 > **Goal:** turn the `day2-projects/` pages into a navigable, **branded website** that renders locally to a
 > `_site/` folder.
+
+::: {.column-margin}
+{{< fa book-open >}} **Quarto docs**
+
+[Websites](https://quarto.org/docs/websites/) · [Brand](https://quarto.org/docs/authoring/brand.html)
+:::
 
 ::: {.callout-note icon=false}
 ## {{< fa clipboard-list >}} Tasks
@@ -136,6 +145,12 @@ wholesale if you fell behind.
 
 > **Goal:** make the project's builds **reproducible** with `freeze`, then render it to a publishable
 > `_site/` folder. (Publishing to Pages is the watch-me demo. You produce the folder.)
+
+::: {.column-margin}
+{{< fa book-open >}} **Quarto docs**
+
+[Freeze](https://quarto.org/docs/projects/code-execution.html#freeze) · [Publishing](https://quarto.org/docs/publishing/)
+:::
 
 ::: {.callout-note}
 ## Starting point
