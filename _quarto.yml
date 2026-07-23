@@ -14,7 +14,7 @@ project:
     - labs/*/index.qmd
     # The Day-1 working/reference files (starter.qmd, penguins-report.qmd, sample-typst.qmd,
     # penguins-by-species.qmd) are NOT rendered on the site: they ship in the participant exercises
-    # repo (cderv/raukr-2026-quarto-exercises), where its render-check CI validates them. They stay under
+    # repo (cderv/raukr-2026-quarto-exercices), where its render-check CI validates them. They stay under
     # labs/quarto/ as the sync source (tools/sync-exercises.R) but leave the site render list.
     # Day-2 "Demos — if time": the static `format: dashboard` page (opened/linked from the deck) —
     # a site-only demo, so it stays.

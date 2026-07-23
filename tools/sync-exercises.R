@@ -3,7 +3,7 @@
 #
 # THE ONLY WRITE PATH to the exercises layout. The generated `exercises/` dir is committed
 # (drift-guarded, like a generated-but-versioned artifact) and is what gets force-pushed to the
-# public `cderv/raukr-2026-quarto-exercises` repo. NEVER hand-edit `exercises/` -- edit the SOURCE (the
+# public `cderv/raukr-2026-quarto-exercices` repo. NEVER hand-edit `exercises/` -- edit the SOURCE (the
 # real, render-validated files under `labs/`, the root `_brand.yml`, and `tools/exercises-scaffold/`)
 # and re-run this. A CI drift-guard runs `--check` on every push touching those sources.
 #
