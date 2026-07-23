@@ -222,27 +222,39 @@ PDF, the same citation and reference list, typeset with the RaukR palette. No `?
   network connection.
 :::
 
-```{r}
-#| label: sol-citations
-#| code-fold: true
-#| code-summary: "Solution: the header and the cite"
-#| eval: false
-# In the YAML header:
-#   bibliography: references.bib
-#   csl: apa.csl
-#
-# In prose:
-#   The data come from Palmer Station, Antarctica [@gorman2014].
-#
-# A References section (the list renders inside the #refs div):
-#   ## References {.unnumbered}
-#   ::: {#refs}
-#   :::
-#
-# For the branded PDF (the project _brand.yml styles it), either force the target from the CLI:
-#   quarto render your-doc.qmd --to typst
-# or set `format: typst` in the header and use the editor's Render button.
+:::: {.callout-note collapse="true"}
+## Solution: the header and the cite
+
+In the YAML header:
+
+``` yaml
+bibliography: references.bib
+csl: apa.csl
 ```
+
+In prose:
+
+``` markdown
+The data come from Palmer Station, Antarctica [@gorman2014].
+```
+
+A References section (the list renders inside the `#refs` div):
+
+``` markdown
+## References {.unnumbered}
+
+::: {#refs}
+:::
+```
+
+For the branded PDF (the project `_brand.yml` styles it), either force the target from the CLI:
+
+``` bash
+quarto render your-doc.qmd --to typst
+```
+
+or set `format: typst` in the header and use the editor's Render button.
+::::
 
 The complete cited HTML is `solutions/day1/penguins-report.qmd`. The branded Typst PDF (with R-side
 `theme_brand_*` styling) is `day1-intro/sample-typst.qmd` (render it to see the branded PDF payoff).

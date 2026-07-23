@@ -179,25 +179,33 @@ Edit a page's code, and only that page re-runs, its timestamp finally advancing.
 - `output-dir` (default `_site`) is the whole deliverable: publish the folder, don't rebuild on the host.
 :::
 
-```{r}
-#| label: sol-ship
-#| code-fold: true
-#| code-summary: "Solution: the freeze block and the render flow"
-#| eval: false
-# add to your project's _quarto.yml:
+:::: {.callout-note collapse="true"}
+## Solution: the freeze block and the render flow
+
+Add to your project's `_quarto.yml`:
+
+``` yaml
 execute:
   freeze: auto
-
-# optional visible tell — put this in a cell on analysis.qmd:
-#   cat(format(Sys.time()))       # frozen render reuses the old value, so the time stays put
-
-# from inside your project folder (day2-projects/):
-#   quarto render                 # 1st build: runs the code, writes _freeze/ and _site/
-#   quarto render                 # 2nd build, no edits: cell skipped, timestamp unchanged
-#   # ...change the plot's code on analysis.qmd, render again: only that page re-runs (time ticks)...
-#
-# publish = point a host at _site/  (watch-me: quarto publish gh-pages, auth pre-flighted)
 ```
+
+An optional visible tell: put this on `analysis.qmd`. A frozen render reuses the old value, so the
+printed time stays put.
+
+``` r
+cat(format(Sys.time()))
+```
+
+From inside your project folder (`day2-projects/`):
+
+``` bash
+quarto render     # 1st build: runs the code, writes _freeze/ and _site/
+quarto render     # 2nd build, no edits: the cell is skipped, timestamp unchanged
+# then change the plot code on analysis.qmd and render again: only that page re-runs (time ticks)
+```
+
+To publish, point a host at `_site/` (the watch-me demo: `quarto publish gh-pages`, auth pre-flighted).
+::::
 
 ## Troubleshooting
 
