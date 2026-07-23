@@ -380,3 +380,32 @@ would close it (`labs/quarto-projects/index.qmd`, "You should see"). (4) The thr
 404 until the repo is flipped **public** — **expected**, that is the pre-delivery step; files ship in the
 download, so no one is blocked. **Gate verdict: GO for freeze** (public flip + Windows `renv::restore()`
 tester remain the only pre-delivery residuals).
+
+## Cycle 2026-07-23 — house-voice sweep validation (`voice` tag)
+
+First validation of the **house-voice sweep** (ref `b9ccc53`): the repo-wide pass that codified
+Christophe's voice (`references/house-voice.md` + `rules/prose-voice.md`) and converted em-dash asides →
+colon/parenthesis/split, dropped semicolons + voice-over + idioms across `setup.qmd`, both decks, both
+labs, the shipped Day-1 example docs, and the decks' `::: notes`. Panel briefed to hunt regressions from
+the rewrites, not re-litigate settled calls.
+
+| Report file | Verdict (1-line) | Disposition |
+|---|---|---|
+| `review-2026-07-23-voice-technique.md` | Sweep technically inert — 0 P0 / 0 P1 / 1 trivial P2 (no assertion or token changed; both renders exit 0) | ☑️ confirmed — P2 blank-line applied in `1a54c6e` |
+| `review-2026-07-23-voice-pedagogue.md` | Pedagogically ready — 0/0/3; em-dash→`so`/`which`/`:` made logic *more* visible | ☑️ confirmed — P2s closed (see below) |
+| `review-2026-07-23-voice-beginner.md` | Zero new blockers — 0/0/2; both P2 pre-existing, not regressions | ☑️ confirmed — `break in between` P2 applied in `1a54c6e` |
+| `review-2026-07-23-voice-language.md` | Sweep validated, PASS with residues — 0 P0 / 2 P1 / ~7 P2 | ✅ applied in `1a54c6e` |
+
+**Applied (`1a54c6e`):** (P1) finished the em-dash sweep in the shipped example docs the pass
+under-reached — `penguins-report.qmd` (:13/:14/:35/:56, incl. the signature two-dash subject split) and
+`sample-typst.qmd:114` → parenthesis/colon/comma; and the Day-2 nested site pages
+`starter/index.qmd`/`solution/index.qmd` (:5/:10/:11). (P1) finished the UK→US spelling drift
+`colour`→`color` (~22 spots) per the declared US convention (`project-context.md:197`), unifying the
+deck's `scale_colour_okabe_ito()` → `scale_color_`. (P2) `break in between` redundancy aligned to the
+Day-2 wording; stray double blank line dropped in the Day-2 deck. Re-rendered + re-synced + drift-guard green.
+
+**Closed won't-fix / deferred:** "nobody is stranded by the break" stays removed (**instructor rejected
+the phrase** — non-native English; the concrete fallback survives in every spot); "reference, not a
+checklist" is the deliberate one-per-lab parallel (keep); Day-1 Task-4 no-R-code margin is pre-existing,
+already tracked in the `labrun` cycle above (not a voice issue); Task-2 emphasis relocation + setup
+reassurance trims confirmed fine by the pedagogue.

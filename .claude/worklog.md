@@ -7,6 +7,24 @@ no releases; this is the running record of what was built and why.
 
 ## Log
 
+### Voice-review cycle (`voice` tag) — panel validated the sweep; residues applied — 2026-07-23
+
+Ran the four-agent panel (`/start-workshop`) against `b9ccc53` to review the house-voice sweep.
+**Verdict: clean.** Technique 0/0/1 (sweep technically inert — no assertion or token changed),
+pedagogue 0/0/3 (the em-dash→`so`/`which`/`:` conversions made logic *more* visible), beginner 0/0/2
+(zero new blockers), language 0/2/~7 (sweep validated, PASS with residues). Reports:
+`.claude/archive/reviews/review-2026-07-23-voice-{technique,pedagogue,beginner,language}.md`; ledger
+dispositions in that folder's README.
+
+Applied the residues in `1a54c6e`: (1) finished the em-dash sweep in the shipped example docs the pass
+had been too lenient on — `penguins-report.qmd` (incl. the signature two-dash subject split at :35) and
+`sample-typst.qmd:114`, plus the Day-2 `starter/`/`solution/` site pages; (2) finished the pre-existing
+UK→US spelling drift `colour`→`color` (~22 spots) per the declared US convention
+(`project-context.md:197`), unifying the deck `scale_colour_okabe_ito()` → `scale_color_`; (3) P2 tidy —
+`break in between` redundancy + a stray double blank line. Re-rendered (off-list demo freeze via the
+temporary render-list include), re-synced `exercises/`, drift-guard green. Closed won't-fix: "nobody is
+stranded" stays out (instructor rejected the idiom), "reference, not a checklist" parallel kept.
+
 ### House-voice rule — codify Christophe's prose voice + strip the LLM tells — 2026-07-23
 
 Christophe flagged a stacked em-dash aside in `setup.qmd` ("The easiest way to get it — no git, no
