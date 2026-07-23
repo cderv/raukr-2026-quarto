@@ -144,6 +144,11 @@ Common execution options:
 | `error`   | Show errors       | `true`, `false`           |
 | `include` | Include in output | `true`, `false`           |
 
+`echo: fenced` is the teaching value: it echoes the code **with** the fenced delimiters and the
+`#|` cell options (which plain `echo: true` hides), while still running the cell — so a reader sees
+the option syntax *and* the live output. Slide-craft caveats (fit/overflow) live in
+`.claude/rules/slides.md` §7.
+
 Set document-level defaults in YAML front matter:
 
 ```yaml

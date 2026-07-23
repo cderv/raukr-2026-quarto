@@ -72,7 +72,8 @@ reassurance narration) — is the path-scoped rule **`.claude/rules/prose-voice.
 prose `.qmd`), with the full profile + before/after in **`.claude/references/house-voice.md`**. The
 **slide-craft gotchas** — fit-check every
 changed slide (`.claude/scripts/slide-shot.mjs`), `.center`-slide layout, `code-line-numbers`,
-`filename`, consecutive-code-block spacing — are the path-scoped rule **`.claude/rules/slides.md`**
+`filename`, consecutive-code-block spacing, `echo: fenced` to show a cell's `#|` options — are the
+path-scoped rule **`.claude/rules/slides.md`**
 (auto-surfaced when editing `slides/**/*.qmd`). Day-2+ decks are **follow-ups** for the same cohort —
 reminders and callbacks, not first-time framing: the path-scoped rule
 **`.claude/rules/multi-day-sequencing.md`** (auto-surfaced when editing `slides/**` or `labs/**`).

@@ -118,3 +118,37 @@ features: `div.sourceCode` (plain), `.code-copy-outer-scaffold`
 stack the blocks — **don't** hand-insert `<br>`. And any new SCSS that targets
 code blocks must cover all three wrappers, or it will silently miss the
 line-numbered / filename variants.
+
+## 7. Teaching a cell option? Show it with `#| echo: fenced`
+
+When a slide's teaching point **is a cell option** (`#| label: tbl-`, `#| fig-cap:`,
+`#| column: margin`, …) and you use a **live executable cell** to get the real
+figure/table, the default echo betrays you: it shows the *source lines* but
+**strips the `#|` options**, so the one line the slide is about never appears in
+the rendered code. (This bit the Day-1 Tables slide — it taught "a `#| label: tbl-`
+makes it referenceable" while showing code with no label in it.)
+
+Fix: add **`#| echo: fenced`** to the cell. It renders the fenced delimiters +
+the `#|` options + the code, *and still runs the cell* — so you get the visible
+options **and** the live output. Quarto drops the `echo: fenced` line itself from
+the display, so there's no meta-noise (you don't see the option that turned this
+on). This is the tool when you want **both** the options and live output; the
+plain **non-executable display block** (```` {.markdown} ````/```` {.r} ```` with
+escaped `` `{{r}}` ``, §5) also shows options but produces **no** output — use
+that when there's nothing to run.
+
+**Constraint — fenced grows the block both ways, so fit-check (§1):**
+
+- **Vertical:** every option becomes a line. Fine on a minimal cell (Tables:
+  2 options + 3 short lines fits 720/720).
+- **Horizontal (the sneaky one):** an option *value* can be long — a full
+  `fig-alt` sentence, an `!expr` caption — and clips sideways in a narrow
+  container, a false pass on the height check. The Figures slide is the
+  cautionary case: 6 options incl. a long `fig-alt`, in a half-width
+  `output-location: column`, so fenced clips the `fig-alt` line. Left plain on
+  purpose. **Prefer fenced on the *minimal* demo cell** (Tables), not the busy one.
+
+**Labs are different:** in a hands-on exercise the participant *types* the options
+themselves, so they already see them — `echo: fenced` is for a **reader who isn't
+writing the code** (a slide, or a non-interactive worked reference). Don't reach
+for it in exercise steps.
