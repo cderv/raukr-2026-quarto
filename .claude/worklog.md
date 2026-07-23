@@ -35,11 +35,18 @@ offender into his parenthesis/colon/split style (incl. the canonical line and "*
 nothing surprises you:" → "**What it does:**"). Renders clean. Kept the legitimate `label — gloss` list
 bullets.
 
-**Still open (next pass, user-steered):** the tic-catalog found **93 genuine offenders** total; the two
-decks (`slides/quarto`, `slides/quarto-projects`, ~28/27 each) and the two labs still carry them. Decks
-need slide fit-checks and labs need an exercises re-sync, so those sweep in the review loop rather than
-one big diff. Recurring beats to retire repo-wide: "— no LaTeX", "— no data to download", "nobody is
-stranded by the break", "is a reference, not a checklist".
+**Full sweep done (all files).** Extended the `setup.qmd` proof to the whole workshop: both decks
+(`slides/quarto`, `slides/quarto-projects`), both labs, and the shipped Day-1 demo files
+(`sample-typst.qmd`, `penguins-by-species.qmd`). Every genuine stacked-dash / voice-over / trailing-dash
+tic (the catalog's 93, plus the full-sentence prose dashes it left untabled) converted to the
+colon/parenthesis/split style; kept the legitimate `term — gloss` list bullets, headings, callout
+titles, and `::: notes` (spoken register). All reworded slides fit-checked (`scrollH == clientH == 720`,
+incrementals with `--all-fragments`). Executable pages re-rendered (freeze refreshed; the off-render-list
+demo files' freeze regenerated via a temporary render-list include, then `_quarto.yml` reverted), and
+`exercises/` re-synced + drift-guard green. Recurring beats: dropped the redundant "nobody is stranded by
+the break"; kept "no LaTeX" (a genuine selling point, each in a distinct context) and the deliberate
+one-per-lab "reference, not a checklist" parallel. Committed in four pushes (rule+setup, Day-1 deck,
+Day-2 deck, both labs+demos, final cleanup).
 
 ### Handoff finished — exercises repo populated, CI green, publish recipe, run-labs gate PASS (the tracker) — 2026-07-23
 
