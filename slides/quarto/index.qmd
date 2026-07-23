@@ -54,7 +54,7 @@ By the end: one penguins document carried all the way to a **polished, cite-able
 Two rounds, each the same shape — **watch → follow along → your turn**:
 
 - some slides I just talk through; when it's hands-on you'll see a **Follow along** callout;
-- each round ends with a **hands-on Challenge** in the lab — solutions are folded in, so you can self-check;
+- each round ends with a **hands-on Challenge** in the lab (solutions are folded in, so you can self-check);
 - a **break** sits between the two rounds.
 
 ::: notes
@@ -74,12 +74,12 @@ You know the literate-programming idea. In 2026, one `.qmd` is your source for:
 - a **report** (HTML, PDF, Word) — figures, tables, cross-refs, citations;
 - a **presentation** (these slides are a `.qmd`);
 - a **website or book** (Day 2) — many pages, one config;
-- a **branded PDF via Typst** *(a modern PDF engine bundled in Quarto — no LaTeX)* — a publication-ready article.
+- a **branded PDF via Typst** *(a modern PDF engine bundled in Quarto, no LaTeX)* — a publication-ready article.
 :::
 
 . . .
 
-One tool, many outputs, multiple languages — **all from one plain-text `.qmd` you write directly.**
+One tool, many outputs, multiple languages: **all from one plain-text `.qmd` you write directly.**
 
 ::: notes
 - **Frame (not a line):** reframe from "Quarto = R Markdown++, nothing new to learn" to "here's
@@ -164,12 +164,12 @@ ggplot(penguins, aes(bill_len, bill_dep, color = species)) +
 
 . . .
 
-Cell options use the `#|` "hash-pipe" — one option per line, YAML-valued. Native from the start.
+Cell options use the `#|` "hash-pipe": one option per line, YAML-valued. Native from the start.
 
 ## Markdown & content — think in deltas {#markdown-content}
 
 ::: {.callout-note title="Follow along"}
-Open your editor and render as we go — from here on we're building one document together. Every
+Open your editor and render as we go. From here on we're building one document together. Every
 follow-along cell assumes this setup, so run it first:
 :::
 
@@ -217,8 +217,8 @@ ggplot(penguins, aes(bill_len, bill_dep,
 Refer to it in prose with `@fig-bill` → renders as "@fig-bill", a live link. Labels must start
 with `fig-` / `tbl-` / `eq-` to be cross-referenceable.
 
-`#| fig-alt` is the figure's alt text — the description screen readers announce; add it to every
-figure. (`#| output-location: column` is **slide-only** — a revealjs placement, not article layout.)
+`#| fig-alt` is the figure's alt text (the description screen readers announce). Add it to every
+figure. (`#| output-location: column` is **slide-only**: a revealjs placement, not article layout.)
 
 ::: notes
 - **Do:** add `#| label: fig-bill` + `#| fig-cap` to the plot cell, render, show the auto-number appear.
@@ -239,7 +239,7 @@ penguins |>
   gt() |> fmt_number(bill, decimals = 1)
 ```
 
-Then refer to it in prose with `@tbl-summary` — same mechanic as figures.
+Then refer to it in prose with `@tbl-summary` (same mechanic as figures).
 
 ::: notes
 - **Do:** show the `gt` cell with `#| label: tbl-summary`, render, point at the auto-number.
@@ -271,7 +271,7 @@ $$ {#eq-ratio}
 
 ## Callouts {#callouts}
 
-Callouts are first-class Markdown — no package:
+Callouts are first-class Markdown (no package):
 
 ``` markdown
 ::: {.callout-tip}
@@ -291,7 +291,7 @@ Base-R `penguins` (R ≥ 4.5) needs no install.
 
 ## Inline code {#inline-code}
 
-**Inline code** drops a computed value straight into prose — put it in a sentence:
+**Inline code** drops a computed value straight into prose. Put it in a sentence:
 
 ``` markdown
 We measured `{{r}} nrow(penguins)` penguins.
@@ -312,10 +312,10 @@ The number updates when the data does. **Reproducible by construction.**
 
 ## Layouts: body, margin, and beyond {#layouts}
 
-*Eyes up — the next few slides are concept, no need to type along.*
+*Eyes up: the next few slides are concept, no need to type along.*
 
-The **article-layout model** — in the paged document formats (**HTML, LaTeX, Typst**) — places
-content in the **body**, the **margin**, or a zone **wider than the body**:
+The **article-layout model** puts content in the **body**, the **margin**, or a zone **wider than
+the body** (in the paged formats: HTML, LaTeX, Typst):
 
 - `page-layout: article` / `full` — the overall grid;
 - **margin** content — figures, tables, captions, `.aside`, footnotes;
@@ -330,7 +330,7 @@ content in the **body**, the **margin**, or a zone **wider than the body**:
 
 ## Put output in the margin {#margin-layout}
 
-A cell's `#| column: margin` drops its output — figure, caption and all — into the margin:
+A cell's `#| column: margin` drops its output (figure, caption, and all) into the margin:
 
 ``` {.r}
 #| column: margin
@@ -338,7 +338,7 @@ A cell's `#| column: margin` drops its output — figure, caption and all — in
 # a margin figure — caption and all
 ```
 
-*In the lab you'll use **margin** layout — the one that does the most for an article; the rest
+*In the lab you'll use **margin** layout, the one that does the most for an article. The rest
 are yours to explore in the worked report.*
 
 **Learn more:** [Article Layout](https://quarto.org/docs/authoring/article-layout.html) ·
@@ -373,7 +373,7 @@ Accessibility is a few habits layered on what you already write:
 
 ## One source → many formats {#document-types}
 
-One key in the header picks the output — the content stays put:
+One key in the header picks the output. The content stays put:
 
 :::: {.columns}
 ::: {.column width="50%"}
@@ -394,7 +394,7 @@ format:                   # …or set options per format
 - **Shared vs. per-format** — top-level keys (`toc`, `number-sections`, …) apply to every format; the `format:` map overrides them per output.
 - **Conditional content** — show or hide per format with
   `::: {.content-visible when-format="html"}`.
-- The *layout* idioms adapt per format — write once, target many.
+- The *layout* idioms adapt per format: write once, target many.
 :::
 ::::
 
@@ -403,7 +403,7 @@ format:                   # …or set options per format
 
 ## Execution: set once, override per cell {#execution}
 
-R Markdown's `knitr::opts_chunk$set()` moves into the header — set defaults once, override per cell:
+R Markdown's `knitr::opts_chunk$set()` moves into the header. Set defaults once, override per cell:
 
 :::: {.columns}
 ::: {.column width="52%"}
@@ -427,7 +427,7 @@ summary(penguins$body_mass)
 
 The header sets the defaults; a cell's `#|` wins.
 
-*`freeze` commits computed results to `_freeze/` so a project re-render — or CI without R — skips
+*`freeze` commits computed results to `_freeze/` so a project re-render (or CI without R) skips
 unchanged documents. That's the Day 2 story.*
 
 **Learn more:** [Execution options](https://quarto.org/docs/computations/execution-options.html) ·
@@ -454,7 +454,7 @@ quarto render  report.qmd   # one-off render
 - **RStudio**, **Positron**, and **VS Code** all work. The **visual editor** (WYSIWYM — *what you
   see is what you mean*) is built into the **RStudio IDE**, and comes to **Positron and VS Code**
   through the **Quarto extension**.
-- The same `quarto render` also takes **`-P name:value`** — override a document *parameter* to get
+- The same `quarto render` also takes **`-P name:value`**: override a document *parameter* to get
   one report per sample or species from a single source. *(Optional bonus in today's lab.)*
 
 ::: notes
@@ -469,8 +469,8 @@ quarto render  report.qmd   # one-off render
 
 ## Quarto in Positron {#positron}
 
-The same `quarto preview`, from inside the editor: **source on the left, live preview on the right** —
-edit, hit **Preview**, it live-reloads.
+The same `quarto preview`, from inside the editor: **source on the left, live preview on the right**.
+Edit, hit **Preview**, and it live-reloads.
 
 ![](images/positron-quarto-preview.png){.r-stretch fig-alt="The Positron IDE with a Quarto document open: a Source/Visual editor toggle and a Preview button above the .qmd source pane on the left, and a live HTML preview of the rendered document on the right."}
 
@@ -496,7 +496,7 @@ Challenge**: author a penguins document with a figure, a cross-referenced table,
 then render it to HTML — then a **break** — back after.
 :::
 
-*You can now author a figure, a cross-referenced table, and margin layout — after the break we cite
+*You can now author a figure, a cross-referenced table, and margin layout. After the break we cite
 it and ship a branded PDF.*
 
 ::: notes
@@ -515,7 +515,7 @@ From report to article: cite it, then typeset it.
 
 ## From report to article {#report-to-article}
 
-You have a clean HTML document — the lab ships a **Part-2 starter** if you need one. To make it a
+You have a clean HTML document. The lab ships a **Part-2 starter** if you need one. To make it a
 **publication-ready article**, two more things:
 
 ::: {.incremental}
@@ -525,7 +525,7 @@ You have a clean HTML document — the lab ships a **Part-2 starter** if you nee
 
 . . .
 
-This is exactly the path from your analysis to a submission — and to your **team-project** write-up.
+This is exactly the path from your analysis to a submission, and to your **team-project** write-up.
 
 ## Citations {#citations}
 
@@ -567,7 +567,7 @@ The reference list renders at the end automatically, or wherever you drop this d
 ```
 
 ::: {.aside}
-**CSL** = *Citation Style Language* — the file that decides how citations and the reference list
+**CSL** = *Citation Style Language*: the file that decides how citations and the reference list
 are formatted (APA, Vancouver, a journal's own style). Swap the `csl:` file, restyle everything.
 :::
 
@@ -583,7 +583,7 @@ are formatted (APA, Vancouver, a journal's own style). Swap the `csl:` file, res
 
 ## A real title block {#authors}
 
-A few header lines turn the document into a publication-ready article — name, affiliation, ORCID, abstract:
+A few header lines turn the document into a publication-ready article (name, affiliation, ORCID, abstract):
 
 ``` yaml
 title: "Bill shape distinguishes Antarctic penguins"
@@ -596,7 +596,7 @@ abstract: |
   Using base-R `penguins`, we show bill shape separates species...
 ```
 
-Renders in HTML, PDF, and Typst — write it once.
+Renders in HTML, PDF, and Typst. Write it once.
 
 ::: notes
 - **Timing (Part-2 trim-first):** if Part 2 runs long, this is the slide to cut — name author / affiliation / ORCID / abstract verbally and move on. Citations, Typst, and brand are the must-keeps.
@@ -604,7 +604,7 @@ Renders in HTML, PDF, and Typst — write it once.
 
 ## Typst — modern PDF, no LaTeX {#typst}
 
-**Typst** is a modern typesetting system that **ships inside Quarto** — nothing to install, no
+**Typst** is a modern typesetting system that **ships inside Quarto**: nothing to install, no
 LaTeX toolchain.
 
 ``` yaml
@@ -629,7 +629,7 @@ Typst is bundled from Quarto **1.4+**; we require **≥ 1.9** (margin/article la
 
 ## Branding the PDF — `_brand.yml` {#brand}
 
-One `_brand.yml` carries your palette + fonts to the **Typst PDF** you just built — and to the
+One `_brand.yml` carries your palette + fonts to the **Typst PDF** you just built, and to the
 **plots and tables** inside it:
 
 :::: {.columns}
@@ -649,7 +649,7 @@ typography:
 :::
 ::: {.column width="45%"}
 - Same file themes HTML and Typst.
-- The R side — `theme_brand_ggplot2()` / `theme_brand_gt()` from the **brand.yml** package — themes
+- The R side (`theme_brand_ggplot2()` / `theme_brand_gt()` from the **brand.yml** package) themes
   your **plots and tables** from the *same* palette.
 - Quarto fetches Google fonts for Typst automatically.
 :::
@@ -689,7 +689,7 @@ You can now:
 
 . . .
 
-**Next (Day 2):** grow one document into a whole **project** — a website your team can publish.
+**Next (Day 2):** grow one document into a whole **project**, a website your team can publish.
 
 ## Thank you! {.center}
 
