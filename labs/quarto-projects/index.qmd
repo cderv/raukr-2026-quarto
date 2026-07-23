@@ -27,7 +27,7 @@ project: each is its own hands-on part, with a break between them. Publishing to
 GitHub Pages / CI is a **watch-me demo**, not a per-participant step (it needs an account, so we run
 it once up front). Everything runs on base-R `datasets::penguins` (R ≥ 4.5), so there's no data to download.
 
-**Before you start:** run through the **[Setup page](../../setup.qmd)** if you haven't. Its
+**Before you start:** work through the **[Setup page](../../setup.qmd)** if you haven't. Its
 `00-check-setup.R` confirms R, Quarto, and the packages this lab uses. The optional branded-plot
 stretch also uses `brand.yml`.
 :::
@@ -51,14 +51,15 @@ reference is in **`solutions/day2/`** if you get stuck or fall behind.
 > **Goal:** turn the `day2-projects/` pages into a navigable, **branded website** that renders locally to a
 > `_site/` folder.
 
+:::: {.callout-note icon=false}
+## {{< fa clipboard-list >}} Tasks
+
 ::: {.column-margin}
 {{< fa book-open >}} **Quarto docs**
 
 [Websites](https://quarto.org/docs/websites/) · [Brand](https://quarto.org/docs/authoring/brand.html)
 :::
 
-::: {.callout-note icon=false}
-## {{< fa clipboard-list >}} Tasks
 1. In `day2-projects/`, create a **`_quarto.yml`** that declares the project and a website with navigation:
    ```yaml
    project:
@@ -99,7 +100,7 @@ reference is in **`solutions/day2/`** if you get stuck or fall behind.
    links to the analysis with a plain Markdown link, `[analysis](analysis.qmd)`. That's deliberate,
    because **across** pages there is no auto-numbering (a *book* feature, not a website one), so a
    plain link is how you connect website pages.
-:::
+::::
 
 ::: {.callout-note appearance="simple" icon=false}
 ## {{< fa circle-check >}} You should see
@@ -146,20 +147,21 @@ wholesale if you fell behind.
 > **Goal:** make the project's builds **reproducible** with `freeze`, then render it to a publishable
 > `_site/` folder. (Publishing to Pages is the watch-me demo. You produce the folder.)
 
-::: {.column-margin}
-{{< fa book-open >}} **Quarto docs**
-
-[Freeze](https://quarto.org/docs/projects/code-execution.html#freeze) · [Publishing](https://quarto.org/docs/publishing/)
-:::
-
 ::: {.callout-note}
 ## Starting point
 Keep going with your Website Challenge `day2-projects/`. If you didn't finish it, open the ready-made
 **`solutions/day2/`** project (a complete Part-1 site) and do the steps below in there.
 :::
 
-::: {.callout-note icon=false}
+:::: {.callout-note icon=false}
 ## {{< fa clipboard-list >}} Tasks
+
+::: {.column-margin}
+{{< fa book-open >}} **Quarto docs**
+
+[Freeze](https://quarto.org/docs/projects/code-execution.html#freeze) · [Publishing](https://quarto.org/docs/publishing/)
+:::
+
 1. Add **freeze** to your project's `_quarto.yml` so unchanged pages aren't re-executed on every build:
    ```yaml
    execute:
@@ -175,7 +177,7 @@ Keep going with your Website Challenge `day2-projects/`. If you didn't finish it
    at it (GitHub Pages, Netlify, an internal server).
 4. *(note, not a step)* `renv::snapshot()` writes an `renv.lock` that pins the packages: the second
    reproducibility leg, so a teammate (or CI) rebuilds the same environment.
-:::
+::::
 
 ::: {.callout-note appearance="simple" icon=false}
 ## {{< fa circle-check >}} You should see

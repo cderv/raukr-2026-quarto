@@ -16,7 +16,7 @@ between them. This is your **manuscript / team-project path**, the same route fr
 an analysis to a submittable write-up. Everything runs on **base-R `datasets::penguins`** (R ≥ 4.5),
 so there's no data to download.
 
-**Before you start:** run through the **[Setup page](../../setup.qmd)** if you haven't. Its
+**Before you start:** work through the **[Setup page](../../setup.qmd)** if you haven't. Its
 `00-check-setup.R` confirms R, Quarto, and the packages this lab uses.
 :::
 
@@ -57,14 +57,15 @@ That's the whole migration. The rest of this lab is native `.qmd`.
 > **Goal:** a penguins report with a cross-referenced **figure**, a cross-referenced **table**, a
 > **margin** element, and a display **equation**, rendered to HTML.
 
+:::: {.callout-note icon=false}
+## {{< fa clipboard-list >}} Tasks
+
 ::: {.column-margin}
 {{< fa book-open >}} **Quarto docs**
 
 [Cross-references](https://quarto.org/docs/authoring/cross-references.html) · [Article layout](https://quarto.org/docs/authoring/article-layout.html)
 :::
 
-::: {.callout-note icon=false}
-## {{< fa clipboard-list >}} Tasks
 1. Create `my-report.qmd` **inside your open `day1-intro/` folder** (next to `references.bib` /
    `apa.csl`, so Part 2's paths and branding resolve later) with `format: html` and the setup cell
    at the top of this page.
@@ -88,7 +89,7 @@ That's the whole migration. The rest of this lab is native `.qmd`.
    $$ {#eq-ratio}
    ```
 6. Render to HTML (`quarto render my-report.qmd`, or the editor's Render/Preview).
-:::
+::::
 
 ::: {.callout-tip icon=false}
 ## {{< fa universal-access >}} Make it accessible
@@ -166,12 +167,6 @@ first, then open it to compare, or take the source:
 
 > **Goal:** cite the report, then render the *same document* as a **branded Typst PDF**.
 
-::: {.column-margin}
-{{< fa book-open >}} **Quarto docs**
-
-[Citations](https://quarto.org/docs/authoring/citations.html) · [Typst](https://quarto.org/docs/output-formats/typst.html)
-:::
-
 ::: {.callout-note}
 ## Starting point
 If you finished the Authoring Challenge, keep going on your own document. Otherwise open
@@ -179,8 +174,15 @@ If you finished the Authoring Challenge, keep going on your own document. Otherw
 that.
 :::
 
-::: {.callout-note icon=false}
+:::: {.callout-note icon=false}
 ## {{< fa clipboard-list >}} Tasks
+
+::: {.column-margin}
+{{< fa book-open >}} **Quarto docs**
+
+[Citations](https://quarto.org/docs/authoring/citations.html) · [Typst](https://quarto.org/docs/output-formats/typst.html)
+:::
+
 1. Point the document header at the shared bibliography and citation style:
    ```yaml
    bibliography: references.bib
@@ -218,7 +220,7 @@ that.
 
    Where the PDF lands: **right next to its source** in `day1-intro/`. There's no project folder
    above to redirect it, so `starter.qmd` gives `starter.pdf`, `my-report.qmd` gives `my-report.pdf`.
-:::
+::::
 
 ::: {.callout-note appearance="simple" icon=false}
 ## {{< fa circle-check >}} You should see
@@ -280,12 +282,6 @@ The complete cited HTML is `solutions/day1/penguins-report.qmd`. The branded Typ
 > report per species** by passing the species in at render time. This is the "one QC report per
 > sample / one summary per cohort" pattern. Fully optional, so skip it if you're short on time.
 
-::: {.column-margin}
-{{< fa book-open >}} **Quarto docs**
-
-[Parameters](https://quarto.org/docs/computations/parameters.html)
-:::
-
 A **parameter** is a value declared in the YAML that your code can read as `params$…`. Change the
 value at render time and the *same document* produces a different report. No copy-paste.
 
@@ -297,8 +293,15 @@ it yourself instead? Add the pieces below to a copy of your Part-1 report, and p
 figure/table cells at the filtered **`one`** (not `penguins`) so they track the parameter too.
 :::
 
-::: {.callout-note icon=false}
+:::: {.callout-note icon=false}
 ## {{< fa clipboard-list >}} Tasks
+
+::: {.column-margin}
+{{< fa book-open >}} **Quarto docs**
+
+[Parameters](https://quarto.org/docs/computations/parameters.html)
+:::
+
 1. Declare a parameter with a default in the header:
    ```yaml
    params:
@@ -333,7 +336,7 @@ figure/table cells at the filtered **`one`** (not `penguins`) so they track the 
    ```
    With no `-P`, the default (`Gentoo`) is used. The HTML lands **next to the source** in
    `day1-intro/`, as `penguins-by-species.html`.
-:::
+::::
 
 ::: {.callout-note appearance="simple" icon=false}
 ## {{< fa circle-check >}} You should see
