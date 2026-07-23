@@ -79,7 +79,7 @@ The base-R `penguins` dataset records body measurements for `r nrow(penguins)` p
 species collected at Palmer Station, Antarctica [@gorman2014]. It reached the R community first
 through the **palmerpenguins** package [@horst2020]. Here we ask a simple question: **does bill
 shape tell the species apart?** We render the answer as a branded PDF with **Typst**, a modern
-typesetting system that ships inside Quarto, so there is no LaTeX in the loop.
+typesetting system that ships inside Quarto, so there is no LaTeX involved.
 
 # Species at a glance
 
