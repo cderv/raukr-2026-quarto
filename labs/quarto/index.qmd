@@ -155,8 +155,7 @@ first, then open it to compare, or take the source:
 
 ## Citations Challenge
 
-> **Goal:** cite the report, then render the *same document* as a **branded Typst PDF**: the
-> manuscript payoff, no LaTeX.
+> **Goal:** cite the report, then render the *same document* as a **branded Typst PDF**.
 
 ::: {.callout-note}
 ## Starting point
