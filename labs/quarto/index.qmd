@@ -13,12 +13,8 @@ between them. This is your **manuscript / team-project path**, the same route fr
 an analysis to a submittable write-up. Everything runs on **base-R `datasets::penguins`** (R ≥ 4.5),
 so there's no data to download.
 
-**Packages:** `dplyr`, `ggplot2`, `gt`, `ggokabeito` (a color-blind-safe palette, see the
-Accessibility box below), plus the `knitr`/`rmarkdown` engine every `.qmd` with R code needs. If
-you've done the **[Setup page](../../setup.qmd)** (with its `00-check-setup.R` check), you're ready;
-otherwise install them once from R:
-`install.packages(c("dplyr", "ggplot2", "gt", "ggokabeito", "knitr", "rmarkdown"))`. The citation payoff also uses the
-shared `references.bib` and `apa.csl` that ship in your **`day1-intro/`** folder.
+**Before you start:** run through the **[Setup page](../../setup.qmd)** if you haven't. Its
+`00-check-setup.R` confirms R, Quarto, and the packages this lab uses.
 :::
 
 ::: {.callout-tip appearance="simple"}
