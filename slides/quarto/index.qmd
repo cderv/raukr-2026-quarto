@@ -51,7 +51,7 @@ By the end: one penguins document carried all the way to a **polished, cite-able
 
 ## How today works
 
-Two rounds, each the same shape — **watch → follow along → your turn**:
+Two rounds, each the same shape (**watch → follow along → your turn**):
 
 - some slides I just talk through; when it's hands-on you'll see a **Follow along** callout;
 - each round ends with a **hands-on Challenge** in the lab (solutions are folded in, so you can self-check);
@@ -354,7 +354,7 @@ Accessibility is a few habits layered on what you already write:
 
 - **Alt text** — you already add `#| fig-alt:` to every figure; it's what a screen reader announces.
 - **Colour-blind-safe colours** — the default palette isn't. Reach for **Okabe-Ito**
-  (`scale_colour_okabe_ito()`) or **viridis**, and encode by shape/label too — not colour alone.
+  (`scale_colour_okabe_ito()`) or **viridis**, and encode by shape/label too, not colour alone.
 - **Check contrast** — WCAG wants 4.5:1 on text. Quarto's built-in `axe` runs axe-core on the
   rendered page: `axe: true` logs to dev-tools, `axe: {output: document}` writes the report onto the
   page itself.
@@ -493,7 +493,7 @@ Screenshot from the [Quarto documentation](https://quarto.org/docs/tools/positro
 ::: {.callout-tip title="Your turn — regroup in ~45 min"}
 Head to the **[Lab](../../labs/quarto/index.qmd#authoring-challenge)** and start at the **Authoring
 Challenge**: author a penguins document with a figure, a cross-referenced table, and margin layout,
-then render it to HTML — then a **break** — back after.
+then render it to HTML, then a **break**, back after.
 :::
 
 *You can now author a figure, a cross-referenced table, and margin layout. After the break we cite
@@ -530,7 +530,7 @@ This is exactly the path from your analysis to a submission, and to your **team-
 ## Citations {#citations}
 
 ::: {.callout-note title="Follow along"}
-Back in your editor — we add citations to the Part-1 document (or the lab's `starter.qmd`).
+Back in your editor: we add citations to the Part-1 document (or the lab's `starter.qmd`).
 :::
 
 Point the header at a `.bib`, then cite with `@key`:
@@ -669,7 +669,7 @@ typography:
 ::: {.callout-tip title="Your turn — regroup in ~30 min"}
 Back to the **[Lab](../../labs/quarto/index.qmd#citations-challenge)**, at the **Citations Challenge**: add citations to
 the Part-2 starter (or your own Part-1 file), then render it as a **branded Typst PDF**. You'll
-finish with a **publication-ready article** — a cite-able, branded PDF you could submit.
+finish with a **publication-ready article**, a cite-able, branded PDF you could submit.
 :::
 
 ::: notes

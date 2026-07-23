@@ -9,7 +9,7 @@ already render Quarto documents from R, you are ready.
 
 ::: {.callout-note appearance="simple"}
 ## Setup at a glance
-Four steps, top to bottom — each links to its details below:
+Four steps, top to bottom (each links to its details below):
 
 1. [**Install**](#software) R ≥ 4.5, Quarto ≥ 1.9, and an editor.
 2. [**Get the materials**](#get-the-materials) — one line of R, no git or GitHub account needed.
