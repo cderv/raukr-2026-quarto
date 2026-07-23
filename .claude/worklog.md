@@ -43,10 +43,20 @@ ledger: `.claude/archive/reviews/` (`review-2026-07-23-labrun-day{1,2}-usecourse
 **Residuals for Christophe (pre-delivery, his call):** (a) the delivery repo stays **PRIVATE** — per
 braid c-1dq66go1 that is intentional and fine for build + a local-unpack gate; the **public flip is the
 pre-delivery step, NOT done here** (`use_course()`'s no-account public download + the three `/main/`
-buttons only work once flipped). (b) Windows `renv::restore()` still untested (Linux sandbox) — low
-risk, verify with a Windows tester before the ~Aug-1 freeze. (c) Sync-workflow shape (persistent
-gitignored clone vs the temp-clone `publish-exercises.R` vs subtree) — see the strand; the recipe as
-built already implements the clone→copy→commit→push model with no `.claude/` leakage.
+buttons only work once flipped). (b) ~~Windows `renv::restore()` untested~~ **RESOLVED** — Christophe ran
+it on Windows (2026-07-23): restores cleanly, pulling P3M binaries incl. `ggokabeito`. (c) Sync-workflow
+shape settled on the **temp-clone `publish-exercises.R`** (clone→copy→commit→push, no `.claude/` leak) —
+a persistent gitignored clone was weighed and set aside (nested-repo gitlink/drift footguns for ~1 s
+saved); subtree rejected (reshaped generated tree). **Delivery commits author as Christophe, not Claude.**
+
+**Follow-up — captured the model into durable docs (so a future session/contributor knows the flow):**
+new path-scoped rule **`.claude/rules/exercises.md`** (auto-surfaced on `labs/**`, `exercises/**`, the
+sync/publish scripts, `setup.qmd`, `_quarto.yml`) — the one-direction pipeline (`labs/` → `just exercises`
+→ committed `exercises/` → `just publish-exercises` → delivery-repo `main`), the "edit labs ⇒ re-render +
+re-sync + commit `exercises/` (drift-guard enforces)" checklist, the structural invariants, and the banked
+gotchas (root-relative CI renders, 9 packages, buttons-need-Public, year-in-name versioning). Added a
+matching bullet to `CLAUDE.md` § Build & environment; **archived** the completed design plan to
+`.claude/archive/plans/2026-07-22-exercise-delivery.md`.
 
 ### Delivery migration + review cycle — labs/setup/slides retargeted to use_course(); panel fixes (the tracker) — 2026-07-22
 

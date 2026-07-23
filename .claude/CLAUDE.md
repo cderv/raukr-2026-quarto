@@ -42,6 +42,16 @@ lives in the other references.
   (`quarto render <file>`) and stage `_freeze/`. A `PreToolUse(Bash)` hook
   (`.claude/hooks/check-freeze.sh`) **blocks `git commit`** on a stale freeze; pure-markdown pages
   are skipped. Backstop: a full `quarto render` at end of session.
+- **Exercises are delivered from a separate repo, generated from here.** The hands-on files ship in
+  `cderv/raukr-2026-quarto-exercises` (English; a GitHub template; year-in-name), which participants
+  download via `usethis::use_course(...)` — no git, no account. **`labs/` is the source of truth;**
+  `just exercises` regenerates the committed `exercises/` payload (`tools/sync-exercises.R`, the only
+  write path — never hand-edit `exercises/`), and `just publish-exercises` mirrors it onto that repo's
+  `main`. So **editing `labs/**` means: re-render + re-sync + commit `exercises/`** (a course-repo
+  drift-guard CI enforces the match). The full model, structural invariants (no `_quarto.yml` above the
+  day starters; sibling solutions; the four Day-1 files off the site render list), and gotchas are the
+  path-scoped rule **`.claude/rules/exercises.md`** (auto-surfaced on `labs/**`, `exercises/**`, the
+  sync/publish scripts, `setup.qmd`, `_quarto.yml`).
 
 ## Issue tracking (braid)
 
