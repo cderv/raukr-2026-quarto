@@ -83,7 +83,7 @@ One tool, many outputs, multiple languages: **all from one plain-text `.qmd` you
 
 ::: notes
 - **Frame (not a line):** reframe from "Quarto = R Markdown++, nothing new to learn" to "here's
-  what you can now build" — this audience wants to level up, not be reassured.
+  what you can now build" — this audience wants to go further, not be reassured.
 :::
 
 ## How it all works {#how-it-works}
@@ -461,9 +461,9 @@ quarto render  report.qmd   # one-off render
 - **Do:** run `quarto preview report.qmd` live — save an edit, show the browser reload; then
   `quarto render` for the one-off.
 - **Say:** "Drive it from the CLI, in whatever editor you like — RStudio, Positron, VS Code."
-- **Params (MENTION, cut-first):** name-check `-P` here, where `quarto render` is on screen — the
+- **Params (MENTION, cut-first):** mention `-P` here, where `quarto render` is on screen — the
   optional lab bonus does it hands-on (one report per species). Don't dwell; it isn't a taught beat.
-- **Timing:** keep it tight — the room knows cells and Jenny Bryan covers the IDE. Part 1 lands
+- **Timing:** keep it brief — the room knows cells and Jenny Bryan covers the IDE. Part 1 lands
   inside its ~18–20 min budget.
 :::
 
@@ -500,7 +500,7 @@ then render it to HTML, then a **break**, back after.
 it and ship a branded PDF.*
 
 ::: notes
-- **Say (handoff):** "Over to you — Authoring Challenge in the lab, ~45 min. Then we break — back at 15:30. Helpers are roaming; wave one over."
+- **Say (handoff):** "Over to you — Authoring Challenge in the lab, ~45 min. Then we break — back at 15:30. Helpers are around; raise your hand if you're stuck."
 - **Helpers:** most common trap is the cross-ref prefix — a label must start `fig-`/`tbl-`/`eq-`, or `@ref` renders a stray `?@`. Also check the `#|` lines are the very top of the cell (no blank line or code above them), and watch for duplicate labels across the document.
 :::
 
@@ -509,7 +509,7 @@ it and ship a branded PDF.*
 From report to article: cite it, then typeset it.
 
 ::: notes
-- **Welcome back** (after the break): "Before the break you landed a clean HTML penguins doc. Now we make it a *publication-ready article* — cite it, then typeset it to PDF."
+- **Welcome back** (after the break): "Before the break you built a clean HTML penguins doc. Now we make it a *publication-ready article* — cite it, then typeset it to PDF."
 - One-sentence recap only; don't re-teach Part 1 — go straight into the article path.
 :::
 
@@ -623,7 +623,7 @@ Typst is bundled from Quarto **1.4+**; we require **≥ 1.9** (margin/article la
 
 ::: notes
 - **Say:** "Typst is deterministic and bundled — nothing to install. LaTeX is still there if you
-  need it, but it's not the lead in 2026."
+  need it, but Typst is what we use in 2026."
 - Gloss "Typst" on first use.
 :::
 
@@ -673,7 +673,7 @@ finish with a **publication-ready article**, a cite-able, branded PDF you could 
 :::
 
 ::: notes
-- **Say (handoff):** "Last stretch — Citations Challenge: add a `.bib`, render a branded Typst PDF, and you walk out with a publication-ready article — a branded, cite-able PDF. ~30 min; helpers are up."
+- **Say (handoff):** "Last part — Citations Challenge: add a `.bib`, render a branded Typst PDF, and you leave with a publication-ready article — a branded, cite-able PDF. ~30 min; helpers are around."
 - **Helpers:** the `.bib` key must match `@key` exactly; the Typst Google-font fetch needs network on the first render; a missing `csl:` falls back to Typst's native style. "Where's my PDF?" — in `day1-intro/` it lands next to its source (`starter.qmd` → `starter.pdf`, `my-report.qmd` → `my-report.pdf`), no `_site/` redirect. All covered by the lab's hint/solution.
 :::
 

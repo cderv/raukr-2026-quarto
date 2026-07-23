@@ -94,7 +94,7 @@ Quarto uses the **nearest `_quarto.yml`** up the tree as the project root: you a
 ::: notes
 - **Say:** "Day 1 was one file. Today: many files, one project. Open your editor — we build one together."
 - **Do:** show a minimal `_quarto.yml` — `project: type: website` + `output-dir`. "This folder is now one unit; `render` builds all of it, not one file."
-- **Say (relevance):** the team project is many pages — this is how they hang together.
+- **Say (relevance):** the team project is many pages — this is how they connect.
 :::
 
 ## Directory metadata — `_metadata.yml` {#metadata}
@@ -160,7 +160,7 @@ website:
 - **Do:** add the `website:` block live — navbar + sidebar — render, show the nav appear.
 - **Say:** "You declare the nav once: the navbar you list, the sidebar `contents: auto` builds from the files — Quarto generates both."
 - **Say (sets up next slide):** "each page renders on its own — that independence is exactly why cross-refs behave differently across pages."
-- **Helpers:** flag the classic trap now — links are relative to the *source*, not `_site` — so it lands before the lab.
+- **Helpers:** flag the classic trap now — links are relative to the *source*, not `_site` — so they meet it before the lab.
 :::
 
 ## Cross-references across a project {#xrefs}
@@ -229,7 +229,7 @@ typography:
 - **R plots (only if asked):** a plot still needs `theme_brand_ggplot2()` — same as yesterday; the
   lab's stretch covers it.
 - **Escape hatch (if asked):** `brand: false` opts a page out; `brand: other.yml` points it
-  elsewhere — the default is all-in, these are the overrides.
+  elsewhere — the default brands everything, these are the overrides.
 - **Precision:** "every page/deck" = every *supported-format* output (html, revealjs, typst,
   dashboard); an unsupported format just isn't branded — don't say "every output".
 - **Placement:** this is Part-1 project config, not the Part-2 tail.
@@ -248,7 +248,7 @@ You can now structure files into a branded, navigable **website**. After the bre
 reproducible and **ship** it.
 
 ::: notes
-- **Say (handoff):** "Over to you — Website Challenge: `_quarto.yml`, a navbar, the shared brand. ~45 min, then we break — back at 15:30. Helpers are roaming."
+- **Say (handoff):** "Over to you — Website Challenge: `_quarto.yml`, a navbar, the shared brand. ~45 min, then we break — back at 15:30. Helpers are around."
 - **Helpers:** first thing to check — are they working **inside `day2-projects/`** with their new `_quarto.yml`, so `quarto render` builds the project (not a stray single page)? (Secondary: page links are source-relative, not `_site`.) Anyone behind can open the shipped `solutions/day2/` — a finished Part-1 site — and start Part 2 clean.
 :::
 
@@ -391,7 +391,7 @@ project to `_site/` and open it: a publishable folder. (Publishing to Pages is t
 :::
 
 ::: notes
-- **Say (handoff):** "Last stretch — Ship it Challenge: render your project to `_site/` and open it, a publishable folder. Publishing to Pages is my watch-me demo, not your job. ~45 min; helpers are up."
+- **Say (handoff):** "Last part — Ship it Challenge: render your project to `_site/` and open it, a publishable folder. Publishing to Pages is my watch-me demo, not your job. ~45 min; helpers are around."
 - **Helpers:** the tell that freeze is working — the *second* project render doesn't re-execute the page at all (no chunk output scrolls by); the compute is served from `_freeze/`. Behind? Open the shipped `solutions/day2/` project and start from there.
 :::
 
