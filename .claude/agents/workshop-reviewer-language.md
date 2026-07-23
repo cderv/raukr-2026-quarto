@@ -57,6 +57,11 @@ principle: **written prose states; the presenter's voice lives in `::: notes`.**
   `;` semicolons, and corporate verbs.
 - **French typography in English** (copy-edit, not register): a space before `?` `!` `:` `;`
   (`publications ?`) is the *espace insécable* leaking in — an error to remove, never a voice trait.
+- **Idiomatic English** in body prose. Christophe writes English as a second language; colloquial
+  figures of speech read as not-his-voice and should go ("nobody is stranded by the break", "goes
+  sideways", "hit the ground running", "low-hanging fruit"). Propose the plain, literal statement.
+  Near-literal metaphors he actually uses ("batteries included", "under the hood") are fine; `::: notes`
+  are spoken cues, so relax there.
 
 Then the classic register fixes. Concretely:
 

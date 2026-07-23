@@ -82,6 +82,26 @@ state the thing.
 11. **Mechanical symmetry** — every paragraph the same length, every section the same shape. Real
     writing has uneven beats.
 
+## No idiomatic English (Christophe writes English as a second language)
+
+Christophe's first language is French. **Idiomatic English figures of speech read as not-his-voice** —
+a native-speaker or LLM flourish he would never write. In participant-facing **body** prose, say the
+thing plainly and literally; skip the colloquial idiom. This is not about "dumbing down" — his English
+is precise and warm — it is about not putting words in his mouth that he wouldn't use.
+
+Flagged and removed, as the pattern to recognise:
+- "nobody is stranded by the break" → the fallback is already stated ("a finished reference is in
+  `solutions/…`"); cut the reassurance idiom.
+- "if an attempt goes sideways" → "if an attempt goes wrong".
+
+Others in the same class to avoid (non-exhaustive): "hit the ground running", "the whole nine yards",
+"a room-killer", "back to square one", "your mileage may vary", "piece of cake", "on the same page",
+"reinvent the wheel", "low-hanging fruit", "moving the needle". Plain replacements always exist.
+(Mild, near-literal metaphors he *does* use are fine — "batteries included", "under the hood" appear in
+his own decks. The test: would a precise non-native writer produce this, or is it a native-speaker
+idiom? When unsure, prefer the literal statement.) `::: notes` are spoken cues he adapts live, so a
+relaxed idiom there matters less — but body prose that renders to the page should stay literal.
+
 ## Before / after (the worked examples)
 
 - `The easiest way to get it — **no git, no GitHub account, nothing to unzip by hand**, identical on

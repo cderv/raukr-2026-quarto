@@ -99,7 +99,7 @@ top folder (try first).
 
 ::: {.callout-tip collapse="true"}
 ## Reset without losing work (no git needed)
-If an attempt goes sideways, get a **fresh** copy of the day folder (don't unzip over your
+If an attempt goes wrong, get a **fresh** copy of the day folder (don't unzip over your
 working copy):
 
 - **re-run** `usethis::use_course("cderv/raukr-2026-quarto-exercises")`: it makes a new, numbered folder

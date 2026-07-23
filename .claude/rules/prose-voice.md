@@ -34,6 +34,10 @@ spoken register leaking onto the page.
 - **No corporate verbs** (leverage/utilize/facilitate/streamline) or **vague intensifiers**
   (really/very/simply/just-as-filler).
 - **No antithesis flip** (`not just X, it's Y`) or **signposting** (`It's worth noting that`, `In short`).
+- **No idiomatic English** in body prose. Christophe writes English as a second language (French first);
+  colloquial figures of speech read as not-his-voice ("nobody is stranded", "goes sideways", "hit the
+  ground running", "low-hanging fruit"). Say it plainly and literally. (Near-literal metaphors he does
+  use — "batteries included", "under the hood" — are fine.)
 
 ## Copy-edit (English, not French typography)
 
