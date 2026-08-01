@@ -106,3 +106,58 @@ A, B or C below.
 
 **Action:** A, B and C are all still unreported. Verify each against 1.10.x before filing (Quarto
 1.10.18 is installable now, so the blocker noted above is gone).
+
+---
+
+## Verified against Quarto 1.10.18 (2026-08-01)
+
+### A — brand `typography.link.color` → `$link-color`: **FIXED, do not file**
+
+Tested both config forms (palette-key reference *and* literal hex). Both now work:
+compiled `--bs-link-color: #33666B` and the rendered link's computed colour is
+`rgb(51, 102, 107)` = the brand colour. On 1.9.38 this was the Quarto default `#2a76dd`.
+The open question in the draft ("is a palette-key ref supported?") is moot — both forms feed
+Bootstrap correctly. Fixed somewhere in 1.10; drop this candidate. The `$link-color` override in
+`theme-html.scss` is now belt-and-braces rather than a workaround (its comment says as much: "May be
+1.9-only; recheck on 1.10+").
+
+### B — `.at` token below AA: **REPRODUCES, but the diagnosis in this draft is wrong** → strand the tracker
+
+The draft blamed a flat `#eceef1` code background. The real cause is narrower and cleaner:
+
+Quarto's **inline**-code rule
+`p code.sourceCode, li code.sourceCode, td code.sourceCode { background-color: rgba(233,236,239,.65) }`
+also matches **block** code when the block sits inside a list item. The block already sits on
+`div.sourceCode`'s `rgba(233,236,239,.65)`, so two semi-transparent layers composite to a darker grey.
+
+Measured with computed styles and proper alpha compositing over white — same code block, twice:
+
+| placement | `code` element bg | composited bg | `.at` (`#657422`) | AA |
+|---|---|---|---|---|
+| top level | transparent | `rgb(240.7, 242.7, 244.6)` | **4.62:1** | pass |
+| inside a list item | `rgba(233,236,239,.65)` | `rgb(235.7, 238.3, 241.0)` | **4.44:1** | **fail** |
+
+Stock 1.10.18, no `_brand.yml`, no custom theme. This is also why the RaukR labs measure 4.44 — their
+code blocks sit inside the Tasks-callout lists — so it wants a local `theme-html.scss` fix as well.
+
+### C — axe colour-contrast false positives on callouts: **DOES NOT REPRODUCE, do not file**
+
+On 1.10.18 a doc with two collapsible callouts produces **no** `color-contrast` violation at all.
+The drafted claim is dead.
+
+**But the same run surfaced a real one** → strand **the tracker**: `aria-allowed-attr`, impact
+**critical**, one node per collapsible callout. Quarto emits the toggle as a generic `<div>` carrying
+`aria-expanded` with no `role` (and no `tabindex`):
+
+```html
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse"
+     data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false"
+     aria-label="Toggle callout">
+```
+
+`aria-expanded` is not permitted on a role-less `div`. Likely fix: `role="button"` + `tabindex="0"`,
+or a real `<button>`. Not filed upstream (#14373 is an a11y umbrella with no rule ids; #14668 is a
+different defect).
+
+*(Repro note: `axe: {output: json}` writes to the browser console, not a file, and the axe module is
+CORS-blocked over `file://` — serve the page over HTTP and capture the console.)*
