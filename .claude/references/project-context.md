@@ -178,7 +178,7 @@ and file citations are in the review that produced them; the essentials:
   appendix block (out of the page TOC), instead of a bare headerless `<details>` dangling after the
   last section (which read as part of that section). `.unnumbered` is required because
   `number-sections: true` otherwise labels it (e.g. "4 Session") **and** an `.appendix` heading even
-  eats a body section number — a Quarto bug: `archive/issues/2026-07-22-quarto-appendix-numbering.md`.
+  eats a body section number — a Quarto bug (diagnosed 2026-07-22).
 - Datasets: built-in first; large data via a styled download button, not committed; use `here`
   for project-root-relative paths.
 

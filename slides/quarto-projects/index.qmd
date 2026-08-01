@@ -12,7 +12,7 @@ format:
     echo: true
     slide-number: true
 # TODO(logos): drop the RaukR + NBIS/SciLifeLab corner logos into _brand.yml once the
-# asset files land (braid the tracker). Deck is authored against the current brand meanwhile.
+# asset files land. Deck is authored against the current brand meanwhile.
 ---
 
 ```{r}

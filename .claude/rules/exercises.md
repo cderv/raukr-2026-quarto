@@ -20,8 +20,7 @@ usethis::use_course("cderv/raukr-2026-quarto-exercises")   # unpacks main to the
 ```
 
 This course repo is the **source of truth**; the delivery repo is **generated and pushed from here**.
-The full design + rationale is the archived plan `.claude/archive/plans/2026-07-22-exercise-delivery.md`;
-this rule is the operational short list. When you **edit** labs, follow it; when you **review**, check it.
+This rule is the operational short list. When you **edit** labs, follow it; when you **review**, check it.
 
 ## The pipeline (one direction only)
 

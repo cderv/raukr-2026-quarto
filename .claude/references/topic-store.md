@@ -16,20 +16,19 @@
 > organizer list.
 >
 > **State at close of 2026-07-07 — the triage is CONFIRMED, not a proposal.** A full day of
-> panels + decisions turned the draft into the applied plan below. In order (each backed by dated
-> reports in `.claude/archive/reviews/` and a commit):
-> - **Scope panel** (`review-2026-07-07-scope-*`): load, not direction, was the risk. Day-1 Part 2
+> review + decisions turned the draft into the applied plan below, each step backed by a commit:
+> - **Scope:** load, not direction, was the risk. Day-1 Part 2
 >   slimmed to *Citations → Typst*; Parameters/Shortcodes → MENTION; Day-2 `_brand.yml` → Part 1;
 >   Publishing live-CI → watch-me DEMO (the beginner's only P0 = the live-publish auth cliff);
 >   per-part **time budget** filled; **§ Running-order rules** added.
-> - **NBIS-reuse panel** (`review-2026-07-07-nbis-*`) → `prior-art-inventory.md` § NBIS harvest map.
+> - **NBIS reuse review** → `prior-art-inventory.md` § NBIS harvest map.
 > - **Dataset locked:** base-R `datasets::penguins` (R ≥ 4.5, zero-install) — see
 >   `project-context.md` § Technical stack.
 > - **Layouts sharpened** to the organizer's five terms (scope note under the Day-1 CORE table).
-> - **Convention decided** (`review-2026-07-07-convention-*`): mode markers = built-in callouts at
+> - **Convention decided:** mode markers = built-in callouts at
 >   the two transitions, no bespoke class (rule 9 + `project-context.md` § Content patterns).
-> - **Coverage audit** (`review-2026-07-07-coverage-*`) → § *Coverage-audit deltas* below.
-> - **Build-gap audit** (`review-2026-07-07-build-gap`): Day-1 ~80% / Day-2 ~60% reuse; only 4
+> - **Coverage audit** → § *Coverage-audit deltas* below.
+> - **Build-gap audit:** Day-1 ~80% / Day-2 ~60% reuse; only 4
 >   true build-fresh items; Day-2 deck base exists (Block 2 correction). See `prior-art-inventory.md`.
 >
 > The `_(confirmed 2026-07-07)_` tags on the tables mark this. Still open (not blocking): the two
@@ -69,7 +68,7 @@ Execution options (knitr/R engine, chunk attributes) · Positron-specific bits. 
 Parameters · Shortcodes · Citations · Typst.
 
 2-part split (revised 2026-07-07): **Part 1 = Basics** (author a document, land HTML with
-layout), **Part 2 = Citations → Typst only** — the panel cut Parameters/Shortcodes from this
+layout), **Part 2 = Citations → Typst only** — the review cut Parameters/Shortcodes from this
 part so the Typst payoff isn't squeezed to ~4 min (technique P1-1, pedagogue P1-1/P1-2). Part 2's
 hands-on = the two payoff exercises (a cited doc, then that doc as a branded Typst PDF).
 
@@ -117,8 +116,8 @@ hands-on = the two payoff exercises (a cited doc, then that doc as a branded Typ
 | Topic | Notes |
 |-------|-------|
 | Rmd → Quarto migration | **go quick** (2026 = native-first): hash-pipe, `convert_chunk_header()`, `.Rmd` renders as-is — a short reassurance for people with Rmd baggage, not a segment _(exists)_ |
-| Parameters | **BUILT 2026-07-22 as a Day-1 lab optional bonus** (the tracker), superseding the earlier "→ Day 2" note here. The CLI-override was the reason to defer to Day 2, but Day-1 *already* runs `quarto render … --to typst` from the terminal, so `-P species:…` is the same muscle — no reason to move it. Kept optional/MENTION-level (no spare core time). See `labs/quarto/index.qmd` § "Bonus — one report per species" + `penguins-by-species.qmd`; plan `2026-07-22-parameterized-report-exercise.md` _(built)_ |
-| Shortcodes | **demoted from DEMO** (panel): fold into a single ~3-min quick-win if time, else a link. `embed`, `include`, `video` _(new)_ |
+| Parameters | **BUILT 2026-07-22 as a Day-1 lab optional bonus**, superseding the earlier "→ Day 2" note here. The CLI-override was the reason to defer to Day 2, but Day-1 *already* runs `quarto render … --to typst` from the terminal, so `-P species:…` is the same muscle — no reason to move it. Kept optional/MENTION-level (no spare core time). See `labs/quarto/index.qmd` § "Bonus — one report per species" + `penguins-by-species.qmd` _(built)_ |
+| Shortcodes | **demoted from DEMO**: fold into a single ~3-min quick-win if time, else a link. `embed`, `include`, `video` _(new)_ |
 | Code presentation niceties | `code-annotation`, `code-line-numbers`, `code-fold` _(new)_ |
 | Lightbox | `lightbox: auto` for zoomable figures — easy modern win _(new)_ |
 | Word `docx` | **added** (coverage authoring) — name-check in "1 source → many formats"; collaborator/journal format (track changes) _(new)_ |
@@ -166,13 +165,13 @@ the tour, never the hands-on.
 | Websites | pages, navbar/sidebar **navigation**, listings | _(exists)_ richest base: `labs/quarto-site` |
 | Cross-referencing | across pages/chapters of a project | _(new)_ organizer-listed |
 | Freeze (& caching) | `_freeze/` reproducible builds; knitr `cache` vs quarto `freeze` | _(new)_ distinguish the two. **Lead with the motivation** (slow bioinformatics compute you don't want to re-run every render) then the crisp contrast: `cache` = within a doc's re-render / `freeze` = don't re-execute at project build, committed to `_freeze/`, the thing that lets **CI render without R**. Value only *shows* across 2 renders / a commit / a CI run — scenario it as "render, edit prose, re-render → code didn't re-run" (technique P2-1, beginner P1-4) |
-| Publishing | **hands-on = `quarto render` + `output-dir`**; `quarto publish` / CI (GitHub Actions) = **watch-me DEMO on a pre-provisioned repo** | _(new)_ ⚠️ **the panel's only P0** (beginner): a live `quarto publish gh-pages` for 40 people (GitHub auth on the laptop, repo, gh-pages, conf wifi) is a room-killer, and CI can't be run live anyway (push → wait for the green check). Foreground the CI *story*, don't make it a "Your turn". State the auth prerequisite in a pre-flight note (technique P1-3) |
+| Publishing | **hands-on = `quarto render` + `output-dir`**; `quarto publish` / CI (GitHub Actions) = **watch-me DEMO on a pre-provisioned repo** | _(new)_ ⚠️ **the review's only P0** (beginner): a live `quarto publish gh-pages` for 40 people (GitHub auth on the laptop, repo, gh-pages, conf wifi) is a room-killer, and CI can't be run live anyway (push → wait for the green check). Foreground the CI *story*, don't make it a "Your turn". State the auth prerequisite in a pre-flight note (technique follow-up) |
 
 ### DEMO _(confirmed 2026-07-07)_
 
 | Topic | Notes |
 |-------|-------|
-| `_brand.yml` | one brand → site + slides + **R-side plots/tables** (`theme_brand_ggplot2/gt/thematic()`); **→ runs in Part 1** (project config). _(exists & tested)_ **de-risked (build-gap 2026-07-07):** the R-side branding already **ships and works** in `tuto-quarto-typst-rr-2026` (book correction: `theme_brand_gt`/`theme_brand_ggplot2`/`brand_color_pluck` + palette-swap `_brand-{empire,jedi,mando}.yml`) — lift it, re-skin brand→RaukR. Still: pin `install.packages("brand.yml")` on setup (participants use `install.packages()`); it carries the **palette + base type**, not the whole brand system → frame as "same palette across site/slides/plots"; native format-brand and the R package are **two mechanisms reading one file** (technique P2-2). **Locked to Part 1** as a 4-min CORE-window beat (beat-lock `the tracker`) — it's load-bearing for the Part-1 "branded website" payoff, so it runs *with* project config, not in the Part-2 tail |
+| `_brand.yml` | one brand → site + slides + **R-side plots/tables** (`theme_brand_ggplot2/gt/thematic()`); **→ runs in Part 1** (project config). _(exists & tested)_ **de-risked (build-gap 2026-07-07):** the R-side branding already **ships and works** in `tuto-quarto-typst-rr-2026` (book correction: `theme_brand_gt`/`theme_brand_ggplot2`/`brand_color_pluck` + palette-swap `_brand-{empire,jedi,mando}.yml`) — lift it, re-skin brand→RaukR. Still: pin `install.packages("brand.yml")` on setup (participants use `install.packages()`); it carries the **palette + base type**, not the whole brand system → frame as "same palette across site/slides/plots"; native format-brand and the R package are **two mechanisms reading one file** (technique P2-2). **Locked to Part 1** as a 4-min CORE-window beat — it's load-bearing for the Part-1 "branded website" payoff, so it runs *with* project config, not in the Part-2 tail |
 | Dashboards | `format: dashboard` — a useful modern output. Budget for the layout model (rows/cols, `orientation`, `.card`, valueboxes, tabsets) — it's more than `format: dashboard` or it lands as an underwhelming single-plot page (technique P2-5) _(mine; Christophe: keep)_ |
 | Interactivity | **lead with an htmlwidget** (`plotly`/`leaflet` — pure R, reliable); mention **OJS** as "a non-R path" with a link; **Shinylive → MENTION only** (needs the extension + webR/wasm, the flakiest thing in the plan — no live build) (technique P1-4) _(new)_ |
 
@@ -183,7 +182,7 @@ the tour, never the hands-on.
 | `_metadata.yml` | directory metadata — **promoted to a shown slide** in the `_quarto.yml` CORE beat (load-bearing for the NBIS fold-in; coverage projects GAP 2). _(new)_ |
 | Profiles | `--profile`, `_quarto-<p>.yml` — one slide/link, don't demo _(new)_ |
 | Books | **demoted DEMO→MENTION** (coverage projects): ~90% shared machinery with Websites; teach only the **book-vs-website decision** (1 slide) + typst-2026 book as the resources link _(new)_ |
-| ~~Parameters~~ | **superseded** — landed on **Day 1** as an optional lab bonus 2026-07-22 (the tracker), not here. See the Day-1 table above _(resolved)_ |
+| ~~Parameters~~ | **superseded** — landed on **Day 1** as an optional lab bonus 2026-07-22, not here. See the Day-1 table above _(resolved)_ |
 | Shinylive | interactive-app teaser — link + a pre-built cached example at most, never a live build (technique P1-4) _(new)_ |
 | renv / reproducible env | **added** (coverage projects GAP 1) — one slide inside the Freeze CORE beat: `renv.lock` = the 2nd reproducibility leg (pin *what* runs) _(new)_ |
 | Website tools | **added** (coverage projects) — one bundled slide: drafts · search-is-free · redirects; social cards/404 → resources _(new)_ |
@@ -202,8 +201,7 @@ the tour, never the hands-on.
 
 ## Coverage-audit deltas (2026-07-07 — the doc-coverage pass)
 
-> From the four coverage agents (authoring / projects / advanced / examples — reports
-> `.claude/archive/reviews/review-2026-07-07-coverage-*.md`), which mapped the **full quarto.org
+> From the coverage audit (authoring / projects / advanced / examples), which mapped the **full quarto.org
 > taxonomy** (via `llms.txt`) against this triage. Verdict: the triage is well-shaped; these are
 > the **cheap, article-relevant absences** to fold in — none needs a dedicated slot. Applied on
 > top of the tables above.
@@ -328,12 +326,12 @@ list, not from the exercise.
 |------|-------|------|---------|
 | 5 | frame + project hook | My | "this is how your team publishes its project" |
 | 17 | concept + live demo | My + Our | Freeze (motivation-first: don't re-run slow compute) · **watch-me** `publish`/CI on a pre-provisioned repo |
-| 48 | hands-on | Your | **the payoff**: `quarto render` + `output-dir` on your project (publish = watch-me, auth pre-flighted). _(The parameterized-report step once floated for here landed on **Day 1** instead, 2026-07-22 — the tracker.)_ |
+| 48 | hands-on | Your | **the payoff**: `quarto render` + `output-dir` on your project (publish = watch-me, auth pre-flighted). _(The parameterized-report step once floated for here landed on **Day 1** instead, 2026-07-22.)_ |
 | 15 | recap + demos (now reliably happen, not just "if time") | My | Books / Dashboards / an htmlwidget — **after** the payoff, cut-able |
 
 ---
 
-## Day-2 CORE beat-lock — per-part, per-beat (the tracker, 2026-07-07)
+## Day-2 CORE beat-lock — per-part, per-beat (2026-07-07)
 
 Locks each Day-2 **CORE** beat to a part and splits the *concept + live-demo* minutes from the § budget
 above (Part 1 ~18 min, Part 2 ~15 min). Frame (5) + hands-on (30) + recap (5) are unchanged; DEMOs live
@@ -350,7 +348,7 @@ runs long, trim a *tour* beat, never the render payoff (rules 1–2).
 > per-beat **concept+demo ceilings (~18 / ~15) STAND**; what grows is the hands-on (30 → ~48) and the
 > post-payoff demo tail (now reliably happens, ~15 min, not "if time"). _(The **parameterized-report
 > exercise** once floated as a Day-2 Part-2 step landed instead on **Day 1** as an optional lab bonus,
-> 2026-07-22 — the tracker.)_
+> 2026-07-22.)_
 
 **Part 1 — build & structure (concept+demo ~18 min ceiling):**
 
@@ -382,7 +380,7 @@ Dashboards (static `format: dashboard`) · one htmlwidget (plotly/leaflet). Neve
 
 ---
 
-## Running-order rules (encoded from the 2026-07-07 panel)
+## Running-order rules (encoded from the 2026-07-07 review)
 
 Bake these into every part as it's authored:
 
@@ -411,8 +409,8 @@ Bake these into every part as it's authored:
 8. **"Why do I care" tie-ins for the new stuff.** Parameters → "re-run the report per
    sample/cohort"; Dashboards → "share results with a collaborator who won't open R"; website → "lab
    site / your team project" (beginner P2-3). *(Keep tie-ins generic — reusability, `project-context.md`.)*
-9. **Mode markers are built-in callouts at the two transitions only** (decided 2026-07-07, panel
-   `review-2026-07-07-convention-*`; full spec in `project-context.md` § Content patterns). No
+9. **Mode markers are built-in callouts at the two transitions only** (decided 2026-07-07;
+   full spec in `project-context.md` § Content patterns). No
    per-slide "My turn" badge, no bespoke CSS class. `## Learning Outcomes` open / "What you can do
    now" close; labs use `## … Challenge` + collapsible hint/solution. One vocabulary: the "Your
    turn" slide points at the lab's Challenge by the same name; countdown stays presenter-side.

@@ -5,7 +5,7 @@ Quarto materials:
 
 - **Content** — text, slides, exercises, pages, and figures authored here:
   [**CC BY 4.0**](https://creativecommons.org/licenses/by/4.0/).
-- **Code** — scripts, build configuration, the `.claude/` tooling, and any R package code:
+- **Code** — scripts, build configuration, authoring tooling, and any R package code:
   [**MIT**](#mit-license-code).
 
 Third-party components redistributed here keep their **original** licenses (e.g. reused Quarto

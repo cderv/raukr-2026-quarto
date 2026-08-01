@@ -2,7 +2,7 @@
 
 How we colour categorical/continuous ggplot graphics in this workshop so they stay readable for
 colour-blind participants (and in greyscale/print). This is the **raster-side counterpart** to the
-HTML contrast work (axe can't see inside a plot PNG — worklog 2026-07-22): the page's colours are
+HTML contrast work (axe can't see inside a plot PNG): the page's colours are
 checked by axe, but a plot's colours are on us. First relevant to the Day-1 `penguins-report.qmd`
 scatter (bill length vs depth, coloured by species). Researched 2026-07-22.
 

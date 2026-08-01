@@ -67,13 +67,12 @@ code span.ex, code span.bu { color: inherit; font-weight: inherit; }
 ```
 Don't add `.wa` — `arrow-light` *does* color it (`#5E5E5E`), so overriding it would be wrong.
 **Verify** with computed styles (Chromium): the command word must be body ink (`#003B4F`), not
-`rgb(0,224,224)`. Full story + MRE: `.claude/archive/issues/2026-07-21-quarto-dark-highlight-leak.md`;
-worklog 2026-07-21.
+`rgb(0,224,224)`. (Diagnosed 2026-07-21; reported upstream.)
 
 ## 5. The brand teals fail WCAG AA as text / light surfaces — override in `theme-html.scss`
 
 The palette's teals are tuned as fills/accents, so several **auto-applied text roles** land below AA's
-4.5:1 (fixed 2026-07-22, axe-driven; worklog 2026-07-22). Don't re-tune the palette (it would ripple
+4.5:1 (fixed 2026-07-22, axe-driven). Don't re-tune the palette (it would ripple
 everywhere) — override the specific roles in `theme-html.scss`:
 
 - **`$secondary` (teal-light `#A6CBCF`) is used as muted-text** — Bootstrap paints figure/table
@@ -96,5 +95,4 @@ everywhere) — override the specific roles in `theme-html.scss`:
   collapse toggles + FontAwesome callout icons (reported with **empty fg/bg** — axe can't resolve the
   callout header's semi-transparent bg; the icons are actually body-ink on a light tint). Also
   sub-AA-but-hard: the `arrow` highlight `.at` token on the grey code bg (4.43) — a shipped-theme gap,
-  see § 4 ("highlighting isn't brand-themed"). *(How to run axe headless in this sandbox → the
-  planned `workshop-reviewer-accessibility` agent; strand filed 2026-07-22.)*
+  see § 4 ("highlighting isn't brand-themed").

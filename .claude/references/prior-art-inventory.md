@@ -92,7 +92,7 @@ Same dataset builds through the whole arc:
 
 ## Build backlog — the only 4 true build-fresh items (build-gap audit 2026-07-07)
 
-> Refined from the full build-gap cartography (`.claude/archive/reviews/review-2026-07-07-build-gap.md`):
+> Refined from the full build-gap cartography (2026-07-07):
 > Day 1 is ~80% reuse, Day 2 ~60%. Only **four** items lack a usable prior asset; everything else
 > is REUSE or MODERNIZE. The dominant real cost is the **re-skin tax below**, not new authoring.
 
@@ -174,8 +174,7 @@ just illustrative `quarto --version` output, not a pin):
 
 ## NBIS harvest map — exact reuse targets (2026-07-07 reuse panel)
 
-> Line-level cartography from the three-reviewer reuse assessment of `NBISweden/raukr-2026`@main
-> (full reports: `.claude/archive/reviews/review-2026-07-07-nbis-{technique,pedagogue,beginner}.md`).
+> Line-level cartography from the reuse assessment of `NBISweden/raukr-2026`@main (2026-07-07).
 > Unanimous verdict: a reference tour rather than a hands-on workshop — harvest the lab scaffolds,
 > rebuild the deck spine.** Line numbers are into the NBIS repo files, not ours. `✅` = lift with
 > light edits · `🟠` = reuse after reframing · `🔴` = do not inherit.
@@ -259,7 +258,7 @@ reproducibility · Dashboards (`format: dashboard`, with a runnable `dashboard.q
 their engine-diagram idea) · projects · freeze (theirs thin at `site lab #443`; ours: cache-vs-freeze
 + "CI renders without R") · publishing (ours watch-me, not a live per-laptop `quarto publish`).
 
-**The one real gap — Parameters. → CLOSED 2026-07-22 (the tracker).** Was the single topic NBIS
+**The one real gap — Parameters. → CLOSED 2026-07-22.** Was the single topic NBIS
 teaches as a full hands-on that we'd neither taught nor mentioned. **Built as a Day-1 lab optional
 bonus** (`labs/quarto/index.qmd` § "Bonus — one report per species" + tested reference
 `penguins-by-species.qmd`). Placement resolved: Day-1 (single-doc feature + Christophe's lean), and
@@ -268,7 +267,6 @@ the old "params needs the CLI → Day 2" rationale was **moot** — Day-1 alread
 (no spare core time; the panel's P1 protected the Typst payoff). Note: the "iris→penguins re-skin
 1:1" of NBIS `labs/quarto:467-539` was generous — that walkthrough is thin (embeds an external
 report, never shows the filter chunk or the `-P` override), so it was a rebuild from fragments.
-Plan: `.claude/plans/2026-07-22-parameterized-report-exercise.md`.
 
 
 ### raukr-2025 back-check (2026-07-21)
@@ -280,7 +278,7 @@ cosmetic refresh (persona rename — 2025's consistent "the example persona" bec
 "Jane Doe"/`mlogan`, so that inconsistency is a an inconsistency); the only real content move is
 `labs/quarto/index.qmd` (+73 lines) which **added** a fleshed-out parameterized-report exercise + a
 new Troubleshooting callout and **dropped nothing**. So the comparison above already covers the full
-2025 topic set, and **the one gap on our side stays Parameters** (strand `the tracker`) — no new
+2025 topic set, and **the one gap on our side stays Parameters** — no new
 missing topic surfaced. Side result: Christophe's *own* 2025 deck (`cderv/raukr-2025-quarto`) is
 already much closer to our target spine (penguins / `|>` / Typst / `_brand.yml` / layout / Positron)
 than NBIS-2025's — but **both** 2025 decks lack a real Citations exercise, a runnable Dashboards demo,

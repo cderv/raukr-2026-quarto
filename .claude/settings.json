@@ -4,13 +4,6 @@
     "pr": "",
     "sessionUrl": false
   },
-  "permissions": {
-    "allow": [
-      "Write(.claude/archive/reviews/**)",
-      "Write(.claude/archive/plans/**)",
-      "Write(.claude/plans/**)"
-    ]
-  },
   "hooks": {
     "SessionStart": [
       {

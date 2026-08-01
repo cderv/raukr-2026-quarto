@@ -5,7 +5,7 @@
 project:
   type: website
   output-dir: _site
-  # Render only the site pages — repo meta-docs (README, .claude/** incl. the work log) aren't listed.
+  # Render only the site pages — repo meta-docs (README, .claude/**) aren't listed.
   render:
     - index.qmd
     - setup.qmd

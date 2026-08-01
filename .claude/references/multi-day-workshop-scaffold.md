@@ -151,9 +151,9 @@ Two traps worth pre-empting when you build day N (both in the rule, §7–§8):
 > `git archive`/zipball, **not** by `git clone` or the GitHub web UI. So once the repo is
 > public the full `.claude/` tree is visible to anyone who clones or browses; the shield
 > keeps the *participant download* clean, it does not hide anything. Tidy `.claude/` for a
-> cold reader before going public rather than relying on it. (RaukR: `setup.qmd` +
-> distribution decision in the worklog; a companion r-universe package was scoped and
-> **deferred** — see `.claude/plans/`/archive.)
+> cold reader before going public rather than relying on it — keep the durable craft (rules,
+> references, hooks, scripts) and drop the process log. (RaukR: a companion r-universe package
+> was scoped and **deferred**.)
 
 ## 5. One brand everywhere
 
@@ -177,17 +177,17 @@ small `theme-html.scss` override. Both live in `.claude/rules/brand.md § 4`.
 > Check: `LC_ALL=C Rscript -e 'print(brand.yml::read_brand_yml("_brand.yml")$color$palette)'` must be
 > non-`NULL`.
 
-## 6. The authoring loop & review panel
+## 6. The authoring loop
 
-**Plan → author → review → triage/fix → archive** (`.claude/CLAUDE.md`):
+**Plan → author → review → triage/fix.** Review each change through four distinct lenses
+before it ships, because they catch different failures:
 
-1. In-progress plan → `.claude/plans/<date>-<slug>.md`; archive when done.
-2. Author / change content.
-3. `/start-workshop` fans out the four `workshop-reviewer-*` agents in parallel
-   (technique / pedagogue / beginner / language); each writes one dated report.
-4. Fix P0/P1; log notable changes in `.claude/worklog.md`; mark each review's
-   disposition in the ledger.
-5. Reviews + plans are **immutable dated snapshots** — a re-review gets a new file.
+- **Technique** — false claims, invalid syntax, multi-format conflicts.
+- **Pedagogy** — altitude, dose, whether the struggle is preserved.
+- **Beginner** — what actually blocks a first-time participant.
+- **Language** — copy-editing plus register (see the prose note in `CLAUDE.md`).
+
+Triage findings by severity and fix the blockers before moving on.
 
 ## 7. Spin-up checklist
 
@@ -206,4 +206,4 @@ small `theme-html.scss` override. Both live in `.claude/rules/brand.md § 4`.
       **labs** with the duplication lens (rule §9): keep beneficial reps, cut only same
       task / same outcome / no new dimension.
 - [ ] Render everything, stage `_freeze/`, fit-check changed slides.
-- [ ] Run `/start-workshop`; triage; log.
+- [ ] Review through the four lenses (§6); triage; fix the blockers.

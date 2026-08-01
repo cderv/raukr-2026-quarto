@@ -5,10 +5,9 @@
 # day1-intro/sample-typst.qmd -- which downloads and caches the Albert Sans brand font, so the
 # in-session Typst render is fast and works offline.
 #
-# Design notes (validated by dry-run the tracker): shells out to the Quarto CLI on purpose -- it does
-# NOT depend on the {quarto} R package (not one of the content packages). The sibling _brand.yml in
-# day1-intro/ is auto-discovered (knitr localizes the working dir to the .qmd), so this runs correctly
-# from the exercises root.
+# Design notes: shells out to the Quarto CLI on purpose -- it does NOT depend on the {quarto} R
+# package (not one of the content packages). The sibling _brand.yml in day1-intro/ is auto-discovered
+# (knitr localizes the working dir to the .qmd), so this runs correctly from the exercises root.
 
 ok  <- function(x) cat(sprintf("  [ok]   %s\n", x))
 bad <- function(x) cat(sprintf("  [FAIL] %s\n", x))

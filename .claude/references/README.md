@@ -2,11 +2,10 @@
 
 Durable reference docs for the workshop: the concrete frame (event, audience, scope, prior art)
 plus environment notes and authoring recipes. This is the depth behind `CLAUDE.md`'s
-method scaffold -- contrast with `plans/` (in-progress work), `archive/reviews/` (dated review
-reports), `rules/` (path-scoped authoring gotchas), and `skills/` (packaged how-tos).
+method scaffold -- contrast with `rules/` (path-scoped authoring gotchas) and `skills/`
+(packaged how-tos).
 
-Unlike `archive/reviews/` and `archive/plans/`, which are **immutable, versioned snapshots**,
-these are **living docs** -- updated in place as understanding improves. Cite the current state,
+These are **living docs** -- updated in place as understanding improves. Cite the current state,
 not a witness to a past stage.
 
 ## The frame
@@ -39,6 +38,3 @@ not a witness to a past stage.
 - [colorblind-safe-palettes.md](colorblind-safe-palettes.md) -- CVD-safe ggplot2 palette
   best-practice + recipes (Okabe-Ito, viridis, Paul Tol); the raster-side counterpart to axe's HTML
   contrast checks.
-- [house-voice.md](house-voice.md) -- how Christophe writes (profile distilled from four prior
-  workshops) + the LLM-tell strip-list; the depth behind the `rules/prose-voice.md` path-scoped rule
-  and the register half of `agents/workshop-reviewer-language.md`.

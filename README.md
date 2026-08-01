@@ -52,11 +52,24 @@ slides/quarto/            Day 1 — Introduction to Quarto (revealjs deck)
 slides/quarto-projects/   Day 2 — Quarto projects (revealjs deck)
 labs/quarto/              Day 1 lab, with exercise files and demos
 labs/quarto-projects/     Day 2 lab, with a starter and a worked solution
+exercises/                Generated participant payload (see below) — never hand-edited
+tools/                    R scripts that generate and publish the exercises repo
+_quarto.yml · _brand.yml  Website config and branding
+justfile                  Build entry point
 ```
 
 The exercises run on the base-R `penguins` dataset, with solutions available in each lab.
-The rest of the tree is website config (`_quarto.yml`, `_brand.yml`), the build `justfile`,
-renv-pinned R dependencies, and the `.claude/` authoring workflow.
+
+**Participant materials live in a separate repo.** `labs/` is the source of truth here;
+`just exercises` regenerates the `exercises/` payload via `tools/sync-exercises.R`, and
+`just publish-exercises` mirrors it to
+[`cderv/raukr-2026-quarto-exercises`](https://github.com/cderv/raukr-2026-quarto-exercises) —
+the repo participants download with `usethis::use_course()`. Never hand-edit `exercises/`;
+a drift-guard CI enforces that it matches `labs/`.
+
+`.claude/` holds the authoring notes used while writing this material: path-scoped gotchas
+(`rules/`), reference docs on the Quarto techniques used here (`references/`), and two git
+hooks that keep `_freeze/` honest. Useful if you're adapting this workshop; ignorable otherwise.
 
 ## Building it
 

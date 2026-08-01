@@ -10,8 +10,7 @@
 # Why a manifest (not folder convention): Day 1 `labs/quarto/` is deliberately FLAT (roles by name),
 # Day 2 `labs/quarto-projects/` is SPLIT (starter/ + solution/). The manifest absorbs that asymmetry
 # and maps each source file to its exercises-repo home -- reshaping labs/ would break the lab prose,
-# the `_quarto.yml` render list, and the NBIS fold-in. (See .claude/plans/2026-07-22-exercise-delivery.md
-# and the manifest rationale in 2026-07-21-companion-package-scoping.md sec.4.)
+# the `_quarto.yml` render list, and the NBIS fold-in. (See .claude/rules/exercises.md.)
 #
 # Usage:
 #   Rscript tools/sync-exercises.R            # (re)generate exercises/

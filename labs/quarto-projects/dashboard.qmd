@@ -5,7 +5,7 @@ format: dashboard
 ---
 
 <!--
-Day-2 "Demos — if time" artifact (the tracker). A self-contained, STATIC `format: dashboard`
+Day-2 "Demos — if time" artifact. A self-contained, STATIC `format: dashboard`
 page: no Shiny/OJS backend, so it opens as plain HTML anywhere. The teaching point is the
 LAYOUT MODEL (rows, valueboxes, a card, a tabset), not plot color — the RaukR brand is
 monochrome teal and can't separate three species by hue (see the Day-1 payoff figure), so the

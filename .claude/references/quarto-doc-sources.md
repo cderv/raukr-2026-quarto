@@ -43,8 +43,7 @@ Resolve then query these library ids with the Context7 tools:
    `llms.txt`) — the source of truth; Context7 `quarto-dev/quarto-web` if it's connected.
 2. Need **CLI / engine behaviour, defaults, edge cases** → Context7 / DeepWiki on `quarto-cli`,
    or the repo's changelog/issues.
-3. **Reviewers** (esp. `workshop-reviewer-technique`) should verify version-sensitive claims
-   here before flagging or approving them. Target the Quarto floor set in `project-context.md`
+3. **Verify version-sensitive claims here** before asserting them in the material. Target the Quarto floor set in `project-context.md`
    (≥ 1.8; the school ships 1.9.x).
 
 > Christophe's own prior tutorials (see `project-context.md` § *Christophe's own prior
