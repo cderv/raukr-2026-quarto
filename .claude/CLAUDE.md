@@ -48,9 +48,12 @@ callouts ("Follow along" / "Your turn"), `## Learning Outcomes` open / "What you
 lab `code-fold` solution + `<details>` Session block — is in **`project-context.md` § Content
 patterns** (pedagogy rationale: `workshop-pacing.md`).
 
-**Prose register:** written prose *states*; the presenter's voice belongs in `::: notes`. On the page,
-prefer a short declarative spine, asides in parentheses rather than stacked em-dashes, and plain warm
-words over hype. Slide bodies stay terse (fragments are fine); `::: notes` is fully spoken and exempt.
+The **house voice** — write like Christophe (short declarative spine, asides in parentheses not
+em-dashes, plain warm words) and strip the LLM tells that keep re-introducing spoken-register clutter
+(stacked em-dash asides, voice-over tails, reassurance narration) — is the path-scoped rule
+**`.claude/rules/prose-voice.md`** (auto-surfaced on prose `.qmd`), with the full profile +
+before/after in **`.claude/references/house-voice.md`**. One principle: written prose *states*; the
+presenter's voice belongs in `::: notes` (fully spoken, exempt). Slide bodies stay terse.
 
 The **slide-craft gotchas** — fit-check every changed slide (`.claude/scripts/slide-shot.mjs`),
 `.center`-slide layout, `code-line-numbers`, `filename`, consecutive-code-block spacing, `echo: fenced`
@@ -70,7 +73,21 @@ editing `_brand.yml` or the theme SCSS).
   scope), `workshop-pacing` (pedagogy), `multi-day-workshop-scaffold` (skeleton + spin-up checklist
   for a new multi-day workshop), `sandbox-setup` (environment), `quarto-doc-sources`,
   `prior-art-inventory`, `typst-render-diagrams` (Typst/fletcher diagram recipe + deploy gotchas),
-  `colorblind-safe-palettes` (CVD-safe ggplot palette best-practice + recipes).
+  `colorblind-safe-palettes` (CVD-safe ggplot palette best-practice + recipes), `house-voice`
+  (how Christophe writes + the LLM-tell strip-list; paired with the `prose-voice` rule).
 - **Rules** → `.claude/rules/`: path-scoped gotchas for `justfile`, `exercises`, `slides`,
-  `multi-day-sequencing`, `brand`.
+  `multi-day-sequencing`, `brand`, plus `prose-voice`.
 - **Skills** → `.claude/skills/`: `quarto-authoring`, `quarto-alt-text`, `brand-yml`.
+- **Agents** → `.claude/agents/`: the four `workshop-reviewer-*` lenses (technique / pedagogue /
+  beginner / language) and `student-participant`, which actually walks a lab and reports friction.
+  **Commands:** `/start-workshop` (fan out the panel), `/run-labs` (drive the student agent).
+- **Upstream issues** → `.claude/upstream-issues/`: Quarto bug reports reduced from this material,
+  drafted here before filing against `quarto-dev/quarto-cli`.
+
+## Reviewing
+
+`/start-workshop` fans out the four reviewer lenses in parallel; `/run-labs` walks the labs as a
+novice participant. Both write dated reports to **`.claude/reviews/`, which is gitignored** — they
+are working notes, not repo content. The durable output of a cycle is the commit that fixes what it
+found, plus any lasting gotcha promoted into the matching `.claude/rules/` file. Never edit a past
+report; a same-day re-review gets a `bis`/`ter` file.

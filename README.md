@@ -67,8 +67,17 @@ The exercises run on the base-R `penguins` dataset, with solutions available in 
 the repo participants download with `usethis::use_course()`. Never hand-edit `exercises/`;
 a drift-guard CI enforces that it matches `labs/`.
 
-`.claude/` holds the authoring notes used while writing this material: path-scoped gotchas
-(`rules/`), reference docs on the Quarto techniques used here (`references/`), and two git
+## How this was built
+
+The teaching is Christophe's: what belongs in two afternoons, what an experienced-R audience can
+skip, which Quarto claims are safe to make on stage. It builds on his earlier workshops (see
+[Prior art](#prior-art)), and everything here is reviewed and rendered before it ships.
+
+Drafting and review were done with an LLM assistant, session by session — directed and checked,
+not left to run on its own. That working setup is kept in the open under `.claude/`, since it is
+part of how the material was made: path-scoped gotchas that bite when editing (`rules/`),
+reference notes on the Quarto techniques used here (`references/`), a four-lens review panel and
+an agent that walks the labs as a first-time participant (`agents/`, `commands/`), and two git
 hooks that keep `_freeze/` honest. Useful if you're adapting this workshop; ignorable otherwise.
 
 ## Building it

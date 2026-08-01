@@ -38,3 +38,6 @@ not a witness to a past stage.
 - [colorblind-safe-palettes.md](colorblind-safe-palettes.md) -- CVD-safe ggplot2 palette
   best-practice + recipes (Okabe-Ito, viridis, Paul Tol); the raster-side counterpart to axe's HTML
   contrast checks.
+- [house-voice.md](house-voice.md) -- how Christophe writes (profile distilled from four prior
+  workshops) + the LLM-tell strip-list; the depth behind the `rules/prose-voice.md` path-scoped
+  rule and the register half of `agents/workshop-reviewer-language.md`.

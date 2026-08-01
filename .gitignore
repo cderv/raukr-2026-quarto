@@ -47,6 +47,11 @@
 .braid.toml
 .braid-stragglers.jsonl
 
+# --- review-panel reports (/start-workshop, /run-labs): local working notes, not repo content.
+# The durable output of a review cycle is the commit that fixes what it found, plus any rule
+# promoted into .claude/rules/. Keeping the reports out stops the public repo accreting them. ---
+/.claude/reviews/
+
 # --- local visual-review tooling (Playwright screenshots; never committed) ---
 /.review-shots/
 /node_modules/
