@@ -8,7 +8,7 @@ argument-hint: "[optional lab: quarto | quarto-projects | all (default)]"
 Have a **student agent actually DO the labs** under real conditions and report the friction a real
 beginner hits. This is the executing complement to `/start-workshop` (which *reads* the material):
 
-**isolate → do the lab for real → log friction → diff vs solution → triage → archive.**
+**isolate → do the lab for real → log friction → diff vs solution → triage → fix.**
 
 `$ARGUMENTS` selects the lab: `quarto` (Day 1), `quarto-projects` (Day 2), or `all` (default).
 
@@ -39,8 +39,8 @@ beginner hits. This is the executing complement to `/start-workshop` (which *rea
 
 5. **Triage.** Read the friction reports + diffs and produce a consolidated triage: the real,
    audience-relevant frictions (separate genuine lab defects from harness artifacts), each with
-   `file:section`. Recommend lab-text fixes; **file concrete issues as braid strands** (`discovered-from`
-   the run). **Do not auto-fix** — wait for go-ahead unless told otherwise.
+   `file:section`. Recommend lab-text fixes, and list the concrete defects worth filing as issues.
+   **Do not auto-fix** — wait for go-ahead unless told otherwise.
 
 6. **Clean up.** `.claude/scripts/lab-run.sh clean <WORKTREE>` for each (removes the worktree +
    its render churn).

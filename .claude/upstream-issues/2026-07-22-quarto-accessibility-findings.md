@@ -121,7 +121,7 @@ Bootstrap correctly. Fixed somewhere in 1.10; drop this candidate. The `$link-co
 `theme-html.scss` is now belt-and-braces rather than a workaround (its comment says as much: "May be
 1.9-only; recheck on 1.10+").
 
-### B — `.at` token below AA: **REPRODUCES, but the diagnosis in this draft is wrong** → strand the tracker
+### B — `.at` token below AA: **REPRODUCES, but the diagnosis in this draft is wrong**
 
 The draft blamed a flat `#eceef1` code background. The real cause is narrower and cleaner:
 
@@ -145,7 +145,7 @@ code blocks sit inside the Tasks-callout lists — so it wants a local `theme-ht
 On 1.10.18 a doc with two collapsible callouts produces **no** `color-contrast` violation at all.
 The drafted claim is dead.
 
-**But the same run surfaced a real one** → strand **the tracker**: `aria-allowed-attr`, impact
+**But the same run surfaced a real one**: `aria-allowed-attr`, impact
 **critical**, one node per collapsible callout. Quarto emits the toggle as a generic `<div>` carrying
 `aria-expanded` with no `role` (and no `tabindex`):
 

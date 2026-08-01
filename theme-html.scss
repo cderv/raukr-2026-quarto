@@ -82,3 +82,22 @@ caption,
 .column-margin figcaption, .column-margin caption {
   color: $teal-dark;
 }
+
+// Block code inside a list item, paragraph or table cell: Quarto's INLINE-code rule
+// (`p/li/td code.sourceCode`) also matches the block `<code>`, so its semi-transparent background
+// stacks on top of `div.sourceCode`'s identical layer. The darker composite drops the default
+// `arrow` attribute token `.at` (#657422) to 4.43:1 -- below AA. Our labs put every code block
+// inside the Tasks callout lists, so this hit 25 nodes across the two lab pages. Restoring the
+// single layer takes `.at` back to 4.62:1. Reported upstream; remove when Quarto scopes that rule.
+li pre > code.sourceCode,
+p pre > code.sourceCode,
+td pre > code.sourceCode {
+  background-color: transparent;
+}
+
+// `<details><summary>` (the labs' Session-info block) renders at #7b838a on white = 3.84:1, below
+// AA. This is the shipped default, not ours -- reported upstream as quarto-cli#14383. Use the same
+// darkened teal the other AA fixes use until that lands.
+details > summary {
+  color: $teal-dark;
+}

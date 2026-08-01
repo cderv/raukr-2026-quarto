@@ -1,7 +1,7 @@
 # Topic store — RaukR 2026 Quarto session
 
 > A scope-control artifact: list every teachable topic and triage it by whether it belongs in
-> the live session. Keeps the two afternoon slots (2 × 1h each) from ballooning and gives cut
+> the live session. Keeps the two afternoon slots (150 min and 180 min) from ballooning and gives cut
 > topics a home (a resources page / appendix).
 >
 > **Status (2026-07-06):** the two blocks are now anchored on the **organizer-suggested topic
@@ -45,7 +45,7 @@
 
 **The angle:** *"You already write R (and have met R Markdown/Quarto). Here's what Quarto is as
 a system, and how to go from a single document to a whole project you can publish."* One beat
-per day; each day is **two ~1h parts with a gap**, so each part should stand somewhat on its own
+per day; each day is **two parts with a gap**, so each part should stand somewhat on its own
 and reach a hands-on payoff.
 
 - **Day 1 — Introduction to Quarto:** the single document — **take the time to do it well**:
@@ -60,7 +60,7 @@ Quarto-native features, layout, and the migration/upgrade story.
 
 ---
 
-## Block 1 — Introduction to Quarto (Mon 10 Aug · 13:30–14:30 + 15:30–16:30)
+## Block 1 — Introduction to Quarto (Mon 10 Aug · 13:30–15:00 + 15:30–16:30)
 
 **Organizer-suggested topics** — *Basics:* Markdown (text/code formatting, figures, tables) ·
 Layouts (pages, outset, inset, columns, panels) · Document types (reports, presentations) ·
@@ -78,13 +78,13 @@ hands-on = the two payoff exercises (a cited doc, then that doc as a branded Typ
 |-------|--------------|-------|
 | What Quarto *is* — **native `.qmd`** | one tool, many outputs, multi-engine; start native, don't route through Rmd | _(exists, reframe)_ the hook |
 | Markdown & content | figures, tables, cross-refs, **+ math (`$$…$$ {#eq-}` / `@eq-`), inline code `` `{r} ` ``, callouts** — taught as **deltas**, fast | _(exists)_ **not "just fast deltas"** — this bucket carries 5-6 deltas incl. the CORE-delta **math** (research audience); budget Part-1 accordingly (coverage authoring GAP 1/3/5, mis-triage) |
-| Layouts _(organizer-requested — the organizer's list)_ | `page-layout: article/full` · **margin content** (margin figures/captions/`.aside`) · **inset/outset** for wide figs/tables · **multi-column** `::: {.columns}` · **panels** (tabsets + `layout-ncol` figure/table panels) | _(new emphasis)_ high value for a figure/table audience. **Scope + the revealjs caveat below the table** ↓ |
+| Layouts _(organizer-requested list)_ | `page-layout: article/full` · **margin content** (margin figures/captions/`.aside`) · **inset/outset** for wide figs/tables · **multi-column** `::: {.columns}` · **panels** (tabsets + `layout-ncol` figure/table panels) | _(new emphasis)_ high value for a figure/table audience. **Scope + the revealjs caveat below the table** ↓ |
 | Document types | reports + presentations from one source | _(exists)_ reuse the "1 doc → many formats" demo |
 | Citations | `.bib`, `@ref`, CSL styles | _(exists, but ⚠️ thinnest asset)_ **CORE** — the audience writes research articles. Build a **real** exercise (not a `@ref` wave-through): ship a **pre-filled `.bib`**, a mainstream CSL, and **smoke-test the citation example in the *Typst* format specifically** — the CSL↔Typst-native bibliography handoff has edge cases (beginner P1-3, technique P1-5) |
 | Typst | modern PDF without LaTeX | _(new emphasis)_ the Part-2 payoff; my area. **Say it explicitly: Typst ships *inside* Quarto — no LaTeX, nothing to install** + a pre-flight version check vs the ≥1.8 floor (beginner P1-1). Technically safe to promise: bundled, deterministic (technique ✅) |
 
 > **Layouts — scope note** (2026-07-07; verified against the Quarto docs after the organizers
-> explicitly listed "pages, outset, inset, columns, panels"). the organizer's five terms map to *distinct*
+> explicitly listed "pages, outset, inset, columns, panels"). Those five terms map to *distinct*
 > features — teach them as **one "Layouts" beat**, but they are not one option:
 > - **pages** → `page-layout: article \| full` — the overall grid (sidebar / body / margin /
 >   gutters); [page-layout](https://quarto.org/docs/output-formats/page-layout.html). Distinct
@@ -172,7 +172,7 @@ the tour, never the hands-on.
 | Topic | Notes |
 |-------|-------|
 | `_brand.yml` | one brand → site + slides + **R-side plots/tables** (`theme_brand_ggplot2/gt/thematic()`); **→ runs in Part 1** (project config). _(exists & tested)_ **de-risked (build-gap 2026-07-07):** the R-side branding already **ships and works** in `tuto-quarto-typst-rr-2026` (book correction: `theme_brand_gt`/`theme_brand_ggplot2`/`brand_color_pluck` + palette-swap `_brand-{empire,jedi,mando}.yml`) — lift it, re-skin brand→RaukR. Still: pin `install.packages("brand.yml")` on setup (participants use `install.packages()`); it carries the **palette + base type**, not the whole brand system → frame as "same palette across site/slides/plots"; native format-brand and the R package are **two mechanisms reading one file** (technique P2-2). **Locked to Part 1** as a 4-min CORE-window beat — it's load-bearing for the Part-1 "branded website" payoff, so it runs *with* project config, not in the Part-2 tail |
-| Dashboards | `format: dashboard` — a useful modern output. Budget for the layout model (rows/cols, `orientation`, `.card`, valueboxes, tabsets) — it's more than `format: dashboard` or it lands as an underwhelming single-plot page (technique P2-5) _(mine; Christophe: keep)_ |
+| Dashboards | `format: dashboard` — a useful modern output. Budget for the layout model (rows/cols, `orientation`, `.card`, valueboxes, tabsets) — it's more than `format: dashboard` or it lands as an underwhelming single-plot page (technique P2-5) _(my addition)_ |
 | Interactivity | **lead with an htmlwidget** (`plotly`/`leaflet` — pure R, reliable); mention **OJS** as "a non-R path" with a link; **Shinylive → MENTION only** (needs the extension + webR/wasm, the flakiest thing in the plan — no live build) (technique P1-4) _(new)_ |
 
 ### MENTION _(revised 2026-07-07)_

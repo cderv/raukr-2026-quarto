@@ -5,8 +5,8 @@ plus environment notes and authoring recipes. This is the depth behind `CLAUDE.m
 method scaffold -- contrast with `rules/` (path-scoped authoring gotchas) and `skills/`
 (packaged how-tos).
 
-These are **living docs** -- updated in place as understanding improves. Cite the current state,
-not a witness to a past stage.
+These are **living docs** -- updated in place as understanding improves. Cite what they say now,
+not what an older pass said.
 
 ## The frame
 

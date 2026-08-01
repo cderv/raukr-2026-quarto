@@ -154,7 +154,7 @@ Searched `quarto-dev/quarto-cli`. No issue covers this leak. Nearest open ones:
 
 ---
 
-## Verified against Quarto 1.10.18 (2026-08-01) — STILL REPRODUCES → strand the tracker
+## Verified against Quarto 1.10.18 (2026-08-01) — STILL REPRODUCES
 
 Rendered the MRE above on 1.10.18. All three highlight stylesheets are still emitted, the dark one
 (`class="quarto-color-alternate"`) still loads after the light one, and the rules are unchanged:
@@ -167,4 +167,4 @@ Rendered the MRE above on 1.10.18. All three highlight stylesheets are still emi
 Chromium computed style on the word `quarto`, page in **light** mode:
 `color: rgb(0, 224, 224)`, `font-weight: 700`. Confirmed exactly as drafted.
 
-**Action:** post as a concrete reproduction on **#13450** (open). Tracked as **the tracker**.
+**Action:** post as a concrete reproduction on **#13450** (open). Tracked in the issue tracker.

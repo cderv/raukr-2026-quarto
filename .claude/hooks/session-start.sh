@@ -26,10 +26,14 @@ fi
 
 # --- Synchronous, cheap: git identity + locale + CA (R breaks without these) ---
 
-# Commit identity for sandbox commits (the base image sets none). Remote-only,
-# so local sessions keep the developer's own global git identity untouched.
-git config --local user.name "Christophe Dervieux" || true
-git config --local user.email "christophe.dervieux@gmail.com" || true
+# Commit identity for sandbox commits (the base image sets none). Remote-only, so local sessions
+# keep the developer's own global identity untouched. Only fills a GAP: if the environment already
+# supplies an identity (a fork, another contributor, CI), that one wins -- never stamp this repo's
+# author onto someone else's commits.
+if ! git config user.email >/dev/null 2>&1; then
+  git config --local user.name "${GIT_AUTHOR_NAME:-Christophe Dervieux}" || true
+  git config --local user.email "${GIT_AUTHOR_EMAIL:-christophe.dervieux@gmail.com}" || true
+fi
 
 # a) Locale: the image starts in C/POSIX, which breaks reading UTF-8 .qmd/.yml.
 if ! grep -q 'LANG=C.UTF-8' ~/.bashrc 2>/dev/null; then

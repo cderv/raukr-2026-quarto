@@ -31,9 +31,8 @@
   and how to *move over*, not "what is a code chunk".
 - **Language:** English.
 - **Presenter:** Christophe Dervieux (Posit — R Markdown / Quarto), Paris.
-- **Co-presenter:** none for the Quarto slots. another guest instructor is a sibling
-  guest instructor teaching adjacent topics (Positron, R Packages) — worth coordinating with
-  so we don't overlap, but she is not in the room co-teaching Quarto.
+- **Co-presenter:** none for the Quarto slots. Other guest instructors cover adjacent topics
+  (Positron, R packages) in sibling slots, so check for overlap; nobody co-teaches Quarto.
 - **Logistics for a teacher:** room B27 Lärosal, Campus Gotland. Daily rhythm 09:00–12:30 /
   13:30–17:00 with 30-min breaks; schedule granularity is 30-min blocks. Communication via
   **Slack**. TAs are present during sessions to support hands-on exercises. The school
@@ -44,8 +43,8 @@
 
 ## Technical stack
 
-- **Quarto floor:** **≥ 1.8** (the NBIS site sets `quarto-required: ">=1.8.25"` and is published
-  with 1.9.38). Target the current stable 1.9.x. Pin the floor in `_quarto.yml`.
+- **Quarto floor:** **≥ 1.9** — pinned as `quarto-required: ">=1.9.0"` in `_quarto.yml`, because the
+  Typst article layout used on Day 1 landed in 1.9. (The NBIS site sets a lower `>=1.8.25`.)
 - **R:** **≥ 4.5.0** (April 2025) — the floor is set by the running dataset: `penguins` ships in
   base `datasets` only since R 4.5 (see below). Target current release; the sandbox installs R via
   CRAN apt (see `sandbox-setup.md`). Require R ≥ 4.5 on the participant setup page.
@@ -233,8 +232,7 @@ Two afternoon blocks (2 × 1h each). Organizer-suggested scope is in § *Referen
 the CORE/DEMO/MENTION/STORE triage that acts on it lives in `topic-store.md`.
 
 - **Block 1 — Introduction to Quarto** (Mon 10 Aug). Baseline exists: the NBIS "Intro" deck is
-  actually titled *"Literate programming with Quarto"* (the prior instructor). It **builds clean on Quarto
-  1.9.38** (the `1.4.549` seen on a slide is just illustrative `quarto --version` screen output,
+  actually titled *"Literate programming with Quarto"*. It **builds clean on Quarto 1.9.38** (the `1.4.549` seen on a slide is just illustrative `quarto --version` screen output,
   not a real pin) — so it is *toolchain-current but content-dated*: RStudio- and R Markdown-first,
   `%>%` in examples, and silent on our CORE (citations, Typst-as-payoff, Positron, dashboards).
   Modernize the framing; don't inherit its spine (see `prior-art-inventory.md`).

@@ -8,7 +8,7 @@ argument-hint: "[optional scope tag, e.g. slides / block1 / setup]"
 Run one full review cycle on the current state of the material. This is the repeatable
 loop the whole repo is organized around:
 
-**author/change content → run the panel → triage → archive → repeat.**
+**author/change content → run the panel → triage → fix → repeat.**
 
 `$ARGUMENTS` (optional) is a **scope tag** — a slug describing what to focus on this cycle
 (e.g. `slides`, `block1`, `setup`). If empty, review the whole repo. Fold the tag into each
@@ -18,7 +18,8 @@ review filename as `review-YYYY-MM-DD[-tag]-[type].md`.
 
 1. **Establish the baseline.** Determine today's date, the current reference commit
    (`git rev-parse --short HEAD`), and the **delta since the last cycle**: read the most
-   recent `.claude/reviews/*.md` and list the fixes already applied since then, so
+   recent `.claude/reviews/*.md` if any (the directory is local-only, so a fresh clone has none)
+   and list the fixes already applied since then, so
    each reviewer is told what **NOT** to re-flag.
 
 2. **Fan out the panel — in parallel, one message, multiple Agent calls.** Launch these four

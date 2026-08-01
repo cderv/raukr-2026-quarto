@@ -4,6 +4,10 @@ paths:
   - index.qmd
   - labs/**/*.qmd
   - slides/**/*.qmd
+  # Repo-facing prose is public too, and drifts out of voice without this.
+  - README.md
+  - LICENSE.md
+  - .claude/**/*.md
 ---
 
 # Rule — house voice (write like Christophe; strip the machine tells)

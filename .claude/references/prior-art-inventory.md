@@ -175,8 +175,8 @@ just illustrative `quarto --version` output, not a pin):
 ## NBIS harvest map — exact reuse targets (2026-07-07 reuse panel)
 
 > Line-level cartography from the reuse assessment of `NBISweden/raukr-2026`@main (2026-07-07).
-> Unanimous verdict: a reference tour rather than a hands-on workshop — harvest the lab scaffolds,
-> rebuild the deck spine.** Line numbers are into the NBIS repo files, not ours. `✅` = lift with
+> Assessment: the prior material works as a reference tour rather than a hands-on workshop, so the
+> lab scaffolds are the reusable part and the deck spine is a rebuild. Line numbers are into the NBIS repo files, not ours. `✅` = lift with
 > light edits · `🟠` = reuse after reframing · `🔴` = do not inherit.
 
 **✅ Lift (all three reviewers agree — the reusable gold)**
@@ -200,7 +200,7 @@ just illustrative `quarto --version` output, not a pin):
 |--------------|------------------|-----|
 | Git/SSH-first opener of the website lab | `labs/quarto-site/index.qmd:22-42` | Step 1 = `git clone git@github.com…`, no SSH-key setup → silent fail for ~40 laptops. **Our Day-2 P0.** Invert: build local, publish = watch-me DEMO at the end. |
 | "Compared to Rmd" + output-formats table | `slides/quarto/index.qmd:835-879` | Out of date for 2026: Quarto column blank for `flexdashboard` (→ `format: dashboard` exists!), `rticles`, `pagedown`. + malformed `style=` (`:857`). Teaches "Quarto has no dashboard story." Replace w/ 2-min migration note. |
-| RMarkdown + chunk-options detour | `slides/quarto/index.qmd:477-523`; `labs/quarto/index.qmd:252-363` | The "what is a chunk" tour we STORE. `output: true...asis` conflation. |
+| RMarkdown + chunk-options detour | `slides/quarto/index.qmd:477-523`; `labs/quarto/index.qmd:252-363` | The "what is a chunk" tour we STORE. Also an `output: true...asis` conflation. |
 | YAML-as-a-language + from-zero Markdown | `slides/quarto/index.qmd:236-318`, `:398-475` | Config/markdown primer for people who write `_targets.R`. Cut; gloss in one line. |
 | Render-button-first framing | `slides/quarto/index.qmd:525-533`; `labs/quarto/index.qmd:437` | GUI-button-first; our audience drives from the CLI. |
 | General lab's reference-wall shape | `labs/quarto/index.qmd` (whole) | ~590 prose lines before first task; only 2 Tasks, no success criteria, no `code-fold` solutions. Take the Report/Troubleshooting islands, discard the walkthrough coque. |
@@ -249,7 +249,7 @@ terminal/Extending Quarto slides (folded into mentions).
 **We cover / they don't at all** (grep-confirmed absent in all 3 NBIS files): Citations
 (`.bib`/`@ref`/CSL, full beat + exercise — they only *name* "Citations") · Typst-as-payoff + branded
 Typst PDF (they have one link + one lab paragraph, "alternative to LaTeX") · Math/`@eq-` · Layouts
-(margin/outset/inset/columns/panels — the organizer's own requested list) · title block/Authors & Affiliations ·
+(margin/outset/inset/columns/panels — the organizer-requested list) · title block/Authors & Affiliations ·
 inline code `` `{r}` `` · Positron × Quarto · `_brand.yml` for *slides* + R-side `theme_brand_*` ·
 `_metadata.yml` · cross-refs across a project (within-vs-across + book caveat) · renv / two legs of
 reproducibility · Dashboards (`format: dashboard`, with a runnable `dashboard.qmd`).
@@ -274,8 +274,8 @@ report, never shows the filter chunk or the `-P` override), so it was a rebuild 
 Cloned NBIS **raukr-2025** and diffed its Quarto material against 2026 to confirm nothing was taught
 last year that quietly disappeared. **Verdict: NBIS-2026 ≈ 2025, a near-verbatim copy** — the deck is
 topic-identical (only `.jpg/.png`→`.webp` swaps + a year in a footer URL); `labs/quarto-site` is a
-cosmetic refresh (persona rename — 2025's consistent "the example persona" became 2026's mixed
-"Jane Doe"/`mlogan`, so that inconsistency is a an inconsistency); the only real content move is
+cosmetic refresh (the example persona is named inconsistently across the 2026 files, which the
+harvest map already flags); the only real content move is
 `labs/quarto/index.qmd` (+73 lines) which **added** a fleshed-out parameterized-report exercise + a
 new Troubleshooting callout and **dropped nothing**. So the comparison above already covers the full
 2025 topic set, and **the one gap on our side stays Parameters** — no new

@@ -1,7 +1,6 @@
 # RaukR 2026 Quarto -- brand
 # Reconstructs the RaukR house look (teal / Albert Sans / Fira Mono) at project level, so a file
 # renders right both here and if folded into the NBIS site. No logo block yet (assets are TODO).
-# Palette + type follow the RaukR house style (teal, Albert Sans, Fira Mono).
 # Keep this file ASCII-only: read_brand_yml() (R side, used in labs/quarto/sample-typst.qmd) fails
 # to parse non-ASCII here under a C/POSIX locale, silently emptying the palette (renders break).
 meta:
