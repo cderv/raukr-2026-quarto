@@ -150,3 +150,21 @@ OS               : Linux x86_64
 Code path confirmed unchanged on a shallow clone of `main` at commit `663c449` (2026-07-22), i.e.
 1.10-dev — so re-render the two MREs above on a released 1.10.x before filing to confirm it still
 reproduces.
+
+---
+
+## Prior-art check (2026-08-01) — ALREADY TRACKED, do not file
+
+Searched `quarto-dev/quarto-cli`. **This is already filed, by cderv:**
+
+- **#10418** "[Appendix] `number-sections: true` also number the custom appendix" (cderv, 2024-07-30)
+  — **closed as a duplicate of #9995**.
+- **#9995** "`number-sections: True` misbehaves slightly when appendix sections are present"
+  (GuillaumeDehaene, 2024-06-13) — **open**, labels `bug` / `html` / `triaged-to`,
+  **milestone v1.11**. Covers both halves of this draft: `.appendix` headings numbered as ordinary
+  body sections, *and* the resulting gap/skip in the body sequence.
+- Also open and adjacent: **#10419** "[Appendix] `appendix-style: plain` does not keep header
+  number" (cderv).
+
+**Action:** do not open a new issue. The only thing worth doing is adding the MRE below as a comment
+on #9995 if it sharpens the report; otherwise this draft is spent.

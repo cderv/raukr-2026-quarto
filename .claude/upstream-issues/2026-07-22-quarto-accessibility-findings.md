@@ -83,3 +83,26 @@ default exclusion or a note in the html-accessibility docs would help. Lowest pr
 
 **Environment:** Quarto 1.9.38; project `type: website`, `format: html` with `theme: [default,
 theme-html.scss]` + a project `_brand.yml`. Verified with axe-core 4.10.3.
+
+---
+
+## Prior-art check (2026-08-01)
+
+Searched `quarto-dev/quarto-cli`. cderv already filed an 11-issue a11y batch on 2026-04-17
+(**#14375-#14384**, all open) plus **#14710** (2026-07-20) from earlier axe passes. None of them is
+A, B or C below.
+
+- **A (brand `typography.link.color` does not reach `$link-color`)** — not filed. Note **#11254**
+  "Implement `brand.typography.link` for HTML formats" is **closed/implemented** (2024-10), so the
+  feature exists: either this is a regression or the palette-key form is the problem, which is
+  exactly the open question this draft flags. Resolve that before filing. Adjacent: **#12877**
+  (`brand.typography.link.background-color` applies to the mode toggle, open).
+- **B (`arrow` `.at` token sub-AA on the grey code-cell background)** — not filed. Closest are
+  cderv's **#14383** (appendix code `<details><summary>` fails color-contrast) and mcanouil's
+  **#14090** / **#14135** (code-block background colour) — related area, different element.
+- **C (axe false positives on callout icons/toggles)** — not filed. Nearest is **#14668**
+  "`axe: output: document`: report never updates after page state changes" (cwickham, open), which
+  is a different defect.
+
+**Action:** A, B and C are all still unreported. Verify each against 1.10.x before filing (Quarto
+1.10.18 is installable now, so the blocker noted above is gone).

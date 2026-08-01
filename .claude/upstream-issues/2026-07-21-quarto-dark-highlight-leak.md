@@ -134,3 +134,20 @@ quarto --version : 1.9.38
 pandoc (bundled) : 3.8.3
 OS               : Ubuntu 24.04.4 LTS (Linux x86_64)
 ```
+
+---
+
+## Prior-art check (2026-08-01) — NOT filed; file as a repro on #13450
+
+Searched `quarto-dev/quarto-cli`. No issue covers this leak. Nearest open ones:
+
+- **#13450** "any use of brand causes three stylesheets to be present in output" (gordonwoodhull,
+  2025-09-26, open) — the emission cause. Still the best home for this, as this draft already says.
+- **#14099** "Dark syntax highlighting themes don't override light theme's base `.sourceCode` text
+  color" (jdonaldson, open) — same family, different symptom.
+- **#14090** / **#14135** (mcanouil, open) — adaptive-theme and inline-code background colour.
+- **#14299** + PR **#14370** (open, unmerged as of 2026-08-01) — arrow-light *missing* dsBuiltIn /
+  dsExtension. Checked the thread: it does **not** discuss dark tokens leaking into light mode, so it
+  is the opposite direction and does not subsume this.
+
+**Action:** still worth reporting. Post as a concrete reproduction on #13450 rather than a new issue.
