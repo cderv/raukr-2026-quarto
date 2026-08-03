@@ -77,9 +77,9 @@ reference is in **`solutions/day2/`** if you get stuck or fall behind.
      html:
        theme: [cosmo, brand]
    ```
-   The `theme:` list is a stack of layers, and **later layers win**. `brand` is where your
-   `_brand.yml` lands (step 3), so it has to sit *after* `cosmo` to override it. With no
-   `_brand.yml` yet, `brand` contributes nothing and you get plain cosmo.
+   The `theme:` list is a stack of layers, and **later layers win**. `brand` is the layer that
+   reads your `_brand.yml` (you add that file in step 3), so it has to come *after* `cosmo` to
+   override it. Until then `brand` adds nothing and you get plain `cosmo`.
 2. **Render the whole folder**: from inside `day2-projects/`, run `quarto render` (or `quarto preview`).
    Because a `_quarto.yml` is now present, Quarto treats the folder as one project and builds **both**
    pages into `_site/`.
@@ -96,7 +96,7 @@ reference is in **`solutions/day2/`** if you get stuck or fall behind.
      base:
        family: Albert Sans
    ```
-   Re-render. The navbar and links pick up the palette automatically, and the type becomes
+   Re-render. The navbar and links pick up the palette automatically, and the text is set in
    Albert Sans.
 4. *(stretch)* Two things make the **within-page versus across-page** rule concrete. First, on
    `analysis.qmd`, drop `@tbl-means` into a sentence: it resolves to *Table 1* because the reference
@@ -109,9 +109,9 @@ reference is in **`solutions/day2/`** if you get stuck or fall behind.
 ::: {.callout-note appearance="simple" icon=false}
 ## {{< fa circle-check >}} You should see
 A `day2-projects/_site/` folder with **two linked pages** and a **top navbar** (Home · Analysis); after the
-brand step, the navbar and links turn **teal** and the type becomes Albert Sans (headings keep the
-body color, and the plot keeps its default species
-colors, since branding an R plot is a separate `brand.yml`-package step, out of scope today). If you did the stretch,
+brand step, the navbar and links turn **teal**, and the text is set in Albert Sans (headings keep
+the body color). The plot keeps its default species colors: branding an R plot is a separate
+`brand.yml`-package step, out of scope today. If you did the stretch,
 the analysis page also shows a live **Table 1** reference (from `@tbl-means`) and the home page carries
 a plain link into the analysis. Opening `_site/index.html` shows the home page; the navbar moves you to
 the analysis page, whose figure is:
@@ -226,7 +226,8 @@ quarto render     # 2nd build, no edits: the cell is skipped, timestamp unchange
 # then change the plot code on analysis.qmd and render again: only that page re-runs (time ticks)
 ```
 
-To publish, point a host at `_site/` (the watch-me demo: `quarto publish gh-pages`, with the login already sorted).
+To publish, point a host at `_site/` (the watch-me demo: `quarto publish gh-pages`, already signed
+in).
 ::::
 
 ## Troubleshooting
@@ -242,8 +243,8 @@ To publish, point a host at `_site/` (the watch-me demo: `quarto publish gh-page
   `href:` paths are relative to the source folder, **not** `_site/`.
 - **Brand not applied?** Two causes. The file must be in `day2-projects/` (the project root), and
   `brand` must come **last** in the `theme:` list: `theme: [cosmo, brand]` gives you the palette,
-  `theme: cosmo` on its own silently keeps cosmo's colors (the font still changes, so it looks like
-  the brand half-worked). Re-render after either fix. For
+  while `theme: cosmo` on its own keeps cosmo's colors and only the fonts change. Re-render after
+  either fix. For
   **plots**, the palette needs `library(brand.yml)` + `theme_brand_ggplot2()` (the file alone doesn't
   reach ggplot).
 - **A cross-reference shows `?@…`?** The cell label must start `fig-`/`tbl-`/`eq-` and be unique, and

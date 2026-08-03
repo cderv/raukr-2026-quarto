@@ -41,9 +41,9 @@ your PATH. So `quarto --version` can say 1.9+ while the button still runs an old
 quarto::quarto_version()   # install.packages("quarto") if needed
 ```
 
-If it's below 1.9, either update RStudio, or point it at your install by setting the
-`QUARTO_PATH` environment variable, or just render from the terminal (`quarto render <file>`),
-which we do throughout anyway.
+If it's below 1.9, update RStudio or point it at your install with the `QUARTO_PATH` environment
+variable. You can also render from the terminal (`quarto render <file>`), which we do throughout
+anyway.
 :::
 
 ::: {.callout-tip}
@@ -87,9 +87,8 @@ usethis::use_course("cderv/raukr-2026-quarto-exercises")
 
 **What it does:**
 
-1. picks a sensible spot (your **Desktop** by default) and prints where it is about to download the
-   files. To
-   put it elsewhere, cancel and re-run with a path, e.g.
+1. picks a sensible spot (your **Desktop** by default) and prints where it's about to download the
+   files. To download them elsewhere, cancel and re-run with a path, e.g.
    `use_course("cderv/raukr-2026-quarto-exercises", destdir = "~/projects")`.
 2. downloads a ZIP and **unpacks it for you** into a folder called `raukr-2026-quarto-exercises` (it
    prints the exact path). It then asks *"Shall we delete the ZIP file?"*. Keep it (say **No**): it's
@@ -110,7 +109,7 @@ usethis::use_course("cderv/raukr-2026-quarto-exercises")
 Each day folder is its own working directory with its own brand and assets, so your renders land
 **right next to your files** (there's no project folder above them to capture the output). One
 download covers both days. The reference answers are in `solutions/day1/` and `solutions/day2/` at the
-top folder. Try the challenge yourself first.
+top folder. Try the exercise yourself first.
 :::
 
 ::: {.callout-tip collapse="true"}
@@ -152,11 +151,11 @@ pak::pak(c(
 ```
 
 ::: {.callout-note collapse="true"}
-## There's an `renv.lock` in the folder — ignore it
-It pins the versions our CI renders against. It is **not** the participant path: the folder ships no
-`.Rprofile` and no `renv/activate.R`, so `renv::restore()` there is not an activated project and
-would install its 65 pinned packages straight into your everyday R library. Use the
-`install.packages()` line above.
+## There's an `renv.lock` in the folder (ignore it)
+It pins the package versions the course materials are tested against. You don't need it: the folder
+ships no `.Rprofile` and no `renv/activate.R`, so it is **not an activated renv project**, and
+`renv::restore()` there would install its 65 pinned packages straight into your everyday R library.
+Use the `install.packages()` line above.
 :::
 
 ## Check your setup

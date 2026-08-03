@@ -193,7 +193,7 @@ one unit with global numbering. A **website** keeps per-page numbering.
 
 ## One brand → the whole project: `_brand.yml` {#brand}
 
-You saw `_brand.yml` yesterday — it branded one **Typst PDF**. Drop that **same file at the project
+Yesterday, `_brand.yml` branded one **Typst PDF**. Drop that **same file at the project
 root** and Quarto **auto-discovers** it (no header line, no per-page config):
 
 :::: {.columns}
@@ -287,7 +287,7 @@ execute:
   freeze: auto        # re-execute a document only when its source changes
 ```
 
-That's `freeze: auto`, the sensible default to adopt: a page re-runs only when its own source changes. **`freeze: true`**
+That's `freeze: auto`, the setting to adopt: a page re-runs only when its own source changes. **`freeze: true`**
 hands you full control instead → next slide.
 
 ::: notes
@@ -331,7 +331,7 @@ but `true` keeps the trigger in your hands.
 - **Say:** "true = the build never runs R; *you* decide when a page recomputes, by rendering it directly."
 - **Do:** edit a cell on `analysis.qmd` → `quarto render analysis.qmd` → show `_freeze/` change + the
   timestamp tick; a full project render leaves it untouched.
-- **Contrast (lab uses `auto`):** `auto` = the build recomputes changed pages for you (the sensible default,
+- **Contrast (lab uses `auto`):** `auto` = the build recomputes changed pages for you (the setting you want,
   what the lab sets); `true` = deterministic CI + manual refresh (the CI mode).
 - **If asked:** a `production` render profile can set `freeze: false` to force a full re-execution.
 :::
@@ -400,16 +400,20 @@ project to `_site/` and open it: a publishable folder. (Publishing to Pages is t
 
 You can now:
 
-- structure `.qmd` into a **project** — `_quarto.yml`, `output-dir` (and `_metadata.yml` when a
-  subfolder needs its own defaults);
+- structure `.qmd` into a **project** — `_quarto.yml`, `output-dir`, `_metadata.yml`;
 - build a **branded website** with navigation, and know why cross-page refs differ from a book;
-- make builds **reproducible** (`freeze` + `renv.lock`) and produce the **publishable folder** a
-  host or CI ships.
+- make builds **reproducible** (`freeze` + `renv.lock`) and produce a **publishable `_site/`** for
+  a host or CI.
 
 . . .
 
 **You've built the two axes:** one document to a branded PDF (Day 1), one folder to a published site
 (Day 2). Everything your **team project** needs.
+
+::: notes
+- **If asked about `_metadata.yml`:** they saw it on the concept slide but today's lab project is
+  flat, so there was no folder to scope it to. Point them at the slide, not the lab.
+:::
 
 ## Demos (if time) {#demos}
 

@@ -37,7 +37,7 @@ source(file.path(Sys.getenv("QUARTO_PROJECT_DIR"),
 After this session you will be able to:
 
 - author a Quarto document natively (`.qmd`), with figures, tables, cross-references, and math;
-- lay a document out — the article grid, and put content in the margin;
+- lay a document out — the article grid, and content in the margin;
 - make it **accessible** — alt text, color-blind-safe colors, a built-in contrast check;
 - turn it into a **cited, branded Typst PDF** — no LaTeX.
 
@@ -340,7 +340,7 @@ A cell's `#| column: margin` drops its output (figure, caption, and all) into th
 ```
 
 *In the lab you'll use **margin** layout, the one that does the most for an article. The rest are
-yours to explore in the Quarto docs below.*
+in the Quarto docs below.*
 
 **Learn more:** [Article Layout](https://quarto.org/docs/authoring/article-layout.html) ·
 [Margin content](https://quarto.org/docs/authoring/article-layout.html#margin-content)
@@ -566,7 +566,7 @@ The reference list renders at the end automatically, or wherever you drop this d
 :::
 ```
 
-**CSL** = *Citation Style Language*: swap the `csl:` file, restyle every citation at once.
+**CSL** = *Citation Style Language*. Swap the `csl:` file to restyle every citation.
 
 ::: notes
 - **Do:** point the header at `references.bib` + a `csl:`, drop `[@gorman2014]` into a sentence,
