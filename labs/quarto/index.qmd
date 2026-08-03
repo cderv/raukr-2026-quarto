@@ -180,7 +180,7 @@ that.
 ::: {.column-margin}
 {{< fa book-open >}} **Quarto docs**
 
-[Citations](https://quarto.org/docs/authoring/citations.html) · [Typst](https://quarto.org/docs/output-formats/typst.html)
+[Citations](https://quarto.org/docs/authoring/citations.html) · [Typst](https://quarto.org/docs/output-formats/typst.html) · [Brand](https://quarto.org/docs/authoring/brand.html)
 :::
 
 1. Point the document header at the shared bibliography and citation style:

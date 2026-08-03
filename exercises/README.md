@@ -33,7 +33,7 @@ land next to your files — there is no project above them to capture the output
 ## Check your setup (do this once, before Day 1)
 
 From this top folder, run the setup check. It verifies R, Quarto, the packages, and the data, then
-renders the Day-1 Typst sample — which caches the brand fonts so the in-session render does not pause to download them:
+renders the Day-1 Typst sample. That caches the brand fonts, so the in-session render has nothing to download:
 
 ```r
 source("00-check-setup.R")
@@ -53,7 +53,7 @@ install.packages(c(
 |---|---|
 | `day1-intro/` | Day-1 working folder: the Part-2 `starter.qmd`, the branded Typst payoff `sample-typst.qmd`, the parameterized-report bonus, plus `references.bib` / `apa.csl` / `_brand.yml`. |
 | `day2-projects/` | Day-2 working folder: two pages that render on their own but are **not yet a project** — turning them into one is the exercise. Ships **without** `_quarto.yml`. |
-| `solutions/` | Reference solutions for both days. Try the challenge first — they're most useful once you've attempted it. |
+| `solutions/` | Reference solutions for both days. Try the exercise yourself first. |
 | `00-check-setup.R` | The one-shot setup check + Typst font pre-warm. |
 
 ## Reset (no Git needed)

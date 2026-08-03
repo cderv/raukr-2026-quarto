@@ -167,11 +167,19 @@ keep the existing file as the reference solution.
 4. **Slides** — retime the three "~45 min" callouts, put the trigger questions in `::: notes`, add
    the layer-order beat to the brand slide, fix the LO wording, drop the dashboard from
    "Demos (if time)".
-5. **Re-render** the executable `.qmd` and stage `_freeze/` (commit hook blocks a stale freeze).
-6. **`just exercises`** to regenerate the payload, then commit `exercises/`.
-7. **CI** — add render steps for the new starter and solution pages in
+5. **Margin notes** — each Tasks callout carries a `::: {.column-margin}` "Quarto docs" pointer
+   (this is why the labs set `toc-location: left`). New steps need new pointers, and they are easy
+   to forget because they sit outside the task text: **listings** →
+   `https://quarto.org/docs/websites/website-listings.html`, **`_metadata.yml`** →
+   `https://quarto.org/docs/projects/quarto-projects.html`, **cache vs freeze** →
+   `https://quarto.org/docs/projects/code-execution.html`, **dashboards** →
+   `https://quarto.org/docs/dashboards/` (all verified live 2026-08-03). Keep them to two or three
+   links so the margin stays scannable.
+6. **Re-render** the executable `.qmd` and stage `_freeze/` (commit hook blocks a stale freeze).
+7. **`just exercises`** to regenerate the payload, then commit `exercises/`.
+8. **CI** — add render steps for the new starter and solution pages in
    `tools/exercises-scaffold/.github/workflows/render-check.yml`.
-8. **Watch the payload size** — the exercises CI has a 2 MB zip budget. New pages are text, so the
+9. **Watch the payload size** — the exercises CI has a 2 MB zip budget. New pages are text, so the
    headroom is fine, but do not add images.
 
 ## Risks
