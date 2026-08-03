@@ -52,6 +52,11 @@ cderv/raukr-2026-quarto-exercises @ main   ← what use_course() + the /main/ do
    as one commit and pushes (temp-clone → copy → commit → push; ships **only** `exercises/` content, so
    `.claude/` and site scaffolding never leak). The delivery repo's `render-check.yml` CI then renders
    both solutions + the Typst PDF and asserts the structural invariants below.
+   **Caveat:** it commits *on top* of existing history, it does not replace it. That is fine for
+   content updates, but it cannot remove something already committed — on 2026-08-03 the delivery
+   repo's `main` had to be rebuilt as a single **orphan** commit to drop two internal references from
+   its first two commits. If you ever need to purge rather than update, rebuild the orphan commit and
+   force-push; don't reach for `publish-exercises`.
 
 ## Structural invariants — do not break these (the delivery rests on them)
 
@@ -76,9 +81,9 @@ cderv/raukr-2026-quarto-exercises @ main   ← what use_course() + the /main/ do
   `knitr`, `rmarkdown`) — `ggokabeito` (the CVD-safe species scale) is easy to miss. Add-a-package =
   edit `tools/exercises-scaffold/DESCRIPTION` + regenerate the scaffold `renv.lock`, then re-sync.
 - **Download buttons** (three, in `labs/quarto/index.qmd`) point at
-  `raw.githubusercontent.com/cderv/raukr-2026-quarto-exercises/main/…` — they **404 until the repo is
-  Public**. `use_course()` also needs Public (no-account download). The files ship locally in the
-  download too, so a private repo blocks only the buttons, not the workshop.
+  `raw.githubusercontent.com/cderv/raukr-2026-quarto-exercises/main/…`. Both repos went **Public on
+  2026-08-03**, so the buttons and `use_course()` now work; they 404 again if either is ever flipped
+  back to Private.
 - **Commits to the delivery repo carry the instructor's git identity** (Christophe), not Claude — set
   `git config user.email/name` before publishing; `publish-exercises.R` inherits it.
 

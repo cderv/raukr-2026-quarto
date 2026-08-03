@@ -43,8 +43,7 @@ Quarto/CSS-native side uses the hyphen as written; only the R accessor renames `
 The R `brand.yml` package **rejects** a `link:` entry under `color:` (the roles are
 primary / secondary / foreground / background / …). Put the link color under `typography.link.color`
 instead, keeping the palette entry (e.g. `link-teal`) for reference. Check the link color clears
-**WCAG AA** — the RaukR `link-teal` is `#33666B` (see § 5 for why that exact value, and why the
-`typography.link.color` alone isn't enough under Quarto 1.9.x).
+**WCAG AA** — the RaukR `link-teal` is `#33666B` (see § 5 for why that exact value).
 
 ## 4. Using `brand` ships a dark highlight sheet that leaks into light mode — and code highlighting is NOT brand-themed
 
@@ -83,16 +82,45 @@ everywhere) — override the specific roles in `theme-html.scss`:
 - **`$primary` (teal `#4C979F`) as the navbar background** under near-white text → **3.33:1**. Darken
   *only the bar* (`.navbar { background-color: … }`), not the palette.
 - One derived shade covers both: `$teal-dark: darken($primary, 15%)` = **`#33666B`** (~6.4:1 on white).
-- **Links don't get the brand link colour under Quarto 1.9.x.** `_brand.yml`'s `typography.link.color`
-  does **not** reach Bootstrap's `$link-color` — the compiled `--bs-link-color` stays the Quarto
-  default `#2a76dd` (**4.43:1**, fails). Set `$link-color` explicitly in a `theme-html.scss`
-  `scss:defaults` block. And pick the value against the **grey code background** (`#f1f3f5`/`#eceef1`),
+- **Links didn't get the brand link colour under Quarto 1.9.x — FIXED in 1.10.** `typography.link.color`
+  now reaches Bootstrap's `$link-color` for both the palette-key and literal-hex forms (verified
+  2026-08-03 on 1.10.18: compiled `--bs-link-color: #33666B`, computed `rgb(51,102,107)`; on 1.9.38 it
+  stayed the Quarto default `#2a76dd`, 4.43:1, failing). Our explicit `$link-color` in `theme-html.scss`
+  is now belt-and-braces rather than a workaround — keep it while the floor allows 1.9, and still pick
+  the value against the **grey code background** (`#f1f3f5`/`#eceef1`),
   not just white — an inline-`code` link on that bg drops ~0.5:1, so `#3C7C83` (4.8 on white) fails on
   code (4.28) while **`#33666B`** clears it everywhere (~5.5:1). Keep the `_brand.yml` `link-teal`
   palette value in sync (also `#33666B`) so a future Quarto that *does* wire the brand link colour
   won't regress. (Recheck the whole gap on Quarto 1.10+.)
-- **Verify with axe-core**, not by eye. Known residual axe *false* positives to ignore: callout
-  collapse toggles + FontAwesome callout icons (reported with **empty fg/bg** — axe can't resolve the
-  callout header's semi-transparent bg; the icons are actually body-ink on a light tint). Also
-  sub-AA-but-hard: the `arrow` highlight `.at` token on the grey code bg (4.43) — a shipped-theme gap,
-  see § 4 ("highlighting isn't brand-themed").
+- **Verify with axe-core**, not by eye — and re-check the residuals rather than inheriting them. On
+  1.9.38 the callout toggles and FontAwesome icons were dismissed as *false* colour-contrast positives
+  (empty fg/bg, axe unable to resolve the header's semi-transparent background). **On 1.10.18 that is
+  wrong twice over:** there is no `color-contrast` violation on callouts at all, and both elements
+  instead raise *real* ARIA violations — `aria-allowed-attr` (critical) on the collapse toggle, a
+  role-less `<div>` carrying `aria-expanded`, and `aria-prohibited-attr` (serious) on the `{{< fa >}}`
+  icons, a role-less `<i>` carrying `aria-label`. Neither is CSS-fixable; both are tracked upstream.
+  The `.at` token gap is now § 6 and is fixed.
+
+## 6. Two AA gaps that come from Quarto's own defaults, fixed in `theme-html.scss`
+
+Both found 2026-08-03 by running axe-core over the rendered site; both are shipped-default behaviour,
+not ours, and both are reported upstream. Verified fix: `color-contrast` violations on the two lab
+pages went **12 → 0** and **13 → 0**.
+
+- **Block code inside a list item is double-shaded.** Quarto's *inline*-code rule
+  `p code.sourceCode, li code.sourceCode, td code.sourceCode { background-color: rgba(233,236,239,.65) }`
+  also matches the **block** `<code>` when the block sits in a list item. It then stacks on
+  `div.sourceCode`'s identical layer, and the darker composite drops the default `arrow` attribute
+  token `.at` (`#657422`) from **4.62:1 to 4.44:1**. Our labs put every code block inside the
+  Tasks-callout lists, so this hit 25 nodes. Fix: reset `li/p/td pre > code.sourceCode` to
+  `background-color: transparent`.
+  *Note when reporting it:* axe says **4.43** with `bgColor: #eceef1`, and `#eceef1` **is** that
+  double-composited background rounded to 8-bit — so don't frame the report as "it's 4.44, not 4.43";
+  the number was always right, only the mechanism was misdiagnosed.
+- **`<details><summary>` is sub-AA** at `#7b838a` on white = **3.84:1** (the labs' Session block).
+  Upstream `quarto-dev/quarto-cli#14383`. Fix: `details > summary { color: $teal-dark; }`.
+
+Measuring contrast correctly: **composite the whole ancestor background stack over white before
+computing the ratio.** Quarto's code background is semi-transparent (`rgba(…,.65)`), so reading the
+raw `background-color` gives a wrong (too harsh) number — that mistake produced a false "fails AA" on
+stock defaults during this pass before it was caught.

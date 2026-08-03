@@ -37,8 +37,33 @@ lives in the other references.
   path-scoped rule **`.claude/rules/exercises.md`** (auto-surfaced on `labs/**`, `exercises/**`, the
   sync/publish scripts, `setup.qmd`, `_quarto.yml`).
 
-**No secrets in this public repo** — `.gitignore` covers the issue tracker's local config (its doc id
-is a bearer token), private links, and third-party PII. Keep it that way.
+## Publishing — this repo is public (since 2026-08-03)
+
+Both repos are live: this one, and `cderv/raukr-2026-quarto-exercises`, which participants download
+with `usethis::use_course()`. Everything committed here is world-readable the moment it lands.
+
+**Write about roles and artifacts, never about people.** This is the rule that matters, and it is a
+*write-time* decision — there is no way to grep for it later. Say "the organizer-suggested list", not
+"Roy's list"; "the prior deck has no citations exercise", not "<name>'s deck is content-dated". Never
+commit an assessment of someone else's work under their name, a quote from private correspondence,
+or anything tracking a named person's activity. The 2026-08-03 cleanup had to strip exactly this from
+the planning references, and it cost nothing to lose: the de-personalized notes kept every actionable
+line (what to reuse, what is missing, `file:line`) and shed only the attribution and the judgement,
+which were never useful for authoring anyway. Situated material that genuinely needs the candour
+belongs in a private notes repo, not here.
+
+**No secrets** — `.gitignore` covers the issue tracker's local config (its doc id is a bearer token),
+`.claude/reviews/`, private links, and third-party PII. **Never commit issue-tracker IDs** (`br-…`)
+in tracked files; they mean nothing to a reader and leak the tracker's shape.
+
+**Before any visibility change, enumerate every ref** — `git ls-remote origin` — and audit each one,
+not just the branch you changed. Rewriting a branch is not rewriting a repository: on 2026-08-03,
+`main` was clean while 18 stale `claude/*` branches were publishing the full unpurged history, and
+the exercises repo nearly went public with a leaking branch still on it.
+
+**History was rewritten twice on 2026-08-03** (trailers + authorship, then content). Any clone made
+before that has an unrelated history: `git fetch origin && git reset --hard origin/main`. Never
+`git pull` — it will refuse to merge, and that refusal is the safety net.
 
 ## Authoring
 

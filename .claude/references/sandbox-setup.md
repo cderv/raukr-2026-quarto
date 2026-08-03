@@ -186,3 +186,43 @@ quarto --version && quarto typst --version    # Typst is bundled with Quarto
 > this sandbox** — if you edit it, its freeze goes stale and the commit hook blocks. Likely a
 > `gt`/`brand.yml` version mismatch vs the machine that produced the freeze; investigate on a real
 > environment before touching that file's executable content.
+
+## Toolchain — verified working end to end (2026-08-03)
+
+The full stack installs and runs in this sandbox; earlier sessions worked blind because it didn't.
+Running `.claude/hooks/session-start.sh` with `CLAUDE_CODE_REMOTE=true` set installs everything:
+
+| tool | version |
+|---|---|
+| R | 4.6.1 |
+| Quarto | 1.10.18 (Cloudsmith `.deb` path; GitHub releases are proxy-blocked) |
+| just | 1.57.0 (`cargo install`) |
+
+**Gotcha — `renv::restore()` fails on a cold cache** with a spurious circular error:
+`failed to install "bitops", "gt"` reported as *"bitops: dependency failed (gt)"* and
+*"gt: dependency failed (bitops)"*. They do not depend on each other. Fix:
+
+```sh
+Rscript -e 'install.packages(c("bitops","gt"))'   # then re-run
+Rscript -e 'renv::restore(prompt = FALSE)'        # -> "No issues found"
+```
+
+**Rendering a single `.qmd` needs the project library on PATH** if you render outside the project
+root: `export R_LIBS_USER=<repo>/renv/library/linux-ubuntu-noble/R-4.6/x86_64-pc-linux-gnu`.
+Without it Quarto reports "The knitr package is not available" even though the project is restored.
+
+### Verifying rendered output (accessibility, contrast, computed styles)
+
+Playwright is the global install at `/opt/node22/lib/node_modules/playwright/index.mjs`; Chromium is
+preinstalled (`PLAYWRIGHT_BROWSERS_PATH=/opt/pw-browsers`) — never run `playwright install`.
+
+- **axe-core ships inside Quarto** at `/opt/quarto/share/formats/html/axe/axe.min.js`. Inject it with
+  `page.addScriptTag({ path: … })` and call `window.axe.run(document, { resultTypes: ['violations'] })`.
+  You do **not** need `axe:` in the document front matter to scan a rendered page.
+- **`axe: {output: json}` writes to the browser console, not to a file** — capture it with a
+  Playwright `console` listener.
+- **Serve over HTTP; `file://` breaks it.** The axe module and `quarto.js` are ES modules and get
+  CORS-blocked on `file://`. `npx http-server -p <port> -s _site` works.
+- **Composite the background stack over white before computing a contrast ratio.** Quarto's code
+  background is `rgba(…, .65)`; reading the raw `background-color` gives a too-harsh number and
+  invents failures that aren't there.
