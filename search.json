@@ -1,0 +1,464 @@
+[
+  {
+    "objectID": "labs/quarto-projects/index.html",
+    "href": "labs/quarto-projects/index.html",
+    "title": "Quarto projects — Lab",
+    "section": "",
+    "text": "# Renders the target figure shown further down this page — you'll do the actual\n# work inside your day2-projects/ folder, not here. This cell is not step zero.\nlibrary(dplyr)\nlibrary(ggplot2)\ndata(penguins)\npenguins &lt;- penguins |&gt; filter(!is.na(bill_len), !is.na(bill_dep), !is.na(body_mass))\nStarting point: a shipped set of pages. You don’t start from a blank folder. Open your day2-projects/ folder from the exercises download (double-click day2-projects.Rproj, see the Setup page). It holds two content pages that already render on their own but are not yet a project:\nRender one page to confirm it works: quarto render analysis.qmd gives a normal HTML page (analysis.html right next to its source), since the folder isn’t a project yet. Your job across the two challenges is to make it a site, then ship it. Everything you render lands inside day2-projects/. There’s no project folder above it, so nothing redirects your output. A finished reference is in solutions/day2/ if you get stuck or fall behind."
+  },
+  {
+    "objectID": "labs/quarto-projects/index.html#website-challenge",
+    "href": "labs/quarto-projects/index.html#website-challenge",
+    "title": "Quarto projects — Lab",
+    "section": "1 Website Challenge",
+    "text": "1 Website Challenge\n\nGoal: turn the day2-projects/ pages into a navigable, branded website that renders locally to a _site/ folder.\n\n\n\n\n\n\n\nNote Tasks\n\n\n\n\n\nIn day2-projects/, create a _quarto.yml that declares the project and a website with navigation:\nproject:\n  type: website\n  output-dir: _site\nwebsite:\n  title: \"Penguin Lab\"\n  navbar:\n    left:\n      - href: index.qmd\n        text: Home\n      - href: analysis.qmd\n        text: Analysis\nformat:\n  html:\n    theme: cosmo\nRender the whole folder: from inside day2-projects/, run quarto render (or quarto preview). Because a _quarto.yml is now present, Quarto treats the folder as one project and builds both pages into _site/.\nBrand it. Add a day2-projects/_brand.yml so the site shares one palette:\ncolor:\n  palette:\n    teal: \"#4C979F\"\n  primary: teal\ntypography:\n  fonts:\n    - family: Albert Sans\n      source: google\n  base:\n    family: Albert Sans\nRe-render. The navbar and headings pick up the palette automatically.\n(stretch) Two things make the within-page versus across-page rule concrete. First, on analysis.qmd, drop @tbl-means into a sentence: it resolves to Table 1 because the reference and its table share one page (exactly as yesterday). Second, notice index.qmd already links to the analysis with a plain Markdown link, [analysis](analysis.qmd). That’s deliberate, because across pages there is no auto-numbering (a book feature, not a website one), so a plain link is how you connect website pages.\n\n\n\n\n Quarto docs\nWebsites · Brand\n\n\n\n\n\n\nNote You should see\n\n\n\nA day2-projects/_site/ folder with two linked pages and a top navbar (Home · Analysis); after the brand step, the navbar and headings turn teal with Albert Sans (the plot keeps its default species colors, since branding an R plot is a separate brand.yml-package step, out of scope today). If you did the stretch, the analysis page also shows a live Table 1 reference (from @tbl-means) and the home page carries a plain link into the analysis. Opening _site/index.html shows the home page; the navbar moves you to the analysis page, whose figure is:\n\n\n\n\n\n\n\n\n\n\nFigure 1: The analysis page’s figure: body mass by species.\n\n\n\n\n\n\n\n\n\n\n\nTipHint\n\n\n\n\n\n\nThe _quarto.yml must sit inside day2-projects/: Quarto uses the nearest _quarto.yml as the project root, so this makes day2-projects/ its own project. There’s no _quarto.yml in any folder above it, so nothing else can claim your pages.\nnavbar: items are href + text. sidebar: { contents: auto } builds a menu from the folder’s files instead.\n_brand.yml is auto-discovered at the project root: no header line needed, just re-render.\nquarto render with no file argument builds the whole project; quarto render index.qmd builds one page.\n\n\n\n\nThe solutions/day2/ folder is a reference, not a checklist. The complete, known-good project lives there in your exercises download: open it to compare your _quarto.yml / _brand.yml, or copy it wholesale if you fell behind."
+  },
+  {
+    "objectID": "labs/quarto-projects/index.html#ship-it-challenge",
+    "href": "labs/quarto-projects/index.html#ship-it-challenge",
+    "title": "Quarto projects — Lab",
+    "section": "2 Ship it Challenge",
+    "text": "2 Ship it Challenge\n\nGoal: make the project’s builds reproducible with freeze, then render it to a publishable _site/ folder. (Publishing to Pages is the watch-me demo. You produce the folder.)\n\n\n\n\n\n\n\nNoteStarting point\n\n\n\nKeep going with your Website Challenge day2-projects/. If you didn’t finish it, open the ready-made solutions/day2/ project (a complete Part-1 site) and do the steps below in there.\n\n\n\n\n\n\n\n\nNote Tasks\n\n\n\n\n\nAdd freeze to your project’s _quarto.yml so unchanged pages aren’t re-executed on every build:\nexecute:\n  freeze: auto      # re-execute a document only when its own source changes\nSee the skip. Run quarto render once (the code runs; _freeze/ is written). Run quarto render again without editing: the R cell is skipped, its result reused from _freeze/ (the log shows no compute). For a visible tell, drop a cell with cat(format(Sys.time())) on analysis.qmd: on the frozen second render the printed timestamp does not change: a pass/fail you can see, not just an absence in the log. Now change the plot’s code on analysis.qmd and re-render: only that page re-runs (and the timestamp finally ticks).\nFind the shipped site under _site/: that folder is what you publish. Point any static host at it (GitHub Pages, Netlify, an internal server).\n(note, not a step) renv::snapshot() writes an renv.lock that pins the packages: the second reproducibility leg, so a teammate (or CI) rebuilds the same environment.\n\n\n\n\n Quarto docs\nFreeze · Publishing\n\n\n\n\n\n\nNote You should see\n\n\n\nOn the second render (no edits between them), the log shows the R cell skipped (reused from _freeze/), and the cat(format(Sys.time())) line prints the same time it did on the first render. That frozen timestamp (and the quiet log) is exactly what lets CI render the site with no R at all. Edit a page’s code, and only that page re-runs, its timestamp finally advancing.\n\n\n\n\n\n\n\n\nTipHint\n\n\n\n\n\n\nfreeze: auto re-executes a document when its source changes (prose or code) and reuses _freeze/ when it hasn’t, so an unchanged page never re-runs. freeze: true goes further: never re-execute on a project build (the CI mode).\nFrozen results live in _freeze/: commit that folder so CI can render without R.\noutput-dir (default _site) is the whole deliverable: publish the folder, don’t rebuild on the host.\n\n\n\n\n\n\n\n\n\n\nNoteSolution: the freeze block and the render flow\n\n\n\n\n\nAdd to your project’s _quarto.yml:\nexecute:\n  freeze: auto\nAn optional visible tell: put this on analysis.qmd. A frozen render reuses the old value, so the printed time stays put.\ncat(format(Sys.time()))\nFrom inside your project folder (day2-projects/):\nquarto render     # 1st build: runs the code, writes _freeze/ and _site/\nquarto render     # 2nd build, no edits: the cell is skipped, timestamp unchanged\n# then change the plot code on analysis.qmd and render again: only that page re-runs (time ticks)\nTo publish, point a host at _site/ (the watch-me demo: quarto publish gh-pages, auth pre-flighted)."
+  },
+  {
+    "objectID": "labs/quarto-projects/index.html#troubleshooting",
+    "href": "labs/quarto-projects/index.html#troubleshooting",
+    "title": "Quarto projects — Lab",
+    "section": "3 Troubleshooting",
+    "text": "3 Troubleshooting\n\n\n\n\n\n\nTip If a render misbehaves\n\n\n\n\n\n\nRendered, but can’t find the HTML? Before you add _quarto.yml, a single-page render writes the HTML next to its source in day2-projects/. Once _quarto.yml is present, a project render collects both pages under day2-projects/_site/. Look in those two places.\nYAML is indentation-sensitive. If rendering fails before any code runs, check _quarto.yml for stray spaces, tabs, or unmatched quotes.\n“No project” / pages don’t link? The _quarto.yml must be inside day2-projects/, and href: paths are relative to the source folder, not _site/.\nBrand not applied? _brand.yml must be in day2-projects/ (the project root). Re-render after adding it. For plots, the palette needs library(brand.yml) + theme_brand_ggplot2() (the file alone doesn’t reach ggplot).\nA cross-reference shows ?@…? The cell label must start fig-/tbl-/eq- and be unique, and remember it only resolves within one page on a website.\nFreeze didn’t skip the cell? It skips only when the source is unchanged since the last build: any edit (prose or code) re-runs that page. Delete _freeze/ to force a clean rebuild.\nMissing package? install.packages(\"&lt;name&gt;\") (or renv::restore()) and render again."
+  },
+  {
+    "objectID": "labs/quarto-projects/index.html#session",
+    "href": "labs/quarto-projects/index.html#session",
+    "title": "Quarto projects — Lab",
+    "section": "Session",
+    "text": "Session\n\n\n\nSession info\n\n\nsessionInfo()\n\nR version 4.6.0 (2026-04-24 ucrt)\nPlatform: x86_64-w64-mingw32/x64\nRunning under: Windows 11 x64 (build 26200)\n\nMatrix products: default\n  LAPACK version 3.12.1\n\nlocale:\n[1] LC_COLLATE=French_France.utf8  LC_CTYPE=French_France.utf8   \n[3] LC_MONETARY=French_France.utf8 LC_NUMERIC=C                  \n[5] LC_TIME=French_France.utf8    \n\ntime zone: Europe/Paris\ntzcode source: internal\n\nattached base packages:\n[1] stats     graphics  grDevices datasets  utils     methods   base     \n\nother attached packages:\n[1] ggplot2_4.0.3 dplyr_1.2.1  \n\nloaded via a namespace (and not attached):\n [1] vctrs_0.7.3        cli_3.6.6          knitr_1.51         rlang_1.3.0       \n [5] xfun_0.59          renv_1.2.3         generics_0.1.4     S7_0.2.2          \n [9] jsonlite_2.0.0     labeling_0.4.3     glue_1.8.1         htmltools_0.5.9   \n[13] scales_1.4.0       rmarkdown_2.31     grid_4.6.0         evaluate_1.0.5    \n[17] tibble_3.3.1       fastmap_1.2.0      yaml_2.3.12        lifecycle_1.0.5   \n[21] compiler_4.6.0     RColorBrewer_1.1-3 htmlwidgets_1.6.4  pkgconfig_2.0.3   \n[25] farver_2.1.2       digest_0.6.39      R6_2.6.1           tidyselect_1.2.1  \n[29] pillar_1.11.1      magrittr_2.0.5     withr_3.0.3        tools_4.6.0       \n[33] gtable_0.3.6"
+  },
+  {
+    "objectID": "slides/quarto-projects/index.html#learning-outcomes",
+    "href": "slides/quarto-projects/index.html#learning-outcomes",
+    "title": "Quarto projects",
+    "section": "Learning Outcomes",
+    "text": "Learning Outcomes\nYesterday: one .qmd → a branded PDF. Today, the other axis: one file to many. You will be able to:\n\nstructure several .qmd into one Quarto project with shared config (_quarto.yml);\nbuild a navigable, branded website — within-page cross-references, reproducible builds;\npublish it, and explain how freeze lets it rebuild without re-running R.\n\nBy the end: the same penguins data, a fresh set of pages grown into a website your team can publish.\n\n\nFrame: Day 1 took one .qmd all the way to a branded PDF. Day 2 is the other axis — one file to many, tied together by config, then shipped. This is the machinery behind your team project’s site."
+  },
+  {
+    "objectID": "slides/quarto-projects/index.html#how-today-works",
+    "href": "slides/quarto-projects/index.html#how-today-works",
+    "title": "Quarto projects",
+    "section": "How today works",
+    "text": "How today works\nSame shape as yesterday: two rounds of watch → follow along → your turn, each ending in a ~45-minute Challenge in the lab (solutions folded in), with a break between the rounds.\nWatch for the Follow along / Your turn callouts: they flag every switch.\n\n\nQuick recap, don’t re-teach — they saw this shape yesterday. Same two rounds; the Follow along / Your turn callouts flag every switch. One breath, then into Part 1."
+  },
+  {
+    "objectID": "slides/quarto-projects/index.html#why-project",
+    "href": "slides/quarto-projects/index.html#why-project",
+    "title": "Quarto projects",
+    "section": "Why a project?",
+    "text": "Why a project?\n\n\n\n\n\n\n\nFollow along\n\n\nOpen your editor: from here we build one project together.\n\n\n\n\nOne .qmd renders alone. A project is a folder Quarto treats as one unit (shared config, one build, one output folder):\n\n\n\n\n_quarto.yml\n\n# at the project root\nproject:\n  type: website\n  output-dir: _site  # everything renders here\nformat:\n  html:\n    theme: [default, custom.scss]\n\n\n\nquarto render builds the whole folder, not one file.\nHeader options set once apply to every page.\noutput-dir — the folder the built site lands in (_site by default). Publish that.\n\n\n\n\n\nSay: “Day 1 was one file. Today: many files, one project. Open your editor — we build one together.”\nDo: show a minimal _quarto.yml — project: type: website + output-dir. “This folder is now one unit; render builds all of it, not one file.”\nSay (relevance): the team project is many pages — this is how they connect.\n\n\n\nQuarto uses the nearest _quarto.yml up the tree as the project root: you add one to day2-projects/, and nothing sits above it, so that folder is your project."
+  },
+  {
+    "objectID": "slides/quarto-projects/index.html#metadata",
+    "href": "slides/quarto-projects/index.html#metadata",
+    "title": "Quarto projects",
+    "section": "Directory metadata — _metadata.yml",
+    "text": "Directory metadata — _metadata.yml\nYesterday a header set the defaults and a cell overrode them. _metadata.yml is that same idea, one scope wider: options for every page in a folder, so you don’t repeat them in each header:\n\n\nanalysis/_metadata.yml\n\n# applies to every .qmd in analysis/\nexecute:\n  echo: false\n  warning: false\nformat:\n  html:\n    code-fold: true\n\nSame narrow-wins rule, now across files: document header &gt; _metadata.yml &gt; _quarto.yml. Set defaults wide, override narrow.\n\n\n\nCallback (don’t re-teach): they learned header-vs-cell precedence yesterday (#execution). Don’t re-derive “defaults wide, override narrow” — just widen it to the file/folder/project scope.\nSay: “Same rule as yesterday’s header-beats-nothing / cell-beats-header — now a folder file sits between the page and the project.”\n\n\n\nToday’s lab project is flat (a couple of pages at the root), so there’s no folder to scope. Reach for _metadata.yml when a subfolder of pages shares options."
+  },
+  {
+    "objectID": "slides/quarto-projects/index.html#websites",
+    "href": "slides/quarto-projects/index.html#websites",
+    "title": "Quarto projects",
+    "section": "Websites — pages & navigation",
+    "text": "Websites — pages & navigation\nYou already set type: website, which makes the folder a site: its pages share one navbar and sidebar. You describe that navigation once, and Quarto builds it:\n\n\n_quarto.yml\n\nwebsite:\n  title: \"Penguin Lab\"\n  # top bar — one entry per page\n  navbar:\n    left:\n      - href: index.qmd\n        text: Home\n      - href: analysis.qmd\n        text: Analysis\n  # side menu, built from the files\n  sidebar:\n    contents: auto\n\n\ncontents: auto even builds the sidebar from the folder, so you don’t hand-list pages.\n\n\n\nDo: add the website: block live — navbar + sidebar — render, show the nav appear.\nSay: “You declare the nav once: the navbar you list, the sidebar contents: auto builds from the files — Quarto generates both.”\nSay (sets up next slide): “each page renders on its own — that independence is exactly why cross-refs behave differently across pages.”\nHelpers: flag the classic trap now — links are relative to the source, not _site — so they meet it before the lab.\n\n\n\n\nListings turn a folder of pages into an auto-generated index (a blog, a gallery of reports) via listing: on a page. One slide’s worth, more in the linked resources."
+  },
+  {
+    "objectID": "slides/quarto-projects/index.html#xrefs",
+    "href": "slides/quarto-projects/index.html#xrefs",
+    "title": "Quarto projects",
+    "section": "Cross-references across a project",
+    "text": "Cross-references across a project\n\n\n\n\n\n\n\nEyes up — not a live Follow along\n\n\nThe next few slides are concept, no need to type along.\n\n\n\n\nWithin one page, @fig-, @tbl-, @eq- resolve to a numbered, linked reference, exactly as on Day 1. (Section headings work the same way with @sec-.)\n\nAcross different website pages, they do not auto-number: a website renders each page on its own, so link between pages with ordinary Markdown links and the navbar/sidebar instead:\nSee the [analysis page](analysis.qmd) for the model.\n\n\n\n\n\n\n\nProject-wide numbering is a book\n\n\nIf you need “Figure 3.2” to resolve across chapters, that’s type: book: Quarto renders a book as one unit with global numbering. A website keeps per-page numbering.\n\n\n\n\n\n\nPre-flight (not spoken): if unsure on your installed Quarto, test one cross-page @fig- before the session — historically a website does not resolve it. Keep that check off the slide."
+  },
+  {
+    "objectID": "slides/quarto-projects/index.html#brand",
+    "href": "slides/quarto-projects/index.html#brand",
+    "title": "Quarto projects",
+    "section": "One brand → the whole project: _brand.yml",
+    "text": "One brand → the whole project: _brand.yml\nYou wrote _brand.yml yesterday to brand one Typst PDF. Drop that same file at the project root and Quarto auto-discovers it (no header line, no per-page config):\n\n\n\n\n_brand.yml\n\ncolor:\n  palette:\n    teal: \"#4C979F\"\n  primary: teal\ntypography:\n  fonts:\n    - family: Albert Sans\n      source: google\n  base:\n    family: Albert Sans\n\n\n\nEvery page and every deck inherits it from that one root file, so you never name it in a page.\nAdd a page tomorrow? Branded on render, nothing to wire up.\nNeed an exception? brand: false opts a page out; brand: other.yml points it elsewhere.\n\n\n\n\nCallback (don’t re-derive): they built this file yesterday for the PDF. Today’s new angle is scale — one root file themes the whole multi-page project. Widen the scope; don’t re-teach the file.\nDo: show the site before / after dropping _brand.yml at the root — navbar + headings go teal in one re-render.\nSay: “You wrote this yesterday. Put it at the project root and every page and deck inherits it — brand once, not per file.”\nR plots (only if asked): a plot still needs theme_brand_ggplot2() — same as yesterday; the lab’s stretch covers it.\nEscape hatch (if asked): brand: false opts a page out; brand: other.yml points it elsewhere — the default brands everything, these are the overrides.\nPrecision: “every page/deck” = every supported-format output (html, revealjs, typst, dashboard); an unsupported format just isn’t branded — don’t say “every output”.\nPlacement: this is Part-1 project config, not the Part-2 tail.\nHelpers: the lab installs brand.yml with install.packages() (not pak)."
+  },
+  {
+    "objectID": "slides/quarto-projects/index.html#your-turn-1",
+    "href": "slides/quarto-projects/index.html#your-turn-1",
+    "title": "Quarto projects",
+    "section": "Your turn",
+    "text": "Your turn\n\n\n\n\n\n\n\nYour turn — ~45 min, then a break\n\n\nHead to the Lab and the Website Challenge: turn a set of .qmd into a navigable, branded website: _quarto.yml, a navbar, and the shared brand. ~45 min, then a break, back after.\n\n\n\n\nYou can now structure files into a branded, navigable website. After the break we make its builds reproducible and ship it.\n\n\nSay (handoff): “Over to you — Website Challenge: _quarto.yml, a navbar, the shared brand. ~45 min, then we break — back at 15:30. Helpers are around.”\nHelpers: first thing to check — are they working inside day2-projects/ with their new _quarto.yml, so quarto render builds the project (not a stray single page)? (Secondary: page links are source-relative, not _site.) Anyone behind can open the shipped solutions/day2/ — a finished Part-1 site — and start Part 2 clean."
+  },
+  {
+    "objectID": "slides/quarto-projects/index.html#freeze",
+    "href": "slides/quarto-projects/index.html#freeze",
+    "title": "Quarto projects",
+    "section": "Freeze — don’t re-run the slow stuff",
+    "text": "Freeze — don’t re-run the slow stuff\n\n\n\n\n\n\n\nFollow along\n\n\nBack in your project’s _quarto.yml.\n\n\n\n\nDay 1 I teased freeze: here’s the full story. Compute can be slow: you don’t want every prose edit to re-run a 20-minute model fit. Two tools, easily confused:\n\ncache — the compute engine’s cache, not Quarto’s: it defers to knitr (R) / Jupyter Cache. Per-cell, kept until that cell’s code changes, and it works in a single document.\nfreeze — Quarto’s own switch, not about compute: it sets when a document re-executes. Project-only: rendering one file always runs it. Results live in _freeze/, refreshed only when its source changes. Commit it and CI (the automated build) rebuilds with no R at all.\n\n\n# _quarto.yml\nexecute:\n  freeze: auto        # re-execute a document only when its source changes\nThat’s freeze: auto, the sane setting to adopt: a page re-runs only when its own source changes. freeze: true hands you full control instead → next slide.\n\n\nSay (motivation): “Compute can be slow — you don’t want a prose typo to re-run a 20-minute model fit.” (Localize to the room: a sequence alignment, a long MCMC, a big simulation.)\nDo: the contrast is the point — cache = the engine’s cache (knitr for R / Jupyter Cache), per-cell, works in a single doc; freeze = Quarto’s switch, project-only, re-executes a doc only when its source changes. (Verified vs quarto.org docs/projects/code-execution.html.) Protect this distinction.\nDo: show freeze: auto in _quarto.yml; “re-runs a page only when that page changed.”\nIf asked — why not just cache everything? cache is per-cell and can go stale across a shared repo; freeze commits whole-document results for reproducible, R-free CI rebuilds. Different jobs.\nSay (payoff): commit _freeze/ and CI (a build that runs on every push) rebuilds the site with no R at all.\nTeaser: the next slide is freeze: true — the render-on-demand workflow."
+  },
+  {
+    "objectID": "slides/quarto-projects/index.html#freeze-workflow",
+    "href": "slides/quarto-projects/index.html#freeze-workflow",
+    "title": "Quarto projects",
+    "section": "The freeze workflow — you hold the trigger",
+    "text": "The freeze workflow — you hold the trigger\nWith freeze: true, a project build never runs R: it always reuses _freeze/. You refresh a page only when you choose to, by rendering that one file (a single-file render always executes):\n\n\n_quarto.yml\n\nexecute:\n  freeze: true\n\nquarto render analysis.qmd     # runs the code, rewrites _freeze/ — commit it with your change\n\nThe loop: edit a page → render that one file → commit _freeze/. The project build and CI stay R-free: only the page you touched recomputes. That’s exactly how quarto.org itself is built.\n\n\nfreeze: auto instead lets the build recompute any changed (or not-yet-frozen) page. Convenient, but true keeps the trigger in your hands.\n\n\nAnchor (real): quarto.org runs freeze: true — verified in quarto-dev/quarto-web/_quarto.yml; contributors render the changed file locally and commit _freeze/, enforced by a check-freeze.sh git hook — the same discipline this workshop repo uses.\nSay: “true = the build never runs R; you decide when a page recomputes, by rendering it directly.”\nDo: edit a cell on analysis.qmd → quarto render analysis.qmd → show _freeze/ change + the timestamp tick; a full project render leaves it untouched.\nContrast (lab uses auto): auto = the build recomputes changed pages for you (the sane setting, what the lab sets); true = deterministic CI + manual refresh (the CI mode).\nIf asked: a production render profile can set freeze: false to force a full re-execution."
+  },
+  {
+    "objectID": "slides/quarto-projects/index.html#renv",
+    "href": "slides/quarto-projects/index.html#renv",
+    "title": "Quarto projects",
+    "section": "Reproducibility has two legs",
+    "text": "Reproducibility has two legs\nfreeze pins the results. It doesn’t pin what produced them (the package versions):\n\n\n\nfreeze → _freeze/ — “don’t re-run the slow compute.”\nrenv.lock → “pin the packages, so the team rebuilds the same environment.”\n\n\nrenv::init()       # once, to start tracking\nrenv::snapshot()   # write renv.lock\nrenv::restore()    # rebuild the same env\n\nTogether: a colleague (or CI) rebuilds the same site, with or without re-running the analysis.\n\n\nTiming: renv is the first thing to drop if short on time — the cache-vs-freeze contrast is the point of this beat, protect that.\nSay: “freeze pins the results; renv.lock pins what produced them — the package versions. You want both.”"
+  },
+  {
+    "objectID": "slides/quarto-projects/index.html#publishing",
+    "href": "slides/quarto-projects/index.html#publishing",
+    "title": "Quarto projects",
+    "section": "Publishing",
+    "text": "Publishing\nThe hands-on part is small: render, then point a host at output-dir.\nquarto render              # builds the whole project into _site/\n\nPush _site/ to any static host — GitHub Pages, Netlify, an internal server.\nquarto publish gh-pages and GitHub Actions automate it, rendering from the committed _freeze/ with no R needed in CI.\n\n\n\n\n\n\n\n\nWatch-me — not a live Your turn\n\n\nYou do the render + output-dir half; I’ll show the publish step on a ready-made repo. It needs a GitHub login and builds asynchronously (push, then wait for the green check).\n\n\n\n\n\n\nFrame (why watch-me — don’t narrate the logistics): a live publish gh-pages across 40 laptops means GitHub auth and a repo each — a lot of per-person setup for one demo, and Pages/Actions rebuilds asynchronously (push, then wait for the green check), so there’s nothing synchronous to watch anyway. Foreground the CI story; keep auth off the hands-on path.\nSay (keep these distinct): “quarto publish gh-pages renders here on my machine and pushes the result; GitHub Actions is the path that rebuilds from the committed _freeze/ with no R on the runner.”\nDo (if demoing live): state the auth prerequisite first (GitHub login + a repo); otherwise just show the green check on the pre-provisioned repo."
+  },
+  {
+    "objectID": "slides/quarto-projects/index.html#your-turn-2",
+    "href": "slides/quarto-projects/index.html#your-turn-2",
+    "title": "Quarto projects",
+    "section": "Your turn",
+    "text": "Your turn\n\n\n\n\n\n\n\nYour turn — regroup in ~45 min\n\n\nBack to the Lab, the Ship it Challenge: render your project to _site/ and open it: a publishable folder. (Publishing to Pages is the watch-me demo.)\n\n\n\n\n\n\nSay (handoff): “Last part — Ship it Challenge: render your project to _site/ and open it, a publishable folder. Publishing to Pages is my watch-me demo, not your job. ~45 min; helpers are around.”\nHelpers: the tell that freeze is working — the second project render doesn’t re-execute the page at all (no chunk output scrolls by); the compute is served from _freeze/. Behind? Open the shipped solutions/day2/ project and start from there."
+  },
+  {
+    "objectID": "slides/quarto-projects/index.html#wrap-up",
+    "href": "slides/quarto-projects/index.html#wrap-up",
+    "title": "Quarto projects",
+    "section": "What you can do now",
+    "text": "What you can do now\nYou can now:\n\nstructure .qmd into a project — _quarto.yml, _metadata.yml, output-dir;\nbuild a branded website with navigation, and know why cross-page refs differ from a book;\nmake builds reproducible (freeze + renv.lock) and publish the output folder.\n\n\nYou’ve built the two axes: one document to a branded PDF (Day 1), one folder to a published site (Day 2). Everything your team project needs."
+  },
+  {
+    "objectID": "slides/quarto-projects/index.html#demos",
+    "href": "slides/quarto-projects/index.html#demos",
+    "title": "Quarto projects",
+    "section": "Demos (if time)",
+    "text": "Demos (if time)\nExtra topics:\n\nBook versus website — ~90% shared machinery. Pick a book when you need one linear read with global numbering, a website otherwise. (1 decision, not a new toolset.)\nDashboards — format: dashboard arranges plots/tables/valueboxes into a static layout (rows, columns, cards) to share results with a collaborator who won’t open R. See one (static, no server).\nInteractivity — an htmlwidget (plotly, leaflet) is pure R and self-contained. OJS (Observable JS, a browser-side, non-R path) and Shinylive (Shiny running in the browser, no server) are links, not live builds.\n\n\n\nTiming: cut-able tail — trim from the bottom if under ~5 min left; all watch-me, nothing built live.\nDo: for the dashboard, open the [See one] link and name the four regions — two valueboxes across the top, a card with the boxplot, and a two-tab panel (the whole layout model: rows / columns / cards / valueboxes / tabsets)."
+  },
+  {
+    "objectID": "slides/quarto-projects/index.html#thank-you",
+    "href": "slides/quarto-projects/index.html#thank-you",
+    "title": "Quarto projects",
+    "section": "Thank you!",
+    "text": "Thank you!\nQuestions?\nLearn more: Projects · Websites · Freeze · Publishing\n\nSlides + lab: this site · Christophe Dervieux · GitHub @cderv · cderv@posit.co"
+  },
+  {
+    "objectID": "setup.html",
+    "href": "setup.html",
+    "title": "Setup",
+    "section": "",
+    "text": "You need a working R + Quarto toolchain and an editor. Everything below is standard. If you already render Quarto documents from R, you are ready."
+  },
+  {
+    "objectID": "setup.html#software",
+    "href": "setup.html#software",
+    "title": "Setup",
+    "section": "Software",
+    "text": "Software\n\nR ≥ 4.5.0. The running dataset (penguins) ships in base R only since 4.5 (check with R.version.string). The exercises use the base-R names (bill_len, bill_dep, …), so R ≥ 4.5 is the smoothest path. If you truly can’t upgrade, see the fallback below.\nQuarto ≥ 1.9. Check with quarto --version and get it from https://quarto.org/docs/get-started/. (1.9 is required: the Typst margin/article layout we use on Day 1 landed in 1.9.)\nAn editor with Quarto support — Positron, VS Code (+ the Quarto extension), or RStudio. All work, and we drive Quarto from the command line too (quarto preview / quarto render), so the editor is your choice.\n\n\n\n\n\n\n\nTip\n\n\n\nTypst (the modern PDF path we use on Day 1) ships inside Quarto, so there is nothing extra to install and no LaTeX to set up.\n\n\n\n\n\n\n\n\nWarningStuck on R &lt; 4.5? (dataset fallback)\n\n\n\n\n\nThe exercises assume base R’s penguins. If you genuinely can’t get to R ≥ 4.5, install palmerpenguins and rename its columns to the base-R names the material uses, so every snippet works unchanged:\n# install.packages(\"palmerpenguins\")\nlibrary(dplyr)\npenguins &lt;- palmerpenguins::penguins |&gt;\n  rename(\n    bill_len    = bill_length_mm,\n    bill_dep    = bill_depth_mm,\n    flipper_len = flipper_length_mm,\n    body_mass   = body_mass_g\n  )\nRun this once at the top of a document (or your session) before the exercise code. Upgrading R is still the cleaner path if you can."
+  },
+  {
+    "objectID": "setup.html#get-the-materials",
+    "href": "setup.html#get-the-materials",
+    "title": "Setup",
+    "section": "Get the materials",
+    "text": "Get the materials\nThe hands-on files live in a small exercises folder (the top raukr-2026-quarto-exercises folder): the starter documents, the reference solutions, and the citation assets (references.bib, apa.csl). The easiest way to get it is use_course() from R. No git, no GitHub account, nothing to unzip by hand, and the same on Windows, macOS, and Linux:\n# install.packages(\"usethis\")   # once, if you don't have it\nusethis::use_course(\"cderv/raukr-2026-quarto-exercises\")\nWhat it does:\n\npicks a sensible spot (your Desktop by default) and prints where it’s about to download. To put it elsewhere, cancel and re-run with a path, e.g. use_course(\"cderv/raukr-2026-quarto-exercises\", destdir = \"~/projects\").\ndownloads a ZIP and unpacks it for you into a folder called raukr-2026-quarto-exercises (it prints the exact path). It then asks “Shall we delete the ZIP file?”. Keep it (say No): it’s your one-click reset (see below).\nopens the folder — a new RStudio session, or the folder in Positron / VS Code. If it doesn’t pop open, open the folder it printed yourself.\n\n\n\n\n\n\n\nImportantWhich folder to open — and when\n\n\n\nuse_course() drops you in the top folder (raukr-2026-quarto-exercises). Do the next two steps (R packages and Check) from there, now, before the session.\nWhen the session starts, open the day folder for that day, not the top folder:\n\nDay 1 → open day1-intro/ (double-click day1-intro.Rproj).\nDay 2 → open day2-projects/ (double-click day2-projects.Rproj).\n\nEach day folder is its own working directory with its own brand and assets, so your renders land right next to your files (there’s no project folder above them to capture the output). One download covers both days. The reference answers are in solutions/day1/ and solutions/day2/ at the top folder (try first).\n\n\n\n\n\n\n\n\nTipReset without losing work (no git needed)\n\n\n\n\n\nIf an attempt goes wrong, get a fresh copy of the day folder (don’t unzip over your working copy):\n\nre-run usethis::use_course(\"cderv/raukr-2026-quarto-exercises\"): it makes a new, numbered folder and leaves your old attempt untouched; or\nunzip the ZIP you kept to a new location.\n\nIf use_course() can’t reach GitHub (blocked network / firewall), use the browser: the green Code ▸ Download ZIP button on https://github.com/cderv/raukr-2026-quarto-exercises, then unzip."
+  },
+  {
+    "objectID": "setup.html#r-packages",
+    "href": "setup.html#r-packages",
+    "title": "Setup",
+    "section": "R packages",
+    "text": "R packages\nThe exercises use nine R packages. The simplest path is a plain install into your R library (it works no matter which day folder you open):\ninstall.packages(c(\n  \"dplyr\", \"ggplot2\", \"gt\", \"ggokabeito\",   # content + a color-blind-safe scale\n  \"brand.yml\", \"ggrepel\", \"prismatic\",      # R-side branding for the Typst payoff\n  \"knitr\", \"rmarkdown\"                      # the engine every .qmd with R code needs\n))\nOr with pak, which installs the same list in parallel, prefers binaries, and sorts out system dependencies for you:\n# install.packages(\"pak\")   # once, if you don't have it\npak::pak(c(\n  \"dplyr\", \"ggplot2\", \"gt\", \"ggokabeito\",\n  \"brand.yml\", \"ggrepel\", \"prismatic\",\n  \"knitr\", \"rmarkdown\"\n))\n\n\n\n\n\n\nNotePrefer pinned versions? (optional, renv)\n\n\n\n\n\nThe exercises ship an renv.lock recording exact package versions. From the top raukr-2026-quarto-exercises folder (where renv.lock sits):\n# install.packages(\"renv\")   # if you don't have it\nrenv::restore()\nrenv builds a project-local library at that top folder, which R activates only when you work from that top folder, not when you open a day folder. So if you go the renv route, render from the top folder too. Otherwise the plain install.packages() above (into your regular library) is the simpler path that works in any folder. Pick one, you don’t need both."
+  },
+  {
+    "objectID": "setup.html#check-your-setup",
+    "href": "setup.html#check-your-setup",
+    "title": "Setup",
+    "section": "Check your setup",
+    "text": "Check your setup\nThe exercises folder ships a one-shot check. From the top raukr-2026-quarto-exercises folder, run:\nsource(\"00-check-setup.R\")\nIt verifies R ≥ 4.5, Quarto ≥ 1.9, the nine packages, and the base-R penguins data, then renders the Day-1 Typst sample (day1-intro/sample-typst.qmd). That proves the knitr + Typst chain end-to-end and caches the brand’s Google fonts (Albert Sans / Fira Mono), so your first render in the session is instant instead of pausing to download them. Every line should read [ok].\n\n\n\n\n\n\nTipPrefer to check by hand?\n\n\n\n\n\nThe one command that proves the toolchain is quarto check. It covers the knitr engine too (the knitr + rmarkdown packages a .qmd with R code needs): it reports your Quarto version and renders a small knitr test document (look for Checking Knitr engine render......OK). If you see rmarkdown: (None), your R packages aren’t installed yet, so do the R packages step and re-run. Then confirm the R side:\nR.version.string                          # want &gt;= 4.5.0\n\"penguins\" %in% ls(\"package:datasets\")    # want TRUE on R &gt;= 4.5\nAnd pre-warm the fonts once by rendering the sample yourself: quarto render day1-intro/sample-typst.qmd."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "RaukR 2026 · Quarto",
+    "section": "",
+    "text": "Two afternoon sessions at RaukR 2026 on writing and publishing with Quarto. You already write R and have used R Markdown or Quarto before. These sessions show what Quarto is as a system, and how to go from a single document to a whole project you can publish."
+  },
+  {
+    "objectID": "index.html#programme",
+    "href": "index.html#programme",
+    "title": "RaukR 2026 · Quarto",
+    "section": "Programme",
+    "text": "Programme\n\n\n\nDay\nSession\nSlides\nLab\n\n\n\n\nMon 10 Aug\nIntroduction to Quarto — the single document (authoring, layout, and the modern output story incl. Typst)\nSlides\nLab\n\n\nTue 11 Aug\nQuarto projects — beyond one file: websites, config, publishing, tips & tricks\nSlides\nLab\n\n\n\nEach session runs as two parts split by a break, each part reaching a hands-on payoff."
+  },
+  {
+    "objectID": "index.html#before-you-arrive",
+    "href": "index.html#before-you-arrive",
+    "title": "RaukR 2026 · Quarto",
+    "section": "Before you arrive",
+    "text": "Before you arrive\nSee Setup for what to install (R ≥ 4.5, Quarto ≥ 1.9, a handful of packages)."
+  },
+  {
+    "objectID": "index.html#license",
+    "href": "index.html#license",
+    "title": "RaukR 2026 · Quarto",
+    "section": "License",
+    "text": "License\nContent is CC BY 4.0; code is MIT. By Christophe Dervieux (Posit)."
+  },
+  {
+    "objectID": "LICENSE.html",
+    "href": "LICENSE.html",
+    "title": "1 License",
+    "section": "",
+    "text": "This repository mixes two licenses, following the same split as Christophe Dervieux’s other Quarto materials:\n\nContent — text, slides, exercises, pages, and figures authored here: CC BY 4.0.\nCode — scripts, build configuration, authoring tooling, and any R package code: MIT.\n\nThird-party components redistributed here keep their original licenses (e.g. reused Quarto extensions, fonts, and Posit skills under .claude/skills/). The NBIS RaukR material (NBISweden/raukr-2025, raukr-2026) is CC BY-NC-SA 4.0 — referenced and adapted, not vendored.\nIntegration note. This content is authored so it can later be incorporated into the NBIS RaukR site (itself CC BY-NC-SA 4.0). CC BY 4.0 is compatible as an upstream input to a more restrictive collection: the combined work may carry NC-SA terms, while attribution to Christophe Dervieux must be preserved.\n\n\n\nCopyright © 2026 Christophe Dervieux.\nThis work is licensed under the Creative Commons Attribution 4.0 International License. You are free to share (copy and redistribute in any medium or format) and adapt (remix, transform, and build upon the material) for any purpose, even commercially, under the following terms: you must give appropriate credit, provide a link to the license, and indicate if changes were made.\nFull legal code: https://creativecommons.org/licenses/by/4.0/legalcode\n\n\n\n\nCopyright © 2026 Christophe Dervieux.\nPermission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the “Software”), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\nThe above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.\nTHE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE."
+  },
+  {
+    "objectID": "LICENSE.html#content-cc-by-4.0",
+    "href": "LICENSE.html#content-cc-by-4.0",
+    "title": "1 License",
+    "section": "",
+    "text": "Copyright © 2026 Christophe Dervieux.\nThis work is licensed under the Creative Commons Attribution 4.0 International License. You are free to share (copy and redistribute in any medium or format) and adapt (remix, transform, and build upon the material) for any purpose, even commercially, under the following terms: you must give appropriate credit, provide a link to the license, and indicate if changes were made.\nFull legal code: https://creativecommons.org/licenses/by/4.0/legalcode"
+  },
+  {
+    "objectID": "LICENSE.html#mit-license-code",
+    "href": "LICENSE.html#mit-license-code",
+    "title": "1 License",
+    "section": "",
+    "text": "Copyright © 2026 Christophe Dervieux.\nPermission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the “Software”), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\nThe above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.\nTHE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE."
+  },
+  {
+    "objectID": "slides/quarto/index.html#learning-outcomes",
+    "href": "slides/quarto/index.html#learning-outcomes",
+    "title": "Introduction to Quarto",
+    "section": "Learning Outcomes",
+    "text": "Learning Outcomes\nAfter this session you will be able to:\n\nauthor a Quarto document natively (.qmd), with figures, tables, cross-references, and math;\nlay a document out — page, margin, columns, panels;\nmake it accessible — alt text, color-blind-safe colors, a built-in contrast check;\nturn it into a cited, branded Typst PDF — no LaTeX.\n\nBy the end: one penguins document carried all the way to a polished, cite-able PDF.\n\n\nFrame: you already write R and have met R Markdown or Quarto — today is about what Quarto adds and how far one .qmd can go, not “what is a code chunk”. We build one document and carry it all the way to a cite-able, branded PDF."
+  },
+  {
+    "objectID": "slides/quarto/index.html#how-today-works",
+    "href": "slides/quarto/index.html#how-today-works",
+    "title": "Introduction to Quarto",
+    "section": "How today works",
+    "text": "How today works\nTwo rounds, each the same shape (watch → follow along → your turn):\n\nsome slides I just talk through; when it’s hands-on you’ll see a Follow along callout;\neach round ends with a hands-on Challenge in the lab (solutions are folded in, so you can self-check);\na break sits between the two rounds.\n\n\n\nFrame (once, up front): give the room the map — two rounds, same shape; the Follow along / Your turn callouts flag every switch."
+  },
+  {
+    "objectID": "slides/quarto/index.html#what-quarto-is",
+    "href": "slides/quarto/index.html#what-quarto-is",
+    "title": "Introduction to Quarto",
+    "section": "What you can now build",
+    "text": "What you can now build\nYou know the literate-programming idea. In 2026, one .qmd is your source for:\n\na report (HTML, PDF, Word) — figures, tables, cross-refs, citations;\na presentation (these slides are a .qmd);\na website or book (Day 2) — many pages, one config;\na branded PDF via Typst (a modern PDF engine bundled in Quarto, no LaTeX) — a publication-ready article.\n\n\nOne tool, many outputs, multiple languages: all from one plain-text .qmd you write directly.\n\n\nFrame (not a line): reframe from “Quarto = R Markdown++, nothing new to learn” to “here’s what you can now build” — this audience wants to go further, not be reassured."
+  },
+  {
+    "objectID": "slides/quarto/index.html#how-it-works",
+    "href": "slides/quarto/index.html#how-it-works",
+    "title": "Introduction to Quarto",
+    "section": "How it all works",
+    "text": "How it all works\nquarto render report.qmd runs your code, then hands Markdown to Pandoc:\n\n\n\nFrame: for R, the knitr engine runs your chunks — the same engine as R Markdown. Your .Rmd still renders as-is; knitr::convert_chunk_header() moves it to .qmd cell options when you’re ready."
+  },
+  {
+    "objectID": "slides/quarto/index.html#anatomy",
+    "href": "slides/quarto/index.html#anatomy",
+    "title": "Introduction to Quarto",
+    "section": "Anatomy of a .qmd",
+    "text": "Anatomy of a .qmd\nThree parts: a YAML header, Markdown prose, and executable code cells.\n---\ntitle: \"A penguin story\"\nformat: html\n---\n\nWe measured **`{r} nrow(penguins)`** penguins.\n\n```{r}\n#| label: fig-bill\n#| fig-cap: \"Bill length versus depth\"\nggplot(penguins, aes(bill_len, bill_dep, color = species)) +\n  geom_point()\n```\n\nCell options use the #| “hash-pipe”: one option per line, YAML-valued. Native from the start."
+  },
+  {
+    "objectID": "slides/quarto/index.html#markdown-content",
+    "href": "slides/quarto/index.html#markdown-content",
+    "title": "Introduction to Quarto",
+    "section": "Markdown & content — think in deltas",
+    "text": "Markdown & content — think in deltas\n\n\n\n\n\n\n\nFollow along\n\n\nOpen your editor and render as we go. From here on we’re building one document together. Every follow-along cell assumes this setup, so run it first:\n\n\n\n\nlibrary(dplyr)\nlibrary(ggplot2)\nlibrary(gt)\ndata(penguins)                                     # base R ≥ 4.5 — the dataset is zero-install\npenguins &lt;- penguins |&gt; filter(!is.na(bill_len), !is.na(bill_dep))\nYou already know Markdown. Quarto adds the research-writing pieces:\n\nfigures & tables with captions, from code;\ncross-references — @fig-bill, @tbl-summary, @eq-ratio;\nmath — inline $…$ and display $$…$$;\ninline code — report numbers from the data;\ncallouts — note / tip / warning / caution / important.\n\n\n\nSay: “From here we build one document together — render as we go.”\nDo: run the setup block first (libraries + penguins); every follow-along cell assumes it, so if it’s skipped the first figure cell errors.\nFrame: the list is deltas over the Markdown they already know — not a Markdown lesson.\nTiming: this + the next four slides (Figures / Tables & math / Callouts / Inline code) are the live build, ~8–10 min total. One point per slide; don’t polish plots."
+  },
+  {
+    "objectID": "slides/quarto/index.html#figures",
+    "href": "slides/quarto/index.html#figures",
+    "title": "Introduction to Quarto",
+    "section": "Figures & cross-references",
+    "text": "Figures & cross-references\nA labeled code cell becomes a numbered, referenceable figure:\n\n\nggplot(penguins, aes(bill_len, bill_dep,\n                     color = species)) +\n  geom_point(alpha = 0.8) +\n  labs(x = \"Bill length (mm)\",\n       y = \"Bill depth (mm)\")\n\n\n\n\n\n\n\n\nFigure 1: Bill length versus depth, by species.\n\n\n\n\n\nRefer to it in prose with @fig-bill → renders as “Figure 1”, a live link. Labels must start with fig- / tbl- / eq- to be cross-referenceable.\n#| fig-alt is the figure’s alt text (the description screen readers announce). Add it to every figure. (#| output-location: column is slide-only: a revealjs placement, not article layout.)\n\n\nDo: add #| label: fig-bill + #| fig-cap to the plot cell, render, show the auto-number appear.\nSay: “A labeled cell becomes a numbered figure; @fig-bill in prose is a live link.”\nSay (trap): the label must start fig-/tbl-/eq-, or the ref renders a stray ?@.\nDo: point at output-location: column — a revealjs cell option that puts the plot in a column beside the code on this slide. (Presentation output-placement — not the article margin layout on the Layouts slide, which doesn’t apply to revealjs.)"
+  },
+  {
+    "objectID": "slides/quarto/index.html#tables",
+    "href": "slides/quarto/index.html#tables",
+    "title": "Introduction to Quarto",
+    "section": "Tables",
+    "text": "Tables\ngt (or knitr::kable) turns a data frame into a table; a #| label: tbl- makes it referenceable.\n\n```{r}\n#| label: tbl-summary\n#| tbl-cap: \"Mean bill length per species.\"\npenguins |&gt;\n  summarise(bill = mean(bill_len), .by = species) |&gt;\n  gt() |&gt; fmt_number(bill, decimals = 1)\n```\n\n\n\nTable 1: Mean bill length per species.\n\n\n\n\n\n\n\n\n\nspecies\nbill\n\n\n\n\nAdelie\n38.8\n\n\nGentoo\n47.5\n\n\nChinstrap\n48.8\n\n\n\n\n\n\n\n\n\n\nThen refer to it in prose with @tbl-summary (same mechanic as figures).\n\n\nDo: show the gt cell with #| label: tbl-summary, render, point at the auto-number.\nSay: “Same mechanic as figures — a tbl- label makes it referenceable; gt or knitr::kable, your call.”\nTiming: the table is the must-keep; the Math slide is the trim point if Part 1 is tight."
+  },
+  {
+    "objectID": "slides/quarto/index.html#math",
+    "href": "slides/quarto/index.html#math",
+    "title": "Introduction to Quarto",
+    "section": "Math",
+    "text": "Math\nDisplay math with a label is cross-referenceable too:\n$$\n\\text{ratio} = \\frac{\\text{bill_len}}{\\text{bill_dep}}\n$$ {#eq-ratio}\nrenders as Equation 1 below:\n\\[\n\\text{ratio} = \\frac{\\text{bill_len}}{\\text{bill_dep}}\n\\tag{1}\\]\n\n\nDo: show the display-math block with {#eq-ratio}, then the rendered, numbered equation.\nSay: “Same mechanic again — an eq- label makes the equation referenceable.”\nSay (trap): inside bare $$…$$ an underscore can trigger a subscript (or an error) depending on the math renderer — escape it as bill\\_len (the lab warns about this too)."
+  },
+  {
+    "objectID": "slides/quarto/index.html#callouts",
+    "href": "slides/quarto/index.html#callouts",
+    "title": "Introduction to Quarto",
+    "section": "Callouts",
+    "text": "Callouts\nCallouts are first-class Markdown (no package):\n::: {.callout-tip}\nBase-R `penguins` (R ≥ 4.5) needs no install.\n:::\n\n\n\n\n\n\nTip\n\n\nBase-R penguins (R ≥ 4.5) needs no install.\n\n\n\n\n\nDo: render one callout live — no package, pure Markdown.\nSay: “Five types — note, tip, warning, caution, important — same syntax, different color.”\nFrame: next slide closes the live build — inline code."
+  },
+  {
+    "objectID": "slides/quarto/index.html#inline-code",
+    "href": "slides/quarto/index.html#inline-code",
+    "title": "Introduction to Quarto",
+    "section": "Inline code",
+    "text": "Inline code\nInline code drops a computed value straight into prose. Put it in a sentence:\nWe measured `{r} nrow(penguins)` penguins.\n\nIt renders with the live count: “We measured 342 penguins.”\n\n\nThe number updates when the data does. Reproducible by construction.\n\n\nDo: show inline code reporting nrow(penguins) from the data — “the number updates when the data does. Reproducible by construction.”\nCloses the live build — next we step back to layout."
+  },
+  {
+    "objectID": "slides/quarto/index.html#layouts",
+    "href": "slides/quarto/index.html#layouts",
+    "title": "Introduction to Quarto",
+    "section": "Layouts: body, margin, and beyond",
+    "text": "Layouts: body, margin, and beyond\nEyes up: the next few slides are concept, no need to type along.\nThe article-layout model puts content in the body, the margin, or a zone wider than the body (in the paged formats: HTML, LaTeX, Typst):\n\npage-layout: article / full — the overall grid;\nmargin content — figures, tables, captions, .aside, footnotes;\noutset / inset — a figure or table that spills beyond the body (outset) or widens toward the page while keeping a margin from the edge (inset);\nmulti-column ::: {.columns} and panels — tabsets + layout-ncol.\n\n\n\nDo: gloss outset/inset on first use; the rendered visual examples live behind the Learn more links on the next slide, for anyone who wants the full column vocabulary."
+  },
+  {
+    "objectID": "slides/quarto/index.html#margin-layout",
+    "href": "slides/quarto/index.html#margin-layout",
+    "title": "Introduction to Quarto",
+    "section": "Put output in the margin",
+    "text": "Put output in the margin\nA cell’s #| column: margin drops its output (figure, caption, and all) into the margin:\n#| column: margin\n#| fig-cap: \"Bill length by species.\"\n# a margin figure — caption and all\nIn the lab you’ll use margin layout, the one that does the most for an article. The rest are yours to explore in the worked report.\nLearn more: Article Layout · Margin content\n\n\nSay: “Margin figures still take @fig-/@tbl- — so layout pairs naturally with cross-refs.”"
+  },
+  {
+    "objectID": "slides/quarto/index.html#accessibility",
+    "href": "slides/quarto/index.html#accessibility",
+    "title": "Introduction to Quarto",
+    "section": "Make it accessible",
+    "text": "Make it accessible\nAccessibility is a few habits layered on what you already write:\n\nAlt text — you already add #| fig-alt: to every figure; it’s what a screen reader announces.\nColor-blind-safe colors — the default palette isn’t. Reach for Okabe-Ito (scale_color_okabe_ito()) or viridis, and encode by shape/label too, not color alone.\nCheck contrast — WCAG wants 4.5:1 on text. Quarto’s built-in axe runs axe-core on the rendered page: axe: true logs to dev-tools, axe: {output: document} writes the report onto the page itself.\n\nLearn more: HTML Accessibility\n\n\nHook: your reader might be on a projector in a bright room, have red-green color-vision deficiency (~8% of men), or use a screen reader — the same few habits cover all three.\nTie to their plot: the penguins scatter defaults to non-safe colors; one line, scale_color_okabe_ito(), fixes it (the worked report already uses it) — show before/after if time.\naxe: it’s axe-core (the industry-standard checker), built into Quarto since 1.8 for html/revealjs/dashboard; it runs in the browser on preview and logs to dev-tools — a check-as-you-go tool, not a render/publish gate. Quarto 1.10 polishes the on-page report."
+  },
+  {
+    "objectID": "slides/quarto/index.html#document-types",
+    "href": "slides/quarto/index.html#document-types",
+    "title": "Introduction to Quarto",
+    "section": "One source → many formats",
+    "text": "One source → many formats\nOne key in the header picks the output. The content stays put:\n\n\nformat: [html, typst]     # render several at once\ntoc: true                 # shared — applies to both\nformat:                   # …or set options per format\n  html:\n    toc: false\n  typst:\n    toc: true\n\n\nShared vs. per-format — top-level keys (toc, number-sections, …) apply to every format; the format: map overrides them per output.\nConditional content — show or hide per format with ::: {.content-visible when-format=\"html\"}.\nThe layout idioms adapt per format: write once, target many.\n\n\nLearn more: Multiple formats · Conditional content"
+  },
+  {
+    "objectID": "slides/quarto/index.html#execution",
+    "href": "slides/quarto/index.html#execution",
+    "title": "Introduction to Quarto",
+    "section": "Execution: set once, override per cell",
+    "text": "Execution: set once, override per cell\nR Markdown’s knitr::opts_chunk$set() moves into the header. Set defaults once, override per cell:\n\n\nHeader — defaults for every cell:\nexecute:\n  echo: false\n  warning: false\n\nA cell — overrides locally with #|:\n#| echo: true\nsummary(penguins$body_mass)\n\nThe header sets the defaults; a cell’s #| wins.\nfreeze commits computed results to _freeze/ so a project re-render (or CI without R) skips unchanged documents. That’s the Day 2 story.\nLearn more: Execution options · Cell options\n\n\nDo (live): add execute: / echo: false to the header, re-render — every code block disappears at once. Then drop #| echo: true on one cell — just that one returns. The delta, made visible.\nSay: “Same idea as opts_chunk$set(), now declarative YAML — dashes not dots, false not FALSE.”\nfreeze is a one-line teaser only; the real freeze-vs-cache teach is Day 2."
+  },
+  {
+    "objectID": "slides/quarto/index.html#running",
+    "href": "slides/quarto/index.html#running",
+    "title": "Introduction to Quarto",
+    "section": "Running & editing",
+    "text": "Running & editing\nDrive Quarto from the CLI, in whatever editor you like:\nquarto preview report.qmd   # live-reloading preview\nquarto render  report.qmd   # one-off render\n\nRStudio, Positron, and VS Code all work. The visual editor (WYSIWYM — what you see is what you mean) is built into the RStudio IDE, and comes to Positron and VS Code through the Quarto extension.\nThe same quarto render also takes -P name:value: override a document parameter to get one report per sample or species from a single source. (Optional bonus in today’s lab.)\n\n\n\nDo: run quarto preview report.qmd live — save an edit, show the browser reload; then quarto render for the one-off.\nSay: “Drive it from the CLI, in whatever editor you like — RStudio, Positron, VS Code.”\nParams (MENTION, cut-first): mention -P here, where quarto render is on screen — the optional lab bonus does it hands-on (one report per species). Don’t dwell; it isn’t a taught beat.\nTiming: keep it brief — the room knows cells and Jenny Bryan covers the IDE. Part 1 lands inside its ~18–20 min budget."
+  },
+  {
+    "objectID": "slides/quarto/index.html#positron",
+    "href": "slides/quarto/index.html#positron",
+    "title": "Introduction to Quarto",
+    "section": "Quarto in Positron",
+    "text": "Quarto in Positron\nThe same quarto preview, from inside the editor: source on the left, live preview on the right. Edit, hit Preview, and it live-reloads.\n\n\n\n\nSay: “The CLI preview you just saw — but driven from inside Positron.”\nDo: point at the Source / Visual toggle top-left, the visual editor the previous slide mentioned.\nTiming: watch-me, cut-first if Part 1 runs long (Jenny Bryan covers the IDE itself).\n(Authoring note, not spoken: the shot is a Python example from the Quarto docs; the workflow is language-agnostic — swap in a local R/penguins capture when available.)\n\n\n\nScreenshot from the Quarto documentation."
+  },
+  {
+    "objectID": "slides/quarto/index.html#your-turn-1",
+    "href": "slides/quarto/index.html#your-turn-1",
+    "title": "Introduction to Quarto",
+    "section": "Your turn",
+    "text": "Your turn\n\n\n\n\n\n\n\nYour turn — regroup in ~45 min\n\n\nHead to the Lab and start at the Authoring Challenge: author a penguins document with a figure, a cross-referenced table, and margin layout, then render it to HTML, then a break, back after.\n\n\n\n\nYou can now author a figure, a cross-referenced table, and margin layout. After the break we cite it and ship a branded PDF.\n\n\nSay (handoff): “Over to you — Authoring Challenge in the lab, ~45 min. Then we break — back at 15:30. Helpers are around; raise your hand if you’re stuck.”\nHelpers: most common trap is the cross-ref prefix — a label must start fig-/tbl-/eq-, or @ref renders a stray ?@. Also check the #| lines are the very top of the cell (no blank line or code above them), and watch for duplicate labels across the document."
+  },
+  {
+    "objectID": "slides/quarto/index.html#report-to-article",
+    "href": "slides/quarto/index.html#report-to-article",
+    "title": "Introduction to Quarto",
+    "section": "From report to article",
+    "text": "From report to article\nYou have a clean HTML document. The lab ships a Part-2 starter if you need one. To make it a publication-ready article, two more things:\n\ncitations — a .bib file and a citation style;\na typeset PDF — via Typst, bundled in Quarto.\n\n\nThis is exactly the path from your analysis to a submission, and to your team-project write-up."
+  },
+  {
+    "objectID": "slides/quarto/index.html#citations",
+    "href": "slides/quarto/index.html#citations",
+    "title": "Introduction to Quarto",
+    "section": "Citations",
+    "text": "Citations\n\n\n\n\n\n\n\nFollow along\n\n\nBack in your editor: we add citations to the Part-1 document (or the lab’s starter.qmd).\n\n\n\n\nPoint the header at a .bib, then cite with @key:\n\n\nbibliography: references.bib\ncsl: apa.csl\nThe data come from Palmer Station\n[@gorman2014].\nrenders as: … Palmer Station (Gorman et al., 2014).\n\n\n\nreferences.bib\n\n@article{gorman2014,\n  author  = {Gorman, K. B. and ...},\n  title   = {Ecological Sexual ...},\n  journal = {PLoS ONE},\n  year    = {2014}\n}\n\n\nThe reference list renders at the end automatically, or wherever you drop this div:\n::: {#refs}\n:::\n\n\n\nDo: point the header at references.bib + a csl:, drop [@gorman2014] into a sentence, re-render — the in-text cite resolves and a reference list appears at the end.\nSay: “One .bib key in your prose becomes a formatted citation and an auto-built reference list — swap the csl: file and the whole style changes.”\nHelpers: the .bib path is relative to the document — the follow-along file must sit in day1-intro/ next to references.bib/apa.csl. A [?] in the text means a wrong @key, or bibliography: not set in the header.\n\n\n\nCSL = Citation Style Language: the file that decides how citations and the reference list are formatted (APA, Vancouver, a journal’s own style). Swap the csl: file, restyle everything."
+  },
+  {
+    "objectID": "slides/quarto/index.html#authors",
+    "href": "slides/quarto/index.html#authors",
+    "title": "Introduction to Quarto",
+    "section": "A real title block",
+    "text": "A real title block\nA few header lines turn the document into a publication-ready article (name, affiliation, ORCID, abstract):\ntitle: \"Bill shape distinguishes Antarctic penguins\"\nauthor:\n  - name: Christophe Dervieux\n    affiliation: Posit, PBC\n    email: cderv@posit.co\n    orcid: 0000-0003-4474-2498\nabstract: |\n  Using base-R `penguins`, we show bill shape separates species...\nRenders in HTML, PDF, and Typst. Write it once.\n\n\nTiming (Part-2 trim-first): if Part 2 runs long, this is the slide to cut — name author / affiliation / ORCID / abstract verbally and move on. Citations, Typst, and brand are the must-keeps."
+  },
+  {
+    "objectID": "slides/quarto/index.html#typst",
+    "href": "slides/quarto/index.html#typst",
+    "title": "Introduction to Quarto",
+    "section": "Typst — modern PDF, no LaTeX",
+    "text": "Typst — modern PDF, no LaTeX\nTypst is a modern typesetting system that ships inside Quarto: nothing to install, no LaTeX toolchain.\nformat: typst\nThat is the whole switch. Then re-render:\nquarto render report.qmd --to typst\n\n\n\n\n\n\n\nPre-flight\n\n\nTypst is bundled from Quarto 1.4+; we require ≥ 1.9 (margin/article layout). Check once with quarto --version.\n\n\n\n\n\n\nSay: “Typst is deterministic and bundled — nothing to install. LaTeX is still there if you need it, but Typst is what we use in 2026.”\nGloss “Typst” on first use."
+  },
+  {
+    "objectID": "slides/quarto/index.html#brand",
+    "href": "slides/quarto/index.html#brand",
+    "title": "Introduction to Quarto",
+    "section": "Branding the PDF — _brand.yml",
+    "text": "Branding the PDF — _brand.yml\nOne _brand.yml carries your palette + fonts to the Typst PDF you just built, and to the plots and tables inside it:\n\n\n\n\n_brand.yml\n\ncolor:\n  palette:\n    teal: \"#4C979F\"\n  primary: teal\ntypography:\n  fonts:\n    - family: Albert Sans\n      source: google\n  base:\n    family: Albert Sans\n\n\n\nSame file themes HTML and Typst.\nThe R side (theme_brand_ggplot2() / theme_brand_gt() from the brand.yml package) themes your plots and tables from the same palette.\nQuarto fetches Google fonts for Typst automatically.\n\n\n\n\nDo: add _brand.yml (palette + fonts) and re-render the Typst PDF — colors and type change from that one file. This is the payoff.\nSay: “One file themes the PDF — and theme_brand_ggplot2() / _gt() pull the same palette into your plots and tables. Tomorrow the same file will brand a whole project.”\nHelpers: a plot won’t inherit the palette until you add a theme_brand_* helper; the first Typst render fetches the Google fonts, so it needs network once."
+  },
+  {
+    "objectID": "slides/quarto/index.html#your-turn-2",
+    "href": "slides/quarto/index.html#your-turn-2",
+    "title": "Introduction to Quarto",
+    "section": "Your turn",
+    "text": "Your turn\n\n\n\n\n\n\n\nYour turn — regroup in ~30 min\n\n\nBack to the Lab, at the Citations Challenge: add citations to the Part-2 starter (or your own Part-1 file), then render it as a branded Typst PDF. You’ll finish with a publication-ready article, a cite-able, branded PDF you could submit.\n\n\n\n\n\n\nSay (handoff): “Last part — Citations Challenge: add a .bib, render a branded Typst PDF, and you leave with a publication-ready article — a branded, cite-able PDF. ~30 min; helpers are around.”\nHelpers: the .bib key must match @key exactly; the Typst Google-font fetch needs network on the first render; a missing csl: falls back to Typst’s native style. “Where’s my PDF?” — in day1-intro/ it lands next to its source (starter.qmd → starter.pdf, my-report.qmd → my-report.pdf), no _site/ redirect. All covered by the lab’s hint/solution."
+  },
+  {
+    "objectID": "slides/quarto/index.html#wrap-up",
+    "href": "slides/quarto/index.html#wrap-up",
+    "title": "Introduction to Quarto",
+    "section": "What you can do now",
+    "text": "What you can do now\nYou can now:\n\nauthor a .qmd natively — figures, tables, cross-references, math, callouts;\nlay it out — page, margin, columns, panels;\nmake it accessible — alt text, color-blind-safe colors, a built-in axe check;\ncite it with a .bib + CSL, give it a real title block;\nship it as a branded Typst PDF — no LaTeX.\n\n\nNext (Day 2): grow one document into a whole project, a website your team can publish."
+  },
+  {
+    "objectID": "slides/quarto/index.html#thank-you",
+    "href": "slides/quarto/index.html#thank-you",
+    "title": "Introduction to Quarto",
+    "section": "Thank you!",
+    "text": "Thank you!\nQuestions?\nLearn more: quarto.org/docs/guide · Typst format · _brand.yml\n\nSlides + lab: this site · Christophe Dervieux · GitHub @cderv · cderv@posit.co"
+  },
+  {
+    "objectID": "labs/quarto/index.html",
+    "href": "labs/quarto/index.html",
+    "title": "Introduction to Quarto — Lab",
+    "section": "",
+    "text": "NoteScope\n\n\n\nBuild one penguins document with the authoring extras, then cite it and render it as a branded Typst PDF. Two challenges, one document: each is its own hands-on part, with a break between them. This is your manuscript / team-project path, the same route from an analysis to a submittable write-up. Everything runs on base-R datasets::penguins (R ≥ 4.5), so there’s no data to download.\nBefore you start: work through the Setup page if you haven’t. Its 00-check-setup.R confirms R, Quarto, and the packages this lab uses.\nStart every document with this setup (the challenges below assume it):\nlibrary(dplyr)\nlibrary(ggplot2)\nlibrary(gt)\nlibrary(ggokabeito)   # color-blind-safe (Okabe-Ito) scale -- see the Accessibility box\n\ndata(penguins)\npenguins &lt;- penguins |&gt; filter(!is.na(bill_len), !is.na(bill_dep))"
+  },
+  {
+    "objectID": "labs/quarto/index.html#authoring-challenge",
+    "href": "labs/quarto/index.html#authoring-challenge",
+    "title": "Introduction to Quarto — Lab",
+    "section": "1 Authoring Challenge",
+    "text": "1 Authoring Challenge\n\nGoal: a penguins report with a cross-referenced figure, a cross-referenced table, a margin element, and a display equation, rendered to HTML.\n\n\n\n\n\n\n\nNote Tasks\n\n\n\n\n\nCreate my-report.qmd inside your open day1-intro/ folder (next to references.bib / apa.csl, so Part 2’s paths and branding resolve later) with format: html and the setup cell at the top of this page.\nAdd a scatter plot of bill_len versus bill_dep colored by species. Give its cell #| label: fig-bill and a #| fig-cap:, then refer to it with @fig-bill in the prose, outside the cell.\nAdd a summary table. The gt plumbing is below. Your job is the cross-reference mechanic: give the cell #| label: tbl-summary and a #| tbl-cap:, then refer to it with @tbl-summary.\npenguins |&gt;\n  summarise(bill_len = mean(bill_len), bill_dep = mean(bill_dep), .by = species) |&gt;\n  gt()\nPut the species counts in the margin with the cell option #| column: margin.\n(stretch) Add the bill-shape ratio as a display equation, referenced with @eq-ratio. Escape the underscores: inside $$…$$, bill_len may render as a subscript (depending on the math renderer), so write:\n$$\n\\text{ratio} = \\frac{\\text{bill\\_len}}{\\text{bill\\_dep}}\n$$ {#eq-ratio}\nRender to HTML (quarto render my-report.qmd, or the editor’s Render/Preview).\n\n\n\n\n Quarto docs\nCross-references · Article layout\n\n\n\n\n\n\nTip Make it accessible\n\n\n\nThe worked report does all three. Do the same in yours:\n\nadd a #| fig-alt: to every figure;\nadd scale_color_okabe_ito() (from ggokabeito) to your plot, keeping shape = species;\nadd axe: {output: document} under format: html, re-preview, and a WCAG report appears on the page (drop it again before you publish). See Quarto’s accessibility docs.\n\n\n\n\n\n\n\n\n\nNote You should see\n\n\n\nA numbered Figure 1 (the bill scatter, three separate clusters), a numbered Table 1, the counts sitting in the right margin, and an Equation 1, with @fig-bill / @tbl-summary / @eq-ratio rendering as live “Figure 1” / “Table 1” / “Equation 1” links. Your finished figure looks like this:\n\n\n\n\n\n\n\n\n\n\nFigure 1: Target: bill length versus depth by species.\n\n\n\n\n\n\n\n\n\n\n\nTipHint\n\n\n\n\n\n\nA cell becomes a cross-referenceable figure/table only when its label starts with fig- / tbl- / eq- and is unique in the document.\ncolumn: margin is a cell option (#|) for a cell, or a ::: {.column-margin} div for prose.\nDisplay math with a label $$ … $$ {#eq-ratio}, referenced with @eq-ratio.\n\n\n\n\nThe complete, runnable solution is starter.qmd, a known-good Part-1 report with all these cells. It’s already in your day1-intro/ folder; open it there to compare, or take the source:\n\n starter.qmd\nThe cross-references and the equation live in the body Markdown, outside any cell:\n@fig-bill shows bill shape by species; @tbl-summary gives the per-species means.\n\n$$\n\\text{ratio} = \\frac{\\text{bill\\_len}}{\\text{bill\\_dep}}\n$$ {#eq-ratio}\nsolutions/day1/penguins-report.qmd is a reference, not a checklist. The complete worked document goes beyond the tasks (a margin culmen figure, a glimpse, section labels) and also adds the citations from the next challenge. It’s in your exercises solutions/day1/ folder. Try the challenge first, then open it to compare, or take the source:\n\n penguins-report.qmd"
+  },
+  {
+    "objectID": "labs/quarto/index.html#citations-challenge",
+    "href": "labs/quarto/index.html#citations-challenge",
+    "title": "Introduction to Quarto — Lab",
+    "section": "2 Citations Challenge",
+    "text": "2 Citations Challenge\n\nGoal: cite the report, then render the same document as a branded Typst PDF.\n\n\n\n\n\n\n\nNoteStarting point\n\n\n\nIf you finished the Authoring Challenge, keep going on your own document. Otherwise open day1-intro/starter.qmd in your editor (a known-good Part-1 report) and add the citations to that.\n\n\n\n\n\n\n\n\nNote Tasks\n\n\n\n\n\nPoint the document header at the shared bibliography and citation style:\nbibliography: references.bib\ncsl: apa.csl\nCite the data source in prose with @gorman2014. Find (or add) the sentence ending “…collected at Palmer Station, Antarctica.” and insert the citation before the period: Antarctica [@gorman2014]. (don’t paste a second copy).\nAdd a References section where the list should appear:\n## References {.unnumbered}\n\n::: {#refs}\n:::\nGive it a real title block so the PDF reads as a paper. Replace your document’s author: line with:\nauthor:\n  - name: Your Name\n    affiliation: Your Lab, Your University\nRender to HTML and confirm the citation resolves to (Gorman et al., 2014) with a formatted reference list.\nSwitch the output to Typst and render a branded PDF. (You’ll see a stack of unknown font family warnings as it renders. They’re harmless: the Troubleshooting box below explains them.) Two routes:\n\nCLI — leave the header as-is and force the target:\nquarto render your-doc.qmd --to typst\nEditor Render button — set format: typst in the YAML header first, then click Render. The button renders whatever format: is declared, so while the header still says format: html the button gives you HTML, not a PDF.\n\nWhere the PDF lands: right next to its source in day1-intro/. There’s no project folder above to redirect it, so starter.qmd gives starter.pdf, my-report.qmd gives my-report.pdf.\n\n\n\n\n Quarto docs\nCitations · Typst\n\n\n\n\n\n\nNote You should see\n\n\n\nIn-text (Gorman et al., 2014), a References section formatted in APA, and, in the Typst PDF, the same citation and reference list, typeset with the RaukR palette. No ?@gorman2014 or [?] markers anywhere.\n\n\n\n\n\n\n\n\nTipHint\n\n\n\n\n\n\nThe @key in [@gorman2014] must match a key in references.bib exactly.\ncsl: sets the style (here APA). Swap the file to restyle every citation at once.\nTypst reads the .bib itself, so keep bibliography fields plain (avoid LaTeX macros like \\emph{} in titles).\nOn the first Typst render, Quarto downloads the brand’s Google fonts; give it a moment and a network connection.\n\n\n\n\n\n\n\n\n\n\nNoteSolution: the header and the cite\n\n\n\n\n\nIn the YAML header:\nbibliography: references.bib\ncsl: apa.csl\nIn prose:\nThe data come from Palmer Station, Antarctica [@gorman2014].\nA References section (the list renders inside the #refs div):\n## References {.unnumbered}\n\n::: {#refs}\n:::\nFor the branded PDF (the project _brand.yml styles it), either force the target from the CLI:\nquarto render your-doc.qmd --to typst\nor set format: typst in the header and use the editor’s Render button.\n\n\n\nThe complete cited HTML is solutions/day1/penguins-report.qmd. The branded Typst PDF (with R-side theme_brand_* styling) is day1-intro/sample-typst.qmd (render it to see the branded PDF payoff)."
+  },
+  {
+    "objectID": "labs/quarto/index.html#sec-parameters",
+    "href": "labs/quarto/index.html#sec-parameters",
+    "title": "Introduction to Quarto — Lab",
+    "section": "3 Bonus — one report per species (optional)",
+    "text": "3 Bonus — one report per species (optional)\n\nGoal: turn a report into a parameterized one: a single source that renders a separate report per species by passing the species in at render time. This is the “one QC report per sample / one summary per cohort” pattern. Fully optional, so skip it if you’re short on time.\n\nA parameter is a value declared in the YAML that your code can read as params$…. Change the value at render time and the same document produces a different report. No copy-paste.\n\n\n\n\n\n\nNoteStarting point\n\n\n\nThe fastest path: open the shipped penguins-by-species.qmd (in your day1-intro/ folder), a complete parameterized report, and just render it for different species (Task 5). Want to build it yourself instead? Add the pieces below to a copy of your Part-1 report, and point your figure/table cells at the filtered one (not penguins) so they track the parameter too.\n\n\n\n\n\n\n\n\nNote Tasks\n\n\n\n\n\nDeclare a parameter with a default in the header:\nparams:\n  species: Gentoo\nUse it to filter in your setup cell. params$species is just a value (keep the same NA guard as the rest of the lab), then plot one instead of penguins:\none &lt;- penguins |&gt; filter(species == params$species, !is.na(bill_len), !is.na(bill_dep))\nBuild a heading from the parameter with #| output: asis (it writes the cell’s text output as raw Markdown, so cat() becomes a real heading):\n```{r}\n#| echo: false\n#| output: asis\ncat(\"##\", params$species, \"at a glance\\n\")\n```\nMake the caption (and the alt text) track the parameter with !expr. Cell options are YAML, so to run R there you tag the value !expr (and keep a fig-alt, always):\n#| fig-cap: !expr paste0(\"Bill length versus depth for \", params$species, \" penguins.\")\n#| fig-alt: !expr paste0(\"Scatter plot of bill depth against bill length for \", params$species, \" penguins.\")\nRender a different species from the CLI: same quarto render you used for the Typst PDF, with -P name:value (no Render button for this, since the parameter override is command-line only). Run it from inside day1-intro/:\nquarto render penguins-by-species.qmd -P species:Adelie\nquarto render penguins-by-species.qmd -P species:Chinstrap\nWith no -P, the default (Gentoo) is used. The HTML lands next to the source in day1-intro/, as penguins-by-species.html.\n\n\n\n\n Quarto docs\nParameters\n\n\n\n\n\n\nNote You should see\n\n\n\nRendering with -P species:Adelie gives a report whose title sentence, section heading, figure caption, and point count are all about Adelie. Nothing says Gentoo. Change the one word after species: and the whole report follows.\n\n\n\n\n\n\n\n\nTipHint\n\n\n\n\n\n\nParameters must have defaults: params$species has to resolve when no -P is passed.\n-P takes name:value (-P species:Adelie). Pass several with repeated -P flags.\n#| output: asis is what lets code emit Markdown (a heading here); without it, cat() output would show as a printed code result, not a heading.\n\n\n\n\nThe complete, runnable solution is penguins-by-species.qmd. It’s in your day1-intro/ folder. Open it and render with different -P species: values, or take the source:\n\n penguins-by-species.qmd"
+  },
+  {
+    "objectID": "labs/quarto/index.html#troubleshooting",
+    "href": "labs/quarto/index.html#troubleshooting",
+    "title": "Introduction to Quarto — Lab",
+    "section": "4 Troubleshooting",
+    "text": "4 Troubleshooting\n\n\n\n\n\n\nTip If a render misbehaves\n\n\n\n\n\n\nYAML is indentation-sensitive. If rendering fails before any code runs, check the YAML header for stray spaces, tabs, or unmatched quotes.\nMissing package? install.packages(\"&lt;name&gt;\") (or renv::restore()) and render again.\nA figure doesn’t appear? Check the path is relative to the .qmd and the filename matches exactly (case included).\nA cross-reference shows ?@…? The cell label must start with fig-/tbl-/eq- and be unique, and the @ref must match it.\nA citation shows ?@gorman2014 or [?]? The @key doesn’t match a key in references.bib, or bibliography: isn’t set.\nDo I need to install Typst? No. Typst is bundled in Quarto ≥ 1.9, so there’s nothing extra to install (no LaTeX either). Check quarto --version.\nTypst PDF looks unbranded / wrong fonts? Confirm _brand.yml is in your day1-intro/ folder (next to the .qmd) and you have network on the first render (Quarto fetches the Google fonts once).\nTypst prints unknown font family warnings? Harmless: a plain gt table emits them for its default font stack, and the PDF still builds. (The fully brand-styled table via theme_brand_* is in sample-typst.qmd.)\nPrefer to stay in HTML first? Render HTML, get it right, then switch to format: typst. The content is the same."
+  },
+  {
+    "objectID": "labs/quarto/index.html#session",
+    "href": "labs/quarto/index.html#session",
+    "title": "Introduction to Quarto — Lab",
+    "section": "Session",
+    "text": "Session\n\n\n\nSession info\n\n\nsessionInfo()\n\nR version 4.6.0 (2026-04-24 ucrt)\nPlatform: x86_64-w64-mingw32/x64\nRunning under: Windows 11 x64 (build 26200)\n\nMatrix products: default\n  LAPACK version 3.12.1\n\nlocale:\n[1] LC_COLLATE=French_France.utf8  LC_CTYPE=French_France.utf8   \n[3] LC_MONETARY=French_France.utf8 LC_NUMERIC=C                  \n[5] LC_TIME=French_France.utf8    \n\ntime zone: Europe/Paris\ntzcode source: internal\n\nattached base packages:\n[1] stats     graphics  grDevices datasets  utils     methods   base     \n\nother attached packages:\n[1] ggokabeito_0.1.0 gt_1.3.0         ggplot2_4.0.3    dplyr_1.2.1     \n\nloaded via a namespace (and not attached):\n [1] vctrs_0.7.3        cli_3.6.6          knitr_1.51         rlang_1.3.0       \n [5] xfun_0.59          renv_1.2.3         generics_0.1.4     S7_0.2.2          \n [9] jsonlite_2.0.0     labeling_0.4.3     glue_1.8.1         htmltools_0.5.9   \n[13] scales_1.4.0       rmarkdown_2.31     grid_4.6.0         evaluate_1.0.5    \n[17] tibble_3.3.1       fastmap_1.2.0      yaml_2.3.12        lifecycle_1.0.5   \n[21] compiler_4.6.0     fs_2.1.0           RColorBrewer_1.1-3 htmlwidgets_1.6.4 \n[25] pkgconfig_2.0.3    farver_2.1.2       digest_0.6.39      R6_2.6.1          \n[29] tidyselect_1.2.1   pillar_1.11.1      magrittr_2.0.5     withr_3.0.3       \n[33] tools_4.6.0        gtable_0.3.6       xml2_1.6.0"
+  }
+]
