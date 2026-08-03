@@ -57,6 +57,14 @@ jobs:
       - name: Render Day-1 solution (cited HTML report)
         run: quarto render solutions/day1/penguins-report.qmd
 
+      # The two files participants open directly. Off the course-site render list (so no _freeze/
+      # covers them) -- without these steps a break surfaces first on a participant's laptop.
+      - name: Render Day-1 starter (the Part-2 fallback document)
+        run: quarto render day1-intro/starter.qmd
+
+      - name: Render Day-1 parameterized report (exercises !expr options and -P)
+        run: quarto render day1-intro/penguins-by-species.qmd -P species:Adelie --output adelie.html
+
       - name: Render Day-2 solution (the website project)
         # Render from the repo root (like the Day-1 steps) so the root renv library that
         # setup-renv restored stays on the path. A `working-directory: solutions/day2` here

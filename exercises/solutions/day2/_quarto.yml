@@ -11,4 +11,4 @@ website:
         text: Analysis
 format:
   html:
-    theme: cosmo
+    theme: [cosmo, brand]

@@ -193,7 +193,7 @@ one unit with global numbering. A **website** keeps per-page numbering.
 
 ## One brand → the whole project: `_brand.yml` {#brand}
 
-You wrote `_brand.yml` yesterday to brand one **Typst PDF**. Drop that **same file at the project
+You saw `_brand.yml` yesterday — it branded one **Typst PDF**. Drop that **same file at the project
 root** and Quarto **auto-discovers** it (no header line, no per-page config):
 
 :::: {.columns}
@@ -221,9 +221,11 @@ typography:
 ::: notes
 - **Callback (don't re-derive):** they built this file yesterday for the PDF. Today's *new* angle is
   **scale** — one root file themes the whole multi-page project. Widen the scope; don't re-teach the file.
-- **Do:** show the site before / after dropping `_brand.yml` at the root — navbar + headings go teal
-  in one re-render.
-- **Say:** "You wrote this yesterday. Put it at the project root and every page *and* deck inherits it
+- **Do:** show the site before / after dropping `_brand.yml` at the root — navbar + links go teal
+  in one re-render. **Check your demo project first:** a bare `theme: cosmo` outranks the brand and
+  the demo shows nothing. The theme list needs `brand` last (`theme: [cosmo, brand]`), or no
+  `theme:` at all.
+- **Say:** "You saw this yesterday. Put it at the project root and every page *and* deck inherits it
   — brand once, not per file."
 - **R plots (only if asked):** a plot still needs `theme_brand_ggplot2()` — same as yesterday; the
   lab's stretch covers it.
@@ -285,7 +287,7 @@ execute:
   freeze: auto        # re-execute a document only when its source changes
 ```
 
-That's `freeze: auto`, the sane setting to adopt: a page re-runs only when its own source changes. **`freeze: true`**
+That's `freeze: auto`, the sensible default to adopt: a page re-runs only when its own source changes. **`freeze: true`**
 hands you full control instead → next slide.
 
 ::: notes
@@ -329,12 +331,12 @@ but `true` keeps the trigger in your hands.
 - **Say:** "true = the build never runs R; *you* decide when a page recomputes, by rendering it directly."
 - **Do:** edit a cell on `analysis.qmd` → `quarto render analysis.qmd` → show `_freeze/` change + the
   timestamp tick; a full project render leaves it untouched.
-- **Contrast (lab uses `auto`):** `auto` = the build recomputes changed pages for you (the sane setting,
+- **Contrast (lab uses `auto`):** `auto` = the build recomputes changed pages for you (the sensible default,
   what the lab sets); `true` = deterministic CI + manual refresh (the CI mode).
 - **If asked:** a `production` render profile can set `freeze: false` to force a full re-execution.
 :::
 
-## Reproducibility has two legs {#renv}
+## Reproducibility has two parts {#renv}
 
 `freeze` pins the **results**. It doesn't pin **what produced them** (the package versions):
 
@@ -398,9 +400,11 @@ project to `_site/` and open it: a publishable folder. (Publishing to Pages is t
 
 You can now:
 
-- structure `.qmd` into a **project** — `_quarto.yml`, `_metadata.yml`, `output-dir`;
+- structure `.qmd` into a **project** — `_quarto.yml`, `output-dir` (and `_metadata.yml` when a
+  subfolder needs its own defaults);
 - build a **branded website** with navigation, and know why cross-page refs differ from a book;
-- make builds **reproducible** (`freeze` + `renv.lock`) and **publish** the output folder.
+- make builds **reproducible** (`freeze` + `renv.lock`) and produce the **publishable folder** a
+  host or CI ships.
 
 . . .
 
@@ -412,7 +416,7 @@ You can now:
 Extra topics:
 
 ::: {.incremental}
-- **Book versus website** — ~90% shared machinery. Pick a **book** when you need one linear read with
+- **Book versus website** — mostly the same machinery. Pick a **book** when you need one linear read with
   global numbering, a **website** otherwise. *(1 decision, not a new toolset.)*
 - **Dashboards** — `format: dashboard` arranges plots/tables/valueboxes into a static layout (rows,
   columns, cards) to share results with a collaborator who won't open R.

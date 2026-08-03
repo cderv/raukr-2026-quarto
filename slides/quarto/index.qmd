@@ -37,16 +37,16 @@ source(file.path(Sys.getenv("QUARTO_PROJECT_DIR"),
 After this session you will be able to:
 
 - author a Quarto document natively (`.qmd`), with figures, tables, cross-references, and math;
-- lay a document out — page, margin, columns, panels;
+- lay a document out — the article grid, and put content in the margin;
 - make it **accessible** — alt text, color-blind-safe colors, a built-in contrast check;
 - turn it into a **cited, branded Typst PDF** — no LaTeX.
 
-By the end: one penguins document carried all the way to a **polished, cite-able PDF**.
+By the end: one penguins document carried all the way to a **polished, citable PDF**.
 
 ::: notes
 - **Frame:** you already write R and have met R Markdown or Quarto — today is about what Quarto
   *adds* and how far one `.qmd` can go, not "what is a code chunk". We build one document and
-  carry it all the way to a cite-able, branded PDF.
+  carry it all the way to a citable, branded PDF.
 :::
 
 ## How today works
@@ -339,8 +339,8 @@ A cell's `#| column: margin` drops its output (figure, caption, and all) into th
 # a margin figure — caption and all
 ```
 
-*In the lab you'll use **margin** layout, the one that does the most for an article. The rest
-are yours to explore in the worked report.*
+*In the lab you'll use **margin** layout, the one that does the most for an article. The rest are
+yours to explore in the Quarto docs below.*
 
 **Learn more:** [Article Layout](https://quarto.org/docs/authoring/article-layout.html) ·
 [Margin content](https://quarto.org/docs/authoring/article-layout.html#margin-content)
@@ -473,9 +473,9 @@ quarto render  report.qmd   # one-off render
 The same `quarto preview`, from inside the editor: **source on the left, live preview on the right**.
 Edit, hit **Preview**, and it live-reloads.
 
-![](images/positron-quarto-preview.png){.r-stretch fig-alt="The Positron IDE with a Quarto document open: a Source/Visual editor toggle and a Preview button above the .qmd source pane on the left, and a live HTML preview of the rendered document on the right."}
+![](images/positron-quarto-preview.png){height="440px" fig-align="center" fig-alt="The Positron IDE with a Quarto document open: a Source/Visual editor toggle and a Preview button above the .qmd source pane on the left, and a live HTML preview of the rendered document on the right."}
 
-::: {.aside style="text-align: right;"}
+::: {.smaller}
 Screenshot from the [Quarto documentation](https://quarto.org/docs/tools/positron/).
 :::
 
@@ -566,16 +566,15 @@ The reference list renders at the end automatically, or wherever you drop this d
 :::
 ```
 
-::: {.aside}
-**CSL** = *Citation Style Language*: the file that decides how citations and the reference list
-are formatted (APA, Vancouver, a journal's own style). Swap the `csl:` file, restyle everything.
-:::
+**CSL** = *Citation Style Language*: swap the `csl:` file, restyle every citation at once.
 
 ::: notes
 - **Do:** point the header at `references.bib` + a `csl:`, drop `[@gorman2014]` into a sentence,
   re-render — the in-text cite resolves and a reference list appears at the end.
 - **Say:** "One `.bib` key in your prose becomes a formatted citation *and* an auto-built reference
   list — swap the `csl:` file and the whole style changes."
+- **Gloss CSL if asked:** *Citation Style Language* — the file that decides how citations and the
+  reference list are formatted (APA, Vancouver, a journal's own style).
 - **Helpers:** the `.bib` path is relative to the document — the follow-along file must sit in
   `day1-intro/` next to `references.bib`/`apa.csl`. A `[?]` in the text means a wrong `@key`, or
   `bibliography:` not set in the header.
@@ -669,11 +668,11 @@ typography:
 ::: {.callout-tip title="Your turn — regroup in ~30 min"}
 Back to the **[Lab](../../labs/quarto/index.qmd#citations-challenge)**, at the **Citations Challenge**: add citations to
 the Part-2 starter (or your own Part-1 file), then render it as a **branded Typst PDF**. You'll
-finish with a **publication-ready article**, a cite-able, branded PDF you could submit.
+finish with a **publication-ready article**, a citable, branded PDF you could submit.
 :::
 
 ::: notes
-- **Say (handoff):** "Last part — Citations Challenge: add a `.bib`, render a branded Typst PDF, and you leave with a publication-ready article — a branded, cite-able PDF. ~30 min; helpers are around."
+- **Say (handoff):** "Last part — Citations Challenge: add a `.bib`, render a branded Typst PDF, and you leave with a publication-ready article — a branded, citable PDF. ~30 min; helpers are around."
 - **Helpers:** the `.bib` key must match `@key` exactly; the Typst Google-font fetch needs network on the first render; a missing `csl:` falls back to Typst's native style. "Where's my PDF?" — in `day1-intro/` it lands next to its source (`starter.qmd` → `starter.pdf`, `my-report.qmd` → `my-report.pdf`), no `_site/` redirect. All covered by the lab's hint/solution.
 :::
 
@@ -682,7 +681,7 @@ finish with a **publication-ready article**, a cite-able, branded PDF you could 
 You can now:
 
 - author a `.qmd` natively — figures, tables, cross-references, math, callouts;
-- lay it out — page, margin, columns, panels;
+- lay it out — the article grid, and content in the margin;
 - make it accessible — alt text, color-blind-safe colors, a built-in `axe` check;
 - cite it with a `.bib` + CSL, give it a real title block;
 - ship it as a **branded Typst PDF** — no LaTeX.

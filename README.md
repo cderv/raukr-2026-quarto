@@ -10,12 +10,12 @@ from a single document to a whole project you can publish — not "what is a cod
 
 - **Instructor:** Christophe Dervieux ([Posit](https://posit.co/) — R Markdown / Quarto)
 - **Day 1 · Mon 10 Aug — Introduction to Quarto:** the single document — authoring, layout, and the
-  modern output story (incl. Typst).
+  modern output story (including Typst).
 - **Day 2 · Tue 11 Aug — Quarto projects:** beyond one file — websites, config, publishing, tips & tricks.
 
 Each day is **two parts with a gap** (150 min on Day 1, 180 on Day 2), and each part reaches a
 hands-on payoff. The running
-example is the base-R `penguins` dataset (R ≥ 4.5), held through the whole arc.
+example is the base-R `penguins` dataset (R ≥ 4.5), used in every example across both days.
 
 ## The site
 
@@ -27,9 +27,9 @@ slides, labs, and setup page are its output, published to the `gh-pages` branch 
 
 ## Before you arrive
 
-The sessions are hands-on — come with a working toolchain. In short: **R ≥ 4.5**, **Quarto ≥ 1.9**
+The sessions are hands-on, so come with a working toolchain: **R ≥ 4.5**, **Quarto ≥ 1.9**
 (the Typst article layout used on Day 1 landed in 1.9), and an editor with Quarto support ([Positron](https://positron.posit.co/),
-VS Code, or RStudio). Typst — the modern PDF path used on Day 1 — ships *inside* Quarto, so there is
+VS Code, or RStudio). Typst (the modern PDF path used on Day 1) ships *inside* Quarto, so there is
 nothing extra to install.
 
 Full instructions, including how to recreate the exact R environment, are on the **Setup** page
@@ -43,7 +43,7 @@ renv::restore()   # recreate the environment from renv.lock
 
 | Day | Session | Slides | Lab |
 |-----|---------|--------|-----|
-| **Mon 10 Aug** | Introduction to Quarto — authoring, layout, and the output story (incl. Typst) | `slides/quarto/` | `labs/quarto/` |
+| **Mon 10 Aug** | Introduction to Quarto — authoring, layout, and the output story (including Typst) | `slides/quarto/` | `labs/quarto/` |
 | **Tue 11 Aug** | Quarto projects — websites, config, publishing, tips & tricks | `slides/quarto-projects/` | `labs/quarto-projects/` |
 
 ## What's in this repo
@@ -108,7 +108,7 @@ This material builds on Christophe's earlier Quarto talks and tutorials, updated
 
 ## License
 
-See [`LICENSE.md`](LICENSE.md). In short:
+See [`LICENSE.md`](LICENSE.md):
 
 - **Content** — text, slides, exercises, pages, figures: [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
 - **Code** — scripts, build config, authoring tooling: [MIT](LICENSE.md#mit-license-code).

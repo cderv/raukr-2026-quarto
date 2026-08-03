@@ -33,19 +33,18 @@ land next to your files — there is no project above them to capture the output
 ## Check your setup (do this once, before Day 1)
 
 From this top folder, run the setup check. It verifies R, Quarto, the packages, and the data, then
-renders the Day-1 Typst sample — which caches the brand font so the in-session render is fast:
+renders the Day-1 Typst sample — which caches the brand fonts so the in-session render does not pause to download them:
 
 ```r
 source("00-check-setup.R")
 ```
 
-Packages, if you need them (renv restores the pinned set; or install them plainly):
+Packages, if you need them:
 
 ```r
-# reproducible (pinned):        or  # plain install:
-renv::restore()                     install.packages(c(
-                                      "dplyr", "ggplot2", "ggrepel", "gt", "ggokabeito",
-                                      "brand.yml", "prismatic", "knitr", "rmarkdown"))
+install.packages(c(
+  "dplyr", "ggplot2", "ggrepel", "gt", "ggokabeito",
+  "brand.yml", "prismatic", "knitr", "rmarkdown"))
 ```
 
 ## What's here
@@ -54,12 +53,12 @@ renv::restore()                     install.packages(c(
 |---|---|
 | `day1-intro/` | Day-1 working folder: the Part-2 `starter.qmd`, the branded Typst payoff `sample-typst.qmd`, the parameterized-report bonus, plus `references.bib` / `apa.csl` / `_brand.yml`. |
 | `day2-projects/` | Day-2 working folder: two pages that render on their own but are **not yet a project** — turning them into one is the exercise. Ships **without** `_quarto.yml`. |
-| `solutions/` | Reference solutions for both days. Try first — they're most useful once you've had a go. |
+| `solutions/` | Reference solutions for both days. Try the challenge first — they're most useful once you've attempted it. |
 | `00-check-setup.R` | The one-shot setup check + Typst font pre-warm. |
 
 ## Reset (no Git needed)
 
-If an attempt goes sideways, get a **fresh folder** — don't try to extract over your working copy:
+If an attempt goes wrong, get a **fresh folder** (don't extract over your working copy):
 
 - Re-run `usethis::use_course("cderv/raukr-2026-quarto-exercises")` — it makes a new,
   numbered folder and leaves your old attempt untouched; or

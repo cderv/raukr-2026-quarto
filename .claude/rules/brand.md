@@ -124,3 +124,32 @@ Measuring contrast correctly: **composite the whole ancestor background stack ov
 computing the ratio.** Quarto's code background is semi-transparent (`rgba(…,.65)`), so reading the
 raw `background-color` gives a wrong (too harsh) number — that mistake produced a false "fails AA" on
 stock defaults during this pass before it was caught.
+
+## 7. A named bootswatch `theme:` outranks the brand palette — put `brand` last
+
+`theme: cosmo` (or any named bootswatch) **silently defeats `_brand.yml`'s colors**. Quarto expands a
+bare `theme:` to `[brand, cosmo]`, and *later layers win*, so cosmo's `$primary` lands and the brand
+teal survives only as an unconsumed `--brand-teal` custom property.
+
+The trap is that **typography still comes through** (`--bs-body-font-family: Albert Sans`), so the
+page visibly changes and everyone concludes the brand worked. Measured on 1.10.18:
+
+| `theme:` | `--bs-primary` | navbar |
+|---|---|---|
+| `cosmo` | `#2780e3` (cosmo blue) | `#f8f9fa` |
+| `[brand, cosmo]` | `#2780e3` | `#f8f9fa` |
+| **`[cosmo, brand]`** | **`#4C979F`** | **`#4c979f`** |
+| *(no `theme:`)* | `#4C979F` | `#4c979f` |
+
+So: **`brand` goes last**, or omit `theme:` entirely. `theme: [cosmo, brand]` renders fine even when
+no `_brand.yml` exists yet, so it is safe to write before the brand file is added — which is what
+makes a before/after brand demo work at all. (This repo's own `theme: [default, theme-html.scss]` is
+unaffected: only a *named bootswatch* triggers the override.)
+
+Found 2026-08-03: the Day-2 lab told participants to write `theme: cosmo` in step 1 and then promised
+teal in step 3, and the shipped reference solution reproduced the same bug — four reading reviewers
+missed it, an agent that actually rendered caught it immediately.
+
+**Related wording trap:** `primary` does **not** color headings. `--bs-heading-color` stays `inherit`
+in every configuration above. What turns brand-colored is the **navbar and links**. Don't write "the
+headings turn teal" as a checkpoint — participants will read it as a failure when they got it right.

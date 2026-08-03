@@ -103,7 +103,7 @@ $$ {#eq-ratio}
 
 ```{r}
 #| label: tbl-summary
-#| tbl-cap: "Mean measurements per species (± values rounded)."
+#| tbl-cap: "Mean measurements per species (values rounded)."
 penguins |>
   summarise(
     n = n(),

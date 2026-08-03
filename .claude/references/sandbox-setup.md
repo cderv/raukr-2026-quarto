@@ -178,14 +178,14 @@ LANG=C.UTF-8 LC_ALL=C.UTF-8 quarto render     # once there is content to render
 quarto --version && quarto typst --version    # Typst is bundled with Quarto
 ```
 
-> **Known live-render failure masked by freeze (2026-07-20).** `labs/quarto/sample-typst.qmd` throws
-> a `gt` `check_named_colors` error when its R chunks execute *live* (a single-file
-> `quarto render sample-typst.qmd`, or any render after deleting its `_freeze/`). The committed
-> `_freeze/` keeps the **project** render green (it reuses frozen results, never re-executing), so
-> `quarto render` at the repo root passes. Consequence: you **cannot re-freeze `sample-typst.qmd` in
-> this sandbox** — if you edit it, its freeze goes stale and the commit hook blocks. Likely a
-> `gt`/`brand.yml` version mismatch vs the machine that produced the freeze; investigate on a real
-> environment before touching that file's executable content.
+> **~~Known live-render failure masked by freeze (2026-07-20)~~ — NO LONGER REPRODUCES (2026-08-03).**
+> `labs/quarto/sample-typst.qmd` used to throw a `gt` `check_named_colors` error when its R chunks
+> executed *live*, which meant you could not re-freeze it here. On **Quarto 1.10.18 / R 4.6.1** it
+> renders cleanly: verified twice from the participant payload (`quarto render
+> day1-intro/sample-typst.qmd`), once via `00-check-setup.R` and once standalone, in both `C.UTF-8`
+> and a bare `C` locale. It was almost certainly the `gt`/`brand.yml` version skew the old note
+> guessed at, resolved by the current pins. **Re-freezing this file is safe** — the old warning was
+> discouraging a legitimate operation.
 
 ## Toolchain — verified working end to end (2026-08-03)
 

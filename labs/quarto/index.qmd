@@ -227,6 +227,11 @@ that.
 In-text **(Gorman et al., 2014)**, a **References** section formatted in APA, and, in the Typst
 PDF, the same citation and reference list, typeset with the RaukR palette. No `?@gorman2014` or
 `[?]` markers anywhere.
+
+**Check the branding actually applied.** An unbranded PDF builds fine (same exit code, same
+`Output created`), so the tell is the type: a branded PDF is set in **Albert Sans**, an unbranded
+one in a serif (Typst's default). If your headings are serif, `_brand.yml` isn't beside your
+`.qmd` — see Troubleshooting.
 :::
 
 ::: {.callout-tip collapse="true"}
@@ -331,11 +336,15 @@ figure/table cells at the filtered **`one`** (not `penguins`) so they track the 
    with `-P name:value` (no Render button for this, since the parameter override is command-line only).
    Run it from inside `day1-intro/`:
    ```bash
-   quarto render penguins-by-species.qmd -P species:Adelie
-   quarto render penguins-by-species.qmd -P species:Chinstrap
+   quarto render penguins-by-species.qmd -P species:Adelie    --output adelie.html
+   quarto render penguins-by-species.qmd -P species:Chinstrap --output chinstrap.html
    ```
    With no `-P`, the default (`Gentoo`) is used. The HTML lands **next to the source** in
-   `day1-intro/`, as `penguins-by-species.html`.
+   `day1-intro/`.
+
+   `--output` is what makes this *one report per species*. Every render of a given file writes the
+   same `penguins-by-species.html` by default, so without it the second command **overwrites** the
+   first and you end up with one report, not two.
 ::::
 
 ::: {.callout-note appearance="simple" icon=false}
@@ -378,9 +387,13 @@ Open it and render with different `-P species:` values, or take the source:
   install (no LaTeX either). Check `quarto --version`.
 - **Typst PDF looks unbranded / wrong fonts?** Confirm `_brand.yml` is in your `day1-intro/` folder
   (next to the `.qmd`) and you have network on the first render (Quarto fetches the Google fonts once).
-- **Typst prints `unknown font family` warnings?** Harmless: a plain `gt` table emits them for its
-  default font stack, and the PDF still builds. (The fully brand-styled table via `theme_brand_*` is in
-  `sample-typst.qmd`.)
+- **Typst prints `unknown font family` warnings?** Harmless, and expected: a `gt` table names a
+  generic `sans-serif` in its font stack, which Typst doesn't recognise as a family. The PDF still
+  builds. Every document here emits it, `sample-typst.qmd` included, so it is **not** a sign that
+  your branding failed.
+- **Is my PDF actually branded?** Look at the type, not the log: branded is **Albert Sans**
+  (sans-serif), unbranded is Typst's default serif. An unbranded render succeeds silently, so the
+  log won't tell you. Fix by putting `_brand.yml` next to the `.qmd` and re-rendering.
 - **Prefer to stay in HTML first?** Render HTML, get it right, *then* switch to `format: typst`.
   The content is the same.
 :::

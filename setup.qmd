@@ -31,6 +31,21 @@ Do steps 2–4 **before you arrive**: walking in with the toolchain already in p
   Quarto extension), or RStudio. All work, and we drive Quarto from the command line too
   (`quarto preview` / `quarto render`), so the editor is your choice.
 
+::: {.callout-warning collapse="true"}
+## On RStudio? Check which Quarto the Render button uses
+RStudio ships **its own** copy of Quarto, and the Render button uses that one, not the `quarto` on
+your PATH. So `quarto --version` can say 1.9+ while the button still runs an older build, and Day
+1's Typst margin layout needs ≥ 1.9. Check it in R:
+
+```r
+quarto::quarto_version()   # install.packages("quarto") if needed
+```
+
+If it's below 1.9, either update RStudio, or point it at your install by setting the
+`QUARTO_PATH` environment variable, or just render from the terminal (`quarto render <file>`),
+which we do throughout anyway.
+:::
+
 ::: {.callout-tip}
 Typst (the modern PDF path we use on Day 1) ships **inside** Quarto, so there is nothing extra to
 install and no LaTeX to set up.
@@ -72,7 +87,8 @@ usethis::use_course("cderv/raukr-2026-quarto-exercises")
 
 **What it does:**
 
-1. picks a sensible spot (your **Desktop** by default) and prints where it's about to download. To
+1. picks a sensible spot (your **Desktop** by default) and prints where it is about to download the
+   files. To
    put it elsewhere, cancel and re-run with a path, e.g.
    `use_course("cderv/raukr-2026-quarto-exercises", destdir = "~/projects")`.
 2. downloads a ZIP and **unpacks it for you** into a folder called `raukr-2026-quarto-exercises` (it
@@ -94,7 +110,7 @@ usethis::use_course("cderv/raukr-2026-quarto-exercises")
 Each day folder is its own working directory with its own brand and assets, so your renders land
 **right next to your files** (there's no project folder above them to capture the output). One
 download covers both days. The reference answers are in `solutions/day1/` and `solutions/day2/` at the
-top folder (try first).
+top folder. Try the challenge yourself first.
 :::
 
 ::: {.callout-tip collapse="true"}
@@ -136,19 +152,11 @@ pak::pak(c(
 ```
 
 ::: {.callout-note collapse="true"}
-## Prefer pinned versions? (optional, `renv`)
-The exercises ship an `renv.lock` recording exact package versions. From the **top**
-`raukr-2026-quarto-exercises` folder (where `renv.lock` sits):
-
-```r
-# install.packages("renv")   # if you don't have it
-renv::restore()
-```
-
-`renv` builds a **project-local** library at that top folder, which R activates only when you work
-*from* that top folder, **not** when you open a day folder. So if you go the `renv` route, render
-from the top folder too. Otherwise the plain `install.packages()` above (into your regular library)
-is the simpler path that works in any folder. Pick one, you don't need both.
+## There's an `renv.lock` in the folder — ignore it
+It pins the versions our CI renders against. It is **not** the participant path: the folder ships no
+`.Rprofile` and no `renv/activate.R`, so `renv::restore()` there is not an activated project and
+would install its 65 pinned packages straight into your everyday R library. Use the
+`install.packages()` line above.
 :::
 
 ## Check your setup
