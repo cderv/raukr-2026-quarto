@@ -32,18 +32,19 @@ Do steps 2–4 **before you arrive**: walking in with the toolchain already in p
   (`quarto preview` / `quarto render`), so the editor is your choice.
 
 ::: {.callout-warning collapse="true"}
-## On RStudio? Check which Quarto the Render button uses
-RStudio ships **its own** copy of Quarto, and the Render button uses that one, not the `quarto` on
-your PATH. So `quarto --version` can say 1.9+ while the button still runs an older build, and Day
-1's Typst margin layout needs ≥ 1.9. Check it in R:
+## On RStudio? The Render button may not use the Quarto you just checked
+RStudio can run a **different Quarto** from the one on your PATH (it ships its own, and an
+environment variable can override that). So `quarto --version` does not settle what the Render
+button will use, and Day 1's Typst article layout needs ≥ 1.9.
 
-```r
-quarto::quarto_version()   # install.packages("quarto") if needed
-```
+Two reliable ways round it:
 
-If it's below 1.9, update RStudio or point it at your install with the `QUARTO_PATH` environment
-variable. You can also render from the terminal (`quarto render <file>`), which we do throughout
-anyway.
+- render from the **Terminal** (`quarto render <file>`), which uses the `quarto` you checked above.
+  We do this throughout anyway;
+- or point RStudio at a specific install with the **`RSTUDIO_QUARTO`** environment variable. Note
+  it is *not* `QUARTO_PATH`: the `quarto` R package reads that one, RStudio does not.
+
+If a document looks wrong on Day 1 but renders correctly from the Terminal, this is usually why.
 :::
 
 ::: {.callout-tip}

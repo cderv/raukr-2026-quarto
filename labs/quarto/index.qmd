@@ -335,20 +335,27 @@ figure/table cells at the filtered **`one`** (not `penguins`) so they track the 
    with `-P name:value` (no Render button for this, since the parameter override is command-line only).
    Run it from inside `day1-intro/`:
    ```bash
-   quarto render penguins-by-species.qmd -P species:Adelie    --output adelie.html
-   quarto render penguins-by-species.qmd -P species:Chinstrap --output chinstrap.html
+   quarto render penguins-by-species.qmd -P species:Adelie    --output adelie.html    --embed-resources
+   quarto render penguins-by-species.qmd -P species:Chinstrap --output chinstrap.html --embed-resources
    ```
    With no `-P`, the default (`Gentoo`) is used. The HTML lands **next to the source** in
    `day1-intro/`.
 
-   `--output` is what gives you *one report per species*. Every render writes the same
-   `penguins-by-species.html` by default, so without it the second command **overwrites** the first.
+   Both flags are needed for *one report per species*. `--output` names the HTML, because every
+   render writes the same `penguins-by-species.html` by default and the second command would
+   otherwise overwrite the first. `--embed-resources` then puts the images **inside** each HTML: the
+   support folder is named after the *input* file, so without it both reports share one
+   `penguins-by-species_files/` and the second render's plot replaces the first. You would get two
+   pages with the right words over the same wrong figure.
 ::::
 
 ::: {.callout-note appearance="simple" icon=false}
 ## {{< fa circle-check >}} You should see
 Rendering with `-P species:Adelie` gives a report whose title sentence, section heading, figure
-caption, and point count are **all** about Adelie. Nothing says Gentoo. Change the one word after
+caption, point count **and the plot itself** are all about Adelie. Nothing says Gentoo. Open
+`adelie.html` and `chinstrap.html` side by side: the two scatters must be **visibly different**
+(Adelie has more than twice as many points). Same words over the same picture means the reports
+are sharing one figure, so check both flags in the commands above. Change the one word after
 `species:` and the whole report follows.
 :::
 
