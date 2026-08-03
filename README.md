@@ -19,10 +19,11 @@ example is the base-R `penguins` dataset (R ≥ 4.5), held through the whole arc
 
 ## The site
 
+The site is live at **<https://cderv.github.io/raukr-2026-quarto/>**.
+
 This repository is a [Quarto website](https://quarto.org/docs/websites/) project; the rendered
-slides, labs, and setup page are its output. Once published it will live at
-<https://cderv.github.io/raukr-2026-quarto/> — the material is still being authored, so pages may
-change up to the school.
+slides, labs, and setup page are its output, published to the `gh-pages` branch with
+`just publish gh`. The material is still being authored, so pages may change up to the school.
 
 ## Before you arrive
 
@@ -90,6 +91,9 @@ just preview    # live preview with auto-reload
 just clean      # remove build artifacts
 just publish gh # render, then publish to GitHub Pages (or: just publish connect)
 ```
+
+`just publish gh` pushes the rendered `_site/` to the `gh-pages` branch and prints the live URL
+(<https://cderv.github.io/raukr-2026-quarto/>) when it finishes.
 
 `_freeze/` is versioned: after editing an executable `.qmd`, re-render it (`quarto render <file>`)
 and commit the refreshed freeze so the site builds on CI without re-running R.

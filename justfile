@@ -7,6 +7,10 @@
 # recipe just calls the cross-platform `quarto` binary; only `clean` needs an OS variant.
 set windows-shell := ["powershell.exe", "-NoLogo", "-Command"]
 
+# Where each publish target lands (printed once the publish succeeds)
+gh_url := "https://cderv.github.io/raukr-2026-quarto/"
+connect_url := "https://connect.posit.cloud/cderv/content/019f5c4d-f1c7-0d48-88b9-b10861a493e7"
+
 # List available recipes
 default:
     @just --list
@@ -49,8 +53,11 @@ clean:
 # the emitted `quarto publish …` line is one cross-platform binary call, so it runs under
 # both sh and PowerShell (see .claude/rules/justfile.md). `--no-render` because `publish`
 # renders first; `error(...)` gives a helpful message instead of an obscure failure.
+# The second line echoes the resulting URL (`echo` exists in both sh and PowerShell);
+# an unknown target aborts on the first line, so it never prints a URL.
 _publish target:
     {{ if target == "gh" { "quarto publish gh-pages --no-prompt --no-render" } else if target == "connect" { "quarto publish posit-connect-cloud --no-prompt --no-render" } else { error("Unknown target: '" + target + "' — use 'gh' or 'connect'") } }}
+    @echo "Live at {{ if target == "gh" { gh_url } else { connect_url } }}"
 
 # Publish the whole site: just publish gh       →  GitHub Pages (gh-pages branch)
 #                         just publish connect  →  Posit Connect Cloud

@@ -28,6 +28,9 @@ quarto-required: ">=1.9.0"
 
 website:
   title: "RaukR 2026 · Quarto"
+  # Deployed to the gh-pages branch of cderv/raukr-2026-quarto (`just publish gh`).
+  # site-url is what Quarto uses for the sitemap and for any absolute link it emits.
+  site-url: "https://cderv.github.io/raukr-2026-quarto/"
   description: >-
     Two Quarto sessions at RaukR 2026 (Advanced R for Bioinformatics, Visby) —
     Introduction to Quarto and Quarto projects.

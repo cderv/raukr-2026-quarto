@@ -245,6 +245,13 @@ the CORE/DEMO/MENTION/STORE triage that acts on it lives in `topic-store.md`.
 
 ## Reference URLs & prior art
 
+### This project (live since 2026-08-03)
+
+- **Course site:** <https://cderv.github.io/raukr-2026-quarto/> — deployed from the `gh-pages`
+  branch of `cderv/raukr-2026-quarto` by `just publish gh`. Declared in `_quarto.yml` as `site-url`.
+- **Participant exercises:** <https://github.com/cderv/raukr-2026-quarto-exercises> — what
+  `usethis::use_course()` downloads, generated from `labs/` (see `.claude/rules/exercises.md`).
+
 ### RaukR (the school) — CC BY-NC-SA, reference & adapt, do not vendor
 
 - **Site 2026:** <https://nbisweden.github.io/raukr-2026/> — rendered

@@ -42,6 +42,11 @@ lives in the other references.
 Both repos are live: this one, and `cderv/raukr-2026-quarto-exercises`, which participants download
 with `usethis::use_course()`. Everything committed here is world-readable the moment it lands.
 
+**The site is deployed at <https://cderv.github.io/raukr-2026-quarto/>** (since 2026-08-03), from the
+`gh-pages` branch of this repo. `just publish gh` renders and pushes it, then prints that URL;
+`_quarto.yml` carries it as `site-url` (sitemap, absolute links). Any doc that points a
+reader at the rendered material should use that URL.
+
 **Write about roles and artifacts, never about people.** This is the rule that matters, and it is a
 *write-time* decision — there is no way to grep for it later. Say "the organizer-suggested list", not
 "Roy's list"; "the prior deck has no citations exercise", not "<name>'s deck is content-dated". Never
