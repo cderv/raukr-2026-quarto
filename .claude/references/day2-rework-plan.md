@@ -119,6 +119,42 @@ confusion, so that ordering is not optional.
 | 2 | **`cache` versus `freeze`** | 8 | both names | which one survives a project build, which one is per-document |
 | 3 | **Put your Day-1 report on the site** | 12 | — | copy `my-report.qmd` in, add it to the nav, re-render |
 | 4 | **Ship a dashboard** | 16 | `analysis.qmd` to copy | `format: dashboard` plus the layout model (rows, a card, two valueboxes, a tabset) |
+| 5 | *(optional, end of day)* **Put it online** | 10 | the command | see below |
+
+### Step 5 is the optional publish, and it is Connect Cloud, not gh-pages
+
+Publishing was ruled a watch-me demo because a live `quarto publish gh-pages` for 40 people is a
+room-killer (GitHub account, a repo, a `gh-pages` branch, git auth on the laptop, then push and wait
+for a green check). **Posit Connect Cloud removes every one of those.** Verified 2026-08-03:
+
+- `quarto publish posit-connect-cloud` uploads **locally rendered static content**. A GitHub
+  repository is *not* required (the GitHub integration is for automatic redeployment, optional).
+- Authentication is a browser OAuth against a Posit account.
+- The free tier publishes **unlimited static documents** (the 5-item cap is on interactive apps,
+  which this is not).
+
+So the participant already has the deliverable from step 3 (`_site/`), and one command puts it on a
+URL they can open on their phone. That is the Day-2 payoff made concrete, in about two minutes.
+
+**Keep gh-pages as the watch-me.** The two are not competing, they answer different questions:
+
+| | shown as | answers |
+|---|---|---|
+| gh-pages + GitHub Actions | watch-me demo | how a **team** automates this (needs a repo, cannot be run live) |
+| Connect Cloud | optional "Your turn" | how **you** get this online right now, no repo |
+
+**The one prerequisite goes on the Setup page, not into the session.** Creating the Posit account is
+the only slow part, so `setup.qmd` gets an *optional* line: "if you'd like to publish your site on
+Day 2, make a free Posit account beforehand". Then the in-session step really is one command.
+
+**Why it is last and optional.** It depends on nothing downstream, so running out of time costs
+nothing. It also doubles as the **named overflow for fast finishers**, which the pedagogy review
+flagged as missing on both days.
+
+Risks: venue Wi-Fi for 40 uploads (small, `_site/` is text plus a few plots), and a locked-down
+laptop blocking the OAuth browser flow (fallback: they still have `_site/`, which was the actual
+deliverable). The presenter can demo it on this very repo, since the justfile already carries
+`just publish connect`.
 
 ### Step 1 withholds the proof, not just the setting
 
@@ -151,13 +187,16 @@ keep the existing file as the reference solution.
 | "~45-minute Challenge" ×3 | matches the actual work |
 | `topic-store.md` 50 / 48 min hands-on | matches |
 | LO + wrap-up claim `_metadata.yml` | now practised (Part 1 step 4) |
-| LO claims "publish it" | still watch-me. **Reword the LO** to "produce the publishable folder, and explain how CI publishes it" |
+| LO claims "publish it" | true for anyone who does the optional step 5. Reword to "produce a publishable folder, and put it online" so it covers both |
 | "a **fresh** set of pages" | Part 2 step 3 brings the Day-1 document in |
 | Cache-vs-freeze contrast is CORE | now practised (Part 2 step 2) |
 | `sidebar: contents: auto`, listings taught only | now practised |
 
 ## Build checklist (the mechanics, in order)
 
+0. **Setup page** — add the *optional* pre-event line: a free Posit account for anyone who wants to
+   publish in step 5. This is the only part of that step that is slow, so it must not happen in the
+   room.
 1. **Starter files** — add `day2-projects/reports/` with two short pages. Keep `day2-projects/`
    **without** a `_quarto.yml` (`rules/exercises.md` structural invariant: creating it is the
    exercise). Ship the starter `_quarto.yml`'s `theme: cosmo` deliberately for step 3.
