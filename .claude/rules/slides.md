@@ -48,13 +48,28 @@ you must eyeball the screenshot for:**
   If a revealed body and an aside fight for the bottom, cut one (the relevance
   beat often already lives in `::: notes`).
 
-## 2. `.center` slides: use `.smaller`, not `aside`, for a footer line
+## 2. `.center` slides: keep a footer line in normal flow, not in an `aside`
 
 On a `{.center}` slide (opening/section/closing) an `::: aside` is positioned
-relative to the slide and **overlaps** the vertically-centered body. For a small
-footer/contact line use `::: {.smaller}` instead — it stays in normal flow, just
-smaller type. Keep centered slides short so the block stays centered without
-overflowing. (This is the fix for the closing-slide overlap.)
+relative to the slide and **overlaps** the vertically-centered body. Put a small
+footer/contact line in a plain block instead, so it stays in **normal flow**.
+Keep centered slides short so the block stays centered without overflowing.
+(This is the fix for the closing-slide overlap.)
+
+> **Corrected 2026-08-03 — `.smaller` on a div does nothing.** This section used
+> to say "use `::: {.smaller}` … just smaller type". The normal-flow half is the
+> real fix; the type half is false. Every `.smaller` rule in the built revealjs
+> theme is scoped to the **slide or deck** (`.reveal .slides section.smaller`,
+> `.reveal.smaller .slides section`), so a `<div class="smaller">` matches
+> nothing and renders at full body size. Verified against
+> `_site/site_libs/revealjs/dist/theme/quarto-*.css`. To shrink one line, use
+> `[text]{style="font-size:0.5em"}`; to shrink a whole slide, `smaller: true`.
+
+> **This is a `.center`-slide rule only.** On an ordinary slide `::: {.aside}` is
+> correct and is what the decks use. Overlap there is a *sizing* problem, not an
+> aside problem: an `.r-stretch` image expands into the aside's zone (asides are
+> absolutely positioned, so they never count toward the `scrollH` check in § 1).
+> Constrain the image (`{height="440px"}`) and keep the aside.
 
 ## 3. `code-line-numbers` for progressive reveal of one block
 

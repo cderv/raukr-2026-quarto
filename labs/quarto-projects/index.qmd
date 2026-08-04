@@ -79,7 +79,7 @@ reference is in **`solutions/day2/`** if you get stuck or fall behind.
    ```
    The `theme:` list is a stack of layers, and **later layers win**. `brand` is the layer that
    reads your `_brand.yml` (you add that file in step 3), so it has to come *after* `cosmo` to
-   override it. Until then `brand` adds nothing and you get plain `cosmo`.
+   override its colors. Until then `brand` adds nothing and you get plain `cosmo`.
 2. **Render the whole folder**: from inside `day2-projects/`, run `quarto render` (or `quarto preview`).
    Because a `_quarto.yml` is now present, Quarto treats the folder as one project and builds **both**
    pages into `_site/`.

@@ -219,7 +219,7 @@ typography:
 ::::
 
 ::: notes
-- **Callback (don't re-derive):** they built this file yesterday for the PDF. Today's *new* angle is
+- **Callback (don't re-derive):** they saw this file yesterday, branding the PDF. Today's *new* angle is
   **scale** — one root file themes the whole multi-page project. Widen the scope; don't re-teach the file.
 - **Do:** show the site before / after dropping `_brand.yml` at the root — navbar + links go teal
   in one re-render. **Check your demo project first:** a bare `theme: cosmo` outranks the brand and

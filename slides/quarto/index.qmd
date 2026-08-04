@@ -475,7 +475,7 @@ Edit, hit **Preview**, and it live-reloads.
 
 ![](images/positron-quarto-preview.png){height="440px" fig-align="center" fig-alt="The Positron IDE with a Quarto document open: a Source/Visual editor toggle and a Preview button above the .qmd source pane on the left, and a live HTML preview of the rendered document on the right."}
 
-::: {.smaller}
+::: {.aside}
 Screenshot from the [Quarto documentation](https://quarto.org/docs/tools/positron/).
 :::
 
