@@ -18,7 +18,13 @@
 #   just publish-exercises                      # default repo
 #   just publish-exercises https://github.com/cderv/raukr-2027-quarto-exercises.git
 
-args <- commandArgs(trailingOnly = TRUE)
+args  <- commandArgs(trailingOnly = TRUE)
+# --check: mirror into the scratch clone, report whether the delivery repo differs, push NOTHING.
+# This is the only guard on the LAST hop of the pipeline. `sync-exercises.R --check` guards
+# labs/ -> exercises/; nothing guarded exercises/ -> the repo participants actually download, so a
+# forgotten `just publish-exercises` shipped stale exercises silently (2026-08-03).
+check <- "--check" %in% args
+args  <- args[args != "--check"]
 DEFAULT_REPO <- "https://github.com/cderv/raukr-2026-quarto-exercises.git"
 REPO <- if (length(args) >= 1 && nzchar(args[[1]])) args[[1]] else DEFAULT_REPO
 BRANCH <- "main"
@@ -72,6 +78,14 @@ status <- git("status", "--porcelain", dir = tmp)
 if (!length(status)) {
   cat("publish-exercises: exercises repo already up to date -- nothing to push.\n")
   quit(status = 0L)
+}
+
+if (check) {
+  cat("\nDRIFT: the delivery repo does not match exercises/.\n")
+  cat("What participants download is NOT what this repo would ship:\n")
+  cat(paste0("  ", status, collapse = "\n"), "\n\n")
+  cat("Run `just publish-exercises` to update it.\n")
+  quit(status = 1L)
 }
 git("commit", "-m", sprintf("Sync exercises from course repo (%s)", sha), dir = tmp)
 cat(sprintf("publish-exercises: pushing to %s %s...\n", REPO, BRANCH))

@@ -35,6 +35,11 @@ exercises:
 exercises-check:
     Rscript tools/sync-exercises.R --check
 
+# Verify the DELIVERY repo matches exercises/ (i.e. participants download what this repo ships).
+# Guards the last hop: exercises-check covers labs/ -> exercises/, this covers exercises/ -> live.
+published-check:
+    Rscript tools/publish-exercises.R --check
+
 # Sync + publish exercises/ to the participant repo's main (pass a URL to retarget a new year)
 [confirm("Publish exercises/ to the exercises repo main? This pushes a fresh sync.")]
 publish-exercises repo="https://github.com/cderv/raukr-2026-quarto-exercises.git": exercises

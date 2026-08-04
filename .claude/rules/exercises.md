@@ -58,6 +58,26 @@ cderv/raukr-2026-quarto-exercises @ main   ← what use_course() + the /main/ do
    its first two commits. If you ever need to purge rather than update, rebuild the orphan commit and
    force-push; don't reach for `publish-exercises`.
 
+## The last hop has its own guard — `just published-check`
+
+`just exercises-check` guards **labs/ → exercises/**. For a long time nothing guarded
+**exercises/ → the repo participants actually download**, and that gap is not theoretical: on
+2026-08-03 a review cycle fixed three setup P0s and the Day-2 brand bug, and every one of them sat
+in this repo for hours while `use_course()` still served the broken payload (an unguarded `quit()`
+that killed the participant's R session, `theme: cosmo` in the Day-2 solution, two idioms in the
+README). Nothing was wrong with the review. The fixes were simply never published.
+
+```sh
+just published-check    # clones the delivery repo, diffs it against exercises/, exits 1 on drift
+```
+
+**Why the student-agent runs cannot catch this.** `.claude/scripts/lab-run.sh` hands the agent a
+worktree of *this* repo and `labs/<lab>/index.qmd` — the **source**, never the delivered payload. So
+a publish gap is structurally invisible to them, however well they walk the lab. Only this check
+looks at what participants download.
+
+Run it before any session, and after any `labs/**` change you thought was finished.
+
 ## Structural invariants — do not break these (the delivery rests on them)
 
 - **No `_quarto.yml` at or above the day starters** (repo root, `day1-intro/`, `day2-projects/`). That
