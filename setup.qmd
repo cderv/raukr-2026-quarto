@@ -33,18 +33,29 @@ Do steps 2–4 **before you arrive**: walking in with the toolchain already in p
 
 ::: {.callout-warning collapse="true"}
 ## On RStudio? The Render button may not use the Quarto you just checked
-RStudio can run a **different Quarto** from the one on your PATH (it ships its own, and an
-environment variable can override that). So `quarto --version` does not settle what the Render
-button will use, and Day 1's Typst article layout needs ≥ 1.9.
+RStudio can run a **different Quarto** from the one on your PATH, so `quarto --version` does not
+settle what the Render button will use. Day 1's Typst article layout needs ≥ 1.9.
 
-Two reliable ways round it:
+The `quarto` R package has a one-line check for exactly this:
 
-- render from the **Terminal** (`quarto render <file>`), which uses the `quarto` you checked above.
-  We do this throughout anyway;
-- or point RStudio at a specific install with the **`RSTUDIO_QUARTO`** environment variable. Note
-  it is *not* `QUARTO_PATH`: the `quarto` R package reads that one, RStudio does not.
+```r
+# install.packages("quarto")
+quarto::quarto_binary_sitrep()
+```
 
-If a document looks wrong on Day 1 but renders correctly from the Terminal, this is usually why.
+It names the binary each side will use and returns `TRUE` when they agree. A mismatch looks like:
+
+```
+✔ quarto R package will use '/opt/quarto/bin/quarto'
+✖ RStudio IDE render button seems configured to use '/usr/lib/rstudio/bin/quarto/bin/quarto'.
+```
+
+Add `debug = TRUE` and it also tells you *which* mechanism configured each one (the `PATH`, or the
+`RSTUDIO_QUARTO` environment variable).
+
+If the two disagree, point RStudio at the install you want with **`RSTUDIO_QUARTO`**, or render
+from the Terminal (`quarto render <file>`), which we do throughout anyway. If a document looks
+wrong on Day 1 but renders correctly from the Terminal, this is usually why.
 :::
 
 ::: {.callout-tip}
