@@ -373,26 +373,39 @@ The hands-on part is small: **render, then point a host at `output-dir`.**
 quarto render              # builds the whole project into _site/
 ```
 
-- Push `_site/` to any static host — GitHub Pages, Netlify, an internal server.
-- `quarto publish gh-pages` and **GitHub Actions** automate it, rendering from the committed
-  `_freeze/` with **no R needed in CI**.
+- `_site/` is the whole deliverable. Point any static host at it (an internal server, your
+  department's pages, a hosting service).
+- **Posit Connect Cloud** takes it in one command, with a free account and **no repository**:
 
-::: {.callout-warning title="Watch-me — not a live *Your turn*"}
-You do the **`render` + `output-dir`** half; I'll **show** the publish step on a ready-made repo. It
-needs a GitHub login and builds asynchronously (push, then wait for the green check).
+``` bash
+quarto publish posit-connect-cloud
+```
+
+The first run opens a browser to sign in, then uploads the folder you just built.
+
+::: {.callout-tip title="Your turn — optional, if we have time"}
+Publish your site and open it on your phone. The lab has the steps. Everyone still leaves with
+`_site/`, which is the deliverable either way.
 :::
 
 ::: notes
-- **Frame (why watch-me — don't narrate the logistics):** a live `publish gh-pages` across 40 laptops means GitHub auth and a repo each — a lot of per-person setup for one demo, and Pages/Actions rebuilds asynchronously (push, then wait for the green check), so there's nothing synchronous to watch anyway. Foreground the CI *story*; keep auth off the hands-on path.
-- **Say (keep these distinct):** "`quarto publish gh-pages` renders here on my machine and pushes the result; **GitHub Actions** is the path that rebuilds from the committed `_freeze/` with no R on the runner."
-- **Do (if demoing live):** state the auth prerequisite first (GitHub login + a repo); otherwise just show the green check on the pre-provisioned repo.
+- **Do:** show it live on this repo (`quarto publish posit-connect-cloud`). It is one command and a
+  browser sign-in, so it *is* watchable, unlike a Pages build.
+- **Say:** "You already made the thing you publish. `_site/` is the deliverable — this just puts it
+  on a URL."
+- **Prerequisite (say it early, on Day 1 if you remember):** a free Posit account. Anyone without
+  one skips this and loses nothing.
+- **Why not GitHub Pages:** we never taught git or GitHub, and the whole setup is built on not
+  needing them (`use_course()`). Connect Cloud needs no repository.
+- **If asked about automation:** yes, this can rebuild on a schedule or from a repo. That is the
+  same CI story as the freeze beat, and it is a pointer, not a demo.
 :::
 
 ## Your turn {#your-turn-2}
 
 ::: {.callout-tip title="Your turn — regroup in ~45 min"}
 Back to the **[Lab](../../labs/quarto-projects/index.qmd#ship-it-challenge)**, the **Ship it Challenge**: render your
-project to `_site/` and open it: a publishable folder. (Publishing to Pages is the watch-me demo.)
+project to `_site/` and open it: a publishable folder. Publishing it is optional, at the end.
 :::
 
 ::: notes

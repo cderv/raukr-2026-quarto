@@ -23,9 +23,9 @@ penguins <- penguins |> filter(!is.na(bill_len), !is.na(bill_dep), !is.na(body_m
 ## Scope
 Turn a set of `.qmd` into a Quarto **project**: a navigable, **branded website**, then make its
 builds reproducible with **freeze** and render it to a publishable folder. Two challenges, one
-project: each is its own hands-on part, with a break between them. Publishing to
-GitHub Pages / CI is a **watch-me demo**, not a per-participant step (it needs an account, so we run
-it once up front). Everything runs on base-R `datasets::penguins` (R ≥ 4.5), so there's no data to download.
+project: each is its own hands-on part, with a break between them. Putting the site online is an
+**optional last step** (Posit Connect Cloud, free account, no repository), so the folder is what
+everyone leaves with. Everything runs on base-R `datasets::penguins` (R ≥ 4.5), so there's no data to download.
 
 **Before you start:** work through the **[Setup page](../../setup.qmd)** if you haven't. Its
 `00-check-setup.R` confirms R, Quarto, and the packages this lab uses. The optional branded-plot
@@ -179,8 +179,14 @@ Keep going with your Website Challenge `day2-projects/`. If you didn't finish it
    **not** change: a pass/fail you can see, not just an absence in the log. Now change the plot's
    **code** on `analysis.qmd` and re-render: only *that* page re-runs (and the timestamp finally ticks).
 3. Find the shipped site under **`_site/`**: that folder *is* what you publish. Point any static host
-   at it (GitHub Pages, Netlify, an internal server).
-4. *(note, not a step)* `renv::snapshot()` writes an `renv.lock` that pins the packages: the second
+   at it (an internal server, your department's pages, a hosting service).
+4. *(optional, if there's time)* **Put it online.** From your project folder:
+   ```bash
+   quarto publish posit-connect-cloud
+   ```
+   The first run opens a browser to sign in (a free Posit account is enough, and no repository is
+   needed), then uploads the `_site/` you just built. You get a URL you can open on your phone.
+5. *(note, not a step)* `renv::snapshot()` writes an `renv.lock` that pins the packages: the second
    reproducibility leg, so a teammate (or CI) rebuilds the same environment.
 ::::
 
@@ -226,8 +232,11 @@ quarto render     # 2nd build, no edits: the cell is skipped, timestamp unchange
 # then change the plot code on analysis.qmd and render again: only that page re-runs (time ticks)
 ```
 
-To publish, point a host at `_site/` (the watch-me demo: `quarto publish gh-pages`, already signed
-in).
+To publish, point a host at `_site/`, or upload it with one command:
+
+``` bash
+quarto publish posit-connect-cloud
+```
 ::::
 
 ## Troubleshooting

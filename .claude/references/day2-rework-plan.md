@@ -136,12 +136,15 @@ for a green check). **Posit Connect Cloud removes every one of those.** Verified
 So the participant already has the deliverable from step 3 (`_site/`), and one command puts it on a
 URL they can open on their phone. That is the Day-2 payoff made concrete, in about two minutes.
 
-**Keep gh-pages as the watch-me.** The two are not competing, they answer different questions:
+**gh-pages is dropped entirely, not kept as the watch-me** (decided 2026-08-03). The workshop never
+teaches git or GitHub, and the whole logistics chain is built on not needing them: `use_course()`
+is sold on "no git, no GitHub account". Demoing a `gh-pages` publish would teach a path the room
+has no way to walk, and would contradict the setup page two days running. Connect Cloud needs no
+repository, so it is the only publish target the material mentions.
 
-| | shown as | answers |
-|---|---|---|
-| gh-pages + GitHub Actions | watch-me demo | how a **team** automates this (needs a repo, cannot be run live) |
-| Connect Cloud | optional "Your turn" | how **you** get this online right now, no repo |
+What survives from the CI story is the **freeze** payoff, which is already generic and glossed on
+its own slides ("commit `_freeze/` and **CI** *(the automated build)* rebuilds with no R at all").
+That is a reason to commit `_freeze/`, not a demo, and it does not depend on GitHub.
 
 **The one prerequisite goes on the Setup page, not into the session.** Creating the Posit account is
 the only slow part, so `setup.qmd` gets an *optional* line: "if you'd like to publish your site on
