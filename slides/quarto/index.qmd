@@ -624,6 +624,9 @@ Typst is bundled from Quarto **1.4+**; we require **≥ 1.9** (margin/article la
 - **Say:** "Typst is deterministic and bundled — nothing to install. LaTeX is still there if you
   need it, but Typst is what we use in 2026."
 - Gloss "Typst" on first use.
+- **If someone says their PDF is serif despite `_brand.yml` (only if asked):** check for
+  `unknown font family: albert sans` in the log. That is a font *download* failure (no network on
+  the first render), not a missing brand file. Colors and layout are still branded.
 :::
 
 ## Branding the PDF — `_brand.yml` {#brand}

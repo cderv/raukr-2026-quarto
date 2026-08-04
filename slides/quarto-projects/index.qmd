@@ -218,6 +218,10 @@ typography:
 :::
 ::::
 
+::: {.aside}
+`brand` goes **last** in the `theme:` list (or no `theme:` at all). Later layers win.
+:::
+
 ::: notes
 - **Callback (don't re-derive):** they saw this file yesterday, branding the PDF. Today's *new* angle is
   **scale** — one root file themes the whole multi-page project. Widen the scope; don't re-teach the file.

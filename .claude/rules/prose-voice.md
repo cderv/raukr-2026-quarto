@@ -43,6 +43,32 @@ spoken register leaking onto the page.
   ground running", "low-hanging fruit"). Say it plainly and literally. (Near-literal metaphors he does
   use — "batteries included", "under the hood" — are fine.)
 
+## Before adding a sentence: who reads it, and when?
+
+The tells above catch bad *phrasing*. This one catches text that should not be on the page at
+all — the more common failure once the phrasing is under control.
+
+| If the reader is… | it goes… |
+|---|---|
+| someone who **would ask the question** | `::: notes` (presenter ready, page unchanged) |
+| someone who **just hit this error** | the lab's Troubleshooting block |
+| someone who needs it **before the day** | `setup.qmd` |
+| **nobody** — but it's true and you just found it out | nowhere |
+
+The failure mode is writing up the mechanism you just discovered instead of what the reader needs
+at that moment. It feels like thoroughness and lands as clutter, and it compounds: three "useful"
+clauses turn a scannable step into a wall.
+
+Two from the 2026-08-03 cycle, both cut: a parenthetical explaining that brand *fonts* arrive
+whatever the `theme:` order is (true, and already covered by the Troubleshooting bullet a reader
+hits only when it bites them), and a Troubleshooting entry for a font-download failure that mimics
+a missing `_brand.yml` (real, rare, needs network to reproduce — it belongs in `::: notes`, where
+the presenter has it if someone asks).
+
+**Don't add a FAQ page to escape this test.** The three tiers above already cover before / during /
+if-asked, each with an owner and a moment. A fourth surface duplicates two of them and sits one
+click away at exactly the moment someone is stuck.
+
 ## Copy-edit (English, not French typography)
 
 - **No space before `?` `!` `:` `;`** — `publications ?` → `publications?`. French *espace insécable*
