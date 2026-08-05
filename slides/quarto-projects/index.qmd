@@ -486,11 +486,18 @@ Extra topics:
 
 Questions?
 
+:::: {.columns}
+::: {.column width="28%"}
+![](../images/site-qr.svg){fig-alt="QR code for the workshop site, https://cderv.github.io/raukr-2026-quarto/" width="210"}
+:::
+::: {.column width="72%"}
+**Slides + lab:** <https://cderv.github.io/raukr-2026-quarto/>
+
 **Learn more:** [Projects](https://quarto.org/docs/projects/quarto-projects.html) ·
 [Websites](https://quarto.org/docs/websites/) ·
 [Freeze](https://quarto.org/docs/projects/code-execution.html#freeze) ·
 [Publishing](https://quarto.org/docs/publishing/)
-
-::: {.smaller}
-Slides + lab: this site · Christophe Dervieux · [GitHub `@cderv`](https://github.com/cderv){preview-link="false"} · [cderv@posit.co](mailto:cderv@posit.co)
 :::
+::::
+
+[Christophe Dervieux · [GitHub `@cderv`](https://github.com/cderv){preview-link="false"} · [cderv@posit.co](mailto:cderv@posit.co)]{style="font-size:0.6em"}

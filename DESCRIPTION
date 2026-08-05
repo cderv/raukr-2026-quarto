@@ -5,7 +5,10 @@ Version: 0.0.0.9000
 Description: Not a real R package — this DESCRIPTION declares the R packages the
     RaukR 2026 Quarto workshop materials depend on, so renv snapshots them with
     an "explicit" snapshot. Add a package to Imports and re-snapshot as content
-    pulls it in. knitr + rmarkdown are the render engine (Quarto's knitr engine);
+    pulls it in. Suggests documents maintenance-only tooling that nobody needs to
+    render the material; an explicit snapshot follows Imports, so those are
+    deliberately absent from renv.lock. knitr +
+    rmarkdown are the render engine (Quarto's knitr engine);
     ggplot2 / dplyr / gt are the content packages. brand.yml / ggrepel / prismatic
     drive the R-side _brand.yml styling of the branded Typst payoff.
 Imports:
@@ -18,4 +21,6 @@ Imports:
     ggrepel,
     prismatic,
     ggokabeito
+Suggests:
+    qrcode
 Encoding: UTF-8

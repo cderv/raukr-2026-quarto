@@ -749,10 +749,17 @@ You can now:
 
 Questions?
 
+:::: {.columns}
+::: {.column width="28%"}
+![](../images/site-qr.svg){fig-alt="QR code for the workshop site, https://cderv.github.io/raukr-2026-quarto/" width="210"}
+:::
+::: {.column width="72%"}
+**Slides + lab:** <https://cderv.github.io/raukr-2026-quarto/>
+
 **Learn more:** [quarto.org/docs/guide](https://quarto.org/docs/guide/) ·
 [Typst format](https://quarto.org/docs/output-formats/typst.html) ·
 [`_brand.yml`](https://posit-dev.github.io/brand-yml/)
-
-::: {.smaller}
-Slides + lab: this site · Christophe Dervieux · [GitHub `@cderv`](https://github.com/cderv){preview-link="false"} · [cderv@posit.co](mailto:cderv@posit.co)
 :::
+::::
+
+[Christophe Dervieux · [GitHub `@cderv`](https://github.com/cderv){preview-link="false"} · [cderv@posit.co](mailto:cderv@posit.co)]{style="font-size:0.6em"}
