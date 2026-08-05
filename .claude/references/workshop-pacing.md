@@ -17,7 +17,8 @@ The cycle repeats multiple times per module. It is **not** "30 min talk then 30 
 > **These are facilitation modes, not slide chrome** (decided 2026-07-07 — see
 > `project-context.md` § Content patterns). The rhythm's real home is the per-part time budget
 > and running-order rules in `topic-store.md`. On the **slide surface** it shows up only as
-> built-in callouts at the two ambiguous transitions (watch→follow-along, follow-along→solo) —
+> built-in callouts at the ambiguous transitions (watch→follow-along, follow-along→watch,
+> follow-along→solo) —
 > **no per-slide "My turn" badge, no bespoke CSS class** (it wouldn't survive folding into the
 > NBIS site). See § Slide-deck structure below.
 
@@ -65,8 +66,11 @@ N-<module>/
 
 - Announce the My/Our/Your rhythm **once, up front** — then trust the audience; don't re-badge
   every slide.
-- Mark only the **two transitions**, with **built-in callouts** (no custom class, no extension):
-  - live coding starts → `::: {.callout-note title="Follow along"}`.
+- Mark only the **transitions**, with **built-in callouts** (no custom class, no extension):
+  - live coding starts → `::: {.callout-note title="Follow along"}`, naming the file to create and
+    the file to open if you fall behind.
+  - live coding ends → `::: {.callout-warning title="Eyes up — not a live *Follow along*"}`. Don't
+    settle for an italic line: a participant looking at their editor misses it and keeps typing.
   - exercise starts → `::: {.callout-tip title="Your turn — regroup in ~N min"}` pointing at the
     lab's `## … Challenge` (same word on slide and in lab).
 - **Countdown: presenter-side by default.** State "regroup in ~N min" in the callout and run the

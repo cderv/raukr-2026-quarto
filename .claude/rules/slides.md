@@ -183,8 +183,30 @@ that when there's nothing to run.
   `fig-alt` sentence, an `!expr` caption — and clips sideways in a narrow
   container, a false pass on the height check. The Figures slide is the
   cautionary case: 6 options incl. a long `fig-alt`, in a half-width
-  `output-location: column`, so fenced clips the `fig-alt` line. Left plain on
-  purpose. **Prefer fenced on the *minimal* demo cell** (Tables), not the busy one.
+  `output-location: column`. **Prefer fenced on the *minimal* demo cell**
+  (Tables) and budget for a rewrap on the busy one.
+
+> **Updated 2026-08-05 — "left plain on purpose" is no longer the answer.** This
+> section used to end the Figures case with "left plain on purpose". The
+> *constraint* above is real and measured; that *conclusion* was one option too
+> early. **Fold the long value** and it fits: on `#figures`, `#| echo: fenced` +
+> `fig-alt` as a two-line `>-` block + dropping `fig-width`/`fig-height` gives
+> 720/720 with no horizontal clip. Measured alternatives, so nobody re-runs them:
+> options as-is + fenced → clips sideways mid-sentence; folded `fig-alt` while
+> keeping `fig-width`/`fig-height` → `scrollH` 751 > 720; a one-line `fig-alt`
+> under ~60 chars also fits, but shortening real alt text to make a slide fit is
+> the wrong trade on a deck that teaches accessibility.
+
+**A stripped-echo cell is fine under watch-me and is a defect under Follow
+along.** The mode label changes whether the code block is correct. Default echo
+shows the source lines and drops every `#|`, so on a slide the room is told to
+copy from, the options the slide *teaches* are exactly what the copy button
+omits — paste it, write `@fig-bill`, get `?@fig-bill`. That is what made the
+Figures slide a P0 once a Follow-along callout landed two slides above it.
+**Test:** a code block on a Follow-along slide must copy to something that can
+be pasted and rendered as-is. Check the clipboard payload, not the source —
+Quarto's copy button reads the rendered `<code>` element, so what you wrote and
+what a participant gets are different strings.
 
 **Labs are different:** in a hands-on exercise the participant *types* the options
 themselves, so they already see them — `echo: fenced` is for a **reader who isn't

@@ -200,13 +200,23 @@ and file citations are in the review that produced them; the essentials:
   budget + running-order rules), **not** slide chrome. **Do not build a bespoke
   `.my-turn`/`.your-turn` CSS class** — it needs project-level SCSS that does not travel and
   degrades to a silent unstyled div when folded into the NBIS tree (verified). Instead:
-  - **Slides — built-in callouts, only at the two ambiguous *transitions*** (no per-slide "My
+  - **Slides — built-in callouts, only at the ambiguous *transitions*** (no per-slide "My
     turn" badge — steady-state is inferable and reads as patronizing to this audience):
     - start of live coding → `::: {.callout-note title="Follow along"}` ("open your editor, type
-      with me"); establish once up front, keep light.
+      with me"); establish once up front, keep light. **Name the file to create and the catch-up
+      file** — those are the two things a participant cannot infer, and the ones that cost 90
+      seconds of fumbling at the exact moment the presenter starts moving.
+    - **end** of live coding → `::: {.callout-warning title="Eyes up — not a live *Follow along*"}`.
+      The exit is the more failure-prone transition, not the entry: people who found their rhythm
+      keep typing and only discover ten minutes later that they were transcribing a concept slide.
+      An italic body line does not do this job (anyone looking at their editor misses it), and both
+      decks must use the same form.
     - start of the exercise → `::: {.callout-tip title="Your turn — regroup in ~N min"}` that
       **points explicitly at the lab's `## … Challenge`** (one vocabulary — the slide word and the
       lab word must agree; don't split "Your turn" vs "Challenge").
+    - **A Follow-along label makes the code blocks under it load-bearing.** Whatever the callout
+      covers must copy to something paste-and-render-able (`rules/slides.md` §7). Adding the label
+      above a slide that was fine as watch-me is what turns a stripped-echo cell into a defect.
   - **Objectives:** open with RaukR's native **`## Learning Outcomes`** slide (infinitive verbs);
     **close** with our mirrored **"What you can do now"** wrap-up (their decks lack this — our
     value-add).
