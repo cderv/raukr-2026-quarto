@@ -76,10 +76,10 @@ build, one output folder):
 # at the project root
 project:
   type: website
-  output-dir: _site  # everything renders here
+  output-dir: _site # everything renders here
 format:
   html:
-    toc: true          # set once, every page gets it
+    toc: true       # set once, every page gets it
 ```
 :::
 ::: {.column width="48%"}
