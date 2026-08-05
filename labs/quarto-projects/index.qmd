@@ -210,7 +210,14 @@ the reference and table share one page.
 **Goal.** Give the site one shared palette and typeface from a `_brand.yml`, the same file you met on
 Day 1.
 
-That is the brand body. Getting it to take effect is what you have to work out:
+::: {.column-margin}
+{{< fa book-open >}} **Quarto docs**
+
+[Brand](https://quarto.org/docs/authoring/brand.html) ·
+[Theme layers](https://quarto.org/docs/output-formats/html-themes-more.html)
+:::
+
+Start by creating this file and rendering the site:
 
 ```{.yaml filename="day2-projects/_brand.yml"}
 color:
@@ -233,7 +240,8 @@ expected. After correcting the theme order, the navbar and links become teal.
 
 ::: {.callout-tip collapse="true"}
 ## Hint
-**Ask yourself:**
+Compare three parts of the rendered site: the body font, the navbar, and the links. The font changes,
+but the navbar and links remain blue.
 
 `theme:` takes a **list**, even when you write a single value. So Quarto is already combining
 something with your `cosmo`. If two layers both define a primary color, which one would you expect to
@@ -372,13 +380,15 @@ Keep going with your Website Challenge `day2-projects/`. If you didn't finish it
 **`solutions/day2/`** project (a complete Part-1 site) and do the steps below in there.
 :::
 
-**Core finish line:** prove that freeze works, then add your Day-1 report to the site. We will compare
+**Core tasks:** prove that freeze works, then add your Day-1 report to the site. We will compare
 cache and freeze together. The dashboard demo and publishing are optional.
 
 ::: {.column-margin}
 {{< fa book-open >}} **Quarto docs**
 
-[Code execution](https://quarto.org/docs/projects/code-execution.html) · [Dashboards](https://quarto.org/docs/dashboards/) · [Publishing](https://quarto.org/docs/publishing/)
+[Project execution](https://quarto.org/docs/projects/code-execution.html) ·
+[Dashboard layout](https://quarto.org/docs/dashboards/layout.html) ·
+[Posit Connect Cloud](https://quarto.org/docs/publishing/posit-connect-cloud.html)
 :::
 
 ### Make the build skip unchanged pages
@@ -441,15 +451,16 @@ changes.
 
 ::: {.callout-note}
 ## Why this matters beyond the wait
-The results now live in `_freeze/`, inside your project. Keep that folder. Your next render reads it
-instead of re-running the analysis, and anyone who has the folder gets the same figures **without
-running R at all**. `_freeze/` is part of the project, not a temporary folder to delete.
+The results now live in `_freeze/`, inside your project. Keep that folder. For documents with current
+frozen results, the next project render reads those results instead of re-running the analysis. This
+also lets another machine build those pages without running their R code. `_freeze/` is part of the
+project, not a temporary folder to delete.
 :::
 
 ### Discuss together: `cache` versus `freeze`
 
-**Goal.** You have now met two things that both avoid re-running code. Work out how they differ, and
-when you would reach for each.
+**Goal.** You have now met two things that both avoid re-running code. Explain how they differ and
+when to use each one.
 
 `cache: true` came up on the slides earlier today. You have just used `freeze: auto`. Both skip
 work. They are not the same mechanism, and only one of them solves the problem you just solved.
@@ -466,8 +477,8 @@ work. They are not the same mechanism, and only one of them solves the problem y
 
 ::: {.callout-tip collapse="true"}
 ## Hint
-Where does each one write its results, and would that location normally be committed? Follow that and
-the rest falls out.
+Where does each one write its results, and would that location normally be committed? Those answers
+explain their different purposes.
 
 **`cache`** is knitr's chunk cache. It works *inside* one document, keyed on the chunk, and it is
 about not re-running an expensive chunk while you iterate on that document. Its cache directory is
@@ -484,7 +495,7 @@ own.
 
 ### Put your Day-1 report on the site
 
-*This is the core finish line.*
+*This is a core task.*
 
 **Goal.** Take the report you wrote yesterday and make it a page of this website.
 
@@ -504,7 +515,7 @@ from now, and what happens if a page insists on its own?
 Copy the `.qmd` into `day2-projects/`, add an entry for it in the `navbar:` list, and re-render.
 
 A page in a project inherits `format:` from `_quarto.yml`. If your file still carries the
-`format: typst` from the Day-1 payoff, it keeps building a PDF instead of a page. Drop that key and
+`format: typst` from the Day-1 exercise, it keeps building a PDF instead of a page. Drop that key and
 it builds as HTML like its neighbours. (The shipped `penguins-report.qmd` declares no `format:` at
 all, so there is nothing to drop.)
 
@@ -575,9 +586,15 @@ layout. You do not need to complete the dashboard during the workshop.
 
 **Goal.** Take the `_site/` folder you have built and put it on a URL you can open on your phone.
 
-`_site/` **is** the deliverable. Any static host will serve it: an internal server, your department's
-pages, a hosting service. If you made a free Posit account before the workshop, one command does it
-from here.
+::: {.column-margin}
+{{< fa book-open >}} **Quarto docs**
+
+[Publish to Posit Connect Cloud](https://quarto.org/docs/publishing/posit-connect-cloud.html)
+:::
+
+`_site/` **is** the core deliverable. Any static host will serve it: an internal server, your
+department's pages, or a hosting service. Publishing here is optional. If you made a free Posit
+Connect Cloud account before the workshop, one command puts the site online.
 
 ::: {.callout-note appearance="simple" icon=false}
 ## {{< fa circle-check >}} You should see

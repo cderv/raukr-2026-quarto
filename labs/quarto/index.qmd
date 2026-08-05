@@ -94,7 +94,7 @@ That's the whole migration. The rest of this lab is native `.qmd`.
 ::::
 
 ::: {.callout-tip icon=false}
-## {{< fa universal-access >}} Accessibility extension
+## {{< fa universal-access >}} Optional accessibility check
 Your figure already has alt text and redundant color/shape encoding. To check the whole page:
 
 - add `axe: {output: document}` under `format: html`, re-preview, and a WCAG report appears on the
@@ -153,7 +153,7 @@ $$ {#eq-ratio}
 ```
 
 **`solutions/day1/penguins-report.qmd` is the complete Day-1 reference.** The document goes beyond
-the tasks (a margin culmen figure, a `glimpse`, section labels) and also adds the
+the tasks (an additional margin figure, a `glimpse`, and section labels) and also adds the
 citations from the next challenge. It's in your exercises `solutions/day1/` folder. Try the challenge
 first, then open it to compare, or take the source:
 
@@ -169,7 +169,7 @@ first, then open it to compare, or take the source:
 ::: {.callout-note}
 ## Starting point
 If you finished the Authoring Challenge, keep going on your own document. Otherwise open
-**`day1-intro/starter.qmd`** in your editor (a known-good Part-1 report) and add the citations to
+**`day1-intro/starter.qmd`** in your editor (a complete Part-1 report) and add the citations to
 that.
 :::
 

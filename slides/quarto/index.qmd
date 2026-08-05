@@ -516,17 +516,18 @@ Screenshot from the [Quarto documentation](https://quarto.org/docs/tools/positro
 
 ## Your turn {#your-turn-1}
 
-::: {.callout-tip title="Your turn — regroup in ~45 min"}
+::: {.callout-tip title="Your turn — until the break at 15:00"}
 Head to the **[Lab](../../labs/quarto/index.qmd#authoring-challenge)** and start at the **Authoring
 Challenge**: author a penguins document with a figure, a cross-referenced table, and margin layout,
-then render it to HTML, then a **break**, back after.
+then render it to HTML. We break at **15:00** and resume at **15:30**.
 :::
 
 *You can now author a figure, a cross-referenced table, and margin layout. After the break we cite
 it and ship a branded PDF.*
 
 ::: notes
-- **Say:** "Authoring Challenge: 45 minutes. We meet again at 15:30. Ask us if you get stuck."
+- **Say:** "Work on the Authoring Challenge until the break at 15:00. We resume at 15:30.
+  Ask us if you get stuck."
 - **Watch for:** wrong label prefix; duplicate labels; `#|` options not at the top of a cell.
 :::
 
@@ -540,7 +541,7 @@ From report to article: cite it, then typeset it.
 
 ## From report to article {#report-to-article}
 
-You have a clean HTML document. The lab ships a **Part-2 starter** if you need one. To make it a
+You have a clean HTML document. The lab includes a **Part-2 starter** if you need one. To make it a
 **publication-ready article**, two more things:
 
 ::: {.incremental}
@@ -573,7 +574,7 @@ The data come from Palmer Station
 renders as: … (Gorman et al., 2014).
 :::
 ::: {.column width="45%"}
-`references.bib` ships in `day1-intro/` (excerpt):
+`references.bib` is included in `day1-intro/` (excerpt):
 
 ``` {.bibtex}
 @article{gorman2014,
@@ -628,7 +629,7 @@ Renders in HTML, PDF, and Typst. Write it once.
 
 ## Typst — modern PDF, no LaTeX {#typst}
 
-**Typst** is a modern typesetting system that **ships inside Quarto**: nothing to install, no
+**Typst** is a modern typesetting system that is **bundled with Quarto**: nothing to install, no
 LaTeX toolchain.
 
 ``` yaml
@@ -690,14 +691,14 @@ typography:
 
 ## Your turn {#your-turn-2}
 
-::: {.callout-tip title="Your turn — regroup in ~30 min"}
+::: {.callout-tip title="Your turn"}
 Back to the **[Lab](../../labs/quarto/index.qmd#citations-challenge)**, at the **Citations Challenge**: add citations to
 the Part-2 starter (or your own Part-1 file), then render it as a **branded Typst PDF**. You'll
 finish with a **publication-ready article**, a citable, branded PDF you could submit.
 :::
 
 ::: notes
-- **Say:** "Citations Challenge: add the bibliography and render a branded Typst PDF. You have 30 minutes."
+- **Say:** "Add the bibliography, then render a branded Typst PDF."
 - **Watch for:** exact citation key; first font download; PDF lands beside its source.
 :::
 

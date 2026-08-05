@@ -33,7 +33,7 @@ Yesterday: one `.qmd` → a branded PDF. Today, the other axis: **one file to ma
 
 - **structure** several `.qmd` files into one Quarto **project** with shared configuration (`_quarto.yml`).
 - **build** a navigable, **branded website** with within-page cross-references.
-- make its builds **reproducible**, produce a **publishable folder**, and put it online.
+- make its builds **reproducible**, produce a **publishable folder**, and optionally put it online.
 
 By the end: the same penguins data, a set of pages (**including yesterday's report**) grown into a
 **website your team can publish**.
@@ -51,8 +51,7 @@ Watch for the **Follow along** / **Your turn** callouts: they flag every switch.
 
 ::: notes
 - **Say:** "Same rhythm as yesterday: follow along, then your turn."
-- **Don't announce a duration here.** Each "Your turn" callout carries its own "regroup in ~N min",
-  which is where the room needs it.
+- **Schedule:** break at 15:00, resume at 15:30. Use clock times, not estimated task durations.
 :::
 
 # Part 1: Build and structure a project {.center}
@@ -119,8 +118,8 @@ Same narrow-wins rule, now across files: **document header** > `_metadata.yml` >
 Set defaults wide, override narrow.
 
 ::: aside
-Today's lab project is flat (a couple of pages at the root), so there's no folder to scope. Reach for
-`_metadata.yml` when a **subfolder** of pages shares options.
+Today's lab includes a `reports/` subfolder. You will add `reports/_metadata.yml` so its options apply
+to the report pages, but not to pages at the project root.
 :::
 
 **Learn more:** [Directory metadata](https://quarto.org/docs/projects/quarto-projects.html#directory-metadata)
@@ -246,10 +245,10 @@ typography:
 
 ## Your turn {#your-turn-1}
 
-::: {.callout-tip title="Your turn — ~45 min, then a break"}
+::: {.callout-tip title="Your turn — until the break at 15:00"}
 Head to the **[Lab](../../labs/quarto-projects/index.qmd#website-challenge)** and the **Website
 Challenge**: turn a set of `.qmd` into a navigable, **branded website**: `_quarto.yml`, a navbar, and
-the shared brand. ~45 min, then a **break**, back after.
+the shared brand. We break at **15:00** and resume at **15:30**.
 :::
 
 You can now structure files into a branded, navigable **website**. After the break we make its builds
@@ -257,7 +256,7 @@ reproducible and **ship** it.
 
 ::: notes
 - **Say:** "Website Challenge: project, navigation, brand, folder options, then an optional listing.
-  You have 45 minutes; we meet at 15:30."
+  Work until the break at 15:00; we resume at 15:30."
 - **Ask:** "Where did the HTML move?"
 - **Ask:** "The font changed but the navbar did not. Why?"
 - **Ask:** "You edited no `.qmd`; where did the option come from?"
@@ -267,7 +266,7 @@ reproducible and **ship** it.
 
 # Part 2: Scale and publish {.center}
 
-Make builds reproducible, then publish: how your team ships its project.
+Make builds reproducible, then prepare the project for publication.
 
 ::: notes
 - **Say:** "You built the site. Now make its builds reproducible, then publish it."
@@ -403,14 +402,14 @@ Publish your site and open it on your phone. The lab has the steps. Everyone sti
 
 ## Your turn {#your-turn-2}
 
-::: {.callout-tip title="Your turn — regroup in ~45 min"}
+::: {.callout-tip title="Your turn"}
 Back to the **[Lab](../../labs/quarto-projects/index.qmd#ship-it-challenge)**, the **Reproducible Build
 Challenge**: make the build skip unchanged pages, bring **yesterday's report** onto the site, and turn
 it into a publishable `_site/` folder. The dashboard demo and publishing are optional.
 :::
 
 ::: notes
-- **Say:** "Reproducible Build Challenge: freeze the build and add yesterday's report. You have 45 minutes."
+- **Say:** "Freeze the build, then add yesterday's report to the site."
 - **Ask:** "How can you prove the code did not run?"
 - **Ask:** "Where do cache and freeze write results? Which folder do you commit?"
 - **Celebrate:** the Day-1 report becoming a site page.
@@ -423,8 +422,9 @@ You can now:
 
 - structure `.qmd` files into a **project** with `_quarto.yml`, `output-dir`, and `_metadata.yml`.
 - build a **branded website** with navigation and explain why cross-page references differ from a book.
-- make builds **reproducible** (`freeze` + `renv.lock`), produce a **publishable `_site/`** for a host
-  or CI, and put it online.
+- make builds **reproducible** (`freeze` + `renv.lock`) and produce a **publishable `_site/`** for a
+  host or CI.
+- optionally publish the site to Posit Connect Cloud.
 
 . . .
 
