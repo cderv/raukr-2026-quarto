@@ -40,9 +40,7 @@ By the end: the same penguins data, a set of pages (**including yesterday's repo
 **website your team can publish**.
 
 ::: notes
-- **Frame:** Day 1 took one `.qmd` all the way to a branded PDF. Day 2 is the other axis — one file
-  to many, tied together by config, then shipped. This is the machinery behind your team project's
-  site.
+- **Say:** "Yesterday: one `.qmd` to a branded PDF. Today: many files, one project, then publish."
 :::
 
 ## How today works
@@ -53,8 +51,7 @@ By the end: the same penguins data, a set of pages (**including yesterday's repo
 Watch for the **Follow along** / **Your turn** callouts: they flag every switch.
 
 ::: notes
-- **Quick recap, don't re-teach** — they saw this shape yesterday. Same two rounds; the **Follow
-  along** / **Your turn** callouts flag every switch. One breath, then into Part 1.
+- **Say:** "Same rhythm as yesterday: follow along, then your turn."
 :::
 
 # Part 1: Build and structure a project {.center}
@@ -97,9 +94,9 @@ Quarto uses the **nearest `_quarto.yml`** up the tree as the project root: you a
 :::
 
 ::: notes
-- **Say:** "Day 1 was one file. Today: many files, one project. Open your editor — we build one together."
-- **Do:** show a minimal `_quarto.yml` — `project: type: website` + `output-dir`. "This folder is now one unit; `render` builds all of it, not one file."
-- **Say (relevance):** the team project is many pages — this is how they connect.
+- **Say:** "Many files, one project. Open your editor."
+- **Do:** add a minimal `_quarto.yml`; render the whole folder.
+- **Say:** "This is how the pages of your team project connect."
 :::
 
 ## Directory metadata — `_metadata.yml` {#metadata}
@@ -126,10 +123,8 @@ Today's lab project is flat (a couple of pages at the root), so there's no folde
 :::
 
 ::: notes
-- **Callback (don't re-teach):** they learned header-vs-cell precedence yesterday (`#execution`).
-  Don't re-derive "defaults wide, override narrow" — just widen it to the file/folder/project scope.
-- **Say:** "Same rule as yesterday's header-beats-nothing / cell-beats-header — now a folder file
-  sits between the page and the project."
+- **Say:** "Same precedence rule as yesterday, now across project, folder, page, and cell."
+- **Do not re-teach:** widen the rule only.
 :::
 
 ## Websites — pages & navigation {#websites}
@@ -162,10 +157,10 @@ website:
 :::
 
 ::: notes
-- **Do:** add the `website:` block live — navbar + sidebar — render, show the nav appear.
-- **Say:** "You declare the nav once: the navbar you list, the sidebar `contents: auto` builds from the files — Quarto generates both."
-- **Say (sets up next slide):** "each page renders on its own — that independence is exactly why cross-refs behave differently across pages."
-- **Helpers:** flag the classic trap now — links are relative to the *source*, not `_site` — so they meet it before the lab.
+- **Do:** add navbar and sidebar; render and show navigation.
+- **Say:** "List navbar entries, or let `contents: auto` build a sidebar."
+- **Next:** independent pages explain the cross-reference rule.
+- **Watch for:** links are relative to source files, not `_site`.
 :::
 
 ## Cross-references across a project {#xrefs}
@@ -192,8 +187,7 @@ one unit with global numbering. A **website** keeps per-page numbering.
 :::
 
 ::: notes
-- **Pre-flight (not spoken):** if unsure on your installed Quarto, test one cross-page `@fig-`
-  before the session — historically a website does not resolve it. Keep that check off the slide.
+- **Before session:** confirm that a website does not resolve a cross-page `@fig-` reference.
 :::
 
 ## One brand → the whole project: `_brand.yml` {#brand}
@@ -224,27 +218,12 @@ typography:
 ::::
 
 ::: notes
-- **Callback (don't re-derive):** they saw this file yesterday, branding the PDF. Today's *new* angle is
-  **scale** — one root file themes the whole multi-page project. Widen the scope; don't re-teach the file.
-- **Hold back the theme-layer rule.** It used to be an aside on this slide. It is now the lab's
-  brand step (Part 1, "Brand it"): they add `_brand.yml`, the fonts change, the colors don't, and
-  working out why is the exercise. Saying "`brand` goes last, later layers win" here turns that step
-  back into transcription. If someone asks outright, answer with the question instead: "what order do
-  you think Quarto puts them in?"
-- **Do:** show the site before / after dropping `_brand.yml` at the root — navbar + links go teal
-  in one re-render. **Check your demo project first:** a bare `theme: cosmo` outranks the brand and
-  the demo shows nothing. The theme list needs `brand` last (`theme: [cosmo, brand]`), or no
-  `theme:` at all. Fix it silently before the session; don't narrate the fix.
-- **Say:** "You saw this yesterday. Put it at the project root and every page *and* deck inherits it
-  — brand once, not per file."
-- **R plots (only if asked):** a plot still needs `theme_brand_ggplot2()` — same as yesterday; the
-  lab's stretch covers it.
-- **Escape hatch (if asked):** `brand: false` opts a page out; `brand: other.yml` points it
-  elsewhere — the default brands everything, these are the overrides.
-- **Precision:** "every page/deck" = every *supported-format* output (html, revealjs, typst,
-  dashboard); an unsupported format just isn't branded — don't say "every output".
-- **Placement:** this is Part-1 project config, not the Part-2 tail.
-- **Helpers:** the lab installs `brand.yml` with `install.packages()` (not `pak`).
+- **Focus:** one root `_brand.yml` scales yesterday's PDF branding to the project.
+- **Do:** show the site before/after adding `_brand.yml`.
+- **Say:** "Brand once at the project root, not once per page."
+- **Do not reveal:** theme-layer order; it is the lab exercise.
+- **Before session:** demo uses `[cosmo, brand]` or no named theme.
+- **If asked:** plots need `theme_brand_ggplot2()`; `brand: false` opts out.
 :::
 
 ## Your turn {#your-turn-1}
@@ -259,19 +238,13 @@ You can now structure files into a branded, navigable **website**. After the bre
 reproducible and **ship** it.
 
 ::: notes
-- **Say (handoff):** "Over to you — Website Challenge, five steps: make it a project, build the navigation, brand it, scope options to a folder, and a listing if you get there. ~45 min, then we break — back at 15:30. Helpers are around."
-- **Say (how the lab reads now):** "Each step tells you what you should *see* before it tells you anything else, so you can check yourself. Under that are hints that open one at a time — the first is a question, then the mechanism, then the answer. Try the question before you open the answer."
-- **Trigger questions — ask the room out loud, don't wait for hands.** These are the beats where the
-  step is meant to click, roughly every five minutes:
-  - after the first step: "where did your HTML go *before* you added `_quarto.yml`, and where does it
-    go now? What decided that?"
-  - during the brand step (**the productive-failure beat**): "the type changed but the navbar didn't.
-    What does that tell you about how `theme:` and the brand combine?" Let them sit with it. The
-    "you should see" box already told them the first result is expected, so nobody thinks they broke it.
-  - after the folder step: "you didn't edit a single `.qmd`. So where did that option come from?"
-- **Helpers:** first thing to check — are they working **inside `day2-projects/`** with their new `_quarto.yml`, so `quarto render` builds the project (not a stray single page)? (Secondary: page links are source-relative, not `_site`.) Anyone behind can open the shipped `solutions/day2/` — a finished Part-1 site — and start Part 2 clean.
-- **Less is handed over now, so expect more hands.** Point at the hint ladder rather than answering:
-  "open the second hint" is usually enough, and it keeps one presenter serving the room from the front.
+- **Say:** "Website Challenge: project, navigation, brand, folder options, then an optional listing.
+  You have 45 minutes; we meet at 15:30."
+- **Ask:** "Where did the HTML move?"
+- **Ask:** "The font changed but the navbar did not. Why?"
+- **Ask:** "You edited no `.qmd`; where did the option come from?"
+- **Watch for:** wrong working folder; rendering one file; links aimed at `_site`.
+- **Catch-up:** `solutions/day2/`.
 :::
 
 # Part 2: Scale and publish {.center}
@@ -279,8 +252,7 @@ reproducible and **ship** it.
 Make builds reproducible, then publish: how your team ships its project.
 
 ::: notes
-- **Welcome back** (after the break): "Before the break you built a branded, navigable site. Now we make its builds *reproducible* — freeze + renv — then ship it."
-- One-sentence recap; don't re-teach Part 1.
+- **Say:** "You built the site. Now make its builds reproducible, then publish it."
 :::
 
 ## Freeze: skip unchanged computations {#freeze}
@@ -312,12 +284,11 @@ That's `freeze: auto`, the setting to adopt: a page re-runs only when its own so
 hands you full control instead → next slide.
 
 ::: notes
-- **Say (motivation):** "Compute can be slow — you don't want a prose typo to re-run a 20-minute model fit." *(Localize to the room: a sequence alignment, a long MCMC, a big simulation.)*
-- **Do:** the contrast is the point — **cache** = the *engine's* cache (knitr for R / Jupyter Cache), per-cell, works in a single doc; **freeze** = *Quarto's* switch, project-only, re-executes a doc only when its source changes. (Verified vs quarto.org `docs/projects/code-execution.html`.) Protect this distinction.
-- **Do:** show `freeze: auto` in `_quarto.yml`; "re-runs a page only when *that page* changed."
-- **If asked — why not just cache everything?** cache is per-cell and can go stale across a shared repo; freeze commits whole-document results for reproducible, R-free CI rebuilds. Different jobs.
-- **Say (payoff):** commit `_freeze/` and **CI** *(a build that runs on every push)* rebuilds the site with **no R at all**.
-- **Teaser:** the next slide is `freeze: true` — the render-on-demand workflow.
+- **Say:** "A prose edit should not rerun a 20-minute model."
+- **Contrast:** cache = engine, per cell; freeze = Quarto, per document, project only.
+- **Do:** add `freeze: auto`; change one page and render.
+- **Payoff:** commit `_freeze/`; CI can build without R.
+- **Next:** `freeze: true` gives manual control.
 :::
 
 ## The freeze workflow — you hold the trigger {#freeze-workflow}
@@ -346,15 +317,10 @@ is built.
 but `true` keeps the trigger in your hands.
 
 ::: notes
-- **Anchor (real):** quarto.org runs `freeze: true` — verified in `quarto-dev/quarto-web/_quarto.yml`;
-  contributors render the changed file locally and commit `_freeze/`, enforced by a `check-freeze.sh`
-  git hook — the *same* discipline this workshop repo uses.
-- **Say:** "true = the build never runs R; *you* decide when a page recomputes, by rendering it directly."
-- **Do:** edit a cell on `analysis.qmd` → `quarto render analysis.qmd` → show `_freeze/` change + the
-  timestamp tick; a full project render leaves it untouched.
-- **Contrast (lab uses `auto`):** `auto` = the build recomputes changed pages for you (the setting you want,
-  what the lab sets); `true` = deterministic CI + manual refresh (the CI mode).
-- **If asked:** a `production` render profile can set `freeze: false` to force a full re-execution.
+- **Say:** "With `true`, only a direct document render recomputes the page."
+- **Do:** edit `analysis.qmd`; render that file; show `_freeze/` change. Then render the project.
+- **Contrast:** `auto` recomputes changed pages; `true` requires manual refresh.
+- **Example:** quarto.org uses `true` and commits `_freeze/`.
 :::
 
 ## Reproducibility has two parts {#renv}
@@ -378,8 +344,8 @@ renv::restore()    # rebuild the same env
 Together: a colleague (or CI) rebuilds the *same* site, with or without re-running the analysis.
 
 ::: notes
-- **Timing:** renv is the first thing to drop if short on time — the cache-vs-freeze contrast is the point of this beat, protect that.
-- **Say:** "freeze pins the *results*; renv.lock pins *what produced them* — the package versions. You want both."
+- **Say:** "freeze pins results; `renv.lock` pins package versions."
+- **Timing:** drop this first if short.
 :::
 
 ## Publishing {#publishing}
@@ -406,16 +372,10 @@ Publish your site and open it on your phone. The lab has the steps. Everyone sti
 :::
 
 ::: notes
-- **Do:** show it live on this repo (`quarto publish posit-connect-cloud`). It is one command and a
-  browser sign-in, so it *is* watchable, unlike a Pages build.
-- **Say:** "You already made the thing you publish. `_site/` is the deliverable — this just puts it
-  on a URL."
-- **Prerequisite (say it early, on Day 1 if you remember):** a free Posit account. Anyone without
-  one skips this and loses nothing.
-- **Why not GitHub Pages:** we never taught git or GitHub, and the whole setup is built on not
-  needing them (`use_course()`). Connect Cloud needs no repository.
-- **If asked about automation:** yes, this can rebuild on a schedule or from a repo. That is the
-  same CI story as the freeze beat, and it is a pointer, not a demo.
+- **Do:** run `quarto publish posit-connect-cloud` and show browser sign-in.
+- **Say:** "`_site/` is the deliverable. This command puts it on a URL."
+- **Mention:** free Posit account required; skipping loses nothing.
+- **If asked:** scheduled and repository builds are also available.
 :::
 
 ## Your turn {#your-turn-2}
@@ -427,19 +387,13 @@ the analysis into a **dashboard**. Putting it online is the optional last step.
 :::
 
 ::: notes
-- **Say (handoff):** "Last part — Ship it Challenge. Make the build stop re-running everything, then bring yesterday's report onto the site, then turn the analysis into a dashboard. Putting it online at the end is optional. ~45 min; helpers are around."
-- **Trigger questions — ask the room out loud:**
-  - on the freeze step, the one that matters: "**how would you prove the code didn't re-run?**" The
-    lab deliberately withholds the timestamp trick, because inventing the tell *is* the lesson. Give
-    them a minute before you accept an answer.
-  - on cache versus freeze: "where does each one write its results, and would you commit that folder?"
-    Everything else follows from that.
-  - on the dashboard: "nothing about your R changed here. So what did?"
-- **The Day-1 step is the payoff of the two days** — when someone's report opens as a page of their
-  own site, say so out loud. That is "one document, one project" stopping being a claim.
-- **Fast finishers:** point them at the optional publish. It depends on nothing downstream, so it
-  costs nothing to skip and nothing to attempt.
-- **Helpers:** the tell that freeze is working — the *second* project render doesn't re-execute the page at all (no chunk output scrolls by); the compute is served from `_freeze/`. Behind? Open the shipped `solutions/day2/` project and start from there.
+- **Say:** "Ship it Challenge: freeze the build, add yesterday's report, then make a dashboard.
+  Publishing is optional. You have 45 minutes."
+- **Ask:** "How can you prove the code did not run?"
+- **Ask:** "Where do cache and freeze write results? Which folder do you commit?"
+- **Ask:** "The R is unchanged. What makes it a dashboard?"
+- **Celebrate:** the Day-1 report becoming a site page.
+- **Catch-up:** `solutions/day2/`; fast finishers publish.
 :::
 
 ## What you can do now {#wrap-up}
@@ -458,8 +412,7 @@ You can now:
 (Day 2), with yesterday's report now a page of it. Everything your **team project** needs.
 
 ::: notes
-- **Close on the report:** the strongest line here is that the document they wrote yesterday is a page
-  of the site they built today. Everything else on this slide is machinery.
+- **Close with:** "Yesterday's document is now a page of today's site."
 :::
 
 ## Demos (if time) {#demos}
@@ -475,11 +428,9 @@ Extra topics:
 :::
 
 ::: notes
-- **Timing:** cut-able tail — trim from the bottom if under ~5 min left; all watch-me, nothing built live.
-- **Dashboards used to be a bullet here.** They are now a lab step (Part 2, "Ship a dashboard"), so
-  this slide no longer covers them. If the room ran out of time and nobody got there, the rendered
-  [dashboard](../../labs/quarto-projects/dashboard.qmd){target="_blank"} is still worth 30 seconds:
-  name the four regions — two valueboxes across the top, a card with the boxplot, and a two-tab panel.
+- **Timing:** cut from the bottom if fewer than 5 minutes remain.
+- **If dashboards were skipped:** show the rendered dashboard for 30 seconds; name valueboxes,
+  boxplot card, and tabbed panel.
 :::
 
 ## Thank you! {.center}

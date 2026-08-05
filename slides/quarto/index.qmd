@@ -48,9 +48,8 @@ After this session you will be able to:
 By the end, you will have a **polished PDF report**.
 
 ::: notes
-- **Frame:** you already write R and have met R Markdown or Quarto — today is about what Quarto
-  *adds* and how far one `.qmd` can go, not "what is a code chunk". We build one document and
-  carry it all the way to a citable, branded PDF.
+- **Say:** "You know R Markdown or Quarto. Today we take one `.qmd` from source to a citable,
+  branded PDF."
 :::
 
 ## How today works
@@ -66,10 +65,8 @@ Slides and lab live at <https://cderv.github.io/raukr-2026-quarto/>. Open them o
 move at your own pace.
 
 ::: notes
-- **Frame (once, up front):** give the room the map — two rounds, same shape; the **Follow along** /
-  **Eyes up** / **Your turn** callouts flag every switch.
-- **Do:** put the URL on screen for a beat. It is the fallback for anyone who falls behind, and it
-  lets them copy a cell straight from the slide instead of retyping it.
+- **Say:** "Two rounds: watch, follow along, then your turn."
+- **Do:** pause on the URL. It is the catch-up path.
 :::
 
 # Part 1: Basics {.center}
@@ -92,8 +89,7 @@ You know the literate-programming idea. In 2026, one `.qmd` is your source for:
 One tool, many outputs, multiple languages: **all from one plain-text `.qmd` you write directly.**
 
 ::: notes
-- **Frame (not a line):** reframe from "Quarto = R Markdown++, nothing new to learn" to "here's
-  what you can now build" — this audience wants to go further, not be reassured.
+- **Focus:** what they can build now, not a comparison with R Markdown.
 :::
 
 ## How it all works {#how-it-works}
@@ -148,14 +144,9 @@ One tool, many outputs, multiple languages: **all from one plain-text `.qmd` you
 ```
 
 ::: notes
-- **Frame:** for R, the **knitr** engine runs your chunks — the same engine as R Markdown. Your
-  `.Rmd` still renders as-is; `knitr::convert_chunk_header()` moves it to `.qmd` cell options when
-  you're ready.
-- **If asked about the two arrows out of `.qmd`:** the extension does not pick the engine, the cells
-  do. `{r}` cells go to knitr, `{python}` cells go to Jupyter, and `engine: jupyter` in the header
-  forces it. On the Jupyter side Quarto writes a `.quarto_ipynb` next to your source, executes that,
-  then deletes it (`keep-ipynb: true` keeps it). So a notebook is the runtime, never the thing you
-  have to author.
+- **Say:** "R cells still run through knitr. Existing `.Rmd` files continue to render."
+- **If asked:** cells select the engine: `{r}` uses knitr; `{python}` uses Jupyter.
+- **Mention:** `knitr::convert_chunk_header()` helps migrate chunk options.
 :::
 
 ## Anatomy of a `.qmd` {#anatomy}
@@ -207,11 +198,10 @@ captions, **cross-references** (`@fig-bill`, `@tbl-summary`, `@eq-ratio`), **mat
 that reports numbers from the data, and **callouts**.
 
 ::: notes
-- **Say:** "From here we build one document together. Render as we go."
-- **Do:** make sure the setup cell is **in the document**, not run in the console. knitr renders in a fresh R process, so a console run never reaches the render and the first figure cell errors.
-- **Say (name the file out loud):** "`my-report.qmd`, in `day1-intro/`" — it is the exact file the Authoring Challenge asks for, so what they build now carries straight into the lab.
-- **Frame:** the list is *deltas* over the Markdown they already know — not a Markdown lesson.
-- **Timing:** this + the next four slides (Figures / Tables & math / Callouts / Inline code) are the live build, ~8–10 min total. One point per slide; don't polish plots.
+- **Say:** "Create `day1-intro/my-report.qmd`. We will render as we go."
+- **Watch for:** the setup cell belongs in the document, not the console.
+- **Focus:** Quarto additions, not a Markdown lesson.
+- **Timing:** next four slides, 8–10 min total.
 :::
 
 ## Figures & cross-references {#figures}
@@ -240,10 +230,10 @@ with `fig-` / `tbl-` / `eq-` to be cross-referenceable.
 figure. (`#| output-location: column` is **slide-only**: a revealjs placement, not article layout.)
 
 ::: notes
-- **Do:** add `#| label: fig-bill` + `#| fig-cap` to the plot cell, render, show the auto-number appear.
-- **Say:** "A labeled cell *becomes* a numbered figure; `@fig-bill` in prose is a live link."
-- **Say (trap):** the label must start `fig-`/`tbl-`/`eq-`, or the ref renders a stray `?@`.
-- **Do:** point at `output-location: column` — a revealjs cell option that puts the plot in a column *beside the code on this slide*. (Presentation output-placement — **not** the article margin layout on the Layouts slide, which doesn't apply to revealjs.)
+- **Do:** add `label` and `fig-cap`; render and show the number.
+- **Say:** "Use `@fig-bill` for a live reference."
+- **Watch for:** labels must start with `fig-`, `tbl-`, or `eq-`.
+- **Point out:** `output-location: column` is revealjs-only placement.
 :::
 
 ## Tables {#tables}
@@ -262,9 +252,9 @@ penguins |>
 Then refer to it in prose with `@tbl-summary` (same mechanic as figures).
 
 ::: notes
-- **Do:** show the `gt` cell with `#| label: tbl-summary`, render, point at the auto-number.
-- **Say:** "Same mechanic as figures — a `tbl-` label makes it referenceable; `gt` or `knitr::kable`, your call."
-- **Timing:** the table is the must-keep; the Math slide is the trim point if Part 1 is tight.
+- **Do:** add `tbl-summary`; render and show the number.
+- **Say:** "Same mechanism as figures."
+- **Timing:** keep this; cut Math first if needed.
 :::
 
 ## Math {#math}
@@ -284,9 +274,9 @@ $$
 $$ {#eq-ratio}
 
 ::: notes
-- **Do:** show the display-math block with `{#eq-ratio}`, then the rendered, numbered equation.
-- **Say:** "Same mechanic again — an `eq-` label makes the equation referenceable."
-- **Say (trap):** inside bare `$$…$$` an underscore can trigger a subscript (or an error) depending on the math renderer — escape it as `bill\_len` (the lab warns about this too).
+- **Do:** show `{#eq-ratio}` and the numbered equation.
+- **Say:** "An `eq-` label makes the equation referenceable."
+- **Watch for:** escape underscores in bare math (`bill\_len`).
 :::
 
 ## Callouts {#callouts}
@@ -304,9 +294,8 @@ Base-R `penguins` (R ≥ 4.5) needs no install.
 :::
 
 ::: notes
-- **Do:** render one callout live — no package, pure Markdown.
-- **Say:** "Five types — note, tip, warning, caution, important — same syntax, different color."
-- **Frame:** next slide closes the live build — inline code.
+- **Do:** render one callout live.
+- **Say:** "Five types, same syntax, different meaning and color."
 :::
 
 ## Inline code {#inline-code}
@@ -326,8 +315,8 @@ It renders with the live count: "We measured **`{r} nrow(penguins)`** penguins."
 The number updates when the data does. **Reproducible by construction.**
 
 ::: notes
-- **Do:** show inline code reporting `nrow(penguins)` from the data — "the number updates when the data does. Reproducible by construction."
-- Closes the live build — next we step back to layout.
+- **Do:** show inline `nrow(penguins)`.
+- **Say:** "The number updates with the data."
 :::
 
 ## Layouts: body, margin, and beyond {#layouts}
@@ -347,8 +336,8 @@ the body** (in the paged formats: HTML, LaTeX, Typst):
 - **multi-column** `::: {.columns}` and **panels** — tabsets + `layout-ncol`.
 
 ::: notes
-- **Do:** gloss outset/inset on first use; the rendered visual examples live behind the **Learn
-  more** links on the next slide, for anyone who wants the full column vocabulary.
+- **Define:** outset and inset.
+- **Point to:** Learn more links for visual examples.
 :::
 
 ## Put output in the margin {#margin-layout}
@@ -396,16 +385,10 @@ format:
 **Learn more:** [HTML Accessibility](https://quarto.org/docs/output-formats/html-accessibility.html)
 
 ::: notes
-- **Hook:** your reader might be on a projector in a bright room, have red-green color-vision
-  deficiency (~8% of men), or use a screen reader — the same few habits cover all three.
-- **Tie to their plot:** the penguins scatter defaults to non-safe colors; one line,
-  `scale_color_okabe_ito()`, fixes it (the worked report already uses it) — show before/after if time.
-- **`axe`:** it's axe-core (the industry-standard checker), built into Quarto since 1.8 for
-  html/revealjs/dashboard. It runs **in the browser, whenever you open the page** (so a plain
-  render works, not only `quarto preview`) — a check-as-you-go tool, not a render/publish gate.
-  Quarto 1.10 polishes the on-page report.
-- **Demo:** `output: document` is the one to show live — the report lands on the page instead of
-  the dev-tools console. Drop `standard:` and you get every rule including best-practice noise.
+- **Say:** "These habits help on projectors, with color-vision differences, and with screen readers."
+- **If time:** show the plot before/after `scale_color_okabe_ito()`.
+- **Demo:** `axe: { output: document }` displays the report on the page.
+- **Mention:** axe runs in the browser for HTML, revealjs, and dashboards.
 :::
 
 ## One source → many formats {#document-types}
@@ -481,12 +464,9 @@ unchanged documents. We'll see it in Day 2.*
 [Cell options](https://quarto.org/docs/reference/cells/cells-knitr.html)
 
 ::: notes
-- **Do (live):** add `execute:` / `echo: false` to the header, re-render — every code block
-  disappears at once. Then drop `#| echo: true` on one cell — just that one returns. The delta,
-  made visible.
-- **Say:** "Same idea as `opts_chunk$set()`, now declarative YAML — dashes not dots, `false` not
-  `FALSE`."
-- `freeze` is a one-line teaser only; the real freeze-vs-cache teach is Day 2.
+- **Do:** set header `echo: false`; override one cell with `#| echo: true`.
+- **Say:** "Defaults in YAML, local overrides in the cell. Dashes, and lowercase `false`."
+- **Mention only:** freeze returns on Day 2.
 :::
 
 ## Running & editing {#running}
@@ -505,13 +485,10 @@ quarto render  report.qmd   # one-off render
   one report per sample or species from a single source. *(Optional bonus in today's lab.)*
 
 ::: notes
-- **Do:** run `quarto preview report.qmd` live — save an edit, show the browser reload; then
-  `quarto render` for the one-off.
-- **Say:** "Drive it from the CLI, in whatever editor you like — RStudio, Positron, VS Code."
-- **Params (MENTION, cut-first):** mention `-P` here, where `quarto render` is on screen — the
-  optional lab bonus does it hands-on (one report per species). Don't dwell; it isn't a taught beat.
-- **Timing:** keep it brief — the room knows cells and Jenny Bryan covers the IDE. Part 1 lands
-  inside its ~18–20 min budget.
+- **Do:** run `quarto preview`; edit and show reload. Contrast with `quarto render`.
+- **Say:** "Use any editor: RStudio, Positron, or VS Code."
+- **Optional:** mention `-P`; the lab bonus uses it.
+- **Timing:** brief; cut parameters first.
 :::
 
 ## Quarto in Positron {#positron}
@@ -526,12 +503,9 @@ Screenshot from the [Quarto documentation](https://quarto.org/docs/tools/positro
 :::
 
 ::: notes
-- **Say:** "The CLI preview you just saw — but driven from inside Positron."
-- **Do:** point at the **Source / Visual** toggle top-left, the visual editor the previous slide
-  mentioned.
-- **Timing:** watch-me, cut-first if Part 1 runs long (Jenny Bryan covers the IDE itself).
-- *(Authoring note, not spoken: the shot is a Python example from the Quarto docs; the workflow is
-  language-agnostic — swap in a local R/penguins capture when available.)*
+- **Say:** "This is the same preview, started from Positron."
+- **Point to:** Source / Visual toggle.
+- **Timing:** cut if running late.
 :::
 
 ## Your turn {#your-turn-1}
@@ -546,8 +520,8 @@ then render it to HTML, then a **break**, back after.
 it and ship a branded PDF.*
 
 ::: notes
-- **Say (handoff):** "Over to you — Authoring Challenge in the lab, ~45 min. Then we break — back at 15:30. Helpers are around; raise your hand if you're stuck."
-- **Helpers:** most common trap is the cross-ref prefix — a label must start `fig-`/`tbl-`/`eq-`, or `@ref` renders a stray `?@`. Also check the `#|` lines are the very top of the cell (no blank line or code above them), and watch for duplicate labels across the document.
+- **Say:** "Authoring Challenge: 45 minutes. We meet again at 15:30. Ask us if you get stuck."
+- **Watch for:** wrong label prefix; duplicate labels; `#|` options not at the top of a cell.
 :::
 
 # Part 2: Citations → Typst {.center}
@@ -555,8 +529,7 @@ it and ship a branded PDF.*
 From report to article: cite it, then typeset it.
 
 ::: notes
-- **Welcome back** (after the break): "Before the break you built a clean HTML penguins doc. Now we make it a *publication-ready article* — cite it, then typeset it to PDF."
-- One-sentence recap only; don't re-teach Part 1 — go straight into the article path.
+- **Say:** "You built the HTML document. Now add citations and typeset it as a PDF."
 :::
 
 ## From report to article {#report-to-article}
@@ -618,15 +591,10 @@ The reference list renders at the end automatically, or wherever you drop this d
 **CSL** = *Citation Style Language*. Swap the `csl:` file to restyle every citation.
 
 ::: notes
-- **Do:** point the header at `references.bib` + a `csl:`, drop `[@gorman2014]` into a sentence,
-  re-render — the in-text cite resolves and a reference list appears at the end.
-- **Say:** "One `.bib` key in your prose becomes a formatted citation *and* an auto-built reference
-  list — swap the `csl:` file and the whole style changes."
-- **Gloss CSL if asked:** *Citation Style Language* — the file that decides how citations and the
-  reference list are formatted (APA, Vancouver, a journal's own style).
-- **Helpers:** the `.bib` path is relative to the document — the follow-along file must sit in
-  `day1-intro/` next to `references.bib`/`apa.csl`. A `[?]` in the text means a wrong `@key`, or
-  `bibliography:` not set in the header.
+- **Do:** add `bibliography`, `csl`, and `[@gorman2014]`; render.
+- **Say:** "The key creates the citation and reference list. Change the CSL to change the style."
+- **If asked:** CSL means Citation Style Language.
+- **Watch for:** relative `.bib` path; wrong key when `[?]` appears.
 :::
 
 ## A real title block {#authors}
@@ -647,7 +615,7 @@ abstract: |
 Renders in HTML, PDF, and Typst. Write it once.
 
 ::: notes
-- **Timing (Part-2 trim-first):** if Part 2 runs long, this is the slide to cut — name author / affiliation / ORCID / abstract verbally and move on. Citations, Typst, and brand are the must-keeps.
+- **Timing:** cut first. Name author, affiliation, ORCID, and abstract verbally.
 :::
 
 ## Typst — modern PDF, no LaTeX {#typst}
@@ -673,12 +641,9 @@ Typst is bundled from Quarto **1.4+**; we require **≥ 1.9** (margin/article la
 :::
 
 ::: notes
-- **Say:** "Typst is deterministic and bundled — nothing to install. LaTeX is still there if you
-  need it, but Typst is what we use in 2026."
-- Gloss "Typst" on first use.
-- **If someone says their PDF is serif despite `_brand.yml` (only if asked):** check for
-  `unknown font family: albert sans` in the log. That is a font *download* failure (no network on
-  the first render), not a missing brand file. Colors and layout are still branded.
+- **Say:** "Typst is bundled with Quarto. Nothing else to install."
+- **Define:** Typst on first use; LaTeX remains available.
+- **Watch for:** serif output plus `unknown font family` means the first font download failed.
 :::
 
 ## Branding the PDF — `_brand.yml` {#brand}
@@ -710,12 +675,9 @@ typography:
 ::::
 
 ::: notes
-- **Do:** add `_brand.yml` (palette + fonts) and re-render the Typst PDF — colors and type change
-  from that one file. This is the payoff.
-- **Say:** "One file themes the **PDF** — and `theme_brand_ggplot2()` / `_gt()` pull the *same*
-  palette into your plots and tables. Tomorrow the *same* file will brand a whole project."
-- **Helpers:** a plot won't inherit the palette until you add a `theme_brand_*` helper; the first
-  Typst render fetches the Google fonts, so it needs network once.
+- **Do:** add `_brand.yml`; re-render and show color and type changes.
+- **Say:** "The same palette can reach plots and tables. Tomorrow it brands a whole project."
+- **Watch for:** plots need `theme_brand_*`; first font render needs network.
 :::
 
 ## Your turn {#your-turn-2}
@@ -727,8 +689,8 @@ finish with a **publication-ready article**, a citable, branded PDF you could su
 :::
 
 ::: notes
-- **Say (handoff):** "Last part — Citations Challenge: add a `.bib`, render a branded Typst PDF, and you leave with a publication-ready article — a branded, citable PDF. ~30 min; helpers are around."
-- **Helpers:** the `.bib` key must match `@key` exactly; the Typst Google-font fetch needs network on the first render; a missing `csl:` falls back to Typst's native style. "Where's my PDF?" — in `day1-intro/` it lands next to its source (`starter.qmd` → `starter.pdf`, `my-report.qmd` → `my-report.pdf`), no `_site/` redirect. All covered by the lab's hint/solution.
+- **Say:** "Citations Challenge: add the bibliography and render a branded Typst PDF. You have 30 minutes."
+- **Watch for:** exact citation key; first font download; PDF lands beside its source.
 :::
 
 ## What you can do now {#wrap-up}
