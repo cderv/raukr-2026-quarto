@@ -236,8 +236,31 @@ format:
   typst: default
 ```
 
-So: **paste any YAML you put on a slide into a scratch `.qmd` and render it**
-before you commit. One `quarto render` in a temp dir. Same for a shown command
-— check that the *slide's own setup* doesn't already make it redundant, which is
-the other half of the same failure (that slide said `format: typst` in the header
-and then `quarto render report.qmd --to typst`, teaching that you need both).
+**The near-miss is worse than the error.** Reaching for a flow mapping instead —
+`format: {html, typst}` — raises **no error at all** and silently renders HTML
+only, so the deck looks right, the render looks right, and the participant just
+never gets their PDF. And an empty block mapping is rejected a third way:
+
+```yaml
+format:      # ERROR: Field "typst" has empty value but it must instead be an object
+  html:
+  typst:
+```
+
+`default` is not decoration, it is the required value.
+
+So: **never eyeball slide YAML — render it.** That is one command:
+
+```bash
+python3 .claude/scripts/check-yaml-blocks.py
+```
+
+It extracts every ```` ```yaml ```` block from `slides/**` and `labs/**`, writes each
+into a throwaway project in the shape its `filename=` claims (front matter,
+`_quarto.yml`, `_metadata.yml`, `_brand.yml`), renders it, and separates schema
+failures from missing-asset noise. Run it after touching any config block.
+
+Same discipline for a shown **command** — check that the *slide's own setup*
+doesn't already make it redundant. That's the other half of the same failure: that
+slide set `format: typst` in the header and then ran
+`quarto render report.qmd --to typst`, teaching that you need both.
