@@ -6,11 +6,14 @@
 #   1. Set the commit identity so sandbox commits carry the right author.
 #   2. Fix the two sandbox gotchas that otherwise break R (UTF-8 locale; the
 #      proxy's self-signed CA that R's curl must be pointed at).
-#   3. Asynchronously install the toolchain: R (CRAN apt), Quarto, just (cargo).
+#   3. Asynchronously install the toolchain: R (CRAN apt), Quarto, just (cargo),
+#      plus the two tools the slide fit-check needs (simple-http-server, agent-browser).
 #
 # Install-source strategy (deliberate — see .claude/references/sandbox-setup.md):
 #   - R    → CRAN apt repo (cloud.r-project.org). No GitHub.
 #   - just → `cargo install just` (crates.io). No GitHub.
+#   - simple-http-server → crates.io, same reason as just.
+#   - agent-browser → npm registry, then its own `install --with-deps` for Chromium.
 #   - Quarto → GitHub releases (its ONLY distribution). Version resolved from
 #     quarto.org so it's never stale. This is the one step that needs the web
 #     environment's network policy to allow github.com; if it's blocked, Quarto
@@ -191,7 +194,28 @@ if command -v R >/dev/null 2>&1; then
   ' 2>/dev/null || echo "pak sysreqs step skipped (non-fatal)"
 fi
 
+# 6. Slide fit-check tooling — a static server plus a browser driver. Checking whether a revealjs
+#    slide overflows its 720 px frame means measuring it in a real browser (see rules/slides.md § 1),
+#    and `file://` is not worth fighting, so the deck gets served over http first.
+#    `.claude/scripts/slide-shot.mjs` is the older path and only works here, because it imports
+#    Playwright from a hardcoded /opt/node22 path; agent-browser is the one that also works on the
+#    instructor's machine, so prefer it and keep the two environments on the same recipe.
+if ! command -v simple-http-server >/dev/null 2>&1 && command -v cargo >/dev/null 2>&1; then
+  echo "Installing simple-http-server via cargo..."
+  cargo install simple-http-server --quiet 2>/dev/null \
+    || echo "simple-http-server install failed (non-fatal)"
+fi
+if ! command -v agent-browser >/dev/null 2>&1 && command -v npm >/dev/null 2>&1; then
+  echo "Installing agent-browser (npm) + its Chromium..."
+  # --with-deps pulls the system libraries headless Chromium needs on a bare Ubuntu image. We are
+  # root here, so it can apt them itself.
+  { npm install -g agent-browser >/dev/null 2>&1 && agent-browser install --with-deps >/dev/null 2>&1; } \
+    || echo "agent-browser install failed (non-fatal) — slide fit-checks will need another route"
+fi
+
 command -v R >/dev/null 2>&1 && echo "R: $(R --version | head -1)"
 command -v quarto >/dev/null 2>&1 && echo "Quarto: $(quarto --version)"
 command -v just >/dev/null 2>&1 && echo "just: $(just --version)"
+command -v simple-http-server >/dev/null 2>&1 && echo "simple-http-server: present"
+command -v agent-browser >/dev/null 2>&1 && echo "agent-browser: $(agent-browser --version)"
 echo "Sandbox setup done."

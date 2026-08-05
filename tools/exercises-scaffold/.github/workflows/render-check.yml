@@ -94,7 +94,23 @@ jobs:
         # setup-renv restored stays on the path. A `working-directory: solutions/day2` here
         # launches R inside a subdir that is NOT an renv project, so it never activates the
         # root library and the render dies with "no package called 'rmarkdown'".
+        # This one step covers every page of the finished project, including reports/,
+        # my-report.qmd and the dashboard.
         run: quarto render solutions/day2
+
+      # The Day-2 starter ships with NO _quarto.yml (creating it is the exercise), so there is no
+      # project render to lean on here. Render each page on its own, which is also exactly what a
+      # participant does before they have written the project file.
+      - name: Render Day-2 starter pages (each stands alone, pre-project)
+        run: |
+          set -eu
+          for f in day2-projects/index.qmd day2-projects/analysis.qmd \
+                   day2-projects/reports/methods.qmd day2-projects/reports/data-notes.qmd; do
+            quarto render "$f"
+            out="${f%.qmd}.html"
+            test -f "$out" || { echo "::error::$out not produced"; exit 1; }
+          done
+          echo "ok: all four Day-2 starter pages render standalone"
 
       - name: Confirm the Typst PDF was produced
         run: test -f day1-intro/sample-typst.pdf || { echo "::error::sample-typst.pdf missing"; exit 1; }

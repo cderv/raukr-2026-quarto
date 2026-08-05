@@ -79,6 +79,13 @@ network policy may block github.com — see the note below):
   ```
   After a fresh R lands, restore the library for the new R version (§ 2): `renv::restore(...)`.
 - **just → `cargo install just`** (crates.io), no GitHub. Only needed once a justfile exists.
+- **Slide fit-check pair → `cargo install simple-http-server` + `npm install -g agent-browser`**,
+  then `agent-browser install --with-deps` for headless Chromium and the system libraries a bare
+  Ubuntu image lacks. Neither touches GitHub. Deciding whether a revealjs slide overflows its 720 px
+  frame means measuring it in a real browser (`rules/slides.md` § 1), and `file://` is more trouble
+  than serving the built `_site/` over http. Prefer this pair over
+  `.claude/scripts/slide-shot.mjs`, which imports Playwright from a hardcoded `/opt/node22` path and
+  therefore runs **only** here — the same recipe then works on the instructor's machine too.
 - **Quarto → official `.deb`, with fallbacks.** Quarto's canonical distribution is GitHub
   releases, but on the web sandbox the egress proxy **scopes github.com to the session's source
   repos**, so `quarto-dev/quarto-cli` returns `403` ("not enabled for this session"). The hook
