@@ -57,7 +57,7 @@ line (what to reuse, what is missing, `file:line`) and shed only the attribution
 which were never useful for authoring anyway. Situated material that genuinely needs the candour
 belongs in a private notes repo, not here.
 
-**No secrets** — `.gitignore` covers the issue tracker's local config (its doc id is a bearer token),
+**No secrets** — `.gitignore` covers braid's local config (its doc id is a bearer token),
 `.claude/reviews/`, private links, and third-party PII. **Never commit issue-tracker IDs** (`br-…`)
 in tracked files; they mean nothing to a reader and leak the tracker's shape.
 
@@ -109,7 +109,13 @@ editing `_brand.yml` or the theme SCSS).
   to close the gap between the announced 45-min Challenges and the ~12 min the lab holds).
 - **Rules** → `.claude/rules/`: path-scoped gotchas for `justfile`, `exercises`, `slides`,
   `multi-day-sequencing`, `brand`, plus `prose-voice`.
-- **Skills** → `.claude/skills/`: `quarto-authoring`, `quarto-alt-text`, `brand-yml`.
+- **Skills** → `.claude/skills/`: `quarto-authoring`, `quarto-alt-text`, `brand-yml`, `braid`.
+- **Work tracking** → **braid**, an issue tracker whose items are called **strands**. The `braid`
+  CLI is on the PATH and finds the skein from the environment, so it just works. `braid ready` is
+  the start-of-session question, `braid agents-info` the full guide, and `.claude/skills/braid/`
+  the auto-invoking stub that defers to it. **Use it** — plan and follow-up work belongs in a
+  strand, not only in a markdown note. (The two rules below stay: never commit `br-…` ids, never
+  run `braid secret` unless a human asks.)
 - **Agents** → `.claude/agents/`: the four `workshop-reviewer-*` lenses (technique / pedagogue /
   beginner / language) and `student-participant`, which actually walks a lab and reports friction.
   **Commands:** `/start-workshop` (fan out the panel), `/run-labs` (drive the student agent).
