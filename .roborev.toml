@@ -22,6 +22,11 @@ the root `_brand.yml`, and `tools/exercises-scaffold/`.
 - Flag any edit to `exercises/` that has no matching source change.
 - Flag a `labs/**` change whose commit does not also regenerate `exercises/`
   (`just exercises`); a CI drift-guard will fail otherwise.
+- Report a prose or copy finding that lands inside `exercises/` against its source
+  (`labs/**` or `tools/exercises-scaffold/**`) -- a fix applied to the generated copy
+  is overwritten by the next sync.
+- `_freeze/` is excluded from review diffs on purpose, and a commit hook already
+  guards staleness. Never flag a missing or stale freeze: you cannot see it.
 - Structural invariants of the delivered payload: no `_quarto.yml` at or above
   `day1-intro/` or `day2-projects/` (`day2-projects/` ships without one on purpose --
   creating it IS the Day-2 exercise); `solutions/day1` and `solutions/day2` stay
@@ -59,9 +64,12 @@ a package added for a lab has to reach that pair too, not just the root one.
 
 ## Prose voice (`.qmd`, `README.md`)
 Participant-facing prose follows a deliberate house voice: short declarative
-sentences, asides in parentheses. Flag:
+sentences, asides in parentheses. This governs body prose only: a `::: notes`
+block is the presenter's spoken voice and is exempt, so never flag anything
+inside one. Flag:
 - mid-sentence em-dash asides (use parentheses, a colon, or a new sentence), and
-  semicolons;
+  semicolons. A plain `term -- gloss` slide bullet is fine, and punctuation stays
+  ASCII: never propose upgrading `--` to an em dash;
 - participial voice-over tails ("..., making it easy to X") and reassurance
   narration ("don't worry", "no magic here");
 - corporate verbs (leverage, utilize, facilitate, streamline) and vague intensifiers
@@ -79,7 +87,10 @@ sentences, asides in parentheses. Flag:
 - On a `{.center}` slide, an `::: aside` overlaps the vertically-centred body -- a
   footer line has to stay in normal flow.
 - A slide whose teaching point is a cell option (`#| label:`, `#| fig-cap:`) needs
-  `#| echo: fenced`, or the `#|` lines are stripped from the displayed code.
+  `#| echo: fenced`, or the `#|` lines are stripped from the displayed code. Prefer
+  it on a minimal demo cell: a cell with long option values (a full `fig-alt`) clips
+  sideways in a narrow container and is left plain on purpose. Not for lab steps,
+  where the participant types the options anyway.
 - Slide fit cannot be judged from a diff. If a slide gains content, say so as a note
   to fit-check it, not as a confident finding.
 
