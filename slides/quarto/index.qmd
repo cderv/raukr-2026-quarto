@@ -11,6 +11,9 @@ format:
     incremental: false
     echo: true
     slide-number: true
+    # auto, not true: previews the "Learn more" targets in an overlay while presenting
+    # (fullscreen), and still opens a real tab for anyone reading the deck on the site.
+    preview-links: auto
 filters:
   - typst-render
 typst-render:
@@ -728,5 +731,5 @@ Questions?
 [`_brand.yml`](https://posit-dev.github.io/brand-yml/)
 
 ::: {.smaller}
-Slides + lab: this site · Christophe Dervieux · [GitHub `@cderv`](https://github.com/cderv) · [cderv@posit.co](mailto:cderv@posit.co)
+Slides + lab: this site · Christophe Dervieux · [GitHub `@cderv`](https://github.com/cderv){preview-link="false"} · [cderv@posit.co](mailto:cderv@posit.co)
 :::
