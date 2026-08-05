@@ -217,9 +217,9 @@ Christophe Dervieux
 <ul>
 <li><strong>structure</strong> several <code>.qmd</code> into one Quarto <strong>project</strong> with shared config (<code>_quarto.yml</code>);</li>
 <li><strong>build</strong> a navigable, <strong>branded website</strong> — within-page cross-references, reproducible builds;</li>
-<li><strong>publish</strong> it, and explain how <strong>freeze</strong> lets it rebuild without re-running R.</li>
+<li><strong>produce a publishable folder</strong>, put it online, and explain how <strong>freeze</strong> lets it rebuild without re-running R.</li>
 </ul>
-<p>By the end: the same penguins data, a fresh set of pages grown into a <strong>website your team can publish</strong>.</p>
+<p>By the end: the same penguins data, a set of pages (<strong>including yesterday’s report</strong>) grown into a <strong>website your team can publish</strong>.</p>
 <aside class="notes">
 <ul>
 <li><strong>Frame:</strong> Day 1 took one <code>.qmd</code> all the way to a branded PDF. Day 2 is the other axis — one file to many, tied together by config, then shipped. This is the machinery behind your team project’s site.</li>
@@ -482,11 +482,11 @@ Christophe Dervieux
 <li>Need an exception? <code>brand: false</code> opts a page out; <code>brand: other.yml</code> points it elsewhere.</li>
 </ul>
 </div></div>
-
 <aside class="notes">
 <ul>
 <li><strong>Callback (don’t re-derive):</strong> they saw this file yesterday, branding the PDF. Today’s <em>new</em> angle is <strong>scale</strong> — one root file themes the whole multi-page project. Widen the scope; don’t re-teach the file.</li>
-<li><strong>Do:</strong> show the site before / after dropping <code>_brand.yml</code> at the root — navbar + links go teal in one re-render. <strong>Check your demo project first:</strong> a bare <code>theme: cosmo</code> outranks the brand and the demo shows nothing. The theme list needs <code>brand</code> last (<code>theme: [cosmo, brand]</code>), or no <code>theme:</code> at all.</li>
+<li><strong>Hold back the theme-layer rule.</strong> It used to be an aside on this slide. It is now the lab’s brand step (Part 1, “Brand it”): they add <code>_brand.yml</code>, the fonts change, the colors don’t, and working out why is the exercise. Saying “<code>brand</code> goes last, later layers win” here turns that step back into transcription. If someone asks outright, answer with the question instead: “what order do you think Quarto puts them in?”</li>
+<li><strong>Do:</strong> show the site before / after dropping <code>_brand.yml</code> at the root — navbar + links go teal in one re-render. <strong>Check your demo project first:</strong> a bare <code>theme: cosmo</code> outranks the brand and the demo shows nothing. The theme list needs <code>brand</code> last (<code>theme: [cosmo, brand]</code>), or no <code>theme:</code> at all. Fix it silently before the session; don’t narrate the fix.</li>
 <li><strong>Say:</strong> “You saw this yesterday. Put it at the project root and every page <em>and</em> deck inherits it — brand once, not per file.”</li>
 <li><strong>R plots (only if asked):</strong> a plot still needs <code>theme_brand_ggplot2()</code> — same as yesterday; the lab’s stretch covers it.</li>
 <li><strong>Escape hatch (if asked):</strong> <code>brand: false</code> opts a page out; <code>brand: other.yml</code> points it elsewhere — the default brands everything, these are the overrides.</li>
@@ -505,9 +505,7 @@ Christophe Dervieux
           overflow: hidden!important;
           display:block!important;
       }</style></aside>
-<aside><div>
-<p><code>brand</code> goes <strong>last</strong> in the <code>theme:</code> list (or no <code>theme:</code> at all). Later layers win.</p>
-</div></aside></section>
+</section>
 <section id="your-turn-1" class="slide level2">
 <h2>Your turn</h2>
 <div title="Your turn — ~45 min, then a break">
@@ -528,8 +526,16 @@ Christophe Dervieux
 <p>You can now structure files into a branded, navigable <strong>website</strong>. After the break we make its builds reproducible and <strong>ship</strong> it.</p>
 <aside class="notes">
 <ul>
-<li><strong>Say (handoff):</strong> “Over to you — Website Challenge: <code>_quarto.yml</code>, a navbar, the shared brand. ~45 min, then we break — back at 15:30. Helpers are around.”</li>
+<li><strong>Say (handoff):</strong> “Over to you — Website Challenge, five steps: make it a project, build the navigation, brand it, scope options to a folder, and a listing if you get there. ~45 min, then we break — back at 15:30. Helpers are around.”</li>
+<li><strong>Say (how the lab reads now):</strong> “Each step tells you what you should <em>see</em> before it tells you anything else, so you can check yourself. Under that are hints that open one at a time — the first is a question, then the mechanism, then the answer. Try the question before you open the answer.”</li>
+<li><strong>Trigger questions — ask the room out loud, don’t wait for hands.</strong> These are the beats where the step is meant to click, roughly every five minutes:
+<ul>
+<li>after the first step: “where did your HTML go <em>before</em> you added <code>_quarto.yml</code>, and where does it go now? What decided that?”</li>
+<li>during the brand step (<strong>the productive-failure beat</strong>): “the type changed but the navbar didn’t. What does that tell you about how <code>theme:</code> and the brand combine?” Let them sit with it. The “you should see” box already told them the first result is expected, so nobody thinks they broke it.</li>
+<li>after the folder step: “you didn’t edit a single <code>.qmd</code>. So where did that option come from?”</li>
+</ul></li>
 <li><strong>Helpers:</strong> first thing to check — are they working <strong>inside <code>day2-projects/</code></strong> with their new <code>_quarto.yml</code>, so <code>quarto render</code> builds the project (not a stray single page)? (Secondary: page links are source-relative, not <code>_site</code>.) Anyone behind can open the shipped <code>solutions/day2/</code> — a finished Part-1 site — and start Part 2 clean.</li>
+<li><strong>Less is handed over now, so expect more hands.</strong> Point at the hint ladder rather than answering: “open the second hint” is usually enough, and it keeps one presenter serving the room from the front.</li>
 </ul>
 <style type="text/css">
         span.MJX_Assistive_MathML {
@@ -739,14 +745,22 @@ Christophe Dervieux
 <p><strong>Your turn — regroup in ~45 min</strong></p>
 </div>
 <div class="callout-content">
-<p>Back to the <strong><a href="../../labs/quarto-projects/index.html#ship-it-challenge">Lab</a></strong>, the <strong>Ship it Challenge</strong>: render your project to <code>_site/</code> and open it: a publishable folder. Publishing it is optional, at the end.</p>
+<p>Back to the <strong><a href="../../labs/quarto-projects/index.html#ship-it-challenge">Lab</a></strong>, the <strong>Ship it Challenge</strong>: make the build skip unchanged pages, bring <strong>yesterday’s report</strong> onto the site, and turn the analysis into a <strong>dashboard</strong>. Putting it online is the optional last step.</p>
 </div>
 </div>
 </div>
 </div>
 <aside class="notes">
 <ul>
-<li><strong>Say (handoff):</strong> “Last part — Ship it Challenge: render your project to <code>_site/</code> and open it, a publishable folder. Publishing to Pages is my watch-me demo, not your job. ~45 min; helpers are around.”</li>
+<li><strong>Say (handoff):</strong> “Last part — Ship it Challenge. Make the build stop re-running everything, then bring yesterday’s report onto the site, then turn the analysis into a dashboard. Putting it online at the end is optional. ~45 min; helpers are around.”</li>
+<li><strong>Trigger questions — ask the room out loud:</strong>
+<ul>
+<li>on the freeze step, the one that matters: “<strong>how would you prove the code didn’t re-run?</strong>” The lab deliberately withholds the timestamp trick, because inventing the tell <em>is</em> the lesson. Give them a minute before you accept an answer.</li>
+<li>on cache versus freeze: “where does each one write its results, and would you commit that folder?” Everything else follows from that.</li>
+<li>on the dashboard: “nothing about your R changed here. So what did?”</li>
+</ul></li>
+<li><strong>The Day-1 step is the payoff of the two days</strong> — when someone’s report opens as a page of their own site, say so out loud. That is “one document, one project” stopping being a claim.</li>
+<li><strong>Fast finishers:</strong> point them at the optional publish. It depends on nothing downstream, so it costs nothing to skip and nothing to attempt.</li>
 <li><strong>Helpers:</strong> the tell that freeze is working — the <em>second</em> project render doesn’t re-execute the page at all (no chunk output scrolls by); the compute is served from <code>_freeze/</code>. Behind? Open the shipped <code>solutions/day2/</code> project and start from there.</li>
 </ul>
 <style type="text/css">
@@ -767,13 +781,14 @@ Christophe Dervieux
 <ul>
 <li>structure <code>.qmd</code> into a <strong>project</strong> — <code>_quarto.yml</code>, <code>output-dir</code>, <code>_metadata.yml</code>;</li>
 <li>build a <strong>branded website</strong> with navigation, and know why cross-page refs differ from a book;</li>
-<li>make builds <strong>reproducible</strong> (<code>freeze</code> + <code>renv.lock</code>) and produce a <strong>publishable <code>_site/</code></strong> for a host or CI.</li>
+<li>make builds <strong>reproducible</strong> (<code>freeze</code> + <code>renv.lock</code>), produce a <strong>publishable <code>_site/</code></strong> for a host or CI, and put it online;</li>
+<li>arrange the same results as a <strong>dashboard</strong>.</li>
 </ul>
 <div class="fragment">
-<p><strong>You’ve built the two axes:</strong> one document to a branded PDF (Day 1), one folder to a published site (Day 2). Everything your <strong>team project</strong> needs.</p>
+<p><strong>You’ve built the two axes:</strong> one document to a branded PDF (Day 1), one folder to a published site (Day 2), with yesterday’s report now a page of it. Everything your <strong>team project</strong> needs.</p>
 <aside class="notes">
 <ul>
-<li><strong>If asked about <code>_metadata.yml</code>:</strong> they saw it on the concept slide but today’s lab project is flat, so there was no folder to scope it to. Point them at the slide, not the lab.</li>
+<li><strong>Close on the report:</strong> the strongest line here is that the document they wrote yesterday is a page of the site they built today. Everything else on this slide is machinery.</li>
 </ul>
 <style type="text/css">
         span.MJX_Assistive_MathML {
@@ -793,13 +808,12 @@ Christophe Dervieux
 <p>Extra topics:</p>
 <ul>
 <li class="fragment"><strong>Book versus website</strong> — mostly the same machinery. Pick a <strong>book</strong> when you need one linear read with global numbering, a <strong>website</strong> otherwise. <em>(1 decision, not a new toolset.)</em></li>
-<li class="fragment"><strong>Dashboards</strong> — <code>format: dashboard</code> arranges plots/tables/valueboxes into a static layout (rows, columns, cards) to share results with a collaborator who won’t open R. <a href="../../labs/quarto-projects/dashboard.html" target="_blank">See one</a> <em>(static, no server)</em>.</li>
 <li class="fragment"><strong>Interactivity</strong> — an <strong>htmlwidget</strong> (<code>plotly</code>, <code>leaflet</code>) is pure R and self-contained. <strong>OJS</strong> <em>(Observable JS, a browser-side, non-R path)</em> and <strong>Shinylive</strong> <em>(Shiny running in the browser, no server)</em> are links, not live builds.</li>
 </ul>
 <aside class="notes">
 <ul>
 <li><strong>Timing:</strong> cut-able tail — trim from the bottom if under ~5 min left; all watch-me, nothing built live.</li>
-<li><strong>Do:</strong> for the dashboard, open the [See one] link and name the four regions — two valueboxes across the top, a card with the boxplot, and a two-tab panel (the whole layout model: rows / columns / cards / valueboxes / tabsets).</li>
+<li><strong>Dashboards used to be a bullet here.</strong> They are now a lab step (Part 2, “Ship a dashboard”), so this slide no longer covers them. If the room ran out of time and nobody got there, the rendered <a href="../../labs/quarto-projects/dashboard.html" target="_blank">dashboard</a> is still worth 30 seconds: name the four regions — two valueboxes across the top, a card with the boxplot, and a two-tab panel.</li>
 </ul>
 <style type="text/css">
         span.MJX_Assistive_MathML {
