@@ -543,11 +543,11 @@ website:
 `solutions/day2/my-report.qmd` shows the finished page.
 :::
 
-### Optional demo: inspect a dashboard
+### Optional group demo: inspect a dashboard
 
-This is a worked example, not another challenge. Open the
-[finished dashboard](dashboard.qmd){target="_blank"}, then open
-`solutions/day2/dashboard.qmd` to see how the same analysis becomes a dashboard.
+If time permits, we will inspect this worked example together. You do not need to build a dashboard
+during the workshop. We will open the [finished dashboard](dashboard.qmd){target="_blank"}, then
+compare it with `solutions/day2/dashboard.qmd` to see how the same analysis becomes a dashboard.
 
 Look for four ideas:
 
@@ -579,8 +579,8 @@ format: dashboard
 (the scatter cell and the table cell: each becomes a tab)
 ```
 
-If you want to experiment, copy `analysis.qmd` to `dashboard.qmd` and reproduce one part of the
-layout. You do not need to complete the dashboard during the workshop.
+After the group demo, you can optionally copy `analysis.qmd` to `dashboard.qmd` and reproduce one
+part of the layout.
 
 ### Put it online *(optional, and a good place to stop)*
 

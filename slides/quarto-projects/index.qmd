@@ -450,8 +450,8 @@ Extra topics:
 
 ::: notes
 - **Timing:** cut from the bottom if fewer than 5 minutes remain.
-- **If dashboards were skipped:** show the rendered dashboard for 30 seconds; name valueboxes,
-  boxplot card, and tabbed panel.
+- **Optional group demo:** open the rendered dashboard from the lab and briefly name the valueboxes,
+  boxplot card, and tabbed panel. Do not ask participants to build it.
 :::
 
 ## Thank you! {.center}
