@@ -100,7 +100,7 @@ One tool, many outputs, multiple languages: **all from one plain-text `.qmd` you
 ```{typst}
 #| echo: false
 //| align: center
-//| alt: "Flowchart: .qmd, .ipynb and .md files each go through an engine (knitr, Jupyter, or Markdown) to Pandoc, which renders HTML, PDF, and Word or PowerPoint outputs."
+//| alt: "Flowchart: a .qmd goes to either the knitr engine or the Jupyter engine, an .ipynb goes to the Jupyter engine, and a .md goes to the Markdown engine. All three engines feed Pandoc, which renders HTML, PDF, and Word or PowerPoint outputs."
 #import "@preview/fletcher:0.5.8" as fletcher: diagram, node, edge
 
 #let teal = rgb("#4C979F")
@@ -132,6 +132,7 @@ One tool, many outputs, multiple languages: **all from one plain-text `.qmd` you
   node((3, 2), [Word · PowerPoint], name: <office>),
 
   edge(<qmd>, <knitr>, "->"),
+  edge(<qmd>, <jup>, "->"),
   edge(<ipynb>, <jup>, "->"),
   edge(<md>, <mde>, "->"),
   edge(<knitr>, <pandoc>, "->"),
@@ -147,6 +148,11 @@ One tool, many outputs, multiple languages: **all from one plain-text `.qmd` you
 - **Frame:** for R, the **knitr** engine runs your chunks — the same engine as R Markdown. Your
   `.Rmd` still renders as-is; `knitr::convert_chunk_header()` moves it to `.qmd` cell options when
   you're ready.
+- **If asked about the two arrows out of `.qmd`:** the extension does not pick the engine, the cells
+  do. `{r}` cells go to knitr, `{python}` cells go to Jupyter, and `engine: jupyter` in the header
+  forces it. On the Jupyter side Quarto writes a `.quarto_ipynb` next to your source, executes that,
+  then deletes it (`keep-ipynb: true` keeps it). So a notebook is the runtime, never the thing you
+  have to author.
 :::
 
 ## Anatomy of a `.qmd` {#anatomy}
