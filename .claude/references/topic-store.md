@@ -141,7 +141,7 @@ hands-on = the two payoff exercises (a cited doc, then that doc as a branded Typ
 
 ---
 
-## Block 2 — Quarto projects (Tue 11 Aug · 13:30–14:30 + 15:30–16:30) — _deck base exists_
+## Block 2 — Quarto projects (Tue 11 Aug · 13:30–15:00 + 15:30–17:00) — _deck base exists_
 
 > **Correction (2026-07-07, build-gap audit):** not "mostly new" — `user2024-tutorial-quarto`
 > `3-projects.qmd:22-947` is a **complete EN Day-2 deck** (websites, navbar/sidebar, blog,

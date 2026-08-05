@@ -18,6 +18,10 @@ Complete these four steps:
 Complete steps 2–4 **before the workshop** so we can start with Quarto.
 :::
 
+**Optional, for Day 2.** The last step of Day 2 puts your site online with Posit Connect Cloud. If
+you want to try it, create a free account at <https://connect.posit.cloud> beforehand. Nothing else
+depends on it: everyone leaves with the built site folder either way.
+
 Slides and labs remain available at <https://cderv.github.io/raukr-2026-quarto/>.
 
 ## Software

@@ -1,8 +1,9 @@
 # CLAUDE.md — RaukR 2026 Quarto session
 
-Repo for Christophe Dervieux's **two ~2h Quarto sessions** at RaukR 2026 (Advanced R for
-Bioinformatics, Visby): *Introduction to Quarto* (Mon 10 Aug) and *Quarto projects* (Tue 11 Aug),
-for an experienced-R / life-science audience. English; each block is slides (revealjs) + lab (html);
+Repo for Christophe Dervieux's **two afternoon Quarto sessions** at RaukR 2026 (Advanced R for
+Bioinformatics, Visby): *Introduction to Quarto* (Mon 10 Aug, 150 min) and *Quarto projects*
+(Tue 11 Aug, 180 min), each two parts split by a 30-min break (verified times:
+`project-context.md` § Event), for an experienced-R / life-science audience. English; each block is slides (revealjs) + lab (html);
 branding rebuilt via `_brand.yml` (RaukR teal, Albert Sans / Fira Mono — don't vendor NBIS SCSS).
 This file is the **method/workflow scaffold**; the concrete frame — event, audience, stack, house
 style, prior art — is in **`.claude/references/project-context.md`**, and content-dependent depth

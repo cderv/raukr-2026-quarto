@@ -439,9 +439,9 @@ changes.
 
 ::: {.callout-note}
 ## Why this matters beyond the wait
-The frozen results live in `_freeze/`. Commit that folder and a machine with **no R at all** can
-rebuild the site from it, which is how an automated build serves a site whose figures came out of R.
-That is the reason to keep `_freeze/` in version control rather than treat it as scratch.
+The results now live in `_freeze/`, inside your project. Keep that folder. Your next render reads it
+instead of re-running the analysis, and anyone who has the folder gets the same figures **without
+running R at all**. `_freeze/` is part of the project, not a temporary folder to delete.
 :::
 
 ### Discuss together: `cache` versus `freeze`
