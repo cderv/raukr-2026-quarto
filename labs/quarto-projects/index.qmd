@@ -61,8 +61,6 @@ Use **`solutions/day2/`** to compare your work or catch up.
 
 ### Make it a project
 
-*Suggested time: 5 minutes.*
-
 **Goal.** Make Quarto treat `day2-projects/` as one project, so that a single command builds every
 page in it into an output folder.
 
@@ -117,8 +115,6 @@ quarto render
 :::
 
 ### Build the navigation
-
-*Suggested time: 8 minutes.*
 
 **Goal.** Give the site a title and a top navigation bar, so a reader can move between the two pages
 without editing the URL.
@@ -210,8 +206,6 @@ the reference and table share one page.
 
 ### Brand it
 
-*Suggested time: 10 minutes.*
-
 **Goal.** Give the site one shared palette and typeface from a `_brand.yml`, the same file you met on
 Day 1.
 
@@ -268,8 +262,6 @@ Dropping `theme:` altogether works too: with no named theme to fight, the brand 
 :::
 
 ### Scope options to one folder
-
-*Suggested time: 8 minutes.*
 
 **Goal.** Fold the code on the two pages in `reports/`, and only there. The home and analysis pages
 keep showing their code as before.
@@ -389,8 +381,6 @@ cache and freeze together. The dashboard demo and publishing are optional.
 
 ### Make the build skip unchanged pages
 
-*Suggested time: 12 minutes.*
-
 **Goal.** Right now every `quarto render` re-runs all the R on every page, even the pages you have not
 touched. Make Quarto reuse the previous results for a page whose source has not changed. Then
 **prove** that it worked.
@@ -491,7 +481,7 @@ build, which is the setting an automated build uses.
 
 ### Put your Day-1 report on the site
 
-*Suggested time: 8 minutes. This is the core finish line.*
+*This is the core finish line.*
 
 **Goal.** Take the report you wrote yesterday and make it a page of this website.
 
