@@ -457,7 +457,7 @@ Christophe Dervieux
 </section>
 <section id="brand" class="slide level2">
 <h2>One brand → the whole project: <code>_brand.yml</code></h2>
-<p>You wrote <code>_brand.yml</code> yesterday to brand one <strong>Typst PDF</strong>. Drop that <strong>same file at the project root</strong> and Quarto <strong>auto-discovers</strong> it (no header line, no per-page config):</p>
+<p>Yesterday, <code>_brand.yml</code> branded one <strong>Typst PDF</strong>. Drop that <strong>same file at the project root</strong> and Quarto <strong>auto-discovers</strong> it (no header line, no per-page config):</p>
 <div class="columns">
 <div class="column" style="width:54%;">
 <div class="code-with-filename">
@@ -482,11 +482,12 @@ Christophe Dervieux
 <li>Need an exception? <code>brand: false</code> opts a page out; <code>brand: other.yml</code> points it elsewhere.</li>
 </ul>
 </div></div>
+
 <aside class="notes">
 <ul>
-<li><strong>Callback (don’t re-derive):</strong> they built this file yesterday for the PDF. Today’s <em>new</em> angle is <strong>scale</strong> — one root file themes the whole multi-page project. Widen the scope; don’t re-teach the file.</li>
-<li><strong>Do:</strong> show the site before / after dropping <code>_brand.yml</code> at the root — navbar + headings go teal in one re-render.</li>
-<li><strong>Say:</strong> “You wrote this yesterday. Put it at the project root and every page <em>and</em> deck inherits it — brand once, not per file.”</li>
+<li><strong>Callback (don’t re-derive):</strong> they saw this file yesterday, branding the PDF. Today’s <em>new</em> angle is <strong>scale</strong> — one root file themes the whole multi-page project. Widen the scope; don’t re-teach the file.</li>
+<li><strong>Do:</strong> show the site before / after dropping <code>_brand.yml</code> at the root — navbar + links go teal in one re-render. <strong>Check your demo project first:</strong> a bare <code>theme: cosmo</code> outranks the brand and the demo shows nothing. The theme list needs <code>brand</code> last (<code>theme: [cosmo, brand]</code>), or no <code>theme:</code> at all.</li>
+<li><strong>Say:</strong> “You saw this yesterday. Put it at the project root and every page <em>and</em> deck inherits it — brand once, not per file.”</li>
 <li><strong>R plots (only if asked):</strong> a plot still needs <code>theme_brand_ggplot2()</code> — same as yesterday; the lab’s stretch covers it.</li>
 <li><strong>Escape hatch (if asked):</strong> <code>brand: false</code> opts a page out; <code>brand: other.yml</code> points it elsewhere — the default brands everything, these are the overrides.</li>
 <li><strong>Precision:</strong> “every page/deck” = every <em>supported-format</em> output (html, revealjs, typst, dashboard); an unsupported format just isn’t branded — don’t say “every output”.</li>
@@ -504,7 +505,9 @@ Christophe Dervieux
           overflow: hidden!important;
           display:block!important;
       }</style></aside>
-</section>
+<aside><div>
+<p><code>brand</code> goes <strong>last</strong> in the <code>theme:</code> list (or no <code>theme:</code> at all). Later layers win.</p>
+</div></aside></section>
 <section id="your-turn-1" class="slide level2">
 <h2>Your turn</h2>
 <div title="Your turn — ~45 min, then a break">
@@ -587,7 +590,7 @@ Christophe Dervieux
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb6-1"><a aria-label="1"></a><span class="co"># _quarto.yml</span></span>
 <span id="cb6-2"><a aria-label="2"></a><span class="fu">execute</span><span class="kw">:</span></span>
 <span id="cb6-3"><a aria-label="3"></a><span class="at">  </span><span class="fu">freeze</span><span class="kw">:</span><span class="at"> auto</span><span class="co">        # re-execute a document only when its source changes</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>That’s <code>freeze: auto</code>, the sane setting to adopt: a page re-runs only when its own source changes. <strong><code>freeze: true</code></strong> hands you full control instead → next slide.</p>
+<p>That’s <code>freeze: auto</code>, the setting to adopt: a page re-runs only when its own source changes. <strong><code>freeze: true</code></strong> hands you full control instead → next slide.</p>
 <aside class="notes">
 <ul>
 <li><strong>Say (motivation):</strong> “Compute can be slow — you don’t want a prose typo to re-run a 20-minute model fit.” <em>(Localize to the room: a sequence alignment, a long MCMC, a big simulation.)</em></li>
@@ -631,7 +634,7 @@ Christophe Dervieux
 <li><strong>Anchor (real):</strong> quarto.org runs <code>freeze: true</code> — verified in <code>quarto-dev/quarto-web/_quarto.yml</code>; contributors render the changed file locally and commit <code>_freeze/</code>, enforced by a <code>check-freeze.sh</code> git hook — the <em>same</em> discipline this workshop repo uses.</li>
 <li><strong>Say:</strong> “true = the build never runs R; <em>you</em> decide when a page recomputes, by rendering it directly.”</li>
 <li><strong>Do:</strong> edit a cell on <code>analysis.qmd</code> → <code>quarto render analysis.qmd</code> → show <code>_freeze/</code> change + the timestamp tick; a full project render leaves it untouched.</li>
-<li><strong>Contrast (lab uses <code>auto</code>):</strong> <code>auto</code> = the build recomputes changed pages for you (the sane setting, what the lab sets); <code>true</code> = deterministic CI + manual refresh (the CI mode).</li>
+<li><strong>Contrast (lab uses <code>auto</code>):</strong> <code>auto</code> = the build recomputes changed pages for you (the setting you want, what the lab sets); <code>true</code> = deterministic CI + manual refresh (the CI mode).</li>
 <li><strong>If asked:</strong> a <code>production</code> render profile can set <code>freeze: false</code> to force a full re-execution.</li>
 </ul>
 <style type="text/css">
@@ -648,7 +651,7 @@ Christophe Dervieux
 </div>
 </section>
 <section id="renv" class="slide level2">
-<h2>Reproducibility has two legs</h2>
+<h2>Reproducibility has two parts</h2>
 <p><code>freeze</code> pins the <strong>results</strong>. It doesn’t pin <strong>what produced them</strong> (the package versions):</p>
 <div class="columns">
 <div class="column" style="width:50%;">
@@ -684,29 +687,33 @@ Christophe Dervieux
 <p>The hands-on part is small: <strong>render, then point a host at <code>output-dir</code>.</strong></p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a aria-label="1"></a><span class="ex">quarto</span> render              <span class="co"># builds the whole project into _site/</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ul>
-<li>Push <code>_site/</code> to any static host — GitHub Pages, Netlify, an internal server.</li>
-<li><code>quarto publish gh-pages</code> and <strong>GitHub Actions</strong> automate it, rendering from the committed <code>_freeze/</code> with <strong>no R needed in CI</strong>.</li>
+<li><code>_site/</code> is the whole deliverable. Point any static host at it (an internal server, your department’s pages, a hosting service).</li>
+<li><strong>Posit Connect Cloud</strong> takes it in one command, with a free account and <strong>no repository</strong>:</li>
 </ul>
-<div title="Watch-me — not a live *Your turn*">
-<div class="callout callout-warning callout-titled callout-style-default">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a aria-label="1"></a><span class="ex">quarto</span> publish posit-connect-cloud</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The first run opens a browser to sign in, then uploads the folder you just built.</p>
+<div title="Your turn — optional, if we have time">
+<div class="callout callout-tip callout-titled callout-style-default">
 <div class="callout-body">
 <div class="callout-title">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<p><strong>Watch-me — not a live <em>Your turn</em></strong></p>
+<p><strong>Your turn — optional, if we have time</strong></p>
 </div>
 <div class="callout-content">
-<p>You do the <strong><code>render</code> + <code>output-dir</code></strong> half; I’ll <strong>show</strong> the publish step on a ready-made repo. It needs a GitHub login and builds asynchronously (push, then wait for the green check).</p>
+<p>Publish your site and open it on your phone. The lab has the steps. Everyone still leaves with <code>_site/</code>, which is the deliverable either way.</p>
 </div>
 </div>
 </div>
 </div>
 <aside class="notes">
 <ul>
-<li><strong>Frame (why watch-me — don’t narrate the logistics):</strong> a live <code>publish gh-pages</code> across 40 laptops means GitHub auth and a repo each — a lot of per-person setup for one demo, and Pages/Actions rebuilds asynchronously (push, then wait for the green check), so there’s nothing synchronous to watch anyway. Foreground the CI <em>story</em>; keep auth off the hands-on path.</li>
-<li><strong>Say (keep these distinct):</strong> “<code>quarto publish gh-pages</code> renders here on my machine and pushes the result; <strong>GitHub Actions</strong> is the path that rebuilds from the committed <code>_freeze/</code> with no R on the runner.”</li>
-<li><strong>Do (if demoing live):</strong> state the auth prerequisite first (GitHub login + a repo); otherwise just show the green check on the pre-provisioned repo.</li>
+<li><strong>Do:</strong> show it live on this repo (<code>quarto publish posit-connect-cloud</code>). It is one command and a browser sign-in, so it <em>is</em> watchable, unlike a Pages build.</li>
+<li><strong>Say:</strong> “You already made the thing you publish. <code>_site/</code> is the deliverable — this just puts it on a URL.”</li>
+<li><strong>Prerequisite (say it early, on Day 1 if you remember):</strong> a free Posit account. Anyone without one skips this and loses nothing.</li>
+<li><strong>Why not GitHub Pages:</strong> we never taught git or GitHub, and the whole setup is built on not needing them (<code>use_course()</code>). Connect Cloud needs no repository.</li>
+<li><strong>If asked about automation:</strong> yes, this can rebuild on a schedule or from a repo. That is the same CI story as the freeze beat, and it is a pointer, not a demo.</li>
 </ul>
 <style type="text/css">
         span.MJX_Assistive_MathML {
@@ -732,7 +739,7 @@ Christophe Dervieux
 <p><strong>Your turn — regroup in ~45 min</strong></p>
 </div>
 <div class="callout-content">
-<p>Back to the <strong><a href="../../labs/quarto-projects/index.html#ship-it-challenge">Lab</a></strong>, the <strong>Ship it Challenge</strong>: render your project to <code>_site/</code> and open it: a publishable folder. (Publishing to Pages is the watch-me demo.)</p>
+<p>Back to the <strong><a href="../../labs/quarto-projects/index.html#ship-it-challenge">Lab</a></strong>, the <strong>Ship it Challenge</strong>: render your project to <code>_site/</code> and open it: a publishable folder. Publishing it is optional, at the end.</p>
 </div>
 </div>
 </div>
@@ -758,19 +765,34 @@ Christophe Dervieux
 <h2>What you can do now</h2>
 <p>You can now:</p>
 <ul>
-<li>structure <code>.qmd</code> into a <strong>project</strong> — <code>_quarto.yml</code>, <code>_metadata.yml</code>, <code>output-dir</code>;</li>
+<li>structure <code>.qmd</code> into a <strong>project</strong> — <code>_quarto.yml</code>, <code>output-dir</code>, <code>_metadata.yml</code>;</li>
 <li>build a <strong>branded website</strong> with navigation, and know why cross-page refs differ from a book;</li>
-<li>make builds <strong>reproducible</strong> (<code>freeze</code> + <code>renv.lock</code>) and <strong>publish</strong> the output folder.</li>
+<li>make builds <strong>reproducible</strong> (<code>freeze</code> + <code>renv.lock</code>) and produce a <strong>publishable <code>_site/</code></strong> for a host or CI.</li>
 </ul>
 <div class="fragment">
 <p><strong>You’ve built the two axes:</strong> one document to a branded PDF (Day 1), one folder to a published site (Day 2). Everything your <strong>team project</strong> needs.</p>
+<aside class="notes">
+<ul>
+<li><strong>If asked about <code>_metadata.yml</code>:</strong> they saw it on the concept slide but today’s lab project is flat, so there was no folder to scope it to. Point them at the slide, not the lab.</li>
+</ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </div>
 </section>
 <section id="demos" class="slide level2">
 <h2>Demos (if time)</h2>
 <p>Extra topics:</p>
 <ul>
-<li class="fragment"><strong>Book versus website</strong> — ~90% shared machinery. Pick a <strong>book</strong> when you need one linear read with global numbering, a <strong>website</strong> otherwise. <em>(1 decision, not a new toolset.)</em></li>
+<li class="fragment"><strong>Book versus website</strong> — mostly the same machinery. Pick a <strong>book</strong> when you need one linear read with global numbering, a <strong>website</strong> otherwise. <em>(1 decision, not a new toolset.)</em></li>
 <li class="fragment"><strong>Dashboards</strong> — <code>format: dashboard</code> arranges plots/tables/valueboxes into a static layout (rows, columns, cards) to share results with a collaborator who won’t open R. <a href="../../labs/quarto-projects/dashboard.html" target="_blank">See one</a> <em>(static, no server)</em>.</li>
 <li class="fragment"><strong>Interactivity</strong> — an <strong>htmlwidget</strong> (<code>plotly</code>, <code>leaflet</code>) is pure R and self-contained. <strong>OJS</strong> <em>(Observable JS, a browser-side, non-R path)</em> and <strong>Shinylive</strong> <em>(Shiny running in the browser, no server)</em> are links, not live builds.</li>
 </ul>
@@ -1162,7 +1184,7 @@ Christophe Dervieux
         }
           var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
           var mailtoRegex = new RegExp(/^mailto:/);
-            var filterRegex = new RegExp('/' + window.location.host + '/');
+            var filterRegex = new RegExp("https:\/\/cderv\.github\.io\/raukr-2026-quarto\/");
           var isInternal = (href) => {
               return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
           }

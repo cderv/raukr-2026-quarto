@@ -245,6 +245,30 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><strong>Quarto ≥ 1.9.</strong> Check with <code>quarto --version</code> and get it from <a href="https://quarto.org/docs/get-started/" class="uri">https://quarto.org/docs/get-started/</a>. (1.9 is required: the Typst margin/article layout we use on Day 1 landed in 1.9.)</li>
 <li><strong>An editor with Quarto support</strong> — <a href="https://positron.posit.co/">Positron</a>, VS Code (+ the Quarto extension), or RStudio. All work, and we drive Quarto from the command line too (<code>quarto preview</code> / <code>quarto render</code>), so the editor is your choice.</li>
 </ul>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span>On RStudio? The Render button may not use the Quarto you just checked
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>RStudio can run a <strong>different Quarto</strong> from the one on your PATH, so <code>quarto --version</code> does not settle what the Render button will use. Day 1’s Typst article layout needs ≥ 1.9.</p>
+<p>The <code>quarto</code> R package has a one-line check for exactly this:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages("quarto")</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>quarto<span class="sc">::</span><span class="fu">quarto_binary_sitrep</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>It names the binary each side will use and returns <code>TRUE</code> when they agree. A mismatch looks like:</p>
+<pre><code>✔ quarto R package will use '/opt/quarto/bin/quarto'
+✖ RStudio IDE render button seems configured to use '/usr/lib/rstudio/bin/quarto/bin/quarto'.</code></pre>
+<p>Add <code>debug = TRUE</code> and it also tells you <em>which</em> mechanism configured each one (the <code>PATH</code>, or the <code>RSTUDIO_QUARTO</code> environment variable).</p>
+<p>If the two disagree, point RStudio at the install you want with <strong><code>RSTUDIO_QUARTO</code></strong>, or render from the Terminal (<code>quarto render &lt;file&gt;</code>), which we do throughout anyway. If a document looks wrong on Day 1 but renders correctly from the Terminal, this is usually why.</p>
+</div>
+</div>
+</div>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -259,7 +283,7 @@ Tip
 </div>
 </div>
 <div class="callout callout-style-default callout-warning callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -268,18 +292,18 @@ Tip
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>The exercises assume base R’s <code>penguins</code>. If you genuinely can’t get to R ≥ 4.5, install <a href="https://allisonhorst.github.io/palmerpenguins/"><code>palmerpenguins</code></a> and rename its columns to the base-R names the material uses, so every snippet works unchanged:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages("palmerpenguins")</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>penguins <span class="ot">&lt;-</span> palmerpenguins<span class="sc">::</span>penguins <span class="sc">|&gt;</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">bill_len    =</span> bill_length_mm,</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">bill_dep    =</span> bill_depth_mm,</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">flipper_len =</span> flipper_length_mm,</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">body_mass   =</span> body_mass_g</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages("palmerpenguins")</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>penguins <span class="ot">&lt;-</span> palmerpenguins<span class="sc">::</span>penguins <span class="sc">|&gt;</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">bill_len    =</span> bill_length_mm,</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">bill_dep    =</span> bill_depth_mm,</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">flipper_len =</span> flipper_length_mm,</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">body_mass   =</span> body_mass_g</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Run this once at the top of a document (or your session) before the exercise code. Upgrading R is still the cleaner path if you can.</p>
 </div>
 </div>
@@ -288,11 +312,11 @@ Tip
 <section id="get-the-materials" class="level2">
 <h2 class="anchored" data-anchor-id="get-the-materials">Get the materials</h2>
 <p>The hands-on files live in a small <strong>exercises folder</strong> (the top <code>raukr-2026-quarto-exercises</code> folder): the starter documents, the reference solutions, and the citation assets (<code>references.bib</code>, <code>apa.csl</code>). The easiest way to get it is <strong><code>use_course()</code></strong> from R. No git, no GitHub account, nothing to unzip by hand, and the same on Windows, macOS, and Linux:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages("usethis")   # once, if you don't have it</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">use_course</span>(<span class="st">"cderv/raukr-2026-quarto-exercises"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages("usethis")   # once, if you don't have it</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">use_course</span>(<span class="st">"cderv/raukr-2026-quarto-exercises"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>What it does:</strong></p>
 <ol type="1">
-<li>picks a sensible spot (your <strong>Desktop</strong> by default) and prints where it’s about to download. To put it elsewhere, cancel and re-run with a path, e.g. <code>use_course("cderv/raukr-2026-quarto-exercises", destdir = "~/projects")</code>.</li>
+<li>picks a sensible spot (your <strong>Desktop</strong> by default) and prints where it’s about to download the files. To download them elsewhere, cancel and re-run with a path, e.g. <code>use_course("cderv/raukr-2026-quarto-exercises", destdir = "~/projects")</code>.</li>
 <li>downloads a ZIP and <strong>unpacks it for you</strong> into a folder called <code>raukr-2026-quarto-exercises</code> (it prints the exact path). It then asks <em>“Shall we delete the ZIP file?”</em>. Keep it (say <strong>No</strong>): it’s your one-click reset (see below).</li>
 <li><strong>opens the folder</strong> — a new RStudio session, or the folder in Positron / VS Code. If it doesn’t pop open, open the folder it printed yourself.</li>
 </ol>
@@ -312,11 +336,11 @@ Tip
 <li><strong>Day 1</strong> → open <strong><code>day1-intro/</code></strong> (double-click <code>day1-intro.Rproj</code>).</li>
 <li><strong>Day 2</strong> → open <strong><code>day2-projects/</code></strong> (double-click <code>day2-projects.Rproj</code>).</li>
 </ul>
-<p>Each day folder is its own working directory with its own brand and assets, so your renders land <strong>right next to your files</strong> (there’s no project folder above them to capture the output). One download covers both days. The reference answers are in <code>solutions/day1/</code> and <code>solutions/day2/</code> at the top folder (try first).</p>
+<p>Each day folder is its own working directory with its own brand and assets, so your renders land <strong>right next to your files</strong> (there’s no project folder above them to capture the output). One download covers both days. The reference answers are in <code>solutions/day1/</code> and <code>solutions/day2/</code> at the top folder. Try the exercise yourself first.</p>
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -325,7 +349,7 @@ Tip
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>If an attempt goes wrong, get a <strong>fresh</strong> copy of the day folder (don’t unzip over your working copy):</p>
 <ul>
@@ -340,34 +364,31 @@ Tip
 <section id="r-packages" class="level2">
 <h2 class="anchored" data-anchor-id="r-packages">R packages</h2>
 <p>The exercises use nine R packages. The simplest path is a plain install into your R library (it works no matter which day folder you open):</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="fu">c</span>(</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"dplyr"</span>, <span class="st">"ggplot2"</span>, <span class="st">"gt"</span>, <span class="st">"ggokabeito"</span>,   <span class="co"># content + a color-blind-safe scale</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">"brand.yml"</span>, <span class="st">"ggrepel"</span>, <span class="st">"prismatic"</span>,      <span class="co"># R-side branding for the Typst payoff</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">"knitr"</span>, <span class="st">"rmarkdown"</span>                      <span class="co"># the engine every .qmd with R code needs</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="fu">c</span>(</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"dplyr"</span>, <span class="st">"ggplot2"</span>, <span class="st">"gt"</span>, <span class="st">"ggokabeito"</span>,   <span class="co"># content + a color-blind-safe scale</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">"brand.yml"</span>, <span class="st">"ggrepel"</span>, <span class="st">"prismatic"</span>,      <span class="co"># R-side branding for the Typst payoff</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">"knitr"</span>, <span class="st">"rmarkdown"</span>                      <span class="co"># the engine every .qmd with R code needs</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Or with <a href="https://pak.r-lib.org/"><strong>pak</strong></a>, which installs the same list in parallel, prefers binaries, and sorts out system dependencies for you:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages("pak")   # once, if you don't have it</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>pak<span class="sc">::</span><span class="fu">pak</span>(<span class="fu">c</span>(</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">"dplyr"</span>, <span class="st">"ggplot2"</span>, <span class="st">"gt"</span>, <span class="st">"ggokabeito"</span>,</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">"brand.yml"</span>, <span class="st">"ggrepel"</span>, <span class="st">"prismatic"</span>,</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">"knitr"</span>, <span class="st">"rmarkdown"</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages("pak")   # once, if you don't have it</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>pak<span class="sc">::</span><span class="fu">pak</span>(<span class="fu">c</span>(</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">"dplyr"</span>, <span class="st">"ggplot2"</span>, <span class="st">"gt"</span>, <span class="st">"ggokabeito"</span>,</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">"brand.yml"</span>, <span class="st">"ggrepel"</span>, <span class="st">"prismatic"</span>,</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">"knitr"</span>, <span class="st">"rmarkdown"</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Prefer pinned versions? (optional, <code>renv</code>)
+<span class="screen-reader-only">Note</span>There’s an <code>renv.lock</code> in the folder (ignore it)
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div id="callout-7" class="callout-7-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>The exercises ship an <code>renv.lock</code> recording exact package versions. From the <strong>top</strong> <code>raukr-2026-quarto-exercises</code> folder (where <code>renv.lock</code> sits):</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages("renv")   # if you don't have it</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>renv<span class="sc">::</span><span class="fu">restore</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p><code>renv</code> builds a <strong>project-local</strong> library at that top folder, which R activates only when you work <em>from</em> that top folder, <strong>not</strong> when you open a day folder. So if you go the <code>renv</code> route, render from the top folder too. Otherwise the plain <code>install.packages()</code> above (into your regular library) is the simpler path that works in any folder. Pick one, you don’t need both.</p>
+<p>It pins the package versions the course materials are tested against. You don’t need it: the folder ships no <code>.Rprofile</code> and no <code>renv/activate.R</code>, so it is <strong>not an activated renv project</strong>, and <code>renv::restore()</code> there would install its 65 pinned packages straight into your everyday R library. Use the <code>install.packages()</code> line above.</p>
 </div>
 </div>
 </div>
@@ -375,10 +396,10 @@ Tip
 <section id="check-your-setup" class="level2">
 <h2 class="anchored" data-anchor-id="check-your-setup">Check your setup</h2>
 <p>The exercises folder ships a one-shot check. From the <strong>top</strong> <code>raukr-2026-quarto-exercises</code> folder, run:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">"00-check-setup.R"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">"00-check-setup.R"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>It verifies R ≥ 4.5, Quarto ≥ 1.9, the nine packages, and the base-R <code>penguins</code> data, then <strong>renders the Day-1 Typst sample</strong> (<code>day1-intro/sample-typst.qmd</code>). That proves the knitr + Typst chain end-to-end and <strong>caches the brand’s Google fonts</strong> (Albert Sans / Fira Mono), so your first render in the session is instant instead of pausing to download them. Every line should read <code>[ok]</code>.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -387,11 +408,11 @@ Tip
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-7" class="callout-7-contents callout-collapse collapse">
+<div id="callout-8" class="callout-8-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>The one command that proves the toolchain is <code>quarto check</code>. It covers the <strong>knitr engine</strong> too (the <code>knitr</code> + <code>rmarkdown</code> packages a <code>.qmd</code> with R code needs): it reports your Quarto version and renders a small knitr test document (look for <code>Checking Knitr engine render......OK</code>). If you see <code>rmarkdown: (None)</code>, your R packages aren’t installed yet, so do the <a href="#r-packages">R packages</a> step and re-run. Then confirm the R side:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>R.version.string                          <span class="co"># want &gt;= 4.5.0</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="st">"penguins"</span> <span class="sc">%in%</span> <span class="fu">ls</span>(<span class="st">"package:datasets"</span>)    <span class="co"># want TRUE on R &gt;= 4.5</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>R.version.string                          <span class="co"># want &gt;= 4.5.0</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="st">"penguins"</span> <span class="sc">%in%</span> <span class="fu">ls</span>(<span class="st">"package:datasets"</span>)    <span class="co"># want TRUE on R &gt;= 4.5</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>And pre-warm the fonts once by rendering the sample yourself: <code>quarto render day1-intro/sample-typst.qmd</code>.</p>
 </div>
 </div>
@@ -474,7 +495,7 @@ Tip
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp('/' + window.location.host + '/');
+        var filterRegex = new RegExp("https:\/\/cderv\.github\.io\/raukr-2026-quarto\/");
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }

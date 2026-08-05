@@ -244,7 +244,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Turn a set of <code>.qmd</code> into a Quarto <strong>project</strong>: a navigable, <strong>branded website</strong>, then make its builds reproducible with <strong>freeze</strong> and render it to a publishable folder. Two challenges, one project: each is its own hands-on part, with a break between them. Publishing to GitHub Pages / CI is a <strong>watch-me demo</strong>, not a per-participant step (it needs an account, so we run it once up front). Everything runs on base-R <code>datasets::penguins</code> (R ≥ 4.5), so there’s no data to download.</p>
+<p>Turn a set of <code>.qmd</code> into a Quarto <strong>project</strong>: a navigable, <strong>branded website</strong>, then make its builds reproducible with <strong>freeze</strong> and render it to a publishable folder. Two challenges, one project: each is its own hands-on part, with a break between them. Putting the site online is an <strong>optional last step</strong> (Posit Connect Cloud, free account, no repository), so the folder is what everyone leaves with. Everything runs on base-R <code>datasets::penguins</code> (R ≥ 4.5), so there’s no data to download.</p>
 <p><strong>Before you start:</strong> work through the <strong><a href="../../setup.html">Setup page</a></strong> if you haven’t. Its <code>00-check-setup.R</code> confirms R, Quarto, and the packages this lab uses. The optional branded-plot stretch also uses <code>brand.yml</code>.</p>
 </div>
 </div>
@@ -285,7 +285,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">text</span><span class="kw">:</span><span class="at"> Analysis</span></span>
 <span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span></span>
 <span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">html</span><span class="kw">:</span></span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">theme</span><span class="kw">:</span><span class="at"> cosmo</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">theme</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at">cosmo</span><span class="kw">,</span><span class="at"> brand</span><span class="kw">]</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The <code>theme:</code> list is a stack of layers, and <strong>later layers win</strong>. <code>brand</code> is the layer that reads your <code>_brand.yml</code> (you add that file in step 3), so it has to come <em>after</em> <code>cosmo</code> to override its colors. Until then <code>brand</code> adds nothing and you get plain <code>cosmo</code>.</p></li>
 <li><p><strong>Render the whole folder</strong>: from inside <code>day2-projects/</code>, run <code>quarto render</code> (or <code>quarto preview</code>). Because a <code>_quarto.yml</code> is now present, Quarto treats the folder as one project and builds <strong>both</strong> pages into <code>_site/</code>.</p></li>
 <li><p><strong>Brand it.</strong> Add a <code>day2-projects/_brand.yml</code> so the site shares one palette:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">color</span><span class="kw">:</span></span>
@@ -298,7 +299,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">source</span><span class="kw">:</span><span class="at"> google</span></span>
 <span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">base</span><span class="kw">:</span></span>
 <span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">family</span><span class="kw">:</span><span class="at"> Albert Sans</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Re-render. The navbar and headings pick up the palette automatically.</p></li>
+<p>Re-render. The navbar and links pick up the palette automatically, and the text is set in Albert Sans.</p></li>
 <li><p><em>(stretch)</em> Two things make the <strong>within-page versus across-page</strong> rule concrete. First, on <code>analysis.qmd</code>, drop <code>@tbl-means</code> into a sentence: it resolves to <em>Table 1</em> because the reference and its table share <strong>one page</strong> (exactly as yesterday). Second, notice <code>index.qmd</code> <strong>already</strong> links to the analysis with a plain Markdown link, <code>[analysis](analysis.qmd)</code>. That’s deliberate, because <strong>across</strong> pages there is no auto-numbering (a <em>book</em> feature, not a website one), so a plain link is how you connect website pages.</p></li>
 </ol>
 </div>
@@ -316,7 +317,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>A <code>day2-projects/_site/</code> folder with <strong>two linked pages</strong> and a <strong>top navbar</strong> (Home · Analysis); after the brand step, the navbar and headings turn <strong>teal</strong> with Albert Sans (the plot keeps its default species colors, since branding an R plot is a separate <code>brand.yml</code>-package step, out of scope today). If you did the stretch, the analysis page also shows a live <strong>Table 1</strong> reference (from <code>@tbl-means</code>) and the home page carries a plain link into the analysis. Opening <code>_site/index.html</code> shows the home page; the navbar moves you to the analysis page, whose figure is:</p>
+<p>A <code>day2-projects/_site/</code> folder with <strong>two linked pages</strong> and a <strong>top navbar</strong> (Home · Analysis); after the brand step, the navbar and links turn <strong>teal</strong>, and the text is set in Albert Sans (headings keep the body color). The plot keeps its default species colors: branding an R plot is a separate <code>brand.yml</code>-package step, out of scope today. If you did the stretch, the analysis page also shows a live <strong>Table 1</strong> reference (from <code>@tbl-means</code>) and the home page carries a plain link into the analysis. Opening <code>_site/index.html</code> shows the home page; the navbar moves you to the analysis page, whose figure is:</p>
 </div>
 </div>
 <div class="cell">
@@ -390,7 +391,10 @@ Figure&nbsp;1: The analysis page’s figure: body mass by species.
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">execute</span><span class="kw">:</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">freeze</span><span class="kw">:</span><span class="at"> auto</span><span class="co">      # re-execute a document only when its own source changes</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
 <li><p><strong>See the skip.</strong> Run <code>quarto render</code> once (the code runs; <code>_freeze/</code> is written). Run <code>quarto render</code> <strong>again without editing</strong>: the R cell is <strong>skipped</strong>, its result reused from <code>_freeze/</code> (the log shows no compute). For a <em>visible</em> tell, drop a cell with <code>cat(format(Sys.time()))</code> on <code>analysis.qmd</code>: on the frozen second render the printed timestamp does <strong>not</strong> change: a pass/fail you can see, not just an absence in the log. Now change the plot’s <strong>code</strong> on <code>analysis.qmd</code> and re-render: only <em>that</em> page re-runs (and the timestamp finally ticks).</p></li>
-<li><p>Find the shipped site under <strong><code>_site/</code></strong>: that folder <em>is</em> what you publish. Point any static host at it (GitHub Pages, Netlify, an internal server).</p></li>
+<li><p>Find the shipped site under <strong><code>_site/</code></strong>: that folder <em>is</em> what you publish. Point any static host at it (an internal server, your department’s pages, a hosting service).</p></li>
+<li><p><em>(optional, if there’s time)</em> <strong>Put it online.</strong> From your project folder:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> publish posit-connect-cloud</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The first run opens a browser to sign in (a free Posit account is enough, and no repository is needed), then uploads the <code>_site/</code> you just built. You get a URL you can open on your phone.</p></li>
 <li><p><em>(note, not a step)</em> <code>renv::snapshot()</code> writes an <code>renv.lock</code> that pins the packages: the second reproducibility leg, so a teammate (or CI) rebuilds the same environment.</p></li>
 </ol>
 </div>
@@ -444,15 +448,16 @@ Figure&nbsp;1: The analysis page’s figure: body mass by species.
 <div id="callout-9" class="callout-9-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>Add to your project’s <code>_quarto.yml</code>:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">execute</span><span class="kw">:</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">freeze</span><span class="kw">:</span><span class="at"> auto</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">execute</span><span class="kw">:</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">freeze</span><span class="kw">:</span><span class="at"> auto</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>An optional visible tell: put this on <code>analysis.qmd</code>. A frozen render reuses the old value, so the printed time stays put.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">format</span>(<span class="fu">Sys.time</span>()))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">format</span>(<span class="fu">Sys.time</span>()))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>From inside your project folder (<code>day2-projects/</code>):</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> render     <span class="co"># 1st build: runs the code, writes _freeze/ and _site/</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> render     <span class="co"># 2nd build, no edits: the cell is skipped, timestamp unchanged</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co"># then change the plot code on analysis.qmd and render again: only that page re-runs (time ticks)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>To publish, point a host at <code>_site/</code> (the watch-me demo: <code>quarto publish gh-pages</code>, auth pre-flighted).</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> render     <span class="co"># 1st build: runs the code, writes _freeze/ and _site/</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> render     <span class="co"># 2nd build, no edits: the cell is skipped, timestamp unchanged</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co"># then change the plot code on analysis.qmd and render again: only that page re-runs (time ticks)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>To publish, point a host at <code>_site/</code>, or upload it with one command:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> publish posit-connect-cloud</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
@@ -475,7 +480,7 @@ Figure&nbsp;1: The analysis page’s figure: body mass by species.
 <li><strong>Rendered, but can’t find the HTML?</strong> Before you add <code>_quarto.yml</code>, a single-page render writes the HTML <strong>next to its source</strong> in <code>day2-projects/</code>. Once <code>_quarto.yml</code> is present, a project render collects both pages under <code>day2-projects/_site/</code>. Look in those two places.</li>
 <li><strong>YAML is indentation-sensitive.</strong> If rendering fails <em>before</em> any code runs, check <code>_quarto.yml</code> for stray spaces, tabs, or unmatched quotes.</li>
 <li><strong>“No project” / pages don’t link?</strong> The <code>_quarto.yml</code> must be <strong>inside <code>day2-projects/</code></strong>, and <code>href:</code> paths are relative to the source folder, <strong>not</strong> <code>_site/</code>.</li>
-<li><strong>Brand not applied?</strong> <code>_brand.yml</code> must be in <code>day2-projects/</code> (the project root). Re-render after adding it. For <strong>plots</strong>, the palette needs <code>library(brand.yml)</code> + <code>theme_brand_ggplot2()</code> (the file alone doesn’t reach ggplot).</li>
+<li><strong>Brand not applied?</strong> Two causes. The file must be in <code>day2-projects/</code> (the project root), and <code>brand</code> must come <strong>last</strong> in the <code>theme:</code> list: <code>theme: [cosmo, brand]</code> gives you the palette, while <code>theme: cosmo</code> on its own keeps cosmo’s colors and only the fonts change. Re-render after either fix. For <strong>plots</strong>, the palette needs <code>library(brand.yml)</code> + <code>theme_brand_ggplot2()</code> (the file alone doesn’t reach ggplot).</li>
 <li><strong>A cross-reference shows <code>?@…</code>?</strong> The cell label must start <code>fig-</code>/<code>tbl-</code>/<code>eq-</code> and be unique, and remember it only resolves <strong>within one page</strong> on a website.</li>
 <li><strong>Freeze didn’t skip the cell?</strong> It skips only when the source is <strong>unchanged</strong> since the last build: any edit (prose or code) re-runs that page. Delete <code>_freeze/</code> to force a clean rebuild.</li>
 <li><strong>Missing package?</strong> <code>install.packages("&lt;name&gt;")</code> (or <code>renv::restore()</code>) and render again.</li>
@@ -493,7 +498,7 @@ Figure&nbsp;1: The analysis page’s figure: body mass by species.
 Session info
 </summary>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>R version 4.6.0 (2026-04-24 ucrt)
 Platform: x86_64-w64-mingw32/x64
@@ -605,7 +610,7 @@ loaded via a namespace (and not attached):
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp('/' + window.location.host + '/');
+        var filterRegex = new RegExp("https:\/\/cderv\.github\.io\/raukr-2026-quarto\/");
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }

@@ -456,7 +456,7 @@ Figure&nbsp;1: Target: bill length versus depth by species.
 </div>
 <div class="no-row-height column-margin column-container"><div class="callout-margin-content">
 <p><i class="fa-solid fa-book-open" aria-label="book-open"></i> <strong>Quarto docs</strong></p>
-<p><a href="https://quarto.org/docs/authoring/citations.html">Citations</a> · <a href="https://quarto.org/docs/output-formats/typst.html">Typst</a></p>
+<p><a href="https://quarto.org/docs/authoring/citations.html">Citations</a> · <a href="https://quarto.org/docs/output-formats/typst.html">Typst</a> · <a href="https://quarto.org/docs/authoring/brand.html">Brand</a></p>
 </div></div><div class="callout callout-style-simple callout-note no-icon callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -468,6 +468,7 @@ Figure&nbsp;1: Target: bill length versus depth by species.
 </div>
 <div class="callout-body-container callout-body">
 <p>In-text <strong>(Gorman et al., 2014)</strong>, a <strong>References</strong> section formatted in APA, and, in the Typst PDF, the same citation and reference list, typeset with the RaukR palette. No <code>?@gorman2014</code> or <code>[?]</code> markers anywhere.</p>
+<p><strong>Check the branding applied.</strong> An unbranded PDF builds without any error, so check the font instead: a branded PDF is set in <strong>Albert Sans</strong>, an unbranded one in Typst’s default serif. Serif headings mean <code>_brand.yml</code> isn’t next to your <code>.qmd</code> (see Troubleshooting).</p>
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
@@ -567,9 +568,10 @@ Figure&nbsp;1: Target: bill length versus depth by species.
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: !expr paste0("Bill length versus depth for ", params$species, " penguins.")</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-alt: !expr paste0("Scatter plot of bill depth against bill length for ", params$species, " penguins.")</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
 <li><p><strong>Render a different species from the CLI</strong>: same <code>quarto render</code> you used for the Typst PDF, with <code>-P name:value</code> (no Render button for this, since the parameter override is command-line only). Run it from inside <code>day1-intro/</code>:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> render penguins-by-species.qmd <span class="at">-P</span> species:Adelie</span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> render penguins-by-species.qmd <span class="at">-P</span> species:Chinstrap</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>With no <code>-P</code>, the default (<code>Gentoo</code>) is used. The HTML lands <strong>next to the source</strong> in <code>day1-intro/</code>, as <code>penguins-by-species.html</code>.</p></li>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> render penguins-by-species.qmd <span class="at">-P</span> species:Adelie    <span class="at">--output</span> adelie.html    <span class="at">--embed-resources</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> render penguins-by-species.qmd <span class="at">-P</span> species:Chinstrap <span class="at">--output</span> chinstrap.html <span class="at">--embed-resources</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>With no <code>-P</code>, the default (<code>Gentoo</code>) is used. The HTML lands <strong>next to the source</strong> in <code>day1-intro/</code>.</p>
+<p>Both flags are needed for <em>one report per species</em>. <code>--output</code> names the HTML, because every render writes the same <code>penguins-by-species.html</code> by default and the second command would otherwise overwrite the first. <code>--embed-resources</code> then puts the images <strong>inside</strong> each HTML: the support folder is named after the <em>input</em> file, so without it both reports share one <code>penguins-by-species_files/</code> and the second render’s plot replaces the first. You would get two pages with the right words over the same wrong figure.</p></li>
 </ol>
 </div>
 </div>
@@ -586,7 +588,7 @@ Figure&nbsp;1: Target: bill length versus depth by species.
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Rendering with <code>-P species:Adelie</code> gives a report whose title sentence, section heading, figure caption, and point count are <strong>all</strong> about Adelie. Nothing says Gentoo. Change the one word after <code>species:</code> and the whole report follows.</p>
+<p>Rendering with <code>-P species:Adelie</code> gives a report whose title sentence, section heading, figure caption, point count <strong>and the plot itself</strong> are all about Adelie. Nothing says Gentoo. Open <code>adelie.html</code> and <code>chinstrap.html</code> side by side: the two scatters must be <strong>visibly different</strong> (Adelie has more than twice as many points). Same words over the same picture means the reports are sharing one figure, so check both flags in the commands above. Change the one word after <code>species:</code> and the whole report follows.</p>
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
@@ -636,8 +638,8 @@ Figure&nbsp;1: Target: bill length versus depth by species.
 <li><strong>A cross-reference shows <code>?@…</code>?</strong> The cell label must start with <code>fig-</code>/<code>tbl-</code>/<code>eq-</code> and be unique, and the <code>@ref</code> must match it.</li>
 <li><strong>A citation shows <code>?@gorman2014</code> or <code>[?]</code>?</strong> The <code>@key</code> doesn’t match a key in <code>references.bib</code>, or <code>bibliography:</code> isn’t set.</li>
 <li><strong>Do I need to install Typst?</strong> No.&nbsp;Typst is bundled in Quarto ≥ 1.9, so there’s nothing extra to install (no LaTeX either). Check <code>quarto --version</code>.</li>
-<li><strong>Typst PDF looks unbranded / wrong fonts?</strong> Confirm <code>_brand.yml</code> is in your <code>day1-intro/</code> folder (next to the <code>.qmd</code>) and you have network on the first render (Quarto fetches the Google fonts once).</li>
-<li><strong>Typst prints <code>unknown font family</code> warnings?</strong> Harmless: a plain <code>gt</code> table emits them for its default font stack, and the PDF still builds. (The fully brand-styled table via <code>theme_brand_*</code> is in <code>sample-typst.qmd</code>.)</li>
+<li><strong>Typst PDF looks unbranded / wrong fonts?</strong> An unbranded render succeeds silently, so check the font, not the log: branded is <strong>Albert Sans</strong>, unbranded is Typst’s default serif. Confirm <code>_brand.yml</code> is in your <code>day1-intro/</code> folder (next to the <code>.qmd</code>) and you have network on the first render (Quarto fetches the Google fonts once).</li>
+<li><strong>Typst prints <code>unknown font family</code> warnings?</strong> Harmless: a <code>gt</code> table names a generic <code>sans-serif</code> in its font stack, and Typst doesn’t recognize that as a family. The PDF still builds, branding included.</li>
 <li><strong>Prefer to stay in HTML first?</strong> Render HTML, get it right, <em>then</em> switch to <code>format: typst</code>. The content is the same.</li>
 </ul>
 </div>
@@ -765,7 +767,7 @@ loaded via a namespace (and not attached):
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp('/' + window.location.host + '/');
+        var filterRegex = new RegExp("https:\/\/cderv\.github\.io\/raukr-2026-quarto\/");
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
