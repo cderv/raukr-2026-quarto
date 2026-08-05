@@ -217,7 +217,7 @@ Christophe Dervieux
 <ul>
 <li><strong>structure</strong> several <code>.qmd</code> files into one Quarto <strong>project</strong> with shared configuration (<code>_quarto.yml</code>).</li>
 <li><strong>build</strong> a navigable, <strong>branded website</strong> with within-page cross-references.</li>
-<li>make its builds <strong>reproducible</strong>, produce a <strong>publishable folder</strong>, and put it online.</li>
+<li>make its builds <strong>reproducible</strong>, produce a <strong>publishable folder</strong>, and optionally put it online.</li>
 </ul>
 <p>By the end: the same penguins data, a set of pages (<strong>including yesterday’s report</strong>) grown into a <strong>website your team can publish</strong>.</p>
 <aside class="notes">
@@ -243,7 +243,7 @@ Christophe Dervieux
 <aside class="notes">
 <ul>
 <li><strong>Say:</strong> “Same rhythm as yesterday: follow along, then your turn.”</li>
-<li><strong>Don’t announce a duration here.</strong> Each “Your turn” callout carries its own “regroup in ~N min”, which is where the room needs it.</li>
+<li><strong>Schedule:</strong> break at 15:00, resume at 15:30. Use clock times, not estimated task durations.</li>
 </ul>
 <style type="text/css">
         span.MJX_Assistive_MathML {
@@ -357,7 +357,7 @@ Christophe Dervieux
           display:block!important;
       }</style></aside>
 <aside><div>
-<p>Today’s lab project is flat (a couple of pages at the root), so there’s no folder to scope. Reach for <code>_metadata.yml</code> when a <strong>subfolder</strong> of pages shares options.</p>
+<p>Today’s lab includes a <code>reports/</code> subfolder. You will add <code>reports/_metadata.yml</code> so its options apply to the report pages, but not to pages at the project root.</p>
 </div></aside></section>
 <section id="websites" class="slide level2">
 <h2>Websites: pages and navigation</h2>
@@ -512,17 +512,17 @@ Christophe Dervieux
 </section>
 <section id="your-turn-1" class="slide level2">
 <h2>Your turn</h2>
-<div title="Your turn — ~45 min, then a break">
+<div title="Your turn — until the break at 15:00">
 <div class="callout callout-tip callout-titled callout-style-default">
 <div class="callout-body">
 <div class="callout-title">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<p><strong>Your turn — ~45 min, then a break</strong></p>
+<p><strong>Your turn — until the break at 15:00</strong></p>
 </div>
 <div class="callout-content">
-<p>Head to the <strong><a href="../../labs/quarto-projects/index.html#website-challenge">Lab</a></strong> and the <strong>Website Challenge</strong>: turn a set of <code>.qmd</code> into a navigable, <strong>branded website</strong>: <code>_quarto.yml</code>, a navbar, and the shared brand. ~45 min, then a <strong>break</strong>, back after.</p>
+<p>Head to the <strong><a href="../../labs/quarto-projects/index.html#website-challenge">Lab</a></strong> and the <strong>Website Challenge</strong>: turn a set of <code>.qmd</code> into a navigable, <strong>branded website</strong>: <code>_quarto.yml</code>, a navbar, and the shared brand. We break at <strong>15:00</strong> and resume at <strong>15:30</strong>.</p>
 </div>
 </div>
 </div>
@@ -530,7 +530,7 @@ Christophe Dervieux
 <p>You can now structure files into a branded, navigable <strong>website</strong>. After the break we make its builds reproducible and <strong>ship</strong> it.</p>
 <aside class="notes">
 <ul>
-<li><strong>Say:</strong> “Website Challenge: project, navigation, brand, folder options, then an optional listing. You have 45 minutes; we meet at 15:30.”</li>
+<li><strong>Say:</strong> “Website Challenge: project, navigation, brand, folder options, then an optional listing. Work until the break at 15:00; we resume at 15:30.”</li>
 <li><strong>Ask:</strong> “Where did the HTML move?”</li>
 <li><strong>Ask:</strong> “The font changed but the navbar did not. Why?”</li>
 <li><strong>Ask:</strong> “You edited no <code>.qmd</code>; where did the option come from?”</li>
@@ -552,7 +552,7 @@ Christophe Dervieux
 <section>
 <section id="part-2-scale-and-publish" class="title-slide slide level1 center">
 <h1>Part 2: Scale and publish</h1>
-<p>Make builds reproducible, then publish: how your team ships its project.</p>
+<p>Make builds reproducible, then prepare the project for publication.</p>
 <aside class="notes">
 <ul>
 <li><strong>Say:</strong> “You built the site. Now make its builds reproducible, then publish it.”</li>
@@ -733,14 +733,14 @@ Christophe Dervieux
 </section>
 <section id="your-turn-2" class="slide level2">
 <h2>Your turn</h2>
-<div title="Your turn — regroup in ~45 min">
+<div title="Your turn">
 <div class="callout callout-tip callout-titled callout-style-default">
 <div class="callout-body">
 <div class="callout-title">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<p><strong>Your turn — regroup in ~45 min</strong></p>
+<p><strong>Your turn</strong></p>
 </div>
 <div class="callout-content">
 <p>Back to the <strong><a href="../../labs/quarto-projects/index.html#ship-it-challenge">Lab</a></strong>, the <strong>Reproducible Build Challenge</strong>: make the build skip unchanged pages, bring <strong>yesterday’s report</strong> onto the site, and turn it into a publishable <code>_site/</code> folder. The dashboard demo and publishing are optional.</p>
@@ -750,7 +750,7 @@ Christophe Dervieux
 </div>
 <aside class="notes">
 <ul>
-<li><strong>Say:</strong> “Reproducible Build Challenge: freeze the build and add yesterday’s report. You have 45 minutes.”</li>
+<li><strong>Say:</strong> “Freeze the build, then add yesterday’s report to the site.”</li>
 <li><strong>Ask:</strong> “How can you prove the code did not run?”</li>
 <li><strong>Ask:</strong> “Where do cache and freeze write results? Which folder do you commit?”</li>
 <li><strong>Celebrate:</strong> the Day-1 report becoming a site page.</li>
@@ -774,7 +774,8 @@ Christophe Dervieux
 <ul>
 <li>structure <code>.qmd</code> files into a <strong>project</strong> with <code>_quarto.yml</code>, <code>output-dir</code>, and <code>_metadata.yml</code>.</li>
 <li>build a <strong>branded website</strong> with navigation and explain why cross-page references differ from a book.</li>
-<li>make builds <strong>reproducible</strong> (<code>freeze</code> + <code>renv.lock</code>), produce a <strong>publishable <code>_site/</code></strong> for a host or CI, and put it online.</li>
+<li>make builds <strong>reproducible</strong> (<code>freeze</code> + <code>renv.lock</code>) and produce a <strong>publishable <code>_site/</code></strong> for a host or CI.</li>
+<li>optionally publish the site to Posit Connect Cloud.</li>
 </ul>
 <div class="fragment">
 <p><strong>You’ve built the two axes:</strong> one document to a branded PDF (Day 1), one folder to a published site (Day 2), with yesterday’s report now a page of it. Everything your <strong>team project</strong> needs.</p>
@@ -805,7 +806,7 @@ Christophe Dervieux
 <aside class="notes">
 <ul>
 <li><strong>Timing:</strong> cut from the bottom if fewer than 5 minutes remain.</li>
-<li><strong>If dashboards were skipped:</strong> show the rendered dashboard for 30 seconds; name valueboxes, boxplot card, and tabbed panel.</li>
+<li><strong>Optional group demo:</strong> open the rendered dashboard from the lab and briefly name the valueboxes, boxplot card, and tabbed panel. Do not ask participants to build it.</li>
 </ul>
 <style type="text/css">
         span.MJX_Assistive_MathML {

@@ -205,7 +205,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#make-the-build-skip-unchanged-pages" id="toc-make-the-build-skip-unchanged-pages" class="nav-link" data-scroll-target="#make-the-build-skip-unchanged-pages"><span class="header-section-number">2.1</span> Make the build skip unchanged pages</a></li>
   <li><a href="#discuss-together-cache-versus-freeze" id="toc-discuss-together-cache-versus-freeze" class="nav-link" data-scroll-target="#discuss-together-cache-versus-freeze"><span class="header-section-number">2.2</span> Discuss together: <code>cache</code> versus <code>freeze</code></a></li>
   <li><a href="#put-your-day-1-report-on-the-site" id="toc-put-your-day-1-report-on-the-site" class="nav-link" data-scroll-target="#put-your-day-1-report-on-the-site"><span class="header-section-number">2.3</span> Put your Day-1 report on the site</a></li>
-  <li><a href="#optional-demo-inspect-a-dashboard" id="toc-optional-demo-inspect-a-dashboard" class="nav-link" data-scroll-target="#optional-demo-inspect-a-dashboard"><span class="header-section-number">2.4</span> Optional demo: inspect a dashboard</a></li>
+  <li><a href="#optional-group-demo-inspect-a-dashboard" id="toc-optional-group-demo-inspect-a-dashboard" class="nav-link" data-scroll-target="#optional-group-demo-inspect-a-dashboard"><span class="header-section-number">2.4</span> Optional group demo: inspect a dashboard</a></li>
   <li><a href="#put-it-online-optional-and-a-good-place-to-stop" id="toc-put-it-online-optional-and-a-good-place-to-stop" class="nav-link" data-scroll-target="#put-it-online-optional-and-a-good-place-to-stop"><span class="header-section-number">2.5</span> Put it online <em>(optional, and a good place to stop)</em></a></li>
   </ul></li>
   <li><a href="#troubleshooting" id="toc-troubleshooting" class="nav-link" data-scroll-target="#troubleshooting"><span class="header-section-number">3</span> Troubleshooting</a></li>
@@ -468,10 +468,14 @@ Figure&nbsp;1: The analysis page’s figure: body mass by species.
 </div>
 </div>
 </section>
-<section id="brand-it" class="level3" data-number="1.3">
+<section id="brand-it" class="level3 page-columns page-full" data-number="1.3">
 <h3 data-number="1.3" class="anchored" data-anchor-id="brand-it"><span class="header-section-number">1.3</span> Brand it</h3>
 <p><strong>Goal.</strong> Give the site one shared palette and typeface from a <code>_brand.yml</code>, the same file you met on Day 1.</p>
-<p>That is the brand body. Getting it to take effect is what you have to work out:</p>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p><i class="fa-solid fa-book-open" aria-label="book-open"></i> <strong>Quarto docs</strong></p>
+<p><a href="https://quarto.org/docs/authoring/brand.html">Brand</a> · <a href="https://quarto.org/docs/output-formats/html-themes-more.html">Theme layers</a></p>
+</div></div><p>Start by creating this file and rendering the site:</p>
 <div class="code-with-filename">
 <div class="code-with-filename-file">
 <pre><strong>day2-projects/_brand.yml</strong></pre>
@@ -512,7 +516,7 @@ Figure&nbsp;1: The analysis page’s figure: body mass by species.
 </div>
 <div id="callout-11" class="callout-11-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p><strong>Ask yourself:</strong></p>
+<p>Compare three parts of the rendered site: the body font, the navbar, and the links. The font changes, but the navbar and links remain blue.</p>
 <p><code>theme:</code> takes a <strong>list</strong>, even when you write a single value. So Quarto is already combining something with your <code>cosmo</code>. If two layers both define a primary color, which one would you expect to end up on the page?</p>
 <p><strong>Mechanism:</strong></p>
 <p><code>brand</code> is a theme <strong>layer</strong>, and it is the layer that reads your <code>_brand.yml</code>. A bare <code>theme: cosmo</code> expands to <code>[brand, cosmo]</code>, and <strong>later layers win</strong>. Quarto applies cosmo’s palette after the brand palette, so the site uses cosmo blue.</p>
@@ -699,11 +703,11 @@ Figure&nbsp;1: The analysis page’s figure: body mass by species.
 <p>Keep going with your Website Challenge <code>day2-projects/</code>. If you didn’t finish it, open the ready-made <strong><code>solutions/day2/</code></strong> project (a complete Part-1 site) and do the steps below in there.</p>
 </div>
 </div>
-<p><strong>Core finish line:</strong> prove that freeze works, then add your Day-1 report to the site. We will compare cache and freeze together. The dashboard demo and publishing are optional.</p>
+<p><strong>Core tasks:</strong> prove that freeze works, then add your Day-1 report to the site. We will compare cache and freeze together. The dashboard demo and publishing are optional.</p>
 
 <div class="no-row-height column-margin column-container"><div class="">
 <p><i class="fa-solid fa-book-open" aria-label="book-open"></i> <strong>Quarto docs</strong></p>
-<p><a href="https://quarto.org/docs/projects/code-execution.html">Code execution</a> · <a href="https://quarto.org/docs/dashboards/">Dashboards</a> · <a href="https://quarto.org/docs/publishing/">Publishing</a></p>
+<p><a href="https://quarto.org/docs/projects/code-execution.html">Project execution</a> · <a href="https://quarto.org/docs/dashboards/layout.html">Dashboard layout</a> · <a href="https://quarto.org/docs/publishing/posit-connect-cloud.html">Posit Connect Cloud</a></p>
 </div></div><section id="make-the-build-skip-unchanged-pages" class="level3" data-number="2.1">
 <h3 data-number="2.1" class="anchored" data-anchor-id="make-the-build-skip-unchanged-pages"><span class="header-section-number">2.1</span> Make the build skip unchanged pages</h3>
 <p><strong>Goal.</strong> Right now every <code>quarto render</code> re-runs all the R on every page, even the pages you have not touched. Make Quarto reuse the previous results for a page whose source has not changed. Then <strong>prove</strong> that it worked.</p>
@@ -780,13 +784,13 @@ Figure&nbsp;1: The analysis page’s figure: body mass by species.
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>The results now live in <code>_freeze/</code>, inside your project. Keep that folder. Your next render reads it instead of re-running the analysis, and anyone who has the folder gets the same figures <strong>without running R at all</strong>. <code>_freeze/</code> is part of the project, not a temporary folder to delete.</p>
+<p>The results now live in <code>_freeze/</code>, inside your project. Keep that folder. For documents with current frozen results, the next project render reads those results instead of re-running the analysis. This also lets another machine build those pages without running their R code. <code>_freeze/</code> is part of the project, not a temporary folder to delete.</p>
 </div>
 </div>
 </section>
 <section id="discuss-together-cache-versus-freeze" class="level3" data-number="2.2">
 <h3 data-number="2.2" class="anchored" data-anchor-id="discuss-together-cache-versus-freeze"><span class="header-section-number">2.2</span> Discuss together: <code>cache</code> versus <code>freeze</code></h3>
-<p><strong>Goal.</strong> You have now met two things that both avoid re-running code. Work out how they differ, and when you would reach for each.</p>
+<p><strong>Goal.</strong> You have now met two things that both avoid re-running code. Explain how they differ and when to use each one.</p>
 <p><code>cache: true</code> came up on the slides earlier today. You have just used <code>freeze: auto</code>. Both skip work. They are not the same mechanism, and only one of them solves the problem you just solved.</p>
 <div class="callout callout-style-simple callout-note no-icon callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -838,7 +842,7 @@ Figure&nbsp;1: The analysis page’s figure: body mass by species.
 </div>
 <div id="callout-25" class="callout-25-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>Where does each one write its results, and would that location normally be committed? Follow that and the rest falls out.</p>
+<p>Where does each one write its results, and would that location normally be committed? Those answers explain their different purposes.</p>
 <p><strong><code>cache</code></strong> is knitr’s chunk cache. It works <em>inside</em> one document, keyed on the chunk, and it is about not re-running an expensive chunk while you iterate on that document. Its cache directory is local scratch, and it is not something you ship.</p>
 <p><strong><code>freeze</code></strong> is a <em>project</em> policy. It stores each document’s rendered results under <code>_freeze/</code>, which you <strong>do</strong> commit, so a later build (including one on a machine with no R) reuses them.</p>
 <p>So: <code>cache</code> for a slow chunk you are iterating on. <code>freeze</code> for making the project buildable without re-running the science. <code>freeze: true</code> goes further than <code>auto</code>: a project build reuses a page’s stored results even after you edit it, so you decide when to refresh by rendering that page on its own.</p>
@@ -848,7 +852,7 @@ Figure&nbsp;1: The analysis page’s figure: body mass by species.
 </section>
 <section id="put-your-day-1-report-on-the-site" class="level3" data-number="2.3">
 <h3 data-number="2.3" class="anchored" data-anchor-id="put-your-day-1-report-on-the-site"><span class="header-section-number">2.3</span> Put your Day-1 report on the site</h3>
-<p><em>This is the core finish line.</em></p>
+<p><em>This is a core task.</em></p>
 <p><strong>Goal.</strong> Take the report you wrote yesterday and make it a page of this website.</p>
 <p>On Day 1, you built one document. Now add it to the project.</p>
 <div class="callout callout-style-simple callout-note no-icon callout-titled">
@@ -878,7 +882,7 @@ Figure&nbsp;1: The analysis page’s figure: body mass by species.
 <div class="callout-body-container callout-body">
 <p>Your Day-1 document may still declare its own <code>format:</code>. Inside a project, where does <code>format:</code> come from now, and what happens if a page insists on its own?</p>
 <p>Copy the <code>.qmd</code> into <code>day2-projects/</code>, add an entry for it in the <code>navbar:</code> list, and re-render.</p>
-<p>A page in a project inherits <code>format:</code> from <code>_quarto.yml</code>. If your file still carries the <code>format: typst</code> from the Day-1 payoff, it keeps building a PDF instead of a page. Drop that key and it builds as HTML like its neighbours. (The shipped <code>penguins-report.qmd</code> declares no <code>format:</code> at all, so there is nothing to drop.)</p>
+<p>A page in a project inherits <code>format:</code> from <code>_quarto.yml</code>. If your file still carries the <code>format: typst</code> from the Day-1 exercise, it keeps building a PDF instead of a page. Drop that key and it builds as HTML like its neighbours. (The shipped <code>penguins-report.qmd</code> declares no <code>format:</code> at all, so there is nothing to drop.)</p>
 <p>Didn’t finish Day 1, or do not have the file? Use <code>solutions/day1/penguins-report.qmd</code> from your exercises download instead.</p>
 </div>
 </div>
@@ -915,9 +919,9 @@ Figure&nbsp;1: The analysis page’s figure: body mass by species.
 </div>
 </div>
 </section>
-<section id="optional-demo-inspect-a-dashboard" class="level3" data-number="2.4">
-<h3 data-number="2.4" class="anchored" data-anchor-id="optional-demo-inspect-a-dashboard"><span class="header-section-number">2.4</span> Optional demo: inspect a dashboard</h3>
-<p>This is a worked example, not another challenge. Open the <a href="../../labs/quarto-projects/dashboard.html" target="_blank">finished dashboard</a>, then open <code>solutions/day2/dashboard.qmd</code> to see how the same analysis becomes a dashboard.</p>
+<section id="optional-group-demo-inspect-a-dashboard" class="level3" data-number="2.4">
+<h3 data-number="2.4" class="anchored" data-anchor-id="optional-group-demo-inspect-a-dashboard"><span class="header-section-number">2.4</span> Optional group demo: inspect a dashboard</h3>
+<p>If time permits, we will inspect this worked example together. You do not need to build a dashboard during the workshop. We will open the <a href="../../labs/quarto-projects/dashboard.html" target="_blank">finished dashboard</a>, then compare it with <code>solutions/day2/dashboard.qmd</code> to see how the same analysis becomes a dashboard.</p>
 <p>Look for four ideas:</p>
 <ul>
 <li><code>format: dashboard</code> changes the output.</li>
@@ -944,12 +948,16 @@ Figure&nbsp;1: The analysis page’s figure: body mass by species.
 <span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a><span class="fu">### Column {.tabset}</span></span>
 <span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a>(the scatter cell and the table cell: each becomes a tab)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>If you want to experiment, copy <code>analysis.qmd</code> to <code>dashboard.qmd</code> and reproduce one part of the layout. You do not need to complete the dashboard during the workshop.</p>
+<p>After the group demo, you can optionally copy <code>analysis.qmd</code> to <code>dashboard.qmd</code> and reproduce one part of the layout.</p>
 </section>
-<section id="put-it-online-optional-and-a-good-place-to-stop" class="level3" data-number="2.5">
+<section id="put-it-online-optional-and-a-good-place-to-stop" class="level3 page-columns page-full" data-number="2.5">
 <h3 data-number="2.5" class="anchored" data-anchor-id="put-it-online-optional-and-a-good-place-to-stop"><span class="header-section-number">2.5</span> Put it online <em>(optional, and a good place to stop)</em></h3>
 <p><strong>Goal.</strong> Take the <code>_site/</code> folder you have built and put it on a URL you can open on your phone.</p>
-<p><code>_site/</code> <strong>is</strong> the deliverable. Any static host will serve it: an internal server, your department’s pages, a hosting service. If you made a free Posit account before the workshop, one command does it from here.</p>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p><i class="fa-solid fa-book-open" aria-label="book-open"></i> <strong>Quarto docs</strong></p>
+<p><a href="https://quarto.org/docs/publishing/posit-connect-cloud.html">Publish to Posit Connect Cloud</a></p>
+</div></div><p><code>_site/</code> <strong>is</strong> the core deliverable. Any static host will serve it: an internal server, your department’s pages, or a hosting service. Publishing here is optional. If you made a free Posit Connect Cloud account before the workshop, one command puts the site online.</p>
 <div class="callout callout-style-simple callout-note no-icon callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -1035,19 +1043,20 @@ Session info
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>R version 4.6.1 (2026-06-24)
-Platform: x86_64-pc-linux-gnu
-Running under: Ubuntu 24.04.4 LTS
+<pre><code>R version 4.6.0 (2026-04-24 ucrt)
+Platform: x86_64-w64-mingw32/x64
+Running under: Windows 11 x64 (build 26200)
 
 Matrix products: default
-BLAS:   /usr/lib/x86_64-linux-gnu/openblas-pthread/libblas.so.3 
-LAPACK: /usr/lib/x86_64-linux-gnu/openblas-pthread/libopenblasp-r0.3.26.so;  LAPACK version 3.12.0
+  LAPACK version 3.12.1
 
 locale:
-[1] C
+[1] LC_COLLATE=French_France.utf8  LC_CTYPE=French_France.utf8   
+[3] LC_MONETARY=French_France.utf8 LC_NUMERIC=C                  
+[5] LC_TIME=French_France.utf8    
 
-time zone: Etc/UTC
-tzcode source: system (glibc)
+time zone: Europe/Paris
+tzcode source: internal
 
 attached base packages:
 [1] stats     graphics  grDevices datasets  utils     methods   base     
@@ -1059,12 +1068,12 @@ loaded via a namespace (and not attached):
  [1] vctrs_0.7.3        cli_3.6.6          knitr_1.51         rlang_1.3.0       
  [5] xfun_0.59          renv_1.2.3         generics_0.1.4     S7_0.2.2          
  [9] jsonlite_2.0.0     labeling_0.4.3     glue_1.8.1         htmltools_0.5.9   
-[13] scales_1.4.0       rmarkdown_2.31     grid_4.6.1         evaluate_1.0.5    
+[13] scales_1.4.0       rmarkdown_2.31     grid_4.6.0         evaluate_1.0.5    
 [17] tibble_3.3.1       fastmap_1.2.0      yaml_2.3.12        lifecycle_1.0.5   
-[21] compiler_4.6.1     RColorBrewer_1.1-3 htmlwidgets_1.6.4  pkgconfig_2.0.3   
+[21] compiler_4.6.0     RColorBrewer_1.1-3 htmlwidgets_1.6.4  pkgconfig_2.0.3   
 [25] farver_2.1.2       digest_0.6.39      R6_2.6.1           tidyselect_1.2.1  
-[29] pillar_1.11.1      parallel_4.6.1     magrittr_2.0.5     withr_3.0.3       
-[33] tools_4.6.1        gtable_0.3.6      </code></pre>
+[29] pillar_1.11.1      magrittr_2.0.5     withr_3.0.3        tools_4.6.0       
+[33] gtable_0.3.6      </code></pre>
 </div>
 </div>
 </details>

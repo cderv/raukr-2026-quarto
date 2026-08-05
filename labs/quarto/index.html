@@ -325,7 +325,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span><i class="fa-solid fa-universal-access" aria-label="universal-access"></i> Accessibility extension
+<span class="screen-reader-only">Tip</span><i class="fa-solid fa-universal-access" aria-label="universal-access"></i> Optional accessibility check
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -393,7 +393,7 @@ Figure&nbsp;1: Target: bill length versus depth by species.
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>$$</span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>\text{ratio} = \frac{\text{bill<span class="sc">\_</span>len}}{\text{bill<span class="sc">\_</span>dep}}</span>
 <span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>$$ {#eq-ratio}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p><strong><code>solutions/day1/penguins-report.qmd</code> is the complete Day-1 reference.</strong> The document goes beyond the tasks (a margin culmen figure, a <code>glimpse</code>, section labels) and also adds the citations from the next challenge. It’s in your exercises <code>solutions/day1/</code> folder. Try the challenge first, then open it to compare, or take the source:</p>
+<p><strong><code>solutions/day1/penguins-report.qmd</code> is the complete Day-1 reference.</strong> The document goes beyond the tasks (an additional margin figure, a <code>glimpse</code>, and section labels) and also adds the citations from the next challenge. It’s in your exercises <code>solutions/day1/</code> folder. Try the challenge first, then open it to compare, or take the source:</p>
 <!-- Raw-GitHub download button -- RaukR house pattern (see project-context.md; no `downloadthis`).
      Points at the exercises repo (main = current edition); goes live once cderv/raukr-2026-quarto-exercises
      is created (the file also ships locally in solutions/day1/). -->
@@ -414,7 +414,7 @@ Figure&nbsp;1: Target: bill length versus depth by species.
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>If you finished the Authoring Challenge, keep going on your own document. Otherwise open <strong><code>day1-intro/starter.qmd</code></strong> in your editor (a known-good Part-1 report) and add the citations to that.</p>
+<p>If you finished the Authoring Challenge, keep going on your own document. Otherwise open <strong><code>day1-intro/starter.qmd</code></strong> in your editor (a complete Part-1 report) and add the citations to that.</p>
 </div>
 </div>
 <div class="callout callout-style-default callout-note no-icon callout-titled">
@@ -537,7 +537,7 @@ Figure&nbsp;1: Target: bill length versus depth by species.
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>The fastest path: open the shipped <strong><code>penguins-by-species.qmd</code></strong> (in your <code>day1-intro/</code> folder), a complete parameterized report, and just <strong>render it for different species</strong> (Task 5). Want to build it yourself instead? Add the pieces below to a copy of your Part-1 report, and point your figure/table cells at the filtered <strong><code>one</code></strong> (not <code>penguins</code>) so they track the parameter too.</p>
+<p>Open <strong><code>day1-intro/parameters-starter.qmd</code></strong>. It contains the report structure, data, and plot. Your task is to make the species an input to the document. A complete reference is available at <strong><code>solutions/day1/penguins-by-species.qmd</code></strong>.</p>
 </div>
 </div>
 <div class="callout callout-style-default callout-note no-icon callout-titled">
@@ -555,29 +555,46 @@ Figure&nbsp;1: Target: bill length versus depth by species.
 <li><p>Declare a parameter with a default in the header:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">params</span><span class="kw">:</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">species</span><span class="kw">:</span><span class="at"> Gentoo</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
-<li><p><strong>Use it to filter</strong> in your setup cell. <code>params$species</code> is just a value (keep the same NA guard as the rest of the lab), then plot <strong><code>one</code></strong> instead of <code>penguins</code>:</p>
+<li><p><strong>Use it to filter</strong> in the setup cell. <code>params$species</code> is a value. Keep the existing missing-value checks and add the species condition:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>one <span class="ot">&lt;-</span> penguins <span class="sc">|&gt;</span> <span class="fu">filter</span>(species <span class="sc">==</span> params<span class="sc">$</span>species, <span class="sc">!</span><span class="fu">is.na</span>(bill_len), <span class="sc">!</span><span class="fu">is.na</span>(bill_dep))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
-<li><p><strong>Build a heading from the parameter</strong> with <code>#| output: asis</code> (it writes the cell’s text output as raw Markdown, so <code>cat()</code> becomes a real heading):</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="co">#| output: asis</span></span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"##"</span>, params<span class="sc">$</span>species, <span class="st">"at a glance</span><span class="sc">\n</span><span class="st">"</span>)</span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
-<li><p><strong>Make the caption (and the alt text) track the parameter</strong> with <code>!expr</code>. Cell options are YAML, so to run R there you tag the value <code>!expr</code> (and keep a <code>fig-alt</code>, always):</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: !expr paste0("Bill length versus depth for ", params$species, " penguins.")</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-alt: !expr paste0("Scatter plot of bill depth against bill length for ", params$species, " penguins.")</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
-<li><p><strong>Render a different species from the CLI</strong>: same <code>quarto render</code> you used for the Typst PDF, with <code>-P name:value</code> (no Render button for this, since the parameter override is command-line only). Run it from inside <code>day1-intro/</code>:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> render penguins-by-species.qmd <span class="at">-P</span> species:Adelie    <span class="at">--output</span> adelie.html    <span class="at">--embed-resources</span></span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> render penguins-by-species.qmd <span class="at">-P</span> species:Chinstrap <span class="at">--output</span> chinstrap.html <span class="at">--embed-resources</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>With no <code>-P</code>, the default (<code>Gentoo</code>) is used. The HTML is written <strong>next to the source</strong> in <code>day1-intro/</code>.</p>
-<p>Both flags are needed for <em>one report per species</em>. <code>--output</code> names the HTML, because every render writes the same <code>penguins-by-species.html</code> by default and the second command would otherwise overwrite the first. <code>--embed-resources</code> then puts the images <strong>inside</strong> each HTML: the support folder is named after the <em>input</em> file, so without it both reports share one <code>penguins-by-species_files/</code> and the second render’s plot replaces the first. You would get two pages with the right words over the same wrong figure.</p></li>
+<li><p><strong>Use the parameter in the report.</strong> Replace the placeholder species in the sentence with inline code. Make the caption and alt text track the parameter with <code>!expr</code>. Cell options are YAML, so the <code>!expr</code> tag tells Quarto to evaluate the R expression:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: !expr paste0("Bill length versus depth for ", params$species, " penguins.")</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-alt: !expr paste0("Scatter plot of bill depth against bill length for ", params$species, " penguins.")</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p><strong>Render a different species from the CLI</strong> with <code>-P name:value</code>. Run this from inside <code>day1-intro/</code>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> render parameters-starter.qmd <span class="at">-P</span> species:Adelie</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>With no <code>-P</code>, the default (<code>Gentoo</code>) is used.</p></li>
 </ol>
 </div>
 </div>
 <div class="no-row-height column-margin column-container"><div class="callout-margin-content">
 <p><i class="fa-solid fa-book-open" aria-label="book-open"></i> <strong>Quarto docs</strong></p>
 <p><a href="https://quarto.org/docs/computations/parameters.html">Parameters</a></p>
-</div></div><div class="callout callout-style-simple callout-note no-icon callout-titled">
+</div></div><div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-14-contents" aria-controls="callout-14" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Stretch: dynamic headings and standalone files
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-14" class="callout-14-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Build the section heading from the parameter with a cell that emits Markdown:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="co">#| output: asis</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"##"</span>, params<span class="sc">$</span>species, <span class="st">"at a glance</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>To keep two named reports, render each as a self-contained HTML file:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> render parameters-starter.qmd <span class="at">-P</span> species:Adelie    <span class="at">--output</span> adelie.html    <span class="at">--embed-resources</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> render parameters-starter.qmd <span class="at">-P</span> species:Chinstrap <span class="at">--output</span> chinstrap.html <span class="at">--embed-resources</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><code>--output</code> prevents the second render from overwriting the first. <code>--embed-resources</code> puts each plot inside its HTML file, so the reports do not share a figure-support folder.</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-note no-icon callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
@@ -587,11 +604,11 @@ Figure&nbsp;1: Target: bill length versus depth by species.
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Rendering with <code>-P species:Adelie</code> gives a report whose title sentence, section heading, figure caption, point count <strong>and the plot itself</strong> are all about Adelie. Nothing says Gentoo. Open <code>adelie.html</code> and <code>chinstrap.html</code> side by side: the two scatters must be <strong>visibly different</strong> (Adelie has more than twice as many points). Same words over the same picture means the reports are sharing one figure, so check both flags in the commands above. Change the one word after <code>species:</code> and the whole report follows.</p>
+<p>Rendering with <code>-P species:Adelie</code> gives a report whose sentence, figure caption, alt text, point count, and plot are all about Adelie. Nothing says Gentoo. Rendering without <code>-P</code> produces the Gentoo report. If you completed the stretch task, the heading also names the selected species.</p>
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-15-contents" aria-controls="callout-15" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-16-contents" aria-controls="callout-16" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -600,26 +617,26 @@ Figure&nbsp;1: Target: bill length versus depth by species.
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-15" class="callout-15-contents callout-collapse collapse">
+<div id="callout-16" class="callout-16-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ul>
 <li>Parameters <strong>must have defaults</strong>: <code>params$species</code> has to resolve when no <code>-P</code> is passed.</li>
 <li><code>-P</code> takes <code>name:value</code> (<code>-P species:Adelie</code>). Pass several with repeated <code>-P</code> flags.</li>
-<li><code>#| output: asis</code> lets code <em>emit Markdown</em> (a heading here). Without it, <code>cat()</code> output would show as a printed code result, not a heading.</li>
+<li>The plot must use the filtered object <code>one</code>, not the full <code>penguins</code> data.</li>
 </ul>
 </div>
 </div>
 </div>
-<p><strong>The complete, runnable solution is <code>penguins-by-species.qmd</code></strong>. It’s in your <code>day1-intro/</code> folder. Open it and render with different <code>-P species:</code> values, or take the source:</p>
+<p><strong>The complete, runnable solution is <code>solutions/day1/penguins-by-species.qmd</code>.</strong> Open it to compare your work or render it with different <code>-P species:</code> values. You can also take the source:</p>
 <!-- Raw-GitHub download button -- RaukR house pattern (see project-context.md; no `downloadthis`).
      Points at the exercises repo (main = current edition); goes live once cderv/raukr-2026-quarto-exercises
-     is created (the file also ships locally in day1-intro/). -->
-<p><a class="btn btn-primary btn-sm" href="https://raw.githubusercontent.com/cderv/raukr-2026-quarto-exercises/main/day1-intro/penguins-by-species.qmd" role="button" target="_blank"><i class="fa-solid fa-download" aria-label="download"></i> penguins-by-species.qmd</a></p>
+     is created (the file also ships locally in solutions/day1/). -->
+<p><a class="btn btn-primary btn-sm" href="https://raw.githubusercontent.com/cderv/raukr-2026-quarto-exercises/main/solutions/day1/penguins-by-species.qmd" role="button" target="_blank"><i class="fa-solid fa-download" aria-label="download"></i> penguins-by-species.qmd</a></p>
 </section>
 <section id="troubleshooting" class="level2" data-number="4">
 <h2 data-number="4" class="anchored" data-anchor-id="troubleshooting"><span class="header-section-number">4</span> Troubleshooting</h2>
 <div class="callout callout-style-default callout-tip no-icon callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-16-contents" aria-controls="callout-16" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-17-contents" aria-controls="callout-17" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
@@ -628,7 +645,7 @@ Figure&nbsp;1: Target: bill length versus depth by species.
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-16" class="callout-16-contents callout-collapse collapse">
+<div id="callout-17" class="callout-17-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ul>
 <li><strong>YAML is indentation-sensitive.</strong> If rendering fails <em>before</em> any code runs, check the YAML header for stray spaces, tabs, or unmatched quotes.</li>
@@ -654,21 +671,22 @@ Figure&nbsp;1: Target: bill length versus depth by species.
 Session info
 </summary>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>R version 4.6.1 (2026-06-24)
-Platform: x86_64-pc-linux-gnu
-Running under: Ubuntu 24.04.4 LTS
+<pre><code>R version 4.6.0 (2026-04-24 ucrt)
+Platform: x86_64-w64-mingw32/x64
+Running under: Windows 11 x64 (build 26200)
 
 Matrix products: default
-BLAS:   /usr/lib/x86_64-linux-gnu/openblas-pthread/libblas.so.3 
-LAPACK: /usr/lib/x86_64-linux-gnu/openblas-pthread/libopenblasp-r0.3.26.so;  LAPACK version 3.12.0
+  LAPACK version 3.12.1
 
 locale:
-[1] C
+[1] LC_COLLATE=French_France.utf8  LC_CTYPE=French_France.utf8   
+[3] LC_MONETARY=French_France.utf8 LC_NUMERIC=C                  
+[5] LC_TIME=French_France.utf8    
 
-time zone: Etc/UTC
-tzcode source: system (glibc)
+time zone: Europe/Paris
+tzcode source: internal
 
 attached base packages:
 [1] stats     graphics  grDevices datasets  utils     methods   base     
@@ -680,12 +698,12 @@ loaded via a namespace (and not attached):
  [1] vctrs_0.7.3        cli_3.6.6          knitr_1.51         rlang_1.3.0       
  [5] xfun_0.59          renv_1.2.3         generics_0.1.4     S7_0.2.2          
  [9] jsonlite_2.0.0     labeling_0.4.3     glue_1.8.1         htmltools_0.5.9   
-[13] scales_1.4.0       rmarkdown_2.31     grid_4.6.1         evaluate_1.0.5    
+[13] scales_1.4.0       rmarkdown_2.31     grid_4.6.0         evaluate_1.0.5    
 [17] tibble_3.3.1       fastmap_1.2.0      yaml_2.3.12        lifecycle_1.0.5   
-[21] compiler_4.6.1     fs_2.1.0           RColorBrewer_1.1-3 htmlwidgets_1.6.4 
+[21] compiler_4.6.0     fs_2.1.0           RColorBrewer_1.1-3 htmlwidgets_1.6.4 
 [25] pkgconfig_2.0.3    farver_2.1.2       digest_0.6.39      R6_2.6.1          
-[29] tidyselect_1.2.1   pillar_1.11.1      parallel_4.6.1     magrittr_2.0.5    
-[33] withr_3.0.3        tools_4.6.1        gtable_0.3.6       xml2_1.6.0        </code></pre>
+[29] tidyselect_1.2.1   pillar_1.11.1      magrittr_2.0.5     withr_3.0.3       
+[33] tools_4.6.0        gtable_0.3.6       xml2_1.6.0        </code></pre>
 </div>
 </div>
 </details>
