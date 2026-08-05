@@ -50,10 +50,19 @@ sequence, not a standalone session.
 ## 4. Pay off the teasers — and keep both ends in sync
 
 If an earlier day explicitly deferred something (*"We'll see it in Day 2."*), the
-later day must pick up **that exact thread**: *"**freeze** was one line in Day 1.
-Here it is in full."* The teaser and its payoff are a matched pair: if you cut, move,
-or reword one, fix the other in the same change, or a promise is left dangling (or
-a payoff lands with no setup).
+later day must pick up **that exact thread**: *"**freeze** was one line in Day 1."*
+The teaser and its payoff are a matched pair: if you cut, move, or reword one, fix
+the other in the same change, or a promise is left dangling (or a payoff lands with
+no setup).
+
+**The callback is the whole pointer — don't append an announcement.** This example
+used to run *"…one line in Day 1. **Here it is in full.**"*, and the second sentence
+was retired from the deck in 2026-08-05. It announces rather than states, "in full"
+never says full *what*, and "here it is" is the presenter's voice landing on the
+page. The callback sentence has already done its job; what follows should be the
+content, not an introduction to the content. If the slide needs a flourish to justify
+its own existence, the flourish belongs in `::: notes` and the slide needs a better
+first line.
 
 **Word the pointer plainly.** It states a fact about the schedule, so it reads like
 one. This rule used to illustrate itself with *"that's the Day 2 story"* and *"Day 1

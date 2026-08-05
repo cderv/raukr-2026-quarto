@@ -219,8 +219,13 @@ typography:
 - **Every page and every deck** inherits it from that one root file, so you never name it in a page.
 - Add a page later? Branded on render, nothing to wire up.
 - Need an exception? `brand: false` opts a page out. `brand: other.yml` points it elsewhere.
+
+![](../images/brand-yml-wide-color.svg){width="300px" fig-alt=""}
 :::
 ::::
+
+**Learn more:** [Quarto brand](https://quarto.org/docs/authoring/brand.html) ·
+[brand.yml spec](https://posit-dev.github.io/brand-yml/)
 
 ::: notes
 - **Focus:** one root `_brand.yml` scales yesterday's PDF branding to the project.
@@ -266,8 +271,8 @@ Make builds reproducible, then publish: how your team ships its project.
 Back in your project's `_quarto.yml`.
 :::
 
-**freeze** was one line in Day 1. Here it is in full. Compute can be slow: you don't want every
-prose edit to re-run a 20-minute model fit. Two tools, easily confused:
+**freeze** was one line in Day 1. Compute can be slow: you don't want every prose edit to re-run a
+20-minute model fit. Two tools, easily confused:
 
 ::: {.incremental}
 - **`cache`**: the **compute engine's** cache, not Quarto's. It defers to *knitr* (R) or *Jupyter Cache*.
