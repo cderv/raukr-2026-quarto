@@ -428,8 +428,8 @@ You can now:
 
 . . .
 
-**You've built the two axes:** one document to a branded PDF (Day 1), one folder to a published site
-(Day 2), with yesterday's report now a page of it. Everything your **team project** needs.
+**You've built the two axes:** one document to a branded PDF (Day 1), one folder to a site ready to
+publish (Day 2), with yesterday's report now a page of it. Everything your **team project** needs.
 
 ::: notes
 - **Close with:** "Yesterday's document is now a page of today's site."
