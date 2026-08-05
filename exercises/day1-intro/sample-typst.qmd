@@ -24,8 +24,7 @@ execute:
 
 ```{r}
 #| label: setup
-# The R-side of _brand.yml: the same palette that themes the PDF layout also themes the
-# gt tables and ggplot figures, so the whole document reads as one branded object.
+# Use the document brand in tables and figures.
 library(dplyr)
 library(ggplot2)
 library(ggrepel)
@@ -33,14 +32,12 @@ library(gt)
 library(brand.yml)
 library(prismatic)
 
-# Read the project _brand.yml (RaukR teal) → pull brand colors from R.
 brand <- read_brand_yml()
 pal <- function(x) brand_color_pluck(brand, x)
 # clr_darken returns an alpha-channel hex (#RRGGBBAA); truncate to #RRGGBB.
 tint <- function(x, f) substr(as.character(clr_darken(pal(x), f)), 1, 7)
 
-# One shared house style for every gt table: brand base font, a teal title band,
-# teal column-label rule, light-teal striping.
+# Shared brand styling for gt tables.
 brand_style <- function(t) {
   t |>
     theme_brand_gt(brand) |>
@@ -125,9 +122,7 @@ summary_tbl |>
 #|   the dataset is highlighted and labeled with its species.
 heaviest <- penguins |> slice_max(body_mass, n = 1)
 
-# Distinguish species by BOTH shape and color: the RaukR brand is monochrome teal, so three
-# categories need a dark/mid/light spread (readable in grayscale / for color-vision deficiency)
-# plus distinct shapes.
+# Encode species with both colour and shape.
 ggplot(penguins, aes(x = bill_len, y = bill_dep, color = species, shape = species)) +
   geom_point(alpha = 0.9, size = 2) +
   geom_text_repel(

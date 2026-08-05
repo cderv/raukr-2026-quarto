@@ -137,9 +137,6 @@ ggplot(penguins, aes(bill_len, bill_dep, color = species, shape = species)) +
 **Need to continue with Part 2?** `starter.qmd` is a completed Part-1 document. It is already in
 `day1-intro/`. Open it to continue with citations, or take the source:
 
-<!-- Raw-GitHub download button -- RaukR house pattern (see project-context.md; no `downloadthis`).
-     Points at the exercises repo (main = current edition); goes live once cderv/raukr-2026-quarto-exercises
-     is created (the file also ships locally in every participant's day1-intro/). -->
 <a class="btn btn-primary btn-sm" href="https://raw.githubusercontent.com/cderv/raukr-2026-quarto-exercises/main/day1-intro/starter.qmd" role="button" target="_blank">{{< fa download >}} starter.qmd</a>
 
 The cross-references and the equation live in the **body Markdown**, outside any cell:
@@ -157,9 +154,6 @@ the tasks (an additional margin figure, a `glimpse`, and section labels) and als
 citations from the next challenge. It's in your exercises `solutions/day1/` folder. Try the challenge
 first, then open it to compare, or take the source:
 
-<!-- Raw-GitHub download button -- RaukR house pattern (see project-context.md; no `downloadthis`).
-     Points at the exercises repo (main = current edition); goes live once cderv/raukr-2026-quarto-exercises
-     is created (the file also ships locally in solutions/day1/). -->
 <a class="btn btn-primary btn-sm" href="https://raw.githubusercontent.com/cderv/raukr-2026-quarto-exercises/main/solutions/day1/penguins-report.qmd" role="button" target="_blank">{{< fa download >}} penguins-report.qmd</a>
 
 ## Citations Challenge
@@ -368,9 +362,6 @@ Gentoo report. If you completed the stretch task, the heading also names the sel
 **The complete, runnable solution is `solutions/day1/penguins-by-species.qmd`.** Open it to compare
 your work or render it with different `-P species:` values. You can also take the source:
 
-<!-- Raw-GitHub download button -- RaukR house pattern (see project-context.md; no `downloadthis`).
-     Points at the exercises repo (main = current edition); goes live once cderv/raukr-2026-quarto-exercises
-     is created (the file also ships locally in solutions/day1/). -->
 <a class="btn btn-primary btn-sm" href="https://raw.githubusercontent.com/cderv/raukr-2026-quarto-exercises/main/solutions/day1/penguins-by-species.qmd" role="button" target="_blank">{{< fa download >}} penguins-by-species.qmd</a>
 
 ## Troubleshooting

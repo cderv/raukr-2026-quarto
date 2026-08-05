@@ -11,8 +11,6 @@ format:
 ```{r}
 #| label: setup
 #| message: false
-# Renders the target figure shown further down this page — you'll do the actual
-# work inside your day2-projects/ folder, not here. This cell is not step zero.
 library(dplyr)
 library(ggplot2)
 library(ggokabeito)   # color-blind-safe (Okabe-Ito) scale, same as Day 1

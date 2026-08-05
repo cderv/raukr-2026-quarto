@@ -86,6 +86,13 @@ em-dashes, plain warm words) and strip the LLM tells that keep re-introducing sp
 before/after in **`.claude/references/house-voice.md`**. One principle: written prose *states*; the
 presenter's voice belongs in `::: notes` (fully spoken, exempt). Slide bodies stay terse.
 
+**Comments are local explanations, not authoring notes.** Keep a comment only when adjacent code
+cannot express an important constraint. Prefer one sentence that explains the current reason. Do
+not record editing history, investigation steps, verification logs, teaching plans, commit-style
+summaries, or information already stated in prose or documentation. In participant files, retain
+exercise TODOs, accessibility text, and narrow explanations of surprising code. Do not modify
+generated or vendored comments.
+
 The **slide-craft gotchas** — fit-check every changed slide (`.claude/scripts/slide-shot.mjs`),
 `.center`-slide layout, `code-line-numbers`, `filename`, consecutive-code-block spacing, `echo: fenced`
 to show a cell's `#|` options — are the path-scoped rule **`.claude/rules/slides.md`**

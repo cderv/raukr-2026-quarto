@@ -21,10 +21,8 @@ install). Dataset: base-R `datasets::penguins` (R ≥ 4.5), columns `bill_len`, 
 library(dplyr)
 library(ggplot2)
 library(gt)
-library(ggokabeito)   # color-blind-safe (Okabe-Ito) scale for the species colors
+library(ggokabeito)
 
-# Base-R penguins — zero install on R >= 4.5. Drop the rows with missing measurements
-# so figures and summaries stay clean.
 data(penguins)
 penguins <- penguins |> filter(!is.na(bill_len), !is.na(bill_dep))
 ```

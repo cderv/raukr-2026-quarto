@@ -15,9 +15,9 @@ website:
 
 format:
   html:
-    # `brand` reads _brand.yml, and later layers win, so it has to come after cosmo.
+    # Later theme layers win, so apply the brand after cosmo.
     theme: [cosmo, brand]
 
 execute:
-  # Re-execute a document only when its own source changes; otherwise reuse _freeze/.
+  # Reuse frozen results until a document changes.
   freeze: auto

@@ -1,36 +1,14 @@
 /*-- scss:defaults --*/
-// Link colour -- fix a brand-application gap AND clear AA on every background. Two problems:
-//   1. `_brand.yml`'s intended link colour (typography.link.color) does NOT reach Bootstrap's
-//      $link-color under Quarto 1.9.x -- the compiled --bs-link-color stays the Quarto default
-//      #2a76dd (4.43:1 on white -- fails AA by a hair). (May be 1.9-only; recheck on 1.10+.)
-//   2. A link colour tuned only for white (e.g. the old link-teal #3C7C83, 4.77:1 on white) drops
-//      to ~4.28:1 once the link wraps inline `code` (which sits on the light-grey code background
-//      #f1f3f5) -- so it must be chosen against the code background, not white.
-// #33666B (= darken($primary,15%), matching $teal-dark below) clears AA on white (6.4:1), inline
-// code (5.8:1) and code cells (5.5:1). Setting $link-color here rebuilds every link-derived variable
-// from it in one place -- content links, cross-references (@fig/@tbl/@eq), citation/biblio links,
-// the right-hand TOC nav, references. Kept in sync with the palette in `_brand.yml`. Verified with
-// axe-core (0 link violations, incl. inline-code links).
+// Keep links WCAG AA-compliant, including on inline-code backgrounds.
 $link-color: #33666B;
 
 /*-- scss:rules --*/
-// Defensive sans fallback for the HTML site (mirror of theme.scss for the reveal deck). Quarto's
-// brand layer sets the body/heading font to bare "Albert Sans" (a Google font) with no generic
-// family, so a font-load failure (offline / flaky room wifi) drops to the browser default *serif*.
-// Force the resilient chain on text surfaces (NOT code/pre — those stay monospace/Fira Mono).
-// Albert Sans still leads, so a successful load is unaffected; a failed load degrades to sans.
+// Preserve a sans-serif fallback when the web font is unavailable.
 $brand-sans: "Albert Sans", system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 
 :root { --bs-body-font-family: #{$brand-sans} !important; }
 
-// Blockquotes (the lab "Goal:" boxes): Quarto colours blockquote *text* from `$secondary` (the
-// brand's teal-light #A6CBCF) via its `body-secondary` mixin — only ~1.7:1 on white, below WCAG AA
-// (4.5:1 for body text). There is no `$blockquote-color` Sass variable to set (checked against
-// quarto-cli), so override the element directly — but with brand Sass vars, not hardcoded hex:
-// readable `$body-color` (brand ink) for the text, `$primary` (brand teal) as the left-border accent.
-// Include `.blockquote`: Quarto tags these boxes `<blockquote class="blockquote">`, and Bootstrap's
-// `.blockquote { color: $secondary }` (a class, higher specificity than a bare element) otherwise
-// wins and keeps the teal-light default.
+// Override Bootstrap's higher-specificity blockquote colour for readable goal boxes.
 blockquote,
 .blockquote {
   color: $body-color;
@@ -44,60 +22,33 @@ h1, h2, h3, h4, h5, h6,
   font-family: #{$brand-sans} !important;
 }
 
-// Work around a Quarto bug: using `brand` makes Quarto ship a dark "alternate" highlight sheet
-// (class `quarto-color-alternate`) even on this light-only site (quarto-cli#13450), and its rules
-// leak into light mode for token classes the light (arrow) theme leaves colorless. Under arrow
-// those are exactly the shell command words -- `.ex` (external, e.g. `quarto`) and `.bu` (builtin,
-// e.g. `cd`), which arrow-light never colors while arrow-dark does (quarto-cli#14299) -- so on the
-// light page they inherit the dark sheet's bold cyan (#00e0e0). Force them back to plain body ink
-// until upstream fixes it. (Verified: restores arrow's intended light look, #003B4F normal weight.)
+// Prevent dark syntax-highlighting styles from leaking into the light theme.
 code span.ex, code span.bu {
   color: inherit;
   font-weight: inherit;
 }
 
-// A darkened brand teal for surfaces where the plain brand teals fail WCAG AA: $primary (#4C979F) is
-// too light both as a bar background under near-white text (3.33:1) and as text on white (3.1:1), and
-// $secondary (teal-light #A6CBCF) is far too light as text (1.74:1). One derived shade (#33666B,
-// ~6.4:1 on white) fixes both without disturbing the palette elsewhere, and is the same value used
-// for $link-color above. Verified with axe-core.
+// Use a darker brand colour where the base palette does not meet WCAG AA.
 $teal-dark: darken($primary, 15%);
 
-// Navbar: Quarto paints the bar with $primary and near-white text -> 3.33:1 (below AA's 4.5:1).
-// Darken ONLY the bar (not the whole palette, which would recolour buttons, accents, active states):
-// the near-white nav text then clears AA and the teal identity is kept.
 .navbar { background-color: $teal-dark; }
 
-// Captions + margin content: Bootstrap maps $secondary (brand teal-light #A6CBCF) onto its
-// muted-text roles -- figure/table captions and the entire .column-margin (margin captions, aside
-// notes, and any table dropped there, e.g. the per-species counts kable) -- landing at ~1.74:1, well
-// below AA. Restore readable text with the darkened brand teal; captions stay visually secondary via
-// their smaller font size, not an unreadable colour.
+// Match Quarto's specific margin-caption selectors.
 caption,
 .figure-caption, .subfigure-caption, .table-caption, figcaption,
 .margin-caption, div.aside, aside, .column-margin,
-// Quarto colours a figure caption dropped in the margin with the descendant selector
-// `.column-margin figcaption` (higher specificity than a bare `figcaption`), so match it explicitly
-// or the margin figure caption keeps the teal-light default.
 .column-margin figcaption, .column-margin caption {
   color: $teal-dark;
 }
 
-// Block code inside a list item, paragraph or table cell: Quarto's INLINE-code rule
-// (`p/li/td code.sourceCode`) also matches the block `<code>`, so its semi-transparent background
-// stacks on top of `div.sourceCode`'s identical layer. The darker composite drops the default
-// `arrow` attribute token `.at` (#657422) to 4.43:1 -- below AA. Our labs put every code block
-// inside the Tasks callout lists, so this hit 25 nodes across the two lab pages. Restoring the
-// single layer takes `.at` back to 4.62:1. Reported upstream; remove when Quarto scopes that rule.
+// Avoid stacking Quarto's inline-code background on nested block code.
 li pre > code.sourceCode,
 p pre > code.sourceCode,
 td pre > code.sourceCode {
   background-color: transparent;
 }
 
-// `<details><summary>` (the labs' Session-info block) renders at #7b838a on white = 3.84:1, below
-// AA. This is the shipped default, not ours -- reported upstream as quarto-cli#14383. Use the same
-// darkened teal the other AA fixes use until that lands.
+// Quarto's default details summary colour does not meet WCAG AA.
 details > summary {
   color: $teal-dark;
 }

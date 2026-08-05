@@ -4,21 +4,12 @@ subtitle: "RaukR 2026 · Day 2 — Dashboards demo"
 format: dashboard
 ---
 
-<!--
-Day-2 "Demos — if time" artifact. A self-contained, STATIC `format: dashboard`
-page: no Shiny/OJS backend, so it opens as plain HTML anywhere. The teaching point is the
-LAYOUT MODEL (rows, valueboxes, a card, a tabset), not plot color — the RaukR brand is
-monochrome teal and can't separate three species by hue (see the Day-1 payoff figure), so the
-plots keep ggplot's default fills; the brand carries through the dashboard *chrome* (header,
-fonts, valuebox color) via the project `_brand.yml`.
--->
-
 ```{r}
 #| label: setup
 #| message: false
 library(dplyr)
 library(ggplot2)
-library(ggokabeito)   # color-blind-safe (Okabe-Ito) scale, same as Day 1
+library(ggokabeito)
 data(penguins)
 penguins <- penguins |> filter(!is.na(bill_len), !is.na(bill_dep), !is.na(body_mass))
 ```
@@ -29,8 +20,7 @@ penguins <- penguins |> filter(!is.na(bill_len), !is.na(bill_dep), !is.na(body_m
 ```{r}
 #| content: valuebox
 #| title: "Species"
-# icon = any name from the bootstrap-icons set (https://icons.getbootstrap.com);
-# color = a brand/theme role ("primary", "secondary", ...) — here the RaukR teal.
+# Use a Bootstrap icon and a theme colour.
 list(
   color = "primary",
   icon = "tags",
