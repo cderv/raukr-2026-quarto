@@ -87,3 +87,5 @@
 /labs/quarto-projects/solution/_site/
 /labs/quarto-projects/solution/_freeze/
 /labs/quarto-projects/solution/.gitignore
+# roborev snapshots
+/.roborev/
