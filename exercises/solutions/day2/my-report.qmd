@@ -8,6 +8,7 @@ description: "The Day-1 document, now a page on the site."
 #| message: false
 library(dplyr)
 library(ggplot2)
+library(ggokabeito)   # color-blind-safe (Okabe-Ito) scale, same as Day 1
 data(penguins)
 penguins <- penguins |> filter(!is.na(bill_len), !is.na(bill_dep), !is.na(body_mass))
 ```
@@ -25,6 +26,7 @@ so a `format: typst` left over from the Day-1 payoff would keep building a PDF i
 #| fig-alt: "Scatterplot of bill depth versus bill length in millimeters, colored by species; the three species form separate clusters."
 ggplot(penguins, aes(bill_len, bill_dep, color = species)) +
   geom_point(alpha = 0.8) +
+  scale_color_okabe_ito() +
   labs(x = "Bill length (mm)", y = "Bill depth (mm)", color = NULL)
 ```
 

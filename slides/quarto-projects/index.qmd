@@ -123,6 +123,8 @@ Today's lab project is flat (a couple of pages at the root), so there's no folde
 `_metadata.yml` when a **subfolder** of pages shares options.
 :::
 
+**Learn more:** [Directory metadata](https://quarto.org/docs/projects/quarto-projects.html#directory-metadata)
+
 ::: notes
 - **Say:** "Same precedence rule as yesterday, now across project, folder, page, and cell."
 - **Do not re-teach:** widen the rule only.
@@ -157,6 +159,9 @@ website:
 `listing:` on a page. One slide's worth, more in the linked resources.
 :::
 
+**Learn more:** [Websites](https://quarto.org/docs/websites/) ·
+[Listings](https://quarto.org/docs/websites/website-listings.html)
+
 ::: notes
 - **Do:** add navbar and sidebar; render and show navigation.
 - **Say:** "List navbar entries, or let `contents: auto` build a sidebar."
@@ -186,6 +191,9 @@ See the [analysis page](analysis.qmd) for the model.
 If you need "Figure 3.2" to resolve *across* chapters, that's `type: book`: Quarto renders a book as
 one unit with global numbering. A **website** keeps per-page numbering.
 :::
+
+**Learn more:** [Cross-references](https://quarto.org/docs/authoring/cross-references.html) ·
+[Book cross-references](https://quarto.org/docs/books/book-crossrefs.html)
 
 ::: notes
 - **Before session:** confirm that a website does not resolve a cross-page `@fig-` reference.
@@ -290,8 +298,7 @@ execute:
   freeze: auto        # re-execute a document only when its source changes
 ```
 
-That's `freeze: auto`, the setting to adopt: a page re-runs only when its own source changes. **`freeze: true`**
-hands you full control instead → next slide.
+**`freeze: auto`** is the setting to adopt. **`freeze: true`** hands you full control instead.
 
 ::: notes
 - **Say:** "A prose edit should not rerun a 20-minute model."
@@ -356,6 +363,8 @@ renv::restore()    # rebuild the same env
 ::::
 
 Together: a colleague (or CI) rebuilds the *same* site, with or without re-running the analysis.
+
+**Learn more:** [renv](https://rstudio.github.io/renv/)
 
 ::: notes
 - **Say:** "freeze pins results; `renv.lock` pins package versions."
@@ -433,8 +442,9 @@ Extra topics:
 ::: {.incremental}
 - **Book versus website**: mostly the same machinery. Pick a **book** when you need one linear read with
   global numbering, a **website** otherwise. *(1 decision, not a new toolset.)*
-- **Interactivity**: an **htmlwidget** (`plotly`, `leaflet`) is pure R and self-contained. **OJS**
-  *(Observable JS, a browser-side, non-R path)* and **Shinylive** *(Shiny running in the browser,
+- **Interactivity**: an **htmlwidget** (`plotly`, `leaflet`) is pure R and self-contained.
+  **[OJS](https://quarto.org/docs/interactive/ojs/)** *(Observable JS, a browser-side, non-R path)*
+  and **[Shinylive](https://quarto-ext.github.io/shinylive/)** *(Shiny running in the browser,
   no server)* are links, not live builds.
 :::
 

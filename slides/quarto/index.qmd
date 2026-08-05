@@ -252,6 +252,8 @@ penguins |>
 
 Then refer to it in prose with `@tbl-summary` (same mechanic as figures).
 
+**Learn more:** [Cross-references](https://quarto.org/docs/authoring/cross-references.html)
+
 ::: notes
 - **Do:** add `tbl-summary`; render and show the number.
 - **Say:** "Same mechanism as figures."
@@ -294,6 +296,8 @@ Base-R `penguins` (R ≥ 4.5) needs no install.
 Base-R `penguins` (R ≥ 4.5) needs no install.
 :::
 
+**Learn more:** [Callouts](https://quarto.org/docs/authoring/callouts.html)
+
 ::: notes
 - **Do:** render one callout live.
 - **Say:** "Five types, same syntax, different meaning and color."
@@ -314,6 +318,8 @@ It renders with the live count: "We measured **`{r} nrow(penguins)`** penguins."
 . . .
 
 The number updates when the data does. **Reproducible by construction.**
+
+**Learn more:** [Inline code](https://quarto.org/docs/computations/inline-code.html)
 
 ::: notes
 - **Do:** show inline `nrow(penguins)`.
@@ -353,8 +359,7 @@ penguins |> count(species, name = "n") |> knitr::kable()
 ```
 ````
 
-*In the lab you'll use **margin** layout, the one that does the most for an article. The rest are
-in the Quarto docs below.*
+*In the lab you'll use **margin** layout. The rest are in the Quarto docs below.*
 
 **Learn more:** [Article Layout](https://quarto.org/docs/authoring/article-layout.html) ·
 [Margin content](https://quarto.org/docs/authoring/article-layout.html#margin-content)
@@ -550,8 +555,7 @@ This is exactly the path from your analysis to a submission, and to your **team-
 ## Citations {#citations}
 
 ::: {.callout-note title="Follow along"}
-Back in your editor: we add citations to your Part-1 document, or to `day1-intro/starter.qmd` if you
-need one.
+Back in your editor: add citations to your Part-1 document (or to `day1-intro/starter.qmd`).
 :::
 
 Point the header at a `.bib`, then cite with `@key`:
@@ -566,17 +570,16 @@ csl: apa.csl
 The data come from Palmer Station
 [@gorman2014].
 ```
-renders as: … Palmer Station (Gorman et al., 2014).
+renders as: … (Gorman et al., 2014).
 :::
 ::: {.column width="45%"}
-`references.bib` already ships in `day1-intro/` (excerpt):
+`references.bib` ships in `day1-intro/` (excerpt):
 
 ``` {.bibtex}
 @article{gorman2014,
-  author  = {Gorman, K. B. and ...},
-  title   = {Ecological Sexual ...},
-  journal = {PLoS ONE},
-  year    = {2014}
+  author = {Gorman, K. B. and ...},
+  title  = {Ecological Sexual ...},
+  year   = {2014}
 }
 ```
 :::
@@ -590,6 +593,8 @@ The reference list renders at the end automatically, or wherever you drop this d
 ```
 
 **CSL** = *Citation Style Language*. Swap the `csl:` file to restyle every citation.
+
+**Learn more:** [Citations](https://quarto.org/docs/authoring/citations.html)
 
 ::: notes
 - **Do:** add `bibliography`, `csl`, and `[@gorman2014]`; render.
@@ -614,6 +619,8 @@ abstract: |
 ```
 
 Renders in HTML, PDF, and Typst. Write it once.
+
+**Learn more:** [Title blocks](https://quarto.org/docs/authoring/title-blocks.html)
 
 ::: notes
 - **Timing:** cut first. Name author, affiliation, ORCID, and abstract verbally.

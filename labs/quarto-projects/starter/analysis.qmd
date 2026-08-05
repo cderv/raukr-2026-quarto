@@ -7,6 +7,7 @@ title: "Analysis"
 #| message: false
 library(dplyr)
 library(ggplot2)
+library(ggokabeito)   # color-blind-safe (Okabe-Ito) scale, same as Day 1
 data(penguins)
 penguins <- penguins |> filter(!is.na(bill_len), !is.na(bill_dep), !is.na(body_mass))
 ```
@@ -19,6 +20,7 @@ penguins <- penguins |> filter(!is.na(bill_len), !is.na(bill_dep), !is.na(body_m
 #| fig-alt: "Boxplot of penguin body mass in grams by species; Gentoo is the heaviest, Adelie and Chinstrap overlap."
 ggplot(penguins, aes(species, body_mass, fill = species)) +
   geom_boxplot(show.legend = FALSE) +
+  scale_fill_okabe_ito() +
   labs(x = NULL, y = "Body mass (g)")
 ```
 

@@ -15,6 +15,7 @@ format:
 # work inside your day2-projects/ folder, not here. This cell is not step zero.
 library(dplyr)
 library(ggplot2)
+library(ggokabeito)   # color-blind-safe (Okabe-Ito) scale, same as Day 1
 data(penguins)
 penguins <- penguins |> filter(!is.na(bill_len), !is.na(bill_dep), !is.na(body_mass))
 ```
@@ -64,8 +65,7 @@ Use **`solutions/day2/`** to compare your work or complete missed steps.
 **Goal.** Make Quarto treat `day2-projects/` as one project, so that a single command builds every
 page in it into an output folder.
 
-Here is the stanza that declares a project. Where it goes, and how you then build the folder, is the
-work:
+This stanza declares a project. Where it goes, and how you then build the folder, is the work:
 
 ```yaml
 project:
@@ -140,6 +140,7 @@ this figure:
 #|   clearly the heaviest, Adelie and Chinstrap overlap.
 ggplot(penguins, aes(species, body_mass, fill = species)) +
   geom_boxplot(show.legend = FALSE) +
+  scale_fill_okabe_ito() +
   labs(x = NULL, y = "Body mass (g)")
 ```
 
@@ -209,7 +210,7 @@ the reference and table share one page.
 **Goal.** Give the site one shared palette and typeface from a `_brand.yml`, the same file you met on
 Day 1.
 
-Here is the brand body. Getting it to actually take effect is the work:
+That is the brand body. Getting it to take effect is what you have to work out:
 
 ```{.yaml filename="day2-projects/_brand.yml"}
 color:

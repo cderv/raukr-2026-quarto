@@ -307,9 +307,17 @@ list, not from the exercise.
 | ~min | Phase | Mode | Content |
 |------|-------|------|---------|
 | 5 | frame | My | from report to article: cite → typeset |
-| 18 | concept + live demo | My + Our | Citations (`.bib`/`@ref`/CSL) · Typst (ships in Quarto, no LaTeX) · `_brand.yml` styling of the PDF |
-| 28 | hands-on | Your | **two payoff exercises**: (1) add citations to the Part-1 doc, (2) render it as a branded Typst PDF |
+| 16 | concept + live demo | My + Our | Citations (`.bib`/`@ref`/CSL) · Typst (ships in Quarto, no LaTeX) · `_brand.yml` styling of the PDF |
+| 30 | hands-on | Your | **two payoff exercises**: (1) add citations to the Part-1 doc, (2) render it as a branded Typst PDF |
 | 4 | recap | My | "you now have a publication-ready article" |
+
+> **Reconciled 2026-08-05 (was 18 concept / 28 hands-on).** The deck's Your-turn callout announced
+> ~30 min and the table said 28, and the part sums to exactly 55 in a 55-min effective slot, so there
+> was no slack to absorb the difference. Resolved in favour of the exercise, per the gating rule
+> above: cut from the list, not from the exercise. Concept comes down to 16, hands-on goes to 30, sum
+> unchanged, and the slide now matches the plan. Note this part is the one place we announce the full
+> budgeted time — both Day-2 parts deliberately announce ~45 against 50/48, so an overrunning demo
+> comes out of the gap rather than out of the hands-on.
 
 **Day 2 · Part 1 — build & structure a project** *(90 min)*
 
