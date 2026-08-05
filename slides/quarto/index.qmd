@@ -415,7 +415,9 @@ One key in the header picks the output. The content stays put:
 :::: {.columns}
 ::: {.column width="50%"}
 ```{.yaml code-line-numbers="false"}
-format: [html, typst]     # render several at once
+format:                   # render several at once
+  html: default
+  typst: default
 toc: true                 # shared — applies to both
 ```
 
@@ -660,8 +662,11 @@ format: typst
 That is the whole switch. Then re-render:
 
 ``` bash
-quarto render report.qmd --to typst
+quarto render report.qmd
 ```
+
+The header already says which format, so nothing else is needed. To get the PDF *without* touching
+the header, ask for it on the command line instead: `quarto render report.qmd --to typst`.
 
 ::: {.callout-note title="Pre-flight"}
 Typst is bundled from Quarto **1.4+**; we require **≥ 1.9** (margin/article layout). Check once with `quarto --version`.

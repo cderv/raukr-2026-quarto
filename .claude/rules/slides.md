@@ -212,3 +212,32 @@ what a participant gets are different strings.
 themselves, so they already see them — `echo: fenced` is for a **reader who isn't
 writing the code** (a slide, or a non-interactive worked reference). Don't reach
 for it in exercise steps.
+
+## 8. A YAML block on a slide is never validated — render it once yourself
+
+Slide code blocks are **non-executable display blocks** (`{.yaml}`, `{.bash}`).
+Quarto renders the deck happily whatever is inside them, so a header that would
+fail on a participant's machine ships looking perfect. The fit-check in § 1 will
+not catch it either: it measures pixels, not syntax.
+
+The case that got through: the Day-1 formats slide taught
+
+```yaml
+format: [html, typst]     # render several at once
+```
+
+for months. Quarto **rejects** it — *"The value `[html, typst]` is of type an
+array"*, `ERROR: Validation of YAML front matter failed`. `format:` takes a
+string or a mapping, never a sequence. The working form is
+
+```yaml
+format:
+  html: default
+  typst: default
+```
+
+So: **paste any YAML you put on a slide into a scratch `.qmd` and render it**
+before you commit. One `quarto render` in a temp dir. Same for a shown command
+— check that the *slide's own setup* doesn't already make it redundant, which is
+the other half of the same failure (that slide said `format: typst` in the header
+and then `quarto render report.qmd --to typst`, teaching that you need both).
