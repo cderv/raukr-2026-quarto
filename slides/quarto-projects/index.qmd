@@ -30,9 +30,11 @@ Yesterday: one `.qmd` → a branded PDF. Today, the other axis: **one file to ma
 
 - **structure** several `.qmd` into one Quarto **project** with shared config (`_quarto.yml`);
 - **build** a navigable, **branded website** — within-page cross-references, reproducible builds;
-- **publish** it, and explain how **freeze** lets it rebuild without re-running R.
+- **produce a publishable folder**, put it online, and explain how **freeze** lets it rebuild
+  without re-running R.
 
-By the end: the same penguins data, a fresh set of pages grown into a **website your team can publish**.
+By the end: the same penguins data, a set of pages (**including yesterday's report**) grown into a
+**website your team can publish**.
 
 ::: notes
 - **Frame:** Day 1 took one `.qmd` all the way to a branded PDF. Day 2 is the other axis — one file
@@ -218,17 +220,18 @@ typography:
 :::
 ::::
 
-::: {.aside}
-`brand` goes **last** in the `theme:` list (or no `theme:` at all). Later layers win.
-:::
-
 ::: notes
 - **Callback (don't re-derive):** they saw this file yesterday, branding the PDF. Today's *new* angle is
   **scale** — one root file themes the whole multi-page project. Widen the scope; don't re-teach the file.
+- **Hold back the theme-layer rule.** It used to be an aside on this slide. It is now the lab's
+  brand step (Part 1, "Brand it"): they add `_brand.yml`, the fonts change, the colors don't, and
+  working out why is the exercise. Saying "`brand` goes last, later layers win" here turns that step
+  back into transcription. If someone asks outright, answer with the question instead: "what order do
+  you think Quarto puts them in?"
 - **Do:** show the site before / after dropping `_brand.yml` at the root — navbar + links go teal
   in one re-render. **Check your demo project first:** a bare `theme: cosmo` outranks the brand and
   the demo shows nothing. The theme list needs `brand` last (`theme: [cosmo, brand]`), or no
-  `theme:` at all.
+  `theme:` at all. Fix it silently before the session; don't narrate the fix.
 - **Say:** "You saw this yesterday. Put it at the project root and every page *and* deck inherits it
   — brand once, not per file."
 - **R plots (only if asked):** a plot still needs `theme_brand_ggplot2()` — same as yesterday; the
@@ -253,8 +256,19 @@ You can now structure files into a branded, navigable **website**. After the bre
 reproducible and **ship** it.
 
 ::: notes
-- **Say (handoff):** "Over to you — Website Challenge: `_quarto.yml`, a navbar, the shared brand. ~45 min, then we break — back at 15:30. Helpers are around."
+- **Say (handoff):** "Over to you — Website Challenge, five steps: make it a project, build the navigation, brand it, scope options to a folder, and a listing if you get there. ~45 min, then we break — back at 15:30. Helpers are around."
+- **Say (how the lab reads now):** "Each step tells you what you should *see* before it tells you anything else, so you can check yourself. Under that are hints that open one at a time — the first is a question, then the mechanism, then the answer. Try the question before you open the answer."
+- **Trigger questions — ask the room out loud, don't wait for hands.** These are the beats where the
+  step is meant to click, roughly every five minutes:
+  - after the first step: "where did your HTML go *before* you added `_quarto.yml`, and where does it
+    go now? What decided that?"
+  - during the brand step (**the productive-failure beat**): "the type changed but the navbar didn't.
+    What does that tell you about how `theme:` and the brand combine?" Let them sit with it. The
+    "you should see" box already told them the first result is expected, so nobody thinks they broke it.
+  - after the folder step: "you didn't edit a single `.qmd`. So where did that option come from?"
 - **Helpers:** first thing to check — are they working **inside `day2-projects/`** with their new `_quarto.yml`, so `quarto render` builds the project (not a stray single page)? (Secondary: page links are source-relative, not `_site`.) Anyone behind can open the shipped `solutions/day2/` — a finished Part-1 site — and start Part 2 clean.
+- **Less is handed over now, so expect more hands.** Point at the hint ladder rather than answering:
+  "open the second hint" is usually enough, and it keeps one presenter serving the room from the front.
 :::
 
 # Part 2 — Scale & ship {.center}
@@ -404,12 +418,24 @@ Publish your site and open it on your phone. The lab has the steps. Everyone sti
 ## Your turn {#your-turn-2}
 
 ::: {.callout-tip title="Your turn — regroup in ~45 min"}
-Back to the **[Lab](../../labs/quarto-projects/index.qmd#ship-it-challenge)**, the **Ship it Challenge**: render your
-project to `_site/` and open it: a publishable folder. Publishing it is optional, at the end.
+Back to the **[Lab](../../labs/quarto-projects/index.qmd#ship-it-challenge)**, the **Ship it
+Challenge**: make the build skip unchanged pages, bring **yesterday's report** onto the site, and turn
+the analysis into a **dashboard**. Putting it online is the optional last step.
 :::
 
 ::: notes
-- **Say (handoff):** "Last part — Ship it Challenge: render your project to `_site/` and open it, a publishable folder. Publishing to Pages is my watch-me demo, not your job. ~45 min; helpers are around."
+- **Say (handoff):** "Last part — Ship it Challenge. Make the build stop re-running everything, then bring yesterday's report onto the site, then turn the analysis into a dashboard. Putting it online at the end is optional. ~45 min; helpers are around."
+- **Trigger questions — ask the room out loud:**
+  - on the freeze step, the one that matters: "**how would you prove the code didn't re-run?**" The
+    lab deliberately withholds the timestamp trick, because inventing the tell *is* the lesson. Give
+    them a minute before you accept an answer.
+  - on cache versus freeze: "where does each one write its results, and would you commit that folder?"
+    Everything else follows from that.
+  - on the dashboard: "nothing about your R changed here. So what did?"
+- **The Day-1 step is the payoff of the two days** — when someone's report opens as a page of their
+  own site, say so out loud. That is "one document, one project" stopping being a claim.
+- **Fast finishers:** point them at the optional publish. It depends on nothing downstream, so it
+  costs nothing to skip and nothing to attempt.
 - **Helpers:** the tell that freeze is working — the *second* project render doesn't re-execute the page at all (no chunk output scrolls by); the compute is served from `_freeze/`. Behind? Open the shipped `solutions/day2/` project and start from there.
 :::
 
@@ -419,17 +445,18 @@ You can now:
 
 - structure `.qmd` into a **project** — `_quarto.yml`, `output-dir`, `_metadata.yml`;
 - build a **branded website** with navigation, and know why cross-page refs differ from a book;
-- make builds **reproducible** (`freeze` + `renv.lock`) and produce a **publishable `_site/`** for
-  a host or CI.
+- make builds **reproducible** (`freeze` + `renv.lock`), produce a **publishable `_site/`** for a host
+  or CI, and put it online;
+- arrange the same results as a **dashboard**.
 
 . . .
 
 **You've built the two axes:** one document to a branded PDF (Day 1), one folder to a published site
-(Day 2). Everything your **team project** needs.
+(Day 2), with yesterday's report now a page of it. Everything your **team project** needs.
 
 ::: notes
-- **If asked about `_metadata.yml`:** they saw it on the concept slide but today's lab project is
-  flat, so there was no folder to scope it to. Point them at the slide, not the lab.
+- **Close on the report:** the strongest line here is that the document they wrote yesterday is a page
+  of the site they built today. Everything else on this slide is machinery.
 :::
 
 ## Demos (if time) {#demos}
@@ -439,9 +466,6 @@ Extra topics:
 ::: {.incremental}
 - **Book versus website** — mostly the same machinery. Pick a **book** when you need one linear read with
   global numbering, a **website** otherwise. *(1 decision, not a new toolset.)*
-- **Dashboards** — `format: dashboard` arranges plots/tables/valueboxes into a static layout (rows,
-  columns, cards) to share results with a collaborator who won't open R.
-  [See one](../../labs/quarto-projects/dashboard.qmd){target="_blank"} *(static, no server)*.
 - **Interactivity** — an **htmlwidget** (`plotly`, `leaflet`) is pure R and self-contained. **OJS**
   *(Observable JS, a browser-side, non-R path)* and **Shinylive** *(Shiny running in the browser,
   no server)* are links, not live builds.
@@ -449,9 +473,10 @@ Extra topics:
 
 ::: notes
 - **Timing:** cut-able tail — trim from the bottom if under ~5 min left; all watch-me, nothing built live.
-- **Do:** for the dashboard, open the [See one] link and name the four regions — two valueboxes across
-  the top, a card with the boxplot, and a two-tab panel (the whole layout model: rows / columns /
-  cards / valueboxes / tabsets).
+- **Dashboards used to be a bullet here.** They are now a lab step (Part 2, "Ship a dashboard"), so
+  this slide no longer covers them. If the room ran out of time and nobody got there, the rendered
+  [dashboard](../../labs/quarto-projects/dashboard.qmd){target="_blank"} is still worth 30 seconds:
+  name the four regions — two valueboxes across the top, a card with the boxplot, and a two-tab panel.
 :::
 
 ## Thank you! {.center}

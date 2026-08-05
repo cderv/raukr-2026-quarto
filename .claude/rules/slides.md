@@ -23,6 +23,29 @@ quarto render slides/quarto/index.qmd
 node .claude/scripts/slide-shot.mjs <abs path to _site/…/index.html> <anchor-id> out.png
 ```
 
+**`slide-shot.mjs` only runs in the web sandbox.** It imports Playwright from a hardcoded
+`/opt/node22/…` path, so on a normal machine it dies with `ERR_MODULE_NOT_FOUND` before it opens
+anything. Off-sandbox, use **`agent-browser`** (on the PATH; `npx agent-browser` also works) against a
+locally served copy of the built site. `file://` is not worth fighting:
+
+```sh
+simple-http-server.exe --nocache -i -p 8899 _site      # from the repo root
+agent-browser open "http://localhost:8899/slides/<deck>/index.html"
+agent-browser wait --fn "window.Reveal && window.Reveal.isReady()"
+# then pipe a heredoc to `agent-browser eval --stdin` that walks the anchors
+agent-browser close
+```
+
+Two things that bite in that eval: it has **no top-level `await`**, so wrap the whole script in an
+`(async () => { … })()` that returns the result, and `Reveal.slide(…)` needs a short settle before
+you measure. Reveal reports slide geometry in **deck** coordinates (720), not viewport pixels, so the
+window size does not matter and there is no need to resize anything.
+
+**Force the fragments rather than stepping them.** `Reveal.nextFragment()` reports nothing left to
+advance when a slide was already visited, which silently turns the fragment check into the initial
+state (a false pass, see the second bullet below). Add the `visible` class to every `.fragment` on the
+slide instead, then measure.
+
 Navigate by **anchor id** (`## Title {#anchor}` → the helper opens `#/anchor`) —
 robust, because raw slide indices drift as slides are added or moved. Use an
 **absolute** `file://` path to the built HTML. The helper prints

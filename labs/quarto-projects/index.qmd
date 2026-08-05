@@ -565,6 +565,10 @@ A page that fills the browser window instead of scrolling. Across the top, two s
 showing a single number (how many species, how many penguins). Below, the boxplot in its own titled
 panel, and beside it a panel with **tabs** you can click between to swap the scatter plot for the
 table. Resizing the window rearranges it rather than clipping it.
+
+[Open the finished dashboard](dashboard.qmd){target="_blank"} to see what you are aiming at. Looking
+at it does not give away how it is built, and having the target in front of you makes the layout much
+easier to reason about.
 :::
 
 ::: {.callout-tip collapse="true"}
