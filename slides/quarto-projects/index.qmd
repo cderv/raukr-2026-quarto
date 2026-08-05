@@ -32,9 +32,8 @@ penguins <- penguins |> filter(!is.na(bill_len), !is.na(bill_dep), !is.na(body_m
 Yesterday: one `.qmd` → a branded PDF. Today, the other axis: **one file to many**. You will be able to:
 
 - **structure** several `.qmd` files into one Quarto **project** with shared configuration (`_quarto.yml`).
-- **build** a navigable, **branded website** with within-page cross-references and reproducible builds.
-- **produce a publishable folder**, put it online, and explain how **freeze** lets it rebuild
-  without re-running R.
+- **build** a navigable, **branded website** with within-page cross-references.
+- make its builds **reproducible**, produce a **publishable folder**, and put it online.
 
 By the end: the same penguins data, a set of pages (**including yesterday's report**) grown into a
 **website your team can publish**.
@@ -46,12 +45,14 @@ By the end: the same penguins data, a set of pages (**including yesterday's repo
 ## How today works
 
 **Same shape as yesterday**: two rounds of **watch → follow along → your turn**, each ending in a
-**~45-minute Challenge** in the lab (solutions folded in), with a **break** between the rounds.
+**Challenge** in the lab (solutions folded in), with a **break** between the rounds.
 
 Watch for the **Follow along** / **Your turn** callouts: they flag every switch.
 
 ::: notes
 - **Say:** "Same rhythm as yesterday: follow along, then your turn."
+- **Don't announce a duration here.** Each "Your turn" callout carries its own "regroup in ~N min",
+  which is where the room needs it.
 :::
 
 # Part 1: Build and structure a project {.center}
