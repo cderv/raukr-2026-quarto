@@ -215,14 +215,14 @@ Christophe Dervieux
 <h2>Learning Outcomes</h2>
 <p>Yesterday: one <code>.qmd</code> → a branded PDF. Today, the other axis: <strong>one file to many</strong>. You will be able to:</p>
 <ul>
-<li><strong>structure</strong> several <code>.qmd</code> into one Quarto <strong>project</strong> with shared config (<code>_quarto.yml</code>);</li>
-<li><strong>build</strong> a navigable, <strong>branded website</strong> — within-page cross-references, reproducible builds;</li>
-<li><strong>produce a publishable folder</strong>, put it online, and explain how <strong>freeze</strong> lets it rebuild without re-running R.</li>
+<li><strong>structure</strong> several <code>.qmd</code> files into one Quarto <strong>project</strong> with shared configuration (<code>_quarto.yml</code>).</li>
+<li><strong>build</strong> a navigable, <strong>branded website</strong> with within-page cross-references.</li>
+<li>make its builds <strong>reproducible</strong>, produce a <strong>publishable folder</strong>, and put it online.</li>
 </ul>
 <p>By the end: the same penguins data, a set of pages (<strong>including yesterday’s report</strong>) grown into a <strong>website your team can publish</strong>.</p>
 <aside class="notes">
 <ul>
-<li><strong>Frame:</strong> Day 1 took one <code>.qmd</code> all the way to a branded PDF. Day 2 is the other axis — one file to many, tied together by config, then shipped. This is the machinery behind your team project’s site.</li>
+<li><strong>Say:</strong> “Yesterday: one <code>.qmd</code> to a branded PDF. Today: many files, one project, then publish.”</li>
 </ul>
 <style type="text/css">
         span.MJX_Assistive_MathML {
@@ -238,11 +238,12 @@ Christophe Dervieux
 </section>
 <section id="how-today-works" class="slide level2">
 <h2>How today works</h2>
-<p><strong>Same shape as yesterday</strong>: two rounds of <strong>watch → follow along → your turn</strong>, each ending in a <strong>~45-minute Challenge</strong> in the lab (solutions folded in), with a <strong>break</strong> between the rounds.</p>
+<p><strong>Same shape as yesterday</strong>: two rounds of <strong>watch → follow along → your turn</strong>, each ending in a <strong>Challenge</strong> in the lab (solutions folded in), with a <strong>break</strong> between the rounds.</p>
 <p>Watch for the <strong>Follow along</strong> / <strong>Your turn</strong> callouts: they flag every switch.</p>
 <aside class="notes">
 <ul>
-<li><strong>Quick recap, don’t re-teach</strong> — they saw this shape yesterday. Same two rounds; the <strong>Follow along</strong> / <strong>Your turn</strong> callouts flag every switch. One breath, then into Part 1.</li>
+<li><strong>Say:</strong> “Same rhythm as yesterday: follow along, then your turn.”</li>
+<li><strong>Don’t announce a duration here.</strong> Each “Your turn” callout carries its own “regroup in ~N min”, which is where the room needs it.</li>
 </ul>
 <style type="text/css">
         span.MJX_Assistive_MathML {
@@ -257,8 +258,8 @@ Christophe Dervieux
       }</style></aside>
 </section>
 <section>
-<section id="part-1-build-structure-a-project" class="title-slide slide level1 center">
-<h1>Part 1 — Build &amp; structure a project</h1>
+<section id="part-1-build-and-structure-a-project" class="title-slide slide level1 center">
+<h1>Part 1: Build and structure a project</h1>
 <p>From one file to a whole site.</p>
 </section>
 <section id="why-project" class="slide level2">
@@ -288,24 +289,24 @@ Christophe Dervieux
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" data-filename="_quarto.yml"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb1-1"><a aria-label="1"></a><span class="co"># at the project root</span></span>
 <span id="cb1-2"><a aria-label="2"></a><span class="fu">project</span><span class="kw">:</span></span>
 <span id="cb1-3"><a aria-label="3"></a><span class="at">  </span><span class="fu">type</span><span class="kw">:</span><span class="at"> website</span></span>
-<span id="cb1-4"><a aria-label="4"></a><span class="at">  </span><span class="fu">output-dir</span><span class="kw">:</span><span class="at"> _site</span><span class="co">  # everything renders here</span></span>
+<span id="cb1-4"><a aria-label="4"></a><span class="at">  </span><span class="fu">output-dir</span><span class="kw">:</span><span class="at"> _site</span><span class="co"> # everything renders here</span></span>
 <span id="cb1-5"><a aria-label="5"></a><span class="fu">format</span><span class="kw">:</span></span>
 <span id="cb1-6"><a aria-label="6"></a><span class="at">  </span><span class="fu">html</span><span class="kw">:</span></span>
-<span id="cb1-7"><a aria-label="7"></a><span class="at">    </span><span class="fu">toc</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span><span class="co">          # set once, every page gets it</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb1-7"><a aria-label="7"></a><span class="at">    </span><span class="fu">toc</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span><span class="co">       # set once, every page gets it</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div><div class="column" style="width:48%;">
 <ul>
 <li class="fragment"><code>quarto render</code> builds the <strong>whole</strong> folder, not one file.</li>
 <li class="fragment">Header options set <strong>once</strong> apply to every page.</li>
-<li class="fragment"><strong><code>output-dir</code></strong> — the folder the built site lands in (<code>_site</code> by default). Publish <em>that</em>.</li>
+<li class="fragment"><strong><code>output-dir</code></strong>: the folder where the built site is written (<code>_site</code> by default). Publish <em>that</em>.</li>
 </ul>
 </div></div>
 
 <aside class="notes">
 <ul>
-<li><strong>Say:</strong> “Day 1 was one file. Today: many files, one project. Open your editor — we build one together.”</li>
-<li><strong>Do:</strong> show a minimal <code>_quarto.yml</code> — <code>project: type: website</code> + <code>output-dir</code>. “This folder is now one unit; <code>render</code> builds all of it, not one file.”</li>
-<li><strong>Say (relevance):</strong> the team project is many pages — this is how they connect.</li>
+<li><strong>Say:</strong> “Many files, one project. Open your editor.”</li>
+<li><strong>Do:</strong> add a minimal <code>_quarto.yml</code>; render the whole folder.</li>
+<li><strong>Say:</strong> “This is how the pages of your team project connect.”</li>
 </ul>
 <style type="text/css">
         span.MJX_Assistive_MathML {
@@ -322,7 +323,7 @@ Christophe Dervieux
 <p>Quarto uses the <strong>nearest <code>_quarto.yml</code></strong> up the tree as the project root: you add one to <code>day2-projects/</code>, and nothing sits above it, so that folder <em>is</em> your project.</p>
 </div></aside></section>
 <section id="metadata" class="slide level2">
-<h2>Directory metadata — <code>_metadata.yml</code></h2>
+<h2>Directory metadata: <code>_metadata.yml</code></h2>
 <p>Yesterday a header set the defaults and a cell overrode them. <code>_metadata.yml</code> is that <strong>same idea, one scope wider</strong>: options for every page in a <strong>folder</strong>, so you don’t repeat them in each header:</p>
 <div class="code-with-filename">
 <div class="code-with-filename-file">
@@ -338,10 +339,11 @@ Christophe Dervieux
 </div>
 <p>Same narrow-wins rule, now across files: <strong>document header</strong> &gt; <code>_metadata.yml</code> &gt; <code>_quarto.yml</code>. Set defaults wide, override narrow.</p>
 
+<p><strong>Learn more:</strong> <a href="https://quarto.org/docs/projects/quarto-projects.html#directory-metadata">Directory metadata</a></p>
 <aside class="notes">
 <ul>
-<li><strong>Callback (don’t re-teach):</strong> they learned header-vs-cell precedence yesterday (<code>#execution</code>). Don’t re-derive “defaults wide, override narrow” — just widen it to the file/folder/project scope.</li>
-<li><strong>Say:</strong> “Same rule as yesterday’s header-beats-nothing / cell-beats-header — now a folder file sits between the page and the project.”</li>
+<li><strong>Say:</strong> “Same precedence rule as yesterday, now across project, folder, page, and cell.”</li>
+<li><strong>Do not re-teach:</strong> widen the rule only.</li>
 </ul>
 <style type="text/css">
         span.MJX_Assistive_MathML {
@@ -358,7 +360,7 @@ Christophe Dervieux
 <p>Today’s lab project is flat (a couple of pages at the root), so there’s no folder to scope. Reach for <code>_metadata.yml</code> when a <strong>subfolder</strong> of pages shares options.</p>
 </div></aside></section>
 <section id="websites" class="slide level2">
-<h2>Websites — pages &amp; navigation</h2>
+<h2>Websites: pages and navigation</h2>
 <p>You already set <code>type: website</code>, which makes the folder a <strong>site</strong>: its pages share one navbar and sidebar. You describe that navigation once, and Quarto builds it:</p>
 <div class="code-with-filename">
 <div class="code-with-filename-file">
@@ -380,12 +382,13 @@ Christophe Dervieux
 <div class="fragment">
 <p><code>contents: auto</code> even builds the sidebar from the folder, so you don’t hand-list pages.</p>
 
+<p><strong>Learn more:</strong> <a href="https://quarto.org/docs/websites/">Websites</a> · <a href="https://quarto.org/docs/websites/website-listings.html">Listings</a></p>
 <aside class="notes">
 <ul>
-<li><strong>Do:</strong> add the <code>website:</code> block live — navbar + sidebar — render, show the nav appear.</li>
-<li><strong>Say:</strong> “You declare the nav once: the navbar you list, the sidebar <code>contents: auto</code> builds from the files — Quarto generates both.”</li>
-<li><strong>Say (sets up next slide):</strong> “each page renders on its own — that independence is exactly why cross-refs behave differently across pages.”</li>
-<li><strong>Helpers:</strong> flag the classic trap now — links are relative to the <em>source</em>, not <code>_site</code> — so they meet it before the lab.</li>
+<li><strong>Do:</strong> add navbar and sidebar; render and show navigation.</li>
+<li><strong>Say:</strong> “List navbar entries, or let <code>contents: auto</code> build a sidebar.”</li>
+<li><strong>Next:</strong> independent pages explain the cross-reference rule.</li>
+<li><strong>Watch for:</strong> links are relative to source files, not <code>_site</code>.</li>
 </ul>
 <style type="text/css">
         span.MJX_Assistive_MathML {
@@ -438,9 +441,11 @@ Christophe Dervieux
 </div>
 </div>
 </div>
+<p><strong>Learn more:</strong> <a href="https://quarto.org/docs/authoring/cross-references.html">Cross-references</a> · <a href="https://quarto.org/docs/books/book-crossrefs.html">Book cross-references</a></p>
 <aside class="notes">
 <ul>
-<li><strong>Pre-flight (not spoken):</strong> if unsure on your installed Quarto, test one cross-page <code>@fig-</code> before the session — historically a website does not resolve it. Keep that check off the slide.</li>
+<li><strong>Before session:</strong> confirm that a website does not resolve a cross-page <code>@fig-</code> reference.</li>
+<li><strong>If asked — does <code>@sec-</code> need <code>number-sections: true</code>?</strong> No.&nbsp;The reference resolves either way (verified, Quarto 1.10). The option adds the number on the heading, which is why the docs pair them. This site sets it in <code>_quarto.yml</code>, so a demo here shows numbers a participant’s own bare document will not.</li>
 </ul>
 <style type="text/css">
         span.MJX_Assistive_MathML {
@@ -479,20 +484,19 @@ Christophe Dervieux
 <ul>
 <li><strong>Every page and every deck</strong> inherits it from that one root file, so you never name it in a page.</li>
 <li>Add a page later? Branded on render, nothing to wire up.</li>
-<li>Need an exception? <code>brand: false</code> opts a page out; <code>brand: other.yml</code> points it elsewhere.</li>
+<li>Need an exception? <code>brand: false</code> opts a page out. <code>brand: other.yml</code> points it elsewhere.</li>
 </ul>
+<p><img data-src="../images/brand-yml-wide-color.svg" alt="" width="300"></p>
 </div></div>
+<p><strong>Learn more:</strong> <a href="https://quarto.org/docs/authoring/brand.html">Quarto brand</a> · <a href="https://posit-dev.github.io/brand-yml/">brand.yml spec</a></p>
 <aside class="notes">
 <ul>
-<li><strong>Callback (don’t re-derive):</strong> they saw this file yesterday, branding the PDF. Today’s <em>new</em> angle is <strong>scale</strong> — one root file themes the whole multi-page project. Widen the scope; don’t re-teach the file.</li>
-<li><strong>Hold back the theme-layer rule.</strong> It used to be an aside on this slide. It is now the lab’s brand step (Part 1, “Brand it”): they add <code>_brand.yml</code>, the fonts change, the colors don’t, and working out why is the exercise. Saying “<code>brand</code> goes last, later layers win” here turns that step back into transcription. If someone asks outright, answer with the question instead: “what order do you think Quarto puts them in?”</li>
-<li><strong>Do:</strong> show the site before / after dropping <code>_brand.yml</code> at the root — navbar + links go teal in one re-render. <strong>Check your demo project first:</strong> a bare <code>theme: cosmo</code> outranks the brand and the demo shows nothing. The theme list needs <code>brand</code> last (<code>theme: [cosmo, brand]</code>), or no <code>theme:</code> at all. Fix it silently before the session; don’t narrate the fix.</li>
-<li><strong>Say:</strong> “You saw this yesterday. Put it at the project root and every page <em>and</em> deck inherits it — brand once, not per file.”</li>
-<li><strong>R plots (only if asked):</strong> a plot still needs <code>theme_brand_ggplot2()</code> — same as yesterday; the lab’s stretch covers it.</li>
-<li><strong>Escape hatch (if asked):</strong> <code>brand: false</code> opts a page out; <code>brand: other.yml</code> points it elsewhere — the default brands everything, these are the overrides.</li>
-<li><strong>Precision:</strong> “every page/deck” = every <em>supported-format</em> output (html, revealjs, typst, dashboard); an unsupported format just isn’t branded — don’t say “every output”.</li>
-<li><strong>Placement:</strong> this is Part-1 project config, not the Part-2 tail.</li>
-<li><strong>Helpers:</strong> the lab installs <code>brand.yml</code> with <code>install.packages()</code> (not <code>pak</code>).</li>
+<li><strong>Focus:</strong> one root <code>_brand.yml</code> scales yesterday’s PDF branding to the project.</li>
+<li><strong>Do:</strong> show the site before/after adding <code>_brand.yml</code>.</li>
+<li><strong>Say:</strong> “Brand once at the project root, not once per page.”</li>
+<li><strong>Do not reveal:</strong> theme-layer order; it is the lab exercise.</li>
+<li><strong>Before session:</strong> demo uses <code>[cosmo, brand]</code> or no named theme.</li>
+<li><strong>If asked:</strong> plots need <code>theme_brand_ggplot2()</code>; <code>brand: false</code> opts out.</li>
 </ul>
 <style type="text/css">
         span.MJX_Assistive_MathML {
@@ -526,16 +530,12 @@ Christophe Dervieux
 <p>You can now structure files into a branded, navigable <strong>website</strong>. After the break we make its builds reproducible and <strong>ship</strong> it.</p>
 <aside class="notes">
 <ul>
-<li><strong>Say (handoff):</strong> “Over to you — Website Challenge, five steps: make it a project, build the navigation, brand it, scope options to a folder, and a listing if you get there. ~45 min, then we break — back at 15:30. Helpers are around.”</li>
-<li><strong>Say (how the lab reads now):</strong> “Each step tells you what you should <em>see</em> before it tells you anything else, so you can check yourself. Under that are hints that open one at a time — the first is a question, then the mechanism, then the answer. Try the question before you open the answer.”</li>
-<li><strong>Trigger questions — ask the room out loud, don’t wait for hands.</strong> These are the beats where the step is meant to click, roughly every five minutes:
-<ul>
-<li>after the first step: “where did your HTML go <em>before</em> you added <code>_quarto.yml</code>, and where does it go now? What decided that?”</li>
-<li>during the brand step (<strong>the productive-failure beat</strong>): “the type changed but the navbar didn’t. What does that tell you about how <code>theme:</code> and the brand combine?” Let them sit with it. The “you should see” box already told them the first result is expected, so nobody thinks they broke it.</li>
-<li>after the folder step: “you didn’t edit a single <code>.qmd</code>. So where did that option come from?”</li>
-</ul></li>
-<li><strong>Helpers:</strong> first thing to check — are they working <strong>inside <code>day2-projects/</code></strong> with their new <code>_quarto.yml</code>, so <code>quarto render</code> builds the project (not a stray single page)? (Secondary: page links are source-relative, not <code>_site</code>.) Anyone behind can open the shipped <code>solutions/day2/</code> — a finished Part-1 site — and start Part 2 clean.</li>
-<li><strong>Less is handed over now, so expect more hands.</strong> Point at the hint ladder rather than answering: “open the second hint” is usually enough, and it keeps one presenter serving the room from the front.</li>
+<li><strong>Say:</strong> “Website Challenge: project, navigation, brand, folder options, then an optional listing. You have 45 minutes; we meet at 15:30.”</li>
+<li><strong>Ask:</strong> “Where did the HTML move?”</li>
+<li><strong>Ask:</strong> “The font changed but the navbar did not. Why?”</li>
+<li><strong>Ask:</strong> “You edited no <code>.qmd</code>; where did the option come from?”</li>
+<li><strong>Watch for:</strong> wrong working folder; rendering one file; links aimed at <code>_site</code>.</li>
+<li><strong>Catch-up:</strong> <code>solutions/day2/</code>.</li>
 </ul>
 <style type="text/css">
         span.MJX_Assistive_MathML {
@@ -550,13 +550,12 @@ Christophe Dervieux
       }</style></aside>
 </section></section>
 <section>
-<section id="part-2-scale-ship" class="title-slide slide level1 center">
-<h1>Part 2 — Scale &amp; ship</h1>
+<section id="part-2-scale-and-publish" class="title-slide slide level1 center">
+<h1>Part 2: Scale and publish</h1>
 <p>Make builds reproducible, then publish: how your team ships its project.</p>
 <aside class="notes">
 <ul>
-<li><strong>Welcome back</strong> (after the break): “Before the break you built a branded, navigable site. Now we make its builds <em>reproducible</em> — freeze + renv — then ship it.”</li>
-<li>One-sentence recap; don’t re-teach Part 1.</li>
+<li><strong>Say:</strong> “You built the site. Now make its builds reproducible, then publish it.”</li>
 </ul>
 <style type="text/css">
         span.MJX_Assistive_MathML {
@@ -571,7 +570,7 @@ Christophe Dervieux
       }</style></aside>
 </section>
 <section id="freeze" class="slide level2">
-<h2>Freeze — don’t re-run the slow stuff</h2>
+<h2>Freeze: skip unchanged computations</h2>
 <div title="Follow along">
 <div class="callout callout-note callout-titled callout-style-default">
 <div class="callout-body">
@@ -587,24 +586,23 @@ Christophe Dervieux
 </div>
 </div>
 </div>
-<p><strong>freeze</strong> was one line in Day 1. Here it is in full. Compute can be slow: you don’t want every prose edit to re-run a 20-minute model fit. Two tools, easily confused:</p>
+<p><strong>freeze</strong> was one line in Day 1. Compute can be slow: you don’t want every prose edit to re-run a 20-minute model fit. Two tools, easily confused:</p>
 <ul>
-<li class="fragment"><strong><code>cache</code></strong> — the <strong>compute engine’s</strong> cache, not Quarto’s: it defers to <em>knitr</em> (R) / <em>Jupyter Cache</em>. Per-<strong>cell</strong>, kept until that cell’s code changes, and it works in a <strong>single document</strong>.</li>
-<li class="fragment"><strong><code>freeze</code></strong> — <strong>Quarto’s</strong> own switch, <em>not</em> about compute: it sets <em>when</em> a document re-executes. <strong>Project-only</strong>: rendering one file always runs it. Results live in <code>_freeze/</code>, refreshed only when its source changes. Commit it and <strong>CI</strong> <em>(the automated build)</em> rebuilds with <strong>no R at all</strong>.</li>
+<li class="fragment"><strong><code>cache</code></strong>: the <strong>compute engine’s</strong> cache, not Quarto’s. It defers to <em>knitr</em> (R) or <em>Jupyter Cache</em>. Per-<strong>cell</strong>, kept until that cell’s code changes, and it works in a <strong>single document</strong>.</li>
+<li class="fragment"><strong><code>freeze</code></strong>: <strong>Quarto’s</strong> switch for when a document re-executes. <strong>Project-only</strong>: rendering one file always runs it. Results live in <code>_freeze/</code>, refreshed only when its source changes. Commit it and <strong>CI</strong> <em>(the automated build)</em> rebuilds with <strong>no R at all</strong>.</li>
 </ul>
 <div class="fragment">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb6-1"><a aria-label="1"></a><span class="co"># _quarto.yml</span></span>
 <span id="cb6-2"><a aria-label="2"></a><span class="fu">execute</span><span class="kw">:</span></span>
 <span id="cb6-3"><a aria-label="3"></a><span class="at">  </span><span class="fu">freeze</span><span class="kw">:</span><span class="at"> auto</span><span class="co">        # re-execute a document only when its source changes</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>That’s <code>freeze: auto</code>, the setting to adopt: a page re-runs only when its own source changes. <strong><code>freeze: true</code></strong> hands you full control instead → next slide.</p>
+<p><strong><code>freeze: auto</code></strong> is the setting to adopt. <strong><code>freeze: true</code></strong> hands you full control instead.</p>
 <aside class="notes">
 <ul>
-<li><strong>Say (motivation):</strong> “Compute can be slow — you don’t want a prose typo to re-run a 20-minute model fit.” <em>(Localize to the room: a sequence alignment, a long MCMC, a big simulation.)</em></li>
-<li><strong>Do:</strong> the contrast is the point — <strong>cache</strong> = the <em>engine’s</em> cache (knitr for R / Jupyter Cache), per-cell, works in a single doc; <strong>freeze</strong> = <em>Quarto’s</em> switch, project-only, re-executes a doc only when its source changes. (Verified vs quarto.org <code>docs/projects/code-execution.html</code>.) Protect this distinction.</li>
-<li><strong>Do:</strong> show <code>freeze: auto</code> in <code>_quarto.yml</code>; “re-runs a page only when <em>that page</em> changed.”</li>
-<li><strong>If asked — why not just cache everything?</strong> cache is per-cell and can go stale across a shared repo; freeze commits whole-document results for reproducible, R-free CI rebuilds. Different jobs.</li>
-<li><strong>Say (payoff):</strong> commit <code>_freeze/</code> and <strong>CI</strong> <em>(a build that runs on every push)</em> rebuilds the site with <strong>no R at all</strong>.</li>
-<li><strong>Teaser:</strong> the next slide is <code>freeze: true</code> — the render-on-demand workflow.</li>
+<li><strong>Say:</strong> “A prose edit should not rerun a 20-minute model.”</li>
+<li><strong>Contrast:</strong> cache = engine, per cell; freeze = Quarto, per document, project only.</li>
+<li><strong>Do:</strong> add <code>freeze: auto</code>; change one page and render.</li>
+<li><strong>Payoff:</strong> commit <code>_freeze/</code>; CI can build without R.</li>
+<li><strong>Next:</strong> <code>freeze: true</code> gives manual control.</li>
 </ul>
 <style type="text/css">
         span.MJX_Assistive_MathML {
@@ -620,8 +618,8 @@ Christophe Dervieux
 </div>
 </section>
 <section id="freeze-workflow" class="slide level2">
-<h2>The freeze workflow — you hold the trigger</h2>
-<p>With <strong><code>freeze: true</code></strong>, a project build <strong>never runs R</strong>: it always reuses <code>_freeze/</code>. You refresh a page only when you choose to, by rendering that one file (a single-file render always executes):</p>
+<h2>The <code>freeze: true</code> workflow</h2>
+<p>With <strong><code>freeze: true</code></strong>, a project build <strong>reuses <code>_freeze/</code> even when the source changed</strong>. You refresh a page when you choose to, by rendering that one file (a single-file render always executes):</p>
 <div class="code-with-filename">
 <div class="code-with-filename-file">
 <pre><strong>_quarto.yml</strong></pre>
@@ -631,17 +629,17 @@ Christophe Dervieux
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a aria-label="1"></a><span class="ex">quarto</span> render analysis.qmd     <span class="co"># runs the code, rewrites _freeze/ — commit it with your change</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="fragment">
-<p>The loop: <strong>edit a page → render that one file → commit <code>_freeze/</code></strong>. The project build and <strong>CI</strong> stay <strong>R-free</strong>: only the page you touched recomputes. That’s exactly how <strong>quarto.org</strong> itself is built.</p>
+<p>The loop: <strong>edit a page → render that one file → commit <code>_freeze/</code></strong>. Once every page has been frozen once, the project build and <strong>CI</strong> stay <strong>R-free</strong>. That’s exactly how <strong>quarto.org</strong> itself is built.</p>
 </div>
 <div class="fragment">
-<p><code>freeze: auto</code> instead lets the <em>build</em> recompute any changed (or not-yet-frozen) page. Convenient, but <code>true</code> keeps the trigger in your hands.</p>
+<p><code>freeze: auto</code> instead lets the <em>build</em> recompute a page whose source changed. Convenient, but <code>true</code> keeps the trigger in your hands.</p>
 <aside class="notes">
 <ul>
-<li><strong>Anchor (real):</strong> quarto.org runs <code>freeze: true</code> — verified in <code>quarto-dev/quarto-web/_quarto.yml</code>; contributors render the changed file locally and commit <code>_freeze/</code>, enforced by a <code>check-freeze.sh</code> git hook — the <em>same</em> discipline this workshop repo uses.</li>
-<li><strong>Say:</strong> “true = the build never runs R; <em>you</em> decide when a page recomputes, by rendering it directly.”</li>
-<li><strong>Do:</strong> edit a cell on <code>analysis.qmd</code> → <code>quarto render analysis.qmd</code> → show <code>_freeze/</code> change + the timestamp tick; a full project render leaves it untouched.</li>
-<li><strong>Contrast (lab uses <code>auto</code>):</strong> <code>auto</code> = the build recomputes changed pages for you (the setting you want, what the lab sets); <code>true</code> = deterministic CI + manual refresh (the CI mode).</li>
-<li><strong>If asked:</strong> a <code>production</code> render profile can set <code>freeze: false</code> to force a full re-execution.</li>
+<li><strong>Say:</strong> “With <code>true</code>, only a direct document render recomputes the page.”</li>
+<li><strong>Precision — don’t say “never runs R”.</strong> A page with no <code>_freeze/</code> entry still executes, and so does a brand-new page added to the project (checked on Quarto 1.10). What <code>true</code> buys is that an <strong>edited</strong> page is not recomputed by the build. “R-free” is the steady state, once every page has been frozen once.</li>
+<li><strong>Do:</strong> edit <code>analysis.qmd</code>; render that file; show <code>_freeze/</code> change. Then render the project.</li>
+<li><strong>Contrast:</strong> <code>auto</code> recomputes changed pages; <code>true</code> requires manual refresh.</li>
+<li><strong>Example:</strong> quarto.org uses <code>true</code> and commits <code>_freeze/</code>.</li>
 </ul>
 <style type="text/css">
         span.MJX_Assistive_MathML {
@@ -662,7 +660,7 @@ Christophe Dervieux
 <div class="columns">
 <div class="column" style="width:50%;">
 <ul>
-<li><strong><code>freeze</code></strong> → <code>_freeze/</code> — <em>“don’t re-run the slow compute.”</em></li>
+<li><strong><code>freeze</code></strong> → <code>_freeze/</code>: do not repeat slow computation.</li>
 <li><strong><code>renv.lock</code></strong> → <em>“pin the packages, so the team rebuilds the same environment.”</em></li>
 </ul>
 </div><div class="column" style="width:50%;">
@@ -671,10 +669,11 @@ Christophe Dervieux
 <span id="cb9-3"><a aria-label="3"></a>renv<span class="sc">::</span><span class="fu">restore</span>()    <span class="co"># rebuild the same env</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div></div>
 <p>Together: a colleague (or CI) rebuilds the <em>same</em> site, with or without re-running the analysis.</p>
+<p><strong>Learn more:</strong> <a href="https://rstudio.github.io/renv/">renv</a></p>
 <aside class="notes">
 <ul>
-<li><strong>Timing:</strong> renv is the first thing to drop if short on time — the cache-vs-freeze contrast is the point of this beat, protect that.</li>
-<li><strong>Say:</strong> “freeze pins the <em>results</em>; renv.lock pins <em>what produced them</em> — the package versions. You want both.”</li>
+<li><strong>Say:</strong> “freeze pins results; <code>renv.lock</code> pins package versions.”</li>
+<li><strong>Timing:</strong> drop this first if short.</li>
 </ul>
 <style type="text/css">
         span.MJX_Assistive_MathML {
@@ -715,11 +714,10 @@ Christophe Dervieux
 </div>
 <aside class="notes">
 <ul>
-<li><strong>Do:</strong> show it live on this repo (<code>quarto publish posit-connect-cloud</code>). It is one command and a browser sign-in, so it <em>is</em> watchable, unlike a Pages build.</li>
-<li><strong>Say:</strong> “You already made the thing you publish. <code>_site/</code> is the deliverable — this just puts it on a URL.”</li>
-<li><strong>Prerequisite (say it early, on Day 1 if you remember):</strong> a free Posit account. Anyone without one skips this and loses nothing.</li>
-<li><strong>Why not GitHub Pages:</strong> we never taught git or GitHub, and the whole setup is built on not needing them (<code>use_course()</code>). Connect Cloud needs no repository.</li>
-<li><strong>If asked about automation:</strong> yes, this can rebuild on a schedule or from a repo. That is the same CI story as the freeze beat, and it is a pointer, not a demo.</li>
+<li><strong>Do:</strong> run <code>quarto publish posit-connect-cloud</code> and show browser sign-in.</li>
+<li><strong>Say:</strong> “<code>_site/</code> is the deliverable. This command puts it on a URL.”</li>
+<li><strong>Mention:</strong> free Posit account required; skipping loses nothing.</li>
+<li><strong>If asked:</strong> scheduled and repository builds are also available.</li>
 </ul>
 <style type="text/css">
         span.MJX_Assistive_MathML {
@@ -745,23 +743,18 @@ Christophe Dervieux
 <p><strong>Your turn — regroup in ~45 min</strong></p>
 </div>
 <div class="callout-content">
-<p>Back to the <strong><a href="../../labs/quarto-projects/index.html#ship-it-challenge">Lab</a></strong>, the <strong>Ship it Challenge</strong>: make the build skip unchanged pages, bring <strong>yesterday’s report</strong> onto the site, and turn the analysis into a <strong>dashboard</strong>. Putting it online is the optional last step.</p>
+<p>Back to the <strong><a href="../../labs/quarto-projects/index.html#ship-it-challenge">Lab</a></strong>, the <strong>Reproducible Build Challenge</strong>: make the build skip unchanged pages, bring <strong>yesterday’s report</strong> onto the site, and turn it into a publishable <code>_site/</code> folder. The dashboard demo and publishing are optional.</p>
 </div>
 </div>
 </div>
 </div>
 <aside class="notes">
 <ul>
-<li><strong>Say (handoff):</strong> “Last part — Ship it Challenge. Make the build stop re-running everything, then bring yesterday’s report onto the site, then turn the analysis into a dashboard. Putting it online at the end is optional. ~45 min; helpers are around.”</li>
-<li><strong>Trigger questions — ask the room out loud:</strong>
-<ul>
-<li>on the freeze step, the one that matters: “<strong>how would you prove the code didn’t re-run?</strong>” The lab deliberately withholds the timestamp trick, because inventing the tell <em>is</em> the lesson. Give them a minute before you accept an answer.</li>
-<li>on cache versus freeze: “where does each one write its results, and would you commit that folder?” Everything else follows from that.</li>
-<li>on the dashboard: “nothing about your R changed here. So what did?”</li>
-</ul></li>
-<li><strong>The Day-1 step is the payoff of the two days</strong> — when someone’s report opens as a page of their own site, say so out loud. That is “one document, one project” stopping being a claim.</li>
-<li><strong>Fast finishers:</strong> point them at the optional publish. It depends on nothing downstream, so it costs nothing to skip and nothing to attempt.</li>
-<li><strong>Helpers:</strong> the tell that freeze is working — the <em>second</em> project render doesn’t re-execute the page at all (no chunk output scrolls by); the compute is served from <code>_freeze/</code>. Behind? Open the shipped <code>solutions/day2/</code> project and start from there.</li>
+<li><strong>Say:</strong> “Reproducible Build Challenge: freeze the build and add yesterday’s report. You have 45 minutes.”</li>
+<li><strong>Ask:</strong> “How can you prove the code did not run?”</li>
+<li><strong>Ask:</strong> “Where do cache and freeze write results? Which folder do you commit?”</li>
+<li><strong>Celebrate:</strong> the Day-1 report becoming a site page.</li>
+<li><strong>Catch-up:</strong> <code>solutions/day2/</code>; fast finishers inspect the dashboard or publish.</li>
 </ul>
 <style type="text/css">
         span.MJX_Assistive_MathML {
@@ -779,16 +772,15 @@ Christophe Dervieux
 <h2>What you can do now</h2>
 <p>You can now:</p>
 <ul>
-<li>structure <code>.qmd</code> into a <strong>project</strong> — <code>_quarto.yml</code>, <code>output-dir</code>, <code>_metadata.yml</code>;</li>
-<li>build a <strong>branded website</strong> with navigation, and know why cross-page refs differ from a book;</li>
-<li>make builds <strong>reproducible</strong> (<code>freeze</code> + <code>renv.lock</code>), produce a <strong>publishable <code>_site/</code></strong> for a host or CI, and put it online;</li>
-<li>arrange the same results as a <strong>dashboard</strong>.</li>
+<li>structure <code>.qmd</code> files into a <strong>project</strong> with <code>_quarto.yml</code>, <code>output-dir</code>, and <code>_metadata.yml</code>.</li>
+<li>build a <strong>branded website</strong> with navigation and explain why cross-page references differ from a book.</li>
+<li>make builds <strong>reproducible</strong> (<code>freeze</code> + <code>renv.lock</code>), produce a <strong>publishable <code>_site/</code></strong> for a host or CI, and put it online.</li>
 </ul>
 <div class="fragment">
 <p><strong>You’ve built the two axes:</strong> one document to a branded PDF (Day 1), one folder to a published site (Day 2), with yesterday’s report now a page of it. Everything your <strong>team project</strong> needs.</p>
 <aside class="notes">
 <ul>
-<li><strong>Close on the report:</strong> the strongest line here is that the document they wrote yesterday is a page of the site they built today. Everything else on this slide is machinery.</li>
+<li><strong>Close with:</strong> “Yesterday’s document is now a page of today’s site.”</li>
 </ul>
 <style type="text/css">
         span.MJX_Assistive_MathML {
@@ -807,13 +799,13 @@ Christophe Dervieux
 <h2>Demos (if time)</h2>
 <p>Extra topics:</p>
 <ul>
-<li class="fragment"><strong>Book versus website</strong> — mostly the same machinery. Pick a <strong>book</strong> when you need one linear read with global numbering, a <strong>website</strong> otherwise. <em>(1 decision, not a new toolset.)</em></li>
-<li class="fragment"><strong>Interactivity</strong> — an <strong>htmlwidget</strong> (<code>plotly</code>, <code>leaflet</code>) is pure R and self-contained. <strong>OJS</strong> <em>(Observable JS, a browser-side, non-R path)</em> and <strong>Shinylive</strong> <em>(Shiny running in the browser, no server)</em> are links, not live builds.</li>
+<li class="fragment"><strong>Book versus website</strong>: mostly the same machinery. Pick a <strong>book</strong> when you need one linear read with global numbering, a <strong>website</strong> otherwise. <em>(1 decision, not a new toolset.)</em></li>
+<li class="fragment"><strong>Interactivity</strong>: an <strong>htmlwidget</strong> (<code>plotly</code>, <code>leaflet</code>) is pure R and self-contained. <strong><a href="https://quarto.org/docs/interactive/ojs/">OJS</a></strong> <em>(Observable JS, a browser-side, non-R path)</em> and <strong><a href="https://quarto-ext.github.io/shinylive/">Shinylive</a></strong> <em>(Shiny running in the browser, no server)</em> are links, not live builds.</li>
 </ul>
 <aside class="notes">
 <ul>
-<li><strong>Timing:</strong> cut-able tail — trim from the bottom if under ~5 min left; all watch-me, nothing built live.</li>
-<li><strong>Dashboards used to be a bullet here.</strong> They are now a lab step (Part 2, “Ship a dashboard”), so this slide no longer covers them. If the room ran out of time and nobody got there, the rendered <a href="../../labs/quarto-projects/dashboard.html" target="_blank">dashboard</a> is still worth 30 seconds: name the four regions — two valueboxes across the top, a card with the boxplot, and a two-tab panel.</li>
+<li><strong>Timing:</strong> cut from the bottom if fewer than 5 minutes remain.</li>
+<li><strong>If dashboards were skipped:</strong> show the rendered dashboard for 30 seconds; name valueboxes, boxplot card, and tabbed panel.</li>
 </ul>
 <style type="text/css">
         span.MJX_Assistive_MathML {

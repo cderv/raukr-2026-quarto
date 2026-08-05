@@ -200,12 +200,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#scope-options-to-one-folder" id="toc-scope-options-to-one-folder" class="nav-link" data-scroll-target="#scope-options-to-one-folder"><span class="header-section-number">1.4</span> Scope options to one folder</a></li>
   <li><a href="#index-the-reports-stretch" id="toc-index-the-reports-stretch" class="nav-link" data-scroll-target="#index-the-reports-stretch"><span class="header-section-number">1.5</span> Index the reports <em>(stretch)</em></a></li>
   </ul></li>
-  <li><a href="#ship-it-challenge" id="toc-ship-it-challenge" class="nav-link" data-scroll-target="#ship-it-challenge"><span class="header-section-number">2</span> Ship it Challenge</a>
+  <li><a href="#ship-it-challenge" id="toc-ship-it-challenge" class="nav-link" data-scroll-target="#ship-it-challenge"><span class="header-section-number">2</span> Reproducible Build Challenge</a>
   <ul>
   <li><a href="#make-the-build-skip-unchanged-pages" id="toc-make-the-build-skip-unchanged-pages" class="nav-link" data-scroll-target="#make-the-build-skip-unchanged-pages"><span class="header-section-number">2.1</span> Make the build skip unchanged pages</a></li>
-  <li><a href="#cache-versus-freeze" id="toc-cache-versus-freeze" class="nav-link" data-scroll-target="#cache-versus-freeze"><span class="header-section-number">2.2</span> <code>cache</code> versus <code>freeze</code></a></li>
+  <li><a href="#discuss-together-cache-versus-freeze" id="toc-discuss-together-cache-versus-freeze" class="nav-link" data-scroll-target="#discuss-together-cache-versus-freeze"><span class="header-section-number">2.2</span> Discuss together: <code>cache</code> versus <code>freeze</code></a></li>
   <li><a href="#put-your-day-1-report-on-the-site" id="toc-put-your-day-1-report-on-the-site" class="nav-link" data-scroll-target="#put-your-day-1-report-on-the-site"><span class="header-section-number">2.3</span> Put your Day-1 report on the site</a></li>
-  <li><a href="#ship-a-dashboard" id="toc-ship-a-dashboard" class="nav-link" data-scroll-target="#ship-a-dashboard"><span class="header-section-number">2.4</span> Ship a dashboard</a></li>
+  <li><a href="#optional-demo-inspect-a-dashboard" id="toc-optional-demo-inspect-a-dashboard" class="nav-link" data-scroll-target="#optional-demo-inspect-a-dashboard"><span class="header-section-number">2.4</span> Optional demo: inspect a dashboard</a></li>
   <li><a href="#put-it-online-optional-and-a-good-place-to-stop" id="toc-put-it-online-optional-and-a-good-place-to-stop" class="nav-link" data-scroll-target="#put-it-online-optional-and-a-good-place-to-stop"><span class="header-section-number">2.5</span> Put it online <em>(optional, and a good place to stop)</em></a></li>
   </ul></li>
   <li><a href="#troubleshooting" id="toc-troubleshooting" class="nav-link" data-scroll-target="#troubleshooting"><span class="header-section-number">3</span> Troubleshooting</a></li>
@@ -245,8 +245,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># work inside your day2-projects/ folder, not here. This cell is not step zero.</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(penguins)</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>penguins <span class="ot">&lt;-</span> penguins <span class="sc">|&gt;</span> <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(bill_len), <span class="sc">!</span><span class="fu">is.na</span>(bill_dep), <span class="sc">!</span><span class="fu">is.na</span>(body_mass))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggokabeito)   <span class="co"># color-blind-safe (Okabe-Ito) scale, same as Day 1</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(penguins)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>penguins <span class="ot">&lt;-</span> penguins <span class="sc">|&gt;</span> <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(bill_len), <span class="sc">!</span><span class="fu">is.na</span>(bill_dep), <span class="sc">!</span><span class="fu">is.na</span>(body_mass))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -258,32 +259,32 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Turn a set of <code>.qmd</code> into a Quarto <strong>project</strong>: a navigable, <strong>branded website</strong>, then make its builds reproducible with <strong>freeze</strong> and render it to a publishable folder. Two challenges, one project: each is its own hands-on part, with a break between them. Putting the site online is an <strong>optional last step</strong> (Posit Connect Cloud, free account, no repository), so the folder is what everyone leaves with. Everything runs on base-R <code>datasets::penguins</code> (R ≥ 4.5), so there’s no data to download.</p>
+<p>Turn a set of <code>.qmd</code> files into a navigable, <strong>branded website</strong>. Then use <strong>freeze</strong> for reproducible builds and render the site to a publishable folder. Publishing online is optional. Everything uses base-R <code>datasets::penguins</code> (R ≥ 4.5).</p>
 <p><strong>Before you start:</strong> work through the <strong><a href="../../setup.html">Setup page</a></strong> if you haven’t. Its <code>00-check-setup.R</code> confirms R, Quarto, and the packages this lab uses. The optional branded-plot stretch also uses <code>brand.yml</code>.</p>
 </div>
 </div>
-<p><strong>Starting point: a shipped set of pages.</strong> You don’t start from a blank folder. Open your <strong><code>day2-projects/</code></strong> folder from the exercises download (double-click <code>day2-projects.Rproj</code>, see the <a href="../../setup.html#get-the-materials">Setup page</a>). It holds four content pages that already render on their own but are <strong>not yet a project</strong>:</p>
+<p><strong>Starting point.</strong> Open your <strong><code>day2-projects/</code></strong> folder from the exercises download (double-click <code>day2-projects.Rproj</code>, see the <a href="../../setup.html#get-the-materials">Setup page</a>). It holds four content pages that already render on their own but are <strong>not yet a project</strong>:</p>
 <ul>
 <li><code>index.qmd</code> — a home page</li>
 <li><code>analysis.qmd</code> — a penguins analysis with a figure and a table</li>
 <li><code>reports/methods.qmd</code> and <code>reports/data-notes.qmd</code> — two short supporting pages, in their own folder because you will treat that folder differently later on</li>
 </ul>
-<p>Render one page to confirm it works: <code>quarto render analysis.qmd</code> gives a normal HTML page (<code>analysis.html</code> right next to its source), since the folder isn’t a project <em>yet</em>. Your job across the two challenges is to make it a <em>site</em>, then ship it. Everything you render lands inside <code>day2-projects/</code>. There’s no project folder above it, so nothing redirects your output. A finished reference is in <strong><code>solutions/day2/</code></strong> if you get stuck or fall behind.</p>
+<p>Render one page to confirm it works: <code>quarto render analysis.qmd</code> creates <code>analysis.html</code> next to its source. A finished reference is in <strong><code>solutions/day2/</code></strong>.</p>
 <section id="website-challenge" class="level2 page-columns page-full" data-number="1">
 <h2 data-number="1" class="anchored" data-anchor-id="website-challenge"><span class="header-section-number">1</span> Website Challenge</h2>
 <blockquote class="blockquote">
 <p><strong>Goal:</strong> turn the <code>day2-projects/</code> pages into a navigable, <strong>branded website</strong> that renders locally to a <code>_site/</code> folder.</p>
 </blockquote>
-<p>Five steps, each one a task rather than a block of YAML to copy. Every step states what you should see <em>before</em> you start, so you can tell for yourself when you are done. If you get stuck, open the hints in order: the first one is a question to ask yourself, the second names the mechanism, and the last one is the answer.</p>
+<p>Complete the four core steps below. The listing is a stretch task. Each step includes a checkpoint, a hint, and a solution.</p>
 
 <div class="no-row-height column-margin column-container"><div class="">
 <p><i class="fa-solid fa-book-open" aria-label="book-open"></i> <strong>Quarto docs</strong></p>
 <p><a href="https://quarto.org/docs/websites/">Websites</a> · <a href="https://quarto.org/docs/projects/quarto-projects.html">Projects</a> · <a href="https://quarto.org/docs/authoring/brand.html">Brand</a></p>
-</div></div><p><strong>The <code>solutions/day2/</code> folder is a reference, not a checklist.</strong> The complete, known-good project lives there in your exercises download. Open it to compare at any point, or copy it wholesale if you fall behind.</p>
+</div></div><p>Use <strong><code>solutions/day2/</code></strong> to compare your work or complete missed steps.</p>
 <section id="make-it-a-project" class="level3" data-number="1.1">
 <h3 data-number="1.1" class="anchored" data-anchor-id="make-it-a-project"><span class="header-section-number">1.1</span> Make it a project</h3>
 <p><strong>Goal.</strong> Make Quarto treat <code>day2-projects/</code> as one project, so that a single command builds every page in it into an output folder.</p>
-<p>Here is the stanza that declares a project. Where it goes, and how you then build the folder, is the work:</p>
+<p>This stanza declares a project. Where it goes, and how you then build the folder, is the work:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">project</span><span class="kw">:</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">type</span><span class="kw">:</span><span class="at"> website</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">output-dir</span><span class="kw">:</span><span class="at"> _site</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -297,7 +298,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>One command, run with <strong>no file argument</strong>, builds <strong>both</strong> pages at once, and the HTML lands in a new <code>day2-projects/_site/</code> folder instead of next to each <code>.qmd</code>. Before this step, rendering <code>analysis.qmd</code> put <code>analysis.html</code> right beside it.</p>
+<p>One command, run with <strong>no file argument</strong>, builds <strong>all four</strong> pages at once, and the HTML is written to a new <code>day2-projects/_site/</code> folder instead of next to each <code>.qmd</code>. Before this step, rendering <code>analysis.qmd</code> put <code>analysis.html</code> right beside it.</p>
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
@@ -306,35 +307,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Stuck? (1) — a question to ask yourself
+<span class="screen-reader-only">Tip</span>Hint
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
 <div id="callout-3" class="callout-3-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
+<p><strong>Ask yourself:</strong></p>
 <p>You have folders above <code>day2-projects/</code> and files inside it. Which one does Quarto look at to decide where a project starts, and in which direction does it search?</p>
-</div>
-</div>
-</div>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Stuck? (2) — the mechanism
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-4" class="callout-4-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
+<p><strong>Mechanism:</strong></p>
 <p>Quarto walks <strong>up</strong> from the file being rendered and stops at the <strong>nearest</strong> <code>_quarto.yml</code>. That file marks the project root. Nothing sits above <code>day2-projects/</code> in your download, so a <code>_quarto.yml</code> placed inside it makes that folder the project and nothing else can claim your pages.</p>
 <p>A <code>quarto render</code> with <strong>no file argument</strong> builds the whole project. <code>quarto render index.qmd</code> still builds just the one page.</p>
 </div>
 </div>
 </div>
 <div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -343,7 +331,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>Create <code>day2-projects/_quarto.yml</code>:</p>
 <div class="code-with-filename">
@@ -363,7 +351,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="build-the-navigation" class="level3" data-number="1.2">
 <h3 data-number="1.2" class="anchored" data-anchor-id="build-the-navigation"><span class="header-section-number">1.2</span> Build the navigation</h3>
 <p><strong>Goal.</strong> Give the site a title and a top navigation bar, so a reader can move between the two pages without editing the URL.</p>
-<p>Your pages are <code>index.qmd</code> (Home) and <code>analysis.qmd</code> (Analysis). Give the site the title <strong>Penguin Lab</strong>, and use the ready-made <strong>cosmo</strong> theme so it does not look like raw HTML.</p>
+<p>Add <code>index.qmd</code> (Home) and <code>analysis.qmd</code> (Analysis) to the navigation. Give the site the title <strong>Penguin Lab</strong>, and use the ready-made <strong>cosmo</strong> theme so it does not look like raw HTML.</p>
 <div class="callout callout-style-simple callout-note no-icon callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -392,40 +380,25 @@ Figure&nbsp;1: The analysis page’s figure: body mass by species.
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Stuck? (1) — a question to ask yourself
+<span class="screen-reader-only">Tip</span>Hint
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-7" class="callout-7-contents callout-collapse collapse">
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>The <code>project:</code> key configures the <em>build</em>. A navbar is not about building, it is about the site itself. What would you expect that second top-level key to be called, and what does each navbar entry need to know?</p>
-</div>
-</div>
-</div>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Stuck? (2) — the mechanism
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-8" class="callout-8-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
 <p>A <code>website:</code> key sits next to <code>project:</code> at the top level. It takes a <code>title:</code>, and a <code>navbar:</code> with a <code>left:</code> (or <code>right:</code>) list. Each entry is a pair: <code>href:</code> pointing at the <strong>source</strong> <code>.qmd</code> (not the built <code>.html</code>), and <code>text:</code> for the label.</p>
 <p>The theme is a <strong>format</strong> option, so it goes under <code>format: html:</code>.</p>
 </div>
 </div>
 </div>
 <div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -434,7 +407,7 @@ Figure&nbsp;1: The analysis page’s figure: body mass by species.
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-9" class="callout-9-contents callout-collapse collapse">
+<div id="callout-7" class="callout-7-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <div class="code-with-filename">
 <div class="code-with-filename-file">
@@ -461,7 +434,7 @@ Figure&nbsp;1: The analysis page’s figure: body mass by species.
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -470,7 +443,7 @@ Figure&nbsp;1: The analysis page’s figure: body mass by species.
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-10" class="callout-10-contents callout-collapse collapse">
+<div id="callout-8" class="callout-8-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>Swap the <code>navbar:</code> block for this, re-render, and compare:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">sidebar</span><span class="kw">:</span></span>
@@ -489,16 +462,16 @@ Figure&nbsp;1: The analysis page’s figure: body mass by species.
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Two things here are worth a moment, because they are the Day-1 rules meeting a multi-page site.</p>
+<p>The Day-1 rules now meet a multi-page site.</p>
 <p><code>index.qmd</code> already links to the analysis with a plain Markdown link, <code>[analysis](analysis.qmd)</code>. That is deliberate. <strong>Across</strong> pages there is no auto-numbering (that is a <em>book</em> feature, not a website one), so a plain link is how you connect website pages.</p>
-<p><strong>Within</strong> one page, yesterday’s rule still holds. Drop <code>@tbl-means</code> into a sentence on <code>analysis.qmd</code> and it resolves to <em>Table 1</em>, because the reference and its table share one page.</p>
+<p><strong>Within</strong> <code>analysis.qmd</code>, yesterday’s rule still holds: <code>@tbl-means</code> resolves to <em>Table 1</em> because the reference and table share one page.</p>
 </div>
 </div>
 </section>
 <section id="brand-it" class="level3" data-number="1.3">
 <h3 data-number="1.3" class="anchored" data-anchor-id="brand-it"><span class="header-section-number">1.3</span> Brand it</h3>
 <p><strong>Goal.</strong> Give the site one shared palette and typeface from a <code>_brand.yml</code>, the same file you met on Day 1.</p>
-<p>Here is the brand body. Getting it to actually take effect is the work:</p>
+<p>That is the brand body. Getting it to take effect is what you have to work out:</p>
 <div class="code-with-filename">
 <div class="code-with-filename-file">
 <pre><strong>day2-projects/_brand.yml</strong></pre>
@@ -524,45 +497,31 @@ Figure&nbsp;1: The analysis page’s figure: body mass by species.
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><strong>First, a surprise, and it is meant to happen.</strong> Add the file, re-render, and the <strong>type</strong> changes (the site is set in Albert Sans) while the <strong>colors do not</strong>: the navbar and links stay cosmo blue. Nothing is broken and you have not mistyped anything. Working out why is this step.</p>
-<p><strong>When you have solved it</strong>, the navbar and the links are teal. Headings keep the body color the whole time, so do not use them to check: <code>primary</code> colors the navbar and links, not headings. The plot keeps its default species colors too, because branding an R plot is a separate <code>brand.yml</code>-package step, out of scope today.</p>
+<p>After adding <code>_brand.yml</code>, the <strong>font changes</strong> but the navbar and links remain cosmo blue. This is expected. After correcting the theme order, the navbar and links become teal.</p>
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-13-contents" aria-controls="callout-13" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-11-contents" aria-controls="callout-11" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Stuck? (1) — a question to ask yourself
+<span class="screen-reader-only">Tip</span>Hint
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-13" class="callout-13-contents callout-collapse collapse">
+<div id="callout-11" class="callout-11-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
+<p><strong>Ask yourself:</strong></p>
 <p><code>theme:</code> takes a <strong>list</strong>, even when you write a single value. So Quarto is already combining something with your <code>cosmo</code>. If two layers both define a primary color, which one would you expect to end up on the page?</p>
-</div>
-</div>
-</div>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-14-contents" aria-controls="callout-14" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Stuck? (2) — the mechanism
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-14" class="callout-14-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<p><code>brand</code> is a theme <strong>layer</strong>, and it is the layer that reads your <code>_brand.yml</code>. A bare <code>theme: cosmo</code> expands to <code>[brand, cosmo]</code>, and <strong>later layers win</strong>, so cosmo’s palette lands on top of the brand’s and you get cosmo’s blue.</p>
+<p><strong>Mechanism:</strong></p>
+<p><code>brand</code> is a theme <strong>layer</strong>, and it is the layer that reads your <code>_brand.yml</code>. A bare <code>theme: cosmo</code> expands to <code>[brand, cosmo]</code>, and <strong>later layers win</strong>. Quarto applies cosmo’s palette after the brand palette, so the site uses cosmo blue.</p>
 <p>The fonts come through whichever way round you write it, which is exactly what makes this look like it worked.</p>
 </div>
 </div>
 </div>
 <div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-15-contents" aria-controls="callout-15" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-12-contents" aria-controls="callout-12" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -571,7 +530,7 @@ Figure&nbsp;1: The analysis page’s figure: body mass by species.
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-15" class="callout-15-contents callout-collapse collapse">
+<div id="callout-12" class="callout-12-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>Put <code>brand</code> <strong>last</strong> in the list:</p>
 <div class="code-with-filename">
@@ -605,40 +564,25 @@ Figure&nbsp;1: The analysis page’s figure: body mass by species.
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-17-contents" aria-controls="callout-17" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-14-contents" aria-controls="callout-14" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Stuck? (1) — a question to ask yourself
+<span class="screen-reader-only">Tip</span>Hint
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-17" class="callout-17-contents callout-collapse collapse">
+<div id="callout-14" class="callout-14-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>Project-wide options live in <code>_quarto.yml</code> at the project root. You want the same kind of option, but reaching one folder only. Where would you put a file so that Quarto applies it to that folder and nowhere else?</p>
-</div>
-</div>
-</div>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-18-contents" aria-controls="callout-18" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Stuck? (2) — the mechanism
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-18" class="callout-18-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
 <p>A <code>_metadata.yml</code> inside a folder applies to every document in that folder (and below it). Quarto merges it on top of the project defaults, so you write only what differs.</p>
-<p>It holds <strong>document</strong> options directly, without the <code>format:</code> wrapper you would need in <code>_quarto.yml</code>. The option that folds code is <code>code-fold</code>, and <code>code-summary</code> sets the toggle label.</p>
+<p>It takes the same <strong>document</strong> options you would write in <code>_quarto.yml</code>, so what differs is the reach, not the syntax. The option that folds code is <code>code-fold</code>, and <code>code-summary</code> sets the toggle label.</p>
 </div>
 </div>
 </div>
 <div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-19-contents" aria-controls="callout-19" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-15-contents" aria-controls="callout-15" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -647,7 +591,7 @@ Figure&nbsp;1: The analysis page’s figure: body mass by species.
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-19" class="callout-19-contents callout-collapse collapse">
+<div id="callout-15" class="callout-15-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>Create <code>day2-projects/reports/_metadata.yml</code>:</p>
 <div class="code-with-filename">
@@ -664,6 +608,7 @@ Figure&nbsp;1: The analysis page’s figure: body mass by species.
 </section>
 <section id="index-the-reports-stretch" class="level3" data-number="1.5">
 <h3 data-number="1.5" class="anchored" data-anchor-id="index-the-reports-stretch"><span class="header-section-number">1.5</span> Index the reports <em>(stretch)</em></h3>
+<p><em>Only start this after the four core steps work.</em></p>
 <p><strong>Goal.</strong> Put a table of the <code>reports/</code> pages on the home page, built by Quarto rather than typed by you, so that adding a page there shows up without editing <code>index.qmd</code>.</p>
 <p>Docs: <a href="https://quarto.org/docs/websites/website-listings.html">Website listings</a>.</p>
 <div class="callout callout-style-simple callout-note no-icon callout-titled">
@@ -680,33 +625,18 @@ Figure&nbsp;1: The analysis page’s figure: body mass by species.
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-21-contents" aria-controls="callout-21" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-17-contents" aria-controls="callout-17" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Stuck? (1) — a question to ask yourself
+<span class="screen-reader-only">Tip</span>Hint
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-21" class="callout-21-contents callout-collapse collapse">
+<div id="callout-17" class="callout-17-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>This is a property of one page, not of the whole site. So where does its configuration go, and how does the page say <em>which</em> documents to index?</p>
-</div>
-</div>
-</div>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-22-contents" aria-controls="callout-22" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Stuck? (2) — the mechanism
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-22" class="callout-22-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
 <p>A <code>listing:</code> key in the <strong>front matter of <code>index.qmd</code></strong> points at a folder with <code>contents:</code>. Give it an <code>id:</code>, then place the result where you want it on the page with an empty div carrying that id:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>::: {#reports}</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -715,7 +645,7 @@ Figure&nbsp;1: The analysis page’s figure: body mass by species.
 </div>
 </div>
 <div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-23-contents" aria-controls="callout-23" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-18-contents" aria-controls="callout-18" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -724,7 +654,7 @@ Figure&nbsp;1: The analysis page’s figure: body mass by species.
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-23" class="callout-23-contents callout-collapse collapse">
+<div id="callout-18" class="callout-18-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>In the front matter of <code>day2-projects/index.qmd</code>:</p>
 <div class="code-with-filename">
@@ -752,7 +682,7 @@ Figure&nbsp;1: The analysis page’s figure: body mass by species.
 </section>
 </section>
 <section id="ship-it-challenge" class="level2 page-columns page-full" data-number="2">
-<h2 data-number="2" class="anchored" data-anchor-id="ship-it-challenge"><span class="header-section-number">2</span> Ship it Challenge</h2>
+<h2 data-number="2" class="anchored" data-anchor-id="ship-it-challenge"><span class="header-section-number">2</span> Reproducible Build Challenge</h2>
 <blockquote class="blockquote">
 <p><strong>Goal:</strong> make the project’s builds <strong>reproducible</strong>, bring your own work onto the site, and render it all to a publishable <code>_site/</code> folder.</p>
 </blockquote>
@@ -769,7 +699,7 @@ Figure&nbsp;1: The analysis page’s figure: body mass by species.
 <p>Keep going with your Website Challenge <code>day2-projects/</code>. If you didn’t finish it, open the ready-made <strong><code>solutions/day2/</code></strong> project (a complete Part-1 site) and do the steps below in there.</p>
 </div>
 </div>
-<p>Same shape as the first part: a task, then what you should see, then hints in order if you want them.</p>
+<p><strong>Core finish line:</strong> prove that freeze works, then add your Day-1 report to the site. We will compare cache and freeze together. The dashboard demo and publishing are optional.</p>
 
 <div class="no-row-height column-margin column-container"><div class="">
 <p><i class="fa-solid fa-book-open" aria-label="book-open"></i> <strong>Quarto docs</strong></p>
@@ -777,7 +707,7 @@ Figure&nbsp;1: The analysis page’s figure: body mass by species.
 </div></div><section id="make-the-build-skip-unchanged-pages" class="level3" data-number="2.1">
 <h3 data-number="2.1" class="anchored" data-anchor-id="make-the-build-skip-unchanged-pages"><span class="header-section-number">2.1</span> Make the build skip unchanged pages</h3>
 <p><strong>Goal.</strong> Right now every <code>quarto render</code> re-runs all the R on every page, even the pages you have not touched. Make Quarto reuse the previous results for a page whose source has not changed. Then <strong>prove</strong> that it worked.</p>
-<p>The proof is half the task, and it is the more interesting half. An absence in the log is weak evidence. Find something you can point at.</p>
+<p>Prove that the code did not run again. Use a value that changes on every execution.</p>
 <div class="callout callout-style-simple callout-note no-icon callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -788,23 +718,150 @@ Figure&nbsp;1: The analysis page’s figure: body mass by species.
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Render twice with no edits in between. On the second render, the R on your pages does not run again, and you can <strong>show</strong> it: something on the rendered page that would certainly be different if the code had run, and is not. Then edit the code on one page only, render again, and see that page (and only that page) come back to life.</p>
+<p>Render twice with no edits in between. On the second render, the R on your pages does not run again, and you can <strong>show</strong> it: something on the rendered page that would certainly be different if the code had run, and is not. Then edit the code on one page only and render again. Only that page runs.</p>
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-26-contents" aria-controls="callout-26" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-21-contents" aria-controls="callout-21" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Stuck? (1) — a question to ask yourself
+<span class="screen-reader-only">Tip</span>Hint
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-26" class="callout-26-contents callout-collapse collapse">
+<div id="callout-21" class="callout-21-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
+<p><strong>Ask yourself:</strong></p>
 <p>Two questions, one for each half. For the setting: this is about <em>executing</em> code across the whole project, so which top-level key would carry it? For the proof: what could a cell print that is <strong>guaranteed</strong> to differ between two runs a minute apart?</p>
+<p><strong>Mechanism:</strong></p>
+<p>An <code>execute:</code> key at the top level of <code>_quarto.yml</code> carries execution options for the project. The one you want is <code>freeze</code>, and <code>auto</code> means “re-execute only when this document’s own source changes”.</p>
+<p>For the proof: print the current time. If the value on the page is identical across two renders, the code that produced it did not run.</p>
 </div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-22-contents" aria-controls="callout-22" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-22" class="callout-22-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>In <code>day2-projects/_quarto.yml</code>:</p>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>day2-projects/_quarto.yml</strong></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13" data-filename="day2-projects/_quarto.yml"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">execute</span><span class="kw">:</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">freeze</span><span class="kw">:</span><span class="at"> auto</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>For the visible tell, add a cell to <code>analysis.qmd</code>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">format</span>(<span class="fu">Sys.time</span>()))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Then, from inside <code>day2-projects/</code>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> render     <span class="co"># runs the code, writes _freeze/ and _site/</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> render     <span class="co"># no edits: cells are skipped, and the printed time is unchanged</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Now change the plot code in <code>analysis.qmd</code> and render again. Only that page runs, and its timestamp changes.</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Why this matters beyond the wait
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The results now live in <code>_freeze/</code>, inside your project. Keep that folder. Your next render reads it instead of re-running the analysis, and anyone who has the folder gets the same figures <strong>without running R at all</strong>. <code>_freeze/</code> is part of the project, not a temporary folder to delete.</p>
+</div>
+</div>
+</section>
+<section id="discuss-together-cache-versus-freeze" class="level3" data-number="2.2">
+<h3 data-number="2.2" class="anchored" data-anchor-id="discuss-together-cache-versus-freeze"><span class="header-section-number">2.2</span> Discuss together: <code>cache</code> versus <code>freeze</code></h3>
+<p><strong>Goal.</strong> You have now met two things that both avoid re-running code. Work out how they differ, and when you would reach for each.</p>
+<p><code>cache: true</code> came up on the slides earlier today. You have just used <code>freeze: auto</code>. Both skip work. They are not the same mechanism, and only one of them solves the problem you just solved.</p>
+<div class="callout callout-style-simple callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span><i class="fa-solid fa-circle-check" aria-label="circle-check"></i> You should be able to explain
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th></th>
+<th><code>cache</code></th>
+<th><code>freeze</code></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Scope</td>
+<td>A cell within a document</td>
+<td>A document within a project</td>
+</tr>
+<tr class="even">
+<td>Results</td>
+<td>Local cache directory</td>
+<td><code>_freeze/</code></td>
+</tr>
+<tr class="odd">
+<td>Commit the results?</td>
+<td>Normally no</td>
+<td>Yes</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-25-contents" aria-controls="callout-25" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Hint
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-25" class="callout-25-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Where does each one write its results, and would that location normally be committed? Follow that and the rest falls out.</p>
+<p><strong><code>cache</code></strong> is knitr’s chunk cache. It works <em>inside</em> one document, keyed on the chunk, and it is about not re-running an expensive chunk while you iterate on that document. Its cache directory is local scratch, and it is not something you ship.</p>
+<p><strong><code>freeze</code></strong> is a <em>project</em> policy. It stores each document’s rendered results under <code>_freeze/</code>, which you <strong>do</strong> commit, so a later build (including one on a machine with no R) reuses them.</p>
+<p>So: <code>cache</code> for a slow chunk you are iterating on. <code>freeze</code> for making the project buildable without re-running the science. <code>freeze: true</code> goes further than <code>auto</code>: a project build reuses a page’s stored results even after you edit it, so you decide when to refresh by rendering that page on its own.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="put-your-day-1-report-on-the-site" class="level3" data-number="2.3">
+<h3 data-number="2.3" class="anchored" data-anchor-id="put-your-day-1-report-on-the-site"><span class="header-section-number">2.3</span> Put your Day-1 report on the site</h3>
+<p><em>This is the core finish line.</em></p>
+<p><strong>Goal.</strong> Take the report you wrote yesterday and make it a page of this website.</p>
+<p>On Day 1, you built one document. Now add it to the project.</p>
+<div class="callout callout-style-simple callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span><i class="fa-solid fa-circle-check" aria-label="circle-check"></i> You should see
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Your Day-1 report opens as a page of the site, reachable from the navigation, styled like the rest of it. Its content is unchanged: the front matter is the only place you had to look.</p>
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
@@ -813,14 +870,16 @@ Figure&nbsp;1: The analysis page’s figure: body mass by species.
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Stuck? (2) — the mechanism
+<span class="screen-reader-only">Tip</span>Hint
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
 <div id="callout-27" class="callout-27-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>An <code>execute:</code> key at the top level of <code>_quarto.yml</code> carries execution options for the project. The one you want is <code>freeze</code>, and <code>auto</code> means “re-execute only when this document’s own source changes”.</p>
-<p>For the proof: print the current time. If the value on the page is identical across two renders, the code that produced it did not run.</p>
+<p>Your Day-1 document may still declare its own <code>format:</code>. Inside a project, where does <code>format:</code> come from now, and what happens if a page insists on its own?</p>
+<p>Copy the <code>.qmd</code> into <code>day2-projects/</code>, add an entry for it in the <code>navbar:</code> list, and re-render.</p>
+<p>A page in a project inherits <code>format:</code> from <code>_quarto.yml</code>. If your file still carries the <code>format: typst</code> from the Day-1 payoff, it keeps building a PDF instead of a page. Drop that key and it builds as HTML like its neighbours. (The shipped <code>penguins-report.qmd</code> declares no <code>format:</code> at all, so there is nothing to drop.)</p>
+<p>Didn’t finish Day 1, or do not have the file? Use <code>solutions/day1/penguins-report.qmd</code> from your exercises download instead.</p>
 </div>
 </div>
 </div>
@@ -836,153 +895,7 @@ Figure&nbsp;1: The analysis page’s figure: body mass by species.
 </div>
 <div id="callout-28" class="callout-28-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>In <code>day2-projects/_quarto.yml</code>:</p>
-<div class="code-with-filename">
-<div class="code-with-filename-file">
-<pre><strong>day2-projects/_quarto.yml</strong></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13" data-filename="day2-projects/_quarto.yml"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">execute</span><span class="kw">:</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">freeze</span><span class="kw">:</span><span class="at"> auto</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<p>For the visible tell, add a cell to <code>analysis.qmd</code>:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">format</span>(<span class="fu">Sys.time</span>()))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Then, from inside <code>day2-projects/</code>:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> render     <span class="co"># runs the code, writes _freeze/ and _site/</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> render     <span class="co"># no edits: cells are skipped, and the printed time is unchanged</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Now change the plot code on <code>analysis.qmd</code> and render once more. Only that page re-runs, and its timestamp finally moves.</p>
-</div>
-</div>
-</div>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Why this matters beyond the wait
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>The frozen results live in <code>_freeze/</code>. Commit that folder and a machine with <strong>no R at all</strong> can rebuild the site from it, which is how an automated build serves a site whose figures came out of R. That is the reason to keep <code>_freeze/</code> in version control rather than treat it as scratch.</p>
-</div>
-</div>
-</section>
-<section id="cache-versus-freeze" class="level3" data-number="2.2">
-<h3 data-number="2.2" class="anchored" data-anchor-id="cache-versus-freeze"><span class="header-section-number">2.2</span> <code>cache</code> versus <code>freeze</code></h3>
-<p><strong>Goal.</strong> You have now met two things that both avoid re-running code. Work out how they differ, and when you would reach for each.</p>
-<p>You met <code>cache: true</code> on Day 1. You have just used <code>freeze: auto</code>. Both skip work. They are not the same mechanism, and only one of them solves the problem you just solved.</p>
-<div class="callout callout-style-simple callout-note no-icon callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span><i class="fa-solid fa-circle-check" aria-label="circle-check"></i> You should see
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>You can answer three questions without looking them up again: which one is set per document and which is a project-level build policy; which one stores results that travel with the repository for another machine to reuse; and which one would still re-run everything when a colleague clones the project fresh.</p>
-</div>
-</div>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-31-contents" aria-controls="callout-31" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Stuck? (1) — a question to ask yourself
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-31" class="callout-31-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<p>Where does each one write its results, and would that location normally be committed? Follow that and the rest falls out.</p>
-</div>
-</div>
-</div>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-32-contents" aria-controls="callout-32" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Stuck? (2) — the answer
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-32" class="callout-32-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<p><strong><code>cache</code></strong> is knitr’s chunk cache. It works <em>inside</em> one document, keyed on the chunk, and it is about not re-running an expensive chunk while you iterate on that document. Its cache directory is local scratch, and it is not something you ship.</p>
-<p><strong><code>freeze</code></strong> is a <em>project</em> policy. It stores each document’s rendered results under <code>_freeze/</code>, which you <strong>do</strong> commit, so a later build (including one on a machine with no R) reuses them.</p>
-<p>So: <code>cache</code> for a slow chunk you are iterating on. <code>freeze</code> for making the project buildable without re-running the science. <code>freeze: true</code> goes further than <code>auto</code> and never re-executes on a project build, which is the setting an automated build uses.</p>
-</div>
-</div>
-</div>
-</section>
-<section id="put-your-day-1-report-on-the-site" class="level3" data-number="2.3">
-<h3 data-number="2.3" class="anchored" data-anchor-id="put-your-day-1-report-on-the-site"><span class="header-section-number">2.3</span> Put your Day-1 report on the site</h3>
-<p><strong>Goal.</strong> Take the report you wrote yesterday and make it a page of this website.</p>
-<p>This is the whole point of the two days. Day 1 you built one document. Today that document becomes part of something bigger, and it should take almost nothing to do.</p>
-<div class="callout callout-style-simple callout-note no-icon callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span><i class="fa-solid fa-circle-check" aria-label="circle-check"></i> You should see
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Your Day-1 report opens as a page of the site, reachable from the navigation, styled like the rest of it. Its content is unchanged. The only thing you had to reconsider was its front matter.</p>
-</div>
-</div>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-34-contents" aria-controls="callout-34" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Stuck? (1) — a question to ask yourself
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-34" class="callout-34-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<p>Your Day-1 document set its own <code>format:</code>. Inside a project, where does <code>format:</code> come from now, and what happens if the page keeps insisting on its own?</p>
-</div>
-</div>
-</div>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-35-contents" aria-controls="callout-35" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Stuck? (2) — the mechanism
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-35" class="callout-35-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<p>Copy the <code>.qmd</code> into <code>day2-projects/</code>, add an entry for it in the <code>navbar:</code> list, and re-render.</p>
-<p>A page in a project inherits <code>format:</code> from <code>_quarto.yml</code>, so the <code>format: pdf</code> from Day 1 is no longer what you want here. Drop it and the page builds as HTML like its neighbours.</p>
-<p>Didn’t finish Day 1, or don’t have the file to hand? Use <code>solutions/day1/penguins-report.qmd</code> from your exercises download instead.</p>
-</div>
-</div>
-</div>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-36-contents" aria-controls="callout-36" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Solution
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-36" class="callout-36-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<p>Copy your <code>my-report.qmd</code> into <code>day2-projects/</code>, remove the <code>format:</code> block from its front matter, and add it to the navbar:</p>
+<p>Copy your <code>my-report.qmd</code> into <code>day2-projects/</code>, drop any <code>format:</code> block from its front matter, and add it to the navbar:</p>
 <div class="code-with-filename">
 <div class="code-with-filename-file">
 <pre><strong>day2-projects/_quarto.yml</strong></pre>
@@ -1002,71 +915,17 @@ Figure&nbsp;1: The analysis page’s figure: body mass by species.
 </div>
 </div>
 </section>
-<section id="ship-a-dashboard" class="level3" data-number="2.4">
-<h3 data-number="2.4" class="anchored" data-anchor-id="ship-a-dashboard"><span class="header-section-number">2.4</span> Ship a dashboard</h3>
-<p><strong>Goal.</strong> Turn the analysis into a <strong>dashboard</strong>: the same numbers, arranged as a layout of panels rather than a page you scroll.</p>
-<p>Start from a copy of <code>analysis.qmd</code> (call it <code>dashboard.qmd</code>) so you are rearranging content you already have rather than writing new analysis. Aim for: a row of two summary figures across the top, and a wider row below holding the boxplot next to a tabbed panel with the scatter plot and the table.</p>
-<div class="callout callout-style-simple callout-note no-icon callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span><i class="fa-solid fa-circle-check" aria-label="circle-check"></i> You should see
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>A page that fills the browser window instead of scrolling. Across the top, two small panels each showing a single number (how many species, how many penguins). Below, the boxplot in its own titled panel, and beside it a panel with <strong>tabs</strong> you can click between to swap the scatter plot for the table. Resizing the window rearranges it rather than clipping it.</p>
-<p><a href="../../labs/quarto-projects/dashboard.html" target="_blank">Open the finished dashboard</a> to see what you are aiming at. Looking at it does not give away how it is built, and having the target in front of you makes the layout much easier to reason about.</p>
-</div>
-</div>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-38-contents" aria-controls="callout-38" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Stuck? (1) — a question to ask yourself
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-38" class="callout-38-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<p>Nothing about your R changes here, so what changes? And once you have said “this is a dashboard”, how would a Markdown document express <em>rows</em> and <em>columns</em> using structure it already has?</p>
-</div>
-</div>
-</div>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-39-contents" aria-controls="callout-39" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Stuck? (2) — the mechanism
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-39" class="callout-39-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<p><code>format: dashboard</code> in the front matter. That is the only change to the document’s setup.</p>
-<p>The layout comes from <strong>headings</strong>: a <code>##</code> starts a row, a <code>###</code> starts a column inside it. The heading text is only a label. Each code cell becomes a panel, and <code>#| title:</code> sets its header.</p>
-<p>For the single-number panels, <code>#| content: valuebox</code> turns a cell into one, and the cell returns a <code>list(color =, icon =, value =)</code>. For the tabs, put <code>{.tabset}</code> on the column heading, and each cell in that column becomes a tab. Row heights are set with <code>{height="20%"}</code> on the row heading.</p>
-</div>
-</div>
-</div>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-40-contents" aria-controls="callout-40" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Solution
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-40" class="callout-40-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<p><code>solutions/day2/dashboard.qmd</code> is the finished dashboard, with comments marking each part of the layout. The shape is:</p>
+<section id="optional-demo-inspect-a-dashboard" class="level3" data-number="2.4">
+<h3 data-number="2.4" class="anchored" data-anchor-id="optional-demo-inspect-a-dashboard"><span class="header-section-number">2.4</span> Optional demo: inspect a dashboard</h3>
+<p>This is a worked example, not another challenge. Open the <a href="../../labs/quarto-projects/dashboard.html" target="_blank">finished dashboard</a>, then open <code>solutions/day2/dashboard.qmd</code> to see how the same analysis becomes a dashboard.</p>
+<p>Look for four ideas:</p>
+<ul>
+<li><code>format: dashboard</code> changes the output.</li>
+<li>A <code>##</code> heading starts a row and a <code>###</code> heading starts a column.</li>
+<li><code>#| content: valuebox</code> creates a single-number panel.</li>
+<li><code>{.tabset}</code> turns the cells in a column into tabs.</li>
+</ul>
+<p>The overall shape is:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Penguins dashboard"</span></span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span><span class="co"> dashboard</span></span>
@@ -1085,9 +944,7 @@ Figure&nbsp;1: The analysis page’s figure: body mass by species.
 <span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a><span class="fu">### Column {.tabset}</span></span>
 <span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a>(the scatter cell and the table cell: each becomes a tab)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-</div>
-</div>
+<p>If you want to experiment, copy <code>analysis.qmd</code> to <code>dashboard.qmd</code> and reproduce one part of the layout. You do not need to complete the dashboard during the workshop.</p>
 </section>
 <section id="put-it-online-optional-and-a-good-place-to-stop" class="level3" data-number="2.5">
 <h3 data-number="2.5" class="anchored" data-anchor-id="put-it-online-optional-and-a-good-place-to-stop"><span class="header-section-number">2.5</span> Put it online <em>(optional, and a good place to stop)</em></h3>
@@ -1107,7 +964,7 @@ Figure&nbsp;1: The analysis page’s figure: body mass by species.
 </div>
 </div>
 <div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-42-contents" aria-controls="callout-42" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-30-contents" aria-controls="callout-30" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1116,7 +973,7 @@ Figure&nbsp;1: The analysis page’s figure: body mass by species.
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-42" class="callout-42-contents callout-collapse collapse">
+<div id="callout-30" class="callout-30-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>From inside your project folder:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> publish posit-connect-cloud</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -1131,7 +988,7 @@ Figure&nbsp;1: The analysis page’s figure: body mass by species.
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>One more leg, for later
+<span class="screen-reader-only">Note</span>For later: package versions
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -1143,19 +1000,19 @@ Figure&nbsp;1: The analysis page’s figure: body mass by species.
 <section id="troubleshooting" class="level2" data-number="3">
 <h2 data-number="3" class="anchored" data-anchor-id="troubleshooting"><span class="header-section-number">3</span> Troubleshooting</h2>
 <div class="callout callout-style-default callout-tip no-icon callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-44-contents" aria-controls="callout-44" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-32-contents" aria-controls="callout-32" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span><i class="fa-solid fa-wrench" aria-label="wrench"></i> If a render misbehaves
+<span class="screen-reader-only">Tip</span><i class="fa-solid fa-wrench" aria-label="wrench"></i> If rendering fails or the output looks wrong
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-44" class="callout-44-contents callout-collapse collapse">
+<div id="callout-32" class="callout-32-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ul>
-<li><strong>Rendered, but can’t find the HTML?</strong> Before you add <code>_quarto.yml</code>, a single-page render writes the HTML <strong>next to its source</strong> in <code>day2-projects/</code>. Once <code>_quarto.yml</code> is present, a project render collects both pages under <code>day2-projects/_site/</code>. Look in those two places.</li>
+<li><strong>Rendered, but can’t find the HTML?</strong> Before you add <code>_quarto.yml</code>, a single-page render writes the HTML <strong>next to its source</strong> in <code>day2-projects/</code>. Once <code>_quarto.yml</code> is present, a project render collects all pages under <code>day2-projects/_site/</code>. Look in those two places.</li>
 <li><strong>YAML is indentation-sensitive.</strong> If rendering fails <em>before</em> any code runs, check <code>_quarto.yml</code> for stray spaces, tabs, or unmatched quotes.</li>
 <li><strong>“No project” / pages don’t link?</strong> The <code>_quarto.yml</code> must be <strong>inside <code>day2-projects/</code></strong>, and <code>href:</code> paths are relative to the source folder, <strong>not</strong> <code>_site/</code>.</li>
 <li><strong>Brand not applied?</strong> Two causes. The file must be in <code>day2-projects/</code> (the project root), and <code>brand</code> must come <strong>last</strong> in the <code>theme:</code> list: <code>theme: [cosmo, brand]</code> gives you the palette, while <code>theme: cosmo</code> on its own keeps cosmo’s colors and only the fonts change. Re-render after either fix. For <strong>plots</strong>, the palette needs <code>library(brand.yml)</code> + <code>theme_brand_ggplot2()</code> (the file alone doesn’t reach ggplot).</li>
@@ -1178,37 +1035,36 @@ Session info
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>R version 4.6.0 (2026-04-24 ucrt)
-Platform: x86_64-w64-mingw32/x64
-Running under: Windows 11 x64 (build 26200)
+<pre><code>R version 4.6.1 (2026-06-24)
+Platform: x86_64-pc-linux-gnu
+Running under: Ubuntu 24.04.4 LTS
 
 Matrix products: default
-  LAPACK version 3.12.1
+BLAS:   /usr/lib/x86_64-linux-gnu/openblas-pthread/libblas.so.3 
+LAPACK: /usr/lib/x86_64-linux-gnu/openblas-pthread/libopenblasp-r0.3.26.so;  LAPACK version 3.12.0
 
 locale:
-[1] LC_COLLATE=French_France.utf8  LC_CTYPE=French_France.utf8   
-[3] LC_MONETARY=French_France.utf8 LC_NUMERIC=C                  
-[5] LC_TIME=French_France.utf8    
+[1] C
 
-time zone: Europe/Paris
-tzcode source: internal
+time zone: Etc/UTC
+tzcode source: system (glibc)
 
 attached base packages:
 [1] stats     graphics  grDevices datasets  utils     methods   base     
 
 other attached packages:
-[1] ggplot2_4.0.3 dplyr_1.2.1  
+[1] ggokabeito_0.1.0 ggplot2_4.0.3    dplyr_1.2.1     
 
 loaded via a namespace (and not attached):
  [1] vctrs_0.7.3        cli_3.6.6          knitr_1.51         rlang_1.3.0       
  [5] xfun_0.59          renv_1.2.3         generics_0.1.4     S7_0.2.2          
  [9] jsonlite_2.0.0     labeling_0.4.3     glue_1.8.1         htmltools_0.5.9   
-[13] scales_1.4.0       rmarkdown_2.31     grid_4.6.0         evaluate_1.0.5    
+[13] scales_1.4.0       rmarkdown_2.31     grid_4.6.1         evaluate_1.0.5    
 [17] tibble_3.3.1       fastmap_1.2.0      yaml_2.3.12        lifecycle_1.0.5   
-[21] compiler_4.6.0     RColorBrewer_1.1-3 htmlwidgets_1.6.4  pkgconfig_2.0.3   
+[21] compiler_4.6.1     RColorBrewer_1.1-3 htmlwidgets_1.6.4  pkgconfig_2.0.3   
 [25] farver_2.1.2       digest_0.6.39      R6_2.6.1           tidyselect_1.2.1  
-[29] pillar_1.11.1      magrittr_2.0.5     withr_3.0.3        tools_4.6.0       
-[33] gtable_0.3.6      </code></pre>
+[29] pillar_1.11.1      parallel_4.6.1     magrittr_2.0.5     withr_3.0.3       
+[33] tools_4.6.1        gtable_0.3.6      </code></pre>
 </div>
 </div>
 </details>
