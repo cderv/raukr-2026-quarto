@@ -89,10 +89,13 @@ Run it before any session, and after any `labs/**` change you thought was finish
   `day2-projects/` ships **without** a `_quarto.yml` on purpose — **creating it is the Day-2 exercise**.
 - **Solutions are SIBLING folders** (`solutions/day1/`, `solutions/day2/`), never nested inside a day
   folder — a nested solution would be swept into a participant's Day-2 website render.
-- **The four Day-1 working/reference files** — `starter.qmd`, `penguins-report.qmd`, `sample-typst.qmd`,
-  `penguins-by-species.qmd` — are **off the site render list** (`_quarto.yml` `render:`). They stay under
+- **The five Day-1 working/reference files** are **off the site render list** (`_quarto.yml`
+  `render:`): the participant starters (`starter.qmd`, `sample-typst.qmd`, `parameters-starter.qmd`)
+  and the solutions (`penguins-report.qmd`, `penguins-by-species.qmd`). They stay under
   `labs/quarto/` **only as sync source**; the exercises-repo CI validates them, not the course site.
   **Don't re-add them to `render:`** (you'd re-introduce a build the delivery repo already owns).
+  Adding a sixth takes two edits, not one: the sync manifest, **and** a render step in the scaffold's
+  `render-check.yml`. Miss the second and nothing validates the file at all.
 - Keep the payload **tiny** (no `_freeze/`, `_extensions/`, `slides/` in `exercises/`) — 40 laptops pull
   it over venue Wi-Fi. The exercises-repo CI has a zip-size budget that trips on a stray heavy file.
 

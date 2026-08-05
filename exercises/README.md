@@ -51,7 +51,7 @@ install.packages(c(
 
 | Path | What it is |
 |---|---|
-| `day1-intro/` | Day-1 working folder: the Part-2 `starter.qmd`, the branded Typst payoff `sample-typst.qmd`, the parameterized-report bonus, plus `references.bib` / `apa.csl` / `_brand.yml`. |
+| `day1-intro/` | Day-1 working folder: the Part-2 `starter.qmd`, the branded Typst payoff `sample-typst.qmd`, the parameters bonus `parameters-starter.qmd`, plus `references.bib` / `apa.csl` / `_brand.yml`. |
 | `day2-projects/` | Day-2 working folder: two pages that render on their own but are **not yet a project** — turning them into one is the exercise. Ships **without** `_quarto.yml`. |
 | `solutions/` | Reference solutions for both days. Try the exercise yourself first. |
 | `00-check-setup.R` | The one-shot setup check + Typst font pre-warm. |
