@@ -17,7 +17,7 @@ and re-render: the document you wrote as a standalone PDF becomes one page of a 
 change to its content.
 
 Only the front matter needed a look. A page inside a project inherits `format:` from `_quarto.yml`,
-so the `format: pdf` you had on Day 1 is no longer needed here.
+so a `format: typst` left over from the Day-1 payoff would keep building a PDF instead of a page.
 
 ```{r}
 #| label: fig-bill

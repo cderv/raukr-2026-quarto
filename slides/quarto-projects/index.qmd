@@ -303,8 +303,8 @@ hands you full control instead → next slide.
 
 ## The `freeze: true` workflow {#freeze-workflow}
 
-With **`freeze: true`**, a project build **never runs R**: it always reuses `_freeze/`. You refresh a
-page only when you choose to, by rendering that one file (a single-file render always executes):
+With **`freeze: true`**, a project build **reuses `_freeze/` even when the source changed**. You
+refresh a page when you choose to, by rendering that one file (a single-file render always executes):
 
 ``` {.yaml filename="_quarto.yml"}
 execute:
@@ -317,17 +317,21 @@ quarto render analysis.qmd     # runs the code, rewrites _freeze/ — commit it 
 
 . . .
 
-The loop: **edit a page → render that one file → commit `_freeze/`**. The project build and **CI**
-stay **R-free**: only the page you touched recomputes. That's exactly how **quarto.org** itself
+The loop: **edit a page → render that one file → commit `_freeze/`**. Once every page has been
+frozen once, the project build and **CI** stay **R-free**. That's exactly how **quarto.org** itself
 is built.
 
 . . .
 
-`freeze: auto` instead lets the *build* recompute any changed (or not-yet-frozen) page. Convenient,
-but `true` keeps the trigger in your hands.
+`freeze: auto` instead lets the *build* recompute a page whose source changed. Convenient, but
+`true` keeps the trigger in your hands.
 
 ::: notes
 - **Say:** "With `true`, only a direct document render recomputes the page."
+- **Precision — don't say "never runs R".** A page with no `_freeze/` entry still executes, and so
+  does a brand-new page added to the project (checked on Quarto 1.10). What `true` buys is that an
+  **edited** page is not recomputed by the build. "R-free" is the steady state, once every page has
+  been frozen once.
 - **Do:** edit `analysis.qmd`; render that file; show `_freeze/` change. Then render the project.
 - **Contrast:** `auto` recomputes changed pages; `true` requires manual refresh.
 - **Example:** quarto.org uses `true` and commits `_freeze/`.

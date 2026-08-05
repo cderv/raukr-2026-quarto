@@ -285,8 +285,9 @@ nowhere else?
 A `_metadata.yml` inside a folder applies to every document in that folder (and below it). Quarto
 merges it on top of the project defaults, so you write only what differs.
 
-It holds **document** options directly, without the `format:` wrapper you would need in
-`_quarto.yml`. The option that folds code is `code-fold`, and `code-summary` sets the toggle label.
+It takes the same **document** options you would write in `_quarto.yml`, so what differs is the
+reach, not the syntax. The option that folds code is `code-fold`, and `code-summary` sets the toggle
+label.
 :::
 
 ::: {.callout-note collapse="true"}
@@ -475,8 +476,9 @@ local scratch, and it is not something you ship.
 you **do** commit, so a later build (including one on a machine with no R) reuses them.
 
 So: `cache` for a slow chunk you are iterating on. `freeze` for making the project buildable without
-re-running the science. `freeze: true` goes further than `auto` and never re-executes on a project
-build, which is the setting an automated build uses.
+re-running the science. `freeze: true` goes further than `auto`: a project build reuses a page's
+stored results even after you edit it, so you decide when to refresh by rendering that page on its
+own.
 :::
 
 ### Put your Day-1 report on the site
@@ -490,18 +492,20 @@ On Day 1, you built one document. Now add it to the project.
 ::: {.callout-note appearance="simple" icon=false}
 ## {{< fa circle-check >}} You should see
 Your Day-1 report opens as a page of the site, reachable from the navigation, styled like the rest of
-it. Its content is unchanged. The only thing you had to reconsider was its front matter.
+it. Its content is unchanged: the front matter is the only place you had to look.
 :::
 
 ::: {.callout-tip collapse="true"}
 ## Hint
-Your Day-1 document set its own `format:`. Inside a project, where does `format:` come from now, and
-what happens if the page keeps insisting on its own?
+Your Day-1 document may still declare its own `format:`. Inside a project, where does `format:` come
+from now, and what happens if a page insists on its own?
 
 Copy the `.qmd` into `day2-projects/`, add an entry for it in the `navbar:` list, and re-render.
 
-A page in a project inherits `format:` from `_quarto.yml`, so the `format: pdf` from Day 1 is no
-longer what you want here. Drop it and the page builds as HTML like its neighbours.
+A page in a project inherits `format:` from `_quarto.yml`. If your file still carries the
+`format: typst` from the Day-1 payoff, it keeps building a PDF instead of a page. Drop that key and
+it builds as HTML like its neighbours. (The shipped `penguins-report.qmd` declares no `format:` at
+all, so there is nothing to drop.)
 
 Didn't finish Day 1, or do not have the file? Use `solutions/day1/penguins-report.qmd` from
 your exercises download instead.
@@ -509,7 +513,7 @@ your exercises download instead.
 
 ::: {.callout-note collapse="true"}
 ## Solution
-Copy your `my-report.qmd` into `day2-projects/`, remove the `format:` block from its front matter,
+Copy your `my-report.qmd` into `day2-projects/`, drop any `format:` block from its front matter,
 and add it to the navbar:
 
 ```{.yaml filename="day2-projects/_quarto.yml"}
