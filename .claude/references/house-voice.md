@@ -108,8 +108,14 @@ A pointer to another day is a **fact about the schedule**, so state it. The recu
 dressing it as narrative, which is both idiom (above) and a register the slide body doesn't own:
 
 - `That's the Day 2 story.` → `We'll see it in Day 2.`
-- `Day 1 I teased **freeze**: here's the full story.` → `**freeze** was one line in Day 1. Here it
-  is in full.`
+- `Day 1 I teased **freeze**: here's the full story.` → `**freeze** was one line in Day 1.`
+
+**Stop at the callback — don't append an announcement.** That second example used to end
+`… in Day 1. Here it is in full.`, and the trailing sentence was cut from the deck on 2026-08-05 as
+not sounding like him. It announces the content instead of being it, `in full` never says full
+*what*, and `here it is` is the presenter's voice landing on the page. Whatever follows the callback
+should be the content itself. (`.claude/rules/multi-day-sequencing.md` §4 carries the same note —
+the two are a pair, so fix both or this tell regenerates from whichever one you missed.)
 
 His forms are plain and short: *"We'll see it in Day 2." · "That's part of Day 2." · "X was one
 line in Day 1."* Anything reaching for a narrative noun (**story**, **saga**, **chapter**,

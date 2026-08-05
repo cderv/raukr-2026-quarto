@@ -449,8 +449,8 @@ running R at all**. `_freeze/` is part of the project, not a temporary folder to
 **Goal.** You have now met two things that both avoid re-running code. Work out how they differ, and
 when you would reach for each.
 
-You met `cache: true` on Day 1. You have just used `freeze: auto`. Both skip work. They are not the
-same mechanism, and only one of them solves the problem you just solved.
+`cache: true` came up on the slides earlier today. You have just used `freeze: auto`. Both skip
+work. They are not the same mechanism, and only one of them solves the problem you just solved.
 
 ::: {.callout-note appearance="simple" icon=false}
 ## {{< fa circle-check >}} You should be able to explain
