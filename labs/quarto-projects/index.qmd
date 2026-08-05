@@ -21,18 +21,16 @@ penguins <- penguins |> filter(!is.na(bill_len), !is.na(bill_dep), !is.na(body_m
 
 ::: {.callout-note}
 ## Scope
-Turn a set of `.qmd` into a Quarto **project**: a navigable, **branded website**, then make its
-builds reproducible with **freeze** and render it to a publishable folder. Two challenges, one
-project: each is its own hands-on part, with a break between them. Putting the site online is an
-**optional last step** (Posit Connect Cloud, free account, no repository), so the folder is what
-everyone leaves with. Everything runs on base-R `datasets::penguins` (R ≥ 4.5), so there's no data to download.
+Turn a set of `.qmd` files into a navigable, **branded website**. Then use **freeze** for
+reproducible builds and render the site to a publishable folder. Publishing online is optional.
+Everything uses base-R `datasets::penguins` (R ≥ 4.5).
 
 **Before you start:** work through the **[Setup page](../../setup.qmd)** if you haven't. Its
 `00-check-setup.R` confirms R, Quarto, and the packages this lab uses. The optional branded-plot
 stretch also uses `brand.yml`.
 :::
 
-**Starting point: a shipped set of pages.** You don't start from a blank folder. Open your
+**Starting point.** Open your
 **`day2-projects/`** folder from the exercises download (double-click `day2-projects.Rproj`, see the
 [Setup page](../../setup.qmd#get-the-materials)). It holds four content pages that already render on
 their own but are **not yet a project**:
@@ -42,21 +40,15 @@ their own but are **not yet a project**:
 - `reports/methods.qmd` and `reports/data-notes.qmd` — two short supporting pages, in their own
   folder because you will treat that folder differently later on
 
-Render one page to confirm it works: `quarto render analysis.qmd` gives a normal HTML page
-(`analysis.html` right next to its source), since the folder isn't a project *yet*. Your job across the
-two challenges is to make it a *site*, then ship it. Everything you render lands inside
-`day2-projects/`. There's no project folder above it, so nothing redirects your output. A finished
-reference is in **`solutions/day2/`** if you get stuck or fall behind.
+Render one page to confirm it works: `quarto render analysis.qmd` creates `analysis.html` next to
+its source. A finished reference is in **`solutions/day2/`**.
 
 ## Website Challenge
 
 > **Goal:** turn the `day2-projects/` pages into a navigable, **branded website** that renders locally to a
 > `_site/` folder.
 
-Five steps, each one a task rather than a block of YAML to copy. Every step states what you should
-see *before* you start, so you can tell for yourself when you are done. If you get stuck, open the
-hints in order: the first one is a question to ask yourself, the second names the mechanism, and the
-last one is the answer.
+Complete the five steps below. Each includes a checkpoint, a hint, and a solution.
 
 ::: {.column-margin}
 {{< fa book-open >}} **Quarto docs**
@@ -64,9 +56,7 @@ last one is the answer.
 [Websites](https://quarto.org/docs/websites/) · [Projects](https://quarto.org/docs/projects/quarto-projects.html) · [Brand](https://quarto.org/docs/authoring/brand.html)
 :::
 
-**The `solutions/day2/` folder is a reference, not a checklist.** The complete, known-good project
-lives there in your exercises download. Open it to compare at any point, or copy it wholesale if you
-fall behind.
+Use **`solutions/day2/`** to compare your work or catch up.
 
 ### Make it a project
 
@@ -90,13 +80,10 @@ new `day2-projects/_site/` folder instead of next to each `.qmd`. Before this st
 :::
 
 ::: {.callout-tip collapse="true"}
-## Stuck? (1) — a question to ask yourself
+## Hint
 You have folders above `day2-projects/` and files inside it. Which one does Quarto look at to decide
 where a project starts, and in which direction does it search?
-:::
 
-::: {.callout-tip collapse="true"}
-## Stuck? (2) — the mechanism
 Quarto walks **up** from the file being rendered and stops at the **nearest** `_quarto.yml`. That
 file marks the project root. Nothing sits above `day2-projects/` in your download, so a `_quarto.yml`
 placed inside it makes that folder the project and nothing else can claim your pages.
@@ -152,14 +139,11 @@ ggplot(penguins, aes(species, body_mass, fill = species)) +
 ```
 
 ::: {.callout-tip collapse="true"}
-## Stuck? (1) — a question to ask yourself
+## Hint
 The `project:` key configures the *build*. A navbar is not about building, it is about the site
 itself. What would you expect that second top-level key to be called, and what does each navbar entry
 need to know?
-:::
 
-::: {.callout-tip collapse="true"}
-## Stuck? (2) — the mechanism
 A `website:` key sits next to `project:` at the top level. It takes a `title:`, and a `navbar:` with a
 `left:` (or `right:`) list. Each entry is a pair: `href:` pointing at the **source** `.qmd` (not the
 built `.html`), and `text:` for the label.
@@ -248,14 +232,11 @@ plot keeps its default species colors too, because branding an R plot is a separ
 :::
 
 ::: {.callout-tip collapse="true"}
-## Stuck? (1) — a question to ask yourself
+## Hint
 `theme:` takes a **list**, even when you write a single value. So Quarto is already combining
 something with your `cosmo`. If two layers both define a primary color, which one would you expect to
 end up on the page?
-:::
 
-::: {.callout-tip collapse="true"}
-## Stuck? (2) — the mechanism
 `brand` is a theme **layer**, and it is the layer that reads your `_brand.yml`. A bare
 `theme: cosmo` expands to `[brand, cosmo]`, and **later layers win**, so cosmo's palette lands on top
 of the brand's and you get cosmo's blue.
@@ -293,14 +274,11 @@ four `.qmd` files to get this.
 :::
 
 ::: {.callout-tip collapse="true"}
-## Stuck? (1) — a question to ask yourself
+## Hint
 Project-wide options live in `_quarto.yml` at the project root. You want the same kind of option, but
 reaching one folder only. Where would you put a file so that Quarto applies it to that folder and
 nowhere else?
-:::
 
-::: {.callout-tip collapse="true"}
-## Stuck? (2) — the mechanism
 A `_metadata.yml` inside a folder applies to every document in that folder (and below it). Quarto
 merges it on top of the project defaults, so you write only what differs.
 
@@ -335,13 +313,10 @@ re-render, and it appears in the table on its own.
 :::
 
 ::: {.callout-tip collapse="true"}
-## Stuck? (1) — a question to ask yourself
+## Hint
 This is a property of one page, not of the whole site. So where does its configuration go, and how
 does the page say *which* documents to index?
-:::
 
-::: {.callout-tip collapse="true"}
-## Stuck? (2) — the mechanism
 A `listing:` key in the **front matter of `index.qmd`** points at a folder with `contents:`. Give it
 an `id:`, then place the result where you want it on the page with an empty div carrying that id:
 
@@ -390,7 +365,7 @@ Keep going with your Website Challenge `day2-projects/`. If you didn't finish it
 **`solutions/day2/`** project (a complete Part-1 site) and do the steps below in there.
 :::
 
-Same shape as the first part: a task, then what you should see, then hints in order if you want them.
+Each task includes a checkpoint, a hint, and a solution.
 
 ::: {.column-margin}
 {{< fa book-open >}} **Quarto docs**
@@ -404,26 +379,21 @@ Same shape as the first part: a task, then what you should see, then hints in or
 touched. Make Quarto reuse the previous results for a page whose source has not changed. Then
 **prove** that it worked.
 
-The proof is half the task, and it is the more interesting half. An absence in the log is weak
-evidence. Find something you can point at.
+Prove that the code did not run again. Use a value that changes on every execution.
 
 ::: {.callout-note appearance="simple" icon=false}
 ## {{< fa circle-check >}} You should see
 Render twice with no edits in between. On the second render, the R on your pages does not run again,
 and you can **show** it: something on the rendered page that would certainly be different if the code
-had run, and is not. Then edit the code on one page only, render again, and see that page (and only
-that page) come back to life.
+had run, and is not. Then edit the code on one page only and render again. Only that page runs.
 :::
 
 ::: {.callout-tip collapse="true"}
-## Stuck? (1) — a question to ask yourself
+## Hint
 Two questions, one for each half. For the setting: this is about *executing* code across the whole
 project, so which top-level key would carry it? For the proof: what could a cell print that is
 **guaranteed** to differ between two runs a minute apart?
-:::
 
-::: {.callout-tip collapse="true"}
-## Stuck? (2) — the mechanism
 An `execute:` key at the top level of `_quarto.yml` carries execution options for the project. The one
 you want is `freeze`, and `auto` means "re-execute only when this document's own source changes".
 
@@ -453,8 +423,8 @@ quarto render     # runs the code, writes _freeze/ and _site/
 quarto render     # no edits: cells are skipped, and the printed time is unchanged
 ```
 
-Now change the plot code on `analysis.qmd` and render once more. Only that page re-runs, and its
-timestamp finally moves.
+Now change the plot code in `analysis.qmd` and render again. Only that page runs, and its timestamp
+changes.
 :::
 
 ::: {.callout-note}
@@ -481,13 +451,10 @@ fresh.
 :::
 
 ::: {.callout-tip collapse="true"}
-## Stuck? (1) — a question to ask yourself
+## Hint
 Where does each one write its results, and would that location normally be committed? Follow that and
 the rest falls out.
-:::
 
-::: {.callout-tip collapse="true"}
-## Stuck? (2) — the answer
 **`cache`** is knitr's chunk cache. It works *inside* one document, keyed on the chunk, and it is
 about not re-running an expensive chunk while you iterate on that document. Its cache directory is
 local scratch, and it is not something you ship.
@@ -504,8 +471,7 @@ build, which is the setting an automated build uses.
 
 **Goal.** Take the report you wrote yesterday and make it a page of this website.
 
-This is the whole point of the two days. Day 1 you built one document. Today that document becomes
-part of something bigger, and it should take almost nothing to do.
+On Day 1, you built one document. Now add it to the project.
 
 ::: {.callout-note appearance="simple" icon=false}
 ## {{< fa circle-check >}} You should see
@@ -514,13 +480,10 @@ it. Its content is unchanged. The only thing you had to reconsider was its front
 :::
 
 ::: {.callout-tip collapse="true"}
-## Stuck? (1) — a question to ask yourself
+## Hint
 Your Day-1 document set its own `format:`. Inside a project, where does `format:` come from now, and
 what happens if the page keeps insisting on its own?
-:::
 
-::: {.callout-tip collapse="true"}
-## Stuck? (2) — the mechanism
 Copy the `.qmd` into `day2-projects/`, add an entry for it in the `navbar:` list, and re-render.
 
 A page in a project inherits `format:` from `_quarto.yml`, so the `format: pdf` from Day 1 is no
@@ -566,19 +529,14 @@ showing a single number (how many species, how many penguins). Below, the boxplo
 panel, and beside it a panel with **tabs** you can click between to swap the scatter plot for the
 table. Resizing the window rearranges it rather than clipping it.
 
-[Open the finished dashboard](dashboard.qmd){target="_blank"} to see what you are aiming at. Looking
-at it does not give away how it is built, and having the target in front of you makes the layout much
-easier to reason about.
+[Open the finished dashboard](dashboard.qmd){target="_blank"} to see the target layout.
 :::
 
 ::: {.callout-tip collapse="true"}
-## Stuck? (1) — a question to ask yourself
+## Hint
 Nothing about your R changes here, so what changes? And once you have said "this is a dashboard", how
 would a Markdown document express *rows* and *columns* using structure it already has?
-:::
 
-::: {.callout-tip collapse="true"}
-## Stuck? (2) — the mechanism
 `format: dashboard` in the front matter. That is the only change to the document's setup.
 
 The layout comes from **headings**: a `##` starts a row, a `###` starts a column inside it. The
@@ -645,7 +603,7 @@ deliverable. Nothing downstream depends on this step.
 :::
 
 ::: {.callout-note}
-## One more leg, for later
+## For later: package versions
 `renv::snapshot()` writes an `renv.lock` that pins your package versions. That is the second half of
 reproducibility: `freeze` preserves the *results*, `renv.lock` preserves the *environment* that
 produced them.

@@ -4,41 +4,35 @@ subtitle: "What to install before the sessions"
 number-sections: false
 ---
 
-You need a working R + Quarto toolchain and an editor. Everything below is standard. If you
-already render Quarto documents from R, you are ready.
+You need R, Quarto, and an editor. If you already render Quarto documents from R, you are ready.
 
 ::: {.callout-note appearance="simple"}
 ## Setup at a glance
-Four steps, top to bottom (each links to its details below):
+Complete these four steps:
 
 1. [**Install**](#software) R ≥ 4.5, Quarto ≥ 1.9, and an editor.
 2. [**Get the materials**](#get-the-materials) — one line of R, no git or GitHub account needed.
 3. [**Install the R packages**](#r-packages) — one `install.packages()` line.
 4. [**Check it works**](#check-your-setup) — `source("00-check-setup.R")` from the top folder.
 
-Do steps 2–4 **before you arrive**: walking in with the toolchain already in place means we start on the content, not the install.
+Complete steps 2–4 **before the workshop** so we can start with Quarto.
 :::
 
-Slides and labs stay online at <https://cderv.github.io/raukr-2026-quarto/>, during the sessions and
-after. Keep the tab open on the day: you can scroll back to any slide at your own pace and copy a
-code cell straight from it.
+Slides and labs remain available at <https://cderv.github.io/raukr-2026-quarto/>.
 
 ## Software
 
-- **R ≥ 4.5.0.** The running dataset (`penguins`) ships in base R only since 4.5 (check with
-  `R.version.string`). The exercises use the base-R names (`bill_len`, `bill_dep`, …), so R ≥ 4.5
-  is the smoothest path. If you truly can't upgrade, see the fallback below.
+- **R ≥ 4.5.0.** Check with `R.version.string`. The exercises use the `penguins` dataset included
+  with R since 4.5. If you cannot upgrade, see the fallback below.
 - **Quarto ≥ 1.9.** Check with `quarto --version` and get it from
   <https://quarto.org/docs/get-started/>. (1.9 is required: the Typst margin/article layout we
   use on Day 1 landed in 1.9.)
-- **An editor with Quarto support** — [Positron](https://positron.posit.co/), VS Code (+ the
-  Quarto extension), or RStudio. All work, and we drive Quarto from the command line too
-  (`quarto preview` / `quarto render`), so the editor is your choice.
+- **An editor with Quarto support:** [Positron](https://positron.posit.co/), VS Code with the
+  Quarto extension, or RStudio.
 
 ::: {.callout-warning collapse="true"}
 ## On RStudio? The Render button may not use the Quarto you just checked
-RStudio can run a **different Quarto** from the one on your PATH, so `quarto --version` does not
-settle what the Render button will use. Day 1's Typst article layout needs ≥ 1.9.
+RStudio can use a **different Quarto** from the one on your PATH. Day 1 requires Quarto ≥ 1.9.
 
 The `quarto` R package has a one-line check for exactly this:
 
@@ -47,19 +41,15 @@ The `quarto` R package has a one-line check for exactly this:
 quarto::quarto_binary_sitrep()
 ```
 
-It names the binary each side will use and returns `TRUE` when they agree. A mismatch looks like:
+It names the binaries and returns `TRUE` when they agree. A mismatch looks like:
 
 ```
 ✔ quarto R package will use '/opt/quarto/bin/quarto'
 ✖ RStudio IDE render button seems configured to use '/usr/lib/rstudio/bin/quarto/bin/quarto'.
 ```
 
-Add `debug = TRUE` and it also tells you *which* mechanism configured each one (the `PATH`, or the
-`RSTUDIO_QUARTO` environment variable).
-
 If the two disagree, point RStudio at the install you want with **`RSTUDIO_QUARTO`**, or render
-from the Terminal (`quarto render <file>`), which we do throughout anyway. If a document looks
-wrong on Day 1 but renders correctly from the Terminal, this is usually why.
+from the Terminal with `quarto render <file>`.
 :::
 
 ::: {.callout-tip}
@@ -69,7 +59,7 @@ install and no LaTeX to set up.
 
 ::: {.callout-warning collapse="true"}
 ## Stuck on R < 4.5? (dataset fallback)
-The exercises assume base R's `penguins`. If you genuinely can't get to R ≥ 4.5, install
+The exercises assume base R's `penguins`. If you cannot use R ≥ 4.5, install
 [`palmerpenguins`](https://allisonhorst.github.io/palmerpenguins/) and rename its columns to the
 base-R names the material uses, so every snippet works unchanged:
 
@@ -85,56 +75,41 @@ penguins <- palmerpenguins::penguins |>
   )
 ```
 
-Run this once at the top of a document (or your session) before the exercise code. Upgrading R is
-still the cleaner path if you can.
+Run this before the exercise code.
 :::
 
 ## Get the materials
 
-The hands-on files live in a small **exercises folder** (the top `raukr-2026-quarto-exercises` folder):
-the starter documents, the reference solutions, and the citation assets (`references.bib`, `apa.csl`).
-The easiest way to get it is **`use_course()`** from R. No git, no GitHub account, nothing to unzip by
-hand, and the same on Windows, macOS, and Linux:
+Download the starter documents, solutions, and citation files with **`use_course()`**. You do not
+need git or a GitHub account:
 
 ```r
 # install.packages("usethis")   # once, if you don't have it
 usethis::use_course("cderv/raukr-2026-quarto-exercises")
 ```
 
-**What it does:**
-
-1. picks a sensible spot (your **Desktop** by default) and prints where it's about to download the
-   files. To download them elsewhere, cancel and re-run with a path, e.g.
-   `use_course("cderv/raukr-2026-quarto-exercises", destdir = "~/projects")`.
-2. downloads a ZIP and **unpacks it for you** into a folder called `raukr-2026-quarto-exercises` (it
-   prints the exact path). It then asks *"Shall we delete the ZIP file?"*. Keep it (say **No**): it's
-   your one-click reset (see below).
-3. **opens the folder** — a new RStudio session, or the folder in Positron / VS Code. If it doesn't
-   pop open, open the folder it printed yourself.
+By default, `use_course()` downloads and opens `raukr-2026-quarto-exercises` on your Desktop. To use
+another location, set `destdir`, for example `destdir = "~/projects"`. Keep the downloaded ZIP when
+prompted: you can use it to reset the exercises.
 
 ::: {.callout-important}
 ## Which folder to open — and when
-`use_course()` drops you in the **top folder** (`raukr-2026-quarto-exercises`). Do the next two steps
-(**R packages** and **Check**) from there, now, before the session.
+Install the packages and run the setup check from the **top folder**
+(`raukr-2026-quarto-exercises`).
 
 **When the session starts**, open the day folder for that day, **not** the top folder:
 
 - **Day 1** → open **`day1-intro/`** (double-click `day1-intro.Rproj`).
 - **Day 2** → open **`day2-projects/`** (double-click `day2-projects.Rproj`).
 
-Each day folder is its own working directory with its own brand and assets, so your renders land
-**right next to your files** (there's no project folder above them to capture the output). One
-download covers both days. The reference answers are in `solutions/day1/` and `solutions/day2/` at the
-top folder. Try the exercise yourself first.
+One download covers both days. Reference answers are in `solutions/day1/` and `solutions/day2/`.
 :::
 
 ::: {.callout-tip collapse="true"}
 ## Reset without losing work (no git needed)
-If an attempt goes wrong, get a **fresh** copy of the day folder (don't unzip over your
-working copy):
+To reset a day, create a **new** copy rather than overwriting your work:
 
-- **re-run** `usethis::use_course("cderv/raukr-2026-quarto-exercises")`: it makes a new, numbered folder
-  and leaves your old attempt untouched; **or**
+- re-run `usethis::use_course("cderv/raukr-2026-quarto-exercises")`; or
 - unzip the ZIP you kept to a **new** location.
 
 If `use_course()` can't reach GitHub (blocked network / firewall), use the browser: the green **Code ▸
@@ -143,8 +118,7 @@ Download ZIP** button on <https://github.com/cderv/raukr-2026-quarto-exercises>,
 
 ## R packages
 
-The exercises use nine R packages. The simplest path is a plain install into your R library (it works
-no matter which day folder you open):
+Install the nine packages used in the exercises:
 
 ```r
 install.packages(c(
@@ -154,8 +128,7 @@ install.packages(c(
 ))
 ```
 
-Or with [**pak**](https://pak.r-lib.org/), which installs the same list in parallel, prefers
-binaries, and sorts out system dependencies for you:
+Alternatively, use [**pak**](https://pak.r-lib.org/):
 
 ```r
 # install.packages("pak")   # once, if you don't have it
@@ -168,38 +141,31 @@ pak::pak(c(
 
 ::: {.callout-note collapse="true"}
 ## There's an `renv.lock` in the folder (ignore it)
-It pins the package versions the course materials are tested against. You don't need it: the folder
-ships no `.Rprofile` and no `renv/activate.R`, so it is **not an activated renv project**, and
-`renv::restore()` there would install its 65 pinned packages straight into your everyday R library.
-Use the `install.packages()` line above.
+The lockfile records the tested package versions, but the exercise folder is not an activated renv
+project. Use the `install.packages()` command above rather than `renv::restore()`.
 :::
 
 ## Check your setup
 
-The exercises folder ships a one-shot check. From the **top** `raukr-2026-quarto-exercises` folder, run:
+From the **top** `raukr-2026-quarto-exercises` folder, run:
 
 ```r
 source("00-check-setup.R")
 ```
 
-It verifies R ≥ 4.5, Quarto ≥ 1.9, the nine packages, and the base-R `penguins` data, then **renders
-the Day-1 Typst sample** (`day1-intro/sample-typst.qmd`). That proves the knitr + Typst chain
-end-to-end and **caches the brand's Google fonts** (Albert Sans / Fira Mono), so your first render in
-the session is instant instead of pausing to download them. Every line should read `[ok]`.
+It checks R, Quarto, the packages, and the data. It also renders the Day-1 Typst sample and downloads
+the fonts used in the workshop. Every line should read `[ok]`.
 
 ::: {.callout-tip collapse="true"}
 ## Prefer to check by hand?
-The one command that proves the toolchain is `quarto check`. It covers the **knitr engine** too (the
-`knitr` + `rmarkdown` packages a `.qmd` with R code needs): it reports your Quarto version and renders a
-small knitr test document (look for `Checking Knitr engine render......OK`). If you see
-`rmarkdown: (None)`, your R packages aren't installed yet, so do the [R packages](#r-packages) step and
-re-run. Then confirm the R side:
+Run `quarto check` and look for `Checking Knitr engine render......OK`. If you see
+`rmarkdown: (None)`, install the [R packages](#r-packages) and run the check again. Then confirm R:
 
 ```r
 R.version.string                          # want >= 4.5.0
 "penguins" %in% ls("package:datasets")    # want TRUE on R >= 4.5
 ```
 
-And pre-warm the fonts once by rendering the sample yourself:
+Download the fonts by rendering the sample once:
 `quarto render day1-intro/sample-typst.qmd`.
 :::

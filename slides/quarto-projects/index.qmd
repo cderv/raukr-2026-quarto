@@ -57,7 +57,7 @@ Watch for the **Follow along** / **Your turn** callouts: they flag every switch.
   along** / **Your turn** callouts flag every switch. One breath, then into Part 1.
 :::
 
-# Part 1 — Build & structure a project {.center}
+# Part 1: Build and structure a project {.center}
 
 From one file to a whole site.
 
@@ -274,7 +274,7 @@ reproducible and **ship** it.
   "open the second hint" is usually enough, and it keeps one presenter serving the room from the front.
 :::
 
-# Part 2 — Scale & ship {.center}
+# Part 2: Scale and publish {.center}
 
 Make builds reproducible, then publish: how your team ships its project.
 
@@ -283,7 +283,7 @@ Make builds reproducible, then publish: how your team ships its project.
 - One-sentence recap; don't re-teach Part 1.
 :::
 
-## Freeze — don't re-run the slow stuff {#freeze}
+## Freeze: skip unchanged computations {#freeze}
 
 ::: {.callout-note title="Follow along"}
 Back in your project's `_quarto.yml`.

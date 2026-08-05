@@ -45,7 +45,7 @@ After this session you will be able to:
 - cite your sources from a `.bib` file, in the style a journal asks for;
 - turn it into a **branded Typst PDF** — no LaTeX.
 
-By the end: one document carried all the way to a **polished PDF report**.
+By the end, you will have a **polished PDF report**.
 
 ::: notes
 - **Frame:** you already write R and have met R Markdown or Quarto — today is about what Quarto
@@ -72,9 +72,9 @@ move at your own pace.
   lets them copy a cell straight from the slide instead of retyping it.
 :::
 
-# Part 1 — Basics {.center}
+# Part 1: Basics {.center}
 
-Author a document, land it as HTML.
+Author a document and render it to HTML.
 
 ## What you can now build {#what-quarto-is}
 
@@ -84,7 +84,7 @@ You know the literate-programming idea. In 2026, one `.qmd` is your source for:
 - a **report** (HTML, PDF, Word) — figures, tables, cross-refs, citations;
 - a **presentation** (these slides are a `.qmd`);
 - a **website or book** (Day 2) — many pages, one config;
-- a **branded PDF via Typst** *(a modern PDF engine bundled in Quarto, no LaTeX)* — an article, or a report running to many pages.
+- a **branded PDF via Typst** *(a modern PDF engine bundled in Quarto, no LaTeX)*: an article or a long report.
 :::
 
 . . .
@@ -180,7 +180,7 @@ ggplot(penguins, aes(bill_len, bill_dep, color = species)) +
 
 . . .
 
-Cell options use the `#|` "hash-pipe": one option per line, YAML-valued. Native from the start.
+Cell options use the `#|` "hash-pipe": one YAML option per line.
 
 ## Markdown & content — think in deltas {#markdown-content}
 
@@ -550,7 +550,7 @@ it and ship a branded PDF.*
 - **Helpers:** most common trap is the cross-ref prefix — a label must start `fig-`/`tbl-`/`eq-`, or `@ref` renders a stray `?@`. Also check the `#|` lines are the very top of the cell (no blank line or code above them), and watch for duplicate labels across the document.
 :::
 
-# Part 2 — Citations → Typst {.center}
+# Part 2: Citations → Typst {.center}
 
 From report to article: cite it, then typeset it.
 
