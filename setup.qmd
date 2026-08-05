@@ -107,9 +107,9 @@ One download covers both days. Reference answers are in `solutions/day1/` and `s
 
 ::: {.callout-tip collapse="true"}
 ## Reset without losing work (no git needed)
-To reset a day, create a **new** copy rather than overwriting your work:
+To reset a day, create a **new** copy rather than overwriting your work. Choose one:
 
-- re-run `usethis::use_course("cderv/raukr-2026-quarto-exercises")`; or
+- re-run `usethis::use_course("cderv/raukr-2026-quarto-exercises")`.
 - unzip the ZIP you kept to a **new** location.
 
 If `use_course()` can't reach GitHub (blocked network / firewall), use the browser: the green **Code ▸

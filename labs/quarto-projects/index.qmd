@@ -57,7 +57,7 @@ a hint, and a solution.
 [Websites](https://quarto.org/docs/websites/) · [Projects](https://quarto.org/docs/projects/quarto-projects.html) · [Brand](https://quarto.org/docs/authoring/brand.html)
 :::
 
-Use **`solutions/day2/`** to compare your work or catch up.
+Use **`solutions/day2/`** to compare your work or complete missed steps.
 
 ### Make it a project
 
@@ -535,9 +535,9 @@ This is a worked example, not another challenge. Open the
 
 Look for four ideas:
 
-- `format: dashboard` changes the output;
-- a `##` heading starts a row and a `###` heading starts a column;
-- `#| content: valuebox` creates a single-number panel;
+- `format: dashboard` changes the output.
+- A `##` heading starts a row and a `###` heading starts a column.
+- `#| content: valuebox` creates a single-number panel.
 - `{.tabset}` turns the cells in a column into tabs.
 
 The overall shape is:

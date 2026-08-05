@@ -134,8 +134,8 @@ ggplot(penguins, aes(bill_len, bill_dep, color = species, shape = species)) +
 - Display math with a label `$$ … $$ {#eq-ratio}`, referenced with `@eq-ratio`.
 :::
 
-**Need to catch up before Part 2?** `starter.qmd` is a completed Part-1 document. It is already in
-`day1-intro/`; open it to continue with citations, or take the source:
+**Need to continue with Part 2?** `starter.qmd` is a completed Part-1 document. It is already in
+`day1-intro/`. Open it to continue with citations, or take the source:
 
 <!-- Raw-GitHub download button -- RaukR house pattern (see project-context.md; no `downloadthis`).
      Points at the exercises repo (main = current edition); goes live once cderv/raukr-2026-quarto-exercises
@@ -216,7 +216,7 @@ that.
      The button renders whatever `format:` is declared, so while the header still says `format: html`
      the button gives you HTML, **not** a PDF.
 
-   If you used the catch-up file, render `starter.qmd` instead. The PDF lands **next to its source**
+   If you used the completed Part-1 file, render `starter.qmd` instead. The PDF lands **next to its source**
    in `day1-intro/`.
 ::::
 

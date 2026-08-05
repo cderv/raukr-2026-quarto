@@ -145,7 +145,8 @@ One tool, many outputs, multiple languages: **all from one plain-text `.qmd` you
 
 ::: notes
 - **Say:** "R cells still run through knitr. Existing `.Rmd` files continue to render."
-- **If asked:** cells select the engine: `{r}` uses knitr; `{python}` uses Jupyter.
+- **If asked:** Quarto selects one engine per document. R documents default to knitr. Python-only
+  documents default to Jupyter, while Python can also run through knitr.
 - **Mention:** `knitr::convert_chunk_header()` helps migrate chunk options.
 :::
 
