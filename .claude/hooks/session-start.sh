@@ -26,11 +26,19 @@ fi
 
 # --- Synchronous, cheap: git identity + locale + CA (R breaks without these) ---
 
-# Commit identity for sandbox commits (the base image sets none). Remote-only, so local sessions
-# keep the developer's own global identity untouched. Only fills a GAP: if the environment already
-# supplies an identity (a fork, another contributor, CI), that one wins -- never stamp this repo's
-# author onto someone else's commits.
-if ! git config user.email >/dev/null 2>&1; then
+# Commit identity for sandbox commits. Remote-only, so local sessions keep the developer's own
+# global identity untouched.
+#
+# The test is on the LOCAL config on purpose. The old version tested `git config user.email`, i.e.
+# the EFFECTIVE identity -- and the base image now ships a global one (Claude <noreply@anthropic.com>),
+# so that test always succeeded, no local identity was ever set, and commits came out authored by
+# the instructor (GIT_AUTHOR_* is supplied by the platform) but COMMITTED by Claude. Every other
+# commit in this history has the same person on both sides; caught 2026-08-03.
+#
+# Still only fills a GAP, and still never stamps this repo's author onto someone else's commits:
+# the identity comes from GIT_AUTHOR_*, which the platform sets per user, so a fork or another
+# contributor gets their own. The hardcoded fallback applies only when the platform supplies nothing.
+if [ -z "$(git config --local user.email 2>/dev/null)" ]; then
   git config --local user.name "${GIT_AUTHOR_NAME:-Christophe Dervieux}" || true
   git config --local user.email "${GIT_AUTHOR_EMAIL:-christophe.dervieux@gmail.com}" || true
 fi
