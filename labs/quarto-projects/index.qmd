@@ -241,8 +241,8 @@ end up on the page?
 **Mechanism:**
 
 `brand` is a theme **layer**, and it is the layer that reads your `_brand.yml`. A bare
-`theme: cosmo` expands to `[brand, cosmo]`, and **later layers win**, so cosmo's palette is applied after
-of the brand's and you get cosmo's blue.
+`theme: cosmo` expands to `[brand, cosmo]`, and **later layers win**. Quarto applies cosmo's palette
+after the brand palette, so the site uses cosmo blue.
 
 The fonts come through whichever way round you write it, which is exactly what makes this look like
 it worked.
