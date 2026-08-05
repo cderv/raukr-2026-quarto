@@ -378,11 +378,20 @@ in the Quarto docs below.*
 Accessibility is a few habits layered on what you already write:
 
 - **Alt text** — you already add `#| fig-alt:` to every figure; it's what a screen reader announces.
-- **Color-blind-safe colors** — the default palette isn't. Reach for **Okabe-Ito**
-  (`scale_color_okabe_ito()`) or **viridis**, and encode by shape/label too, not color alone.
+- **Color-blind-safe colors** — the default palette isn't. Pick one that is:
+  [Okabe-Ito](https://jfly.uni-koeln.de/color/) is the common choice in science
+  ([`scale_color_okabe_ito()`](https://malcolmbarrett.github.io/ggokabeito/)), viridis suits
+  continuous scales. Encode by shape or label too, not color alone.
 - **Check contrast** — WCAG wants 4.5:1 on text. Quarto's built-in `axe` runs axe-core on the
-  rendered page: `axe: true` logs to dev-tools, `axe: {output: document}` writes the report onto the
-  page itself.
+  rendered page:
+
+```{.yaml}
+format:
+  html:
+    axe:
+      output: document    # or `axe: true` to log to the browser console
+      standard: wcag21aa  # the level you are checking against
+```
 
 **Learn more:** [HTML Accessibility](https://quarto.org/docs/output-formats/html-accessibility.html)
 
@@ -392,8 +401,11 @@ Accessibility is a few habits layered on what you already write:
 - **Tie to their plot:** the penguins scatter defaults to non-safe colors; one line,
   `scale_color_okabe_ito()`, fixes it (the worked report already uses it) — show before/after if time.
 - **`axe`:** it's axe-core (the industry-standard checker), built into Quarto since 1.8 for
-  html/revealjs/dashboard; it runs in the browser on **preview** and logs to dev-tools — a
-  check-as-you-go tool, not a render/publish gate. Quarto 1.10 polishes the on-page report.
+  html/revealjs/dashboard. It runs **in the browser, whenever you open the page** (so a plain
+  render works, not only `quarto preview`) — a check-as-you-go tool, not a render/publish gate.
+  Quarto 1.10 polishes the on-page report.
+- **Demo:** `output: document` is the one to show live — the report lands on the page instead of
+  the dev-tools console. Drop `standard:` and you get every rule including best-practice noise.
 :::
 
 ## One source → many formats {#document-types}
