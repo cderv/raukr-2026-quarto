@@ -478,7 +478,7 @@ Christophe Dervieux
 </div><div class="column" style="width:46%;">
 <ul>
 <li><strong>Every page and every deck</strong> inherits it from that one root file, so you never name it in a page.</li>
-<li>Add a page tomorrow? Branded on render, nothing to wire up.</li>
+<li>Add a page later? Branded on render, nothing to wire up.</li>
 <li>Need an exception? <code>brand: false</code> opts a page out; <code>brand: other.yml</code> points it elsewhere.</li>
 </ul>
 </div></div>
@@ -587,7 +587,7 @@ Christophe Dervieux
 </div>
 </div>
 </div>
-<p>Day 1 I teased <strong>freeze</strong>: here’s the full story. Compute can be slow: you don’t want every prose edit to re-run a 20-minute model fit. Two tools, easily confused:</p>
+<p><strong>freeze</strong> was one line in Day 1. Here it is in full. Compute can be slow: you don’t want every prose edit to re-run a 20-minute model fit. Two tools, easily confused:</p>
 <ul>
 <li class="fragment"><strong><code>cache</code></strong> — the <strong>compute engine’s</strong> cache, not Quarto’s: it defers to <em>knitr</em> (R) / <em>Jupyter Cache</em>. Per-<strong>cell</strong>, kept until that cell’s code changes, and it works in a <strong>single document</strong>.</li>
 <li class="fragment"><strong><code>freeze</code></strong> — <strong>Quarto’s</strong> own switch, <em>not</em> about compute: it sets <em>when</em> a document re-executes. <strong>Project-only</strong>: rendering one file always runs it. Results live in <code>_freeze/</code>, refreshed only when its source changes. Commit it and <strong>CI</strong> <em>(the automated build)</em> rebuilds with <strong>no R at all</strong>.</li>
@@ -830,10 +830,14 @@ Christophe Dervieux
 <section id="thank-you" class="slide level2 center">
 <h2>Thank you!</h2>
 <p>Questions?</p>
+<div class="columns">
+<div class="column" style="width:28%;">
+<p><img data-src="../images/site-qr.svg" alt="QR code for the workshop site, https://cderv.github.io/raukr-2026-quarto/" width="210"></p>
+</div><div class="column" style="width:72%;">
+<p><strong>Slides + lab:</strong> <a href="https://cderv.github.io/raukr-2026-quarto/" class="uri">https://cderv.github.io/raukr-2026-quarto/</a></p>
 <p><strong>Learn more:</strong> <a href="https://quarto.org/docs/projects/quarto-projects.html">Projects</a> · <a href="https://quarto.org/docs/websites/">Websites</a> · <a href="https://quarto.org/docs/projects/code-execution.html#freeze">Freeze</a> · <a href="https://quarto.org/docs/publishing/">Publishing</a></p>
-<div class="smaller">
-<p>Slides + lab: this site · Christophe Dervieux · <a href="https://github.com/cderv">GitHub <code>@cderv</code></a> · <a href="mailto:cderv@posit.co">cderv@posit.co</a></p>
-</div>
+</div></div>
+<p><span style="font-size:0.6em">Christophe Dervieux · <a href="https://github.com/cderv" data-preview-link="false">GitHub <code>@cderv</code></a> · <a href="mailto:cderv@posit.co">cderv@posit.co</a></span></p>
 
 
 </section></section>
@@ -866,7 +870,7 @@ Christophe Dervieux
       // https://revealjs.com/config/
       Reveal.initialize({
 'controlsAuto': true,
-'previewLinksAuto': false,
+'previewLinksAuto': true,
 'pdfSeparateFragments': false,
 'autoAnimateEasing': "ease",
 'autoAnimateDuration': 1,
