@@ -9,4 +9,4 @@ Head to the **[analysis](analysis.qmd)** for the figures and a summary table.
 
 > This folder is your starting point for the Day-2 lab: two pages that render on their own but are
 > **not yet a project**. Your job is to add a `_quarto.yml` (and a `_brand.yml`) that turn them into a
-> navigable, branded website, then ship it.
+> navigable, branded website, then prepare it for publishing.

@@ -123,7 +123,7 @@ Install the nine packages used in the exercises:
 ```r
 install.packages(c(
   "dplyr", "ggplot2", "gt", "ggokabeito",   # content + a color-blind-safe scale
-  "brand.yml", "ggrepel", "prismatic",      # R-side branding for the Typst payoff
+  "brand.yml", "ggrepel", "prismatic",      # R-side branding for the final Typst PDF
   "knitr", "rmarkdown"                      # the engine every .qmd with R code needs
 ))
 ```

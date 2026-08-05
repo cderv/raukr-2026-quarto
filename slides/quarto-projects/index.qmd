@@ -31,8 +31,8 @@ penguins <- penguins |> filter(!is.na(bill_len), !is.na(bill_dep), !is.na(body_m
 
 Yesterday: one `.qmd` → a branded PDF. Today, the other axis: **one file to many**. You will be able to:
 
-- **structure** several `.qmd` into one Quarto **project** with shared config (`_quarto.yml`);
-- **build** a navigable, **branded website** — within-page cross-references, reproducible builds;
+- **structure** several `.qmd` files into one Quarto **project** with shared configuration (`_quarto.yml`).
+- **build** a navigable, **branded website** with within-page cross-references and reproducible builds.
 - **produce a publishable folder**, put it online, and explain how **freeze** lets it rebuild
   without re-running R.
 
@@ -83,7 +83,7 @@ format:
 ::: {.incremental}
 - `quarto render` builds the **whole** folder, not one file.
 - Header options set **once** apply to every page.
-- **`output-dir`** — the folder the built site lands in (`_site` by default). Publish *that*.
+- **`output-dir`**: the folder where the built site is written (`_site` by default). Publish *that*.
 :::
 :::
 ::::
@@ -99,7 +99,7 @@ Quarto uses the **nearest `_quarto.yml`** up the tree as the project root: you a
 - **Say:** "This is how the pages of your team project connect."
 :::
 
-## Directory metadata — `_metadata.yml` {#metadata}
+## Directory metadata: `_metadata.yml` {#metadata}
 
 Yesterday a header set the defaults and a cell overrode them. `_metadata.yml` is that **same idea,
 one scope wider**: options for every page in a **folder**, so you don't repeat them in each header:
@@ -127,7 +127,7 @@ Today's lab project is flat (a couple of pages at the root), so there's no folde
 - **Do not re-teach:** widen the rule only.
 :::
 
-## Websites — pages & navigation {#websites}
+## Websites: pages and navigation {#websites}
 
 You already set `type: website`, which makes the folder a **site**: its pages share one navbar and
 sidebar. You describe that navigation once, and Quarto builds it:
@@ -213,7 +213,7 @@ typography:
 ::: {.column width="46%"}
 - **Every page and every deck** inherits it from that one root file, so you never name it in a page.
 - Add a page later? Branded on render, nothing to wire up.
-- Need an exception? `brand: false` opts a page out; `brand: other.yml` points it elsewhere.
+- Need an exception? `brand: false` opts a page out. `brand: other.yml` points it elsewhere.
 :::
 ::::
 
@@ -265,9 +265,9 @@ Back in your project's `_quarto.yml`.
 prose edit to re-run a 20-minute model fit. Two tools, easily confused:
 
 ::: {.incremental}
-- **`cache`** — the **compute engine's** cache, not Quarto's: it defers to *knitr* (R) / *Jupyter Cache*.
+- **`cache`**: the **compute engine's** cache, not Quarto's. It defers to *knitr* (R) or *Jupyter Cache*.
   Per-**cell**, kept until that cell's code changes, and it works in a **single document**.
-- **`freeze`** — **Quarto's** own switch, *not* about compute: it sets *when* a document re-executes.
+- **`freeze`**: **Quarto's** switch for when a document re-executes.
   **Project-only**: rendering one file always runs it. Results live in `_freeze/`, refreshed only
   when its source changes. Commit it and **CI** *(the automated build)* rebuilds with **no R at all**.
 :::
@@ -291,7 +291,7 @@ hands you full control instead → next slide.
 - **Next:** `freeze: true` gives manual control.
 :::
 
-## The freeze workflow — you hold the trigger {#freeze-workflow}
+## The `freeze: true` workflow {#freeze-workflow}
 
 With **`freeze: true`**, a project build **never runs R**: it always reuses `_freeze/`. You refresh a
 page only when you choose to, by rendering that one file (a single-file render always executes):
@@ -329,7 +329,7 @@ but `true` keeps the trigger in your hands.
 
 :::: {.columns}
 ::: {.column width="50%"}
-- **`freeze`** → `_freeze/` — *"don't re-run the slow compute."*
+- **`freeze`** → `_freeze/`: do not repeat slow computation.
 - **`renv.lock`** → *"pin the packages, so the team rebuilds the same environment."*
 :::
 ::: {.column width="50%"}
@@ -381,13 +381,13 @@ Publish your site and open it on your phone. The lab has the steps. Everyone sti
 ## Your turn {#your-turn-2}
 
 ::: {.callout-tip title="Your turn — regroup in ~45 min"}
-Back to the **[Lab](../../labs/quarto-projects/index.qmd#ship-it-challenge)**, the **Ship it
+Back to the **[Lab](../../labs/quarto-projects/index.qmd#ship-it-challenge)**, the **Reproducible Build
 Challenge**: make the build skip unchanged pages, bring **yesterday's report** onto the site, and turn
 it into a publishable `_site/` folder. The dashboard demo and publishing are optional.
 :::
 
 ::: notes
-- **Say:** "Ship it Challenge: freeze the build and add yesterday's report. You have 45 minutes."
+- **Say:** "Reproducible Build Challenge: freeze the build and add yesterday's report. You have 45 minutes."
 - **Ask:** "How can you prove the code did not run?"
 - **Ask:** "Where do cache and freeze write results? Which folder do you commit?"
 - **Celebrate:** the Day-1 report becoming a site page.
@@ -398,8 +398,8 @@ it into a publishable `_site/` folder. The dashboard demo and publishing are opt
 
 You can now:
 
-- structure `.qmd` into a **project** — `_quarto.yml`, `output-dir`, `_metadata.yml`;
-- build a **branded website** with navigation, and know why cross-page refs differ from a book;
+- structure `.qmd` files into a **project** with `_quarto.yml`, `output-dir`, and `_metadata.yml`.
+- build a **branded website** with navigation and explain why cross-page references differ from a book.
 - make builds **reproducible** (`freeze` + `renv.lock`), produce a **publishable `_site/`** for a host
   or CI, and put it online.
 
@@ -417,9 +417,9 @@ You can now:
 Extra topics:
 
 ::: {.incremental}
-- **Book versus website** — mostly the same machinery. Pick a **book** when you need one linear read with
+- **Book versus website**: mostly the same machinery. Pick a **book** when you need one linear read with
   global numbering, a **website** otherwise. *(1 decision, not a new toolset.)*
-- **Interactivity** — an **htmlwidget** (`plotly`, `leaflet`) is pure R and self-contained. **OJS**
+- **Interactivity**: an **htmlwidget** (`plotly`, `leaflet`) is pure R and self-contained. **OJS**
   *(Observable JS, a browser-side, non-R path)* and **Shinylive** *(Shiny running in the browser,
   no server)* are links, not live builds.
 :::

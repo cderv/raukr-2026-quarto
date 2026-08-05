@@ -15,7 +15,7 @@ you can publish.
 | Day | Session | Slides | Lab |
 |-----|---------|--------|-----|
 | **Mon 10 Aug** | Introduction to Quarto: one document (authoring, layout, and modern output formats, including Typst) | [Slides](slides/quarto/index.qmd) | [Lab](labs/quarto/index.qmd) |
-| **Tue 11 Aug** | Quarto projects — beyond one file: websites, config, publishing, tips & tricks | [Slides](slides/quarto-projects/index.qmd) | [Lab](labs/quarto-projects/index.qmd) |
+| **Tue 11 Aug** | Quarto projects — beyond one file: websites, configuration, publishing, practical techniques | [Slides](slides/quarto-projects/index.qmd) | [Lab](labs/quarto-projects/index.qmd) |
 
 Each session has **two parts with a break**, and each part ends with hands-on work.
 
@@ -25,4 +25,4 @@ See **[Setup](setup.qmd)** for what to install (R ≥ 4.5, Quarto ≥ 1.9, a han
 
 ## License
 
-Content is [CC BY 4.0](LICENSE.md); code is MIT. By Christophe Dervieux (Posit).
+Content is [CC BY 4.0](LICENSE.md). Code is MIT. By Christophe Dervieux (Posit).

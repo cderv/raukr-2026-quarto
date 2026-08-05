@@ -1,6 +1,6 @@
 ---
 title: "Bill shape distinguishes Antarctic penguin species"
-subtitle: "The Day-1 payoff — one source, a branded Typst PDF"
+subtitle: "The Day-1 result — one source, a branded Typst PDF"
 author:
   - name: Christophe Dervieux
     affiliation: Posit, PBC

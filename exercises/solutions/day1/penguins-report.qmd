@@ -9,7 +9,7 @@ csl: apa.csl
 ## About this document
 This is the **shared running document** for Day 1: a small penguins report that carries the
 authoring value-adds (figures, cross-references, a `gt` table, margin layout, math) and then the
-citation payoff. The Day-1 lab grows a version of it; the payoff then renders it as a branded PDF
+citations. The Day-1 lab grows a version of it, then renders it as a branded PDF
 with **Typst** (a modern typesetting system that ships inside Quarto, so there is no LaTeX to
 install). Dataset: base-R `datasets::penguins` (R ≥ 4.5), columns `bill_len`, `bill_dep`,
 `flipper_len`, `body_mass`.
@@ -54,7 +54,7 @@ penguins |>
 ## Bill length and depth {#sec-bill}
 
 Each penguin's bill is summarized by two measurements: **length** and **depth** (the *culmen*,
-@fig-culmen). Depth is the vertical thickness at the base; length runs from base to tip.
+@fig-culmen). Depth is the vertical thickness at the base. Length runs from base to tip.
 
 ```{r}
 #| label: fig-culmen

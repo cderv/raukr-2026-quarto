@@ -22,7 +22,7 @@ so there's no data to download.
 
 ::: {.callout-tip appearance="simple"}
 You are working in the **`day1-intro/`** folder from the exercises download (open `day1-intro.Rproj`).
-See the [Setup page](../../setup.qmd#get-the-materials). Everything you render lands right next to
+See the [Setup page](../../setup.qmd#get-the-materials). Everything you render is written next to
 your files.
 :::
 
@@ -45,8 +45,8 @@ penguins <- penguins |> filter(!is.na(bill_len), !is.na(bill_dep))
 You do **not** need to convert anything to work natively in Quarto. Start with `.qmd` directly.
 But if you have an `.Rmd` you want to bring over:
 
-- it renders **as-is** — Quarto reads `.Rmd` too;
-- cell options move from the chunk header to the `#|` "hash-pipe" (one YAML option per line);
+- it renders **as-is** (Quarto reads `.Rmd` too).
+- cell options move from the chunk header to the `#|` "hash-pipe" (one YAML option per line).
 - `knitr::convert_chunk_header("doc.Rmd", output = "doc.qmd")` does the mechanical part.
 
 That's the whole migration. The rest of this lab is native `.qmd`.
@@ -145,7 +145,7 @@ ggplot(penguins, aes(bill_len, bill_dep, color = species, shape = species)) +
 The cross-references and the equation live in the **body Markdown**, outside any cell:
 
 ``` markdown
-@fig-bill shows bill shape by species; @tbl-summary gives the per-species means.
+@fig-bill shows bill shape by species. @tbl-summary gives the per-species means.
 
 $$
 \text{ratio} = \frac{\text{bill\_len}}{\text{bill\_dep}}
@@ -216,7 +216,7 @@ that.
      The button renders whatever `format:` is declared, so while the header still says `format: html`
      the button gives you HTML, **not** a PDF.
 
-   If you used the completed Part-1 file, render `starter.qmd` instead. The PDF lands **next to its source**
+   If you used the completed Part-1 file, render `starter.qmd` instead. The PDF is written **next to its source**
    in `day1-intro/`.
 ::::
 
@@ -237,7 +237,7 @@ headings mean `_brand.yml` isn't next to your `.qmd` (see Troubleshooting).
 - `csl:` sets the style (here APA). Swap the file to restyle every citation at once.
 - Typst reads the `.bib` itself, so keep bibliography fields plain (avoid LaTeX macros like
   `\emph{}` in titles).
-- On the first Typst render, Quarto downloads the brand's Google fonts; give it a moment and a
+- On the first Typst render, Quarto downloads the brand's Google fonts. Give it a moment and a
   network connection.
 :::
 
@@ -276,7 +276,7 @@ or set `format: typst` in the header and use the editor's Render button.
 ::::
 
 The complete cited HTML is `solutions/day1/penguins-report.qmd`. The branded Typst PDF (with R-side
-`theme_brand_*` styling) is `day1-intro/sample-typst.qmd` (render it to see the branded PDF payoff).
+`theme_brand_*` styling) is `day1-intro/sample-typst.qmd` (render it to see the final branded PDF).
 
 ## Bonus — one report per species (optional) {#sec-parameters}
 
@@ -336,7 +336,7 @@ figure/table cells at the filtered **`one`** (not `penguins`) so they track the 
    quarto render penguins-by-species.qmd -P species:Adelie    --output adelie.html    --embed-resources
    quarto render penguins-by-species.qmd -P species:Chinstrap --output chinstrap.html --embed-resources
    ```
-   With no `-P`, the default (`Gentoo`) is used. The HTML lands **next to the source** in
+   With no `-P`, the default (`Gentoo`) is used. The HTML is written **next to the source** in
    `day1-intro/`.
 
    Both flags are needed for *one report per species*. `--output` names the HTML, because every
@@ -361,7 +361,7 @@ are sharing one figure, so check both flags in the commands above. Change the on
 ## Hint
 - Parameters **must have defaults**: `params$species` has to resolve when no `-P` is passed.
 - `-P` takes `name:value` (`-P species:Adelie`). Pass several with repeated `-P` flags.
-- `#| output: asis` is what lets code *emit Markdown* (a heading here); without it, `cat()` output
+- `#| output: asis` lets code *emit Markdown* (a heading here). Without it, `cat()` output
   would show as a printed code result, not a heading.
 :::
 
@@ -376,7 +376,7 @@ Open it and render with different `-P species:` values, or take the source:
 ## Troubleshooting
 
 ::: {.callout-tip collapse="true" icon=false}
-## {{< fa wrench >}} If a render misbehaves
+## {{< fa wrench >}} If rendering fails or the output looks wrong
 - **YAML is indentation-sensitive.** If rendering fails *before* any code runs, check the YAML
   header for stray spaces, tabs, or unmatched quotes.
 - **Missing package?** `install.packages("<name>")` (or `renv::restore()`) and render again.

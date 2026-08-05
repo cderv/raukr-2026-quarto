@@ -39,10 +39,10 @@ source(file.path(Sys.getenv("QUARTO_PROJECT_DIR"),
 
 After this session you will be able to:
 
-- author a Quarto document natively (`.qmd`), with figures, tables, cross-references, and math;
-- lay a document out — the article grid, and content in the margin;
-- make it **accessible** — alt text, color-blind-safe colors, a built-in contrast check;
-- cite your sources from a `.bib` file, in the style a journal asks for;
+- author a Quarto document natively (`.qmd`), with figures, tables, cross-references, and math.
+- lay out a document with the article grid and margin content.
+- make it **accessible** with alt text, color-blind-safe colors, and a built-in contrast check.
+- cite your sources from a `.bib` file in the style a journal asks for.
 - turn it into a **branded Typst PDF** — no LaTeX.
 
 By the end, you will have a **polished PDF report**.
@@ -56,9 +56,9 @@ By the end, you will have a **polished PDF report**.
 
 Two rounds, each the same shape (**watch → follow along → your turn**):
 
-- some slides I just talk through; a **Follow along** callout opens each hands-on stretch and an
-  **Eyes up** callout closes it;
-- each round ends with a **hands-on Challenge** in the lab (solutions are folded in, so you can self-check);
+- some slides I talk through. A **Follow along** callout opens each hands-on stretch and an
+  **Eyes up** callout closes it.
+- each round ends with a **hands-on Challenge** in the lab (solutions are folded in for self-checking).
 - a **break** sits between the two rounds.
 
 Slides and lab live at <https://cderv.github.io/raukr-2026-quarto/>. Open them on your own screen and
@@ -78,9 +78,9 @@ Author a document and render it to HTML.
 You know the literate-programming idea. In 2026, one `.qmd` is your source for:
 
 ::: {.incremental}
-- a **report** (HTML, PDF, Word) — figures, tables, cross-refs, citations;
-- a **presentation** (these slides are a `.qmd`);
-- a **website or book** (Day 2) — many pages, one config;
+- a **report** (HTML, PDF, Word) with figures, tables, cross-references, and citations.
+- a **presentation** (these slides are a `.qmd`).
+- a **website or book** (Day 2) with many pages and one configuration file.
 - a **branded PDF via Typst** *(a modern PDF engine bundled in Quarto, no LaTeX)*: an article or a long report.
 :::
 
@@ -174,7 +174,7 @@ ggplot(penguins, aes(bill_len, bill_dep, color = species)) +
 
 Cell options use the `#|` "hash-pipe": one YAML option per line.
 
-## Markdown & content — think in deltas {#markdown-content}
+## Markdown and content: what changes {#markdown-content}
 
 ::: {.callout-note title="Follow along"}
 In `day1-intro/`, create **`my-report.qmd`** with `format: html`. It is the file the lab starts from.
@@ -239,7 +239,7 @@ figure. (`#| output-location: column` is **slide-only**: a revealjs placement, n
 
 ## Tables {#tables}
 
-`gt` (or `knitr::kable`) turns a data frame into a table; a `#| label: tbl-` makes it referenceable.
+`gt` (or `knitr::kable`) turns a data frame into a table. A `#| label: tbl-` makes it referenceable.
 
 ```{r}
 #| echo: fenced
@@ -301,7 +301,7 @@ Base-R `penguins` (R ≥ 4.5) needs no install.
 
 ## Inline code {#inline-code}
 
-**Inline code** drops a computed value straight into prose. Put it in a sentence:
+**Inline code** inserts a computed value into prose. Put it in a sentence:
 
 ``` markdown
 We measured `{{r}} nrow(penguins)` penguins.
@@ -330,11 +330,11 @@ ready for the Challenge.
 The **article-layout model** puts content in the **body**, the **margin**, or a zone **wider than
 the body** (in the paged formats: HTML, LaTeX, Typst):
 
-- `page-layout: article` / `full` — the overall grid;
-- **margin** content — figures, tables, captions, `.aside`, footnotes;
-- **outset / inset** — a figure or table that spills *beyond* the body (outset) or widens toward
-  the page while keeping a margin from the edge (inset);
-- **multi-column** `::: {.columns}` and **panels** — tabsets + `layout-ncol`.
+- `page-layout: article` / `full`: the overall grid.
+- **margin** content: figures, tables, captions, `.aside`, and footnotes.
+- **outset / inset**: a figure or table that extends beyond the body (outset) or widens toward
+  the page while keeping a margin from the edge (inset).
+- **multi-column** `::: {.columns}` and **panels**: tabsets and `layout-ncol`.
 
 ::: notes
 - **Define:** outset and inset.
@@ -367,12 +367,12 @@ in the Quarto docs below.*
 
 Accessibility is a few habits layered on what you already write:
 
-- **Alt text** — you already add `#| fig-alt:` to every figure; it's what a screen reader announces.
-- **Color-blind-safe colors** — the default palette isn't. Pick one that is:
+- **Alt text**: you already add `#| fig-alt:` to every figure. It is what a screen reader announces.
+- **Color-blind-safe colors**: the default palette is not safe. Pick one that is:
   [Okabe-Ito](https://jfly.uni-koeln.de/color/) is the common choice in science
   ([`scale_color_okabe_ito()`](https://malcolmbarrett.github.io/ggokabeito/)), viridis suits
   continuous scales. Encode by shape or label too, not color alone.
-- **Check contrast** — WCAG wants 4.5:1 on text. Quarto's built-in `axe` runs axe-core on the
+- **Check contrast**: WCAG wants 4.5:1 on text. Quarto's built-in `axe` runs axe-core on the
   rendered page:
 
 ```{.yaml}
@@ -414,8 +414,8 @@ format:                   # …or set options per format
 ```
 :::
 ::: {.column width="50%"}
-- **Shared vs. per-format** — top-level keys (`toc`, `number-sections`, …) apply to every format; the `format:` map overrides them per output.
-- **Conditional content** — show or hide a block per format:
+- **Shared vs. per-format**: top-level keys (`toc`, `number-sections`, …) apply to every format. The `format:` map overrides them per output.
+- **Conditional content**: show or hide a block per format:
 
 ```{.markdown code-line-numbers="false"}
 ::: {.content-visible when-format="html"}
@@ -456,7 +456,7 @@ summary(penguins$body_mass)
 :::
 ::::
 
-The header sets the defaults; a cell's `#|` wins.
+The header sets the defaults. A cell's `#|` wins.
 
 *`freeze` commits computed results to `_freeze/` so a project re-render (or CI without R) skips
 unchanged documents. We'll see it in Day 2.*
@@ -539,7 +539,7 @@ You have a clean HTML document. The lab ships a **Part-2 starter** if you need o
 **publication-ready article**, two more things:
 
 ::: {.incremental}
-1. **citations** — a `.bib` file and a citation style;
+1. **citations**: a `.bib` file and a citation style.
 2. **a typeset PDF** — via **Typst**, bundled in Quarto.
 :::
 
@@ -638,7 +638,7 @@ The header already says which format, so nothing else is needed. To get the PDF 
 the header, ask for it on the command line instead: `quarto render report.qmd --to typst`.
 
 ::: {.callout-note title="Pre-flight"}
-Typst is bundled from Quarto **1.4+**; we require **≥ 1.9** (margin/article layout). Check once with `quarto --version`.
+Typst is bundled from Quarto **1.4+**. We require **≥ 1.9** for margin and article layout. Check once with `quarto --version`.
 :::
 
 ::: notes
@@ -698,11 +698,11 @@ finish with a **publication-ready article**, a citable, branded PDF you could su
 
 You can now:
 
-- author a `.qmd` natively — figures, tables, cross-references, math, callouts;
-- lay it out — the article grid, and content in the margin;
-- make it accessible — alt text, color-blind-safe colors, a built-in `axe` check;
-- cite it with a `.bib` + CSL, give it a real title block;
-- ship it as a **branded Typst PDF** — no LaTeX.
+- author a `.qmd` natively with figures, tables, cross-references, math, and callouts.
+- lay it out with the article grid and margin content.
+- make it accessible with alt text, color-blind-safe colors, and a built-in `axe` check.
+- cite it with a `.bib` and CSL, and give it a real title block.
+- render it as a **branded Typst PDF** — no LaTeX.
 
 . . .
 

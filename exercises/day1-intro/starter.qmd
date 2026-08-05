@@ -9,7 +9,7 @@ format: html
 This is the KNOWN-GOOD Part-2 starter (running-order rule 2): a complete Part-1 penguins report —
 a cross-referenced figure and table, a margin element, and a display equation — with NO citations
 yet. Open it at the start of Part 2 (whether or not you finished your own Part-1 document) and add
-the citation + Typst payoff on top of it. The fully cited version is `penguins-report.qmd`.
+the citations and final Typst PDF on top of it. The fully cited version is `penguins-report.qmd`.
 -->
 
 ```{r}

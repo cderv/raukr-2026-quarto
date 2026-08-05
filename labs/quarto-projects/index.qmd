@@ -75,7 +75,7 @@ project:
 
 ::: {.callout-note appearance="simple" icon=false}
 ## {{< fa circle-check >}} You should see
-One command, run with **no file argument**, builds **all four** pages at once, and the HTML lands in a
+One command, run with **no file argument**, builds **all four** pages at once, and the HTML is written to a
 new `day2-projects/_site/` folder instead of next to each `.qmd`. Before this step, rendering
 `analysis.qmd` put `analysis.html` right beside it.
 :::
@@ -241,7 +241,7 @@ end up on the page?
 **Mechanism:**
 
 `brand` is a theme **layer**, and it is the layer that reads your `_brand.yml`. A bare
-`theme: cosmo` expands to `[brand, cosmo]`, and **later layers win**, so cosmo's palette lands on top
+`theme: cosmo` expands to `[brand, cosmo]`, and **later layers win**, so cosmo's palette is applied after
 of the brand's and you get cosmo's blue.
 
 The fonts come through whichever way round you write it, which is exactly what makes this look like
@@ -359,7 +359,7 @@ Then, in the body, where you want the table:
 ```
 :::
 
-## Ship it Challenge
+## Reproducible Build Challenge {#ship-it-challenge}
 
 > **Goal:** make the project's builds **reproducible**, bring your own work onto the site, and render
 > it all to a publishable `_site/` folder.
@@ -503,7 +503,7 @@ Copy the `.qmd` into `day2-projects/`, add an entry for it in the `navbar:` list
 A page in a project inherits `format:` from `_quarto.yml`, so the `format: pdf` from Day 1 is no
 longer what you want here. Drop it and the page builds as HTML like its neighbours.
 
-Didn't finish Day 1, or don't have the file to hand? Use `solutions/day1/penguins-report.qmd` from
+Didn't finish Day 1, or do not have the file? Use `solutions/day1/penguins-report.qmd` from
 your exercises download instead.
 :::
 
@@ -604,7 +604,7 @@ produced them.
 ## Troubleshooting
 
 ::: {.callout-tip collapse="true" icon=false}
-## {{< fa wrench >}} If a render misbehaves
+## {{< fa wrench >}} If rendering fails or the output looks wrong
 - **Rendered, but can't find the HTML?** Before you add `_quarto.yml`, a single-page render writes
   the HTML **next to its source** in `day2-projects/`. Once `_quarto.yml` is present, a project render
   collects all pages under `day2-projects/_site/`. Look in those two places.
