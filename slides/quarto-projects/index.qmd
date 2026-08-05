@@ -189,6 +189,10 @@ one unit with global numbering. A **website** keeps per-page numbering.
 
 ::: notes
 - **Before session:** confirm that a website does not resolve a cross-page `@fig-` reference.
+- **If asked — does `@sec-` need `number-sections: true`?** No. The reference resolves either way
+  (verified, Quarto 1.10). The option adds the number on the heading, which is why the docs pair
+  them. This site sets it in `_quarto.yml`, so a demo here shows numbers a participant's own bare
+  document will not.
 :::
 
 ## One brand → the whole project: `_brand.yml` {#brand}
