@@ -32,7 +32,7 @@ spoken register leaking onto the page.
 - **Em-dash asides — #1 offender.** No mid-sentence `—`/`--` interjection, *especially* two dashes
   splitting subject from verb (`The way — X, Y, Z — is …`) or a dramatic trailing `— punch.`
   Replace with `(…)`, a `:`, or a full stop + new sentence. (A plain `term — gloss` slide bullet is OK.)
-- **No `;` semicolons** — split or parenthesise.
+- **No `;` semicolons** — split or parenthesise. Sentence bullets end with periods, not semicolons.
 - **No participial voice-over tail** (`…, making it easy to X`, `…, so you never have to think about it`).
 - **No reassurance narration** (`(don't worry)`, `so nothing surprises you`, `no magic here`).
 - **No corporate verbs** (leverage/utilize/facilitate/streamline) or **vague intensifiers**
@@ -45,8 +45,10 @@ spoken register leaking onto the page.
   generic future (`Add a page tomorrow?` → `later?`).
 - **No idiomatic English** in body prose. Christophe writes English as a second language (French first);
   colloquial figures of speech read as not-his-voice ("nobody is stranded", "goes sideways", "hit the
-  ground running", "low-hanging fruit"). Say it plainly and literally. (Near-literal metaphors he does
-  use — "batteries included", "under the hood" — are fine.)
+  ground running", "low-hanging fruit", "ship it", "payoff", "the output lands", "to hand",
+  "tips & tricks"). Say it plainly and literally: "publish", "result", "is written to", "have the
+  file", "practical techniques". (Near-literal metaphors he does use — "batteries included", "under
+  the hood" — are fine.)
 
 ## Before adding a sentence: who reads it, and when?
 

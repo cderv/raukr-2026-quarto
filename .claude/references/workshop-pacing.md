@@ -10,7 +10,7 @@ Every module cycles through three teaching modes:
 
 - **My turn** — short concept presentation via slides (~5-10 min max per cycle)
 - **Our turn** — live coding; participants follow along in their editor
-- **Your turn** — independent exercise with a countdown timer (5-10 min)
+- **Your turn** — independent exercise within the announced hands-on block
 
 The cycle repeats multiple times per module. It is **not** "30 min talk then 30 min exercise."
 
@@ -36,14 +36,18 @@ hands-on.
 ## Exercise design
 
 - **Starter files, not instructions on slides** — participants have something open immediately.
-- Exercises are **short and focused** (5-10 min each with a countdown), not comprehensive.
+- Exercises are **short and focused**, not comprehensive. Announce the hands-on block time on the
+  transition slide. Do not publish per-task estimates until they have been tested in a rehearsal or
+  a previous delivery: untested numbers create false precision and make participants feel behind.
 - **Solutions inline by default** (refined 2026-07-07): a folded `#| code-fold: true` /
   `::: {.callout-tip collapse="true"}` solution in the lab doc — not a secret — is more portable
   (one file) and lets participants self-check on the spot, matching RaukR's idiom. Ship a separate
   `starter/` file only when an exercise genuinely starts from scratch. The "Our turn" live coding
   stays the main path through the material.
 - **Progressive**: later exercises build on earlier ones; provide a fallback starting point
-  for participants who didn't finish the previous one.
+  for participants who didn't finish the previous one. Name the **core finish line**, then mark
+  **stretch**, **optional**, and **demo** work. Keep the goal, tasks, and checkpoint aligned. A demo
+  becomes an exercise only when the slides teach enough for participants to build it.
 - Exercise files are minimal: working code, bare structure — participants add the new concepts.
 - A **pre-workshop install mini-test** (a tiny self-contained document that exercises the
   full toolchain) de-risks setup before the day. Reference it from the prerequisites page.

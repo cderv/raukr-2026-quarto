@@ -264,3 +264,11 @@ Same discipline for a shown **command** — check that the *slide's own setup*
 doesn't already make it redundant. That's the other half of the same failure: that
 slide set `format: typst` in the header and then ran
 `quarto render report.qmd --to typst`, teaching that you need both.
+
+## 9. Presenter notes are cues, not a script
+
+Notes must be readable at a glance in revealjs presenter mode: short **Say**, **Do**, **Ask**,
+**Watch for**, **Timing**, or **Catch-up** bullets, one idea each, normally no more than 60 words per
+slide. Keep the transition, demo action, essential trap, and fallback. Remove edit history,
+verification narratives, and explanations already visible elsewhere. Put durable authoring knowledge
+in a rule, not in presenter notes.

@@ -45,7 +45,11 @@ cderv/raukr-2026-quarto-exercises @ main   ← what use_course() + the /main/ do
 
 1. **Re-render executable `.qmd`** you changed and stage `_freeze/` (the normal freeze discipline; the
    `check-freeze.sh` commit hook blocks a stale freeze). Lab index pages have a freeze too.
-2. **Re-sync:** `just exercises` (regenerates `exercises/`), then **commit `exercises/`**. A course-repo
+2. **Re-sync:** `just exercises` (regenerates `exercises/`), then **commit any changed files under
+   `exercises/`**. The sync is manifest-driven: the two lab guide pages (`labs/quarto/index.qmd` and
+   `labs/quarto-projects/index.qmd`) are site pages and are not copied into the payload, so an edit to
+   either can legitimately produce no generated diff. Inspect `tools/sync-exercises.R` before claiming
+   drift from a path alone. A course-repo
    drift-guard CI (`.github/workflows/exercises-sync.yml` = `just exercises-check`) fails and names the
    drifted file if you forget — `exercises/` must always match its sources.
 3. **Publish when ready:** `just publish-exercises` mirrors `exercises/` onto the delivery repo's `main`
