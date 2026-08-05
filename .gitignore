@@ -75,5 +75,15 @@
 # The committed exercises/ is content only; the sync strips render output and renders happen in
 # throwaway copies. Ignore any in-place render churn so it can't be committed or trip the drift-guard.
 /exercises/**/_site/
+/exercises/**/_freeze/
+/exercises/**/.gitignore
 /exercises/**/*.pdf
 /exercises/**/*.html
+
+# --- Day-2 solution project, rendered in place ---
+# labs/quarto-projects/solution/ is a real Quarto project (that is the point: it is the finished
+# reference). Rendering it to check it still builds writes project output beside the source, and
+# Quarto drops its own .gitignore in there. All regenerable, and the sync strips it before shipping.
+/labs/quarto-projects/solution/_site/
+/labs/quarto-projects/solution/_freeze/
+/labs/quarto-projects/solution/.gitignore

@@ -40,7 +40,11 @@ files <- c(
   # renders standalone.
   "labs/quarto/penguins-report.qmd"     = "solutions/day1/penguins-report.qmd",
   "labs/quarto/references.bib"          = "solutions/day1/references.bib",
-  "labs/quarto/apa.csl"                 = "solutions/day1/apa.csl"
+  "labs/quarto/apa.csl"                 = "solutions/day1/apa.csl",
+  # The dashboard is BOTH a site page (it stays on the root render list, and the deck links to it)
+  # and the reference solution for the Day-2 dashboard step, so it ships from where it already lives
+  # rather than being duplicated into solution/.
+  "labs/quarto-projects/dashboard.qmd"  = "solutions/day2/dashboard.qmd"
 )
 
 # Directory-level copies (whole tree, artifact-stripped): source dir -> destination dir.

@@ -1,0 +1,31 @@
+---
+title: "My report"
+description: "The Day-1 document, now a page on the site."
+---
+
+```{r}
+#| label: setup
+#| message: false
+library(dplyr)
+library(ggplot2)
+data(penguins)
+penguins <- penguins |> filter(!is.na(bill_len), !is.na(bill_dep), !is.na(body_mass))
+```
+
+This page stands in for the report you built on Day 1. Copy your own `my-report.qmd` over this file
+and re-render: the document you wrote as a standalone PDF becomes one page of a website, with no
+change to its content.
+
+Only the front matter needed a look. A page inside a project inherits `format:` from `_quarto.yml`,
+so the `format: pdf` you had on Day 1 is no longer needed here.
+
+```{r}
+#| label: fig-bill
+#| fig-cap: "Bill depth against bill length, by species."
+#| fig-alt: "Scatterplot of bill depth versus bill length in millimeters, colored by species; the three species form separate clusters."
+ggplot(penguins, aes(bill_len, bill_dep, color = species)) +
+  geom_point(alpha = 0.8) +
+  labs(x = "Bill length (mm)", y = "Bill depth (mm)", color = NULL)
+```
+
+@fig-bill still resolves, because the reference and its figure share one page.

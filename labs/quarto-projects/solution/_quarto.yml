@@ -1,6 +1,7 @@
 project:
   type: website
   output-dir: _site
+
 website:
   title: "Penguin Lab"
   navbar:
@@ -9,6 +10,14 @@ website:
         text: Home
       - href: analysis.qmd
         text: Analysis
+      - href: my-report.qmd
+        text: My report
+
 format:
   html:
+    # `brand` reads _brand.yml, and later layers win, so it has to come after cosmo.
     theme: [cosmo, brand]
+
+execute:
+  # Re-execute a document only when its own source changes; otherwise reuse _freeze/.
+  freeze: auto

@@ -1,0 +1,4 @@
+# Options for every page in this folder, and nowhere else. Quarto merges this into each
+# reports/*.qmd on top of the project defaults from _quarto.yml.
+code-fold: true
+code-summary: "Show the code"
