@@ -19,6 +19,10 @@ Four steps, top to bottom (each links to its details below):
 Do steps 2–4 **before you arrive**: walking in with the toolchain already in place means we start on the content, not the install.
 :::
 
+Slides and labs stay online at <https://cderv.github.io/raukr-2026-quarto/>, during the sessions and
+after. Keep the tab open on the day: you can scroll back to any slide at your own pace and copy a
+code cell straight from it.
+
 ## Software
 
 - **R ≥ 4.5.0.** The running dataset (`penguins`) ships in base R only since 4.5 (check with

@@ -53,13 +53,19 @@ By the end: one penguins document carried all the way to a **polished, citable P
 
 Two rounds, each the same shape (**watch → follow along → your turn**):
 
-- some slides I just talk through; when it's hands-on you'll see a **Follow along** callout;
+- some slides I just talk through; a **Follow along** callout opens each hands-on stretch and an
+  **Eyes up** callout closes it;
 - each round ends with a **hands-on Challenge** in the lab (solutions are folded in, so you can self-check);
 - a **break** sits between the two rounds.
 
+Slides and lab live at <https://cderv.github.io/raukr-2026-quarto/>. Open them on your own screen and
+move at your own pace.
+
 ::: notes
 - **Frame (once, up front):** give the room the map — two rounds, same shape; the **Follow along** /
-  **Your turn** callouts flag every switch.
+  **Eyes up** / **Your turn** callouts flag every switch.
+- **Do:** put the URL on screen for a beat. It is the fallback for anyone who falls behind, and it
+  lets them copy a cell straight from the slide instead of retyping it.
 :::
 
 # Part 1 — Basics {.center}
@@ -169,29 +175,31 @@ Cell options use the `#|` "hash-pipe": one option per line, YAML-valued. Native 
 ## Markdown & content — think in deltas {#markdown-content}
 
 ::: {.callout-note title="Follow along"}
-Open your editor and render as we go. From here on we're building one document together. Every
-follow-along cell assumes this setup, so run it first:
+In `day1-intro/`, create **`my-report.qmd`** with `format: html`. It is the file the lab starts from.
+Put this cell at the top: everything we write next assumes it. Fallen behind at any point? Open
+`starter.qmd` in the same folder and keep going from there.
 :::
 
-``` r
+```` {.markdown}
+```{{r}}
+#| label: setup
+#| message: false
 library(dplyr)
 library(ggplot2)
 library(gt)
-data(penguins)                                     # base R ≥ 4.5 — the dataset is zero-install
+data(penguins)
 penguins <- penguins |> filter(!is.na(bill_len), !is.na(bill_dep))
 ```
+````
 
-You already know Markdown. Quarto adds the research-writing pieces:
-
-- **figures & tables** with captions, from code;
-- **cross-references** — `@fig-bill`, `@tbl-summary`, `@eq-ratio`;
-- **math** — inline `$…$` and display `$$…$$`;
-- **inline code** — report numbers *from the data*;
-- **callouts** — note / tip / warning / caution / important.
+You already know Markdown. Quarto adds the research-writing pieces: **figures** and **tables** with
+captions, **cross-references** (`@fig-bill`, `@tbl-summary`, `@eq-ratio`), **math**, **inline code**
+that reports numbers from the data, and **callouts**.
 
 ::: notes
-- **Say:** "From here we build one document together — render as we go."
-- **Do:** run the setup block **first** (libraries + `penguins`); every follow-along cell assumes it, so if it's skipped the first figure cell errors.
+- **Say:** "From here we build one document together. Render as we go."
+- **Do:** make sure the setup cell is **in the document**, not run in the console. knitr renders in a fresh R process, so a console run never reaches the render and the first figure cell errors.
+- **Say (name the file out loud):** "`my-report.qmd`, in `day1-intro/`" — it is the exact file the Authoring Challenge asks for, so what they build now carries straight into the lab.
 - **Frame:** the list is *deltas* over the Markdown they already know — not a Markdown lesson.
 - **Timing:** this + the next four slides (Figures / Tables & math / Callouts / Inline code) are the live build, ~8–10 min total. One point per slide; don't polish plots.
 :::
@@ -201,11 +209,12 @@ You already know Markdown. Quarto adds the research-writing pieces:
 A labeled code cell becomes a numbered, referenceable figure:
 
 ```{r}
+#| echo: fenced
 #| label: fig-bill
 #| fig-cap: "Bill length versus depth, by species."
-#| fig-alt: "Scatter plot of bill depth against bill length for three penguin species, forming separate clusters."
-#| fig-width: 8
-#| fig-height: 3.2
+#| fig-alt: >-
+#|   Scatter plot of bill depth against bill length
+#|   for three penguin species, forming clusters.
 #| output-location: column
 ggplot(penguins, aes(bill_len, bill_dep,
                      color = species)) +
@@ -254,14 +263,14 @@ Display math with a label is cross-referenceable too:
 
 ``` markdown
 $$
-\text{ratio} = \frac{\text{bill_len}}{\text{bill_dep}}
+\text{ratio} = \frac{\text{bill\_len}}{\text{bill\_dep}}
 $$ {#eq-ratio}
 ```
 
 renders as @eq-ratio below:
 
 $$
-\text{ratio} = \frac{\text{bill_len}}{\text{bill_dep}}
+\text{ratio} = \frac{\text{bill\_len}}{\text{bill\_dep}}
 $$ {#eq-ratio}
 
 ::: notes
@@ -313,7 +322,10 @@ The number updates when the data does. **Reproducible by construction.**
 
 ## Layouts: body, margin, and beyond {#layouts}
 
-*Eyes up: the next few slides are concept, no need to type along.*
+::: {.callout-warning title="Eyes up — not a live *Follow along*"}
+The live build is done. The next seven slides are concept, no need to type along. Your document is
+ready for the Challenge.
+:::
 
 The **article-layout model** puts content in the **body**, the **margin**, or a zone **wider than
 the body** (in the paged formats: HTML, LaTeX, Typst):
@@ -331,13 +343,15 @@ the body** (in the paged formats: HTML, LaTeX, Typst):
 
 ## Put output in the margin {#margin-layout}
 
-A cell's `#| column: margin` drops its output (figure, caption, and all) into the margin:
+A cell's `#| column: margin` drops its output (figure or table, caption and all) into the margin:
 
-``` {.r}
+```` {.markdown}
+```{{r}}
+#| label: counts
 #| column: margin
-#| fig-cap: "Bill length by species."
-# a margin figure — caption and all
+penguins |> count(species, name = "n") |> knitr::kable()
 ```
+````
 
 *In the lab you'll use **margin** layout, the one that does the most for an article. The rest are
 in the Quarto docs below.*
@@ -419,10 +433,12 @@ execute:
 ::: {.column width="48%"}
 A cell — overrides locally with `#|`:
 
-``` r
+```` {.markdown}
+```{{r}}
 #| echo: true
 summary(penguins$body_mass)
 ```
+````
 :::
 ::::
 
@@ -530,7 +546,8 @@ This is exactly the path from your analysis to a submission, and to your **team-
 ## Citations {#citations}
 
 ::: {.callout-note title="Follow along"}
-Back in your editor: we add citations to the Part-1 document (or the lab's `starter.qmd`).
+Back in your editor: we add citations to your Part-1 document, or to `day1-intro/starter.qmd` if you
+need one.
 :::
 
 Point the header at a `.bib`, then cite with `@key`:
@@ -548,7 +565,9 @@ The data come from Palmer Station
 renders as: … Palmer Station (Gorman et al., 2014).
 :::
 ::: {.column width="45%"}
-``` {.bibtex filename="references.bib"}
+`references.bib` already ships in `day1-intro/` (excerpt):
+
+``` {.bibtex}
 @article{gorman2014,
   author  = {Gorman, K. B. and ...},
   title   = {Ecological Sexual ...},

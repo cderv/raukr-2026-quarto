@@ -76,7 +76,7 @@ project:
   output-dir: _site  # everything renders here
 format:
   html:
-    theme: [default, custom.scss]
+    toc: true          # set once, every page gets it
 ```
 :::
 ::: {.column width="48%"}
