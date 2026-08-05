@@ -102,6 +102,26 @@ his own decks. The test: would a precise non-native writer produce this, or is i
 idiom? When unsure, prefer the literal statement.) `::: notes` are spoken cues he adapts live, so a
 relaxed idiom there matters less — but body prose that renders to the page should stay literal.
 
+## Cross-day pointers — name the day, don't narrate it
+
+A pointer to another day is a **fact about the schedule**, so state it. The recurring failure is
+dressing it as narrative, which is both idiom (above) and a register the slide body doesn't own:
+
+- `That's the Day 2 story.` → `We'll see it in Day 2.`
+- `Day 1 I teased **freeze**: here's the full story.` → `**freeze** was one line in Day 1. Here it
+  is in full.`
+
+His forms are plain and short: *"We'll see it in Day 2." · "That's part of Day 2." · "X was one
+line in Day 1."* Anything reaching for a narrative noun (**story**, **saga**, **chapter**,
+**cliffhanger**) or presenter-jargon for the act of pointing (**teased**, **foreshadowed**,
+**set up**) is the tell. The presenter may well *say* "I teased this yesterday" out loud, and
+that is fine in `::: notes` — it just isn't what the page states.
+
+**Relative time words are load-bearing here.** In a multi-day workshop "yesterday" and "tomorrow"
+mean the adjacent workshop day, so don't spend them on a generic future: `Add a page tomorrow?`
+→ `Add a page later?`. Reserve them for real cross-day callbacks, where they are the warmest
+option and read exactly right ("You saw this yesterday").
+
 ## Before / after (the worked examples)
 
 - `The easiest way to get it — **no git, no GitHub account, nothing to unzip by hand**, identical on

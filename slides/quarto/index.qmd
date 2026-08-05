@@ -473,7 +473,7 @@ summary(penguins$body_mass)
 The header sets the defaults; a cell's `#|` wins.
 
 *`freeze` commits computed results to `_freeze/` so a project re-render (or CI without R) skips
-unchanged documents. That's the Day 2 story.*
+unchanged documents. We'll see it in Day 2.*
 
 **Learn more:** [Execution options](https://quarto.org/docs/computations/execution-options.html) ·
 [Cell options](https://quarto.org/docs/reference/cells/cells-knitr.html)

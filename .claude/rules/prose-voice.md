@@ -38,6 +38,11 @@ spoken register leaking onto the page.
 - **No corporate verbs** (leverage/utilize/facilitate/streamline) or **vague intensifiers**
   (really/very/simply/just-as-filler).
 - **No antithesis flip** (`not just X, it's Y`) or **signposting** (`It's worth noting that`, `In short`).
+- **No narrated cross-day pointers.** A pointer to another day states the schedule: `We'll see it in
+  Day 2.` / `That's part of Day 2.` / `X was one line in Day 1.` Never a narrative noun (`That's the
+  Day 2 **story**`) or presenter-jargon for the act of pointing (`Day 1 I **teased** freeze`) — those
+  are `::: notes` register. And keep `yesterday`/`tomorrow` for the actual adjacent day, never for a
+  generic future (`Add a page tomorrow?` → `later?`).
 - **No idiomatic English** in body prose. Christophe writes English as a second language (French first);
   colloquial figures of speech read as not-his-voice ("nobody is stranded", "goes sideways", "hit the
   ground running", "low-hanging fruit"). Say it plainly and literally. (Near-literal metaphors he does
@@ -81,4 +86,6 @@ click away at exactly the moment someone is stuck.
 rg -n --glob '*.qmd' --glob '!_*.qmd' -- '—|--' setup.qmd index.qmd labs slides   # em-dashes
 rg -n --glob '*.qmd' -- ' [?!]'                                                    # French spacing
 rg -niE '\b(leverage|utilize|facilitate|streamline|seamless|robust)\b' --glob '*.qmd'
+# Cross-day pointers -- judge each in context (a real callback is fine, a narrated one is not)
+rg -niE '\b(story|saga|chapter|teas(e|ed|er)|foreshadow\w*|yesterday|tomorrow)\b' --glob '*.qmd' slides labs
 ```

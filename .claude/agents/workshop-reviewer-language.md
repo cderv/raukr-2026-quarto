@@ -57,6 +57,17 @@ principle: **written prose states; the presenter's voice lives in `::: notes`.**
   `;` semicolons, and corporate verbs.
 - **French typography in English** (copy-edit, not register): a space before `?` `!` `:` `;`
   (`publications ?`) is the *espace insécable* leaking in — an error to remove, never a voice trait.
+- **Narrated cross-day pointers.** This workshop runs over two days, so slides point forward and
+  back constantly. The pointer is a **fact about the schedule** and should read like one: "We'll see
+  it in Day 2.", "That's part of Day 2.", "`freeze` was one line in Day 1." Flag any pointer dressed
+  as narrative — a story noun (**story**, **saga**, **chapter**) or presenter-jargon for the act of
+  pointing (**teased**, **foreshadowed**) — e.g. "That's the Day 2 story." / "Day 1 I teased
+  **freeze**: here's the full story." That register belongs in `::: notes`, where the presenter
+  really does say it out loud. Also flag **yesterday/tomorrow spent on a generic future** ("Add a
+  page tomorrow?" → "later?"): in a multi-day workshop those words mean the adjacent workshop day,
+  and a real callback ("You saw this yesterday") is the one place they belong. ⚠️ Teaser and payoff
+  are a **matched pair** (`.claude/rules/multi-day-sequencing.md` §4) — if you propose rewording one
+  end, propose the other end in the same table row, or say explicitly that the pair still reads.
 - **Idiomatic English** in body prose. Christophe writes English as a second language; colloquial
   figures of speech read as not-his-voice and should go ("nobody is stranded by the break", "goes
   sideways", "hit the ground running", "low-hanging fruit"). Propose the plain, literal statement.
@@ -147,6 +158,9 @@ grep -rniE 'for (a |an )?(research|beginner|novice|advanced|expert)|(researchers
   --include='*.qmd' --include='*.md'
 # Audience-locked / domain jargon that hurts reuse (check each is generic on-slide, domain flavor in notes)
 grep -rniE '\b(bioinformatic|genomic|sequenc|alignment|capstone)\w*' --include='*.qmd'
+# Cross-day pointers — judge each in context (a plain callback is fine, a narrated one is not)
+grep -rniE '\b(story|saga|chapter|teas(e|ed|er)|foreshadow\w*|yesterday|tomorrow)\b' \
+  --include='*.qmd' slides labs
 ```
 
 # Deliverable format

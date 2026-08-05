@@ -49,11 +49,21 @@ sequence, not a standalone session.
 
 ## 4. Pay off the teasers — and keep both ends in sync
 
-If an earlier day explicitly deferred something (*"…that's the Day 2 story"*), the
-later day must pick up **that exact thread**: *"Day 1 I teased **freeze** — here's
-the full story."* The teaser and its payoff are a matched pair: if you cut, move,
+If an earlier day explicitly deferred something (*"We'll see it in Day 2."*), the
+later day must pick up **that exact thread**: *"**freeze** was one line in Day 1.
+Here it is in full."* The teaser and its payoff are a matched pair: if you cut, move,
 or reword one, fix the other in the same change, or a promise is left dangling (or
 a payoff lands with no setup).
+
+**Word the pointer plainly.** It states a fact about the schedule, so it reads like
+one. This rule used to illustrate itself with *"that's the Day 2 story"* and *"Day 1
+I teased freeze"* — both were retired from the decks in 2026-08-05 for the same
+reason: a story noun (**story**, **saga**, **chapter**) or presenter-jargon for the
+act of pointing (**teased**, **foreshadowed**) is `::: notes` register, not slide-body
+register. And spend `yesterday`/`tomorrow` only on the genuinely adjacent day — in a
+multi-day workshop they are schedule words, so a generic *"add a page tomorrow?"*
+reads as one. Forms + full list: `.claude/rules/prose-voice.md`,
+`house-voice.md § Cross-day pointers`.
 
 ## 5. Verify the callback is true before you write it
 

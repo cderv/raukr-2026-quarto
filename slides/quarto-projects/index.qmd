@@ -218,7 +218,7 @@ typography:
 :::
 ::: {.column width="46%"}
 - **Every page and every deck** inherits it from that one root file, so you never name it in a page.
-- Add a page tomorrow? Branded on render, nothing to wire up.
+- Add a page later? Branded on render, nothing to wire up.
 - Need an exception? `brand: false` opts a page out; `brand: other.yml` points it elsewhere.
 :::
 ::::
@@ -289,8 +289,8 @@ Make builds reproducible, then publish: how your team ships its project.
 Back in your project's `_quarto.yml`.
 :::
 
-Day 1 I teased **freeze**: here's the full story. Compute can be slow: you don't want every prose
-edit to re-run a 20-minute model fit. Two tools, easily confused:
+**freeze** was one line in Day 1. Here it is in full. Compute can be slow: you don't want every
+prose edit to re-run a 20-minute model fit. Two tools, easily confused:
 
 ::: {.incremental}
 - **`cache`** — the **compute engine's** cache, not Quarto's: it defers to *knitr* (R) / *Jupyter Cache*.
