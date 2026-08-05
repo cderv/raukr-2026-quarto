@@ -429,8 +429,14 @@ format:                   # …or set options per format
 :::
 ::: {.column width="50%"}
 - **Shared vs. per-format** — top-level keys (`toc`, `number-sections`, …) apply to every format; the `format:` map overrides them per output.
-- **Conditional content** — show or hide per format with
-  `::: {.content-visible when-format="html"}`.
+- **Conditional content** — show or hide a block per format:
+
+```{.markdown code-line-numbers="false"}
+::: {.content-visible when-format="html"}
+Only in HTML.
+:::
+```
+
 - The *layout* idioms adapt per format: write once, target many.
 :::
 ::::
