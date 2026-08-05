@@ -39,9 +39,10 @@ After this session you will be able to:
 - author a Quarto document natively (`.qmd`), with figures, tables, cross-references, and math;
 - lay a document out — the article grid, and content in the margin;
 - make it **accessible** — alt text, color-blind-safe colors, a built-in contrast check;
-- turn it into a **cited, branded Typst PDF** — no LaTeX.
+- cite your sources from a `.bib` file, in the style a journal asks for;
+- turn it into a **branded Typst PDF** — no LaTeX.
 
-By the end: one penguins document carried all the way to a **polished, citable PDF**.
+By the end: one document carried all the way to a **polished PDF report**.
 
 ::: notes
 - **Frame:** you already write R and have met R Markdown or Quarto — today is about what Quarto
@@ -80,7 +81,7 @@ You know the literate-programming idea. In 2026, one `.qmd` is your source for:
 - a **report** (HTML, PDF, Word) — figures, tables, cross-refs, citations;
 - a **presentation** (these slides are a `.qmd`);
 - a **website or book** (Day 2) — many pages, one config;
-- a **branded PDF via Typst** *(a modern PDF engine bundled in Quarto, no LaTeX)* — a publication-ready article.
+- a **branded PDF via Typst** *(a modern PDF engine bundled in Quarto, no LaTeX)* — an article, or a report running to many pages.
 :::
 
 . . .
