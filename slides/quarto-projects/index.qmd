@@ -383,17 +383,15 @@ Publish your site and open it on your phone. The lab has the steps. Everyone sti
 ::: {.callout-tip title="Your turn — regroup in ~45 min"}
 Back to the **[Lab](../../labs/quarto-projects/index.qmd#ship-it-challenge)**, the **Ship it
 Challenge**: make the build skip unchanged pages, bring **yesterday's report** onto the site, and turn
-the analysis into a **dashboard**. Putting it online is the optional last step.
+it into a publishable `_site/` folder. The dashboard demo and publishing are optional.
 :::
 
 ::: notes
-- **Say:** "Ship it Challenge: freeze the build, add yesterday's report, then make a dashboard.
-  Publishing is optional. You have 45 minutes."
+- **Say:** "Ship it Challenge: freeze the build and add yesterday's report. You have 45 minutes."
 - **Ask:** "How can you prove the code did not run?"
 - **Ask:** "Where do cache and freeze write results? Which folder do you commit?"
-- **Ask:** "The R is unchanged. What makes it a dashboard?"
 - **Celebrate:** the Day-1 report becoming a site page.
-- **Catch-up:** `solutions/day2/`; fast finishers publish.
+- **Catch-up:** `solutions/day2/`; fast finishers inspect the dashboard or publish.
 :::
 
 ## What you can do now {#wrap-up}
@@ -403,8 +401,7 @@ You can now:
 - structure `.qmd` into a **project** — `_quarto.yml`, `output-dir`, `_metadata.yml`;
 - build a **branded website** with navigation, and know why cross-page refs differ from a book;
 - make builds **reproducible** (`freeze` + `renv.lock`), produce a **publishable `_site/`** for a host
-  or CI, and put it online;
-- arrange the same results as a **dashboard**.
+  or CI, and put it online.
 
 . . .
 

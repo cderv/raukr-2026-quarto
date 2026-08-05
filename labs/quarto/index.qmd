@@ -54,8 +54,8 @@ That's the whole migration. The rest of this lab is native `.qmd`.
 
 ## Authoring Challenge
 
-> **Goal:** a penguins report with a cross-referenced **figure**, a cross-referenced **table**, a
-> **margin** element, and a display **equation**, rendered to HTML.
+> **Goal:** a penguins report with a cross-referenced **figure**, a cross-referenced **table**, and a
+> **margin** element, rendered to HTML.
 
 :::: {.callout-note icon=false}
 ## {{< fa clipboard-list >}} Tasks
@@ -80,7 +80,9 @@ That's the whole migration. The rest of this lab is native `.qmd`.
      gt()
    ```
 4. Put the species counts in the **margin** with the cell option `#| column: margin`.
-5. *(stretch)* Add the bill-shape ratio as a display equation, referenced with `@eq-ratio`. **Escape
+5. Make the report accessible: add `#| fig-alt:` to the figure and keep both color and shape mapped
+   to `species`. Add `scale_color_okabe_ito()` for a color-blind-safe palette.
+6. *(stretch)* Add the bill-shape ratio as a display equation, referenced with `@eq-ratio`. **Escape
    the underscores**: inside `$$…$$`, `bill_len` may render as a subscript (depending on the math
    renderer), so write:
    ```markdown
@@ -88,15 +90,13 @@ That's the whole migration. The rest of this lab is native `.qmd`.
    \text{ratio} = \frac{\text{bill\_len}}{\text{bill\_dep}}
    $$ {#eq-ratio}
    ```
-6. Render to HTML (`quarto render my-report.qmd`, or the editor's Render/Preview).
+7. Render to HTML (`quarto render my-report.qmd`, or the editor's Render/Preview).
 ::::
 
 ::: {.callout-tip icon=false}
-## {{< fa universal-access >}} Make it accessible
-The worked report does all three. Do the same in yours:
+## {{< fa universal-access >}} Accessibility extension
+Your figure already has alt text and redundant color/shape encoding. To check the whole page:
 
-- add a `#| fig-alt:` to every figure;
-- add `scale_color_okabe_ito()` (from `ggokabeito`) to your plot, keeping `shape = species`;
 - add `axe: {output: document}` under `format: html`, re-preview, and a WCAG report appears on the
   page (drop it again before you publish). See
   [Quarto's accessibility docs](https://quarto.org/docs/output-formats/html-accessibility.html).
@@ -104,10 +104,9 @@ The worked report does all three. Do the same in yours:
 
 ::: {.callout-note appearance="simple" icon=false}
 ## {{< fa circle-check >}} You should see
-A numbered **Figure 1** (the bill scatter, three separate clusters), a numbered **Table 1**, the
-counts sitting in the right margin, and an **Equation 1**, with `@fig-bill` / `@tbl-summary` /
-`@eq-ratio` rendering as live "Figure 1" / "Table 1" / "Equation 1" links. Your finished figure
-looks like this:
+A numbered **Figure 1** (the bill scatter, three separate clusters), a numbered **Table 1**, and the
+counts in the right margin. `@fig-bill` and `@tbl-summary` render as live links. If you completed the
+stretch task, you also see a numbered **Equation 1**. Your finished figure looks like this:
 :::
 
 ```{r}
@@ -135,8 +134,8 @@ ggplot(penguins, aes(bill_len, bill_dep, color = species, shape = species)) +
 - Display math with a label `$$ … $$ {#eq-ratio}`, referenced with `@eq-ratio`.
 :::
 
-**The complete, runnable solution is `starter.qmd`**, a known-good Part-1 report with all these cells.
-It's already in your `day1-intro/` folder; open it there to compare, or take the source:
+**Need to catch up before Part 2?** `starter.qmd` is a completed Part-1 document. It is already in
+`day1-intro/`; open it to continue with citations, or take the source:
 
 <!-- Raw-GitHub download button -- RaukR house pattern (see project-context.md; no `downloadthis`).
      Points at the exercises repo (main = current edition); goes live once cderv/raukr-2026-quarto-exercises
@@ -153,8 +152,8 @@ $$
 $$ {#eq-ratio}
 ```
 
-**`solutions/day1/penguins-report.qmd` is a reference, not a checklist.** The complete worked
-document goes beyond the tasks (a margin culmen figure, a `glimpse`, section labels) and also adds the
+**`solutions/day1/penguins-report.qmd` is the complete Day-1 reference.** The document goes beyond
+the tasks (a margin culmen figure, a `glimpse`, section labels) and also adds the
 citations from the next challenge. It's in your exercises `solutions/day1/` folder. Try the challenge
 first, then open it to compare, or take the source:
 
@@ -207,19 +206,18 @@ that.
    ```
 5. Render to HTML and confirm the citation resolves to *(Gorman et al., 2014)* with a formatted
    reference list.
-6. Switch the output to **Typst** and render a branded PDF. *(You'll see a stack of
-   `unknown font family` warnings as it renders. They're harmless: the Troubleshooting box below
-   explains them.)* Two routes:
+6. Switch the output to **Typst** and render a branded PDF. You may see `unknown font family`
+   warnings on the first render. See Troubleshooting if the final PDF still uses a serif font. Two routes:
    - **CLI** — leave the header as-is and force the target:
      ```bash
-     quarto render your-doc.qmd --to typst
+     quarto render my-report.qmd --to typst
      ```
    - **Editor Render button** — set `format: typst` in the YAML header first, *then* click Render.
      The button renders whatever `format:` is declared, so while the header still says `format: html`
      the button gives you HTML, **not** a PDF.
 
-   Where the PDF lands: **right next to its source** in `day1-intro/`. There's no project folder
-   above to redirect it, so `starter.qmd` gives `starter.pdf`, `my-report.qmd` gives `my-report.pdf`.
+   If you used the catch-up file, render `starter.qmd` instead. The PDF lands **next to its source**
+   in `day1-intro/`.
 ::::
 
 ::: {.callout-note appearance="simple" icon=false}
@@ -268,10 +266,10 @@ A References section (the list renders inside the `#refs` div):
 :::
 ```
 
-For the branded PDF (the project `_brand.yml` styles it), either force the target from the CLI:
+For the branded PDF (`day1-intro/_brand.yml` styles it), either force the target from the CLI:
 
 ``` bash
-quarto render your-doc.qmd --to typst
+quarto render my-report.qmd --to typst
 ```
 
 or set `format: typst` in the header and use the editor's Render button.

@@ -48,7 +48,8 @@ its source. A finished reference is in **`solutions/day2/`**.
 > **Goal:** turn the `day2-projects/` pages into a navigable, **branded website** that renders locally to a
 > `_site/` folder.
 
-Complete the five steps below. Each includes a checkpoint, a hint, and a solution.
+Complete the four core steps below. The listing is a stretch task. Each step includes a checkpoint,
+a hint, and a solution.
 
 ::: {.column-margin}
 {{< fa book-open >}} **Quarto docs**
@@ -59,6 +60,8 @@ Complete the five steps below. Each includes a checkpoint, a hint, and a solutio
 Use **`solutions/day2/`** to compare your work or catch up.
 
 ### Make it a project
+
+*Suggested time: 5 minutes.*
 
 **Goal.** Make Quarto treat `day2-projects/` as one project, so that a single command builds every
 page in it into an output folder.
@@ -74,15 +77,19 @@ project:
 
 ::: {.callout-note appearance="simple" icon=false}
 ## {{< fa circle-check >}} You should see
-One command, run with **no file argument**, builds **both** pages at once, and the HTML lands in a
+One command, run with **no file argument**, builds **all four** pages at once, and the HTML lands in a
 new `day2-projects/_site/` folder instead of next to each `.qmd`. Before this step, rendering
 `analysis.qmd` put `analysis.html` right beside it.
 :::
 
 ::: {.callout-tip collapse="true"}
 ## Hint
+**Ask yourself:**
+
 You have folders above `day2-projects/` and files inside it. Which one does Quarto look at to decide
 where a project starts, and in which direction does it search?
+
+**Mechanism:**
 
 Quarto walks **up** from the file being rendered and stops at the **nearest** `_quarto.yml`. That
 file marks the project root. Nothing sits above `day2-projects/` in your download, so a `_quarto.yml`
@@ -111,10 +118,12 @@ quarto render
 
 ### Build the navigation
 
+*Suggested time: 8 minutes.*
+
 **Goal.** Give the site a title and a top navigation bar, so a reader can move between the two pages
 without editing the URL.
 
-Your pages are `index.qmd` (Home) and `analysis.qmd` (Analysis). Give the site the title
+Add `index.qmd` (Home) and `analysis.qmd` (Analysis) to the navigation. Give the site the title
 **Penguin Lab**, and use the ready-made **cosmo** theme so it does not look like raw HTML.
 
 ::: {.callout-note appearance="simple" icon=false}
@@ -189,17 +198,19 @@ what appears and in what order. Put the navbar back before you carry on, or keep
 
 ::: {.callout-note}
 ## Linking pages, and what does not carry across
-Two things here are worth a moment, because they are the Day-1 rules meeting a multi-page site.
+The Day-1 rules now meet a multi-page site.
 
 `index.qmd` already links to the analysis with a plain Markdown link, `[analysis](analysis.qmd)`.
 That is deliberate. **Across** pages there is no auto-numbering (that is a *book* feature, not a
 website one), so a plain link is how you connect website pages.
 
-**Within** one page, yesterday's rule still holds. Drop `@tbl-means` into a sentence on
-`analysis.qmd` and it resolves to *Table 1*, because the reference and its table share one page.
+**Within** `analysis.qmd`, yesterday's rule still holds: `@tbl-means` resolves to *Table 1* because
+the reference and table share one page.
 :::
 
 ### Brand it
+
+*Suggested time: 10 minutes.*
 
 **Goal.** Give the site one shared palette and typeface from a `_brand.yml`, the same file you met on
 Day 1.
@@ -221,21 +232,19 @@ typography:
 
 ::: {.callout-note appearance="simple" icon=false}
 ## {{< fa circle-check >}} You should see
-**First, a surprise, and it is meant to happen.** Add the file, re-render, and the **type** changes
-(the site is set in Albert Sans) while the **colors do not**: the navbar and links stay cosmo blue.
-Nothing is broken and you have not mistyped anything. Working out why is this step.
-
-**When you have solved it**, the navbar and the links are teal. Headings keep the body color the
-whole time, so do not use them to check: `primary` colors the navbar and links, not headings. The
-plot keeps its default species colors too, because branding an R plot is a separate
-`brand.yml`-package step, out of scope today.
+After adding `_brand.yml`, the **font changes** but the navbar and links remain cosmo blue. This is
+expected. After correcting the theme order, the navbar and links become teal.
 :::
 
 ::: {.callout-tip collapse="true"}
 ## Hint
+**Ask yourself:**
+
 `theme:` takes a **list**, even when you write a single value. So Quarto is already combining
 something with your `cosmo`. If two layers both define a primary color, which one would you expect to
 end up on the page?
+
+**Mechanism:**
 
 `brand` is a theme **layer**, and it is the layer that reads your `_brand.yml`. A bare
 `theme: cosmo` expands to `[brand, cosmo]`, and **later layers win**, so cosmo's palette lands on top
@@ -259,6 +268,8 @@ Dropping `theme:` altogether works too: with no named theme to fight, the brand 
 :::
 
 ### Scope options to one folder
+
+*Suggested time: 8 minutes.*
 
 **Goal.** Fold the code on the two pages in `reports/`, and only there. The home and analysis pages
 keep showing their code as before.
@@ -299,6 +310,8 @@ Re-render the project. Nothing else changes.
 :::
 
 ### Index the reports *(stretch)*
+
+*Only start this after the four core steps work.*
 
 **Goal.** Put a table of the `reports/` pages on the home page, built by Quarto rather than typed by
 you, so that adding a page there shows up without editing `index.qmd`.
@@ -365,7 +378,8 @@ Keep going with your Website Challenge `day2-projects/`. If you didn't finish it
 **`solutions/day2/`** project (a complete Part-1 site) and do the steps below in there.
 :::
 
-Each task includes a checkpoint, a hint, and a solution.
+**Core finish line:** prove that freeze works, then add your Day-1 report to the site. We will compare
+cache and freeze together. The dashboard demo and publishing are optional.
 
 ::: {.column-margin}
 {{< fa book-open >}} **Quarto docs**
@@ -374,6 +388,8 @@ Each task includes a checkpoint, a hint, and a solution.
 :::
 
 ### Make the build skip unchanged pages
+
+*Suggested time: 12 minutes.*
 
 **Goal.** Right now every `quarto render` re-runs all the R on every page, even the pages you have not
 touched. Make Quarto reuse the previous results for a page whose source has not changed. Then
@@ -390,9 +406,13 @@ had run, and is not. Then edit the code on one page only and render again. Only 
 
 ::: {.callout-tip collapse="true"}
 ## Hint
+**Ask yourself:**
+
 Two questions, one for each half. For the setting: this is about *executing* code across the whole
 project, so which top-level key would carry it? For the proof: what could a cell print that is
 **guaranteed** to differ between two runs a minute apart?
+
+**Mechanism:**
 
 An `execute:` key at the top level of `_quarto.yml` carries execution options for the project. The one
 you want is `freeze`, and `auto` means "re-execute only when this document's own source changes".
@@ -434,7 +454,7 @@ rebuild the site from it, which is how an automated build serves a site whose fi
 That is the reason to keep `_freeze/` in version control rather than treat it as scratch.
 :::
 
-### `cache` versus `freeze`
+### Discuss together: `cache` versus `freeze`
 
 **Goal.** You have now met two things that both avoid re-running code. Work out how they differ, and
 when you would reach for each.
@@ -443,11 +463,13 @@ You met `cache: true` on Day 1. You have just used `freeze: auto`. Both skip wor
 same mechanism, and only one of them solves the problem you just solved.
 
 ::: {.callout-note appearance="simple" icon=false}
-## {{< fa circle-check >}} You should see
-You can answer three questions without looking them up again: which one is set per document and which
-is a project-level build policy; which one stores results that travel with the repository for another
-machine to reuse; and which one would still re-run everything when a colleague clones the project
-fresh.
+## {{< fa circle-check >}} You should be able to explain
+
+| | `cache` | `freeze` |
+|---|---|---|
+| Scope | A cell within a document | A document within a project |
+| Results | Local cache directory | `_freeze/` |
+| Commit the results? | Normally no | Yes |
 :::
 
 ::: {.callout-tip collapse="true"}
@@ -468,6 +490,8 @@ build, which is the setting an automated build uses.
 :::
 
 ### Put your Day-1 report on the site
+
+*Suggested time: 8 minutes. This is the core finish line.*
 
 **Goal.** Take the report you wrote yesterday and make it a page of this website.
 
@@ -513,44 +537,20 @@ website:
 `solutions/day2/my-report.qmd` shows the finished page.
 :::
 
-### Ship a dashboard
+### Optional demo: inspect a dashboard
 
-**Goal.** Turn the analysis into a **dashboard**: the same numbers, arranged as a layout of panels
-rather than a page you scroll.
+This is a worked example, not another challenge. Open the
+[finished dashboard](dashboard.qmd){target="_blank"}, then open
+`solutions/day2/dashboard.qmd` to see how the same analysis becomes a dashboard.
 
-Start from a copy of `analysis.qmd` (call it `dashboard.qmd`) so you are rearranging content you
-already have rather than writing new analysis. Aim for: a row of two summary figures across the top,
-and a wider row below holding the boxplot next to a tabbed panel with the scatter plot and the table.
+Look for four ideas:
 
-::: {.callout-note appearance="simple" icon=false}
-## {{< fa circle-check >}} You should see
-A page that fills the browser window instead of scrolling. Across the top, two small panels each
-showing a single number (how many species, how many penguins). Below, the boxplot in its own titled
-panel, and beside it a panel with **tabs** you can click between to swap the scatter plot for the
-table. Resizing the window rearranges it rather than clipping it.
+- `format: dashboard` changes the output;
+- a `##` heading starts a row and a `###` heading starts a column;
+- `#| content: valuebox` creates a single-number panel;
+- `{.tabset}` turns the cells in a column into tabs.
 
-[Open the finished dashboard](dashboard.qmd){target="_blank"} to see the target layout.
-:::
-
-::: {.callout-tip collapse="true"}
-## Hint
-Nothing about your R changes here, so what changes? And once you have said "this is a dashboard", how
-would a Markdown document express *rows* and *columns* using structure it already has?
-
-`format: dashboard` in the front matter. That is the only change to the document's setup.
-
-The layout comes from **headings**: a `##` starts a row, a `###` starts a column inside it. The
-heading text is only a label. Each code cell becomes a panel, and `#| title:` sets its header.
-
-For the single-number panels, `#| content: valuebox` turns a cell into one, and the cell returns a
-`list(color =, icon =, value =)`. For the tabs, put `{.tabset}` on the column heading, and each cell
-in that column becomes a tab. Row heights are set with `{height="20%"}` on the row heading.
-:::
-
-::: {.callout-note collapse="true"}
-## Solution
-`solutions/day2/dashboard.qmd` is the finished dashboard, with comments marking each part of the
-layout. The shape is:
+The overall shape is:
 
 ```markdown
 ---
@@ -572,7 +572,9 @@ format: dashboard
 
 (the scatter cell and the table cell: each becomes a tab)
 ```
-:::
+
+If you want to experiment, copy `analysis.qmd` to `dashboard.qmd` and reproduce one part of the
+layout. You do not need to complete the dashboard during the workshop.
 
 ### Put it online *(optional, and a good place to stop)*
 
@@ -615,7 +617,7 @@ produced them.
 ## {{< fa wrench >}} If a render misbehaves
 - **Rendered, but can't find the HTML?** Before you add `_quarto.yml`, a single-page render writes
   the HTML **next to its source** in `day2-projects/`. Once `_quarto.yml` is present, a project render
-  collects both pages under `day2-projects/_site/`. Look in those two places.
+  collects all pages under `day2-projects/_site/`. Look in those two places.
 - **YAML is indentation-sensitive.** If rendering fails *before* any code runs, check `_quarto.yml`
   for stray spaces, tabs, or unmatched quotes.
 - **"No project" / pages don't link?** The `_quarto.yml` must be **inside `day2-projects/`**, and
