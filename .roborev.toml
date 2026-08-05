@@ -1,5 +1,7 @@
 # Default agent for this repo when no workflow-specific agent is set.
-agent = 'codex'
+# claude-code, not codex: `roborev check-agents` finds no codex binary on this machine,
+# and a missing agent makes every post-commit enqueue fail with a 503.
+agent = 'claude-code'
 # Default model for this repo when no workflow-specific model is set.
 model = ''
 # Backup agent for this repo if the primary agent fails.
@@ -106,7 +108,9 @@ job_timeout_minutes = 0
 # Override the post-commit hook request timeout (in seconds) for this repo. Useful for large repos where the enqueue handler's git calls are slow. 0 or negative inherits the global / platform default.
 hook_timeout_seconds = 0
 # Branches that should be skipped for automatic review in this repo.
-excluded_branches = []
+# `just publish gh` commits the whole rendered site to gh-pages from a throwaway worktree
+# under .quarto/. That is build output, and reviewing it would drown every real review.
+excluded_branches = ['gh-pages']
 # Commit message substrings that should skip review for this repo.
 excluded_commit_patterns = []
 # Display name shown for this repo in the TUI and output.
