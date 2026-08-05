@@ -58,6 +58,34 @@ unlink(tmp, recursive = TRUE, force = TRUE)
 cat(sprintf("publish-exercises: cloning %s (%s)...\n", REPO, BRANCH))
 git("clone", "--depth", "1", "--branch", BRANCH, REPO, tmp)
 
+# Make sure the commit below can find an identity. Two independent ways it goes missing:
+#
+# 1. R on Windows sets HOME to the user's *Documents* folder, while git reads the global config from
+#    $HOME/.gitconfig. So git launched from Rscript resolves NO global identity -- `git config
+#    user.name` exits 1 -- even though the same command works in any shell. The publish then dies
+#    with "Author identity unknown" after the mirror is already staged (hit 2026-08-05).
+# 2. The scratch clone inherits nothing from THIS repo, so a repo-local identity would not carry.
+#
+# Fix HOME first, then copy whatever this repo resolves into the clone. Signing config is
+# deliberately not copied: a scratch clone prompting for a passphrase would hang a non-interactive
+# publish, and these commits are content mirrors. GIT_AUTHOR_*/GIT_COMMITTER_*, if the caller
+# exported them, still win over both -- that is git's own precedence and a useful escape hatch.
+if (.Platform$OS.type == "windows") {
+  up <- Sys.getenv("USERPROFILE")
+  if (nzchar(up) && !file.exists(file.path(Sys.getenv("HOME"), ".gitconfig")) &&
+      file.exists(file.path(up, ".gitconfig"))) {
+    Sys.setenv(HOME = up)
+  }
+}
+for (k in c("user.name", "user.email")) {
+  v <- tryCatch(git("config", k), error = function(e) character(0))
+  if (length(v) && nzchar(v[[1]])) git("config", k, v[[1]], dir = tmp)
+}
+if (!length(tryCatch(git("config", "user.email", dir = tmp), error = function(e) character(0))) &&
+    !nzchar(Sys.getenv("GIT_AUTHOR_EMAIL")))
+  stop("no git identity available for the delivery-repo commit -- set user.name/user.email, or ",
+       "export GIT_AUTHOR_NAME/GIT_AUTHOR_EMAIL (and the GIT_COMMITTER_* pair).", call. = FALSE)
+
 # --- replace its whole content with exercises/ (a clean mirror, so deletions propagate) ---------
 # Wipe everything tracked/untracked except .git, then copy the freshly-synced tree in.
 old <- list.files(tmp, all.files = TRUE, full.names = TRUE, no.. = TRUE)
