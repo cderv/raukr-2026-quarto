@@ -62,28 +62,29 @@ jobs:
       - name: Render Day-1 starter (the Part-2 fallback document)
         run: quarto render day1-intro/starter.qmd
 
-      # Renders BOTH species and asserts the two reports do not share a figure. The support folder is
-      # named after the INPUT, so without --embed-resources both reports point at one
-      # penguins-by-species_files/ and the second render's plot silently replaces the first.
-      # Root-relative on purpose (see rules/exercises.md: a subdir working-directory launches R
-      # outside the root renv project). The lab's participant command uses --output from inside
-      # day1-intro/ instead, because --output resolves against the process working directory.
+      - name: Render Day-1 parameters starter
+        run: quarto render day1-intro/parameters-starter.qmd
+
+      # Render from the root so the restored renv library remains active. Self-contained output
+      # prevents the two reports from sharing a figure directory.
       - name: Render Day-1 parameterized report (exercises !expr options, -P, per-species output)
         run: |
           set -eu
-          quarto render day1-intro/penguins-by-species.qmd -P species:Adelie \
-            --output-dir ../_pbs-adelie --embed-resources
-          quarto render day1-intro/penguins-by-species.qmd -P species:Chinstrap \
-            --output-dir ../_pbs-chinstrap --embed-resources
+          quarto render solutions/day1/penguins-by-species.qmd -P species:Adelie \
+            --embed-resources
+          mv solutions/day1/penguins-by-species.html _pbs-adelie.html
+          quarto render solutions/day1/penguins-by-species.qmd -P species:Chinstrap \
+            --embed-resources
+          mv solutions/day1/penguins-by-species.html _pbs-chinstrap.html
           for s in adelie chinstrap; do
-            f="_pbs-$s/penguins-by-species.html"
+            f="_pbs-$s.html"
             test -f "$f" || { echo "::error::$f not produced"; exit 1; }
             if grep -q 'src="[^"]*penguins-by-species_files' "$f"; then
               echo "::error::$f references the shared _files/ dir -- the two reports share one figure"
               exit 1
             fi
           done
-          if diff -q _pbs-adelie/penguins-by-species.html _pbs-chinstrap/penguins-by-species.html >/dev/null; then
+          if diff -q _pbs-adelie.html _pbs-chinstrap.html >/dev/null; then
             echo "::error::the two per-species reports are identical -- the parameter did not take"
             exit 1
           fi
