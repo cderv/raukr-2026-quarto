@@ -113,8 +113,8 @@ editing `_brand.yml` or the theme SCSS).
   `prior-art-inventory`, `typst-render-diagrams` (Typst/fletcher diagram recipe + deploy gotchas),
   `colorblind-safe-palettes` (CVD-safe ggplot palette best-practice + recipes), `house-voice`
   (how Christophe writes + the LLM-tell strip-list; paired with the `prose-voice` rule),
-  `day2-rework-plan` (**proposal, not applied**: task-first Day-2 exercises with a hint ladder,
-  to close the gap between the announced 45-min Challenges and the ~12 min the lab holds).
+  `day2-rework-plan` (**applied 2026-08-05**: task-first Day-2 exercises with a hint ladder; kept
+  as the design rationale, with the lab as the truth where the two differ).
 - **Rules** → `.claude/rules/`: path-scoped gotchas for `justfile`, `exercises`, `slides`,
   `multi-day-sequencing`, `brand`, plus `prose-voice`.
 - **Skills** → `.claude/skills/`: `quarto-authoring`, `quarto-alt-text`, `brand-yml`, `braid`.

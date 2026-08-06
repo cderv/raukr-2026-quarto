@@ -1,8 +1,17 @@
 # Day-2 rework plan — task-first exercises with a hint ladder
 
-Status: **proposal, not yet applied.** Written 2026-08-03 after the review cycle found the Day-2
-hands-on is far short of what the slot and the slides announce. Nothing in `labs/quarto-projects/`
-or `slides/quarto-projects/` has been changed to match this yet.
+Status: **applied 2026-08-05.** Written 2026-08-03 after the review cycle found the Day-2 hands-on
+far short of what the slot and the slides announce. `labs/quarto-projects/`,
+`slides/quarto-projects/`, the starter and solution folders, and the exercises payload now follow
+it. The rest of this file is kept as the design rationale, not as work to do.
+
+Three steps landed differently from the tables below, and the lab is the truth:
+
+- **Part 1 step 4** scopes `code-fold` + `code-summary` in `reports/_metadata.yml`, not `echo: false`.
+- **Part 2 step 2** (`cache` versus `freeze`) is a discussion step with a comparison table, not a
+  build step.
+- **Part 2 step 4** keeps the dashboard as an **optional group demo** with optional follow-up work,
+  rather than promoting it to a required hands-on step.
 
 Ground truth this is built on:
 
