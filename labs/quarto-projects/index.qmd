@@ -70,8 +70,8 @@ project:
   output-dir: _site
 ```
 
-(`_site` is already the default output folder for a website. Writing the line keeps the folder you
-will publish named in the config.)
+(`_site` is already the default output folder for a website. We write it explicitly here so the
+publishable folder is visible in the configuration.)
 
 ::: {.callout-note appearance="simple" icon=false}
 ## {{< fa circle-check >}} You should see
@@ -122,8 +122,8 @@ without editing the URL.
 Add `index.qmd` (Home) and `analysis.qmd` (Analysis) to the navigation. Give the site the title
 **Penguin Lab**, and use the ready-made **cosmo** theme so it does not look like raw HTML.
 
-From this step on, watch your site with `quarto preview`, run from inside `day2-projects/`. On Day 1
-you previewed one document. Run at the project root, the same command serves the whole site and
+From this step on, preview the site with `quarto preview` from inside `day2-projects/`. On Day 1 you
+previewed one document. From the project root, the command serves the whole site and
 re-renders a page when you save it.
 
 ::: {.callout-note appearance="simple" icon=false}
@@ -393,8 +393,11 @@ Keep going with your Website Challenge `day2-projects/`. If you didn't finish it
 **`solutions/day2/`** project (a complete Part-1 site) and do the steps below in there.
 :::
 
+If `quarto preview` is still running, stop it (`Ctrl` + `C` in the terminal). The freeze steps below
+use renders that you start yourself.
+
 **Core tasks:** prove that freeze works, then add your Day-1 report to the site. That is the minimum
-to leave with. The guided `freeze: true` experiment after those two completes the core. We will
+finish line. The guided `freeze: true` experiment after those two completes the core. We will
 compare cache and freeze together. The dashboard demo and publishing are optional.
 
 ::: {.column-margin}
@@ -564,19 +567,16 @@ website:
 **Goal.** See what `freeze: true` changes compared to `auto`: the build reuses a page's stored
 results even after you edit that page.
 
-If `quarto preview` is still running, stop it (`Ctrl` + `C` in the terminal). Each render below
-should be one you ran yourself.
-
 ::: {.callout-note appearance="simple" icon=false}
 ## {{< fa circle-check >}} You should see
-Three renders, three different outcomes. After the first, the analysis page still shows the old
-label, and your proof cell still prints the old time: the build reused `_freeze/` even though you
-edited the source (`auto` would have re-run the page). After the second, both are fresh: a
-single-file render always executes. After the third, they stay fresh: the build now reuses the
-refreshed result.
+Check the label and timestamp after each render. After the first, the analysis page still shows the
+old label, and your proof cell still prints the old time: the build reused `_freeze/` even though
+you edited the source (`auto` would have re-run the page). After the second, the label and timestamp
+both update: a single-file render always executes. After the third, the updated label and timestamp
+remain: the build now reuses the refreshed result.
 :::
 
-First, in `_quarto.yml`, switch the value:
+First, change `freeze` from `auto` to `true` in `_quarto.yml`:
 
 ```{.yaml filename="day2-projects/_quarto.yml"}
 execute:
@@ -594,9 +594,9 @@ quarto render analysis.qmd   # one file: the page refreshes
 quarto render                # whole project: the refreshed page stays
 ```
 
-The loop to remember: edit a page, render that one file, and the project build does not re-run it.
-Switch back to `freeze: auto` before you continue. It is the setting to keep here: `true` is for a
-project where a team or CI must build pages that not every machine can execute.
+With `freeze: true`, the workflow is: edit a page, render that file, then build the project without
+re-running it. Switch back to `freeze: auto` before you continue. It is the setting to keep here.
+Use `true` when project builds must reuse stored results until you deliberately refresh a page.
 
 ### Optional group demo: inspect a dashboard
 

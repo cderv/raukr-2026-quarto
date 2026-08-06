@@ -270,6 +270,7 @@ Make builds reproducible, then prepare the project for publication.
 
 ::: notes
 - **Say:** "You built the site. Now make its builds reproducible, then publish it."
+- **Do:** stop `quarto preview` before the freeze exercises.
 :::
 
 ## Freeze: skip unchanged computations {#freeze}
@@ -406,7 +407,7 @@ Publish your site and open it on your phone. The lab has the steps. Everyone sti
 ::: {.callout-tip title="Your turn"}
 Back to the **[Lab](../../labs/quarto-projects/index.qmd#ship-it-challenge)**, the **Reproducible Build
 Challenge**: make the build skip unchanged pages, bring **yesterday's report** onto the site, then run
-the guided `freeze: true` experiment. Everyone leaves with a publishable `_site/` folder. The
+the guided `freeze: true` experiment. The result is a publishable `_site/` folder. The
 dashboard demo and publishing are optional.
 :::
 
