@@ -87,8 +87,7 @@ Run this before the exercise code.
 Download the starter documents, solutions, and citation files with **`use_course()`**. You do not
 need git or a GitHub account.
 
-Choose where the materials go: set your R working directory to that folder (`setwd()`, or the
-editor's Session menu), then run:
+Choose where the materials go: set your R working directory to that folder, then run:
 
 ```r
 # install.packages("usethis")   # once, if you don't have it
