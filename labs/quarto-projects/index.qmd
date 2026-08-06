@@ -394,11 +394,12 @@ Keep going with your Website Challenge `day2-projects/`. If you didn't finish it
 :::
 
 If `quarto preview` is still running, stop it (`Ctrl` + `C` in the terminal). The freeze steps below
-use renders that you start yourself.
+use renders that you start yourself. To check a page after a render, open the built file (for
+example `_site/analysis.html`) directly in your browser and reload it.
 
-**Core tasks:** prove that freeze works, then add your Day-1 report to the site. That is the minimum
-finish line. The guided `freeze: true` experiment after those two completes the core. We will
-compare cache and freeze together. The dashboard demo and publishing are optional.
+**Core tasks:** prove that freeze works, then add your Day-1 report to the site. If time is short,
+stop after those two. The guided `freeze: true` experiment completes the core. We will compare
+cache and freeze together. The dashboard demo and publishing are optional.
 
 ::: {.column-margin}
 {{< fa book-open >}} **Quarto docs**
@@ -586,7 +587,8 @@ execute:
 Then, in `analysis.qmd`, make a visible edit to the plot code: change the y-axis label to
 `y = "Body mass in grams"`.
 
-Now run the three renders from inside `day2-projects/`, and check the analysis page after each one:
+Now run the three renders from inside `day2-projects/`, and reload `_site/analysis.html` in your
+browser after each one:
 
 ```bash
 quarto render                # whole project: your edit does not appear
