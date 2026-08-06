@@ -247,7 +247,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <i class="callout-icon"></i>
 </div>
 <div class="callout-body-container">
-<p>You are working in the <strong><code>day1-intro/</code></strong> folder from the exercises download (open <code>day1-intro.Rproj</code>). See the <a href="../../setup.html#get-the-materials">Setup page</a>. Everything you render is written next to your files.</p>
+<p>You are working in the <strong><code>day1-intro/</code></strong> folder from the exercises download (open <code>day1-intro.Rproj</code>). See the <a href="../../setup.html#get-the-materials">Setup page</a>. Everything you render is written next to your files. You create <code>my-report.qmd</code> yourself: the files already in the folder are used later, each at the step that names it (the folder’s README lists them).</p>
 </div>
 </div>
 </div>
@@ -306,8 +306,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">|&gt;</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">bill_len =</span> <span class="fu">mean</span>(bill_len), <span class="at">bill_dep =</span> <span class="fu">mean</span>(bill_dep), <span class="at">.by =</span> species) <span class="sc">|&gt;</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
-<li><p>Put the species counts in the <strong>margin</strong> with the cell option <code>#| column: margin</code>.</p></li>
-<li><p>Make the report accessible: add <code>#| fig-alt:</code> to the figure and keep both color and shape mapped to <code>species</code>. Add <code>scale_color_okabe_ito()</code> for a color-blind-safe palette.</p></li>
+<li><p>Put the species counts (<code>penguins |&gt; count(species)</code>) in the <strong>margin</strong> with the cell option <code>#| column: margin</code>.</p></li>
+<li><p>Make the report accessible: add <code>#| fig-alt:</code> to the figure and map <code>shape = species</code> next to the color, so the species encoding does not rely on color alone. Add <code>scale_color_okabe_ito()</code> for a color-blind-safe palette.</p></li>
 <li><p><em>(stretch)</em> Add the bill-shape ratio as a display equation, referenced with <code>@eq-ratio</code>. <strong>Escape the underscores</strong>: inside <code>$$…$$</code>, <code>bill_len</code> may render as a subscript (depending on the math renderer), so write:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>$$</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>\text{ratio} = \frac{\text{bill<span class="sc">\_</span>len}}{\text{bill<span class="sc">\_</span>dep}}</span>
@@ -382,8 +382,8 @@ Figure&nbsp;1: Target: bill length versus depth by species.
 </div>
 </div>
 </div>
-<p><strong>Need to continue with Part 2?</strong> <code>starter.qmd</code> is a completed Part-1 document. It is already in <code>day1-intro/</code>. Open it to continue with citations, or take the source:</p>
-<p><a class="btn btn-primary btn-sm" href="https://raw.githubusercontent.com/cderv/raukr-2026-quarto-exercises/main/day1-intro/starter.qmd" role="button" target="_blank"><i class="fa-solid fa-download" aria-label="download"></i> starter.qmd</a></p>
+<p><strong>Need to continue with Part 2?</strong> <code>citations-starter.qmd</code> is a completed Part-1 document. It is already in <code>day1-intro/</code>. Open it to continue with citations, or take the source:</p>
+<p><a class="btn btn-primary btn-sm" href="https://raw.githubusercontent.com/cderv/raukr-2026-quarto-exercises/main/day1-intro/citations-starter.qmd" role="button" target="_blank"><i class="fa-solid fa-download" aria-label="download"></i> citations-starter.qmd</a></p>
 <p>The cross-references and the equation live in the <strong>body Markdown</strong>, outside any cell:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>@fig-bill shows bill shape by species. @tbl-summary gives the per-species means.</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -408,7 +408,7 @@ Figure&nbsp;1: Target: bill length versus depth by species.
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>If you finished the Authoring Challenge, keep going on your own document. Otherwise open <strong><code>day1-intro/starter.qmd</code></strong> in your editor (a complete Part-1 report) and add the citations to that.</p>
+<p>If you finished the Authoring Challenge, keep going on your own document. Otherwise open <strong><code>day1-intro/citations-starter.qmd</code></strong> in your editor (a complete Part-1 report) and add the citations to that.</p>
 </div>
 </div>
 <div class="callout callout-style-default callout-note no-icon callout-titled">
@@ -426,13 +426,13 @@ Figure&nbsp;1: Target: bill length versus depth by species.
 <li><p>Point the document header at the shared bibliography and citation style:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bibliography</span><span class="kw">:</span><span class="at"> references.bib</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">csl</span><span class="kw">:</span><span class="at"> apa.csl</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
-<li><p>Cite the data source in prose with <code>@gorman2014</code>. Find (or add) the sentence ending <em>“…collected at Palmer Station, Antarctica.”</em> and insert the citation before the period: <code>Antarctica [@gorman2014].</code> (don’t paste a second copy).</p></li>
+<li><p>Cite the data source in prose with <code>@gorman2014</code>. Write a sentence ending <em>“…collected at Palmer Station, Antarctica.”</em> (already present if you continue from <code>citations-starter.qmd</code>) and insert the citation before the period: <code>Antarctica [@gorman2014].</code> (don’t paste a second copy).</p></li>
 <li><p>Add a <strong>References</strong> section where the list should appear:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">## References {.unnumbered}</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>::: {#refs}</span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
-<li><p>Give it a real <strong>title block</strong> so the PDF reads as a paper. <strong>Replace</strong> your document’s <code>author:</code> line with:</p>
+<li><p>Give it a real <strong>title block</strong> so the PDF reads as a paper. <strong>Replace</strong> your document’s <code>author:</code> line (or add one) with:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">author</span><span class="kw">:</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Your Name</span></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">affiliation</span><span class="kw">:</span><span class="at"> Your Lab, Your University</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
@@ -443,7 +443,7 @@ Figure&nbsp;1: Target: bill length versus depth by species.
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> render my-report.qmd <span class="at">--to</span> typst</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
 <li><p><strong>Editor Render button</strong> — set <code>format: typst</code> in the YAML header first, <em>then</em> click Render. The button renders whatever <code>format:</code> is declared, so while the header still says <code>format: html</code> the button gives you HTML, <strong>not</strong> a PDF.</p></li>
 </ul>
-<p>If you used the completed Part-1 file, render <code>starter.qmd</code> instead. The PDF is written <strong>next to its source</strong> in <code>day1-intro/</code>.</p></li>
+<p>If you used the completed Part-1 file, render <code>citations-starter.qmd</code> instead. The PDF is written <strong>next to its source</strong> in <code>day1-intro/</code>.</p></li>
 </ol>
 </div>
 </div>
@@ -551,7 +551,7 @@ Figure&nbsp;1: Target: bill length versus depth by species.
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">species</span><span class="kw">:</span><span class="at"> Gentoo</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
 <li><p><strong>Use it to filter</strong> in the setup cell. <code>params$species</code> is a value. Keep the existing missing-value checks and add the species condition:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>one <span class="ot">&lt;-</span> penguins <span class="sc">|&gt;</span> <span class="fu">filter</span>(species <span class="sc">==</span> params<span class="sc">$</span>species, <span class="sc">!</span><span class="fu">is.na</span>(bill_len), <span class="sc">!</span><span class="fu">is.na</span>(bill_dep))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
-<li><p><strong>Use the parameter in the report.</strong> Replace the placeholder species in the sentence with inline code. Make the caption and alt text track the parameter with <code>!expr</code>. Cell options are YAML, so the <code>!expr</code> tag tells Quarto to evaluate the R expression:</p>
+<li><p><strong>Use the parameter in the report.</strong> Replace the placeholder species in the sentence with inline code: <code>`{r} params$species`</code>. Make the caption and alt text track the parameter with <code>!expr</code>. Cell options are YAML, so the <code>!expr</code> tag tells Quarto to evaluate the R expression:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: !expr paste0("Bill length versus depth for ", params$species, " penguins.")</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-alt: !expr paste0("Scatter plot of bill depth against bill length for ", params$species, " penguins.")</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
 <li><p><strong>Render a different species from the CLI</strong> with <code>-P name:value</code>. Run this from inside <code>day1-intro/</code>:</p>
@@ -644,8 +644,9 @@ Figure&nbsp;1: Target: bill length versus depth by species.
 <li><strong>A figure doesn’t appear?</strong> Check the path is relative to the <code>.qmd</code> and the filename matches exactly (case included).</li>
 <li><strong>A cross-reference shows <code>?@…</code>?</strong> The cell label must start with <code>fig-</code>/<code>tbl-</code>/<code>eq-</code> and be unique, and the <code>@ref</code> must match it.</li>
 <li><strong>A citation shows <code>?@gorman2014</code> or <code>[?]</code>?</strong> The <code>@key</code> doesn’t match a key in <code>references.bib</code>, or <code>bibliography:</code> isn’t set.</li>
+<li><strong><code>references.bib</code> not found, although the download has it?</strong> Your <code>.qmd</code> is probably not in <code>day1-intro/</code> (created in the top folder, for example). Move it next to <code>references.bib</code> / <code>apa.csl</code> / <code>_brand.yml</code> and render again.</li>
 <li><strong>Do I need to install Typst?</strong> No.&nbsp;Typst is bundled in Quarto ≥ 1.9, so there’s nothing extra to install (no LaTeX either). Check <code>quarto --version</code>.</li>
-<li><strong>Typst PDF looks unbranded / wrong fonts?</strong> An unbranded render succeeds silently, so check the font, not the log: branded is <strong>Albert Sans</strong>, unbranded is Typst’s default serif. Confirm <code>_brand.yml</code> is in your <code>day1-intro/</code> folder (next to the <code>.qmd</code>) and you have network on the first render (Quarto fetches the Google fonts once).</li>
+<li><strong>Typst PDF looks unbranded / wrong fonts?</strong> An unbranded render succeeds silently, so check the font, not the log: branded is <strong>Albert Sans</strong>, unbranded is Typst’s default serif. Confirm <code>_brand.yml</code> is in your <code>day1-intro/</code> folder (next to the <code>.qmd</code>) and you have network on the first render (Quarto fetches the Google fonts once). Missing the file? Download <a href="https://raw.githubusercontent.com/cderv/raukr-2026-quarto-exercises/main/day1-intro/_brand.yml"><code>_brand.yml</code></a> into the folder holding your <code>.qmd</code>.</li>
 <li><strong>Typst prints <code>unknown font family</code> warnings?</strong> Harmless: a <code>gt</code> table names a generic <code>sans-serif</code> in its font stack, and Typst doesn’t recognize that as a family. The PDF still builds, branding included.</li>
 <li><strong>Prefer to stay in HTML first?</strong> Render HTML, get it right, <em>then</em> switch to <code>format: typst</code>. The content is the same.</li>
 </ul>
@@ -664,19 +665,19 @@ Session info
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>R version 4.6.0 (2026-04-24 ucrt)
-Platform: x86_64-w64-mingw32/x64
-Running under: Windows 11 x64 (build 26200)
+<pre><code>R version 4.6.1 (2026-06-24)
+Platform: x86_64-pc-linux-gnu
+Running under: Ubuntu 24.04.4 LTS
 
 Matrix products: default
-  LAPACK version 3.12.1
+BLAS:   /usr/lib/x86_64-linux-gnu/openblas-pthread/libblas.so.3 
+LAPACK: /usr/lib/x86_64-linux-gnu/openblas-pthread/libopenblasp-r0.3.26.so;  LAPACK version 3.12.0
 
 locale:
 [1] C
-system code page: 65001
 
-time zone: Europe/Paris
-tzcode source: internal
+time zone: Etc/UTC
+tzcode source: system (glibc)
 
 attached base packages:
 [1] stats     graphics  grDevices datasets  utils     methods   base     
@@ -688,12 +689,12 @@ loaded via a namespace (and not attached):
  [1] vctrs_0.7.3        cli_3.6.6          knitr_1.51         rlang_1.3.0       
  [5] xfun_0.59          renv_1.2.3         generics_0.1.4     S7_0.2.2          
  [9] jsonlite_2.0.0     labeling_0.4.3     glue_1.8.1         htmltools_0.5.9   
-[13] scales_1.4.0       rmarkdown_2.31     grid_4.6.0         evaluate_1.0.5    
+[13] scales_1.4.0       rmarkdown_2.31     grid_4.6.1         evaluate_1.0.5    
 [17] tibble_3.3.1       fastmap_1.2.0      yaml_2.3.12        lifecycle_1.0.5   
-[21] compiler_4.6.0     fs_2.1.0           RColorBrewer_1.1-3 htmlwidgets_1.6.4 
+[21] compiler_4.6.1     fs_2.1.0           RColorBrewer_1.1-3 htmlwidgets_1.6.4 
 [25] pkgconfig_2.0.3    farver_2.1.2       digest_0.6.39      R6_2.6.1          
-[29] tidyselect_1.2.1   pillar_1.11.1      magrittr_2.0.5     withr_3.0.3       
-[33] tools_4.6.0        gtable_0.3.6       xml2_1.6.0        </code></pre>
+[29] tidyselect_1.2.1   pillar_1.11.1      parallel_4.6.1     magrittr_2.0.5    
+[33] withr_3.0.3        tools_4.6.1        gtable_0.3.6       xml2_1.6.0        </code></pre>
 </div>
 </div>
 </details>

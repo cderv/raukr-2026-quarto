@@ -251,6 +251,7 @@ Christophe Dervieux
 <ul>
 <li><strong>Say:</strong> “Two rounds: watch, follow along, then your turn.”</li>
 <li><strong>Do:</strong> pause on the URL. It is the catch-up path.</li>
+<li><strong>Catch-up:</strong> no exercises folder? Setup page on the site, one <code>use_course()</code> line, ~2 min.</li>
 </ul>
 <style type="text/css">
         span.MJX_Assistive_MathML {
@@ -351,7 +352,7 @@ Christophe Dervieux
 <p><strong>Follow along</strong></p>
 </div>
 <div class="callout-content">
-<p>In <code>day1-intro/</code>, create <strong><code>my-report.qmd</code></strong> with <code>format: html</code>. It is the file the lab starts from. Put this cell at the top: everything we write next assumes it. Fallen behind at any point? Open <code>starter.qmd</code> in the same folder and keep going from there.</p>
+<p>In <code>day1-intro/</code>, create <strong><code>my-report.qmd</code></strong> with <code>format: html</code>. It is the file the lab starts from. Put this cell at the top: everything we write next assumes it. Fallen behind at any point? Open <code>citations-starter.qmd</code> in the same folder (the finished version of this document) and keep going.</p>
 </div>
 </div>
 </div>
@@ -362,14 +363,16 @@ Christophe Dervieux
 <span id="cb2-4"><a aria-label="4"></a><span class="fu">library</span>(dplyr)</span>
 <span id="cb2-5"><a aria-label="5"></a><span class="fu">library</span>(ggplot2)</span>
 <span id="cb2-6"><a aria-label="6"></a><span class="fu">library</span>(gt)</span>
-<span id="cb2-7"><a aria-label="7"></a><span class="fu">data</span>(penguins)</span>
-<span id="cb2-8"><a aria-label="8"></a>penguins <span class="ot">&lt;-</span> penguins <span class="sc">|&gt;</span> <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(bill_len), <span class="sc">!</span><span class="fu">is.na</span>(bill_dep))</span>
-<span id="cb2-9"><a aria-label="9"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb2-7"><a aria-label="7"></a><span class="fu">library</span>(ggokabeito)   <span class="co"># color-blind-safe (Okabe-Ito) scale</span></span>
+<span id="cb2-8"><a aria-label="8"></a><span class="fu">data</span>(penguins)</span>
+<span id="cb2-9"><a aria-label="9"></a>penguins <span class="ot">&lt;-</span> penguins <span class="sc">|&gt;</span> <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(bill_len), <span class="sc">!</span><span class="fu">is.na</span>(bill_dep))</span>
+<span id="cb2-10"><a aria-label="10"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>You already know Markdown. Quarto adds the research-writing pieces: <strong>figures</strong> and <strong>tables</strong> with captions, <strong>cross-references</strong> (<code>@fig-bill</code>, <code>@tbl-summary</code>, <code>@eq-ratio</code>), <strong>math</strong>, <strong>inline code</strong> that reports numbers from the data, and <strong>callouts</strong>.</p>
 <aside class="notes">
 <ul>
 <li><strong>Say:</strong> “Create <code>day1-intro/my-report.qmd</code>. We will render as we go.”</li>
 <li><strong>Watch for:</strong> the setup cell belongs in the document, not the console.</li>
+<li><strong>Catch-up:</strong> no <code>day1-intro/</code>? Setup page, one <code>use_course()</code> line, ~2 min; pair with a neighbor meanwhile.</li>
 <li><strong>Focus:</strong> Quarto additions, not a Markdown lesson.</li>
 <li><strong>Timing:</strong> next four slides, 8–10 min total.</li>
 </ul>
@@ -456,23 +459,23 @@ Table&nbsp;1: Mean bill length per species.
 </figcaption>
 <div aria-describedby="tbl-summary-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div id="hzgnpgzcnt" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#hzgnpgzcnt table {
+<div id="vdlpoepokc" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#vdlpoepokc table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#hzgnpgzcnt thead, #hzgnpgzcnt tbody, #hzgnpgzcnt tfoot, #hzgnpgzcnt tr, #hzgnpgzcnt td, #hzgnpgzcnt th {
+#vdlpoepokc thead, #vdlpoepokc tbody, #vdlpoepokc tfoot, #vdlpoepokc tr, #vdlpoepokc td, #vdlpoepokc th {
   border-style: none;
 }
 
-#hzgnpgzcnt p {
+#vdlpoepokc p {
   margin: 0;
   padding: 0;
 }
 
-#hzgnpgzcnt .gt_table {
+#vdlpoepokc .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -498,12 +501,12 @@ Table&nbsp;1: Mean bill length per species.
   border-left-color: #D3D3D3;
 }
 
-#hzgnpgzcnt .gt_caption {
+#vdlpoepokc .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#hzgnpgzcnt .gt_title {
+#vdlpoepokc .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -515,7 +518,7 @@ Table&nbsp;1: Mean bill length per species.
   border-bottom-width: 0;
 }
 
-#hzgnpgzcnt .gt_subtitle {
+#vdlpoepokc .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -527,7 +530,7 @@ Table&nbsp;1: Mean bill length per species.
   border-top-width: 0;
 }
 
-#hzgnpgzcnt .gt_heading {
+#vdlpoepokc .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -539,13 +542,13 @@ Table&nbsp;1: Mean bill length per species.
   border-right-color: #D3D3D3;
 }
 
-#hzgnpgzcnt .gt_bottom_border {
+#vdlpoepokc .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#hzgnpgzcnt .gt_col_headings {
+#vdlpoepokc .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -560,7 +563,7 @@ Table&nbsp;1: Mean bill length per species.
   border-right-color: #D3D3D3;
 }
 
-#hzgnpgzcnt .gt_col_heading {
+#vdlpoepokc .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -580,7 +583,7 @@ Table&nbsp;1: Mean bill length per species.
   overflow-x: hidden;
 }
 
-#hzgnpgzcnt .gt_column_spanner_outer {
+#vdlpoepokc .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -592,15 +595,15 @@ Table&nbsp;1: Mean bill length per species.
   padding-right: 4px;
 }
 
-#hzgnpgzcnt .gt_column_spanner_outer:first-child {
+#vdlpoepokc .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#hzgnpgzcnt .gt_column_spanner_outer:last-child {
+#vdlpoepokc .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#hzgnpgzcnt .gt_column_spanner {
+#vdlpoepokc .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -612,11 +615,11 @@ Table&nbsp;1: Mean bill length per species.
   width: 100%;
 }
 
-#hzgnpgzcnt .gt_spanner_row {
+#vdlpoepokc .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#hzgnpgzcnt .gt_group_heading {
+#vdlpoepokc .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -642,7 +645,7 @@ Table&nbsp;1: Mean bill length per species.
   text-align: left;
 }
 
-#hzgnpgzcnt .gt_empty_group_heading {
+#vdlpoepokc .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -657,15 +660,15 @@ Table&nbsp;1: Mean bill length per species.
   vertical-align: middle;
 }
 
-#hzgnpgzcnt .gt_from_md > :first-child {
+#vdlpoepokc .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#hzgnpgzcnt .gt_from_md > :last-child {
+#vdlpoepokc .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#hzgnpgzcnt .gt_row {
+#vdlpoepokc .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -684,7 +687,7 @@ Table&nbsp;1: Mean bill length per species.
   overflow-x: hidden;
 }
 
-#hzgnpgzcnt .gt_stub {
+#vdlpoepokc .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -697,7 +700,7 @@ Table&nbsp;1: Mean bill length per species.
   padding-right: 5px;
 }
 
-#hzgnpgzcnt .gt_stub_row_group {
+#vdlpoepokc .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -711,15 +714,15 @@ Table&nbsp;1: Mean bill length per species.
   vertical-align: top;
 }
 
-#hzgnpgzcnt .gt_row_group_first td {
+#vdlpoepokc .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#hzgnpgzcnt .gt_row_group_first th {
+#vdlpoepokc .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#hzgnpgzcnt .gt_summary_row {
+#vdlpoepokc .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -729,16 +732,16 @@ Table&nbsp;1: Mean bill length per species.
   padding-right: 5px;
 }
 
-#hzgnpgzcnt .gt_first_summary_row {
+#vdlpoepokc .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#hzgnpgzcnt .gt_first_summary_row.thick {
+#vdlpoepokc .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#hzgnpgzcnt .gt_last_summary_row {
+#vdlpoepokc .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -748,7 +751,7 @@ Table&nbsp;1: Mean bill length per species.
   border-bottom-color: #D3D3D3;
 }
 
-#hzgnpgzcnt .gt_grand_summary_row {
+#vdlpoepokc .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -758,7 +761,7 @@ Table&nbsp;1: Mean bill length per species.
   padding-right: 5px;
 }
 
-#hzgnpgzcnt .gt_first_grand_summary_row {
+#vdlpoepokc .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -768,7 +771,7 @@ Table&nbsp;1: Mean bill length per species.
   border-top-color: #D3D3D3;
 }
 
-#hzgnpgzcnt .gt_last_grand_summary_row_top {
+#vdlpoepokc .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -778,11 +781,11 @@ Table&nbsp;1: Mean bill length per species.
   border-bottom-color: #D3D3D3;
 }
 
-#hzgnpgzcnt .gt_striped {
+#vdlpoepokc .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#hzgnpgzcnt .gt_table_body {
+#vdlpoepokc .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -791,7 +794,7 @@ Table&nbsp;1: Mean bill length per species.
   border-bottom-color: #D3D3D3;
 }
 
-#hzgnpgzcnt .gt_footnotes {
+#vdlpoepokc .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -805,7 +808,7 @@ Table&nbsp;1: Mean bill length per species.
   border-right-color: #D3D3D3;
 }
 
-#hzgnpgzcnt .gt_footnote {
+#vdlpoepokc .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -814,7 +817,7 @@ Table&nbsp;1: Mean bill length per species.
   padding-right: 5px;
 }
 
-#hzgnpgzcnt .gt_sourcenotes {
+#vdlpoepokc .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -828,7 +831,7 @@ Table&nbsp;1: Mean bill length per species.
   border-right-color: #D3D3D3;
 }
 
-#hzgnpgzcnt .gt_sourcenote {
+#vdlpoepokc .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -836,72 +839,72 @@ Table&nbsp;1: Mean bill length per species.
   padding-right: 5px;
 }
 
-#hzgnpgzcnt .gt_left {
+#vdlpoepokc .gt_left {
   text-align: left;
 }
 
-#hzgnpgzcnt .gt_center {
+#vdlpoepokc .gt_center {
   text-align: center;
 }
 
-#hzgnpgzcnt .gt_right {
+#vdlpoepokc .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#hzgnpgzcnt .gt_font_normal {
+#vdlpoepokc .gt_font_normal {
   font-weight: normal;
 }
 
-#hzgnpgzcnt .gt_font_bold {
+#vdlpoepokc .gt_font_bold {
   font-weight: bold;
 }
 
-#hzgnpgzcnt .gt_font_italic {
+#vdlpoepokc .gt_font_italic {
   font-style: italic;
 }
 
-#hzgnpgzcnt .gt_super {
+#vdlpoepokc .gt_super {
   font-size: 65%;
 }
 
-#hzgnpgzcnt .gt_footnote_marks {
+#vdlpoepokc .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#hzgnpgzcnt .gt_asterisk {
+#vdlpoepokc .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#hzgnpgzcnt .gt_indent_1 {
+#vdlpoepokc .gt_indent_1 {
   text-indent: 5px;
 }
 
-#hzgnpgzcnt .gt_indent_2 {
+#vdlpoepokc .gt_indent_2 {
   text-indent: 10px;
 }
 
-#hzgnpgzcnt .gt_indent_3 {
+#vdlpoepokc .gt_indent_3 {
   text-indent: 15px;
 }
 
-#hzgnpgzcnt .gt_indent_4 {
+#vdlpoepokc .gt_indent_4 {
   text-indent: 20px;
 }
 
-#hzgnpgzcnt .gt_indent_5 {
+#vdlpoepokc .gt_indent_5 {
   text-indent: 25px;
 }
 
-#hzgnpgzcnt .katex-display {
+#vdlpoepokc .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#hzgnpgzcnt div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#vdlpoepokc div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -1060,7 +1063,7 @@ Table&nbsp;1: Mean bill length per species.
 <p><strong>Eyes up — not a live <em>Follow along</em></strong></p>
 </div>
 <div class="callout-content">
-<p>The live build is done. The next seven slides are concept, no need to type along. Your document is ready for the Challenge.</p>
+<p>The live build is done. The next few slides are concept, no need to type along. Your document is ready for the Challenge.</p>
 </div>
 </div>
 </div>
@@ -1348,7 +1351,7 @@ Table&nbsp;1: Mean bill length per species.
 <p><strong>Follow along</strong></p>
 </div>
 <div class="callout-content">
-<p>Back in your editor: add citations to your Part-1 document (or to <code>day1-intro/starter.qmd</code>).</p>
+<p>Back in your editor: add citations to your Part-1 document (or to <code>citations-starter.qmd</code>).</p>
 </div>
 </div>
 </div>
@@ -1358,11 +1361,10 @@ Table&nbsp;1: Mean bill length per species.
 <div class="column" style="width:55%;">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb16-1"><a aria-label="1"></a><span class="fu">bibliography</span><span class="kw">:</span><span class="at"> references.bib</span></span>
 <span id="cb16-2"><a aria-label="2"></a><span class="fu">csl</span><span class="kw">:</span><span class="at"> apa.csl</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb17-1"><a aria-label="1"></a>The data come from Palmer Station</span>
-<span id="cb17-2"><a aria-label="2"></a><span class="co">[</span><span class="ot">@gorman2014</span><span class="co">]</span>.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb17-1"><a aria-label="1"></a>The data come from Palmer Station <span class="co">[</span><span class="ot">@gorman2014</span><span class="co">]</span>.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>renders as: … (Gorman et al., 2014).</p>
 </div><div class="column" style="width:45%;">
-<p><code>references.bib</code> is included in <code>day1-intro/</code> (excerpt):</p>
+<p><code>references.bib</code> is in <code>day1-intro/</code> (excerpt):</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode numberSource bibtex number-lines code-with-copy"><code class="sourceCode bibtex"><span id="cb18-1"><a aria-label="1"></a><span class="va">@article</span>{<span class="ot">gorman2014</span>,</span>
 <span id="cb18-2"><a aria-label="2"></a>  <span class="dt">author</span> = {Gorman, K. B. and ...},</span>
 <span id="cb18-3"><a aria-label="3"></a>  <span class="dt">title</span>  = {Ecological Sexual ...},</span>
@@ -1519,7 +1521,7 @@ Table&nbsp;1: Mean bill length per species.
 <p><strong>Your turn</strong></p>
 </div>
 <div class="callout-content">
-<p>Back to the <strong><a href="../../labs/quarto/index.html#citations-challenge">Lab</a></strong>, at the <strong>Citations Challenge</strong>: add citations to the Part-2 starter (or your own Part-1 file), then render it as a <strong>branded Typst PDF</strong>. You’ll finish with a <strong>publication-ready article</strong>, a citable, branded PDF you could submit.</p>
+<p>Back to the <strong><a href="../../labs/quarto/index.html#citations-challenge">Lab</a></strong>, at the <strong>Citations Challenge</strong>: add citations to your own Part-1 file (or the completed <code>citations-starter.qmd</code>), then render it as a <strong>branded Typst PDF</strong>. You’ll finish with a <strong>publication-ready article</strong>, a citable, branded PDF you could submit.</p>
 </div>
 </div>
 </div>
@@ -1527,7 +1529,7 @@ Table&nbsp;1: Mean bill length per species.
 <aside class="notes">
 <ul>
 <li><strong>Say:</strong> “Add the bibliography, then render a branded Typst PDF.”</li>
-<li><strong>Watch for:</strong> exact citation key; first font download; PDF lands beside its source.</li>
+<li><strong>Watch for:</strong> exact citation key; first font download; PDF lands beside its source; a <code>my-report.qmd</code> created outside <code>day1-intro/</code> (bib and brand not found).</li>
 </ul>
 <style type="text/css">
         span.MJX_Assistive_MathML {

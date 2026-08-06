@@ -350,7 +350,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="build-the-navigation" class="level3" data-number="1.2">
 <h3 data-number="1.2" class="anchored" data-anchor-id="build-the-navigation"><span class="header-section-number">1.2</span> Build the navigation</h3>
-<p><strong>Goal.</strong> Give the site a title and a top navigation bar, so a reader can move between the two pages without editing the URL.</p>
+<p><strong>Goal.</strong> Give the site a title and a top navigation bar, so a reader can move between the home and analysis pages without editing the URL.</p>
 <p>Add <code>index.qmd</code> (Home) and <code>analysis.qmd</code> (Analysis) to the navigation. Give the site the title <strong>Penguin Lab</strong>, and use the ready-made <strong>cosmo</strong> theme so it does not look like raw HTML.</p>
 <p>From this step on, preview the site with <code>quarto preview</code> from inside <code>day2-projects/</code>. On Day 1 you previewed one document. From the project root, the command serves the whole site and re-renders a page when you save it.</p>
 <div class="callout callout-style-simple callout-note no-icon callout-titled">
@@ -870,7 +870,7 @@ Figure&nbsp;1: The analysis page’s figure: body mass by species.
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Your Day-1 report opens as a page of the site, reachable from the navigation, styled like the rest of it. Its content is unchanged: the front matter is the only place you had to look.</p>
+<p>Your Day-1 report opens as a page of the site, reachable from the navigation, styled like the rest of it. Its content is unchanged: the front matter is the only part you edited.</p>
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
@@ -886,7 +886,7 @@ Figure&nbsp;1: The analysis page’s figure: body mass by species.
 <div id="callout-27" class="callout-27-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>Your Day-1 document may still declare its own <code>format:</code>. Inside a project, where does <code>format:</code> come from now, and what happens if a page insists on its own?</p>
-<p>Copy the <code>.qmd</code> into <code>day2-projects/</code>, add an entry for it in the <code>navbar:</code> list, and re-render.</p>
+<p>Copy the <code>.qmd</code> into <code>day2-projects/</code>, together with <code>references.bib</code> and <code>apa.csl</code> from <code>day1-intro/</code> (the front matter points at them by relative path), add an entry for it in the <code>navbar:</code> list, and re-render.</p>
 <p>A page in a project inherits <code>format:</code> from <code>_quarto.yml</code>. If your file still carries the <code>format: typst</code> from the Day-1 exercise, it keeps building a PDF instead of a page. Drop that key and it builds as HTML like its neighbours. (The shipped <code>penguins-report.qmd</code> declares no <code>format:</code> at all, so there is nothing to drop.)</p>
 <p>Didn’t finish Day 1, or do not have the file? Use <code>solutions/day1/penguins-report.qmd</code> from your exercises download instead.</p>
 </div>
@@ -904,7 +904,7 @@ Figure&nbsp;1: The analysis page’s figure: body mass by species.
 </div>
 <div id="callout-28" class="callout-28-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>Copy your <code>my-report.qmd</code> into <code>day2-projects/</code>, drop any <code>format:</code> block from its front matter, and add it to the navbar:</p>
+<p>Copy your <code>my-report.qmd</code> into <code>day2-projects/</code>, together with <code>references.bib</code> and <code>apa.csl</code> from <code>day1-intro/</code> (the report cites through them). Drop any <code>format:</code> block from its front matter, and add it to the navbar:</p>
 <div class="code-with-filename">
 <div class="code-with-filename-file">
 <pre><strong>day2-projects/_quarto.yml</strong></pre>
@@ -963,7 +963,7 @@ Figure&nbsp;1: The analysis page’s figure: body mass by species.
 <ul>
 <li><code>format: dashboard</code> changes the output.</li>
 <li>A <code>##</code> heading starts a row and a <code>###</code> heading starts a column.</li>
-<li><code>#| content: valuebox</code> creates a single-number panel.</li>
+<li><code>#| content: valuebox</code> creates a single-number panel from a cell whose result is one number (for example <code>nrow(penguins)</code>).</li>
 <li><code>{.tabset}</code> turns the cells in a column into tabs.</li>
 </ul>
 <p>The overall shape is:</p>
@@ -1057,10 +1057,11 @@ Figure&nbsp;1: The analysis page’s figure: body mass by species.
 <div id="callout-33" class="callout-33-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ul>
-<li><strong>Rendered, but can’t find the HTML?</strong> Before you add <code>_quarto.yml</code>, a single-page render writes the HTML <strong>next to its source</strong> in <code>day2-projects/</code>. Once <code>_quarto.yml</code> is present, a project render collects all pages under <code>day2-projects/_site/</code>. Look in those two places.</li>
+<li><strong>Rendered, but can’t find the HTML?</strong> Before you add <code>_quarto.yml</code>, a single-page render writes the HTML <strong>next to its source</strong> in <code>day2-projects/</code>. Once <code>_quarto.yml</code> is present, a project render collects all pages under <code>day2-projects/_site/</code>. Look in those two places. The earlier <code>analysis.html</code> and <code>analysis_files/</code> next to the sources are leftovers at that point: delete them if you like.</li>
 <li><strong>YAML is indentation-sensitive.</strong> If rendering fails <em>before</em> any code runs, check <code>_quarto.yml</code> for stray spaces, tabs, or unmatched quotes.</li>
 <li><strong>“No project” / pages don’t link?</strong> The <code>_quarto.yml</code> must be <strong>inside <code>day2-projects/</code></strong>, and <code>href:</code> paths are relative to the source folder, <strong>not</strong> <code>_site/</code>.</li>
 <li><strong>Brand not applied?</strong> Two causes. The file must be in <code>day2-projects/</code> (the project root), and <code>brand</code> must come <strong>last</strong> in the <code>theme:</code> list: <code>theme: [cosmo, brand]</code> gives you the palette, while <code>theme: cosmo</code> on its own keeps cosmo’s colors and only the fonts change. Re-render after either fix. For <strong>plots</strong>, the palette needs <code>library(brand.yml)</code> + <code>theme_brand_ggplot2()</code> (the file alone doesn’t reach ggplot).</li>
+<li><strong>Render fails with “references.bib not found”?</strong> Your Day-1 report points at <code>references.bib</code> and <code>apa.csl</code> by relative path. Copy both files from <code>day1-intro/</code> into <code>day2-projects/</code>, next to the report, and render again.</li>
 <li><strong>A cross-reference shows <code>?@…</code>?</strong> The cell label must start <code>fig-</code>/<code>tbl-</code>/<code>eq-</code> and be unique, and remember it only resolves <strong>within one page</strong> on a website.</li>
 <li><strong>Freeze didn’t skip the cell?</strong> Under <code>freeze: auto</code> it skips only when the source is <strong>unchanged</strong> since the last build: any edit (prose or code) re-runs that page. Delete <code>_freeze/</code> to force a clean rebuild.</li>
 <li><strong>A page won’t update?</strong> That is <code>freeze: true</code> doing its job: a project render reuses the stored results even after an edit. Render that file directly, or switch back to <code>freeze: auto</code>.</li>

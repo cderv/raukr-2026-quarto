@@ -233,7 +233,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><a href="#software"><strong>Install</strong></a> R ≥ 4.5, Quarto ≥ 1.9, and an editor.</li>
 <li><a href="#get-the-materials"><strong>Get the materials</strong></a> — one line of R, no git or GitHub account needed.</li>
 <li><a href="#r-packages"><strong>Install the R packages</strong></a> — one <code>install.packages()</code> line.</li>
-<li><a href="#check-your-setup"><strong>Check it works</strong></a> — <code>source("00-check-setup.R")</code> from the top folder.</li>
+<li><a href="#check-your-setup"><strong>Check it works</strong></a> — run the check script from the top folder.</li>
 </ol>
 <p>Complete steps 2–4 <strong>before the workshop</strong> so we can start with Quarto.</p>
 </div>
@@ -312,22 +312,22 @@ Tip
 </section>
 <section id="get-the-materials" class="level2">
 <h2 class="anchored" data-anchor-id="get-the-materials">Get the materials</h2>
-<p>Download the starter documents, solutions, and citation files with <strong><code>use_course()</code></strong>. You do not need git or a GitHub account:</p>
+<p>Download the starter documents, solutions, and citation files with <strong><code>use_course()</code></strong>. You do not need git or a GitHub account.</p>
+<p>Choose where the materials go: set your R working directory to that folder, then run:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages("usethis")   # once, if you don't have it</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">use_course</span>(<span class="st">"cderv/raukr-2026-quarto-exercises"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>By default, <code>use_course()</code> downloads and opens <code>raukr-2026-quarto-exercises</code> on your Desktop. To use another location, set <code>destdir</code>, for example <code>destdir = "~/projects"</code>. Keep the downloaded ZIP when prompted: you can use it to reset the exercises.</p>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">use_course</span>(<span class="st">"cderv/raukr-2026-quarto-exercises"</span>, <span class="at">destdir =</span> <span class="st">"."</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><code>use_course()</code> unpacks a versioned folder named after the repository (for example <code>cderv-raukr-2026-quarto-exercises-d11a9fb/</code>, the suffix changes with each update) and opens it. That is the <strong>top folder</strong> the steps below refer to. Keep the downloaded ZIP when prompted: you can use it to reset the exercises.</p>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Important</span>Which folder to open — and when
+<span class="screen-reader-only">Important</span>In the session, open the day folder — not the top folder
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Install the packages and run the setup check from the <strong>top folder</strong> (<code>raukr-2026-quarto-exercises</code>).</p>
-<p><strong>When the session starts</strong>, open the day folder for that day, <strong>not</strong> the top folder:</p>
+<p>When a session starts, open that day’s folder inside the download:</p>
 <ul>
 <li><strong>Day 1</strong> → open <strong><code>day1-intro/</code></strong> (double-click <code>day1-intro.Rproj</code>).</li>
 <li><strong>Day 2</strong> → open <strong><code>day2-projects/</code></strong> (double-click <code>day2-projects.Rproj</code>).</li>
@@ -349,7 +349,7 @@ Tip
 <div class="callout-body-container callout-body">
 <p>To reset a day, create a <strong>new</strong> copy rather than overwriting your work. Choose one:</p>
 <ul>
-<li>re-run <code>usethis::use_course("cderv/raukr-2026-quarto-exercises")</code>.</li>
+<li>re-run the <code>use_course()</code> line above (each download unpacks into its own versioned folder, so nothing is overwritten).</li>
 <li>unzip the ZIP you kept to a <strong>new</strong> location.</li>
 </ul>
 <p>If <code>use_course()</code> can’t reach GitHub (blocked network / firewall), use the browser: the green <strong>Code ▸ Download ZIP</strong> button on <a href="https://github.com/cderv/raukr-2026-quarto-exercises" class="uri">https://github.com/cderv/raukr-2026-quarto-exercises</a>, then unzip.</p>
@@ -372,30 +372,15 @@ Tip
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">"brand.yml"</span>, <span class="st">"ggrepel"</span>, <span class="st">"prismatic"</span>,</span>
 <span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">"knitr"</span>, <span class="st">"rmarkdown"</span></span>
 <span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>There’s an <code>renv.lock</code> in the folder (ignore it)
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-7" class="callout-7-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<p>The lockfile records the tested package versions, but the exercise folder is not an activated renv project. Use the <code>install.packages()</code> command above rather than <code>renv::restore()</code>.</p>
-</div>
-</div>
-</div>
 </section>
 <section id="check-your-setup" class="level2">
 <h2 class="anchored" data-anchor-id="check-your-setup">Check your setup</h2>
-<p>From the <strong>top</strong> <code>raukr-2026-quarto-exercises</code> folder, run:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">"00-check-setup.R"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>It checks R, Quarto, the packages, and the data. It also renders the Day-1 Typst sample and downloads the fonts used in the workshop. Every line should read <code>[ok]</code>.</p>
+<p>From the <strong>top folder</strong> of the download (the one <code>use_course()</code> opened), run:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">"00-check-setup.R"</span>, <span class="at">local =</span> <span class="fu">new.env</span>())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>(<code>local = new.env()</code> keeps the script’s helper objects out of your workspace.)</p>
+<p>It checks R, Quarto, the packages, and the data. It also renders the Day-1 Typst sample (the resulting <code>sample-typst.pdf</code> is written in <code>day1-intro/</code>) and downloads the fonts used in the workshop. Every line should read <code>[ok]</code>.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -404,7 +389,7 @@ Tip
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-8" class="callout-8-contents callout-collapse collapse">
+<div id="callout-7" class="callout-7-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>Run <code>quarto check</code> and look for <code>Checking Knitr engine render......OK</code>. If you see <code>rmarkdown: (None)</code>, install the <a href="#r-packages">R packages</a> and run the check again. Then confirm R:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>R.version.string                          <span class="co"># want &gt;= 4.5.0</span></span>
