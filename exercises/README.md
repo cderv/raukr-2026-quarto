@@ -28,7 +28,7 @@ Open the day folder for the session — **not** this top folder:
 - **Day 1** → open `day1-intro/` (double-click `day1-intro.Rproj`).
 - **Day 2** → open `day2-projects/` (double-click `day2-projects.Rproj`).
 
-Each day folder is self-contained (its own working directory, brand, and assets), so your renders
+Each day folder is self-contained (its own working directory and assets), so your renders
 land next to your files — there is no project above them to capture the output.
 
 ## Check your setup (do this once, before Day 1)
@@ -52,8 +52,8 @@ install.packages(c(
 
 | Path | What it is |
 |---|---|
-| `day1-intro/` | Day-1 working folder: you create `my-report.qmd` here. Ships the Citations Challenge fallback `citations-starter.qmd`, the branded Typst payoff `sample-typst.qmd`, the parameters bonus `parameters-starter.qmd`, plus `references.bib` / `apa.csl` / `_brand.yml` (its README has the details). |
-| `day2-projects/` | Day-2 working folder: two pages that render on their own but are **not yet a project** — turning them into one is the exercise. Ships **without** `_quarto.yml`. |
+| `day1-intro/` | Day-1 working folder: you create `my-report.qmd` here. Ships the Citations Challenge fallback `citations-starter.qmd`, the branded Typst PDF example `sample-typst.qmd`, the parameters bonus `parameters-starter.qmd`, plus `references.bib` / `apa.csl` / `_brand.yml` (its README has the details). |
+| `day2-projects/` | Day-2 working folder: four pages that render on their own but are **not yet a project** — turning them into one is the exercise. Ships **without** `_quarto.yml`. |
 | `solutions/` | Reference solutions for both days. Try the exercise yourself first. |
 | `00-check-setup.R` | The one-shot setup check + Typst font pre-warm. |
 
@@ -61,8 +61,8 @@ install.packages(c(
 
 If an attempt goes wrong, get a **fresh folder** (don't extract over your working copy):
 
-- Re-run `usethis::use_course("cderv/raukr-2026-quarto-exercises")` — it makes a new,
-  numbered folder and leaves your old attempt untouched; or
+- Re-run the `use_course()` line above (with `destdir = "."`) — each download unpacks into its own
+  versioned folder, so your old attempt is untouched; or
 - Unzip the ZIP you kept to a **new** location.
 
 ## Reuse

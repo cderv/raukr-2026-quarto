@@ -381,6 +381,9 @@ your work or render it with different `-P species:` values. You can also take th
   unique, and the `@ref` must match it.
 - **A citation shows `?@gorman2014` or `[?]`?** The `@key` doesn't match a key in `references.bib`,
   or `bibliography:` isn't set.
+- **`references.bib` not found, although the download has it?** Your `.qmd` is probably not in
+  `day1-intro/` (created in the top folder, for example). Move it next to `references.bib` /
+  `apa.csl` / `_brand.yml` and render again.
 - **Do I need to install Typst?** No. Typst is bundled in Quarto ≥ 1.9, so there's nothing extra to
   install (no LaTeX either). Check `quarto --version`.
 - **Typst PDF looks unbranded / wrong fonts?** An unbranded render succeeds silently, so check the

@@ -116,8 +116,8 @@ quarto render
 
 ### Build the navigation
 
-**Goal.** Give the site a title and a top navigation bar, so a reader can move between the two pages
-without editing the URL.
+**Goal.** Give the site a title and a top navigation bar, so a reader can move between the home and
+analysis pages without editing the URL.
 
 Add `index.qmd` (Home) and `analysis.qmd` (Analysis) to the navigation. Give the site the title
 **Penguin Lab**, and use the ready-made **cosmo** theme so it does not look like raw HTML.

@@ -95,8 +95,8 @@ usethis::use_course("cderv/raukr-2026-quarto-exercises", destdir = ".")
 ```
 
 `use_course()` unpacks a versioned folder named after the repository (for example
-`cderv-raukr-2026-quarto-exercises-d11a9fb/`, the suffix changes with each update) and opens it in
-your file manager. That is the **top folder** the steps below refer to. Keep the downloaded ZIP when
+`cderv-raukr-2026-quarto-exercises-d11a9fb/`, the suffix changes with each update) and opens it.
+That is the **top folder** the steps below refer to. Keep the downloaded ZIP when
 prompted: you can use it to reset the exercises.
 
 ::: {.callout-important}
@@ -154,8 +154,9 @@ source("00-check-setup.R", local = new.env())
 
 (`local = new.env()` keeps the script's helper objects out of your workspace.)
 
-It checks R, Quarto, the packages, and the data. It also renders the Day-1 Typst sample and downloads
-the fonts used in the workshop. Every line should read `[ok]`.
+It checks R, Quarto, the packages, and the data. It also renders the Day-1 Typst sample (the
+resulting `sample-typst.pdf` is written in `day1-intro/`) and downloads the fonts used in the
+workshop. Every line should read `[ok]`.
 
 ::: {.callout-tip collapse="true"}
 ## Prefer to check by hand?

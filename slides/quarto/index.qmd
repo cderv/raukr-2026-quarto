@@ -67,6 +67,7 @@ move at your own pace.
 ::: notes
 - **Say:** "Two rounds: watch, follow along, then your turn."
 - **Do:** pause on the URL. It is the catch-up path.
+- **Catch-up:** no exercises folder? Setup page on the site, one `use_course()` line, ~2 min.
 :::
 
 # Part 1: Basics {.center}
@@ -202,6 +203,8 @@ that reports numbers from the data, and **callouts**.
 ::: notes
 - **Say:** "Create `day1-intro/my-report.qmd`. We will render as we go."
 - **Watch for:** the setup cell belongs in the document, not the console.
+- **Catch-up:** no `day1-intro/`? Setup page, one `use_course()` line, ~2 min; pair with a
+  neighbor meanwhile.
 - **Focus:** Quarto additions, not a Markdown lesson.
 - **Timing:** next four slides, 8–10 min total.
 :::
@@ -699,7 +702,8 @@ finish with a **publication-ready article**, a citable, branded PDF you could su
 
 ::: notes
 - **Say:** "Add the bibliography, then render a branded Typst PDF."
-- **Watch for:** exact citation key; first font download; PDF lands beside its source.
+- **Watch for:** exact citation key; first font download; PDF lands beside its source; a
+  `my-report.qmd` created outside `day1-intro/` (bib and brand not found).
 :::
 
 ## What you can do now {#wrap-up}

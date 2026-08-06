@@ -107,8 +107,8 @@ Run it before any session, and after any `labs/**` change you thought was finish
   reality). Keep render steps root-relative like the existing ones.
 - **Packages = 9** (`dplyr`, `ggplot2`, `ggrepel`, `gt`, `ggokabeito`, `brand.yml`, `prismatic`,
   `knitr`, `rmarkdown`) — `ggokabeito` (the CVD-safe species scale) is easy to miss. Add-a-package =
-  edit `tools/exercises-scaffold/DESCRIPTION` (CI installs from it) **and** the install lines in
-  `setup.qmd`, then re-sync.
+  edit `tools/exercises-scaffold/DESCRIPTION` (CI installs from it), the install lines in
+  `setup.qmd`, **and** the scaffold `README.md` package line, then re-sync.
 - **Download buttons** (three, in `labs/quarto/index.qmd`) point at
   `raw.githubusercontent.com/cderv/raukr-2026-quarto-exercises/main/…`. Both repos went **Public on
   2026-08-03**, so the buttons and `use_course()` now work; they 404 again if either is ever flipped
