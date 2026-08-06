@@ -63,6 +63,7 @@ cat("\n")
 if (fails == 0L) cat(">> All good. You are ready for Day 1.\n") else
   cat(sprintf(">> %d check(s) failed -- see [FAIL] lines above.\n", fails))
 # Exit with a status ONLY when run non-interactively (Rscript / CI). Under the documented
-# `source("00-check-setup.R")` path this would quit the user's R session -- on success too.
+# `source("00-check-setup.R", local = new.env())` path this would quit the user's R session --
+# on success too.
 if (!interactive()) quit(status = if (fails == 0L) 0L else 1L)
 invisible(fails)

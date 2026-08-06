@@ -13,7 +13,7 @@ Complete these four steps:
 1. [**Install**](#software) R ≥ 4.5, Quarto ≥ 1.9, and an editor.
 2. [**Get the materials**](#get-the-materials) — one line of R, no git or GitHub account needed.
 3. [**Install the R packages**](#r-packages) — one `install.packages()` line.
-4. [**Check it works**](#check-your-setup) — `source("00-check-setup.R")` from the top folder.
+4. [**Check it works**](#check-your-setup) — run the check script from the top folder.
 
 Complete steps 2–4 **before the workshop** so we can start with Quarto.
 :::
@@ -150,8 +150,10 @@ pak::pak(c(
 From the **top folder** of the download (the one `use_course()` opened), run:
 
 ```r
-source("00-check-setup.R")
+source("00-check-setup.R", local = new.env())
 ```
+
+(`local = new.env()` keeps the script's helper objects out of your workspace.)
 
 It checks R, Quarto, the packages, and the data. It also renders the Day-1 Typst sample and downloads
 the fonts used in the workshop. Every line should read `[ok]`.
