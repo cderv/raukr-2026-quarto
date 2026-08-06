@@ -162,7 +162,7 @@ website:
 [Listings](https://quarto.org/docs/websites/website-listings.html)
 
 ::: notes
-- **Do:** add navbar and sidebar; render and show navigation.
+- **Do:** add navbar and sidebar; `quarto preview` to show navigation and the built-in search.
 - **Say:** "List navbar entries, or let `contents: auto` build a sidebar."
 - **Next:** independent pages explain the cross-reference rule.
 - **Watch for:** links are relative to source files, not `_site`.
@@ -341,6 +341,7 @@ is built.
 - **Do:** edit `analysis.qmd`; render that file; show `_freeze/` change. Then render the project.
 - **Contrast:** `auto` recomputes changed pages; `true` requires manual refresh.
 - **Example:** quarto.org uses `true` and commits `_freeze/`.
+- **Lab:** a guided experiment walks this loop on their own project.
 :::
 
 ## Reproducibility has two parts {#renv}
@@ -404,12 +405,14 @@ Publish your site and open it on your phone. The lab has the steps. Everyone sti
 
 ::: {.callout-tip title="Your turn"}
 Back to the **[Lab](../../labs/quarto-projects/index.qmd#ship-it-challenge)**, the **Reproducible Build
-Challenge**: make the build skip unchanged pages, bring **yesterday's report** onto the site, and turn
-it into a publishable `_site/` folder. The dashboard demo and publishing are optional.
+Challenge**: make the build skip unchanged pages, bring **yesterday's report** onto the site, then run
+the guided `freeze: true` experiment. Everyone leaves with a publishable `_site/` folder. The
+dashboard demo and publishing are optional.
 :::
 
 ::: notes
-- **Say:** "Freeze the build, then add yesterday's report to the site."
+- **Say:** "Minimum: freeze works and yesterday's report is a page. The `freeze: true` experiment
+  completes the core."
 - **Ask:** "How can you prove the code did not run?"
 - **Ask:** "Where do cache and freeze write results? Which folder do you commit?"
 - **Celebrate:** the Day-1 report becoming a site page.

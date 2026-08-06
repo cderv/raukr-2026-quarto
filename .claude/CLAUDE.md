@@ -115,8 +115,8 @@ editing `_brand.yml` or the theme SCSS).
   (how Christophe writes + the LLM-tell strip-list; paired with the `prose-voice` rule),
   `day2-rework-plan` (**applied 2026-08-05**: task-first Day-2 exercises with a hint ladder; kept
   as the design rationale, with the lab as the truth where the two differ), `lab2-completeness-plan`
-  (**proposal, under review**: 2026-08-06 three-lens findings — Part 2 slack, the dangling
-  branded-plot promise, candidate additions as open decisions).
+  (**decided, applied in part 2026-08-06**: project-scope preview + a guided `freeze: true`
+  experiment landed, the branded-plot promise trimmed; B/C/E/F declined — see its status note).
 - **Rules** → `.claude/rules/`: path-scoped gotchas for `justfile`, `exercises`, `slides`,
   `multi-day-sequencing`, `brand`, plus `prose-voice`.
 - **Skills** → `.claude/skills/`: `quarto-authoring`, `quarto-alt-text`, `brand-yml`, `braid`.

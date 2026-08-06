@@ -1,10 +1,29 @@
 # Lab-2 completeness plan — findings and open decisions
 
-Status: **proposal, for review — nothing applied.** Written 2026-08-06 from a three-lens review
-(prior-art mining of the earlier tutorials, an official-docs audit, a pedagogy sizing pass). The
-dated reports live in `.claude/reviews/` (gitignored working notes), so this document carries the
-substance. Every minute figure below is a bench estimate, not a rehearsal result: treat them as
-direction, not commitments.
+Status: **decided and applied in part, 2026-08-06** (external review verdict: a conservative
+subset, sized for one instructor, no reliable helpers, no rehearsal). Written 2026-08-06 from a
+three-lens review (prior-art mining of the earlier tutorials, an official-docs audit, a pedagogy
+sizing pass). The dated reports live in `.claude/reviews/` (gitignored working notes), so this
+document carries the substance. Every minute figure below is a bench estimate, not a rehearsal
+result: treat them as direction, not commitments.
+
+What was applied (behavior verified by live renders on Quarto 1.10.18 before writing):
+
+- **D** — project-scope `quarto preview` in "Build the navigation", with the preview as the
+  checkpoint and the default search magnifier named there (not a separate exercise).
+- **A, as guided reinforcement** — a commands-shown `freeze: true` experiment after the Day-1
+  report step (switch to `true`, edit the plot code, render project / file / project), closing
+  with the switch back to `auto`. Not a discovery step: the review judged another hint ladder too
+  expensive for one instructor.
+- **Inconsistency 1** — fixed by trimming the Scope sentence (candidate B declined).
+- **Inconsistency 3** — one line under the first step's stanza: `_site` is the website default,
+  written to keep the publish folder named in the config.
+- **Two finish lines** stated in the Part-2 intro: minimum = freeze works + the Day-1 report is a
+  page; complete core = the guided experiment too. Dashboard and publishing stay overflow.
+
+Declined: **B, C, E, F** (so inconsistency 4 stays as-is: demo remains "if time permits" on both
+surfaces). **G**'s recommendation stands (no step-by-step correction). Timing estimates stay out
+of participant-facing material.
 
 ## The question
 
