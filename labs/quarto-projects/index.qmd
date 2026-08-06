@@ -10,6 +10,7 @@ format:
 
 ```{r}
 #| label: setup
+#| include: false
 #| message: false
 library(dplyr)
 library(ggplot2)
