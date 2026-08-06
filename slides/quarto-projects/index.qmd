@@ -61,7 +61,8 @@ From one file to a whole site.
 ## Why a *project*? {#why-project}
 
 ::: {.callout-note title="Follow along"}
-Open your editor: from here we build one project together.
+Open your **`day2-projects/`** folder from the exercises download: from here we build one project
+together. Fallen behind at any point? `solutions/day2/` holds the finished project.
 :::
 
 One `.qmd` renders alone. A **project** is a folder Quarto treats as one unit (shared config, one

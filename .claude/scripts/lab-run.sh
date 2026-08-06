@@ -15,7 +15,7 @@ set -euo pipefail
 
 REPO="$(git rev-parse --show-toplevel)"
 SCRATCH="${LABRUN_SCRATCH:-/tmp/claude-labruns}"
-CONTENT_PKGS='c("knitr","rmarkdown","dplyr","ggplot2","gt","brand.yml","ggrepel","prismatic")'
+CONTENT_PKGS='c("knitr","rmarkdown","dplyr","ggplot2","gt","ggokabeito","brand.yml","ggrepel","prismatic")'
 
 cmd="${1:-}"; lab="${2:-}"
 

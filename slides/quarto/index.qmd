@@ -189,6 +189,7 @@ Put this cell at the top: everything we write next assumes it. Fallen behind at 
 library(dplyr)
 library(ggplot2)
 library(gt)
+library(ggokabeito)   # color-blind-safe (Okabe-Ito) scale
 data(penguins)
 penguins <- penguins |> filter(!is.na(bill_len), !is.na(bill_dep))
 ```
@@ -329,7 +330,7 @@ The number updates when the data does. **Reproducible by construction.**
 ## Layouts: body, margin, and beyond {#layouts}
 
 ::: {.callout-warning title="Eyes up — not a live *Follow along*"}
-The live build is done. The next seven slides are concept, no need to type along. Your document is
+The live build is done. The next few slides are concept, no need to type along. Your document is
 ready for the Challenge.
 :::
 
@@ -693,7 +694,7 @@ typography:
 
 ::: {.callout-tip title="Your turn"}
 Back to the **[Lab](../../labs/quarto/index.qmd#citations-challenge)**, at the **Citations Challenge**: add citations to
-the Part-2 starter (or your own Part-1 file), then render it as a **branded Typst PDF**. You'll
+your own Part-1 file (or the completed `starter.qmd`), then render it as a **branded Typst PDF**. You'll
 finish with a **publication-ready article**, a citable, branded PDF you could submit.
 :::
 
