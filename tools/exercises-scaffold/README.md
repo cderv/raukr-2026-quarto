@@ -10,11 +10,12 @@ One download covers **both** days. No Git or GitHub account needed.
 
 ## Get the files
 
-In R (RStudio or Positron), one line — it downloads a ZIP, unpacks it to your Desktop, and opens it:
+In R (RStudio or Positron): set your working directory where you want the materials, then one
+line — it downloads a ZIP, unpacks a versioned folder, and opens it:
 
 ```r
 # install.packages("usethis")
-usethis::use_course("cderv/raukr-2026-quarto-exercises")
+usethis::use_course("cderv/raukr-2026-quarto-exercises", destdir = ".")
 ```
 
 Answer **No** when it offers to delete the ZIP — keep it as your reset button (see below). No R?
@@ -36,7 +37,7 @@ From this top folder, run the setup check. It verifies R, Quarto, the packages, 
 renders the Day-1 Typst sample. That caches the brand fonts, so the in-session render has nothing to download:
 
 ```r
-source("00-check-setup.R")
+source("00-check-setup.R", local = new.env())
 ```
 
 Packages, if you need them:
@@ -51,7 +52,7 @@ install.packages(c(
 
 | Path | What it is |
 |---|---|
-| `day1-intro/` | Day-1 working folder: the Part-2 `starter.qmd`, the branded Typst payoff `sample-typst.qmd`, the parameters bonus `parameters-starter.qmd`, plus `references.bib` / `apa.csl` / `_brand.yml`. |
+| `day1-intro/` | Day-1 working folder: you create `my-report.qmd` here. Ships the Citations Challenge fallback `citations-starter.qmd`, the branded Typst payoff `sample-typst.qmd`, the parameters bonus `parameters-starter.qmd`, plus `references.bib` / `apa.csl` / `_brand.yml` (its README has the details). |
 | `day2-projects/` | Day-2 working folder: two pages that render on their own but are **not yet a project** — turning them into one is the exercise. Ships **without** `_quarto.yml`. |
 | `solutions/` | Reference solutions for both days. Try the exercise yourself first. |
 | `00-check-setup.R` | The one-shot setup check + Typst font pre-warm. |

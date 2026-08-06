@@ -23,7 +23,8 @@ so there's no data to download.
 ::: {.callout-tip appearance="simple"}
 You are working in the **`day1-intro/`** folder from the exercises download (open `day1-intro.Rproj`).
 See the [Setup page](../../setup.qmd#get-the-materials). Everything you render is written next to
-your files.
+your files. You create `my-report.qmd` yourself: the files already in the folder are used later,
+each at the step that names it (the folder's README lists them).
 :::
 
 Start every document with this setup (the challenges below assume it):
@@ -136,10 +137,10 @@ ggplot(penguins, aes(bill_len, bill_dep, color = species, shape = species)) +
 - Display math with a label `$$ … $$ {#eq-ratio}`, referenced with `@eq-ratio`.
 :::
 
-**Need to continue with Part 2?** `starter.qmd` is a completed Part-1 document. It is already in
-`day1-intro/`. Open it to continue with citations, or take the source:
+**Need to continue with Part 2?** `citations-starter.qmd` is a completed Part-1 document. It is
+already in `day1-intro/`. Open it to continue with citations, or take the source:
 
-<a class="btn btn-primary btn-sm" href="https://raw.githubusercontent.com/cderv/raukr-2026-quarto-exercises/main/day1-intro/starter.qmd" role="button" target="_blank">{{< fa download >}} starter.qmd</a>
+<a class="btn btn-primary btn-sm" href="https://raw.githubusercontent.com/cderv/raukr-2026-quarto-exercises/main/day1-intro/citations-starter.qmd" role="button" target="_blank">{{< fa download >}} citations-starter.qmd</a>
 
 The cross-references and the equation live in the **body Markdown**, outside any cell:
 
@@ -165,8 +166,8 @@ first, then open it to compare, or take the source:
 ::: {.callout-note}
 ## Starting point
 If you finished the Authoring Challenge, keep going on your own document. Otherwise open
-**`day1-intro/starter.qmd`** in your editor (a complete Part-1 report) and add the citations to
-that.
+**`day1-intro/citations-starter.qmd`** in your editor (a complete Part-1 report) and add the
+citations to that.
 :::
 
 :::: {.callout-note icon=false}
@@ -185,7 +186,7 @@ that.
    ```
 2. Cite the data source in prose with `@gorman2014`. Write a sentence ending
    *"…collected at Palmer Station, Antarctica."* (already present if you continue from
-   `starter.qmd`) and insert the citation before the period:
+   `citations-starter.qmd`) and insert the citation before the period:
    `Antarctica [@gorman2014].` (don't paste a second copy).
 3. Add a **References** section where the list should appear:
    ```markdown
@@ -213,8 +214,8 @@ that.
      The button renders whatever `format:` is declared, so while the header still says `format: html`
      the button gives you HTML, **not** a PDF.
 
-   If you used the completed Part-1 file, render `starter.qmd` instead. The PDF is written **next to its source**
-   in `day1-intro/`.
+   If you used the completed Part-1 file, render `citations-starter.qmd` instead. The PDF is written
+   **next to its source** in `day1-intro/`.
 ::::
 
 ::: {.callout-note appearance="simple" icon=false}

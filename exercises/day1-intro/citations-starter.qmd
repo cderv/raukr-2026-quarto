@@ -1,6 +1,6 @@
 ---
 title: "Penguin bill dimensions"
-subtitle: "Part-2 starter — a finished Part-1 document, ready to cite"
+subtitle: "Citations Challenge starter — a finished report, ready to cite"
 author: "Your name"
 format: html
 ---

@@ -179,7 +179,7 @@ Cell options use the `#|` "hash-pipe": one YAML option per line.
 ::: {.callout-note title="Follow along"}
 In `day1-intro/`, create **`my-report.qmd`** with `format: html`. It is the file the lab starts from.
 Put this cell at the top: everything we write next assumes it. Fallen behind at any point? Open
-`starter.qmd` in the same folder and keep going from there.
+`citations-starter.qmd` in the same folder (the finished version of this document) and keep going.
 :::
 
 ```` {.markdown}
@@ -557,7 +557,7 @@ This is exactly the path from your analysis to a submission, and to your **team-
 ## Citations {#citations}
 
 ::: {.callout-note title="Follow along"}
-Back in your editor: add citations to your Part-1 document (or to `day1-intro/starter.qmd`).
+Back in your editor: add citations to your Part-1 document (or to `citations-starter.qmd`).
 :::
 
 Point the header at a `.bib`, then cite with `@key`:
@@ -569,13 +569,12 @@ bibliography: references.bib
 csl: apa.csl
 ```
 ``` markdown
-The data come from Palmer Station
-[@gorman2014].
+The data come from Palmer Station [@gorman2014].
 ```
 renders as: … (Gorman et al., 2014).
 :::
 ::: {.column width="45%"}
-`references.bib` is included in `day1-intro/` (excerpt):
+`references.bib` is in `day1-intro/` (excerpt):
 
 ``` {.bibtex}
 @article{gorman2014,
@@ -694,7 +693,7 @@ typography:
 
 ::: {.callout-tip title="Your turn"}
 Back to the **[Lab](../../labs/quarto/index.qmd#citations-challenge)**, at the **Citations Challenge**: add citations to
-your own Part-1 file (or the completed `starter.qmd`), then render it as a **branded Typst PDF**. You'll
+your own Part-1 file (or the completed `citations-starter.qmd`), then render it as a **branded Typst PDF**. You'll
 finish with a **publication-ready article**, a citable, branded PDF you could submit.
 :::
 

@@ -61,8 +61,8 @@ jobs:
 
       # The two files participants open directly. Off the course-site render list (so no _freeze/
       # covers them) -- without these steps a break surfaces first on a participant's laptop.
-      - name: Render Day-1 starter (the Part-2 fallback document)
-        run: quarto render day1-intro/starter.qmd
+      - name: Render Day-1 citations starter (the Part-2 fallback document)
+        run: quarto render day1-intro/citations-starter.qmd
 
       - name: Render Day-1 parameters starter
         run: quarto render day1-intro/parameters-starter.qmd

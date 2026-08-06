@@ -30,7 +30,7 @@ SCAFFOLD <- "tools/exercises-scaffold"
 files <- c(
   # Day-1 working folder: Part-2 starter, the branded Typst payoff, the params starter, shared assets,
   # and the FULL root brand (sample-typst.qmd reads it via read_brand_yml()).
-  "labs/quarto/starter.qmd"             = "day1-intro/starter.qmd",
+  "labs/quarto/citations-starter.qmd"   = "day1-intro/citations-starter.qmd",
   "labs/quarto/sample-typst.qmd"        = "day1-intro/sample-typst.qmd",
   "labs/quarto/parameters-starter.qmd"  = "day1-intro/parameters-starter.qmd",
   "labs/quarto/references.bib"          = "day1-intro/references.bib",
