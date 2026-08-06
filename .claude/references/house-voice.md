@@ -93,6 +93,8 @@ Flagged and removed, as the pattern to recognise:
 - "nobody is stranded by the break" → the fallback is already stated ("a finished reference is in
   `solutions/…`"); cut the reassurance idiom.
 - "if an attempt goes sideways" → "if an attempt goes wrong".
+- "That is the minimum finish line." → "If time is short, stop after those two." (Arrived via an
+  accepted review suggestion — reviewer wording gets the same test as fresh prose.)
 
 Others in the same class to avoid (non-exhaustive): "hit the ground running", "the whole nine yards",
 "a room-killer", "back to square one", "your mileage may vary", "piece of cake", "on the same page",
@@ -146,6 +148,16 @@ option and read exactly right ("You saw this yesterday").
   → `…a small **exercises folder** (…): the starter documents, the reference solutions, and the citation
   assets (…).`
   *(dashed appositive → colon.)*
+
+- `Writing the line keeps the folder you will publish named in the config.`
+  → `We write it explicitly here so the publishable folder is visible in the configuration.`
+  *(over-compression: dodging the banned constructions squeezed out a verb phrase no plain writer
+  uses. A plain subject-verb-purpose sentence is the fix, not further trimming.)*
+
+- `Three renders, three different outcomes. After the first, …`
+  → `Check the label and timestamp after each render. After the first, …`
+  *(a checkpoint opens with the reader's action or the observable, not a rhetorical slogan — and it
+  names what changes, not a quality word like "fresh".)*
 
 ## Retire these recurring beats (they read as a verbal tic once you notice them)
 

@@ -50,6 +50,28 @@ spoken register leaking onto the page.
   file", "practical techniques". (Near-literal metaphors he does use — "batteries included", "under
   the hood" — are fine.)
 
+## Compression is not the goal (banked from the 2026-08-06 copy-edit)
+
+Avoiding the tells by compressing produces a different failure: strained wording no plain writer
+would use. What an external copy-edit fixed in one day's additions, as the patterns to recognise:
+
+- **Strained verb phrase from over-compression.** "Writing the line keeps the folder you will
+  publish named in the config" → "We write it explicitly here so the publishable folder is visible
+  in the configuration." A plain subject-verb-purpose sentence beats a compressed clever one. Same
+  class: "the minimum to leave with" (a stranded-preposition tail).
+- **A checkpoint opens with the action or the observable, never a slogan.** "Three renders, three
+  different outcomes." → "Check the label and timestamp after each render." And name what changes
+  ("the label and timestamp both update"), not a quality word ("both are fresh"): in an acceptance
+  test the concrete observable wins, even over the allowed warm words.
+- **Name the exact change in a guided step.** "switch the value:" → "change `freeze` from `auto`
+  to `true`:". The instruction sentence stands alone, even when the code block below repeats it.
+- **Don't narrate the reader's cognition.** "The loop to remember: …" → "With `freeze: true`, the
+  workflow is: …". Stating the workflow is the page's job. Remembering it is the reader's.
+
+Counter-lesson: **reviewer wording is not house wording.** The same review round introduced
+"minimum finish line" (an idiom, caught one pass later). Accepted suggestions get the same tic
+greps as fresh prose.
+
 ## Before adding a sentence: who reads it, and when?
 
 The tells above catch bad *phrasing*. This one catches text that should not be on the page at
