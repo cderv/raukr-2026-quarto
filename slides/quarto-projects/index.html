@@ -385,7 +385,7 @@ Christophe Dervieux
 <p><strong>Learn more:</strong> <a href="https://quarto.org/docs/websites/">Websites</a> · <a href="https://quarto.org/docs/websites/website-listings.html">Listings</a></p>
 <aside class="notes">
 <ul>
-<li><strong>Do:</strong> add navbar and sidebar; render and show navigation.</li>
+<li><strong>Do:</strong> add navbar and sidebar; <code>quarto preview</code> to show navigation and the built-in search.</li>
 <li><strong>Say:</strong> “List navbar entries, or let <code>contents: auto</code> build a sidebar.”</li>
 <li><strong>Next:</strong> independent pages explain the cross-reference rule.</li>
 <li><strong>Watch for:</strong> links are relative to source files, not <code>_site</code>.</li>
@@ -556,6 +556,7 @@ Christophe Dervieux
 <aside class="notes">
 <ul>
 <li><strong>Say:</strong> “You built the site. Now make its builds reproducible, then publish it.”</li>
+<li><strong>Do:</strong> stop <code>quarto preview</code> before the freeze exercises.</li>
 </ul>
 <style type="text/css">
         span.MJX_Assistive_MathML {
@@ -640,6 +641,7 @@ Christophe Dervieux
 <li><strong>Do:</strong> edit <code>analysis.qmd</code>; render that file; show <code>_freeze/</code> change. Then render the project.</li>
 <li><strong>Contrast:</strong> <code>auto</code> recomputes changed pages; <code>true</code> requires manual refresh.</li>
 <li><strong>Example:</strong> quarto.org uses <code>true</code> and commits <code>_freeze/</code>.</li>
+<li><strong>Lab:</strong> a guided experiment walks this loop on their own project.</li>
 </ul>
 <style type="text/css">
         span.MJX_Assistive_MathML {
@@ -743,14 +745,14 @@ Christophe Dervieux
 <p><strong>Your turn</strong></p>
 </div>
 <div class="callout-content">
-<p>Back to the <strong><a href="../../labs/quarto-projects/index.html#ship-it-challenge">Lab</a></strong>, the <strong>Reproducible Build Challenge</strong>: make the build skip unchanged pages, bring <strong>yesterday’s report</strong> onto the site, and turn it into a publishable <code>_site/</code> folder. The dashboard demo and publishing are optional.</p>
+<p>Back to the <strong><a href="../../labs/quarto-projects/index.html#ship-it-challenge">Lab</a></strong>, the <strong>Reproducible Build Challenge</strong>: make the build skip unchanged pages, bring <strong>yesterday’s report</strong> onto the site, then run the guided <code>freeze: true</code> experiment. The result is a publishable <code>_site/</code> folder. The dashboard demo and publishing are optional.</p>
 </div>
 </div>
 </div>
 </div>
 <aside class="notes">
 <ul>
-<li><strong>Say:</strong> “Freeze the build, then add yesterday’s report to the site.”</li>
+<li><strong>Say:</strong> “Minimum: freeze works and yesterday’s report is a page. The <code>freeze: true</code> experiment completes the core.”</li>
 <li><strong>Ask:</strong> “How can you prove the code did not run?”</li>
 <li><strong>Ask:</strong> “Where do cache and freeze write results? Which folder do you commit?”</li>
 <li><strong>Celebrate:</strong> the Day-1 report becoming a site page.</li>
