@@ -85,23 +85,24 @@ Run this before the exercise code.
 ## Get the materials
 
 Download the starter documents, solutions, and citation files with **`use_course()`**. You do not
-need git or a GitHub account:
+need git or a GitHub account.
+
+Choose where the materials go: set your R working directory to that folder (`setwd()`, or the
+editor's Session menu), then run:
 
 ```r
 # install.packages("usethis")   # once, if you don't have it
-usethis::use_course("cderv/raukr-2026-quarto-exercises")
+usethis::use_course("cderv/raukr-2026-quarto-exercises", destdir = ".")
 ```
 
-By default, `use_course()` downloads and opens `raukr-2026-quarto-exercises` on your Desktop. To use
-another location, set `destdir`, for example `destdir = "~/projects"`. Keep the downloaded ZIP when
+`use_course()` unpacks a versioned folder named after the repository (for example
+`cderv-raukr-2026-quarto-exercises-d11a9fb/`, the suffix changes with each update) and opens it in
+your file manager. That is the **top folder** the steps below refer to. Keep the downloaded ZIP when
 prompted: you can use it to reset the exercises.
 
 ::: {.callout-important}
-## Which folder to open — and when
-Install the packages and run the setup check from the **top folder**
-(`raukr-2026-quarto-exercises`).
-
-**When the session starts**, open the day folder for that day, **not** the top folder:
+## In the session, open the day folder — not the top folder
+When a session starts, open that day's folder inside the download:
 
 - **Day 1** → open **`day1-intro/`** (double-click `day1-intro.Rproj`).
 - **Day 2** → open **`day2-projects/`** (double-click `day2-projects.Rproj`).
@@ -113,7 +114,8 @@ One download covers both days. Reference answers are in `solutions/day1/` and `s
 ## Reset without losing work (no git needed)
 To reset a day, create a **new** copy rather than overwriting your work. Choose one:
 
-- re-run `usethis::use_course("cderv/raukr-2026-quarto-exercises")`.
+- re-run the `use_course()` line above (each download unpacks into its own versioned folder, so
+  nothing is overwritten).
 - unzip the ZIP you kept to a **new** location.
 
 If `use_course()` can't reach GitHub (blocked network / firewall), use the browser: the green **Code ▸
@@ -143,15 +145,9 @@ pak::pak(c(
 ))
 ```
 
-::: {.callout-note collapse="true"}
-## There's an `renv.lock` in the folder (ignore it)
-The lockfile records the tested package versions, but the exercise folder is not an activated renv
-project. Use the `install.packages()` command above rather than `renv::restore()`.
-:::
-
 ## Check your setup
 
-From the **top** `raukr-2026-quarto-exercises` folder, run:
+From the **top folder** of the download (the one `use_course()` opened), run:
 
 ```r
 source("00-check-setup.R")

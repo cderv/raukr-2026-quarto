@@ -83,7 +83,7 @@ copy_tree <- function(src_dir, dst_dir) {
 build <- function(dest) {
   unlink(dest, recursive = TRUE, force = TRUE)          # clean rebuild so deletions propagate
   dir.create(dest, recursive = TRUE, showWarnings = FALSE)
-  # 1. static scaffold (README, DESCRIPTION, renv.lock, 00-check-setup.R, .Rproj x3, .gitattributes,
+  # 1. static scaffold (README, DESCRIPTION, 00-check-setup.R, .Rproj x3, .gitattributes,
   #    .github/) -- copied verbatim, including dotfiles.
   scaffold_rel <- list.files(SCAFFOLD, recursive = TRUE, all.files = TRUE, no.. = TRUE)
   for (r in scaffold_rel) copy_file(file.path(SCAFFOLD, r), file.path(dest, r))

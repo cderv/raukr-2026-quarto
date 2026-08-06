@@ -101,12 +101,14 @@ Run it before any session, and after any `labs/**` change you thought was finish
 
 ## Gotchas banked from real runs
 
-- **Delivery-repo CI renders each project from the repo ROOT** (`quarto render solutions/day2`, not
-  `working-directory: solutions/day2`). A subdir working-directory launches R outside the root renv
-  project → `no package called 'rmarkdown'`. Keep new render steps root-relative.
+- **Delivery-repo CI installs packages from `DESCRIPTION`** (`r-lib/actions/setup-r-dependencies`).
+  No `renv.lock` ships in the payload (dropped 2026-08-06 — it confused participants, and
+  participants install latest versions with `install.packages()`, so CI now tests that same
+  reality). Keep render steps root-relative like the existing ones.
 - **Packages = 9** (`dplyr`, `ggplot2`, `ggrepel`, `gt`, `ggokabeito`, `brand.yml`, `prismatic`,
   `knitr`, `rmarkdown`) — `ggokabeito` (the CVD-safe species scale) is easy to miss. Add-a-package =
-  edit `tools/exercises-scaffold/DESCRIPTION` + regenerate the scaffold `renv.lock`, then re-sync.
+  edit `tools/exercises-scaffold/DESCRIPTION` (CI installs from it) **and** the install lines in
+  `setup.qmd`, then re-sync.
 - **Download buttons** (three, in `labs/quarto/index.qmd`) point at
   `raw.githubusercontent.com/cderv/raukr-2026-quarto-exercises/main/…`. Both repos went **Public on
   2026-08-03**, so the buttons and `use_course()` now work; they 404 again if either is ever flipped

@@ -48,7 +48,9 @@ jobs:
         with:
           use-public-rspm: true
 
-      - uses: r-lib/actions/setup-renv@v2
+      # Install the packages DESCRIPTION declares, like a participant's install.packages() line
+      # (latest versions -- no lockfile ships in the payload).
+      - uses: r-lib/actions/setup-r-dependencies@v2
 
       # --- render everything a participant renders ---
       - name: Render Day-1 Typst payoff (also warms the brand font)
@@ -65,8 +67,7 @@ jobs:
       - name: Render Day-1 parameters starter
         run: quarto render day1-intro/parameters-starter.qmd
 
-      # Render from the root so the restored renv library remains active. Self-contained output
-      # prevents the two reports from sharing a figure directory.
+      # Self-contained output prevents the two reports from sharing a figure directory.
       - name: Render Day-1 parameterized report (exercises !expr options, -P, per-species output)
         run: |
           set -eu
@@ -91,12 +92,8 @@ jobs:
           echo "ok: two self-contained, distinct per-species reports"
 
       - name: Render Day-2 solution (the website project)
-        # Render from the repo root (like the Day-1 steps) so the root renv library that
-        # setup-renv restored stays on the path. A `working-directory: solutions/day2` here
-        # launches R inside a subdir that is NOT an renv project, so it never activates the
-        # root library and the render dies with "no package called 'rmarkdown'".
-        # This one step covers every page of the finished project, including reports/,
-        # my-report.qmd and the dashboard.
+        # Render from the repo root, like the Day-1 steps. This one step covers every page of
+        # the finished project, including reports/, my-report.qmd and the dashboard.
         run: quarto render solutions/day2
 
       # The Day-2 starter ships with NO _quarto.yml (creating it is the exercise), so there is no
