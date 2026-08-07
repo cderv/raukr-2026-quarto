@@ -111,8 +111,8 @@ How you get there depends on your editor:
 - **Positron** or **VS Code** — *File ▸ Open Folder…*, then pick the day folder.
 - **RStudio** — double-click the `.Rproj` file inside it (`day1-intro.Rproj`, `day2-projects.Rproj`).
 
-Both make the day folder your working directory, so the files next to your document (`_brand.yml`,
-`references.bib`) resolve and rendered output is written there.
+Either route opens the day folder as your workspace. Quarto then resolves the files next to your
+document (`_brand.yml`, `references.bib`) and writes rendered output there.
 
 One download covers both days. Reference answers are in `solutions/day1/` and `solutions/day2/`.
 :::

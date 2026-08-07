@@ -28,7 +28,7 @@ Work from the day folder for the session — **not** this top folder:
 - **Day 2** → `day2-projects/`
 
 Use *File ▸ Open Folder…* in Positron or VS Code, or double-click the `.Rproj` inside the folder in
-RStudio. Both make the day folder your working directory.
+RStudio. Either route opens the day folder as your workspace.
 
 Each day folder is self-contained (its own working directory and assets), so rendered files are
 written next to their sources. There is no project above them to capture the output.

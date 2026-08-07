@@ -29,8 +29,8 @@ Everything uses base-R `datasets::penguins` (R ≥ 4.5).
 `00-check-setup.R` confirms R, Quarto, and the packages this lab uses.
 :::
 
-**Starting point.** Take the **`day2-projects/`** folder from the exercises download. Open it in
-your editor, or make it your working directory in R (see the
+**Starting point.** Open the **`day2-projects/`** folder from the exercises download in your editor,
+or make it your working directory in R (see the
 [Setup page](../../setup.qmd#get-the-materials)). It holds four content pages that already render on
 their own but are **not yet a project**:
 
