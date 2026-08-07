@@ -84,7 +84,7 @@ shape, so the species separate cleanly.
 #|   shape distinguishes them.
 ggplot(penguins, aes(x = bill_len, y = bill_dep, color = species, shape = species)) +
   geom_point(alpha = 0.8) +
-  scale_color_okabe_ito() +   # color-blind-safe palette; shape also encodes species
+  scale_color_okabe_ito() +   # color-blind-safe palette
   labs(x = "Bill length (mm)", y = "Bill depth (mm)", color = "Species", shape = "Species") +
   theme_minimal(base_size = 12)
 ```

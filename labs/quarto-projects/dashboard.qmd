@@ -20,7 +20,6 @@ penguins <- penguins |> filter(!is.na(bill_len), !is.na(bill_dep), !is.na(body_m
 ```{r}
 #| content: valuebox
 #| title: "Species"
-# Use a Bootstrap icon and a theme colour.
 list(
   color = "primary",
   icon = "tags",

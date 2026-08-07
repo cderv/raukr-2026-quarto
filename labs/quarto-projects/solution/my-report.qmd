@@ -8,7 +8,7 @@ description: "The Day-1 document, now a page on the site."
 #| message: false
 library(dplyr)
 library(ggplot2)
-library(ggokabeito)   # color-blind-safe (Okabe-Ito) scale, same as Day 1
+library(ggokabeito)   # color-blind-safe (Okabe-Ito) scale
 data(penguins)
 penguins <- penguins |> filter(!is.na(bill_len), !is.na(bill_dep), !is.na(body_mass))
 ```

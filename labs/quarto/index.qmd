@@ -35,7 +35,7 @@ Start every document with this setup (the challenges below assume it):
 library(dplyr)
 library(ggplot2)
 library(gt)
-library(ggokabeito)   # color-blind-safe (Okabe-Ito) scale -- see the Accessibility box
+library(ggokabeito)   # color-blind-safe (Okabe-Ito) scale
 
 data(penguins)
 penguins <- penguins |> filter(!is.na(bill_len), !is.na(bill_dep))

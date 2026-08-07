@@ -23,7 +23,6 @@ the document.
 ```{r}
 #| echo: false
 #| output: asis
-# `output: asis` turns this generated text into a Markdown heading.
 cat("##", params$species, "at a glance\n")
 ```
 

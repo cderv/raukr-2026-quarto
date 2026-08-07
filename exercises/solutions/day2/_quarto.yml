@@ -19,5 +19,4 @@ format:
     theme: [cosmo, brand]
 
 execute:
-  # Reuse frozen results until a document changes.
   freeze: auto
