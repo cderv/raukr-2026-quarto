@@ -123,6 +123,21 @@ analysis pages without editing the URL.
 Add `index.qmd` (Home) and `analysis.qmd` (Analysis) to the navigation. Give the site the title
 **Penguin Lab**, and use the ready-made **cosmo** theme so it does not look like raw HTML.
 
+A second top-level key, `website:`, sits next to `project:` and configures the site itself. Filling
+it in is the work:
+
+```yaml
+website:
+  title: "..."
+  navbar:
+    left:
+      - href: ...
+        text: ...
+```
+
+Each navbar entry pairs an `href:` (the **source** `.qmd`, not the built `.html`) with a `text:`
+label. The theme is not a website option. It is a **format** option, so it goes under `format:`.
+
 From this step on, preview the site with `quarto preview` from inside `day2-projects/`. On Day 1 you
 previewed one document. From the project root, the command serves the whole site and
 re-renders a page when you save it.
@@ -151,15 +166,17 @@ ggplot(penguins, aes(species, body_mass, fill = species)) +
 
 ::: {.callout-tip collapse="true"}
 ## Hint
-The `project:` key configures the *build*. A navbar is not about building, it is about the site
-itself. What would you expect that second top-level key to be called, and what does each navbar entry
-need to know?
+**Ask yourself:**
 
-A `website:` key sits next to `project:` at the top level. It takes a `title:`, and a `navbar:` with a
-`left:` (or `right:`) list. Each entry is a pair: `href:` pointing at the **source** `.qmd` (not the
-built `.html`), and `text:` for the label.
+The theme has nothing to do with navigation. Where do format options live in a `.qmd` header, and
+what would the same key look like one level up, in `_quarto.yml`?
 
-The theme is a **format** option, so it goes under `format: html:`.
+**Mechanism:**
+
+`_quarto.yml` takes a `format:` key exactly as a document header does, and what you put there applies
+to every page in the project. `theme:` is an HTML format option, so it sits under `format: html:`.
+
+`navbar:` also takes a `right:` list if you want entries on the other side.
 :::
 
 ::: {.callout-note collapse="true"}
