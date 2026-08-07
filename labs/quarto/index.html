@@ -635,7 +635,7 @@ Figure&nbsp;1: Target: bill length versus depth by species.
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>If you finished the Authoring Challenge, keep going in your own <strong><code>my-report.qmd</code></strong>. Otherwise open <strong><code>day1-intro/authoring-checkpoint.qmd</code></strong> (the same report with Part 1 already done), save a copy of it as <strong><code>my-report.qmd</code></strong>, and continue from there. From here on the instructions say <code>my-report.qmd</code>, whichever route you took.</p>
+<p>If you finished the Authoring Challenge, keep going in your own <strong><code>my-report.qmd</code></strong>. Otherwise open <strong><code>day1-intro/authoring-checkpoint.qmd</code></strong> (the same report with Part 1 already done), save a copy of it as <strong><code>my-report.qmd</code></strong> in that same <code>day1-intro/</code> folder (next to <code>references.bib</code> / <code>apa.csl</code> / <code>_brand.yml</code>, which the steps below resolve by name), and continue from there. From here on the instructions say <code>my-report.qmd</code>, whichever route you took.</p>
 </div>
 </div>
 <div class="callout callout-style-default callout-note no-icon callout-titled">
@@ -664,7 +664,7 @@ Figure&nbsp;1: Target: bill length versus depth by species.
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Your Name</span></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">affiliation</span><span class="kw">:</span><span class="at"> Your Lab, Your University</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
 <li><p>Render to HTML and confirm both citations resolve, to <em>(Gorman et al., 2014)</em> and <em>(Horst et al., 2020)</em>, with a reference list holding both entries.</p></li>
-<li><p>Switch the output to <strong>Typst</strong> and render a branded PDF. You may see <code>unknown font family</code> warnings on the first render. See Troubleshooting if the final PDF still uses a serif font. Two routes:</p>
+<li><p>Switch the output to <strong>Typst</strong> and render a branded PDF. The branding comes from <code>_brand.yml</code>, which Quarto only picks up when it sits next to your <code>.qmd</code>, so keep <code>my-report.qmd</code> in <code>day1-intro/</code>. You may see <code>unknown font family</code> warnings on the first render. See Troubleshooting if the final PDF still uses a serif font. Two routes:</p>
 <ul>
 <li><p><strong>CLI</strong> — leave the header as-is and force the target:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> render my-report.qmd <span class="at">--to</span> typst</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
