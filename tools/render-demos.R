@@ -107,8 +107,8 @@ writeLines(c(
   "h2{font-size:1.1rem;margin-top:2rem}li{margin:.3rem 0}</style>",
   "</head><body>",
   "<h1>Demo documents</h1>",
-  "<p>The finished lab documents, rendered as participants render them. Not linked from the",
-  "course site.</p>",
+  "<p>The finished lab documents, rendered as participants render them. This page is not linked",
+  "from the course site.</p>",
   links,
   "</body></html>"
 ), file.path(OUT, "index.html"))
