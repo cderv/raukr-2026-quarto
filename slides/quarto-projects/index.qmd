@@ -403,8 +403,8 @@ still have the complete `_site/` folder.
 Return to the **Reproducible Build Challenge** in the
 **[Lab](../../labs/quarto-projects/index.qmd#reproducible-build-challenge)**. Make the build skip unchanged
 pages, bring **yesterday's report** onto the site, then run
-the guided `freeze: true` experiment. The result is a publishable `_site/` folder. The
-dashboard demo and publishing are optional.
+the guided `freeze: true` experiment. The result is a publishable `_site/` folder. Publishing
+and the dashboard demo are optional.
 :::
 
 ::: notes
@@ -413,7 +413,7 @@ dashboard demo and publishing are optional.
 - **Ask:** "How can you prove the code did not run?"
 - **Ask:** "Where do cache and freeze write results? Which folder do you commit?"
 - **Celebrate:** the Day-1 report becoming a site page.
-- **Catch-up:** `solutions/day2/`; fast finishers inspect the dashboard or publish.
+- **Catch-up:** `solutions/day2/`; fast finishers publish, then inspect the dashboard.
 :::
 
 ## What you can do now {#wrap-up}

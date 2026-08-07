@@ -409,15 +409,15 @@ yourself. To check a page after a render, open the built file (for
 example `_site/analysis.html`) directly in your browser and reload it.
 
 **Core tasks:** prove that `freeze: auto` works, add your Day-1 report to the site, then complete the
-guided `freeze: true` experiment. We will compare cache and freeze together. The dashboard demo and
-publishing are optional.
+guided `freeze: true` experiment. We will compare cache and freeze together. Publishing and the
+dashboard demo are optional.
 
 ::: {.column-margin}
 {{< fa book-open >}} **Quarto docs**
 
 [Project execution](https://quarto.org/docs/projects/code-execution.html) ·
-[Dashboard layout](https://quarto.org/docs/dashboards/layout.html) ·
-[Posit Connect Cloud](https://quarto.org/docs/publishing/posit-connect-cloud.html)
+[Posit Connect Cloud](https://quarto.org/docs/publishing/posit-connect-cloud.html) ·
+[Dashboard layout](https://quarto.org/docs/dashboards/layout.html)
 :::
 
 ### Make the build skip unchanged pages
@@ -609,6 +609,40 @@ re-running it. Switch back to `freeze: auto` before you continue and keep that s
 of the lab.
 Use `true` when project builds must reuse stored results until you deliberately refresh a page.
 
+### Put it online *(optional)*
+
+**Goal.** Take the `_site/` folder you have built and put it on a URL you can open on your phone.
+
+::: {.column-margin}
+{{< fa book-open >}} **Quarto docs**
+
+[Publish to Posit Connect Cloud](https://quarto.org/docs/publishing/posit-connect-cloud.html)
+:::
+
+`_site/` **is** the core deliverable. Any static host will serve it: an internal server, your
+department's pages, or a hosting service. Publishing here is optional. If you made a free Posit
+Connect Cloud account before the workshop, one command puts the site online.
+
+::: {.callout-note appearance="simple" icon=false}
+## {{< fa circle-check >}} You should see
+A browser opens once to sign you in. Then the contents of `_site/` upload, and Connect Cloud returns
+a URL for the site.
+:::
+
+::: {.callout-note collapse="true"}
+## The command
+From inside your project folder:
+
+```bash
+quarto publish posit-connect-cloud
+```
+
+No repository is needed. Connect Cloud takes the locally rendered files as they are.
+
+If you skip this step, the complete site remains in `_site/`. Nothing downstream depends on
+publishing.
+:::
+
 ### Optional group demo: inspect a dashboard
 
 This worked example shows how the same analysis becomes a dashboard. Open the
@@ -648,40 +682,6 @@ format: dashboard
 
 After the group demo, you can optionally copy `analysis.qmd` to `dashboard.qmd` and reproduce one
 part of the layout.
-
-### Put it online *(optional)*
-
-**Goal.** Take the `_site/` folder you have built and put it on a URL you can open on your phone.
-
-::: {.column-margin}
-{{< fa book-open >}} **Quarto docs**
-
-[Publish to Posit Connect Cloud](https://quarto.org/docs/publishing/posit-connect-cloud.html)
-:::
-
-`_site/` **is** the core deliverable. Any static host will serve it: an internal server, your
-department's pages, or a hosting service. Publishing here is optional. If you made a free Posit
-Connect Cloud account before the workshop, one command puts the site online.
-
-::: {.callout-note appearance="simple" icon=false}
-## {{< fa circle-check >}} You should see
-A browser opens once to sign you in. Then the contents of `_site/` upload, and Connect Cloud returns
-a URL for the site.
-:::
-
-::: {.callout-note collapse="true"}
-## The command
-From inside your project folder:
-
-```bash
-quarto publish posit-connect-cloud
-```
-
-No repository is needed. Connect Cloud takes the locally rendered files as they are.
-
-If you skip this step, the complete site remains in `_site/`. Nothing downstream depends on
-publishing.
-:::
 
 ::: {.callout-note}
 ## For later: package versions
