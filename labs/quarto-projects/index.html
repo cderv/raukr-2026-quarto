@@ -554,7 +554,7 @@ Figure&nbsp;1: The analysis page’s figure: body mass by species.
 </section>
 <section id="scope-options-to-one-folder" class="level3" data-number="1.4">
 <h3 data-number="1.4" class="anchored" data-anchor-id="scope-options-to-one-folder"><span class="header-section-number">1.4</span> Scope options to one folder</h3>
-<p><strong>Goal.</strong> Fold the code on the two pages in <code>reports/</code>, and only there. The home and analysis pages keep showing their code as before.</p>
+<p><strong>Goal.</strong> Fold the code on the two pages in <code>reports/</code>, and only there, behind a toggle labelled <strong>Show the code</strong>. The home and analysis pages keep showing their code as before.</p>
 <p>You have not looked at <code>day2-projects/reports/</code> yet. It holds two short pages, <code>methods.qmd</code> and <code>data-notes.qmd</code>, each with a small code cell.</p>
 <div class="callout callout-style-simple callout-note no-icon callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -855,7 +855,7 @@ Figure&nbsp;1: The analysis page’s figure: body mass by species.
 <h3 data-number="2.3" class="anchored" data-anchor-id="put-your-day-1-report-on-the-site"><span class="header-section-number">2.3</span> Put your Day-1 report on the site</h3>
 <p><em>This is a core task.</em></p>
 <p><strong>Goal.</strong> Take the report you wrote yesterday and make it a page of this website.</p>
-<p>On Day 1, you built one document. Now add it to the project.</p>
+<p>On Day 1, you built one document. Now add it to the project. Didn’t finish Day 1, or do not have the file? Use <code>solutions/day1/penguins-report.qmd</code> from your exercises download instead.</p>
 <div class="callout callout-style-simple callout-note no-icon callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -884,7 +884,6 @@ Figure&nbsp;1: The analysis page’s figure: body mass by species.
 <p>Your Day-1 document may still declare its own <code>format:</code>. Inside a project, where does <code>format:</code> come from now, and what happens if a page insists on its own?</p>
 <p>Copy the <code>.qmd</code> into <code>day2-projects/</code>, together with <code>references.bib</code> and <code>apa.csl</code> from <code>day1-intro/</code> (the YAML header points at them by relative path), add an entry for it in the <code>navbar:</code> list, and re-render.</p>
 <p>A page in a project inherits <code>format:</code> from <code>_quarto.yml</code>. If your file still carries the <code>format: typst</code> from the Day-1 exercise, it keeps building a PDF instead of a page. Drop that key and it builds as HTML like its neighbors. (The included <code>penguins-report.qmd</code> declares <code>format: html</code>, which is the same key to drop.)</p>
-<p>Didn’t finish Day 1, or do not have the file? Use <code>solutions/day1/penguins-report.qmd</code> from your exercises download instead.</p>
 </div>
 </div>
 </div>
