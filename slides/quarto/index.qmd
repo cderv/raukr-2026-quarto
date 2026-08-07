@@ -178,9 +178,9 @@ Cell options use the `#|` "hash-pipe": one YAML option per line.
 ## Markdown and content: what changes {#markdown-content}
 
 ::: {.callout-note title="Follow along"}
-In `day1-intro/`, create **`my-report.qmd`** with `format: html`. It is the file the lab starts from.
-Put this cell at the top: everything we write next assumes it. Fallen behind at any point? Open
-`citations-starter.qmd` in the same folder (the finished version of this document) and keep going.
+In `day1-intro/`, open **`authoring-starter.qmd`** and save it as **`my-report.qmd`**. It opens with
+this cell: everything we write next assumes it. Need a completed Part-1 report? Open
+`authoring-checkpoint.qmd` in the same folder (the finished version of this document) and keep going.
 :::
 
 ```` {.markdown}
@@ -201,11 +201,10 @@ captions, **cross-references** (`@fig-bill`, `@tbl-summary`, `@eq-ratio`), **mat
 that reports numbers from the data, and **callouts**.
 
 ::: notes
-- **Say:** "Create `day1-intro/my-report.qmd`. We will render as we go."
+- **Say:** "Save the starter as `day1-intro/my-report.qmd`. We will render as we go."
 - **Watch for:** the setup cell belongs in the document, not the console.
 - **Catch-up:** no `day1-intro/`? Use the Setup page and pair them with a neighbor meanwhile.
 - **Focus:** Quarto additions, not a Markdown lesson.
-- **Timing:** next four slides, 8–10 min total.
 :::
 
 ## Figures & cross-references {#figures}
@@ -544,8 +543,8 @@ From report to article: cite it, then typeset it.
 
 ## From report to article {#report-to-article}
 
-You have a clean HTML document. The lab includes a **Part-2 starter** if you need one. To make it a
-**publication-ready article**, two more things:
+You have a clean HTML document. The lab provides a **completed Part-1 report** if you need one. To
+make it a **branded, citable article**, add two things:
 
 ::: {.incremental}
 1. **citations**: a `.bib` file and a citation style.
@@ -559,7 +558,7 @@ This is exactly the path from your analysis to a submission, and to your **team-
 ## Citations {#citations}
 
 ::: {.callout-note title="Follow along"}
-Back in your editor: add citations to your Part-1 document (or to `citations-starter.qmd`).
+Back in your editor: add citations to your Part-1 document (or to `authoring-checkpoint.qmd`).
 :::
 
 Point the header at a `.bib`, then cite with `@key`:
@@ -608,7 +607,7 @@ The reference list renders at the end automatically, or wherever you drop this d
 
 ## A real title block {#authors}
 
-A few header lines turn the document into a publication-ready article (name, affiliation, ORCID, abstract):
+A few header lines add publication metadata (name, affiliation, ORCID, and abstract):
 
 ``` yaml
 title: "Bill shape distinguishes Antarctic penguins"
@@ -695,8 +694,8 @@ typography:
 
 ::: {.callout-tip title="Your turn"}
 Back to the **[Lab](../../labs/quarto/index.qmd#citations-challenge)**, at the **Citations Challenge**: add citations to
-your own Part-1 file (or the completed `citations-starter.qmd`), then render it as a **branded Typst PDF**. You'll
-finish with a **publication-ready article**, a citable, branded PDF you could submit.
+your own Part-1 file (or the completed `authoring-checkpoint.qmd`), then render it as a **branded Typst PDF**. You'll
+finish with a **branded, citable PDF** ready for further publication work.
 :::
 
 ::: notes

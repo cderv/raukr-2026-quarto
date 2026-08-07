@@ -23,15 +23,13 @@ so there's no data to download.
 ::: {.callout-tip appearance="simple"}
 You are working in the **`day1-intro/`** folder from the exercises download (open `day1-intro.Rproj`).
 See the [Setup page](../../setup.qmd#get-the-materials). Everything you render is written next to
-your files. You create `my-report.qmd` yourself: the files already in the folder are used later,
-each at the step that names it (the folder's README lists them).
+your files. You start from a file that is already there, `authoring-starter.qmd`, and the other files
+are used later, each at the step that names it (the folder's README lists them).
 :::
-
-Start every document with this setup (the challenges below assume it):
 
 ```{r}
 #| label: setup
-#| message: false
+#| include: false
 library(dplyr)
 library(ggplot2)
 library(gt)
@@ -58,58 +56,151 @@ That's the whole migration. The rest of this lab is native `.qmd`.
 > **Goal:** a penguins report with a cross-referenced **figure**, a cross-referenced **table**, and a
 > **margin** element, rendered to HTML.
 
-:::: {.callout-note icon=false}
-## {{< fa clipboard-list >}} Tasks
+**Starting point.** Open **`day1-intro/authoring-starter.qmd`** and save it as **`my-report.qmd`**,
+in that same folder (next to `references.bib` / `apa.csl` / `_brand.yml`, so Part 2's paths and
+branding resolve later). Render it once to confirm it works, then re-render after every step below.
+
+The starter is already a working report, but it has no numbering, captions, cross-references, or alt
+text. Most steps require no R changes. The accessibility step makes two small changes to the plot.
 
 ::: {.column-margin}
 {{< fa book-open >}} **Quarto docs**
 
-[Cross-references](https://quarto.org/docs/authoring/cross-references.html) · [Article layout](https://quarto.org/docs/authoring/article-layout.html)
+[Cross-references](https://quarto.org/docs/authoring/cross-references.html) · [Article layout](https://quarto.org/docs/authoring/article-layout.html) · [Accessibility](https://quarto.org/docs/output-formats/html-accessibility.html)
 :::
 
-1. Create `my-report.qmd` **inside your open `day1-intro/` folder** (next to `references.bib` /
-   `apa.csl`, so Part 2's paths and branding resolve later) with `format: html` and the setup cell
-   at the top of this page.
-2. Add a scatter plot of `bill_len` versus `bill_dep` colored by `species`. Give its cell
-   `#| label: fig-bill` and a `#| fig-cap:`, then refer to it with `@fig-bill` **in the prose,
-   outside the cell**.
-3. Add a summary table. The `gt` plumbing is below. Your job is the **cross-reference mechanic**:
-   give the cell `#| label: tbl-summary` and a `#| tbl-cap:`, then refer to it with `@tbl-summary`.
-   ```r
-   penguins |>
-     summarise(bill_len = mean(bill_len), bill_dep = mean(bill_dep), .by = species) |>
-     gt()
-   ```
-4. Put the species counts (`penguins |> count(species)`) in the **margin** with the cell option
-   `#| column: margin`.
-5. Make the report accessible: add `#| fig-alt:` to the figure and map `shape = species` next to the
-   color, so the species encoding does not rely on color alone. Add `scale_color_okabe_ito()` for a
-   color-blind-safe palette.
-6. *(stretch)* Add the bill-shape ratio as a display equation, referenced with `@eq-ratio`. **Escape
-   the underscores**: inside `$$…$$`, `bill_len` may render as a subscript (depending on the math
-   renderer), so write:
-   ```markdown
-   $$
-   \text{ratio} = \frac{\text{bill\_len}}{\text{bill\_dep}}
-   $$ {#eq-ratio}
-   ```
-7. Render to HTML (`quarto render my-report.qmd`, or the editor's Render/Preview).
-::::
+Missing the download? Take the source directly:
 
-::: {.callout-tip icon=false}
-## {{< fa universal-access >}} Optional accessibility check
-Your figure already has alt text and redundant color/shape encoding. To check the whole page:
+<a class="btn btn-primary btn-sm" href="https://raw.githubusercontent.com/cderv/raukr-2026-quarto-exercises/main/day1-intro/authoring-starter.qmd" role="button" target="_blank">{{< fa download >}} authoring-starter.qmd</a>
 
-- add `axe: {output: document}` under `format: html`, re-preview, and a WCAG report appears on the
-  page (drop it again before you publish). See
-  [Quarto's accessibility docs](https://quarto.org/docs/output-formats/html-accessibility.html).
-:::
+### Cross-reference the figure
+
+**Goal.** Turn the scatter plot into a **numbered figure with a caption**, and refer to that number
+from the prose. Two edits: an option on the **cell**, and a reference in the **body text** above it.
+
+Docs: [Cross-references](https://quarto.org/docs/authoring/cross-references.html).
 
 ::: {.callout-note appearance="simple" icon=false}
 ## {{< fa circle-check >}} You should see
-A numbered **Figure 1** (the bill scatter, three separate clusters), a numbered **Table 1**, and the
-counts in the right margin. `@fig-bill` and `@tbl-summary` render as live links. If you completed the
-stretch task, you also see a numbered **Equation 1**. Your finished figure looks like this:
+A caption **Figure 1: …** under the plot, and the sentence above it opening with a live **Figure 1**
+link.
+:::
+
+::: {.callout-tip collapse="true"}
+## Hint
+**Ask yourself:** how does Quarto learn that this cell is a figure worth numbering, and what to call
+it in the text?
+
+**Mechanism:** a cell becomes cross-referenceable when its label starts with a known prefix (`fig-`
+for a figure) and is unique in the document. The caption is a second cell option. Label, caption and
+the `@fig-something` reference work together: a reference with no matching label renders as
+`?@fig-something`.
+:::
+
+::: {.callout-note collapse="true"}
+## Solution
+On the plot cell:
+
+```r
+#| label: fig-bill
+#| fig-cap: "Bill length versus depth, colored by species."
+```
+
+And the sentence above the cell, rewritten to point at it:
+
+``` markdown
+@fig-bill shows that within a species the bill has a characteristic shape, so the species form
+clusters.
+```
+:::
+
+### Cross-reference the table
+
+**Goal.** Same mechanic on the summary table under **Mean measurements**: a numbered, captioned
+**Table 1**, introduced by a sentence that links to it. The `gt` call is already written.
+
+Docs: [Cross-references for tables](https://quarto.org/docs/authoring/cross-references.html#tables).
+
+::: {.callout-note appearance="simple" icon=false}
+## {{< fa circle-check >}} You should see
+**Table 1: …** above the table (table captions go above, figure captions below), and a sentence
+introducing it with a live **Table 1** link.
+:::
+
+::: {.callout-tip collapse="true"}
+## Hint
+**Ask yourself:** figures and tables are numbered in separate sequences, so which label tells Quarto
+this one is a table?
+
+**Mechanism:** `#| label: tbl-summary` and `#| tbl-cap:` on the cell, `@tbl-summary` in the prose.
+The prefix decides both the sequence and the word ("Figure", "Table") Quarto prints.
+:::
+
+::: {.callout-note collapse="true"}
+## Solution
+On the `gt` cell:
+
+```r
+#| label: tbl-summary
+#| tbl-cap: "Mean measurements per species."
+```
+
+And above it:
+
+``` markdown
+@tbl-summary reports the mean bill measurements and body mass per species.
+```
+:::
+
+### Move the counts into the margin
+
+**Goal.** Put the species-counts table in the **right margin**, beside the paragraph that mentions
+it, instead of in the main text column.
+
+Docs: [Article layout](https://quarto.org/docs/authoring/article-layout.html).
+
+::: {.callout-note appearance="simple" icon=false}
+## {{< fa circle-check >}} You should see
+The counts table in the right-hand margin, level with "The species are not evenly represented:", and
+the main text column unchanged in width.
+:::
+
+::: {.callout-tip collapse="true"}
+## Hint
+**Ask yourself:** the R does not change, so where do you tell Quarto that this output belongs
+somewhere else on the page?
+
+**Mechanism:** `#| column: margin` on the cell. That option also takes `body`, `body-outset`, `page`
+and `screen`. For prose rather than cell output, use a `::: {.column-margin}` div.
+:::
+
+::: {.callout-note collapse="true"}
+## Solution
+On the counts cell:
+
+```r
+#| column: margin
+```
+:::
+
+### Make the figure accessible
+
+**Goal.** Make the figure readable by someone who cannot distinguish the colors, and by someone
+using a screen reader.
+
+The plot separates species by **color alone**, in ggplot2's default palette, which is not
+color-blind-safe. This is the one step that edits the R: two changes to the plot, one option on the
+cell. `ggokabeito` is already loaded in the setup cell.
+
+Docs: [HTML accessibility](https://quarto.org/docs/output-formats/html-accessibility.html) ·
+[Figure alt text](https://quarto.org/docs/authoring/figures.html#alt-text).
+
+::: {.callout-note appearance="simple" icon=false}
+## {{< fa circle-check >}} You should see
+Each species drawn with **its own shape as well as its own color**, in the Okabe-Ito palette (orange,
+blue, green rather than ggplot2's salmon, green and blue), and one legend for both color and shape.
+The alt text is not visible on the page: to check it, view the page source and confirm the `<img>`
+tag carries your `alt="…"`. The finished figure looks like this:
 :::
 
 ```{r}
@@ -130,34 +221,95 @@ ggplot(penguins, aes(bill_len, bill_dep, color = species, shape = species)) +
 
 ::: {.callout-tip collapse="true"}
 ## Hint
-- A cell becomes a cross-referenceable figure/table only when its label **starts with**
-  `fig-` / `tbl-` / `eq-` and is **unique** in the document.
-- `column: margin` is a **cell option** (`#|`) for a cell, or a `::: {.column-margin}` div for
-  prose.
-- Display math with a label `$$ … $$ {#eq-ratio}`, referenced with `@eq-ratio`.
+**Ask yourself:** someone who cannot separate your three colors needs a second way to tell the
+species apart. What else can `aes()` map? And where would a *description* of the plot go, when
+everything else about this figure is a cell option?
+
+**Mechanism:** map `shape = species` alongside `color = species` in `aes()`, and add
+`scale_color_okabe_ito()`. The description is the cell option `#| fig-alt:`. It is not the caption:
+the alt text stands in for the image, so it describes what the plot *shows*, not what it *is*.
 :::
 
-**Need to continue with Part 2?** `citations-starter.qmd` is a completed Part-1 document. It is
-already in `day1-intro/`. Open it to continue with citations, or take the source:
+::: {.callout-note collapse="true"}
+## Solution
+On the plot cell, next to the label and caption:
 
-<a class="btn btn-primary btn-sm" href="https://raw.githubusercontent.com/cderv/raukr-2026-quarto-exercises/main/day1-intro/citations-starter.qmd" role="button" target="_blank">{{< fa download >}} citations-starter.qmd</a>
+```r
+#| fig-alt: >-
+#|   Scatter plot of bill depth against bill length for penguins of three species, each drawn in a
+#|   distinct color and shape; the three species form largely separate clusters.
+```
 
-The cross-references and the equation live in the **body Markdown**, outside any cell:
+And in the plot itself:
 
+```r
+ggplot(penguins, aes(bill_len, bill_dep, color = species, shape = species)) +
+  geom_point(alpha = 0.8) +
+  scale_color_okabe_ito() +
+  labs(x = "Bill length (mm)", y = "Bill depth (mm)", color = "Species", shape = "Species") +
+  theme_minimal(base_size = 12)
+```
+
+Naming both `color` and `shape` in `labs()` merges them into a single legend.
+:::
+
+::: {.callout-tip icon=false}
+## {{< fa universal-access >}} Optional accessibility check
+Your figure now has alt text and redundant color/shape encoding. To check the whole page:
+
+- add `axe: {output: document}` under `format: html`, re-preview, and a WCAG report appears on the
+  page (drop it again before you publish). See
+  [Quarto's accessibility docs](https://quarto.org/docs/output-formats/html-accessibility.html).
+:::
+
+### Add a numbered equation *(stretch)*
+
+**Goal.** Add the bill-shape ratio (bill length divided by bill depth) as a **numbered display
+equation**, and refer to it from the prose.
+
+One caution: inside `$$…$$`, `bill_len` can render as a subscript, so escape the underscore as
+`bill\_len`.
+
+Docs: [Equations](https://quarto.org/docs/authoring/cross-references.html#equations).
+
+::: {.callout-note appearance="simple" icon=false}
+## {{< fa circle-check >}} You should see
+The formula centered on its own line with **(1)** at the right margin, and the sentence above it
+linking to that number.
+:::
+
+::: {.callout-tip collapse="true"}
+## Hint
+**Ask yourself:** display math is not a cell, so the label cannot be a cell option. Where else could
+it attach?
+
+**Mechanism:** the label is an attribute on the closing `$$`, written `{#eq-ratio}`. The `eq-` prefix
+makes it a numbered equation, and `@eq-ratio` links to it like `@fig-` and `@tbl-`.
+:::
+
+::: {.callout-note collapse="true"}
+## Solution
 ``` markdown
-@fig-bill shows bill shape by species. @tbl-summary gives the per-species means.
+A compact descriptor of bill shape is the length-to-depth ratio (@eq-ratio):
 
 $$
 \text{ratio} = \frac{\text{bill\_len}}{\text{bill\_dep}}
 $$ {#eq-ratio}
 ```
+:::
 
-**`solutions/day1/penguins-report.qmd` is the complete Day-1 reference.** The document goes beyond
-the tasks (an additional margin figure, a `glimpse`, and section labels) and also adds the
-citations from the next challenge. It's in your exercises `solutions/day1/` folder. Try the challenge
-first, then open it to compare, or take the source:
+::: {.callout-note appearance="simple" icon=false}
+## {{< fa circle-check >}} Checkpoint: the whole document
+A numbered **Figure 1** (the bill scatter, three separate clusters), a numbered **Table 1**, and the
+counts in the right margin. `@fig-bill` and `@tbl-summary` render as live links, with no `?@` markers
+anywhere. If you did the stretch step, you also have a numbered **Equation 1**.
+:::
 
-<a class="btn btn-primary btn-sm" href="https://raw.githubusercontent.com/cderv/raukr-2026-quarto-exercises/main/solutions/day1/penguins-report.qmd" role="button" target="_blank">{{< fa download >}} penguins-report.qmd</a>
+**`authoring-checkpoint.qmd` is this same report with every step above applied.** It is already in
+`day1-intro/`. Compare your work against it, or, if you did not finish, save a copy of it as
+`my-report.qmd` and continue into Part 2 from there. You can also take the source:
+
+<a class="btn btn-primary btn-sm" href="https://raw.githubusercontent.com/cderv/raukr-2026-quarto-exercises/main/day1-intro/authoring-checkpoint.qmd" role="button" target="_blank">{{< fa download >}} authoring-checkpoint.qmd</a>
 
 ## Citations Challenge
 
@@ -165,9 +317,10 @@ first, then open it to compare, or take the source:
 
 ::: {.callout-note}
 ## Starting point
-If you finished the Authoring Challenge, keep going on your own document. Otherwise open
-**`day1-intro/citations-starter.qmd`** in your editor (a complete Part-1 report) and add the
-citations to that.
+If you finished the Authoring Challenge, keep going in your own **`my-report.qmd`**. Otherwise open
+**`day1-intro/authoring-checkpoint.qmd`** (the same report with Part 1 already done), save a copy of
+it as **`my-report.qmd`**, and continue from there. From here on the instructions say
+`my-report.qmd`, whichever route you took.
 :::
 
 :::: {.callout-note icon=false}
@@ -184,10 +337,10 @@ citations to that.
    bibliography: references.bib
    csl: apa.csl
    ```
-2. Cite the data source in prose with `@gorman2014`. Write a sentence ending
-   *"…collected at Palmer Station, Antarctica."* (already present if you continue from
-   `citations-starter.qmd`) and insert the citation before the period:
-   `Antarctica [@gorman2014].` (don't paste a second copy).
+2. Cite the two sources the opening paragraph already credits, without rewriting it. The sentence
+   ending *"…collected at Palmer Station, Antarctica."* takes the data citation before the period
+   (`Antarctica [@gorman2014].`), and the sentence crediting the **palmerpenguins** package takes
+   `[@horst2020]` the same way. Don't paste a second copy of either sentence.
 3. Add a **References** section where the list should appear:
    ```markdown
    ## References {.unnumbered}
@@ -214,8 +367,7 @@ citations to that.
      The button renders whatever `format:` is declared, so while the header still says `format: html`
      the button gives you HTML, **not** a PDF.
 
-   If you used the completed Part-1 file, render `citations-starter.qmd` instead. The PDF is written
-   **next to its source** in `day1-intro/`.
+   The PDF is written **next to its source** in `day1-intro/`.
 ::::
 
 ::: {.callout-note appearance="simple" icon=false}
@@ -249,10 +401,11 @@ bibliography: references.bib
 csl: apa.csl
 ```
 
-In prose:
+In the prose, append each citation to the sentence that credits its source:
 
 ``` markdown
-The data come from Palmer Station, Antarctica [@gorman2014].
+… collected at Palmer Station, Antarctica [@gorman2014]. The data are available through the
+**palmerpenguins** package [@horst2020] and are now also included in base R's `datasets` package.
 ```
 
 A References section (the list renders inside the `#refs` div):
@@ -273,8 +426,13 @@ quarto render my-report.qmd --to typst
 or set `format: typst` in the header and use the editor's Render button.
 ::::
 
-The complete cited HTML is `solutions/day1/penguins-report.qmd`. The branded Typst PDF (with R-side
-`theme_brand_*` styling) is `day1-intro/sample-typst.qmd` (render it to see the final branded PDF).
+**`solutions/day1/penguins-report.qmd` is the complete Day-1 report:** the starter with every step of
+both challenges applied. Try the challenge first, then open it to compare, or take the source:
+
+<a class="btn btn-primary btn-sm" href="https://raw.githubusercontent.com/cderv/raukr-2026-quarto-exercises/main/solutions/day1/penguins-report.qmd" role="button" target="_blank">{{< fa download >}} penguins-report.qmd</a>
+
+For a more advanced branded PDF example, render `day1-intro/sample-typst.qmd`. It also styles its
+table and plot in R and sets Typst page options. Those additions are outside this exercise.
 
 ## Bonus — one report per species (optional) {#sec-parameters}
 
@@ -311,9 +469,11 @@ task is to make the species an input to the document. A complete reference is av
    ```r
    one <- penguins |> filter(species == params$species, !is.na(bill_len), !is.na(bill_dep))
    ```
-3. **Use the parameter in the report.** Replace the placeholder species in the sentence with inline
-   code: `` `{{r}} params$species` ``. Make the caption and alt text track the parameter with `!expr`. Cell options are YAML, so
-   the `!expr` tag tells Quarto to evaluate the R expression:
+3. **Use the parameter in the report.** Three places, marked `TODO 3a`, `3b` and `3c` in the file.
+   Replace the placeholder species in the opening sentence with inline code
+   (`` `{{r}} params$species` ``), and name the species in the closing sentence the same way. Make the
+   caption and alt text track the parameter with `!expr`. Cell options are YAML, so the `!expr` tag
+   tells Quarto to evaluate the R expression:
    ```yaml
    #| fig-cap: !expr paste0("Bill length versus depth for ", params$species, " penguins.")
    #| fig-alt: !expr paste0("Scatter plot of bill depth against bill length for ", params$species, " penguins.")
@@ -328,7 +488,7 @@ task is to make the species an input to the document. A complete reference is av
 
 ::: {.callout-tip collapse="true"}
 ## Stretch: dynamic headings and standalone files
-Build the section heading from the parameter with a cell that emits Markdown:
+Replace the static `## Species at a glance` heading with a cell that emits Markdown:
 
 ````markdown
 ```{{r}}
@@ -351,7 +511,7 @@ plot inside its HTML file, so the reports do not share a figure-support folder.
 
 ::: {.callout-note appearance="simple" icon=false}
 ## {{< fa circle-check >}} You should see
-Rendering with `-P species:Adelie` gives a report whose sentence, figure caption, alt text, point
+Rendering with `-P species:Adelie` gives a report whose sentences, figure caption, alt text, point
 count, and plot are all about Adelie. Nothing says Gentoo. Rendering without `-P` produces the
 Gentoo report. If you completed the stretch task, the heading also names the selected species.
 :::
@@ -382,7 +542,7 @@ your work or render it with different `-P species:` values. You can also take th
 - **A citation shows `?@gorman2014` or `[?]`?** The `@key` doesn't match a key in `references.bib`,
   or `bibliography:` isn't set.
 - **`references.bib` not found, although the download has it?** Your `.qmd` is probably not in
-  `day1-intro/` (created in the top folder, for example). Move it next to `references.bib` /
+  `day1-intro/` (saved to the top folder, for example). Move it next to `references.bib` /
   `apa.csl` / `_brand.yml` and render again.
 - **Do I need to install Typst?** No. Typst is bundled in Quarto ≥ 1.9, so there's nothing extra to
   install (no LaTeX either). Check `quarto --version`.

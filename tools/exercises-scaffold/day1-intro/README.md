@@ -1,12 +1,18 @@
 # Day 1 — your working folder
 
-You start by **creating a new file** here: `my-report.qmd`. The shipped files are used later, each
-at the lab step that names it:
+You start from `authoring-starter.qmd` and save it as `my-report.qmd`. That copy is yours for both
+parts of the day. The other files are used later, each at the lab step that names it:
 
-- `citations-starter.qmd` — a finished report, ready for the Citations Challenge. Despite the
-  name, it is not where you start: continue from it only if you did not finish your own document.
+- `authoring-starter.qmd` — where you start. A working report with no cross-references, no captions
+  and no alt text yet: the Authoring Challenge adds them. Save it as `my-report.qmd` first, so you
+  always have the original to go back to.
+- `authoring-checkpoint.qmd` — the same report with the Authoring Challenge already done. Use it
+  only if you did not finish Part 1: save a copy as `my-report.qmd` and continue from there.
 - `parameters-starter.qmd` — the starter for the Bonus challenge (parameters).
-- `sample-typst.qmd` — the branded Typst PDF example. The setup check renders it once; open the PDF
-  to see the final result.
+- `sample-typst.qmd` — a more advanced branded Typst PDF example with additional R styling. The
+  setup check renders it once; open the PDF to see the result.
 - `references.bib`, `apa.csl`, `_brand.yml` — support files your documents point at. Keep them next
   to your `.qmd`.
+
+The reports use inline R in the prose (`` `{r} nrow(penguins)` ``), which reports a number straight
+from the data. You do not have to write any, but that is what those backticks are.

@@ -1,20 +1,12 @@
 ---
 title: "Bill dimensions across Antarctic penguin species"
-subtitle: "The running Day-1 document — authoring value-adds, then citations"
+author:
+  - name: Your Name
+    affiliation: Your Lab, Your University
 format: html
 bibliography: references.bib
 csl: apa.csl
 ---
-
-::: {.callout-note}
-## About this document
-This is the **shared running document** for Day 1: a small penguins report that carries the
-authoring value-adds (figures, cross-references, a `gt` table, margin layout, math) and then the
-citations. The Day-1 lab grows a version of it, then renders it as a branded PDF
-with **Typst** (a modern typesetting system that ships inside Quarto, so there is no LaTeX to
-install). Dataset: base-R `datasets::penguins` (R ≥ 4.5), columns `bill_len`, `bill_dep`,
-`flipper_len`, `body_mass`.
-:::
 
 ```{r}
 #| label: setup
@@ -22,23 +14,18 @@ install). Dataset: base-R `datasets::penguins` (R ≥ 4.5), columns `bill_len`, 
 library(dplyr)
 library(ggplot2)
 library(gt)
-library(ggokabeito)
+library(ggokabeito)   # color-blind-safe (Okabe-Ito) scale
 
 data(penguins)
 penguins <- penguins |> filter(!is.na(bill_len), !is.na(bill_dep))
 ```
 
-## The data {#sec-data}
+## The data
 
-We use the `penguins` dataset: body measurements for `{r} nrow(penguins)` penguins of
-`{r} length(unique(penguins$species))` species (`{r} knitr::combine_words(levels(penguins$species))`),
-collected at Palmer Station, Antarctica [@gorman2014]. The data reached R first through the
-**palmerpenguins** package [@horst2020] and now ships in base R's `datasets`.
-
-```{r}
-#| label: glimpse
-glimpse(penguins)
-```
+We measured **`{r} nrow(penguins)`** penguins of `{r} length(unique(penguins$species))` species
+(`{r} knitr::combine_words(levels(penguins$species))`), collected at Palmer Station, Antarctica
+[@gorman2014]. The data are available through the **palmerpenguins** package [@horst2020] and are now
+also included in base R's `datasets` package.
 
 The species are not evenly represented:
 
@@ -50,59 +37,39 @@ penguins |>
   knitr::kable()
 ```
 
-## Bill length and depth {#sec-bill}
+## Bill shape separates the species
 
-Each penguin's bill is summarized by two measurements: **length** and **depth** (the *culmen*,
-@fig-culmen). Depth is the vertical thickness at the base. Length runs from base to tip.
-
-```{r}
-#| label: fig-culmen
-#| echo: false
-#| column: margin
-#| fig-align: center
-#| fig-alt: >-
-#|   Line drawing of a penguin head showing culmen length measured along the top of the bill
-#|   from base to tip, and culmen depth measured as the vertical thickness of the bill at its base.
-#| fig-cap: "Culmen length and depth. Artwork by Allison Horst [@horst2020]."
-knitr::include_graphics(
-  "https://allisonhorst.github.io/palmerpenguins/reference/figures/culmen_depth.png"
-)
-```
-
-@fig-bill shows the two measurements together: within a species the bill has a characteristic
-shape, so the species separate cleanly.
+@fig-bill shows that within a species the bill has a characteristic shape, so the species form
+clusters.
 
 ```{r}
 #| label: fig-bill
-#| warning: false
 #| fig-width: 5
+#| warning: false
 #| fig-cap: "Bill length versus depth, colored by species."
-#| fig-cap-location: margin
 #| fig-alt: >-
 #|   Scatter plot of bill depth against bill length for penguins of three species, each drawn in a
-#|   distinct color and shape. The three species form largely separate clusters, showing that bill
-#|   shape distinguishes them.
-ggplot(penguins, aes(x = bill_len, y = bill_dep, color = species, shape = species)) +
+#|   distinct color and shape; the three species form largely separate clusters.
+ggplot(penguins, aes(bill_len, bill_dep, color = species, shape = species)) +
   geom_point(alpha = 0.8) +
-  scale_color_okabe_ito() +   # color-blind-safe palette
+  scale_color_okabe_ito() +
   labs(x = "Bill length (mm)", y = "Bill depth (mm)", color = "Species", shape = "Species") +
   theme_minimal(base_size = 12)
 ```
 
-A compact way to describe bill shape is the **length-to-depth ratio** (@eq-ratio): larger values
-mean a longer, shallower bill.
+A compact descriptor of bill shape is the length-to-depth ratio (@eq-ratio):
 
 $$
 \text{ratio} = \frac{\text{bill\_len}}{\text{bill\_dep}}
 $$ {#eq-ratio}
 
-## A summary table {#sec-table}
+## Mean measurements
 
 @tbl-summary reports the mean bill measurements and body mass per species.
 
 ```{r}
 #| label: tbl-summary
-#| tbl-cap: "Mean measurements per species (values rounded)."
+#| tbl-cap: "Mean measurements per species."
 penguins |>
   summarise(
     n = n(),
@@ -112,15 +79,10 @@ penguins |>
     .by = species
   ) |>
   gt() |>
-  tab_header(title = "Penguins of the Palmer Archipelago") |>
-  tab_spanner(label = md("**Bill (mm)**"), columns = c(bill_len, bill_dep)) |>
-  cols_label(
-    species = "Species", n = "N",
-    bill_len = "Length", bill_dep = "Depth", body_mass = "Body mass (g)"
-  ) |>
+  cols_label(species = "Species", n = "N", bill_len = "Bill length (mm)",
+             bill_dep = "Bill depth (mm)", body_mass = "Body mass (g)") |>
   fmt_number(columns = c(bill_len, bill_dep), decimals = 1) |>
-  fmt_number(columns = body_mass, decimals = 0) |>
-  opt_stylize(style = 6, color = "cyan")
+  fmt_number(columns = body_mass, decimals = 0)
 ```
 
 ## References {.unnumbered}

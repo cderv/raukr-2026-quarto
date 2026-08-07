@@ -106,7 +106,8 @@ Run it before any session, and after any `labs/**` change you thought was finish
 - **Solutions are SIBLING folders** (`solutions/day1/`, `solutions/day2/`), never nested inside a day
   folder — a nested solution would be swept into a participant's Day-2 website render.
 - **The Day-1 working/reference files** are **off the site render list** (`_quarto.yml`
-  `render:`): the participant starters (`citations-starter.qmd`, `sample-typst.qmd`, `parameters-starter.qmd`)
+  `render:`): the participant files (`authoring-starter.qmd`, `authoring-checkpoint.qmd`,
+  `sample-typst.qmd`, `parameters-starter.qmd`)
   and the solutions (`penguins-report.qmd`, `penguins-by-species.qmd`). They stay under
   `labs/quarto/` **only as sync source**; the exercises-repo CI validates them, not the course site.
   **Don't re-add them to `render:`** (you'd re-introduce a build the delivery repo already owns).

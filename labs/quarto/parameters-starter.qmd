@@ -35,4 +35,17 @@ ggplot(one, aes(bill_len, bill_dep)) +
   theme_minimal(base_size = 12)
 ```
 
+<!-- TODO 3c: Name the species in this sentence too. -->
 `{r} nrow(one)` penguins had both bill measurements recorded.
+
+## Session {.appendix .unnumbered}
+
+<details>
+<summary>Session info</summary>
+
+```{r}
+#| label: session
+sessionInfo()
+```
+
+</details>

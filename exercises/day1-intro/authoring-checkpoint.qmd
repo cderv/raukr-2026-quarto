@@ -1,6 +1,5 @@
 ---
-title: "Penguin bill dimensions"
-subtitle: "Citations Challenge starter — a finished report, ready to cite"
+title: "Bill dimensions across Antarctic penguin species"
 author: "Your name"
 format: html
 ---
@@ -11,7 +10,7 @@ format: html
 library(dplyr)
 library(ggplot2)
 library(gt)
-library(ggokabeito)
+library(ggokabeito)   # color-blind-safe (Okabe-Ito) scale
 
 data(penguins)
 penguins <- penguins |> filter(!is.na(bill_len), !is.na(bill_dep))
@@ -21,7 +20,10 @@ penguins <- penguins |> filter(!is.na(bill_len), !is.na(bill_dep))
 
 We measured **`{r} nrow(penguins)`** penguins of `{r} length(unique(penguins$species))` species
 (`{r} knitr::combine_words(levels(penguins$species))`), collected at Palmer Station, Antarctica. The
-species are not evenly represented:
+data are available through the **palmerpenguins** package and are now also included in base R's
+`datasets` package.
+
+The species are not evenly represented:
 
 ```{r}
 #| label: counts
@@ -38,6 +40,8 @@ clusters.
 
 ```{r}
 #| label: fig-bill
+#| fig-width: 5
+#| warning: false
 #| fig-cap: "Bill length versus depth, colored by species."
 #| fig-alt: >-
 #|   Scatter plot of bill depth against bill length for penguins of three species, each drawn in a

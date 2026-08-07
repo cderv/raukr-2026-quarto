@@ -52,7 +52,7 @@ install.packages(c(
 
 | Path | What it is |
 |---|---|
-| `day1-intro/` | Day-1 working folder: you create `my-report.qmd` here. Ships the Citations Challenge fallback `citations-starter.qmd`, the branded Typst PDF example `sample-typst.qmd`, the parameters bonus `parameters-starter.qmd`, plus `references.bib` / `apa.csl` / `_brand.yml` (its README has the details). |
+| `day1-intro/` | Day-1 working folder: you start from `authoring-starter.qmd` and save it as `my-report.qmd` here. Ships the Part-2 fallback `authoring-checkpoint.qmd`, the branded Typst PDF example `sample-typst.qmd`, the parameters bonus `parameters-starter.qmd`, plus `references.bib` / `apa.csl` / `_brand.yml` (its README has the details). |
 | `day2-projects/` | Day-2 working folder: four pages that render on their own but are **not yet a project** — turning them into one is the exercise. Ships **without** `_quarto.yml`. |
 | `solutions/` | Reference solutions for both days. Try the exercise yourself first. |
 | `00-check-setup.R` | The one-shot setup check + Typst font pre-warm. |

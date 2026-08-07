@@ -1,11 +1,7 @@
 ---
 title: "Bill dimensions across Antarctic penguin species"
-author:
-  - name: Your Name
-    affiliation: Your Lab, Your University
+author: "Your name"
 format: html
-bibliography: references.bib
-csl: apa.csl
 ---
 
 ```{r}
@@ -23,15 +19,14 @@ penguins <- penguins |> filter(!is.na(bill_len), !is.na(bill_dep))
 ## The data
 
 We measured **`{r} nrow(penguins)`** penguins of `{r} length(unique(penguins$species))` species
-(`{r} knitr::combine_words(levels(penguins$species))`), collected at Palmer Station, Antarctica
-[@gorman2014]. The data are available through the **palmerpenguins** package [@horst2020] and are now
-also included in base R's `datasets` package.
+(`{r} knitr::combine_words(levels(penguins$species))`), collected at Palmer Station, Antarctica. The
+data are available through the **palmerpenguins** package and are now also included in base R's
+`datasets` package.
 
 The species are not evenly represented:
 
 ```{r}
 #| label: counts
-#| column: margin
 penguins |>
   count(species, name = "n") |>
   knitr::kable()
@@ -39,37 +34,20 @@ penguins |>
 
 ## Bill shape separates the species
 
-@fig-bill shows that within a species the bill has a characteristic shape, so the species form
-clusters.
+Within a species the bill has a characteristic shape, so the species form clusters.
 
 ```{r}
-#| label: fig-bill
 #| fig-width: 5
 #| warning: false
-#| fig-cap: "Bill length versus depth, colored by species."
-#| fig-alt: >-
-#|   Scatter plot of bill depth against bill length for penguins of three species, each drawn in a
-#|   distinct color and shape; the three species form largely separate clusters.
-ggplot(penguins, aes(bill_len, bill_dep, color = species, shape = species)) +
+ggplot(penguins, aes(bill_len, bill_dep, color = species)) +
   geom_point(alpha = 0.8) +
-  scale_color_okabe_ito() +
-  labs(x = "Bill length (mm)", y = "Bill depth (mm)", color = "Species", shape = "Species") +
+  labs(x = "Bill length (mm)", y = "Bill depth (mm)", color = "Species") +
   theme_minimal(base_size = 12)
 ```
 
-A compact descriptor of bill shape is the length-to-depth ratio (@eq-ratio):
-
-$$
-\text{ratio} = \frac{\text{bill\_len}}{\text{bill\_dep}}
-$$ {#eq-ratio}
-
 ## Mean measurements
 
-@tbl-summary reports the mean bill measurements and body mass per species.
-
 ```{r}
-#| label: tbl-summary
-#| tbl-cap: "Mean measurements per species."
 penguins |>
   summarise(
     n = n(),
@@ -84,11 +62,6 @@ penguins |>
   fmt_number(columns = c(bill_len, bill_dep), decimals = 1) |>
   fmt_number(columns = body_mass, decimals = 0)
 ```
-
-## References {.unnumbered}
-
-::: {#refs}
-:::
 
 ## Session {.appendix .unnumbered}
 

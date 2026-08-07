@@ -309,7 +309,7 @@ list, not from the exercise.
 | 5 | frame | My | from report to article: cite → typeset |
 | 16 | concept + live demo | My + Our | Citations (`.bib`/`@ref`/CSL) · Typst (ships in Quarto, no LaTeX) · `_brand.yml` styling of the PDF |
 | 30 | hands-on | Your | **two payoff exercises**: (1) add citations to the Part-1 doc, (2) render it as a branded Typst PDF |
-| 4 | recap | My | "you now have a publication-ready article" |
+| 4 | recap | My | "you now have a branded, citable article" |
 
 > **Reconciled 2026-08-05 (was 18 concept / 28 hands-on).** The deck's Your-turn callout announced
 > ~30 min and the table said 28, and the part sums to exactly 55 in a 55-min effective slot, so there

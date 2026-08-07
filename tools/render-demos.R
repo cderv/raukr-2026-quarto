@@ -14,7 +14,8 @@ OUT   <- "_site/demos"
 groups <- list(
   day1 = list(
     stage = c(
-      "exercises/day1-intro/citations-starter.qmd",
+      "exercises/day1-intro/authoring-starter.qmd",
+      "exercises/day1-intro/authoring-checkpoint.qmd",
       "exercises/day1-intro/parameters-starter.qmd",
       "exercises/day1-intro/sample-typst.qmd",
       "exercises/day1-intro/references.bib",
@@ -34,7 +35,7 @@ groups <- list(
 )
 
 out_name <- c(day1 = "day1", day1_solutions = "day1-solutions", day2 = "day2-solution")
-out_title <- c(day1           = "Day 1 &mdash; starting points",
+out_title <- c(day1           = "Day 1 &mdash; working folder",
                day1_solutions = "Day 1 &mdash; finished documents",
                day2           = "Day 2 &mdash; finished website")
 

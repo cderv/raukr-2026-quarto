@@ -52,8 +52,11 @@ jobs:
       - name: Render Day-1 solution (cited HTML report)
         run: quarto render solutions/day1/penguins-report.qmd
 
-      - name: Render Day-1 citations starter (the Part-2 fallback document)
-        run: quarto render day1-intro/citations-starter.qmd
+      - name: Render Day-1 authoring starter (the Part-1 starting point)
+        run: quarto render day1-intro/authoring-starter.qmd
+
+      - name: Render Day-1 authoring checkpoint (the Part-2 fallback document)
+        run: quarto render day1-intro/authoring-checkpoint.qmd
 
       - name: Render Day-1 parameters starter
         run: quarto render day1-intro/parameters-starter.qmd

@@ -28,24 +28,24 @@ SCAFFOLD <- "tools/exercises-scaffold"
 # ---- role manifest -----------------------------------------------------------------------------
 # File-level copies: source (repo-relative) -> destination (under exercises/).
 files <- c(
-  # Day-1 working folder: Part-2 starter, the branded Typst payoff, the params starter, shared assets,
-  # and the FULL root brand (sample-typst.qmd reads it via read_brand_yml()).
-  "labs/quarto/citations-starter.qmd"   = "day1-intro/citations-starter.qmd",
-  "labs/quarto/sample-typst.qmd"        = "day1-intro/sample-typst.qmd",
-  "labs/quarto/parameters-starter.qmd"  = "day1-intro/parameters-starter.qmd",
-  "labs/quarto/references.bib"          = "day1-intro/references.bib",
-  "labs/quarto/apa.csl"                 = "day1-intro/apa.csl",
-  "_brand.yml"                          = "day1-intro/_brand.yml",
+  # Day-1 starter, completed checkpoint, other working files, shared assets, and root brand.
+  "labs/quarto/authoring-starter.qmd"    = "day1-intro/authoring-starter.qmd",
+  "labs/quarto/authoring-checkpoint.qmd" = "day1-intro/authoring-checkpoint.qmd",
+  "labs/quarto/sample-typst.qmd"         = "day1-intro/sample-typst.qmd",
+  "labs/quarto/parameters-starter.qmd"   = "day1-intro/parameters-starter.qmd",
+  "labs/quarto/references.bib"           = "day1-intro/references.bib",
+  "labs/quarto/apa.csl"                  = "day1-intro/apa.csl",
+  "_brand.yml"                           = "day1-intro/_brand.yml",
   # Day-1 solution (sibling): the fully-cited report + its own copy of the citation assets so it
   # renders standalone.
-  "labs/quarto/penguins-report.qmd"     = "solutions/day1/penguins-report.qmd",
-  "labs/quarto/penguins-by-species.qmd" = "solutions/day1/penguins-by-species.qmd",
-  "labs/quarto/references.bib"          = "solutions/day1/references.bib",
-  "labs/quarto/apa.csl"                 = "solutions/day1/apa.csl",
+  "labs/quarto/penguins-report.qmd"      = "solutions/day1/penguins-report.qmd",
+  "labs/quarto/penguins-by-species.qmd"  = "solutions/day1/penguins-by-species.qmd",
+  "labs/quarto/references.bib"           = "solutions/day1/references.bib",
+  "labs/quarto/apa.csl"                  = "solutions/day1/apa.csl",
   # The dashboard is BOTH a site page (it stays on the root render list, and the deck links to it)
   # and the reference solution for the Day-2 dashboard step, so it ships from where it already lives
   # rather than being duplicated into solution/.
-  "labs/quarto-projects/dashboard.qmd"  = "solutions/day2/dashboard.qmd"
+  "labs/quarto-projects/dashboard.qmd"   = "solutions/day2/dashboard.qmd"
 )
 
 # Directory-level copies (whole tree, artifact-stripped): source dir -> destination dir.
