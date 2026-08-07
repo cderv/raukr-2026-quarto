@@ -188,7 +188,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggokabeito)   <span class="co"># color-blind-safe (Okabe-Ito) scale, same as Day 1</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggokabeito)   <span class="co"># color-blind-safe (Okabe-Ito) scale</span></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(penguins)</span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>penguins <span class="ot">&lt;-</span> penguins <span class="sc">|&gt;</span> <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(bill_len), <span class="sc">!</span><span class="fu">is.na</span>(bill_dep), <span class="sc">!</span><span class="fu">is.na</span>(body_mass))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
@@ -200,10 +200,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_okabe_ito</span>() <span class="sc">+</span></span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Bill length (mm)"</span>, <span class="at">y =</span> <span class="st">"Bill depth (mm)"</span>, <span class="at">color =</span> <span class="cn">NULL</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
-<div id="fig-bill" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Scatterplot of bill depth versus bill length in millimeters, colored by species; the three species form separate clusters.">
+<div id="fig-bill" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Scatterplot of bill depth versus bill length in millimeters, colored by species. The three species form separate clusters.">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-bill-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="my-report_files/figure-html/fig-bill-1.png" class="img-fluid figure-img" alt="Scatterplot of bill depth versus bill length in millimeters, colored by species; the three species form separate clusters." width="672">
+<img src="my-report_files/figure-html/fig-bill-1.png" class="img-fluid figure-img" alt="Scatterplot of bill depth versus bill length in millimeters, colored by species. The three species form separate clusters." width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-bill-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;1: Bill depth against bill length, by species.

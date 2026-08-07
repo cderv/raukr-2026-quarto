@@ -11,14 +11,14 @@
     "href": "my-report.html",
     "title": "My report",
     "section": "",
-    "text": "library(dplyr)\nlibrary(ggplot2)\nlibrary(ggokabeito)   # color-blind-safe (Okabe-Ito) scale, same as Day 1\ndata(penguins)\npenguins &lt;- penguins |&gt; filter(!is.na(bill_len), !is.na(bill_dep), !is.na(body_mass))\n\nThis page stands in for the report you built on Day 1. Copy your own my-report.qmd over this file and re-render: the document you wrote as a standalone PDF becomes one page of a website, with no change to its content.\nOnly the front matter needed a look. A page inside a project inherits format: from _quarto.yml, so a format: typst left over from the Day-1 payoff would keep building a PDF instead of a page.\n\nggplot(penguins, aes(bill_len, bill_dep, color = species)) +\n  geom_point(alpha = 0.8) +\n  scale_color_okabe_ito() +\n  labs(x = \"Bill length (mm)\", y = \"Bill depth (mm)\", color = NULL)\n\n\n\n\n\n\n\nFigure 1: Bill depth against bill length, by species.\n\n\n\n\n\nFigure 1 still resolves, because the reference and its figure share one page."
+    "text": "library(dplyr)\nlibrary(ggplot2)\nlibrary(ggokabeito)   # color-blind-safe (Okabe-Ito) scale\ndata(penguins)\npenguins &lt;- penguins |&gt; filter(!is.na(bill_len), !is.na(bill_dep), !is.na(body_mass))\n\nThis page stands in for the report you built on Day 1. Copy your own my-report.qmd over this file and re-render: the document you wrote as a standalone PDF becomes one page of a website, with no change to its content.\nOnly the front matter needed a look. A page inside a project inherits format: from _quarto.yml, so a format: typst left over from the Day-1 payoff would keep building a PDF instead of a page.\n\nggplot(penguins, aes(bill_len, bill_dep, color = species)) +\n  geom_point(alpha = 0.8) +\n  scale_color_okabe_ito() +\n  labs(x = \"Bill length (mm)\", y = \"Bill depth (mm)\", color = NULL)\n\n\n\n\n\n\n\nFigure 1: Bill depth against bill length, by species.\n\n\n\n\n\nFigure 1 still resolves, because the reference and its figure share one page."
   },
   {
     "objectID": "analysis.html",
     "href": "analysis.html",
     "title": "Analysis",
     "section": "",
-    "text": "library(dplyr)\nlibrary(ggplot2)\nlibrary(ggokabeito)   # color-blind-safe (Okabe-Ito) scale, same as Day 1\ndata(penguins)\npenguins &lt;- penguins |&gt; filter(!is.na(bill_len), !is.na(bill_dep), !is.na(body_mass))"
+    "text": "library(dplyr)\nlibrary(ggplot2)\nlibrary(ggokabeito)   # color-blind-safe (Okabe-Ito) scale\ndata(penguins)\npenguins &lt;- penguins |&gt; filter(!is.na(bill_len), !is.na(bill_dep), !is.na(body_mass))"
   },
   {
     "objectID": "analysis.html#body-mass-by-species",

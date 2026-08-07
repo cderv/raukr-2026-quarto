@@ -192,7 +192,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#authoring-challenge" id="toc-authoring-challenge" class="nav-link active" data-scroll-target="#authoring-challenge"><span class="header-section-number">1</span> Authoring Challenge</a></li>
+  <li><a href="#authoring-challenge" id="toc-authoring-challenge" class="nav-link active" data-scroll-target="#authoring-challenge"><span class="header-section-number">1</span> Authoring Challenge</a>
+  <ul>
+  <li><a href="#cross-reference-the-figure" id="toc-cross-reference-the-figure" class="nav-link" data-scroll-target="#cross-reference-the-figure"><span class="header-section-number">1.1</span> Cross-reference the figure</a></li>
+  <li><a href="#cross-reference-the-table" id="toc-cross-reference-the-table" class="nav-link" data-scroll-target="#cross-reference-the-table"><span class="header-section-number">1.2</span> Cross-reference the table</a></li>
+  <li><a href="#move-the-counts-into-the-margin" id="toc-move-the-counts-into-the-margin" class="nav-link" data-scroll-target="#move-the-counts-into-the-margin"><span class="header-section-number">1.3</span> Move the counts into the margin</a></li>
+  <li><a href="#make-the-figure-accessible" id="toc-make-the-figure-accessible" class="nav-link" data-scroll-target="#make-the-figure-accessible"><span class="header-section-number">1.4</span> Make the figure accessible</a></li>
+  <li><a href="#add-a-numbered-equation-stretch" id="toc-add-a-numbered-equation-stretch" class="nav-link" data-scroll-target="#add-a-numbered-equation-stretch"><span class="header-section-number">1.5</span> Add a numbered equation <em>(stretch)</em></a></li>
+  </ul></li>
   <li><a href="#citations-challenge" id="toc-citations-challenge" class="nav-link" data-scroll-target="#citations-challenge"><span class="header-section-number">2</span> Citations Challenge</a></li>
   <li><a href="#sec-parameters" id="toc-sec-parameters" class="nav-link" data-scroll-target="#sec-parameters"><span class="header-section-number">3</span> Bonus — one report per species (optional)</a></li>
   <li><a href="#troubleshooting" id="toc-troubleshooting" class="nav-link" data-scroll-target="#troubleshooting"><span class="header-section-number">4</span> Troubleshooting</a></li>
@@ -247,19 +254,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <i class="callout-icon"></i>
 </div>
 <div class="callout-body-container">
-<p>You are working in the <strong><code>day1-intro/</code></strong> folder from the exercises download (open <code>day1-intro.Rproj</code>). See the <a href="../../setup.html#get-the-materials">Setup page</a>. Everything you render is written next to your files. You create <code>my-report.qmd</code> yourself: the files already in the folder are used later, each at the step that names it (the folder’s README lists them).</p>
+<p>You are working in the <strong><code>day1-intro/</code></strong> folder from the exercises download (open <code>day1-intro.Rproj</code>). See the <a href="../../setup.html#get-the-materials">Setup page</a>. Everything you render is written next to your files. You start from a file that is already there, <code>authoring-starter.qmd</code>, and the other files are used later, each at the step that names it (the folder’s README lists them).</p>
 </div>
 </div>
-</div>
-<p>Start every document with this setup (the challenges below assume it):</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gt)</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggokabeito)   <span class="co"># color-blind-safe (Okabe-Ito) scale -- see the Accessibility box</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(penguins)</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>penguins <span class="ot">&lt;-</span> penguins <span class="sc">|&gt;</span> <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(bill_len), <span class="sc">!</span><span class="fu">is.na</span>(bill_dep))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
@@ -288,53 +285,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <blockquote class="blockquote">
 <p><strong>Goal:</strong> a penguins report with a cross-referenced <strong>figure</strong>, a cross-referenced <strong>table</strong>, and a <strong>margin</strong> element, rendered to HTML.</p>
 </blockquote>
-<div class="callout callout-style-default callout-note no-icon callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span><i class="fa-solid fa-clipboard-list" aria-label="clipboard-list"></i> Tasks
-</div>
-</div>
-<div class="callout-body-container callout-body">
+<p><strong>Starting point.</strong> Open <strong><code>day1-intro/authoring-starter.qmd</code></strong> and save it as <strong><code>my-report.qmd</code></strong>, in that same folder (next to <code>references.bib</code> / <code>apa.csl</code> / <code>_brand.yml</code>, so Part 2’s paths and branding resolve later). Render it once to confirm it works, then re-render after every step below.</p>
+<p>The starter is already a working report, but it has no numbering, captions, cross-references, or alt text. Most steps require no R changes. The accessibility step makes two small changes to the plot.</p>
 
-<ol type="1">
-<li><p>Create <code>my-report.qmd</code> <strong>inside your open <code>day1-intro/</code> folder</strong> (next to <code>references.bib</code> / <code>apa.csl</code>, so Part 2’s paths and branding resolve later) with <code>format: html</code> and the setup cell at the top of this page.</p></li>
-<li><p>Add a scatter plot of <code>bill_len</code> versus <code>bill_dep</code> colored by <code>species</code>. Give its cell <code>#| label: fig-bill</code> and a <code>#| fig-cap:</code>, then refer to it with <code>@fig-bill</code> <strong>in the prose, outside the cell</strong>.</p></li>
-<li><p>Add a summary table. The <code>gt</code> plumbing is below. Your job is the <strong>cross-reference mechanic</strong>: give the cell <code>#| label: tbl-summary</code> and a <code>#| tbl-cap:</code>, then refer to it with <code>@tbl-summary</code>.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">|&gt;</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">bill_len =</span> <span class="fu">mean</span>(bill_len), <span class="at">bill_dep =</span> <span class="fu">mean</span>(bill_dep), <span class="at">.by =</span> species) <span class="sc">|&gt;</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
-<li><p>Put the species counts (<code>penguins |&gt; count(species)</code>) in the <strong>margin</strong> with the cell option <code>#| column: margin</code>.</p></li>
-<li><p>Make the report accessible: add <code>#| fig-alt:</code> to the figure and map <code>shape = species</code> next to the color, so the species encoding does not rely on color alone. Add <code>scale_color_okabe_ito()</code> for a color-blind-safe palette.</p></li>
-<li><p><em>(stretch)</em> Add the bill-shape ratio as a display equation, referenced with <code>@eq-ratio</code>. <strong>Escape the underscores</strong>: inside <code>$$…$$</code>, <code>bill_len</code> may render as a subscript (depending on the math renderer), so write:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>\text{ratio} = \frac{\text{bill<span class="sc">\_</span>len}}{\text{bill<span class="sc">\_</span>dep}}</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>$$ {#eq-ratio}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
-<li><p>Render to HTML (<code>quarto render my-report.qmd</code>, or the editor’s Render/Preview).</p></li>
-</ol>
-</div>
-</div>
-<div class="no-row-height column-margin column-container"><div class="callout-margin-content">
+<div class="no-row-height column-margin column-container"><div class="">
 <p><i class="fa-solid fa-book-open" aria-label="book-open"></i> <strong>Quarto docs</strong></p>
-<p><a href="https://quarto.org/docs/authoring/cross-references.html">Cross-references</a> · <a href="https://quarto.org/docs/authoring/article-layout.html">Article layout</a></p>
-</div></div><div class="callout callout-style-default callout-tip no-icon callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span><i class="fa-solid fa-universal-access" aria-label="universal-access"></i> Optional accessibility check
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Your figure already has alt text and redundant color/shape encoding. To check the whole page:</p>
-<ul>
-<li>add <code>axe: {output: document}</code> under <code>format: html</code>, re-preview, and a WCAG report appears on the page (drop it again before you publish). See <a href="https://quarto.org/docs/output-formats/html-accessibility.html">Quarto’s accessibility docs</a>.</li>
-</ul>
-</div>
-</div>
+<p><a href="https://quarto.org/docs/authoring/cross-references.html">Cross-references</a> · <a href="https://quarto.org/docs/authoring/article-layout.html">Article layout</a> · <a href="https://quarto.org/docs/output-formats/html-accessibility.html">Accessibility</a></p>
+</div></div><p>Missing the download? Take the source directly:</p>
+<p><a class="btn btn-primary btn-sm" href="https://raw.githubusercontent.com/cderv/raukr-2026-quarto-exercises/main/day1-intro/authoring-starter.qmd" role="button" target="_blank"><i class="fa-solid fa-download" aria-label="download"></i> authoring-starter.qmd</a></p>
+<section id="cross-reference-the-figure" class="level3" data-number="1.1">
+<h3 data-number="1.1" class="anchored" data-anchor-id="cross-reference-the-figure"><span class="header-section-number">1.1</span> Cross-reference the figure</h3>
+<p><strong>Goal.</strong> Turn the scatter plot into a <strong>numbered figure with a caption</strong>, and refer to that number from the prose. Two edits: an option on the <strong>cell</strong>, and a reference in the <strong>body text</strong> above it.</p>
+<p>Docs: <a href="https://quarto.org/docs/authoring/cross-references.html">Cross-references</a>.</p>
 <div class="callout callout-style-simple callout-note no-icon callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -345,15 +307,179 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>A numbered <strong>Figure 1</strong> (the bill scatter, three separate clusters), a numbered <strong>Table 1</strong>, and the counts in the right margin. <code>@fig-bill</code> and <code>@tbl-summary</code> render as live links. If you completed the stretch task, you also see a numbered <strong>Equation 1</strong>. Your finished figure looks like this:</p>
+<p>A caption <strong>Figure 1: …</strong> under the plot, and the sentence above it opening with a live <strong>Figure 1</strong> link.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Hint
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><strong>Ask yourself:</strong> how does Quarto learn that this cell is a figure worth numbering, and what to call it in the text?</p>
+<p><strong>Mechanism:</strong> a cell becomes cross-referenceable when its label starts with a known prefix (<code>fig-</code> for a figure) and is unique in the document. The caption is a second cell option. Label, caption and the <code>@fig-something</code> reference work together: a reference with no matching label renders as <code>?@fig-something</code>.</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>On the plot cell:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-bill</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Bill length versus depth, colored by species."</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>And the sentence above the cell, rewritten to point at it:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>@fig-bill shows that within a species the bill has a characteristic shape, so the species form</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>clusters.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+</section>
+<section id="cross-reference-the-table" class="level3" data-number="1.2">
+<h3 data-number="1.2" class="anchored" data-anchor-id="cross-reference-the-table"><span class="header-section-number">1.2</span> Cross-reference the table</h3>
+<p><strong>Goal.</strong> Same mechanic on the summary table under <strong>Mean measurements</strong>: a numbered, captioned <strong>Table 1</strong>, introduced by a sentence that links to it. The <code>gt</code> call is already written.</p>
+<p>Docs: <a href="https://quarto.org/docs/authoring/cross-references.html#tables">Cross-references for tables</a>.</p>
+<div class="callout callout-style-simple callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span><i class="fa-solid fa-circle-check" aria-label="circle-check"></i> You should see
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Table 1: …</strong> above the table (table captions go above, figure captions below), and a sentence introducing it with a live <strong>Table 1</strong> link.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Hint
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-7" class="callout-7-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><strong>Ask yourself:</strong> figures and tables are numbered in separate sequences, so which label tells Quarto this one is a table?</p>
+<p><strong>Mechanism:</strong> <code>#| label: tbl-summary</code> and <code>#| tbl-cap:</code> on the cell, <code>@tbl-summary</code> in the prose. The prefix decides both the sequence and the word (“Figure”, “Table”) Quarto prints.</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-8" class="callout-8-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>On the <code>gt</code> cell:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: tbl-summary</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| tbl-cap: "Mean measurements per species."</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>And above it:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>@tbl-summary reports the mean bill measurements and body mass per species.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+</section>
+<section id="move-the-counts-into-the-margin" class="level3" data-number="1.3">
+<h3 data-number="1.3" class="anchored" data-anchor-id="move-the-counts-into-the-margin"><span class="header-section-number">1.3</span> Move the counts into the margin</h3>
+<p><strong>Goal.</strong> Put the species-counts table in the <strong>right margin</strong>, beside the paragraph that mentions it, instead of in the main text column.</p>
+<p>Docs: <a href="https://quarto.org/docs/authoring/article-layout.html">Article layout</a>.</p>
+<div class="callout callout-style-simple callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span><i class="fa-solid fa-circle-check" aria-label="circle-check"></i> You should see
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The counts table in the right-hand margin, level with “The species are not evenly represented:”, and the main text column unchanged in width.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Hint
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-10" class="callout-10-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><strong>Ask yourself:</strong> the R does not change, so where do you tell Quarto that this output belongs somewhere else on the page?</p>
+<p><strong>Mechanism:</strong> <code>#| column: margin</code> on the cell. That option also takes <code>body</code>, <code>body-outset</code>, <code>page</code> and <code>screen</code>. For prose rather than cell output, use a <code>::: {.column-margin}</code> div.</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-11-contents" aria-controls="callout-11" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-11" class="callout-11-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>On the counts cell:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">#| column: margin</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+</section>
+<section id="make-the-figure-accessible" class="level3" data-number="1.4">
+<h3 data-number="1.4" class="anchored" data-anchor-id="make-the-figure-accessible"><span class="header-section-number">1.4</span> Make the figure accessible</h3>
+<p><strong>Goal.</strong> Make the figure readable by someone who cannot distinguish the colors, and by someone using a screen reader.</p>
+<p>The plot separates species by <strong>color alone</strong>, in ggplot2’s default palette, which is not color-blind-safe. This is the one step that edits the R: two changes to the plot, one option on the cell. <code>ggokabeito</code> is already loaded in the setup cell.</p>
+<p>Docs: <a href="https://quarto.org/docs/output-formats/html-accessibility.html">HTML accessibility</a> · <a href="https://quarto.org/docs/authoring/figures.html#alt-text">Figure alt text</a>.</p>
+<div class="callout callout-style-simple callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span><i class="fa-solid fa-circle-check" aria-label="circle-check"></i> You should see
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Each species drawn with <strong>its own shape as well as its own color</strong>, in the Okabe-Ito palette (orange, blue, green rather than ggplot2’s salmon, green and blue), and one legend for both color and shape. The alt text is not visible on the page: to check it, view the page source and confirm the <code>&lt;img&gt;</code> tag carries your <code>alt="…"</code>. The finished figure looks like this:</p>
 </div>
 </div>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-target" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Scatter plot of bill depth against bill length for three penguin species in distinct colors; the species form largely separate clusters.">
+<div id="fig-target" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Scatter plot of bill depth against bill length for three penguin species in distinct colors. The species form largely separate clusters.">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-target-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="index_files/figure-html/fig-target-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Figure&nbsp;1: Target: bill length versus depth by species."><img src="index_files/figure-html/fig-target-1.png" class="img-fluid figure-img" alt="Scatter plot of bill depth against bill length for three penguin species in distinct colors; the species form largely separate clusters." width="576"></a>
+<a href="index_files/figure-html/fig-target-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Figure&nbsp;1: Target: bill length versus depth by species."><img src="index_files/figure-html/fig-target-1.png" class="img-fluid figure-img" alt="Scatter plot of bill depth against bill length for three penguin species in distinct colors. The species form largely separate clusters." width="576"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-target-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;1: Target: bill length versus depth by species.
@@ -363,7 +489,7 @@ Figure&nbsp;1: Target: bill length versus depth by species.
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-13-contents" aria-controls="callout-13" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -372,26 +498,127 @@ Figure&nbsp;1: Target: bill length versus depth by species.
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div id="callout-13" class="callout-13-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
+<p><strong>Ask yourself:</strong> someone who cannot separate your three colors needs a second way to tell the species apart. What else can <code>aes()</code> map? And where would a <em>description</em> of the plot go, when everything else about this figure is a cell option?</p>
+<p><strong>Mechanism:</strong> map <code>shape = species</code> alongside <code>color = species</code> in <code>aes()</code>, and add <code>scale_color_okabe_ito()</code>. The description is the cell option <code>#| fig-alt:</code>. It is not the caption: the alt text stands in for the image, so it describes what the plot <em>shows</em>, not what it <em>is</em>.</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-14-contents" aria-controls="callout-14" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-14" class="callout-14-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>On the plot cell, next to the label and caption:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-alt: &gt;-</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co">#|   Scatter plot of bill depth against bill length for penguins of three species, each drawn in a</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co">#|   distinct color and shape. The three species form largely separate clusters.</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>And in the plot itself:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(bill_len, bill_dep, <span class="at">color =</span> species, <span class="at">shape =</span> species)) <span class="sc">+</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.8</span>) <span class="sc">+</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_okabe_ito</span>() <span class="sc">+</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Bill length (mm)"</span>, <span class="at">y =</span> <span class="st">"Bill depth (mm)"</span>, <span class="at">color =</span> <span class="st">"Species"</span>, <span class="at">shape =</span> <span class="st">"Species"</span>) <span class="sc">+</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">12</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Naming both <code>color</code> and <code>shape</code> in <code>labs()</code> merges them into a single legend.</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span><i class="fa-solid fa-universal-access" aria-label="universal-access"></i> Optional accessibility check
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Your figure now has alt text and redundant color/shape encoding. To check the whole page:</p>
 <ul>
-<li>A cell becomes a cross-referenceable figure/table only when its label <strong>starts with</strong> <code>fig-</code> / <code>tbl-</code> / <code>eq-</code> and is <strong>unique</strong> in the document.</li>
-<li><code>column: margin</code> is a <strong>cell option</strong> (<code>#|</code>) for a cell, or a <code>::: {.column-margin}</code> div for prose.</li>
-<li>Display math with a label <code>$$ … $$ {#eq-ratio}</code>, referenced with <code>@eq-ratio</code>.</li>
+<li>add <code>axe: {output: document}</code> under <code>format: html</code>, re-preview, and a WCAG report appears on the page (drop it again before you publish). See <a href="https://quarto.org/docs/output-formats/html-accessibility.html">Quarto’s accessibility docs</a>.</li>
 </ul>
 </div>
 </div>
+</section>
+<section id="add-a-numbered-equation-stretch" class="level3" data-number="1.5">
+<h3 data-number="1.5" class="anchored" data-anchor-id="add-a-numbered-equation-stretch"><span class="header-section-number">1.5</span> Add a numbered equation <em>(stretch)</em></h3>
+<p><strong>Goal.</strong> Add the bill-shape ratio (bill length divided by bill depth) as a <strong>numbered display equation</strong>, and refer to it from the prose.</p>
+<p>One caution: inside <code>$$…$$</code>, <code>bill_len</code> can render as a subscript, so escape the underscore as <code>bill\_len</code>.</p>
+<p>Docs: <a href="https://quarto.org/docs/authoring/cross-references.html#equations">Equations</a>.</p>
+<div class="callout callout-style-simple callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
 </div>
-<p><strong>Need to continue with Part 2?</strong> <code>citations-starter.qmd</code> is a completed Part-1 document. It is already in <code>day1-intro/</code>. Open it to continue with citations, or take the source:</p>
-<p><a class="btn btn-primary btn-sm" href="https://raw.githubusercontent.com/cderv/raukr-2026-quarto-exercises/main/day1-intro/citations-starter.qmd" role="button" target="_blank"><i class="fa-solid fa-download" aria-label="download"></i> citations-starter.qmd</a></p>
-<p>The cross-references and the equation live in the <strong>body Markdown</strong>, outside any cell:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>@fig-bill shows bill shape by species. @tbl-summary gives the per-species means.</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>\text{ratio} = \frac{\text{bill<span class="sc">\_</span>len}}{\text{bill<span class="sc">\_</span>dep}}</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>$$ {#eq-ratio}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p><strong><code>solutions/day1/penguins-report.qmd</code> is the complete Day-1 reference.</strong> The document goes beyond the tasks (an additional margin figure, a <code>glimpse</code>, and section labels) and also adds the citations from the next challenge. It’s in your exercises <code>solutions/day1/</code> folder. Try the challenge first, then open it to compare, or take the source:</p>
-<p><a class="btn btn-primary btn-sm" href="https://raw.githubusercontent.com/cderv/raukr-2026-quarto-exercises/main/solutions/day1/penguins-report.qmd" role="button" target="_blank"><i class="fa-solid fa-download" aria-label="download"></i> penguins-report.qmd</a></p>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span><i class="fa-solid fa-circle-check" aria-label="circle-check"></i> You should see
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The formula centered on its own line with <strong>(1)</strong> at the right margin, and the sentence above it linking to that number.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-17-contents" aria-controls="callout-17" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Hint
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-17" class="callout-17-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><strong>Ask yourself:</strong> display math is not a cell, so the label cannot be a cell option. Where else could it attach?</p>
+<p><strong>Mechanism:</strong> the label is an attribute on the closing <code>$$</code>, written <code>{#eq-ratio}</code>. The <code>eq-</code> prefix makes it a numbered equation, and <code>@eq-ratio</code> links to it like <code>@fig-</code> and <code>@tbl-</code>.</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-18-contents" aria-controls="callout-18" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-18" class="callout-18-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>A compact descriptor of bill shape is the length-to-depth ratio (@eq-ratio):</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>\text{ratio} = \frac{\text{bill<span class="sc">\_</span>len}}{\text{bill<span class="sc">\_</span>dep}}</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>$$ {#eq-ratio}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span><i class="fa-solid fa-circle-check" aria-label="circle-check"></i> Checkpoint: the whole document
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A numbered <strong>Figure 1</strong> (the bill scatter, three separate clusters), a numbered <strong>Table 1</strong>, and the counts in the right margin. <code>@fig-bill</code> and <code>@tbl-summary</code> render as live links, with no <code>?@</code> markers anywhere. If you did the stretch step, you also have a numbered <strong>Equation 1</strong>.</p>
+</div>
+</div>
+<p><strong><code>authoring-checkpoint.qmd</code> is this same report with every step above applied.</strong> It is already in <code>day1-intro/</code>. Compare your work against it, or, if you did not finish, save a copy of it as <code>my-report.qmd</code> and continue into Part 2 from there. You can also take the source:</p>
+<p><a class="btn btn-primary btn-sm" href="https://raw.githubusercontent.com/cderv/raukr-2026-quarto-exercises/main/day1-intro/authoring-checkpoint.qmd" role="button" target="_blank"><i class="fa-solid fa-download" aria-label="download"></i> authoring-checkpoint.qmd</a></p>
+</section>
 </section>
 <section id="citations-challenge" class="level2 page-columns page-full" data-number="2">
 <h2 data-number="2" class="anchored" data-anchor-id="citations-challenge"><span class="header-section-number">2</span> Citations Challenge</h2>
@@ -408,7 +635,7 @@ Figure&nbsp;1: Target: bill length versus depth by species.
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>If you finished the Authoring Challenge, keep going on your own document. Otherwise open <strong><code>day1-intro/citations-starter.qmd</code></strong> in your editor (a complete Part-1 report) and add the citations to that.</p>
+<p>If you finished the Authoring Challenge, keep going in your own <strong><code>my-report.qmd</code></strong>. Otherwise open <strong><code>day1-intro/authoring-checkpoint.qmd</code></strong> (the same report with Part 1 already done), save a copy of it as <strong><code>my-report.qmd</code></strong>, and continue from there. From here on the instructions say <code>my-report.qmd</code>, whichever route you took.</p>
 </div>
 </div>
 <div class="callout callout-style-default callout-note no-icon callout-titled">
@@ -424,26 +651,26 @@ Figure&nbsp;1: Target: bill length versus depth by species.
 
 <ol type="1">
 <li><p>Point the document header at the shared bibliography and citation style:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bibliography</span><span class="kw">:</span><span class="at"> references.bib</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">csl</span><span class="kw">:</span><span class="at"> apa.csl</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
-<li><p>Cite the data source in prose with <code>@gorman2014</code>. Write a sentence ending <em>“…collected at Palmer Station, Antarctica.”</em> (already present if you continue from <code>citations-starter.qmd</code>) and insert the citation before the period: <code>Antarctica [@gorman2014].</code> (don’t paste a second copy).</p></li>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bibliography</span><span class="kw">:</span><span class="at"> references.bib</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">csl</span><span class="kw">:</span><span class="at"> apa.csl</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p>Cite the two sources the opening paragraph already credits, without rewriting it. The sentence ending <em>“…collected at Palmer Station, Antarctica.”</em> takes the data citation before the period (<code>Antarctica [@gorman2014].</code>), and the sentence crediting the <strong>palmerpenguins</strong> package takes <code>[@horst2020]</code> the same way. Don’t paste a second copy of either sentence.</p></li>
 <li><p>Add a <strong>References</strong> section where the list should appear:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">## References {.unnumbered}</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>::: {#refs}</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">## References {.unnumbered}</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>::: {#refs}</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
 <li><p>Give it a real <strong>title block</strong> so the PDF reads as a paper. <strong>Replace</strong> your document’s <code>author:</code> line (or add one) with:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">author</span><span class="kw">:</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Your Name</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">affiliation</span><span class="kw">:</span><span class="at"> Your Lab, Your University</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
-<li><p>Render to HTML and confirm the citation resolves to <em>(Gorman et al., 2014)</em> with a formatted reference list.</p></li>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">author</span><span class="kw">:</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Your Name</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">affiliation</span><span class="kw">:</span><span class="at"> Your Lab, Your University</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p>Render to HTML and confirm both citations resolve, to <em>(Gorman et al., 2014)</em> and <em>(Horst et al., 2020)</em>, with a reference list holding both entries.</p></li>
 <li><p>Switch the output to <strong>Typst</strong> and render a branded PDF. You may see <code>unknown font family</code> warnings on the first render. See Troubleshooting if the final PDF still uses a serif font. Two routes:</p>
 <ul>
 <li><p><strong>CLI</strong> — leave the header as-is and force the target:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> render my-report.qmd <span class="at">--to</span> typst</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> render my-report.qmd <span class="at">--to</span> typst</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
 <li><p><strong>Editor Render button</strong> — set <code>format: typst</code> in the YAML header first, <em>then</em> click Render. The button renders whatever <code>format:</code> is declared, so while the header still says <code>format: html</code> the button gives you HTML, <strong>not</strong> a PDF.</p></li>
 </ul>
-<p>If you used the completed Part-1 file, render <code>citations-starter.qmd</code> instead. The PDF is written <strong>next to its source</strong> in <code>day1-intro/</code>.</p></li>
+<p>The PDF is written <strong>next to its source</strong> in <code>day1-intro/</code>.</p></li>
 </ol>
 </div>
 </div>
@@ -460,12 +687,12 @@ Figure&nbsp;1: Target: bill length versus depth by species.
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>In-text <strong>(Gorman et al., 2014)</strong>, a <strong>References</strong> section formatted in APA, and, in the Typst PDF, the same citation and reference list, typeset with the RaukR palette. No <code>?@gorman2014</code> or <code>[?]</code> markers anywhere.</p>
+<p>In-text <strong>(Gorman et al., 2014)</strong> and <strong>(Horst et al., 2020)</strong>, a <strong>References</strong> section formatted in APA with both entries, and, in the Typst PDF, the same citations and reference list, typeset with the RaukR palette. No <code>?@gorman2014</code>, <code>?@horst2020</code> or <code>[?]</code> markers anywhere.</p>
 <p><strong>Check the branding applied.</strong> An unbranded PDF builds without any error, so check the font instead: a branded PDF is set in <strong>Albert Sans</strong>, an unbranded one in Typst’s default serif. Serif headings mean <code>_brand.yml</code> isn’t next to your <code>.qmd</code> (see Troubleshooting).</p>
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-23-contents" aria-controls="callout-23" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -474,7 +701,7 @@ Figure&nbsp;1: Target: bill length versus depth by species.
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-10" class="callout-10-contents callout-collapse collapse">
+<div id="callout-23" class="callout-23-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ul>
 <li>The <code>@key</code> in <code>[@gorman2014]</code> must match a key in <code>references.bib</code> <strong>exactly</strong>.</li>
@@ -486,7 +713,7 @@ Figure&nbsp;1: Target: bill length versus depth by species.
 </div>
 </div>
 <div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-11-contents" aria-controls="callout-11" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-24-contents" aria-controls="callout-24" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -495,25 +722,28 @@ Figure&nbsp;1: Target: bill length versus depth by species.
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-11" class="callout-11-contents callout-collapse collapse">
+<div id="callout-24" class="callout-24-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>In the YAML header:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bibliography</span><span class="kw">:</span><span class="at"> references.bib</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">csl</span><span class="kw">:</span><span class="at"> apa.csl</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>In prose:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>The data come from Palmer Station, Antarctica <span class="co">[</span><span class="ot">@gorman2014</span><span class="co">]</span>.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bibliography</span><span class="kw">:</span><span class="at"> references.bib</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">csl</span><span class="kw">:</span><span class="at"> apa.csl</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>In the prose, append each citation to the sentence that credits its source:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>… collected at Palmer Station, Antarctica <span class="co">[</span><span class="ot">@gorman2014</span><span class="co">]</span>. The data are available through the</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>**palmerpenguins** package <span class="co">[</span><span class="ot">@horst2020</span><span class="co">]</span> and are now also included in base R's <span class="in">`datasets`</span> package.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>A References section (the list renders inside the <code>#refs</code> div):</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">## References {.unnumbered}</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>::: {#refs}</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">## References {.unnumbered}</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>::: {#refs}</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>For the branded PDF (<code>day1-intro/_brand.yml</code> styles it), either force the target from the CLI:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> render my-report.qmd <span class="at">--to</span> typst</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> render my-report.qmd <span class="at">--to</span> typst</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>or set <code>format: typst</code> in the header and use the editor’s Render button.</p>
 </div>
 </div>
 </div>
-<p>The complete cited HTML is <code>solutions/day1/penguins-report.qmd</code>. The branded Typst PDF (with R-side <code>theme_brand_*</code> styling) is <code>day1-intro/sample-typst.qmd</code> (render it to see the final branded PDF).</p>
+<p><strong><code>solutions/day1/penguins-report.qmd</code> is the complete Day-1 report:</strong> the starter with every step of both challenges applied. Try the challenge first, then open it to compare, or take the source:</p>
+<p><a class="btn btn-primary btn-sm" href="https://raw.githubusercontent.com/cderv/raukr-2026-quarto-exercises/main/solutions/day1/penguins-report.qmd" role="button" target="_blank"><i class="fa-solid fa-download" aria-label="download"></i> penguins-report.qmd</a></p>
+<p>For a more advanced branded PDF example, render <code>day1-intro/sample-typst.qmd</code>. It also styles its table and plot in R and sets Typst page options. Those additions are outside this exercise.</p>
 </section>
 <section id="sec-parameters" class="level2 page-columns page-full" data-number="3">
 <h2 data-number="3" class="anchored" data-anchor-id="sec-parameters"><span class="header-section-number">3</span> Bonus — one report per species (optional)</h2>
@@ -547,15 +777,15 @@ Figure&nbsp;1: Target: bill length versus depth by species.
 
 <ol type="1">
 <li><p>Declare a parameter with a default in the header:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">params</span><span class="kw">:</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">species</span><span class="kw">:</span><span class="at"> Gentoo</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">params</span><span class="kw">:</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">species</span><span class="kw">:</span><span class="at"> Gentoo</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
 <li><p><strong>Use it to filter</strong> in the setup cell. <code>params$species</code> is a value. Keep the existing missing-value checks and add the species condition:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>one <span class="ot">&lt;-</span> penguins <span class="sc">|&gt;</span> <span class="fu">filter</span>(species <span class="sc">==</span> params<span class="sc">$</span>species, <span class="sc">!</span><span class="fu">is.na</span>(bill_len), <span class="sc">!</span><span class="fu">is.na</span>(bill_dep))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
-<li><p><strong>Use the parameter in the report.</strong> Replace the placeholder species in the sentence with inline code: <code>`{r} params$species`</code>. Make the caption and alt text track the parameter with <code>!expr</code>. Cell options are YAML, so the <code>!expr</code> tag tells Quarto to evaluate the R expression:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: !expr paste0("Bill length versus depth for ", params$species, " penguins.")</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-alt: !expr paste0("Scatter plot of bill depth against bill length for ", params$species, " penguins.")</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>one <span class="ot">&lt;-</span> penguins <span class="sc">|&gt;</span> <span class="fu">filter</span>(species <span class="sc">==</span> params<span class="sc">$</span>species, <span class="sc">!</span><span class="fu">is.na</span>(bill_len), <span class="sc">!</span><span class="fu">is.na</span>(bill_dep))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p><strong>Use the parameter in the report.</strong> Three places, marked <code>TODO 3a</code>, <code>3b</code> and <code>3c</code> in the file. Replace the placeholder species in the opening sentence with inline code (<code>`{r} params$species`</code>), and name the species in the closing sentence the same way. Make the caption and alt text track the parameter with <code>!expr</code>. Cell options are YAML, so the <code>!expr</code> tag tells Quarto to evaluate the R expression:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: !expr paste0("Bill length versus depth for ", params$species, " penguins.")</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-alt: !expr paste0("Scatter plot of bill depth against bill length for ", params$species, " penguins.")</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
 <li><p><strong>Render a different species from the CLI</strong> with <code>-P name:value</code>. Run this from inside <code>day1-intro/</code>:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> render parameters-starter.qmd <span class="at">-P</span> species:Adelie</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> render parameters-starter.qmd <span class="at">-P</span> species:Adelie</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>With no <code>-P</code>, the default (<code>Gentoo</code>) is used.</p></li>
 </ol>
 </div>
@@ -564,7 +794,7 @@ Figure&nbsp;1: Target: bill length versus depth by species.
 <p><i class="fa-solid fa-book-open" aria-label="book-open"></i> <strong>Quarto docs</strong></p>
 <p><a href="https://quarto.org/docs/computations/parameters.html">Parameters</a></p>
 </div></div><div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-14-contents" aria-controls="callout-14" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-27-contents" aria-controls="callout-27" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -573,17 +803,17 @@ Figure&nbsp;1: Target: bill length versus depth by species.
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-14" class="callout-14-contents callout-collapse collapse">
+<div id="callout-27" class="callout-27-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>Build the section heading from the parameter with a cell that emits Markdown:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="co">#| output: asis</span></span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"##"</span>, params<span class="sc">$</span>species, <span class="st">"at a glance</span><span class="sc">\n</span><span class="st">"</span>)</span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Replace the static <code>## Species at a glance</code> heading with a cell that emits Markdown:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="co">#| output: asis</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"##"</span>, params<span class="sc">$</span>species, <span class="st">"at a glance</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>To keep two named reports, render each as a self-contained HTML file:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> render parameters-starter.qmd <span class="at">-P</span> species:Adelie    <span class="at">--output</span> adelie.html    <span class="at">--embed-resources</span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> render parameters-starter.qmd <span class="at">-P</span> species:Chinstrap <span class="at">--output</span> chinstrap.html <span class="at">--embed-resources</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> render parameters-starter.qmd <span class="at">-P</span> species:Adelie    <span class="at">--output</span> adelie.html    <span class="at">--embed-resources</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> render parameters-starter.qmd <span class="at">-P</span> species:Chinstrap <span class="at">--output</span> chinstrap.html <span class="at">--embed-resources</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><code>--output</code> prevents the second render from overwriting the first. <code>--embed-resources</code> puts each plot inside its HTML file, so the reports do not share a figure-support folder.</p>
 </div>
 </div>
@@ -598,11 +828,11 @@ Figure&nbsp;1: Target: bill length versus depth by species.
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Rendering with <code>-P species:Adelie</code> gives a report whose sentence, figure caption, alt text, point count, and plot are all about Adelie. Nothing says Gentoo. Rendering without <code>-P</code> produces the Gentoo report. If you completed the stretch task, the heading also names the selected species.</p>
+<p>Rendering with <code>-P species:Adelie</code> gives a report whose sentences, figure caption, alt text, point count, and plot are all about Adelie. Nothing says Gentoo. Rendering without <code>-P</code> produces the Gentoo report. If you completed the stretch task, the heading also names the selected species.</p>
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-16-contents" aria-controls="callout-16" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-29-contents" aria-controls="callout-29" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -611,7 +841,7 @@ Figure&nbsp;1: Target: bill length versus depth by species.
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-16" class="callout-16-contents callout-collapse collapse">
+<div id="callout-29" class="callout-29-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ul>
 <li>Parameters <strong>must have defaults</strong>: <code>params$species</code> has to resolve when no <code>-P</code> is passed.</li>
@@ -627,7 +857,7 @@ Figure&nbsp;1: Target: bill length versus depth by species.
 <section id="troubleshooting" class="level2" data-number="4">
 <h2 data-number="4" class="anchored" data-anchor-id="troubleshooting"><span class="header-section-number">4</span> Troubleshooting</h2>
 <div class="callout callout-style-default callout-tip no-icon callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-17-contents" aria-controls="callout-17" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-30-contents" aria-controls="callout-30" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
@@ -636,7 +866,7 @@ Figure&nbsp;1: Target: bill length versus depth by species.
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-17" class="callout-17-contents callout-collapse collapse">
+<div id="callout-30" class="callout-30-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ul>
 <li><strong>YAML is indentation-sensitive.</strong> If rendering fails <em>before</em> any code runs, check the YAML header for stray spaces, tabs, or unmatched quotes.</li>
@@ -644,7 +874,7 @@ Figure&nbsp;1: Target: bill length versus depth by species.
 <li><strong>A figure doesn’t appear?</strong> Check the path is relative to the <code>.qmd</code> and the filename matches exactly (case included).</li>
 <li><strong>A cross-reference shows <code>?@…</code>?</strong> The cell label must start with <code>fig-</code>/<code>tbl-</code>/<code>eq-</code> and be unique, and the <code>@ref</code> must match it.</li>
 <li><strong>A citation shows <code>?@gorman2014</code> or <code>[?]</code>?</strong> The <code>@key</code> doesn’t match a key in <code>references.bib</code>, or <code>bibliography:</code> isn’t set.</li>
-<li><strong><code>references.bib</code> not found, although the download has it?</strong> Your <code>.qmd</code> is probably not in <code>day1-intro/</code> (created in the top folder, for example). Move it next to <code>references.bib</code> / <code>apa.csl</code> / <code>_brand.yml</code> and render again.</li>
+<li><strong><code>references.bib</code> not found, although the download has it?</strong> Your <code>.qmd</code> is probably not in <code>day1-intro/</code> (saved to the top folder, for example). Move it next to <code>references.bib</code> / <code>apa.csl</code> / <code>_brand.yml</code> and render again.</li>
 <li><strong>Do I need to install Typst?</strong> No.&nbsp;Typst is bundled in Quarto ≥ 1.9, so there’s nothing extra to install (no LaTeX either). Check <code>quarto --version</code>.</li>
 <li><strong>Typst PDF looks unbranded / wrong fonts?</strong> An unbranded render succeeds silently, so check the font, not the log: branded is <strong>Albert Sans</strong>, unbranded is Typst’s default serif. Confirm <code>_brand.yml</code> is in your <code>day1-intro/</code> folder (next to the <code>.qmd</code>) and you have network on the first render (Quarto fetches the Google fonts once). Missing the file? Download <a href="https://raw.githubusercontent.com/cderv/raukr-2026-quarto-exercises/main/day1-intro/_brand.yml"><code>_brand.yml</code></a> into the folder holding your <code>.qmd</code>.</li>
 <li><strong>Typst prints <code>unknown font family</code> warnings?</strong> Harmless: a <code>gt</code> table names a generic <code>sans-serif</code> in its font stack, and Typst doesn’t recognize that as a family. The PDF still builds, branding included.</li>
@@ -663,21 +893,22 @@ Figure&nbsp;1: Target: bill length versus depth by species.
 Session info
 </summary>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>R version 4.6.1 (2026-06-24)
-Platform: x86_64-pc-linux-gnu
-Running under: Ubuntu 24.04.4 LTS
+<pre><code>R version 4.6.1 (2026-06-24 ucrt)
+Platform: x86_64-w64-mingw32/x64
+Running under: Windows 11 x64 (build 26200)
 
 Matrix products: default
-BLAS:   /usr/lib/x86_64-linux-gnu/openblas-pthread/libblas.so.3 
-LAPACK: /usr/lib/x86_64-linux-gnu/openblas-pthread/libopenblasp-r0.3.26.so;  LAPACK version 3.12.0
+  LAPACK version 3.12.1
 
 locale:
-[1] C
+[1] LC_COLLATE=French_France.utf8  LC_CTYPE=French_France.utf8   
+[3] LC_MONETARY=French_France.utf8 LC_NUMERIC=C                  
+[5] LC_TIME=French_France.utf8    
 
-time zone: Etc/UTC
-tzcode source: system (glibc)
+time zone: Europe/Paris
+tzcode source: internal
 
 attached base packages:
 [1] stats     graphics  grDevices datasets  utils     methods   base     
@@ -693,8 +924,8 @@ loaded via a namespace (and not attached):
 [17] tibble_3.3.1       fastmap_1.2.0      yaml_2.3.12        lifecycle_1.0.5   
 [21] compiler_4.6.1     fs_2.1.0           RColorBrewer_1.1-3 htmlwidgets_1.6.4 
 [25] pkgconfig_2.0.3    farver_2.1.2       digest_0.6.39      R6_2.6.1          
-[29] tidyselect_1.2.1   pillar_1.11.1      parallel_4.6.1     magrittr_2.0.5    
-[33] withr_3.0.3        tools_4.6.1        gtable_0.3.6       xml2_1.6.0        </code></pre>
+[29] tidyselect_1.2.1   pillar_1.11.1      magrittr_2.0.5     withr_3.0.3       
+[33] tools_4.6.1        gtable_0.3.6       xml2_1.6.0        </code></pre>
 </div>
 </div>
 </details>

@@ -352,7 +352,7 @@ Christophe Dervieux
 <p><strong>Follow along</strong></p>
 </div>
 <div class="callout-content">
-<p>In <code>day1-intro/</code>, create <strong><code>my-report.qmd</code></strong> with <code>format: html</code>. It is the file the lab starts from. Put this cell at the top: everything we write next assumes it. Fallen behind at any point? Open <code>citations-starter.qmd</code> in the same folder (the finished version of this document) and keep going.</p>
+<p>In <code>day1-intro/</code>, open <strong><code>authoring-starter.qmd</code></strong> and save it as <strong><code>my-report.qmd</code></strong>. It opens with this cell: everything we write next assumes it. Need a completed Part-1 report? Save <code>authoring-checkpoint.qmd</code> (the finished version of this document) as <code>my-report.qmd</code> instead.</p>
 </div>
 </div>
 </div>
@@ -370,11 +370,10 @@ Christophe Dervieux
 <p>You already know Markdown. Quarto adds the research-writing pieces: <strong>figures</strong> and <strong>tables</strong> with captions, <strong>cross-references</strong> (<code>@fig-bill</code>, <code>@tbl-summary</code>, <code>@eq-ratio</code>), <strong>math</strong>, <strong>inline code</strong> that reports numbers from the data, and <strong>callouts</strong>.</p>
 <aside class="notes">
 <ul>
-<li><strong>Say:</strong> “Create <code>day1-intro/my-report.qmd</code>. We will render as we go.”</li>
+<li><strong>Say:</strong> “Save the starter as <code>day1-intro/my-report.qmd</code>. We will render as we go.”</li>
 <li><strong>Watch for:</strong> the setup cell belongs in the document, not the console.</li>
 <li><strong>Catch-up:</strong> no <code>day1-intro/</code>? Use the Setup page and pair them with a neighbor meanwhile.</li>
 <li><strong>Focus:</strong> Quarto additions, not a Markdown lesson.</li>
-<li><strong>Timing:</strong> next four slides, 8–10 min total.</li>
 </ul>
 <style type="text/css">
         span.MJX_Assistive_MathML {
@@ -459,23 +458,23 @@ Table&nbsp;1: Mean bill length per species.
 </figcaption>
 <div aria-describedby="tbl-summary-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div id="tswdcwhcgy" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#tswdcwhcgy table {
+<div id="vmvokvcceu" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#vmvokvcceu table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#tswdcwhcgy thead, #tswdcwhcgy tbody, #tswdcwhcgy tfoot, #tswdcwhcgy tr, #tswdcwhcgy td, #tswdcwhcgy th {
+#vmvokvcceu thead, #vmvokvcceu tbody, #vmvokvcceu tfoot, #vmvokvcceu tr, #vmvokvcceu td, #vmvokvcceu th {
   border-style: none;
 }
 
-#tswdcwhcgy p {
+#vmvokvcceu p {
   margin: 0;
   padding: 0;
 }
 
-#tswdcwhcgy .gt_table {
+#vmvokvcceu .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -501,12 +500,12 @@ Table&nbsp;1: Mean bill length per species.
   border-left-color: #D3D3D3;
 }
 
-#tswdcwhcgy .gt_caption {
+#vmvokvcceu .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#tswdcwhcgy .gt_title {
+#vmvokvcceu .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -518,7 +517,7 @@ Table&nbsp;1: Mean bill length per species.
   border-bottom-width: 0;
 }
 
-#tswdcwhcgy .gt_subtitle {
+#vmvokvcceu .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -530,7 +529,7 @@ Table&nbsp;1: Mean bill length per species.
   border-top-width: 0;
 }
 
-#tswdcwhcgy .gt_heading {
+#vmvokvcceu .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -542,13 +541,13 @@ Table&nbsp;1: Mean bill length per species.
   border-right-color: #D3D3D3;
 }
 
-#tswdcwhcgy .gt_bottom_border {
+#vmvokvcceu .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#tswdcwhcgy .gt_col_headings {
+#vmvokvcceu .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -563,7 +562,7 @@ Table&nbsp;1: Mean bill length per species.
   border-right-color: #D3D3D3;
 }
 
-#tswdcwhcgy .gt_col_heading {
+#vmvokvcceu .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -583,7 +582,7 @@ Table&nbsp;1: Mean bill length per species.
   overflow-x: hidden;
 }
 
-#tswdcwhcgy .gt_column_spanner_outer {
+#vmvokvcceu .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -595,15 +594,15 @@ Table&nbsp;1: Mean bill length per species.
   padding-right: 4px;
 }
 
-#tswdcwhcgy .gt_column_spanner_outer:first-child {
+#vmvokvcceu .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#tswdcwhcgy .gt_column_spanner_outer:last-child {
+#vmvokvcceu .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#tswdcwhcgy .gt_column_spanner {
+#vmvokvcceu .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -615,11 +614,11 @@ Table&nbsp;1: Mean bill length per species.
   width: 100%;
 }
 
-#tswdcwhcgy .gt_spanner_row {
+#vmvokvcceu .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#tswdcwhcgy .gt_group_heading {
+#vmvokvcceu .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -645,7 +644,7 @@ Table&nbsp;1: Mean bill length per species.
   text-align: left;
 }
 
-#tswdcwhcgy .gt_empty_group_heading {
+#vmvokvcceu .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -660,15 +659,15 @@ Table&nbsp;1: Mean bill length per species.
   vertical-align: middle;
 }
 
-#tswdcwhcgy .gt_from_md > :first-child {
+#vmvokvcceu .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#tswdcwhcgy .gt_from_md > :last-child {
+#vmvokvcceu .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#tswdcwhcgy .gt_row {
+#vmvokvcceu .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -687,7 +686,7 @@ Table&nbsp;1: Mean bill length per species.
   overflow-x: hidden;
 }
 
-#tswdcwhcgy .gt_stub {
+#vmvokvcceu .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -700,7 +699,7 @@ Table&nbsp;1: Mean bill length per species.
   padding-right: 5px;
 }
 
-#tswdcwhcgy .gt_stub_row_group {
+#vmvokvcceu .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -714,15 +713,15 @@ Table&nbsp;1: Mean bill length per species.
   vertical-align: top;
 }
 
-#tswdcwhcgy .gt_row_group_first td {
+#vmvokvcceu .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#tswdcwhcgy .gt_row_group_first th {
+#vmvokvcceu .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#tswdcwhcgy .gt_summary_row {
+#vmvokvcceu .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -732,16 +731,16 @@ Table&nbsp;1: Mean bill length per species.
   padding-right: 5px;
 }
 
-#tswdcwhcgy .gt_first_summary_row {
+#vmvokvcceu .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#tswdcwhcgy .gt_first_summary_row.thick {
+#vmvokvcceu .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#tswdcwhcgy .gt_last_summary_row {
+#vmvokvcceu .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -751,7 +750,7 @@ Table&nbsp;1: Mean bill length per species.
   border-bottom-color: #D3D3D3;
 }
 
-#tswdcwhcgy .gt_grand_summary_row {
+#vmvokvcceu .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -761,7 +760,7 @@ Table&nbsp;1: Mean bill length per species.
   padding-right: 5px;
 }
 
-#tswdcwhcgy .gt_first_grand_summary_row {
+#vmvokvcceu .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -771,7 +770,7 @@ Table&nbsp;1: Mean bill length per species.
   border-top-color: #D3D3D3;
 }
 
-#tswdcwhcgy .gt_last_grand_summary_row_top {
+#vmvokvcceu .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -781,11 +780,11 @@ Table&nbsp;1: Mean bill length per species.
   border-bottom-color: #D3D3D3;
 }
 
-#tswdcwhcgy .gt_striped {
+#vmvokvcceu .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#tswdcwhcgy .gt_table_body {
+#vmvokvcceu .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -794,7 +793,7 @@ Table&nbsp;1: Mean bill length per species.
   border-bottom-color: #D3D3D3;
 }
 
-#tswdcwhcgy .gt_footnotes {
+#vmvokvcceu .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -808,7 +807,7 @@ Table&nbsp;1: Mean bill length per species.
   border-right-color: #D3D3D3;
 }
 
-#tswdcwhcgy .gt_footnote {
+#vmvokvcceu .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -817,7 +816,7 @@ Table&nbsp;1: Mean bill length per species.
   padding-right: 5px;
 }
 
-#tswdcwhcgy .gt_sourcenotes {
+#vmvokvcceu .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -831,7 +830,7 @@ Table&nbsp;1: Mean bill length per species.
   border-right-color: #D3D3D3;
 }
 
-#tswdcwhcgy .gt_sourcenote {
+#vmvokvcceu .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -839,72 +838,72 @@ Table&nbsp;1: Mean bill length per species.
   padding-right: 5px;
 }
 
-#tswdcwhcgy .gt_left {
+#vmvokvcceu .gt_left {
   text-align: left;
 }
 
-#tswdcwhcgy .gt_center {
+#vmvokvcceu .gt_center {
   text-align: center;
 }
 
-#tswdcwhcgy .gt_right {
+#vmvokvcceu .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#tswdcwhcgy .gt_font_normal {
+#vmvokvcceu .gt_font_normal {
   font-weight: normal;
 }
 
-#tswdcwhcgy .gt_font_bold {
+#vmvokvcceu .gt_font_bold {
   font-weight: bold;
 }
 
-#tswdcwhcgy .gt_font_italic {
+#vmvokvcceu .gt_font_italic {
   font-style: italic;
 }
 
-#tswdcwhcgy .gt_super {
+#vmvokvcceu .gt_super {
   font-size: 65%;
 }
 
-#tswdcwhcgy .gt_footnote_marks {
+#vmvokvcceu .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#tswdcwhcgy .gt_asterisk {
+#vmvokvcceu .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#tswdcwhcgy .gt_indent_1 {
+#vmvokvcceu .gt_indent_1 {
   text-indent: 5px;
 }
 
-#tswdcwhcgy .gt_indent_2 {
+#vmvokvcceu .gt_indent_2 {
   text-indent: 10px;
 }
 
-#tswdcwhcgy .gt_indent_3 {
+#vmvokvcceu .gt_indent_3 {
   text-indent: 15px;
 }
 
-#tswdcwhcgy .gt_indent_4 {
+#vmvokvcceu .gt_indent_4 {
   text-indent: 20px;
 }
 
-#tswdcwhcgy .gt_indent_5 {
+#vmvokvcceu .gt_indent_5 {
   text-indent: 25px;
 }
 
-#tswdcwhcgy .katex-display {
+#vmvokvcceu .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#tswdcwhcgy div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#vmvokvcceu div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -1330,7 +1329,7 @@ Table&nbsp;1: Mean bill length per species.
 </section>
 <section id="report-to-article" class="slide level2">
 <h2>From report to article</h2>
-<p>You have a clean HTML document. The lab includes a <strong>Part-2 starter</strong> if you need one. To make it a <strong>publication-ready article</strong>, two more things:</p>
+<p>You have a clean HTML document. The lab provides a <strong>completed Part-1 report</strong> if you need one. To make it a <strong>branded, citable article</strong>, add two things:</p>
 <ol type="1">
 <li class="fragment"><strong>citations</strong>: a <code>.bib</code> file and a citation style.</li>
 <li class="fragment"><strong>a typeset PDF</strong> — via <strong>Typst</strong>, bundled in Quarto.</li>
@@ -1351,7 +1350,7 @@ Table&nbsp;1: Mean bill length per species.
 <p><strong>Follow along</strong></p>
 </div>
 <div class="callout-content">
-<p>Back in your editor: add citations to your Part-1 document (or to <code>citations-starter.qmd</code>).</p>
+<p>Back in your editor: add citations to your <strong><code>my-report.qmd</code></strong>. Not finished with Part 1? Save <code>authoring-checkpoint.qmd</code> as <code>my-report.qmd</code> first.</p>
 </div>
 </div>
 </div>
@@ -1397,7 +1396,7 @@ Table&nbsp;1: Mean bill length per species.
 </section>
 <section id="authors" class="slide level2">
 <h2>A real title block</h2>
-<p>A few header lines turn the document into a publication-ready article (name, affiliation, ORCID, abstract):</p>
+<p>A few header lines add publication metadata (name, affiliation, ORCID, and abstract):</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb20-1"><a aria-label="1"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"Bill shape distinguishes Antarctic penguins"</span></span>
 <span id="cb20-2"><a aria-label="2"></a><span class="fu">author</span><span class="kw">:</span></span>
 <span id="cb20-3"><a aria-label="3"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Christophe Dervieux</span></span>
@@ -1521,7 +1520,7 @@ Table&nbsp;1: Mean bill length per species.
 <p><strong>Your turn</strong></p>
 </div>
 <div class="callout-content">
-<p>Back to the <strong><a href="../../labs/quarto/index.html#citations-challenge">Lab</a></strong>, at the <strong>Citations Challenge</strong>: add citations to your own Part-1 file (or the completed <code>citations-starter.qmd</code>), then render it as a <strong>branded Typst PDF</strong>. You’ll finish with a <strong>publication-ready article</strong>, a citable, branded PDF you could submit.</p>
+<p>Back to the <strong><a href="../../labs/quarto/index.html#citations-challenge">Lab</a></strong>, at the <strong>Citations Challenge</strong>: add citations to your <strong><code>my-report.qmd</code></strong> (save <code>authoring-checkpoint.qmd</code> as <code>my-report.qmd</code> if you did not finish Part 1), then render it as a <strong>branded Typst PDF</strong>. You’ll finish with a <strong>branded, citable PDF</strong> ready for further publication work.</p>
 </div>
 </div>
 </div>

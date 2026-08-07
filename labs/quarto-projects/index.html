@@ -361,10 +361,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-target" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Boxplot of penguin body mass in grams for Adelie, Chinstrap and Gentoo species; Gentoo is clearly the heaviest, Adelie and Chinstrap overlap.">
+<div id="fig-target" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Boxplot of penguin body mass in grams for Adelie, Chinstrap and Gentoo species. Gentoo is clearly the heaviest, Adelie and Chinstrap overlap.">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-target-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="index_files/figure-html/fig-target-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Figure&nbsp;1: The analysis page’s figure: body mass by species."><img src="index_files/figure-html/fig-target-1.png" class="img-fluid figure-img" alt="Boxplot of penguin body mass in grams for Adelie, Chinstrap and Gentoo species; Gentoo is clearly the heaviest, Adelie and Chinstrap overlap." width="576"></a>
+<a href="index_files/figure-html/fig-target-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Figure&nbsp;1: The analysis page’s figure: body mass by species."><img src="index_files/figure-html/fig-target-1.png" class="img-fluid figure-img" alt="Boxplot of penguin body mass in grams for Adelie, Chinstrap and Gentoo species. Gentoo is clearly the heaviest, Adelie and Chinstrap overlap." width="576"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-target-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;1: The analysis page’s figure: body mass by species.
@@ -880,7 +880,7 @@ Figure&nbsp;1: The analysis page’s figure: body mass by species.
 <div class="callout-body-container callout-body">
 <p>Your Day-1 document may still declare its own <code>format:</code>. Inside a project, where does <code>format:</code> come from now, and what happens if a page insists on its own?</p>
 <p>Copy the <code>.qmd</code> into <code>day2-projects/</code>, together with <code>references.bib</code> and <code>apa.csl</code> from <code>day1-intro/</code> (the front matter points at them by relative path), add an entry for it in the <code>navbar:</code> list, and re-render.</p>
-<p>A page in a project inherits <code>format:</code> from <code>_quarto.yml</code>. If your file still carries the <code>format: typst</code> from the Day-1 exercise, it keeps building a PDF instead of a page. Drop that key and it builds as HTML like its neighbours. (The shipped <code>penguins-report.qmd</code> declares no <code>format:</code> at all, so there is nothing to drop.)</p>
+<p>A page in a project inherits <code>format:</code> from <code>_quarto.yml</code>. If your file still carries the <code>format: typst</code> from the Day-1 exercise, it keeps building a PDF instead of a page. Drop that key and it builds as HTML like its neighbours. (The shipped <code>penguins-report.qmd</code> declares <code>format: html</code>, which is the same key to drop.)</p>
 <p>Didn’t finish Day 1, or do not have the file? Use <code>solutions/day1/penguins-report.qmd</code> from your exercises download instead.</p>
 </div>
 </div>
@@ -1088,8 +1088,9 @@ Matrix products: default
   LAPACK version 3.12.1
 
 locale:
-[1] C
-system code page: 65001
+[1] LC_COLLATE=French_France.utf8  LC_CTYPE=French_France.utf8   
+[3] LC_MONETARY=French_France.utf8 LC_NUMERIC=C                  
+[5] LC_TIME=French_France.utf8    
 
 time zone: Europe/Paris
 tzcode source: internal
