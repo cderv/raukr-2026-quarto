@@ -56,7 +56,7 @@ By the end, you will have a **polished PDF report**.
 
 Two rounds, each the same shape (**watch → follow along → your turn**):
 
-- Some slides I talk through. A **Follow along** callout opens each hands-on stretch and an
+- Some slides I talk through. A **Follow along** callout opens each hands-on section and an
   **Eyes up** callout closes it.
 - Each round ends with a **hands-on Challenge** in the lab (solutions are folded in for self-checking).
 - A **break** sits between the two rounds.

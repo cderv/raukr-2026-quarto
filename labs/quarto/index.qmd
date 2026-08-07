@@ -272,7 +272,7 @@ selector highlights the element it points to.
 Remove the `axe:` option before you publish.
 :::
 
-### Add a numbered equation *(stretch)*
+### Add a numbered equation *(optional)*
 
 **Goal.** Add the bill-shape ratio (bill length divided by bill depth) as a **numbered display
 equation**, and refer to it from the prose.
@@ -311,7 +311,7 @@ $$ {#eq-ratio}
 ## {{< fa circle-check >}} Checkpoint: the whole document
 A numbered **Figure 1** (the bill scatter, three separate clusters), a numbered **Table 1**, and the
 counts in the right margin. `@fig-bill` and `@tbl-summary` render as live links, with no `?@` markers
-anywhere. If you did the stretch step, you also have a numbered **Equation 1**.
+anywhere. If you completed the optional step, you also have a numbered **Equation 1**.
 :::
 
 **`authoring-checkpoint.qmd` is this same report with every step above applied.** It is already in
@@ -503,7 +503,7 @@ task is to make the species an input to the document. A complete reference is av
 ::::
 
 ::: {.callout-tip collapse="true"}
-## Stretch: dynamic headings and standalone files
+## Optional: dynamic headings and standalone files
 Replace the static `## Species at a glance` heading with a cell that emits Markdown:
 
 ````markdown
@@ -529,7 +529,7 @@ plot inside its HTML file, so the reports do not share a figure-support folder.
 ## {{< fa circle-check >}} You should see
 Rendering with `-P species:Adelie` gives a report whose sentences, figure caption, alt text, point
 count, and plot are all about Adelie. Nothing says Gentoo. Rendering without `-P` produces the
-Gentoo report. If you completed the stretch task, the heading also names the selected species.
+Gentoo report. If you completed the optional task, the heading also names the selected species.
 :::
 
 ::: {.callout-tip collapse="true"}

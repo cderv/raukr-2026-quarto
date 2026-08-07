@@ -47,7 +47,7 @@ its source. A finished reference is in **`solutions/day2/`**.
 > **Goal:** turn the `day2-projects/` pages into a navigable, **branded website** that renders locally to a
 > `_site/` folder.
 
-Complete the four core steps below. The listing is a stretch task. Each step includes a checkpoint,
+Complete the four core steps below. The listing is optional. Each step includes a checkpoint,
 a hint, and a solution.
 
 ::: {.column-margin}
@@ -331,7 +331,7 @@ code-summary: "Show the code"
 Re-render the project. Nothing else changes.
 :::
 
-### Index the reports *(stretch)*
+### Index the reports *(optional)*
 
 *Only start this after the four core steps work.*
 
