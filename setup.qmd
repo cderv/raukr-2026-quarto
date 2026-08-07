@@ -94,16 +94,26 @@ Choose where the materials go: set your R working directory to that folder, then
 usethis::use_course("cderv/raukr-2026-quarto-exercises", destdir = ".")
 ```
 
-`use_course()` unpacks and opens a versioned folder. Its name includes a suffix that changes with
+`use_course()` unpacks a versioned folder and opens it (in RStudio or Positron; from a plain R
+console it sets your working directory to it instead). Its name includes a suffix that changes with
 each update (for example `cderv-raukr-2026-quarto-exercises-d11a9fb/`). This is the **top folder**
 used below. Keep the downloaded ZIP when prompted: you can use it to reset the exercises.
 
 ::: {.callout-important}
 ## In the session, open the day folder — not the top folder
-When a session starts, open that day's folder inside the download:
+When a session starts, work from that day's folder inside the download:
 
-- **Day 1** → open **`day1-intro/`** (double-click `day1-intro.Rproj`).
-- **Day 2** → open **`day2-projects/`** (double-click `day2-projects.Rproj`).
+- **Day 1** → **`day1-intro/`**
+- **Day 2** → **`day2-projects/`**
+
+How you get there depends on your editor:
+
+- **Positron** or **VS Code** — *File ▸ Open Folder…*, then pick the day folder.
+- **RStudio** — double-click the `.Rproj` file inside it (`day1-intro.Rproj`, `day2-projects.Rproj`).
+- **Any R console** — `setwd("<path>/day1-intro")`.
+
+All three do the same thing: they make the day folder your working directory, so the files next to
+your document (`_brand.yml`, `references.bib`) resolve and rendered output is written there.
 
 One download covers both days. Reference answers are in `solutions/day1/` and `solutions/day2/`.
 :::

@@ -20,8 +20,9 @@ The result follows the same path from an analysis to a submission-ready report. 
 :::
 
 ::: {.callout-tip appearance="simple"}
-You are working in the **`day1-intro/`** folder from the exercises download (open `day1-intro.Rproj`).
-See the [Setup page](../../setup.qmd#get-the-materials). Everything you render is written next to
+You are working in the **`day1-intro/`** folder from the exercises download. Open that folder in
+your editor, or make it your working directory in R (see the
+[Setup page](../../setup.qmd#get-the-materials)). Everything you render is written next to
 your files. You start from a file that is already there, `authoring-starter.qmd`, and the other files
 are used later, each at the step that names it (the folder's README lists them).
 :::
@@ -391,9 +392,10 @@ The instructions below use `my-report.qmd` for both routes.
      ```bash
      quarto render my-report.qmd --to typst
      ```
-   - **Editor Render button** — set `format: typst` in the YAML header first, *then* click Render.
-     The button renders whatever `format:` is declared, so while the header still says `format: html`
-     the button gives you HTML, **not** a PDF.
+   - **From the editor** — set `format: typst` in the YAML header first, *then* render (RStudio's
+     **Render** button, or **Quarto: Render Document** in Positron and VS Code). The editor renders
+     whatever `format:` is declared, so while the header still says `format: html` you get HTML,
+     **not** a PDF.
 
    The PDF is written **next to its source** in `day1-intro/`.
 ::::
@@ -451,7 +453,7 @@ For the branded PDF (`day1-intro/_brand.yml` styles it), either force the target
 quarto render my-report.qmd --to typst
 ```
 
-or set `format: typst` in the header and use the editor's Render button.
+or set `format: typst` in the header and render from the editor.
 ::::
 
 **`solutions/day1/penguins-report.qmd` is the complete Day-1 report:** the starter with every step of

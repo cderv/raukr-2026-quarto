@@ -38,7 +38,7 @@ if (exists("penguins", where = asNamespace("datasets")))
 cat("Typst render (proves the chain + caches the Albert Sans brand font)\n")
 sample <- file.path("day1-intro", "sample-typst.qmd")
 if (!file.exists(sample)) {
-  fail(sprintf("%s not found -- run this from the exercises root (open the .Rproj)", sample))
+  fail(sprintf("%s not found -- run this from the top folder of the download", sample))
 } else if (fails > 0L) {
   cat("  [skip] fix the failures above first, then re-run.\n")
 } else {

@@ -10,8 +10,7 @@ One download covers **both** days. No Git or GitHub account needed.
 
 ## Get the files
 
-In R (RStudio or Positron), set your working directory to the folder where you want the materials.
-Then run one line of R:
+In R, set your working directory to the folder where you want the materials. Then run one line of R:
 
 ```r
 # install.packages("usethis")
@@ -23,10 +22,13 @@ Download the ZIP in a browser from the green **Code ▸ Download ZIP** button an
 
 ## Open the right folder
 
-Open the day folder for the session — **not** this top folder:
+Work from the day folder for the session — **not** this top folder:
 
-- **Day 1** → open `day1-intro/` (double-click `day1-intro.Rproj`).
-- **Day 2** → open `day2-projects/` (double-click `day2-projects.Rproj`).
+- **Day 1** → `day1-intro/`
+- **Day 2** → `day2-projects/`
+
+Use *File ▸ Open Folder…* in Positron or VS Code, double-click the `.Rproj` inside the folder in
+RStudio, or `setwd()` to it from any R console. All three make the day folder your working directory.
 
 Each day folder is self-contained (its own working directory and assets), so rendered files are
 written next to their sources. There is no project above them to capture the output.
