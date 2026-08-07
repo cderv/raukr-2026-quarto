@@ -70,6 +70,33 @@ move at your own pace.
 - **Catch-up:** no exercises folder? Use the Setup page and help them run `use_course()`.
 :::
 
+## Setup checkpoint {#setup-check}
+
+::: {.callout-note title="Follow along"}
+From the top folder of your downloaded exercises:
+
+``` r
+source("00-check-setup.R", local = new.env())
+```
+
+Every check reads `[ok]`, and the last line is `>> All good. You are ready for Day 1.`
+:::
+
+No exercises folder yet? Get it first, then run the check:
+
+``` r
+usethis::use_course("cderv/raukr-2026-quarto-exercises")
+```
+
+Any `[FAIL]` line: raise your hand. The fix is on the [Setup page](../../setup.qmd).
+
+::: notes
+- **Do:** ~10 min. Ask for hands: who has every line `[ok]`?
+- **Watch for:** `[FAIL] quarto not found`, and missing `knitr`/`rmarkdown` (the two that stop a render).
+- **Do:** send failures to a helper and start Part 1 on time. They catch up from the Setup page.
+- **Say:** the last check renders the Typst sample, which downloads the workshop fonts. It takes a moment.
+:::
+
 # Part 1: Basics {.center}
 
 Author a document and render it to HTML.
