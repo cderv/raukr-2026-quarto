@@ -540,6 +540,8 @@ Screenshot from the [Quarto documentation](https://quarto.org/docs/tools/positro
 ::: notes
 - **Say:** "This is the same preview, started from Positron."
 - **Point to:** Source / Visual toggle.
+- **Do:** show *File > Open Folder...* on `day1-intro/`. Positron has no `.Rproj`, the folder is the project.
+- **Do:** right-click a folder in the Explorer > **Set as Working Directory in Active Console**, for anyone whose console points elsewhere.
 - **Timing:** cut if running late.
 :::
 
