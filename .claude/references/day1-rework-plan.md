@@ -1,10 +1,10 @@
 # Day-1 rework plan — a starter for the Authoring Challenge, and one role per file
 
-Status: **skeleton, decisions open.** Written 2026-08-07 after a lab review found that Day-1 Part 1
+Status: **three decisions made 2026-08-07, one open.** Written 2026-08-07 after a lab review found that Day-1 Part 1
 hands over the syntax it is meant to teach, and that neither of the two files the lab calls a
-reference is reachable from its tasks. Nothing here is applied. The decisions in § Open decisions
-have to be settled and this file filled in before any lab file is edited; after that, the lab is the
-truth wherever the two differ.
+reference is reachable from its tasks. Nothing here is applied. The two items in § Still open
+have to be settled before any lab file is edited; after that, the lab is the truth wherever the two
+differ.
 
 This finishes a job that was scoped and left half-done. `day2-rework-plan.md` § The problem in one
 line named the defect on 2026-08-03 — *"the fade runs backwards: Day 1 withholds the learning target
@@ -55,56 +55,69 @@ The current naming already fails this, and the participant README has to apologi
 `day1-intro/README.md` says of `citations-starter.qmd` — *"Despite the name, it is not where you
 start."* A file whose README has to deny its own name is misnamed.
 
-## File roles — fill every cell before building
-
-Proposed names are marked *(proposed)*; keeping the existing name is a valid outcome.
+## File roles
 
 | file | starting state | participant edits | final scope | delivery location |
 |---|---|---|---|---|
-| `authoring-starter.qmd` *(proposed, new)* | OPEN — setup cell + prose + final `gt`/`ggplot` with no labels, captions, alt text? | OPEN | OPEN | `day1-intro/` |
-| `authoring-checkpoint.qmd` *(proposed, rename of `citations-starter.qmd`)* | complete Part-1 report | none — read-only fallback | OPEN — does it keep the `eq-ratio` stretch it currently carries? | `day1-intro/` |
-| `my-report.qmd` | created by the participant | Parts 1 and 2 | OPEN — is it still created from nothing, or opened from the starter? | not shipped |
+| `authoring-starter.qmd` *(new)* | setup cell, prose, working `gt` + `ggplot` — no labels, captions or alt text | all Part-1 tasks | the Part-1 target | `day1-intro/` |
+| `authoring-checkpoint.qmd` *(rename of `citations-starter.qmd`)* | complete Part-1 report | none — read-only fallback | **must equal** what Part 1 produces, equation included | `day1-intro/` |
+| `my-report.qmd` | saved from the starter | Parts 1 and 2 | the participant's own copy of the Part-1 target | not shipped |
 | `parameters-starter.qmd` | TODO 1/2/3a/3b | bonus tasks 1-3 | unchanged | `day1-intro/` |
-| `sample-typst.qmd` | complete | none — read-only | unchanged; also rendered by `00-check-setup.R` | `day1-intro/` |
+| `sample-typst.qmd` | complete | none — read-only | gains the showcase material moved out of the solution | `day1-intro/` |
 | `_brand.yml`, `references.bib`, `apa.csl` | complete | none | unchanged | `day1-intro/` |
-| `day1-intro/README.md` | complete | none | must match whatever the roles become | `day1-intro/` |
-| `penguins-report.qmd` | complete | none — read-only | OPEN — see decision 5 | `solutions/day1/` |
+| `day1-intro/README.md` | complete | none | must match the roles above | `day1-intro/` |
+| `penguins-report.qmd` | complete | none — read-only | exactly what starter + tasks produce | `solutions/day1/` |
 | `penguins-by-species.qmd` | complete | none — read-only | bonus reference; two un-tasked deltas to settle | `solutions/day1/` |
 | `references.bib`, `apa.csl` (solution copies) | complete | none | unchanged, so the solution renders standalone | `solutions/day1/` |
 
-## Open decisions
+## Scope guard — this changes guidance, not content
 
-**1. The Part-1 core finish line.** What must be true for a participant to have "done Part 1"? State
-it as one sentence a participant can check themselves.
+The task list is not under review. Every Day-1 task stays, at the tier it has today: the figure, the
+table, the margin element, the accessibility work, the equation. What changes is **where the syntax
+lives** (the doc link and the participant's own lookup, not the task text) and **what the participant
+starts from** (a working document, not an empty file).
 
-**2. Core versus stretch, per task.** Fill the tier column. The `Given` / `Withheld` split is the
-same convention as `day2-rework-plan.md` Part 1.
+The Day-2 plan's core/stretch re-tiering is *not* inherited. Importing it here turns a guidance fix
+into a content review, and a time budget then makes cuts look necessary. It was tried on 2026-08-07
+and rejected — if a later pass finds the slot genuinely over-full, that is its own decision with its
+own evidence, not a side effect of this one.
 
-| # | Task | tier | ~min | Given | Withheld (the work) |
-|---|---|---|---|---|---|
-| 1 | open the starter, render it | core | | | |
-| 2 | cross-referenced figure | OPEN | | | |
-| 3 | cross-referenced table | OPEN | | | |
-| 4 | margin element | OPEN — see decision 3 | | | |
-| 5 | accessibility (alt text, shape, CVD palette) | OPEN | | | |
-| 6 | display equation | OPEN — see decision 3 | | | |
+## Decisions
 
-**3. Do the margin and equation tasks stay?** Both are currently in Part 1 — the margin as core, the
-equation as stretch. Options: keep as is, demote both to stretch, or cut the equation and reclaim the
-minutes for the cross-reference work. Note that `authoring-checkpoint.qmd` already contains the
-equation, so a participant who skips it and picks the checkpoint up gets it done for them.
+**1. File roles — decided.** Add `authoring-starter.qmd` (the bare scaffold) and rename
+`citations-starter.qmd` to `authoring-checkpoint.qmd`. Two clearly-named roles in `day1-intro/`,
+and it retires the name whose own README has to say "despite the name, it is not where you start".
+The rename propagates to every touchpoint in § Delivery consequences.
 
-**4. What Part 2 consumes when Part 1 is unfinished.** Today the answer is
-`citations-starter.qmd`, and it is a different document from both the Part-1 target and the Day-1
-reference. Decide which file Part 2 starts from and make it the same shape as what Part 1 produces.
+**2. Part-2 entry point — decided.** Part 2 starts from `authoring-checkpoint.qmd`, and the
+checkpoint must be **the same document Part 1 produces**, not a parallel one. That equality is the
+fix: today's starter is a different report from the Part-1 target, which is why nothing a participant
+builds can be checked against anything shipped.
 
-**5. Which additions intentionally exceed the tasks.** State this **by axis**, not as a list. The
-current disclaimer at `labs/quarto/index.qmd:155` enumerates three items, and by enumerating it
-certifies everything it omits — a reader sees no mention of table formatting and concludes the
-formatted table is the target. The rr2026 correction states the axis instead ("the correction also
-brands tables and plots in R; for this exercise only the YAML steps count") and that is the model.
+**3. The Day-1 reference — decided.** `solutions/day1/penguins-report.qmd` becomes exactly what
+starter + tasks produce. The showcase material it currently carries beyond the tasks (the `fig-culmen`
+figure, the `gt` formatting stack) moves into `sample-typst.qmd`, which already exists as the branded
+showcase and is already rendered by `00-check-setup.R`. Nothing is deleted — it relocates to the file
+whose role is to go further. This also removes the remote-image render risk from the file the lab
+offers as a download.
 
-Known divergences to rule on, each currently silent:
+## Still open
+
+**A. What the starter ships already applied.** The principle is that participants add Quarto
+features, not R. The accessibility task straddles that line: `#| fig-alt:` is a Quarto cell option,
+but `shape = species` and `scale_color_okabe_ito()` are edits to the `ggplot` call. Decide whether the
+starter ships those two already applied (task keeps only the alt text), or ships the plot without them
+and the task keeps all three (accepting one small R edit, for accessibility). Either way the task
+stays — this is about the starter's contents, not the task list.
+
+**B. How the remaining gap is disclaimed.** Decision 3 closes most of it, but `sample-typst.qmd`
+will now go further than ever, so it needs a note saying **by axis** how — not a list. The current
+disclaimer at `labs/quarto/index.qmd:155` enumerates three items, and by enumerating it certifies
+everything it omits: a reader sees no mention of table formatting and concludes the formatted table
+is the target. The rr2026 correction states the axis instead ("the correction also brands tables and
+plots in R; for this exercise only the YAML steps count") and that is the model.
+
+Divergences decision 3 does **not** resolve, each currently silent:
 
 - the `gt` stack in the reference (`tab_header`, `tab_spanner`, `opt_stylize`) against the three-line
   snippet the task supplies, and against the differently-formatted table in the checkpoint file
@@ -140,11 +153,11 @@ already names three of these; the rest are the ones a rename reaches that an add
 
 1. Comment hygiene first, as its own commit. It is independent and touches Day-2 files, so it must
    not land inside the redesign diff.
-2. Settle § Open decisions, fill this file, get approval. No lab file is edited before this.
+2. Settle § Still open, record the answers here, get approval. No lab file is edited before this.
 3. Wire delivery (§ Delivery consequences) alongside the file that needs it, not after.
 4. Build Part 1: starter, task-first rewrite, per-step doc links, acceptance test stated before the
    work, folded solution ladder.
-5. Reconcile the reference files against decision 5.
+5. Reconcile the reference files against decision 3 and item B.
 
 ## Verification
 
