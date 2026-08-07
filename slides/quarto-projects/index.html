@@ -219,7 +219,7 @@ Christophe Dervieux
 <li><strong>build</strong> a navigable, <strong>branded website</strong> with within-page cross-references.</li>
 <li>make its builds <strong>reproducible</strong>, produce a <strong>publishable folder</strong>, and optionally put it online.</li>
 </ul>
-<p>By the end: the same penguins data, a set of pages (<strong>including yesterday’s report</strong>) grown into a <strong>website your team can publish</strong>.</p>
+<p>By the end, the same penguins data and yesterday’s report will form a <strong>website your team can publish</strong>.</p>
 <aside class="notes">
 <ul>
 <li><strong>Say:</strong> “Yesterday: one <code>.qmd</code> to a branded PDF. Today: many files, one project, then publish.”</li>
@@ -274,7 +274,7 @@ Christophe Dervieux
 <p><strong>Follow along</strong></p>
 </div>
 <div class="callout-content">
-<p>Open your <strong><code>day2-projects/</code></strong> folder from the exercises download: from here we build one project together. Fallen behind at any point? <code>solutions/day2/</code> holds the finished project.</p>
+<p>Open your <strong><code>day2-projects/</code></strong> folder from the exercises download: from here we build one project together. If you fall behind, <code>solutions/day2/</code> contains the finished project.</p>
 </div>
 </div>
 </div>
@@ -324,7 +324,7 @@ Christophe Dervieux
 </div></aside></section>
 <section id="metadata" class="slide level2">
 <h2>Directory metadata: <code>_metadata.yml</code></h2>
-<p>Yesterday a header set the defaults and a cell overrode them. <code>_metadata.yml</code> is that <strong>same idea, one scope wider</strong>: options for every page in a <strong>folder</strong>, so you don’t repeat them in each header:</p>
+<p>Yesterday a header set the defaults and a cell overrode them. <code>_metadata.yml</code> applies the <strong>same principle</strong> to every page in a <strong>folder</strong>, so you do not repeat the options in each header:</p>
 <div class="code-with-filename">
 <div class="code-with-filename-file">
 <pre><strong>analysis/_metadata.yml</strong></pre>
@@ -337,7 +337,7 @@ Christophe Dervieux
 <span id="cb2-6"><a aria-label="6"></a><span class="at">  </span><span class="fu">html</span><span class="kw">:</span></span>
 <span id="cb2-7"><a aria-label="7"></a><span class="at">    </span><span class="fu">code-fold</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>Same narrow-wins rule, now across files: <strong>document header</strong> &gt; <code>_metadata.yml</code> &gt; <code>_quarto.yml</code>. Set defaults wide, override narrow.</p>
+<p>The same precedence rule now applies across files: <strong>document header</strong> &gt; <code>_metadata.yml</code> &gt; <code>_quarto.yml</code>. Set broad defaults, then override them at the document or folder level.</p>
 
 <p><strong>Learn more:</strong> <a href="https://quarto.org/docs/projects/quarto-projects.html#directory-metadata">Directory metadata</a></p>
 <aside class="notes">
@@ -380,7 +380,7 @@ Christophe Dervieux
 <span id="cb3-12"><a aria-label="12"></a><span class="at">    </span><span class="fu">contents</span><span class="kw">:</span><span class="at"> auto</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="fragment">
-<p><code>contents: auto</code> even builds the sidebar from the folder, so you don’t hand-list pages.</p>
+<p><code>contents: auto</code> builds the sidebar from the folder, so you do not need to list every page.</p>
 
 <p><strong>Learn more:</strong> <a href="https://quarto.org/docs/websites/">Websites</a> · <a href="https://quarto.org/docs/websites/website-listings.html">Listings</a></p>
 <aside class="notes">
@@ -417,7 +417,7 @@ Christophe Dervieux
 <p><strong>Eyes up — not a live <em>Follow along</em></strong></p>
 </div>
 <div class="callout-content">
-<p>The next few slides are concept, no need to type along.</p>
+<p>The live build is done. The next slides explain project cross-references.</p>
 </div>
 </div>
 </div>
@@ -444,8 +444,8 @@ Christophe Dervieux
 <p><strong>Learn more:</strong> <a href="https://quarto.org/docs/authoring/cross-references.html">Cross-references</a> · <a href="https://quarto.org/docs/books/book-crossrefs.html">Book cross-references</a></p>
 <aside class="notes">
 <ul>
-<li><strong>Before session:</strong> confirm that a website does not resolve a cross-page <code>@fig-</code> reference.</li>
-<li><strong>If asked — does <code>@sec-</code> need <code>number-sections: true</code>?</strong> No.&nbsp;The reference resolves either way (verified, Quarto 1.10). The option adds the number on the heading, which is why the docs pair them. This site sets it in <code>_quarto.yml</code>, so a demo here shows numbers a participant’s own bare document will not.</li>
+<li><strong>Before session:</strong> confirm that website pages do not resolve cross-page <code>@fig-</code> references.</li>
+<li><strong>If asked:</strong> <code>@sec-</code> resolves without <code>number-sections</code>; the option only numbers the heading.</li>
 </ul>
 <style type="text/css">
         span.MJX_Assistive_MathML {
@@ -522,12 +522,12 @@ Christophe Dervieux
 <p><strong>Your turn — until the break at 15:00</strong></p>
 </div>
 <div class="callout-content">
-<p>Head to the <strong><a href="../../labs/quarto-projects/index.html#website-challenge">Lab</a></strong> and the <strong>Website Challenge</strong>: turn a set of <code>.qmd</code> into a navigable, <strong>branded website</strong>: <code>_quarto.yml</code>, a navbar, and the shared brand. We break at <strong>15:00</strong> and resume at <strong>15:30</strong>.</p>
+<p>Head to the <strong><a href="../../labs/quarto-projects/index.html#website-challenge">Lab</a></strong> and the <strong>Website Challenge</strong>: turn a set of <code>.qmd</code> files into a navigable, <strong>branded website</strong>: <code>_quarto.yml</code>, a navbar, and the shared brand. We break at <strong>15:00</strong> and resume at <strong>15:30</strong>.</p>
 </div>
 </div>
 </div>
 </div>
-<p>You can now structure files into a branded, navigable <strong>website</strong>. After the break we make its builds reproducible and <strong>ship</strong> it.</p>
+<p>You can now structure files into a branded, navigable <strong>website</strong>. After the break we make its builds reproducible and prepare it for publication.</p>
 <aside class="notes">
 <ul>
 <li><strong>Say:</strong> “Website Challenge: project, navigation, brand, folder options, then an optional listing. Work until the break at 15:00; we resume at 15:30.”</li>
@@ -587,10 +587,10 @@ Christophe Dervieux
 </div>
 </div>
 </div>
-<p><strong>freeze</strong> was one line in Day 1. Compute can be slow: you don’t want every prose edit to re-run a 20-minute model fit. Two tools, easily confused:</p>
+<p><strong>freeze</strong> was one line in Day 1. Computations can be slow: you don’t want every prose edit to re-run a 20-minute model fit. Two tools, easily confused:</p>
 <ul>
 <li class="fragment"><strong><code>cache</code></strong>: the <strong>compute engine’s</strong> cache, not Quarto’s. It defers to <em>knitr</em> (R) or <em>Jupyter Cache</em>. Per-<strong>cell</strong>, kept until that cell’s code changes, and it works in a <strong>single document</strong>.</li>
-<li class="fragment"><strong><code>freeze</code></strong>: <strong>Quarto’s</strong> switch for when a document re-executes. <strong>Project-only</strong>: rendering one file always runs it. Results live in <code>_freeze/</code>, refreshed only when its source changes. Commit it and <strong>CI</strong> <em>(the automated build)</em> rebuilds with <strong>no R at all</strong>.</li>
+<li class="fragment"><strong><code>freeze</code></strong>: <strong>Quarto’s</strong> switch for when a document re-executes. <strong>Project-only</strong>: rendering one file always runs it. Results live in <code>_freeze/</code>, refreshed only when its source changes. Once every page has frozen results, <strong>CI</strong> <em>(the automated build)</em> can rebuild those pages without R.</li>
 </ul>
 <div class="fragment">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb6-1"><a aria-label="1"></a><span class="co"># _quarto.yml</span></span>
@@ -630,18 +630,17 @@ Christophe Dervieux
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a aria-label="1"></a><span class="ex">quarto</span> render analysis.qmd     <span class="co"># runs the code, rewrites _freeze/ — commit it with your change</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="fragment">
-<p>The loop: <strong>edit a page → render that one file → commit <code>_freeze/</code></strong>. Once every page has been frozen once, the project build and <strong>CI</strong> stay <strong>R-free</strong>. That’s exactly how <strong>quarto.org</strong> itself is built.</p>
+<p>With <code>freeze: true</code>, the workflow is: <strong>edit a page → render that one file → commit <code>_freeze/</code></strong>. Once every page has been frozen, the project build and <strong>CI</strong> can reuse those results without R. This is how <strong>quarto.org</strong> is built.</p>
 </div>
 <div class="fragment">
-<p><code>freeze: auto</code> instead lets the <em>build</em> recompute a page whose source changed. Convenient, but <code>true</code> keeps the trigger in your hands.</p>
+<p><code>freeze: auto</code> instead lets the <em>build</em> recompute a page whose source changed. With <code>true</code>, you decide when to recompute each page.</p>
 <aside class="notes">
 <ul>
 <li><strong>Say:</strong> “With <code>true</code>, only a direct document render recomputes the page.”</li>
-<li><strong>Precision — don’t say “never runs R”.</strong> A page with no <code>_freeze/</code> entry still executes, and so does a brand-new page added to the project (checked on Quarto 1.10). What <code>true</code> buys is that an <strong>edited</strong> page is not recomputed by the build. “R-free” is the steady state, once every page has been frozen once.</li>
+<li><strong>Watch for:</strong> a page with no <code>_freeze/</code> entry and a new page still execute.</li>
 <li><strong>Do:</strong> edit <code>analysis.qmd</code>; render that file; show <code>_freeze/</code> change. Then render the project.</li>
 <li><strong>Contrast:</strong> <code>auto</code> recomputes changed pages; <code>true</code> requires manual refresh.</li>
 <li><strong>Example:</strong> quarto.org uses <code>true</code> and commits <code>_freeze/</code>.</li>
-<li><strong>Lab:</strong> a guided experiment walks this loop on their own project.</li>
 </ul>
 <style type="text/css">
         span.MJX_Assistive_MathML {
@@ -691,7 +690,7 @@ Christophe Dervieux
 </section>
 <section id="publishing" class="slide level2">
 <h2>Publishing</h2>
-<p>The hands-on part is small: <strong>render, then point a host at <code>output-dir</code>.</strong></p>
+<p>Publishing has two steps: <strong>render the project, then point a host at <code>output-dir</code>.</strong></p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a aria-label="1"></a><span class="ex">quarto</span> render              <span class="co"># builds the whole project into _site/</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ul>
 <li><code>_site/</code> is the whole deliverable. Point any static host at it (an internal server, your department’s pages, a hosting service).</li>
@@ -709,7 +708,7 @@ Christophe Dervieux
 <p><strong>Your turn — optional, if we have time</strong></p>
 </div>
 <div class="callout-content">
-<p>Publish your site and open it on your phone. The lab has the steps. Everyone still leaves with <code>_site/</code>, which is the deliverable either way.</p>
+<p>Publish your site and open it on your phone. The lab has the steps. If you skip publishing, you still have the complete <code>_site/</code> folder.</p>
 </div>
 </div>
 </div>
@@ -745,7 +744,7 @@ Christophe Dervieux
 <p><strong>Your turn</strong></p>
 </div>
 <div class="callout-content">
-<p>Back to the <strong><a href="../../labs/quarto-projects/index.html#ship-it-challenge">Lab</a></strong>, the <strong>Reproducible Build Challenge</strong>: make the build skip unchanged pages, bring <strong>yesterday’s report</strong> onto the site, then run the guided <code>freeze: true</code> experiment. The result is a publishable <code>_site/</code> folder. The dashboard demo and publishing are optional.</p>
+<p>Return to the <strong>Reproducible Build Challenge</strong> in the <strong><a href="../../labs/quarto-projects/index.html#reproducible-build-challenge">Lab</a></strong>. Make the build skip unchanged pages, bring <strong>yesterday’s report</strong> onto the site, then run the guided <code>freeze: true</code> experiment. The result is a publishable <code>_site/</code> folder. The dashboard demo and publishing are optional.</p>
 </div>
 </div>
 </div>
@@ -780,7 +779,7 @@ Christophe Dervieux
 <li>optionally publish the site to Posit Connect Cloud.</li>
 </ul>
 <div class="fragment">
-<p><strong>You’ve built the two axes:</strong> one document to a branded PDF (Day 1), one folder to a site ready to publish (Day 2), with yesterday’s report now a page of it. Everything your <strong>team project</strong> needs.</p>
+<p><strong>You’ve built the two axes:</strong> one document to a branded PDF (Day 1), then one folder to a site ready to publish (Day 2). Yesterday’s report is now a page of that site.</p>
 <aside class="notes">
 <ul>
 <li><strong>Close with:</strong> “Yesterday’s document is now a page of today’s site.”</li>
@@ -802,7 +801,7 @@ Christophe Dervieux
 <h2>Demos (if time)</h2>
 <p>Extra topics:</p>
 <ul>
-<li class="fragment"><strong>Book versus website</strong>: mostly the same machinery. Pick a <strong>book</strong> when you need one linear read with global numbering, a <strong>website</strong> otherwise. <em>(1 decision, not a new toolset.)</em></li>
+<li class="fragment"><strong>Book versus website</strong>: choose a <strong>book</strong> for ordered chapters with global numbering. Choose a <strong>website</strong> for independent pages.</li>
 <li class="fragment"><strong>Interactivity</strong>: an <strong>htmlwidget</strong> (<code>plotly</code>, <code>leaflet</code>) is pure R and self-contained. <strong><a href="https://quarto.org/docs/interactive/ojs/">OJS</a></strong> <em>(Observable JS, a browser-side, non-R path)</em> and <strong><a href="https://quarto-ext.github.io/shinylive/">Shinylive</a></strong> <em>(Shiny running in the browser, no server)</em> are links, not live builds.</li>
 </ul>
 <aside class="notes">

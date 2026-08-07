@@ -193,17 +193,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>penguins <span class="ot">&lt;-</span> penguins <span class="sc">|&gt;</span> <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(bill_len), <span class="sc">!</span><span class="fu">is.na</span>(bill_dep), <span class="sc">!</span><span class="fu">is.na</span>(body_mass))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>This page stands in for the report you built on Day 1. Copy your own <code>my-report.qmd</code> over this file and re-render: the document you wrote as a standalone PDF becomes one page of a website, with no change to its content.</p>
-<p>Only the front matter needed a look. A page inside a project inherits <code>format:</code> from <code>_quarto.yml</code>, so a <code>format: typst</code> left over from the Day-1 payoff would keep building a PDF instead of a page.</p>
+<p>Only the YAML header needs to change. A page inside a project inherits <code>format:</code> from <code>_quarto.yml</code>, so a <code>format: typst</code> left over from the Day-1 document would keep building a PDF instead of a page.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(bill_len, bill_dep, <span class="at">color =</span> species)) <span class="sc">+</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.8</span>) <span class="sc">+</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_okabe_ito</span>() <span class="sc">+</span></span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Bill length (mm)"</span>, <span class="at">y =</span> <span class="st">"Bill depth (mm)"</span>, <span class="at">color =</span> <span class="cn">NULL</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
-<div id="fig-bill" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Scatterplot of bill depth versus bill length in millimeters, colored by species. The three species form separate clusters.">
+<div id="fig-bill" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Scatter plot of bill depth versus bill length in millimeters, colored by species. The three species form separate clusters.">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-bill-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="my-report_files/figure-html/fig-bill-1.png" class="img-fluid figure-img" alt="Scatterplot of bill depth versus bill length in millimeters, colored by species. The three species form separate clusters." width="672">
+<img src="my-report_files/figure-html/fig-bill-1.png" class="img-fluid figure-img" alt="Scatter plot of bill depth versus bill length in millimeters, colored by species. The three species form separate clusters." width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-bill-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;1: Bill depth against bill length, by species.

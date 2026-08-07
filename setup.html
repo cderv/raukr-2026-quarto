@@ -253,7 +253,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Warning</span>On RStudio? The Render button may not use the Quarto you just checked
+<span class="screen-reader-only">Warning</span>Using RStudio? The Render button may use a different Quarto
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
@@ -316,7 +316,7 @@ Tip
 <p>Choose where the materials go: set your R working directory to that folder, then run:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages("usethis")   # once, if you don't have it</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">use_course</span>(<span class="st">"cderv/raukr-2026-quarto-exercises"</span>, <span class="at">destdir =</span> <span class="st">"."</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p><code>use_course()</code> unpacks a versioned folder named after the repository (for example <code>cderv-raukr-2026-quarto-exercises-d11a9fb/</code>, the suffix changes with each update) and opens it. That is the <strong>top folder</strong> the steps below refer to. Keep the downloaded ZIP when prompted: you can use it to reset the exercises.</p>
+<p><code>use_course()</code> unpacks and opens a versioned folder. Its name includes a suffix that changes with each update (for example <code>cderv-raukr-2026-quarto-exercises-d11a9fb/</code>). This is the <strong>top folder</strong> used below. Keep the downloaded ZIP when prompted: you can use it to reset the exercises.</p>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">

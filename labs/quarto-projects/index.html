@@ -200,14 +200,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#scope-options-to-one-folder" id="toc-scope-options-to-one-folder" class="nav-link" data-scroll-target="#scope-options-to-one-folder"><span class="header-section-number">1.4</span> Scope options to one folder</a></li>
   <li><a href="#index-the-reports-stretch" id="toc-index-the-reports-stretch" class="nav-link" data-scroll-target="#index-the-reports-stretch"><span class="header-section-number">1.5</span> Index the reports <em>(stretch)</em></a></li>
   </ul></li>
-  <li><a href="#ship-it-challenge" id="toc-ship-it-challenge" class="nav-link" data-scroll-target="#ship-it-challenge"><span class="header-section-number">2</span> Reproducible Build Challenge</a>
+  <li><a href="#reproducible-build-challenge" id="toc-reproducible-build-challenge" class="nav-link" data-scroll-target="#reproducible-build-challenge"><span class="header-section-number">2</span> Reproducible Build Challenge</a>
   <ul>
   <li><a href="#make-the-build-skip-unchanged-pages" id="toc-make-the-build-skip-unchanged-pages" class="nav-link" data-scroll-target="#make-the-build-skip-unchanged-pages"><span class="header-section-number">2.1</span> Make the build skip unchanged pages</a></li>
   <li><a href="#discuss-together-cache-versus-freeze" id="toc-discuss-together-cache-versus-freeze" class="nav-link" data-scroll-target="#discuss-together-cache-versus-freeze"><span class="header-section-number">2.2</span> Discuss together: <code>cache</code> versus <code>freeze</code></a></li>
   <li><a href="#put-your-day-1-report-on-the-site" id="toc-put-your-day-1-report-on-the-site" class="nav-link" data-scroll-target="#put-your-day-1-report-on-the-site"><span class="header-section-number">2.3</span> Put your Day-1 report on the site</a></li>
   <li><a href="#guided-experiment-freeze-true" id="toc-guided-experiment-freeze-true" class="nav-link" data-scroll-target="#guided-experiment-freeze-true"><span class="header-section-number">2.4</span> Guided experiment: <code>freeze: true</code></a></li>
   <li><a href="#optional-group-demo-inspect-a-dashboard" id="toc-optional-group-demo-inspect-a-dashboard" class="nav-link" data-scroll-target="#optional-group-demo-inspect-a-dashboard"><span class="header-section-number">2.5</span> Optional group demo: inspect a dashboard</a></li>
-  <li><a href="#put-it-online-optional-and-a-good-place-to-stop" id="toc-put-it-online-optional-and-a-good-place-to-stop" class="nav-link" data-scroll-target="#put-it-online-optional-and-a-good-place-to-stop"><span class="header-section-number">2.6</span> Put it online <em>(optional, and a good place to stop)</em></a></li>
+  <li><a href="#put-it-online-optional" id="toc-put-it-online-optional" class="nav-link" data-scroll-target="#put-it-online-optional"><span class="header-section-number">2.6</span> Put it online <em>(optional)</em></a></li>
   </ul></li>
   <li><a href="#troubleshooting" id="toc-troubleshooting" class="nav-link" data-scroll-target="#troubleshooting"><span class="header-section-number">3</span> Troubleshooting</a></li>
   
@@ -251,7 +251,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Turn a set of <code>.qmd</code> files into a navigable, <strong>branded website</strong>. Then use <strong>freeze</strong> for reproducible builds and render the site to a publishable folder. Publishing online is optional. Everything uses base-R <code>datasets::penguins</code> (R ≥ 4.5).</p>
+<p>Turn a set of <code>.qmd</code> files into a navigable, <strong>branded website</strong>. Then use <strong>freeze</strong> to reuse computed results and render the site to a publishable folder. Publishing online is optional. Everything uses base-R <code>datasets::penguins</code> (R ≥ 4.5).</p>
 <p><strong>Before you start:</strong> work through the <strong><a href="../../setup.html">Setup page</a></strong> if you haven’t. Its <code>00-check-setup.R</code> confirms R, Quarto, and the packages this lab uses.</p>
 </div>
 </div>
@@ -259,7 +259,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li><code>index.qmd</code> — a home page</li>
 <li><code>analysis.qmd</code> — a penguins analysis with a figure and a table</li>
-<li><code>reports/methods.qmd</code> and <code>reports/data-notes.qmd</code> — two short supporting pages, in their own folder because you will treat that folder differently later on</li>
+<li><code>reports/methods.qmd</code> and <code>reports/data-notes.qmd</code> — two short supporting pages, in their own folder because you will treat that folder differently later</li>
 </ul>
 <p>Render one page to confirm it works: <code>quarto render analysis.qmd</code> creates <code>analysis.html</code> next to its source. A finished reference is in <strong><code>solutions/day2/</code></strong>.</p>
 <section id="website-challenge" class="level2 page-columns page-full" data-number="1">
@@ -276,7 +276,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="make-it-a-project" class="level3" data-number="1.1">
 <h3 data-number="1.1" class="anchored" data-anchor-id="make-it-a-project"><span class="header-section-number">1.1</span> Make it a project</h3>
 <p><strong>Goal.</strong> Make Quarto treat <code>day2-projects/</code> as one project, so that a single command builds every page in it into an output folder.</p>
-<p>This stanza declares a project. Where it goes, and how you then build the folder, is the work:</p>
+<p>This stanza declares a project. Decide where to put it, then build the folder:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">project</span><span class="kw">:</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">type</span><span class="kw">:</span><span class="at"> website</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">output-dir</span><span class="kw">:</span><span class="at"> _site</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -306,10 +306,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <div id="callout-3" class="callout-3-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p><strong>Ask yourself:</strong></p>
-<p>You have folders above <code>day2-projects/</code> and files inside it. Which one does Quarto look at to decide where a project starts, and in which direction does it search?</p>
-<p><strong>Mechanism:</strong></p>
-<p>Quarto walks <strong>up</strong> from the file being rendered and stops at the <strong>nearest</strong> <code>_quarto.yml</code>. That file marks the project root. Nothing sits above <code>day2-projects/</code> in your download, so a <code>_quarto.yml</code> placed inside it makes that folder the project and nothing else can claim your pages.</p>
+<p>You have folders above <code>day2-projects/</code> and files inside it. Where does Quarto look to decide where a project starts, and in which direction does it search?</p>
+<p>Quarto walks <strong>up</strong> from the file being rendered and stops at the <strong>nearest</strong> <code>_quarto.yml</code>. That file marks the project root. A <code>_quarto.yml</code> inside <code>day2-projects/</code> therefore makes that folder the project root.</p>
 <p>A <code>quarto render</code> with <strong>no file argument</strong> builds the whole project. <code>quarto render index.qmd</code> still builds just the one page.</p>
 </div>
 </div>
@@ -344,8 +342,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="build-the-navigation" class="level3" data-number="1.2">
 <h3 data-number="1.2" class="anchored" data-anchor-id="build-the-navigation"><span class="header-section-number">1.2</span> Build the navigation</h3>
 <p><strong>Goal.</strong> Give the site a title and a top navigation bar, so a reader can move between the home and analysis pages without editing the URL.</p>
-<p>Add <code>index.qmd</code> (Home) and <code>analysis.qmd</code> (Analysis) to the navigation. Give the site the title <strong>Penguin Lab</strong>, and use the ready-made <strong>cosmo</strong> theme so it does not look like raw HTML.</p>
-<p>A second top-level key, <code>website:</code>, sits next to <code>project:</code> and configures the site itself. Filling it in is the work:</p>
+<p>Add <code>index.qmd</code> (Home) and <code>analysis.qmd</code> (Analysis) to the navigation. Give the site the title <strong>Penguin Lab</strong>, and apply the ready-made <strong>cosmo</strong> theme.</p>
+<p>A second top-level key, <code>website:</code>, sits next to <code>project:</code> and configures the site itself. Complete this block:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">website</span><span class="kw">:</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"..."</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">navbar</span><span class="kw">:</span></span>
@@ -393,9 +391,7 @@ Figure&nbsp;1: The analysis page’s figure: body mass by species.
 </div>
 <div id="callout-6" class="callout-6-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p><strong>Ask yourself:</strong></p>
 <p>The theme has nothing to do with navigation. Where do format options live in a <code>.qmd</code> header, and what would the same key look like one level up, in <code>_quarto.yml</code>?</p>
-<p><strong>Mechanism:</strong></p>
 <p><code>_quarto.yml</code> takes a <code>format:</code> key exactly as a document header does, and what you put there applies to every page in the project. <code>theme:</code> is an HTML format option, so it sits under <code>format: html:</code>.</p>
 <p><code>navbar:</code> also takes a <code>right:</code> list if you want entries on the other side.</p>
 </div>
@@ -455,7 +451,7 @@ Figure&nbsp;1: The analysis page’s figure: body mass by species.
 <p>Swap the <code>navbar:</code> block for this, re-render, and compare:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">sidebar</span><span class="kw">:</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">contents</span><span class="kw">:</span><span class="at"> auto</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p><code>contents: auto</code> builds the menu from the files it finds, so you never list pages by hand. It is the right choice for a site that grows. A navbar is the right choice when you want to control exactly what appears and in what order. Put the navbar back before you carry on, or keep both.</p>
+<p><code>contents: auto</code> builds the menu from the files it finds, so you do not need to list every page. It is the right choice for a site that grows. A navbar is the right choice when you want to control exactly what appears and in what order. Put the navbar back before you carry on, or keep both.</p>
 </div>
 </div>
 </div>
@@ -465,7 +461,7 @@ Figure&nbsp;1: The analysis page’s figure: body mass by species.
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Linking pages, and what does not carry across
+<span class="screen-reader-only">Note</span>Linking pages and what does not carry across
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -477,7 +473,7 @@ Figure&nbsp;1: The analysis page’s figure: body mass by species.
 </section>
 <section id="brand-it" class="level3 page-columns page-full" data-number="1.3">
 <h3 data-number="1.3" class="anchored" data-anchor-id="brand-it"><span class="header-section-number">1.3</span> Brand it</h3>
-<p><strong>Goal.</strong> Give the site one shared palette and typeface from a <code>_brand.yml</code>, the same file you met on Day 1.</p>
+<p><strong>Goal.</strong> Give the site one shared palette and typeface from a <code>_brand.yml</code>, the same file you used on Day 1.</p>
 
 <div class="no-row-height column-margin column-container"><div class="">
 <p><i class="fa-solid fa-book-open" aria-label="book-open"></i> <strong>Quarto docs</strong></p>
@@ -525,9 +521,8 @@ Figure&nbsp;1: The analysis page’s figure: body mass by species.
 <div class="callout-body-container callout-body">
 <p>Compare three parts of the rendered site: the body font, the navbar, and the links. The font changes, but the navbar and links remain blue.</p>
 <p><code>theme:</code> takes a <strong>list</strong>, even when you write a single value. So Quarto is already combining something with your <code>cosmo</code>. If two layers both define a primary color, which one would you expect to end up on the page?</p>
-<p><strong>Mechanism:</strong></p>
 <p><code>brand</code> is a theme <strong>layer</strong>, and it is the layer that reads your <code>_brand.yml</code>. A bare <code>theme: cosmo</code> expands to <code>[brand, cosmo]</code>, and <strong>later layers win</strong>. Quarto applies cosmo’s palette after the brand palette, so the site uses cosmo blue.</p>
-<p>The fonts come through whichever way round you write it, which is exactly what makes this look like it worked.</p>
+<p>The fonts apply in either order, which can make the incorrect order look successful.</p>
 </div>
 </div>
 </div>
@@ -552,7 +547,7 @@ Figure&nbsp;1: The analysis page’s figure: body mass by species.
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">html</span><span class="kw">:</span></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">theme</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at">cosmo</span><span class="kw">,</span><span class="at"> brand</span><span class="kw">]</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>Dropping <code>theme:</code> altogether works too: with no named theme to fight, the brand is all there is.</p>
+<p>Dropping <code>theme:</code> altogether works too: with no named theme, the brand layer supplies the theme.</p>
 </div>
 </div>
 </div>
@@ -632,7 +627,7 @@ Figure&nbsp;1: The analysis page’s figure: body mass by species.
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>A table on the home page with one row per page in <code>reports/</code>, showing each title and its description (both pages already carry a <code>description:</code> in their front matter). Add a third page to <code>reports/</code>, re-render, and it appears in the table on its own.</p>
+<p>A table on the home page with one row per page in <code>reports/</code>, showing each title and its description (both pages already carry a <code>description:</code> in their YAML header). Add a third page to <code>reports/</code>, re-render, and it appears in the table on its own.</p>
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
@@ -648,7 +643,7 @@ Figure&nbsp;1: The analysis page’s figure: body mass by species.
 <div id="callout-17" class="callout-17-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>This is a property of one page, not of the whole site. So where does its configuration go, and how does the page say <em>which</em> documents to index?</p>
-<p>A <code>listing:</code> key in the <strong>front matter of <code>index.qmd</code></strong> points at a folder with <code>contents:</code>. Give it an <code>id:</code>, then place the result where you want it on the page with an empty div carrying that id:</p>
+<p>A <code>listing:</code> key in the <strong>YAML header of <code>index.qmd</code></strong> points at a folder with <code>contents:</code>. Give it an <code>id:</code>, then place the result where you want it on the page with an empty div carrying that id:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>::: {#reports}</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Without the <code>id:</code> and the div, the listing renders at the bottom of the page.</p>
@@ -667,7 +662,7 @@ Figure&nbsp;1: The analysis page’s figure: body mass by species.
 </div>
 <div id="callout-18" class="callout-18-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>In the front matter of <code>day2-projects/index.qmd</code>:</p>
+<p>In the YAML header of <code>day2-projects/index.qmd</code>:</p>
 <div class="code-with-filename">
 <div class="code-with-filename-file">
 <pre><strong>day2-projects/index.qmd</strong></pre>
@@ -692,8 +687,8 @@ Figure&nbsp;1: The analysis page’s figure: body mass by species.
 </div>
 </section>
 </section>
-<section id="ship-it-challenge" class="level2 page-columns page-full" data-number="2">
-<h2 data-number="2" class="anchored" data-anchor-id="ship-it-challenge"><span class="header-section-number">2</span> Reproducible Build Challenge</h2>
+<section id="reproducible-build-challenge" class="level2 page-columns page-full" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="reproducible-build-challenge"><span class="header-section-number">2</span> Reproducible Build Challenge</h2>
 <blockquote class="blockquote">
 <p><strong>Goal:</strong> make the project’s builds <strong>reproducible</strong>, bring your own work onto the site, and render it all to a publishable <code>_site/</code> folder.</p>
 </blockquote>
@@ -707,11 +702,11 @@ Figure&nbsp;1: The analysis page’s figure: body mass by species.
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Keep going with your Website Challenge <code>day2-projects/</code>. If you didn’t finish it, open the ready-made <strong><code>solutions/day2/</code></strong> project (a complete Part-1 site) and do the steps below in there.</p>
+<p>Continue in the <code>day2-projects/</code> folder from the Website Challenge. If you didn’t finish it, open the ready-made <strong><code>solutions/day2/</code></strong> project (a complete Part-1 site) and do the steps below in there.</p>
 </div>
 </div>
-<p>If <code>quarto preview</code> is still running, stop it (<code>Ctrl</code> + <code>C</code> in the terminal). The freeze steps below use renders that you start yourself. To check a page after a render, open the built file (for example <code>_site/analysis.html</code>) directly in your browser and reload it.</p>
-<p><strong>Core tasks:</strong> prove that freeze works, then add your Day-1 report to the site. If time is short, stop after those two. The guided <code>freeze: true</code> experiment completes the core. We will compare cache and freeze together. The dashboard demo and publishing are optional.</p>
+<p>If <code>quarto preview</code> is still running, stop it (<code>Ctrl</code> + <code>C</code> in the terminal). Run each render below yourself. To check a page after a render, open the built file (for example <code>_site/analysis.html</code>) directly in your browser and reload it.</p>
+<p><strong>Core tasks:</strong> prove that <code>freeze: auto</code> works, add your Day-1 report to the site, then complete the guided <code>freeze: true</code> experiment. We will compare cache and freeze together. The dashboard demo and publishing are optional.</p>
 
 <div class="no-row-height column-margin column-container"><div class="">
 <p><i class="fa-solid fa-book-open" aria-label="book-open"></i> <strong>Quarto docs</strong></p>
@@ -719,7 +714,7 @@ Figure&nbsp;1: The analysis page’s figure: body mass by species.
 </div></div><section id="make-the-build-skip-unchanged-pages" class="level3" data-number="2.1">
 <h3 data-number="2.1" class="anchored" data-anchor-id="make-the-build-skip-unchanged-pages"><span class="header-section-number">2.1</span> Make the build skip unchanged pages</h3>
 <p><strong>Goal.</strong> Right now every <code>quarto render</code> re-runs all the R on every page, even the pages you have not touched. Make Quarto reuse the previous results for a page whose source has not changed. Then <strong>prove</strong> that it worked.</p>
-<p>Prove that the code did not run again. Use a value that changes on every execution.</p>
+<p>Add a value that changes on every execution so the page shows whether the code ran again.</p>
 <div class="callout callout-style-simple callout-note no-icon callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -745,9 +740,7 @@ Figure&nbsp;1: The analysis page’s figure: body mass by species.
 </div>
 <div id="callout-21" class="callout-21-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p><strong>Ask yourself:</strong></p>
-<p>Two questions, one for each half. For the setting: this is about <em>executing</em> code across the whole project, so which top-level key would carry it? For the proof: what could a cell print that is <strong>guaranteed</strong> to differ between two runs a minute apart?</p>
-<p><strong>Mechanism:</strong></p>
+<p>This is about <em>executing</em> code across the whole project, so which top-level key carries the setting? What could a cell print that is <strong>guaranteed</strong> to differ between two runs a minute apart?</p>
 <p>An <code>execute:</code> key at the top level of <code>_quarto.yml</code> carries execution options for the project. The one you want is <code>freeze</code>, and <code>auto</code> means “re-execute only when this document’s own source changes”.</p>
 <p>For the proof: print the current time. If the value on the page is identical across two renders, the code that produced it did not run.</p>
 </div>
@@ -773,7 +766,7 @@ Figure&nbsp;1: The analysis page’s figure: body mass by species.
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14" data-filename="day2-projects/_quarto.yml"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">execute</span><span class="kw">:</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">freeze</span><span class="kw">:</span><span class="at"> auto</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>For the visible tell, add a cell to <code>analysis.qmd</code>:</p>
+<p>For the visible check, add a cell to <code>analysis.qmd</code>:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">format</span>(<span class="fu">Sys.time</span>()))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Then, from inside <code>day2-projects/</code>:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> render     <span class="co"># runs the code, writes _freeze/ and _site/</span></span>
@@ -788,7 +781,7 @@ Figure&nbsp;1: The analysis page’s figure: body mass by species.
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Why this matters beyond the wait
+<span class="screen-reader-only">Note</span>Why keep <code>_freeze/</code>?
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -799,7 +792,7 @@ Figure&nbsp;1: The analysis page’s figure: body mass by species.
 <section id="discuss-together-cache-versus-freeze" class="level3" data-number="2.2">
 <h3 data-number="2.2" class="anchored" data-anchor-id="discuss-together-cache-versus-freeze"><span class="header-section-number">2.2</span> Discuss together: <code>cache</code> versus <code>freeze</code></h3>
 <p><strong>Goal.</strong> You have now met two things that both avoid re-running code. Explain how they differ and when to use each one.</p>
-<p><code>cache: true</code> came up on the slides earlier today. You have just used <code>freeze: auto</code>. Both skip work. They are not the same mechanism, and only one of them solves the problem you just solved.</p>
+<p>The slides introduced <code>cache: true</code> earlier today. You have just used <code>freeze: auto</code>. Both skip work. They are not the same mechanism, and only one of them solves the problem you just solved.</p>
 <div class="callout callout-style-simple callout-note no-icon callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -851,9 +844,9 @@ Figure&nbsp;1: The analysis page’s figure: body mass by species.
 <div id="callout-25" class="callout-25-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>Where does each one write its results, and would that location normally be committed? Those answers explain their different purposes.</p>
-<p><strong><code>cache</code></strong> is knitr’s chunk cache. It works <em>inside</em> one document, keyed on the chunk, and it is about not re-running an expensive chunk while you iterate on that document. Its cache directory is local scratch, and it is not something you ship.</p>
+<p><strong><code>cache</code></strong> is knitr’s chunk cache. It works <em>inside</em> one document, keyed on the chunk, and avoids re-running an expensive chunk while you iterate on that document. Its cache directory is local and is not normally committed or published.</p>
 <p><strong><code>freeze</code></strong> is a <em>project</em> policy. It stores each document’s rendered results under <code>_freeze/</code>, which you <strong>do</strong> commit, so a later build (including one on a machine with no R) reuses them.</p>
-<p>So: <code>cache</code> for a slow chunk you are iterating on. <code>freeze</code> for making the project buildable without re-running the science. <code>freeze: true</code> goes further than <code>auto</code>: a project build reuses a page’s stored results even after you edit it, so you decide when to refresh by rendering that page on its own.</p>
+<p>Use <code>cache</code> for a slow chunk you are iterating on. Use <code>freeze</code> to make the project buildable without re-running the analysis. <code>freeze: true</code> goes further than <code>auto</code>: a project build reuses a page’s stored results even after you edit it, so you decide when to refresh by rendering that page on its own.</p>
 </div>
 </div>
 </div>
@@ -873,7 +866,7 @@ Figure&nbsp;1: The analysis page’s figure: body mass by species.
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Your Day-1 report opens as a page of the site, reachable from the navigation, styled like the rest of it. Its content is unchanged: the front matter is the only part you edited.</p>
+<p>Your Day-1 report opens as a page of the site, reachable from the navigation, styled like the rest of it. Its content is unchanged: the YAML header is the only part you edited.</p>
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
@@ -889,8 +882,8 @@ Figure&nbsp;1: The analysis page’s figure: body mass by species.
 <div id="callout-27" class="callout-27-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>Your Day-1 document may still declare its own <code>format:</code>. Inside a project, where does <code>format:</code> come from now, and what happens if a page insists on its own?</p>
-<p>Copy the <code>.qmd</code> into <code>day2-projects/</code>, together with <code>references.bib</code> and <code>apa.csl</code> from <code>day1-intro/</code> (the front matter points at them by relative path), add an entry for it in the <code>navbar:</code> list, and re-render.</p>
-<p>A page in a project inherits <code>format:</code> from <code>_quarto.yml</code>. If your file still carries the <code>format: typst</code> from the Day-1 exercise, it keeps building a PDF instead of a page. Drop that key and it builds as HTML like its neighbours. (The shipped <code>penguins-report.qmd</code> declares <code>format: html</code>, which is the same key to drop.)</p>
+<p>Copy the <code>.qmd</code> into <code>day2-projects/</code>, together with <code>references.bib</code> and <code>apa.csl</code> from <code>day1-intro/</code> (the YAML header points at them by relative path), add an entry for it in the <code>navbar:</code> list, and re-render.</p>
+<p>A page in a project inherits <code>format:</code> from <code>_quarto.yml</code>. If your file still carries the <code>format: typst</code> from the Day-1 exercise, it keeps building a PDF instead of a page. Drop that key and it builds as HTML like its neighbors. (The included <code>penguins-report.qmd</code> declares <code>format: html</code>, which is the same key to drop.)</p>
 <p>Didn’t finish Day 1, or do not have the file? Use <code>solutions/day1/penguins-report.qmd</code> from your exercises download instead.</p>
 </div>
 </div>
@@ -907,7 +900,7 @@ Figure&nbsp;1: The analysis page’s figure: body mass by species.
 </div>
 <div id="callout-28" class="callout-28-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>Copy your <code>my-report.qmd</code> into <code>day2-projects/</code>, together with <code>references.bib</code> and <code>apa.csl</code> from <code>day1-intro/</code> (the report cites through them). Drop any <code>format:</code> block from its front matter, and add it to the navbar:</p>
+<p>Copy your <code>my-report.qmd</code> into <code>day2-projects/</code>, together with <code>references.bib</code> and <code>apa.csl</code> from <code>day1-intro/</code> (the report cites through them). Drop any <code>format:</code> block from its YAML header, and add it to the navbar:</p>
 <div class="code-with-filename">
 <div class="code-with-filename-file">
 <pre><strong>day2-projects/_quarto.yml</strong></pre>
@@ -962,11 +955,11 @@ Figure&nbsp;1: The analysis page’s figure: body mass by species.
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> render                <span class="co"># whole project: your edit does not appear</span></span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> render analysis.qmd   <span class="co"># one file: the page refreshes</span></span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> render                <span class="co"># whole project: the refreshed page stays</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>With <code>freeze: true</code>, the workflow is: edit a page, render that file, then build the project without re-running it. Switch back to <code>freeze: auto</code> before you continue. It is the setting to keep here. Use <code>true</code> when project builds must reuse stored results until you deliberately refresh a page.</p>
+<p>With <code>freeze: true</code>, the workflow is: edit a page, render that file, then build the project without re-running it. Switch back to <code>freeze: auto</code> before you continue and keep that setting for the rest of the lab. Use <code>true</code> when project builds must reuse stored results until you deliberately refresh a page.</p>
 </section>
 <section id="optional-group-demo-inspect-a-dashboard" class="level3" data-number="2.5">
 <h3 data-number="2.5" class="anchored" data-anchor-id="optional-group-demo-inspect-a-dashboard"><span class="header-section-number">2.5</span> Optional group demo: inspect a dashboard</h3>
-<p>If time permits, we will inspect this worked example together. You do not need to build a dashboard during the workshop. We will open the <a href="../../labs/quarto-projects/dashboard.html" target="_blank">finished dashboard</a>, then compare it with <code>solutions/day2/dashboard.qmd</code> to see how the same analysis becomes a dashboard.</p>
+<p>This worked example shows how the same analysis becomes a dashboard. Open the <a href="../../labs/quarto-projects/dashboard.html" target="_blank">finished dashboard</a>, then compare it with <code>solutions/day2/dashboard.qmd</code>. You do not need to build it during the workshop.</p>
 <p>Look for four ideas:</p>
 <ul>
 <li><code>format: dashboard</code> changes the output.</li>
@@ -995,8 +988,8 @@ Figure&nbsp;1: The analysis page’s figure: body mass by species.
 <span id="cb20-18"><a href="#cb20-18" aria-hidden="true" tabindex="-1"></a>(the scatter cell and the table cell: each becomes a tab)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>After the group demo, you can optionally copy <code>analysis.qmd</code> to <code>dashboard.qmd</code> and reproduce one part of the layout.</p>
 </section>
-<section id="put-it-online-optional-and-a-good-place-to-stop" class="level3 page-columns page-full" data-number="2.6">
-<h3 data-number="2.6" class="anchored" data-anchor-id="put-it-online-optional-and-a-good-place-to-stop"><span class="header-section-number">2.6</span> Put it online <em>(optional, and a good place to stop)</em></h3>
+<section id="put-it-online-optional" class="level3 page-columns page-full" data-number="2.6">
+<h3 data-number="2.6" class="anchored" data-anchor-id="put-it-online-optional"><span class="header-section-number">2.6</span> Put it online <em>(optional)</em></h3>
 <p><strong>Goal.</strong> Take the <code>_site/</code> folder you have built and put it on a URL you can open on your phone.</p>
 
 <div class="no-row-height column-margin column-container"><div class="">
@@ -1013,7 +1006,7 @@ Figure&nbsp;1: The analysis page’s figure: body mass by species.
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>A browser opens once to sign you in. Then the contents of <code>_site/</code> upload, and you get back a URL that serves your site.</p>
+<p>A browser opens once to sign you in. Then the contents of <code>_site/</code> upload, and Connect Cloud returns a URL for the site.</p>
 </div>
 </div>
 <div class="callout callout-style-default callout-note callout-titled">
@@ -1031,7 +1024,7 @@ Figure&nbsp;1: The analysis page’s figure: body mass by species.
 <p>From inside your project folder:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> publish posit-connect-cloud</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>No repository is needed. Connect Cloud takes the locally rendered files as they are.</p>
-<p>No account, or the sign-in is blocked on your machine? You still have <code>_site/</code>, which was the actual deliverable. Nothing downstream depends on this step.</p>
+<p>If you skip this step, the complete site remains in <code>_site/</code>. Nothing downstream depends on publishing.</p>
 </div>
 </div>
 </div>
@@ -1072,7 +1065,7 @@ Figure&nbsp;1: The analysis page’s figure: body mass by species.
 <li><strong>Render fails with “references.bib not found”?</strong> Your Day-1 report points at <code>references.bib</code> and <code>apa.csl</code> by relative path. Copy both files from <code>day1-intro/</code> into <code>day2-projects/</code>, next to the report, and render again.</li>
 <li><strong>A cross-reference shows <code>?@…</code>?</strong> The cell label must start <code>fig-</code>/<code>tbl-</code>/<code>eq-</code> and be unique, and remember it only resolves <strong>within one page</strong> on a website.</li>
 <li><strong>Freeze didn’t skip the cell?</strong> Under <code>freeze: auto</code> it skips only when the source is <strong>unchanged</strong> since the last build: any edit (prose or code) re-runs that page. Delete <code>_freeze/</code> to force a clean rebuild.</li>
-<li><strong>A page won’t update?</strong> That is <code>freeze: true</code> doing its job: a project render reuses the stored results even after an edit. Render that file directly, or switch back to <code>freeze: auto</code>.</li>
+<li><strong>A page won’t update?</strong> This is expected with <code>freeze: true</code>: a project render reuses the stored results even after an edit. Render that file directly, or switch back to <code>freeze: auto</code>.</li>
 <li><strong>Missing package?</strong> <code>install.packages("&lt;name&gt;")</code> (or <code>renv::restore()</code>) and render again.</li>
 </ul>
 </div>

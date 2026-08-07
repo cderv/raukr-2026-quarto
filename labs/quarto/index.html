@@ -244,7 +244,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Build one penguins document with the authoring extras, then <strong>cite it</strong> and render it as a <strong>branded Typst PDF</strong>. Two challenges, one document: each is its own hands-on part, with a break between them. This is your <strong>manuscript / team-project path</strong>, the same route from an analysis to a submittable write-up. Everything runs on <strong>base-R <code>datasets::penguins</code></strong> (R ≥ 4.5), so there’s no data to download.</p>
+<p>Build one penguins document with the authoring extras, then <strong>cite it</strong> and render it as a <strong>branded Typst PDF</strong>. You will use one document for two challenges, with a break between them. The result follows the same path from an analysis to a submission-ready report. Everything runs on <strong>base-R <code>datasets::penguins</code></strong> (R ≥ 4.5), so there is no data to download.</p>
 <p><strong>Before you start:</strong> work through the <strong><a href="../../setup.html">Setup page</a></strong> if you haven’t. Its <code>00-check-setup.R</code> confirms R, Quarto, and the packages this lab uses.</p>
 </div>
 </div>
@@ -264,7 +264,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Coming from R Markdown? (optional, 2-minute aside)
+<span class="screen-reader-only">Tip</span>Coming from R Markdown? (optional)
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
@@ -276,7 +276,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>cell options move from the chunk header to the <code>#|</code> “hash-pipe” (one YAML option per line).</li>
 <li><code>knitr::convert_chunk_header("doc.Rmd", output = "doc.qmd")</code> does the mechanical part.</li>
 </ul>
-<p>That’s the whole migration. The rest of this lab is native <code>.qmd</code>.</p>
+<p>The rest of this lab uses native <code>.qmd</code>.</p>
 </div>
 </div>
 </div>
@@ -322,8 +322,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <div id="callout-4" class="callout-4-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p><strong>Ask yourself:</strong> how does Quarto learn that this cell is a figure worth numbering, and what to call it in the text?</p>
-<p><strong>Mechanism:</strong> a cell becomes cross-referenceable when its label starts with a known prefix (<code>fig-</code> for a figure) and is unique in the document. The caption is a second cell option. Label, caption and the <code>@fig-something</code> reference work together: a reference with no matching label renders as <code>?@fig-something</code>.</p>
+<p>Which cell options tell Quarto to number this figure, and how do you refer to it in the text?</p>
+<p>A cell becomes cross-referenceable when its label starts with a known prefix (<code>fig-</code> for a figure) and is unique in the document. The caption is a second cell option. Label, caption and the <code>@fig-something</code> reference work together: a reference with no matching label renders as <code>?@fig-something</code>.</p>
 </div>
 </div>
 </div>
@@ -351,7 +351,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="cross-reference-the-table" class="level3" data-number="1.2">
 <h3 data-number="1.2" class="anchored" data-anchor-id="cross-reference-the-table"><span class="header-section-number">1.2</span> Cross-reference the table</h3>
-<p><strong>Goal.</strong> Same mechanic on the summary table under <strong>Mean measurements</strong>: a numbered, captioned <strong>Table 1</strong>, introduced by a sentence that links to it. The <code>gt</code> call is already written.</p>
+<p><strong>Goal.</strong> Apply the same method to the summary table under <strong>Mean measurements</strong>: a numbered, captioned <strong>Table 1</strong>, introduced by a sentence that links to it. The <code>gt</code> call is already written.</p>
 <p>Docs: <a href="https://quarto.org/docs/authoring/cross-references.html#tables">Cross-references for tables</a>.</p>
 <div class="callout callout-style-simple callout-note no-icon callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -378,8 +378,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <div id="callout-7" class="callout-7-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p><strong>Ask yourself:</strong> figures and tables are numbered in separate sequences, so which label tells Quarto this one is a table?</p>
-<p><strong>Mechanism:</strong> <code>#| label: tbl-summary</code> and <code>#| tbl-cap:</code> on the cell, <code>@tbl-summary</code> in the prose. The prefix decides both the sequence and the word (“Figure”, “Table”) Quarto prints.</p>
+<p>Figures and tables are numbered in separate sequences. Which label prefix tells Quarto this one is a table?</p>
+<p>Use <code>#| label: tbl-summary</code> and <code>#| tbl-cap:</code> on the cell, then <code>@tbl-summary</code> in the prose. The prefix decides both the sequence and the word (“Figure”, “Table”) Quarto prints.</p>
 </div>
 </div>
 </div>
@@ -433,8 +433,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <div id="callout-10" class="callout-10-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p><strong>Ask yourself:</strong> the R does not change, so where do you tell Quarto that this output belongs somewhere else on the page?</p>
-<p><strong>Mechanism:</strong> <code>#| column: margin</code> on the cell. That option also takes <code>body</code>, <code>body-outset</code>, <code>page</code> and <code>screen</code>. For prose rather than cell output, use a <code>::: {.column-margin}</code> div.</p>
+<p>The R code does not change. Where do you tell Quarto that its output belongs elsewhere on the page?</p>
+<p>Add <code>#| column: margin</code> to the cell. That option also takes <code>body</code>, <code>body-outset</code>, <code>page</code> and <code>screen</code>. For prose rather than cell output, use a <code>::: {.column-margin}</code> div.</p>
 </div>
 </div>
 </div>
@@ -500,8 +500,8 @@ Figure&nbsp;1: Target: bill length versus depth by species.
 </div>
 <div id="callout-13" class="callout-13-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p><strong>Ask yourself:</strong> someone who cannot separate your three colors needs a second way to tell the species apart. What else can <code>aes()</code> map? And where would a <em>description</em> of the plot go, when everything else about this figure is a cell option?</p>
-<p><strong>Mechanism:</strong> map <code>shape = species</code> alongside <code>color = species</code> in <code>aes()</code>, and add <code>scale_color_okabe_ito()</code>. The description is the cell option <code>#| fig-alt:</code>. It is not the caption: the alt text stands in for the image, so it describes what the plot <em>shows</em>, not what it <em>is</em>.</p>
+<p>Someone who cannot separate the three colors needs a second way to tell the species apart. What else can <code>aes()</code> map? Where does the plot description go when the other figure settings are cell options?</p>
+<p>Map <code>shape = species</code> alongside <code>color = species</code> in <code>aes()</code>, and add <code>scale_color_okabe_ito()</code>. The description is the cell option <code>#| fig-alt:</code>. It is not the caption: the alt text stands in for the image, so it describes what the plot <em>shows</em>, not what it <em>is</em>.</p>
 </div>
 </div>
 </div>
@@ -578,8 +578,8 @@ Figure&nbsp;1: Target: bill length versus depth by species.
 </div>
 <div id="callout-17" class="callout-17-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p><strong>Ask yourself:</strong> display math is not a cell, so the label cannot be a cell option. Where else could it attach?</p>
-<p><strong>Mechanism:</strong> the label is an attribute on the closing <code>$$</code>, written <code>{#eq-ratio}</code>. The <code>eq-</code> prefix makes it a numbered equation, and <code>@eq-ratio</code> links to it like <code>@fig-</code> and <code>@tbl-</code>.</p>
+<p>Display math is not a cell, so the label cannot be a cell option. Where can you attach it?</p>
+<p>The label is an attribute on the closing <code>$$</code>, written <code>{#eq-ratio}</code>. The <code>eq-</code> prefix makes it a numbered equation, and <code>@eq-ratio</code> links to it like <code>@fig-</code> and <code>@tbl-</code>.</p>
 </div>
 </div>
 </div>
@@ -635,7 +635,13 @@ Figure&nbsp;1: Target: bill length versus depth by species.
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>If you finished the Authoring Challenge, keep going in your own <strong><code>my-report.qmd</code></strong>. Otherwise open <strong><code>day1-intro/authoring-checkpoint.qmd</code></strong> (the same report with Part 1 already done), save a copy of it as <strong><code>my-report.qmd</code></strong> in that same <code>day1-intro/</code> folder (next to <code>references.bib</code> / <code>apa.csl</code> / <code>_brand.yml</code>, which the steps below resolve by name), and continue from there. From here on the instructions say <code>my-report.qmd</code>, whichever route you took.</p>
+<p>If you finished the Authoring Challenge, continue in <strong><code>my-report.qmd</code></strong>. Otherwise:</p>
+<ol type="1">
+<li>Open <strong><code>day1-intro/authoring-checkpoint.qmd</code></strong> (the completed Part-1 report).</li>
+<li>Save a copy as <strong><code>my-report.qmd</code></strong> in <code>day1-intro/</code>, next to <code>references.bib</code>, <code>apa.csl</code>, and <code>_brand.yml</code>.</li>
+<li>Continue in that copy.</li>
+</ol>
+<p>The instructions below use <code>my-report.qmd</code> for both routes.</p>
 </div>
 </div>
 <div class="callout callout-style-default callout-note no-icon callout-titled">
@@ -663,8 +669,8 @@ Figure&nbsp;1: Target: bill length versus depth by species.
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">author</span><span class="kw">:</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Your Name</span></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">affiliation</span><span class="kw">:</span><span class="at"> Your Lab, Your University</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
-<li><p>Render to HTML and confirm both citations resolve, to <em>(Gorman et al., 2014)</em> and <em>(Horst et al., 2020)</em>, with a reference list holding both entries.</p></li>
-<li><p>Switch the output to <strong>Typst</strong> and render a branded PDF. The branding comes from <code>_brand.yml</code>, which Quarto only picks up when it sits next to your <code>.qmd</code>, so keep <code>my-report.qmd</code> in <code>day1-intro/</code>. You may see <code>unknown font family</code> warnings on the first render. See Troubleshooting if the final PDF still uses a serif font. Two routes:</p>
+<li><p>Render to HTML and confirm that both citations resolve as <em>(Gorman et al., 2014)</em> and <em>(Horst et al., 2020)</em>, with a reference list holding both entries.</p></li>
+<li><p>Switch the output to <strong>Typst</strong> and render a branded PDF. The branding comes from <code>_brand.yml</code>, which Quarto reads next to the document you render, so keep <code>my-report.qmd</code> in <code>day1-intro/</code>. You may see <code>unknown font family</code> warnings on the first render. See Troubleshooting if the final PDF still uses a serif font. Two routes:</p>
 <ul>
 <li><p><strong>CLI</strong> — leave the header as-is and force the target:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> render my-report.qmd <span class="at">--to</span> typst</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
@@ -707,7 +713,7 @@ Figure&nbsp;1: Target: bill length versus depth by species.
 <li>The <code>@key</code> in <code>[@gorman2014]</code> must match a key in <code>references.bib</code> <strong>exactly</strong>.</li>
 <li><code>csl:</code> sets the style (here APA). Swap the file to restyle every citation at once.</li>
 <li>Typst reads the <code>.bib</code> itself, so keep bibliography fields plain (avoid LaTeX macros like <code>\emph{}</code> in titles).</li>
-<li>On the first Typst render, Quarto downloads the brand’s Google fonts. Give it a moment and a network connection.</li>
+<li>The first Typst render requires a network connection while Quarto downloads the brand’s Google fonts.</li>
 </ul>
 </div>
 </div>
@@ -718,7 +724,7 @@ Figure&nbsp;1: Target: bill length versus depth by species.
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Solution: the header and the cite
+<span class="screen-reader-only">Note</span>Solution: the header and citations
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
@@ -748,9 +754,9 @@ Figure&nbsp;1: Target: bill length versus depth by species.
 <section id="sec-parameters" class="level2 page-columns page-full" data-number="3">
 <h2 data-number="3" class="anchored" data-anchor-id="sec-parameters"><span class="header-section-number">3</span> Bonus — one report per species (optional)</h2>
 <blockquote class="blockquote">
-<p><strong>Goal:</strong> turn a report into a <em>parameterized</em> one: a single source that renders a <strong>separate report per species</strong> by passing the species in at render time. This is the “one QC report per sample / one summary per cohort” pattern. Fully optional, so skip it if you’re short on time.</p>
+<p><strong>Goal:</strong> turn a report into a <em>parameterized</em> one: a single source that renders a <strong>separate report per species</strong> by passing the species at render time. This section is optional. Skip it if time is short.</p>
 </blockquote>
-<p>A <strong>parameter</strong> is a value declared in the YAML that your code can read as <code>params$…</code>. Change the value at render time and the <em>same document</em> produces a different report. No copy-paste.</p>
+<p>A <strong>parameter</strong> is a value declared in the YAML that your code can read as <code>params$…</code>. Change the value at render time and the <em>same document</em> produces a different report. You do not need separate source files.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
