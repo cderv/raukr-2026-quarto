@@ -251,11 +251,24 @@ Naming both `color` and `shape` in `labs()` merges them into a single legend.
 
 ::: {.callout-tip icon=false}
 ## {{< fa universal-access >}} Optional accessibility check
-Your figure now has alt text and redundant color/shape encoding. To check the whole page:
+Your figure now has alt text and redundant color/shape encoding. To check the whole page, Quarto can
+run [axe-core](https://quarto.org/docs/output-formats/html-accessibility.html) in the browser.
 
-- add `axe: {output: document}` under `format: html`, re-preview, and a WCAG report appears on the
-  page (drop it again before you publish). See
-  [Quarto's accessibility docs](https://quarto.org/docs/output-formats/html-accessibility.html).
+Your header still has `format: html` on one line. The option belongs under that format, so expand it
+into a block:
+
+``` yaml
+format:
+  html:
+    axe:
+      output: document
+```
+
+Re-render, and a panel appears at the bottom of the page. With nothing to report it reads **No
+axe-core violations found.** Otherwise each violation is listed with its impact and WCAG criterion,
+and hovering a selector highlights the element it points to.
+
+Remove the `axe:` option before you publish.
 :::
 
 ### Add a numbered equation *(stretch)*
