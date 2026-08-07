@@ -84,7 +84,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../../site_libs/bootstrap/bootstrap-b8d700a12815945d361949975eb5514c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark-ea68f2e7d89f7d34e3f3ff1f29f3421c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-dark-d75dcb064f492e799e37e2ab7798086a.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <link href="../../site_libs/bootstrap/bootstrap-b8d700a12815945d361949975eb5514c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <link href="../../site_libs/quarto-contrib/fontawesome6-1.2.0/all.min.css" rel="stylesheet">
 <link href="../../site_libs/quarto-contrib/fontawesome6-1.2.0/latex-fontsize.css" rel="stylesheet">
@@ -370,7 +370,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#build-the-navigation" id="toc-build-the-navigation" class="nav-link" data-scroll-target="#build-the-navigation"><span class="header-section-number">1.2</span> Build the navigation</a></li>
   <li><a href="#brand-it" id="toc-brand-it" class="nav-link" data-scroll-target="#brand-it"><span class="header-section-number">1.3</span> Brand it</a></li>
   <li><a href="#scope-options-to-one-folder" id="toc-scope-options-to-one-folder" class="nav-link" data-scroll-target="#scope-options-to-one-folder"><span class="header-section-number">1.4</span> Scope options to one folder</a></li>
-  <li><a href="#index-the-reports-stretch" id="toc-index-the-reports-stretch" class="nav-link" data-scroll-target="#index-the-reports-stretch"><span class="header-section-number">1.5</span> Index the reports <em>(stretch)</em></a></li>
+  <li><a href="#index-the-reports-optional" id="toc-index-the-reports-optional" class="nav-link" data-scroll-target="#index-the-reports-optional"><span class="header-section-number">1.5</span> Index the reports <em>(optional)</em></a></li>
   </ul></li>
   <li><a href="#reproducible-build-challenge" id="toc-reproducible-build-challenge" class="nav-link" data-scroll-target="#reproducible-build-challenge"><span class="header-section-number">2</span> Reproducible Build Challenge</a>
   <ul>
@@ -428,7 +428,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><strong>Before you start:</strong> work through the <strong><a href="../../setup.html">Setup page</a></strong> if you haven’t. Its <code>00-check-setup.R</code> confirms R, Quarto, and the packages this lab uses.</p>
 </div>
 </div>
-<p><strong>Starting point.</strong> Open your <strong><code>day2-projects/</code></strong> folder from the exercises download (double-click <code>day2-projects.Rproj</code>, see the <a href="../../setup.html#get-the-materials">Setup page</a>). It holds four content pages that already render on their own but are <strong>not yet a project</strong>:</p>
+<p><strong>Starting point.</strong> Open the <strong><code>day2-projects/</code></strong> folder from the exercises download in your editor, or make it your working directory in R (see the <a href="../../setup.html#get-the-materials">Setup page</a>). It holds four content pages that already render on their own but are <strong>not yet a project</strong>:</p>
 <ul>
 <li><code>index.qmd</code> — a home page</li>
 <li><code>analysis.qmd</code> — a penguins analysis with a figure and a table</li>
@@ -440,7 +440,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <blockquote class="blockquote">
 <p><strong>Goal:</strong> turn the <code>day2-projects/</code> pages into a navigable, <strong>branded website</strong> that renders locally to a <code>_site/</code> folder.</p>
 </blockquote>
-<p>Complete the four core steps below. The listing is a stretch task. Each step includes a checkpoint, a hint, and a solution.</p>
+<p>Complete the four core steps below. The listing is optional. Each step includes a checkpoint, a hint, and a solution.</p>
 
 <div class="no-row-height column-margin column-container"><div class="">
 <p><i class="fa-solid fa-book-open" aria-label="book-open"></i> <strong>Quarto docs</strong></p>
@@ -785,12 +785,15 @@ Figure&nbsp;1: The analysis page’s figure: body mass by species.
 </div>
 </div>
 </section>
-<section id="index-the-reports-stretch" class="level3" data-number="1.5">
-<h3 data-number="1.5" class="anchored" data-anchor-id="index-the-reports-stretch"><span class="header-section-number">1.5</span> Index the reports <em>(stretch)</em></h3>
+<section id="index-the-reports-optional" class="level3 page-columns page-full" data-number="1.5">
+<h3 data-number="1.5" class="anchored" data-anchor-id="index-the-reports-optional"><span class="header-section-number">1.5</span> Index the reports <em>(optional)</em></h3>
 <p><em>Only start this after the four core steps work.</em></p>
 <p><strong>Goal.</strong> Put a table of the <code>reports/</code> pages on the home page, built by Quarto rather than typed by you, so that adding a page there shows up without editing <code>index.qmd</code>.</p>
-<p>Docs: <a href="https://quarto.org/docs/websites/website-listings.html">Website listings</a>.</p>
-<div class="callout callout-style-simple callout-note no-icon callout-titled">
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p><i class="fa-solid fa-book-open" aria-label="book-open"></i> <strong>Quarto docs</strong></p>
+<p><a href="https://quarto.org/docs/websites/website-listings.html">Website listings</a></p>
+</div></div><div class="callout callout-style-simple callout-note no-icon callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>

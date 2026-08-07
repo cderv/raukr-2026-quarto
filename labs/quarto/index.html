@@ -84,7 +84,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../../site_libs/bootstrap/bootstrap-b8d700a12815945d361949975eb5514c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark-ea68f2e7d89f7d34e3f3ff1f29f3421c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-dark-d75dcb064f492e799e37e2ab7798086a.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <link href="../../site_libs/bootstrap/bootstrap-b8d700a12815945d361949975eb5514c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <link href="../../site_libs/quarto-contrib/fontawesome6-1.2.0/all.min.css" rel="stylesheet">
 <link href="../../site_libs/quarto-contrib/fontawesome6-1.2.0/latex-fontsize.css" rel="stylesheet">
@@ -370,7 +370,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#cross-reference-the-table" id="toc-cross-reference-the-table" class="nav-link" data-scroll-target="#cross-reference-the-table"><span class="header-section-number">1.2</span> Cross-reference the table</a></li>
   <li><a href="#move-the-counts-into-the-margin" id="toc-move-the-counts-into-the-margin" class="nav-link" data-scroll-target="#move-the-counts-into-the-margin"><span class="header-section-number">1.3</span> Move the counts into the margin</a></li>
   <li><a href="#make-the-figure-accessible" id="toc-make-the-figure-accessible" class="nav-link" data-scroll-target="#make-the-figure-accessible"><span class="header-section-number">1.4</span> Make the figure accessible</a></li>
-  <li><a href="#add-a-numbered-equation-stretch" id="toc-add-a-numbered-equation-stretch" class="nav-link" data-scroll-target="#add-a-numbered-equation-stretch"><span class="header-section-number">1.5</span> Add a numbered equation <em>(stretch)</em></a></li>
+  <li><a href="#add-a-numbered-equation-optional" id="toc-add-a-numbered-equation-optional" class="nav-link" data-scroll-target="#add-a-numbered-equation-optional"><span class="header-section-number">1.5</span> Add a numbered equation <em>(optional)</em></a></li>
   </ul></li>
   <li><a href="#citations-challenge" id="toc-citations-challenge" class="nav-link" data-scroll-target="#citations-challenge"><span class="header-section-number">2</span> Citations Challenge</a></li>
   <li><a href="#sec-parameters" id="toc-sec-parameters" class="nav-link" data-scroll-target="#sec-parameters"><span class="header-section-number">3</span> Bonus — one report per species (optional)</a></li>
@@ -427,7 +427,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <i class="callout-icon"></i>
 </div>
 <div class="callout-body-container">
-<p>You are working in the <strong><code>day1-intro/</code></strong> folder from the exercises download (open <code>day1-intro.Rproj</code>). See the <a href="../../setup.html#get-the-materials">Setup page</a>. Everything you render is written next to your files. You start from a file that is already there, <code>authoring-starter.qmd</code>, and the other files are used later, each at the step that names it (the folder’s README lists them).</p>
+<p>You are working in the <strong><code>day1-intro/</code></strong> folder from the exercises download. Open that folder in your editor, or make it your working directory in R (see the <a href="../../setup.html#get-the-materials">Setup page</a>). Everything you render is written next to your files. You start from a file that is already there, <code>authoring-starter.qmd</code>, and the other files are used later, each at the step that names it (the folder’s README lists them).</p>
 </div>
 </div>
 </div>
@@ -460,17 +460,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </blockquote>
 <p><strong>Starting point.</strong> Open <strong><code>day1-intro/authoring-starter.qmd</code></strong> and save it as <strong><code>my-report.qmd</code></strong>, in that same folder (next to <code>references.bib</code> / <code>apa.csl</code> / <code>_brand.yml</code>, so Part 2’s paths and branding resolve later). Render it once to confirm it works, then re-render after every step below.</p>
 <p>The starter is already a working report, but it has no numbering, captions, cross-references, or alt text. Most steps require no R changes. The accessibility step makes two small changes to the plot.</p>
+<p>Missing the download? Take the source directly:</p>
+<p><a class="btn btn-primary btn-sm" href="https://raw.githubusercontent.com/cderv/raukr-2026-quarto-exercises/main/day1-intro/authoring-starter.qmd" role="button" target="_blank"><i class="fa-solid fa-download" aria-label="download"></i> authoring-starter.qmd</a></p>
+<section id="cross-reference-the-figure" class="level3 page-columns page-full" data-number="1.1">
+<h3 data-number="1.1" class="anchored" data-anchor-id="cross-reference-the-figure"><span class="header-section-number">1.1</span> Cross-reference the figure</h3>
+<p><strong>Goal.</strong> Turn the scatter plot into a <strong>numbered figure with a caption</strong>, and refer to that number from the prose. Two edits: an option on the <strong>cell</strong>, and a reference in the <strong>body text</strong> above it.</p>
 
 <div class="no-row-height column-margin column-container"><div class="">
 <p><i class="fa-solid fa-book-open" aria-label="book-open"></i> <strong>Quarto docs</strong></p>
-<p><a href="https://quarto.org/docs/authoring/cross-references.html">Cross-references</a> · <a href="https://quarto.org/docs/authoring/article-layout.html">Article layout</a> · <a href="https://quarto.org/docs/output-formats/html-accessibility.html">Accessibility</a></p>
-</div></div><p>Missing the download? Take the source directly:</p>
-<p><a class="btn btn-primary btn-sm" href="https://raw.githubusercontent.com/cderv/raukr-2026-quarto-exercises/main/day1-intro/authoring-starter.qmd" role="button" target="_blank"><i class="fa-solid fa-download" aria-label="download"></i> authoring-starter.qmd</a></p>
-<section id="cross-reference-the-figure" class="level3" data-number="1.1">
-<h3 data-number="1.1" class="anchored" data-anchor-id="cross-reference-the-figure"><span class="header-section-number">1.1</span> Cross-reference the figure</h3>
-<p><strong>Goal.</strong> Turn the scatter plot into a <strong>numbered figure with a caption</strong>, and refer to that number from the prose. Two edits: an option on the <strong>cell</strong>, and a reference in the <strong>body text</strong> above it.</p>
-<p>Docs: <a href="https://quarto.org/docs/authoring/cross-references.html">Cross-references</a>.</p>
-<div class="callout callout-style-simple callout-note no-icon callout-titled">
+<p><a href="https://quarto.org/docs/authoring/cross-references.html">Cross-references</a></p>
+</div></div><div class="callout callout-style-simple callout-note no-icon callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
@@ -522,11 +521,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="cross-reference-the-table" class="level3" data-number="1.2">
+<section id="cross-reference-the-table" class="level3 page-columns page-full" data-number="1.2">
 <h3 data-number="1.2" class="anchored" data-anchor-id="cross-reference-the-table"><span class="header-section-number">1.2</span> Cross-reference the table</h3>
 <p><strong>Goal.</strong> Apply the same method to the summary table under <strong>Mean measurements</strong>: a numbered, captioned <strong>Table 1</strong>, introduced by a sentence that links to it. The <code>gt</code> call is already written.</p>
-<p>Docs: <a href="https://quarto.org/docs/authoring/cross-references.html#tables">Cross-references for tables</a>.</p>
-<div class="callout callout-style-simple callout-note no-icon callout-titled">
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p><i class="fa-solid fa-book-open" aria-label="book-open"></i> <strong>Quarto docs</strong></p>
+<p><a href="https://quarto.org/docs/authoring/cross-references.html#tables">Cross-references for tables</a></p>
+</div></div><div class="callout callout-style-simple callout-note no-icon callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
@@ -577,11 +579,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="move-the-counts-into-the-margin" class="level3" data-number="1.3">
+<section id="move-the-counts-into-the-margin" class="level3 page-columns page-full" data-number="1.3">
 <h3 data-number="1.3" class="anchored" data-anchor-id="move-the-counts-into-the-margin"><span class="header-section-number">1.3</span> Move the counts into the margin</h3>
 <p><strong>Goal.</strong> Put the species-counts table in the <strong>right margin</strong>, beside the paragraph that mentions it, instead of in the main text column.</p>
-<p>Docs: <a href="https://quarto.org/docs/authoring/article-layout.html">Article layout</a>.</p>
-<div class="callout callout-style-simple callout-note no-icon callout-titled">
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p><i class="fa-solid fa-book-open" aria-label="book-open"></i> <strong>Quarto docs</strong></p>
+<p><a href="https://quarto.org/docs/authoring/article-layout.html">Article layout</a></p>
+</div></div><div class="callout callout-style-simple callout-note no-icon callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
@@ -629,12 +634,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="make-the-figure-accessible" class="level3" data-number="1.4">
+<section id="make-the-figure-accessible" class="level3 page-columns page-full" data-number="1.4">
 <h3 data-number="1.4" class="anchored" data-anchor-id="make-the-figure-accessible"><span class="header-section-number">1.4</span> Make the figure accessible</h3>
 <p><strong>Goal.</strong> Make the figure readable by someone who cannot distinguish the colors, and by someone using a screen reader.</p>
 <p>The plot separates species by <strong>color alone</strong>, in ggplot2’s default palette, which is not color-blind-safe. This is the one step that edits the R: two changes to the plot, one option on the cell. <code>ggokabeito</code> is already loaded in the setup cell.</p>
-<p>Docs: <a href="https://quarto.org/docs/output-formats/html-accessibility.html">HTML accessibility</a> · <a href="https://quarto.org/docs/authoring/figures.html#alt-text">Figure alt text</a>.</p>
-<div class="callout callout-style-simple callout-note no-icon callout-titled">
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p><i class="fa-solid fa-book-open" aria-label="book-open"></i> <strong>Quarto docs</strong></p>
+<p><a href="https://quarto.org/docs/output-formats/html-accessibility.html">HTML accessibility</a> · <a href="https://quarto.org/docs/authoring/figures.html#alt-text">Figure alt text</a></p>
+</div></div><div class="callout callout-style-simple callout-note no-icon callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
@@ -714,7 +722,7 @@ Figure&nbsp;1: Target: bill length versus depth by species.
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Your figure now has alt text and redundant color/shape encoding. To check the whole page, Quarto can run axe-core in the browser (<a href="https://quarto.org/docs/output-formats/html-accessibility.html">HTML Accessibility</a>).</p>
+<p>Your figure now has alt text and redundant color/shape encoding. To check the whole page, Quarto can run axe-core in the browser. See <a href="https://quarto.org/docs/output-formats/html-accessibility.html">HTML Accessibility</a>.</p>
 <p>Your header still has <code>format: html</code> on one line. The option belongs under that format, so expand it into a block:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">html</span><span class="kw">:</span></span>
@@ -725,12 +733,15 @@ Figure&nbsp;1: Target: bill length versus depth by species.
 </div>
 </div>
 </section>
-<section id="add-a-numbered-equation-stretch" class="level3" data-number="1.5">
-<h3 data-number="1.5" class="anchored" data-anchor-id="add-a-numbered-equation-stretch"><span class="header-section-number">1.5</span> Add a numbered equation <em>(stretch)</em></h3>
+<section id="add-a-numbered-equation-optional" class="level3 page-columns page-full" data-number="1.5">
+<h3 data-number="1.5" class="anchored" data-anchor-id="add-a-numbered-equation-optional"><span class="header-section-number">1.5</span> Add a numbered equation <em>(optional)</em></h3>
 <p><strong>Goal.</strong> Add the bill-shape ratio (bill length divided by bill depth) as a <strong>numbered display equation</strong>, and refer to it from the prose.</p>
 <p>One caution: inside <code>$$…$$</code>, <code>bill_len</code> can render as a subscript, so escape the underscore as <code>bill\_len</code>.</p>
-<p>Docs: <a href="https://quarto.org/docs/authoring/cross-references.html#equations">Equations</a>.</p>
-<div class="callout callout-style-simple callout-note no-icon callout-titled">
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p><i class="fa-solid fa-book-open" aria-label="book-open"></i> <strong>Quarto docs</strong></p>
+<p><a href="https://quarto.org/docs/authoring/cross-references.html#equations">Equations</a></p>
+</div></div><div class="callout callout-style-simple callout-note no-icon callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
@@ -790,7 +801,7 @@ Figure&nbsp;1: Target: bill length versus depth by species.
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>A numbered <strong>Figure 1</strong> (the bill scatter, three separate clusters), a numbered <strong>Table 1</strong>, and the counts in the right margin. <code>@fig-bill</code> and <code>@tbl-summary</code> render as live links, with no <code>?@</code> markers anywhere. If you did the stretch step, you also have a numbered <strong>Equation 1</strong>.</p>
+<p>A numbered <strong>Figure 1</strong> (the bill scatter, three separate clusters), a numbered <strong>Table 1</strong>, and the counts in the right margin. <code>@fig-bill</code> and <code>@tbl-summary</code> render as live links, with no <code>?@</code> markers anywhere. If you completed the optional step, you also have a numbered <strong>Equation 1</strong>.</p>
 </div>
 </div>
 <p><strong><code>authoring-checkpoint.qmd</code> is this same report with every step above applied.</strong> It is already in <code>day1-intro/</code>. Compare your work against it, or, if you did not finish, save a copy of it as <code>my-report.qmd</code> and continue into Part 2 from there. You can also take the source:</p>
@@ -851,7 +862,7 @@ Figure&nbsp;1: Target: bill length versus depth by species.
 <ul>
 <li><p><strong>CLI</strong> — leave the header as-is and force the target:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> render my-report.qmd <span class="at">--to</span> typst</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
-<li><p><strong>Editor Render button</strong> — set <code>format: typst</code> in the YAML header first, <em>then</em> click Render. The button renders whatever <code>format:</code> is declared, so while the header still says <code>format: html</code> the button gives you HTML, <strong>not</strong> a PDF.</p></li>
+<li><p><strong>From the editor</strong> — set <code>format: typst</code> in the YAML header first, <em>then</em> render (RStudio’s <strong>Render</strong> button, or <strong>Quarto: Render Document</strong> in Positron and VS Code). The editor renders whatever <code>format:</code> is declared, so while the header still says <code>format: html</code> you get HTML, <strong>not</strong> a PDF.</p></li>
 </ul>
 <p>The PDF is written <strong>next to its source</strong> in <code>day1-intro/</code>.</p></li>
 </ol>
@@ -920,7 +931,7 @@ Figure&nbsp;1: Target: bill length versus depth by species.
 <span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>For the branded PDF (<code>day1-intro/_brand.yml</code> styles it), either force the target from the CLI:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> render my-report.qmd <span class="at">--to</span> typst</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>or set <code>format: typst</code> in the header and use the editor’s Render button.</p>
+<p>or set <code>format: typst</code> in the header and render from the editor.</p>
 </div>
 </div>
 </div>
@@ -982,7 +993,7 @@ Figure&nbsp;1: Target: bill length versus depth by species.
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Stretch: dynamic headings and standalone files
+<span class="screen-reader-only">Tip</span>Optional: dynamic headings and standalone files
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
@@ -1011,7 +1022,7 @@ Figure&nbsp;1: Target: bill length versus depth by species.
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Rendering with <code>-P species:Adelie</code> gives a report whose sentences, figure caption, alt text, point count, and plot are all about Adelie. Nothing says Gentoo. Rendering without <code>-P</code> produces the Gentoo report. If you completed the stretch task, the heading also names the selected species.</p>
+<p>Rendering with <code>-P species:Adelie</code> gives a report whose sentences, figure caption, alt text, point count, and plot are all about Adelie. Nothing says Gentoo. Rendering without <code>-P</code> produces the Gentoo report. If you completed the optional task, the heading also names the selected species.</p>
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
