@@ -64,13 +64,16 @@ Use **`solutions/day2/`** to compare your work or complete missed steps.
 **Goal.** Make Quarto treat `day2-projects/` as one project, so that a single command builds every
 page in it into an output folder.
 
-This stanza declares a project. Decide where to put it, then build the folder:
+This stanza declares a project. It goes in a `_quarto.yml` at the top of `day2-projects/`, above the
+`reports/` folder:
 
-```yaml
+```{.yaml filename="day2-projects/_quarto.yml"}
 project:
   type: website
   output-dir: _site
 ```
+
+Then build the folder with `quarto render`, run from inside `day2-projects/` with no file argument.
 
 (`_site` is already the default output folder for a website. We write it explicitly here so the
 publishable folder is visible in the configuration.)
@@ -84,15 +87,11 @@ new `day2-projects/_site/` folder instead of next to each `.qmd`. Before this st
 
 ::: {.callout-tip collapse="true"}
 ## Hint
-You have folders above `day2-projects/` and files inside it. Where does Quarto look to decide
-where a project starts, and in which direction does it search?
-
 Quarto walks **up** from the file being rendered and stops at the **nearest** `_quarto.yml`. That
-file marks the project root. A `_quarto.yml` inside `day2-projects/` therefore makes that folder the
-project root.
+file marks the project root, which is why putting it inside `day2-projects/` scopes the project to
+that folder and not to anything above it.
 
-A `quarto render` with **no file argument** builds the whole project. `quarto render index.qmd`
-still builds just the one page.
+`quarto render index.qmd` still builds just the one page.
 :::
 
 ::: {.callout-note collapse="true"}
@@ -203,7 +202,7 @@ Leave it running: it re-renders and refreshes as you save. `quarto render` still
 want the files.
 :::
 
-::: {.callout-tip collapse="true"}
+::: {.callout-tip}
 ## Try the other menu: a sidebar built for you
 Swap the `navbar:` block for this, re-render, and compare:
 
@@ -256,10 +255,17 @@ typography:
     family: Albert Sans
 ```
 
+Then look at `theme:`. It takes a **list** of layers, and where two layers disagree the later one
+wins. `brand` is one of those layers, so its position decides whether the brand's teal or cosmo's
+blue reaches the navbar.
+
 ::: {.callout-note appearance="simple" icon=false}
 ## {{< fa circle-check >}} You should see
 After adding `_brand.yml`, the **font changes** but the navbar and links remain cosmo blue. This is
 expected. After correcting the theme order, the navbar and links become teal.
+
+The wrong order renders with no error and looks exactly like the un-fixed state, so judge it by the
+navbar color, not by the log.
 :::
 
 ::: {.callout-tip collapse="true"}
@@ -267,11 +273,7 @@ expected. After correcting the theme order, the navbar and links become teal.
 Compare three parts of the rendered site: the body font, the navbar, and the links. The font changes,
 but the navbar and links remain blue.
 
-`theme:` takes a **list**, even when you write a single value. So Quarto is already combining
-something with your `cosmo`. If two layers both define a primary color, which one would you expect to
-end up on the page?
-
-`brand` is a theme **layer**, and it is the layer that reads your `_brand.yml`. A bare
+`brand` is the layer that reads your `_brand.yml`, and a bare
 `theme: cosmo` expands to `[brand, cosmo]`, and **later layers win**. Quarto applies cosmo's palette
 after the brand palette, so the site uses cosmo blue.
 
@@ -299,6 +301,16 @@ Dropping `theme:` altogether works too: with no named theme, the brand layer sup
 You have not looked at `day2-projects/reports/` yet. It holds two short pages, `methods.qmd` and
 `data-notes.qmd`, each with a small code cell.
 
+A `_metadata.yml` file applies options to every document in its folder, which is how you reach those
+two pages without editing either of them. It takes the same document options you would write in
+`_quarto.yml`, so what differs is the reach, not the syntax.
+
+Two options are involved. `code-fold` gives you the toggle, and a second one sets the label on it.
+The default label is `Code`, so the checkpoint below needs both.
+
+Docs: [Directory metadata](https://quarto.org/docs/projects/quarto-projects.html#directory-metadata) ·
+[Folding code](https://quarto.org/docs/output-formats/html-code.html#folding-code).
+
 ::: {.callout-note appearance="simple" icon=false}
 ## {{< fa circle-check >}} You should see
 On the two `reports/` pages, each code cell is collapsed behind a **Show the code** toggle that
@@ -308,16 +320,11 @@ four `.qmd` files to get this.
 
 ::: {.callout-tip collapse="true"}
 ## Hint
-Project-wide options live in `_quarto.yml` at the project root. You want the same kind of option, but
-reaching one folder only. Where would you put a file so that Quarto applies it to that folder and
-nowhere else?
+Quarto merges the folder file on top of the project defaults, so you write only what differs, and it
+reaches that folder and everything below it.
 
-A `_metadata.yml` inside a folder applies to every document in that folder (and below it). Quarto
-merges it on top of the project defaults, so you write only what differs.
-
-It takes the same **document** options you would write in `_quarto.yml`, so what differs is the
-reach, not the syntax. The option that folds code is `code-fold`, and `code-summary` sets the toggle
-label.
+Two options do the work: `code-fold` puts a cell behind a toggle, and `code-summary` sets the label
+on that toggle.
 :::
 
 ::: {.callout-note collapse="true"}
@@ -427,7 +434,15 @@ dashboard demo are optional.
 touched. Make Quarto reuse the previous results for a page whose source has not changed. Then
 **prove** that it worked.
 
-Add a value that changes on every execution so the page shows whether the code ran again.
+Execution options for the whole project sit under a top-level `execute:` key, alongside `project:`
+and `website:`. Complete it:
+
+```{.yaml filename="day2-projects/_quarto.yml"}
+execute:
+  freeze: ...
+```
+
+Then add a value that changes on every execution, so the page shows whether the code ran again.
 
 ::: {.callout-note appearance="simple" icon=false}
 ## {{< fa circle-check >}} You should see
@@ -438,12 +453,9 @@ had run, and is not. Then edit the code on one page only and render again. Only 
 
 ::: {.callout-tip collapse="true"}
 ## Hint
-This is about *executing* code across the whole project, so which top-level key carries the setting?
-What could a cell print that is
-**guaranteed** to differ between two runs a minute apart?
+What could a cell print that is **guaranteed** to differ between two runs a minute apart?
 
-An `execute:` key at the top level of `_quarto.yml` carries execution options for the project. The one
-you want is `freeze`, and `auto` means "re-execute only when this document's own source changes".
+`freeze` takes `auto`, which means "re-execute only when this document's own source changes".
 
 For the proof: print the current time. If the value on the page is identical across two renders, the
 code that produced it did not run.
@@ -488,8 +500,10 @@ project, not a temporary folder to delete.
 **Goal.** You have now met two things that both avoid re-running code. Explain how they differ and
 when to use each one.
 
-The slides introduced `cache: true` earlier today. You have just used `freeze: auto`. Both skip
-work. They are not the same mechanism, and only one of them solves the problem you just solved.
+The slides introduced **cache** earlier today. It is a cell option (`#| cache: true`) that stores
+that one cell's results in a knitr cache folder beside the document. You have just used
+`freeze: auto`. Both skip work. They are not the same mechanism, and only one of them solves the
+problem you just solved.
 
 ::: {.callout-note appearance="simple" icon=false}
 ## {{< fa circle-check >}} You should be able to explain
@@ -525,13 +539,14 @@ own.
 
 **Goal.** Take the report you wrote yesterday and make it a page of this website.
 
-On Day 1, you built one document. Now add it to the project. If you did not finish Day 1 or do not
-have the file, use `solutions/day1/penguins-report.qmd` from your exercises download instead.
+On Day 1, you built one document. That is `my-report.qmd` in `day1-intro/`. Now add it to the
+project. If you did not finish Day 1 or do not have the file, use
+`solutions/day1/penguins-report.qmd` from your exercises download instead.
 
 ::: {.callout-note appearance="simple" icon=false}
 ## {{< fa circle-check >}} You should see
 Your Day-1 report opens as a page of the site, reachable from the navigation, styled like the rest of
-it. Its content is unchanged: the YAML header is the only part you edited.
+it. Its prose and code are untouched: the YAML header is the only part of the file you edited.
 :::
 
 ::: {.callout-tip collapse="true"}
@@ -624,13 +639,7 @@ Use `true` when project builds must reuse stored results until you deliberately 
 department's pages, or a hosting service. Publishing here is optional. If you made a free Posit
 Connect Cloud account before the workshop, one command puts the site online.
 
-::: {.callout-note appearance="simple" icon=false}
-## {{< fa circle-check >}} You should see
-A browser opens once to sign you in. Then the contents of `_site/` upload, and Connect Cloud returns
-a URL for the site.
-:::
-
-::: {.callout-note collapse="true"}
+::: {.callout-note}
 ## The command
 From inside your project folder:
 
@@ -642,6 +651,12 @@ No repository is needed. Connect Cloud takes the locally rendered files as they 
 
 If you skip this step, the complete site remains in `_site/`. Nothing downstream depends on
 publishing.
+:::
+
+::: {.callout-note appearance="simple" icon=false}
+## {{< fa circle-check >}} You should see
+A browser opens once to sign you in. Then the contents of `_site/` upload, and Connect Cloud returns
+a URL for the site.
 :::
 
 ### Optional group demo: inspect a dashboard
