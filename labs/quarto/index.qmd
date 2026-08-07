@@ -16,7 +16,8 @@ The result follows the same path from an analysis to a submission-ready report. 
 **base-R `datasets::penguins`** (R ≥ 4.5), so there is no data to download.
 
 **Before you start:** work through the **[Setup page](../../setup.qmd)** if you haven't. Its
-`00-check-setup.R` confirms R, Quarto, and the packages this lab uses.
+`00-check-setup.R`, at the top of the exercises download rather than inside `day1-intro/`, confirms
+R, Quarto, and the packages this lab uses.
 :::
 
 ::: {.callout-tip appearance="simple"}
@@ -60,8 +61,15 @@ The rest of this lab uses native `.qmd`.
 in that same folder (next to `references.bib` / `apa.csl` / `_brand.yml`, so Part 2's paths and
 branding resolve later). Render it once to confirm it works, then re-render after every step below.
 
-The starter is already a working report, but it has no numbering, captions, cross-references, or alt
-text. Most steps require no R changes. The accessibility step makes two small changes to the plot.
+The starter is already a working report, but it has no captions, cross-references, or alt text. Most
+steps require no R changes. The accessibility step makes three small changes to the plot.
+
+Two patterns cover most of the steps below. A cross-reference has two ends: a labeled target, and an
+`@label` in the prose that points at it. The label carries a prefix that sets the kind (`fig-`,
+`tbl-`, `eq-`). For a figure or a table it is a **cell** option (a cell is what R Markdown calls a
+chunk), and those two also take a caption option. An equation is not a cell, so it takes its label
+another way. Layout is a cell option as well. Each step links the docs page that names the options
+and the values they take.
 
 Missing the download? Take the source directly:
 
@@ -114,7 +122,8 @@ clusters.
 ### Cross-reference the table
 
 **Goal.** Apply the same method to the summary table under **Mean measurements**: a numbered, captioned
-**Table 1**, introduced by a sentence that links to it. The `gt` call is already written.
+**Table 1**, introduced by a sentence that links to it. The `gt` call is already written. That
+section has no prose yet, so add the sentence.
 
 ::: {.column-margin}
 {{< fa book-open >}} **Quarto docs**
@@ -156,7 +165,8 @@ And above it:
 ### Move the counts into the margin
 
 **Goal.** Put the species-counts table in the **right margin**, beside the paragraph that mentions
-it, instead of in the main text column.
+it, instead of in the main text column. One cell option (`column:`) does this, and the docs list the
+values it takes.
 
 ::: {.column-margin}
 {{< fa book-open >}} **Quarto docs**
@@ -172,10 +182,9 @@ the main text column unchanged in width.
 
 ::: {.callout-tip collapse="true"}
 ## Hint
-The R code does not change. Where do you tell Quarto that its output belongs elsewhere on the page?
-
-Add `#| column: margin` to the cell. That option also takes `body`, `body-outset`, `page`
-and `screen`. For prose rather than cell output, use a `::: {.column-margin}` div.
+The R code does not change. Add `#| column: margin` to the cell. That option also takes `body`,
+`body-outset`, `page` and `screen`. For prose rather than cell output, use a
+`::: {.column-margin}` div.
 :::
 
 ::: {.callout-note collapse="true"}
@@ -193,8 +202,8 @@ On the counts cell:
 using a screen reader.
 
 The plot separates species by **color alone**, in ggplot2's default palette, which is not
-color-blind-safe. This is the one step that edits the R: two changes to the plot, one option on the
-cell. `ggokabeito` is already loaded in the setup cell.
+color-blind-safe. This is the one step that edits the R: three changes to the plot, one option on the
+cell. `ggokabeito` is already loaded in the setup cell and supplies `scale_*_okabe_ito()`.
 
 ::: {.column-margin}
 {{< fa book-open >}} **Quarto docs**
@@ -206,6 +215,7 @@ cell. `ggokabeito` is already loaded in the setup cell.
 ## {{< fa circle-check >}} You should see
 Each species drawn with **its own shape as well as its own color**, in the Okabe-Ito palette (orange,
 blue, green rather than ggplot2's salmon, green and blue), and one legend for both color and shape.
+Two stacked legends mean the shape legend needs the same title as the color legend.
 The alt text is not visible on the page: to check it, view the page source and confirm the `<img>`
 tag carries your `alt="…"`. The finished figure looks like this:
 :::
@@ -366,8 +376,9 @@ The instructions below use `my-report.qmd` for both routes.
    ```
 2. Cite the two sources the opening paragraph already credits, without rewriting it. The sentence
    ending *"…collected at Palmer Station, Antarctica."* takes the data citation before the period
-   (`Antarctica [@gorman2014].`), and the sentence crediting the **palmerpenguins** package takes
-   `[@horst2020]` the same way. Don't paste a second copy of either sentence.
+   (`Antarctica [@gorman2014].`). The next sentence names **palmerpenguins** and then moves on to
+   base R, so `[@horst2020]` goes straight after that package name (`the **palmerpenguins** package
+   [@horst2020] and are now also…`), not at the end. Don't paste a second copy of either sentence.
 3. Add a **References** section where the list should appear:
    ```markdown
    ## References {.unnumbered}
@@ -403,12 +414,19 @@ The instructions below use `my-report.qmd` for both routes.
 ::: {.callout-note appearance="simple" icon=false}
 ## {{< fa circle-check >}} You should see
 In-text **(Gorman et al., 2014)** and **(Horst et al., 2020)**, a **References** section formatted in
-APA with both entries, and, in the Typst PDF, the same citations and reference list, typeset with the
-RaukR palette. No `?@gorman2014`, `?@horst2020` or `[?]` markers anywhere.
+APA with both entries, and the same citations in the Typst PDF, typeset with the RaukR palette. No
+`?@gorman2014`, `?@horst2020` or `[?]` markers anywhere.
+
+The two formats place the list differently, and the PDF is the surprising one. Typst builds the
+bibliography itself and always puts it last, so `::: {#refs}` positions the list in HTML only. In the
+PDF the heading you added stays empty and the entries appear at the very end, after the Session
+appendix.
 
 **Check the branding applied.** An unbranded PDF builds without any error, so check the font
-instead: a branded PDF is set in **Albert Sans**, an unbranded one in Typst's default serif. Serif
-headings mean `_brand.yml` isn't next to your `.qmd` (see Troubleshooting).
+instead. Look at the **title and headings**: **Albert Sans** in a branded PDF, Typst's default serif
+in an unbranded one. Table 1 stays serif either way (the same cause as the font warning above), so
+judge the headings, not the table. Serif headings mean `_brand.yml` isn't next to your `.qmd` (see
+Troubleshooting).
 :::
 
 ::: {.callout-tip collapse="true"}
@@ -517,7 +535,7 @@ task is to make the species an input to the document. A complete reference is av
    With no `-P`, the default (`Gentoo`) is used.
 ::::
 
-::: {.callout-tip collapse="true"}
+::: {.callout-tip}
 ## Optional: dynamic headings and standalone files
 Replace the static `## Species at a glance` heading with a cell that emits Markdown:
 
@@ -572,13 +590,17 @@ your work or render it with different `-P species:` values. You can also take th
   unique, and the `@ref` must match it.
 - **A citation shows `?@gorman2014` or `[?]`?** The `@key` doesn't match a key in `references.bib`,
   or `bibliography:` isn't set.
+- **The PDF's References section is empty and the entries are at the end?** That is Typst working as
+  designed, not a mistake in your file. It builds the bibliography itself and places it last, so the
+  `::: {#refs}` div only moves the list in HTML.
 - **`references.bib` not found, although the download has it?** Your `.qmd` is probably not in
   `day1-intro/` (saved to the top folder, for example). Move it next to `references.bib` /
   `apa.csl` / `_brand.yml` and render again.
 - **Do I need to install Typst?** No. Typst is bundled in Quarto ≥ 1.9, so there's nothing extra to
   install (no LaTeX either). Check `quarto --version`.
 - **Typst PDF looks unbranded / wrong fonts?** An unbranded render succeeds silently, so check the
-  font, not the log: branded is **Albert Sans**, unbranded is Typst's default serif. Confirm
+  font, not the log: in the **title and headings**, branded is **Albert Sans**, unbranded is Typst's
+  default serif. Table 1 stays serif either way, so don't judge by the table. Confirm
   `_brand.yml` is in your `day1-intro/` folder (next to the `.qmd`) and you have network on the
   first render (Quarto fetches the Google fonts once). Missing the file? Download
   [`_brand.yml`](https://raw.githubusercontent.com/cderv/raukr-2026-quarto-exercises/main/day1-intro/_brand.yml)

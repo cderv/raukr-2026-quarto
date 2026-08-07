@@ -35,9 +35,14 @@ case "$cmd" in
     wt="$SCRATCH/labrun-${lab}-$(git -C "$REPO" rev-parse --short HEAD)"
     git -C "$REPO" worktree remove --force "$wt" 2>/dev/null || rm -rf "$wt"
     git -C "$REPO" worktree add --detach -q "$wt" HEAD
-    # The student works from the lab's starter/ (day-2 model) or the lab folder itself (day-1: authored
-    # from scratch, no starter/). Instructions are always read from the canonical page in the main repo.
-    if [ -d "$wt/labs/$lab/starter" ]; then work="$wt/labs/$lab/starter"; else work="$wt/labs/$lab"; fi
+    # The student works from the generated payload, the tree participants actually download, so that a
+    # file the authoring layout happens not to carry (Day 1's _brand.yml) cannot fake a lab defect.
+    case "$lab" in
+      quarto)          work="$wt/exercises/day1-intro" ;;
+      quarto-projects) work="$wt/exercises/day2-projects" ;;
+      *)               work="$wt/labs/$lab" ;;
+    esac
+    [ -d "$work" ] || { echo "no payload folder for lab '$lab' at $work" >&2; exit 1; }
     # The student reads the lab from the BUILT page, not the source: in source the Hints and Solutions
     # are plain text, so the agent absorbs them before it has tried anything and can no longer report
     # where a participant gets stuck. See references/reviewing-the-live-site.md.
