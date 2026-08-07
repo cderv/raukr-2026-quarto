@@ -537,8 +537,8 @@ Copy the `.qmd` into `day2-projects/`, together with `references.bib` and `apa.c
 
 A page in a project inherits `format:` from `_quarto.yml`. If your file still carries the
 `format: typst` from the Day-1 exercise, it keeps building a PDF instead of a page. Drop that key and
-it builds as HTML like its neighbours. (The shipped `penguins-report.qmd` declares no `format:` at
-all, so there is nothing to drop.)
+it builds as HTML like its neighbours. (The shipped `penguins-report.qmd` declares `format: html`,
+which is the same key to drop.)
 
 Didn't finish Day 1, or do not have the file? Use `solutions/day1/penguins-report.qmd` from
 your exercises download instead.

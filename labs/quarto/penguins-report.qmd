@@ -1,6 +1,7 @@
 ---
 title: "Bill dimensions across Antarctic penguin species"
 subtitle: "The running Day-1 document — authoring value-adds, then citations"
+format: html
 bibliography: references.bib
 csl: apa.csl
 ---
