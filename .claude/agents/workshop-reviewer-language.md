@@ -131,8 +131,12 @@ All prose **meant for participants**:
 - Slides
 - Exercise starters/solutions `.qmd` + READMEs (adapt to the actual layout)
 
-**Out of scope**: `README.md` (GitHub meta), `.claude/` internal notes, and presenter notes
-`::: {.notes}` (a relaxed register is fine there — don't touch). Don't touch technical terms,
+**Presenter notes `::: {.notes}` — concision only.** The relaxed spoken register is correct there,
+so leave idiom, contractions, and voice-over phrasing alone. Do flag a note that repeats the slide or
+lab text, narrates background, or runs past one line per **Say** / **Do** / **Ask** / **Watch for** /
+**Catch-up** item (`.claude/rules/prose-voice.md` § Presenter notes).
+
+**Out of scope**: `README.md` (GitHub meta) and `.claude/` internal notes. Don't touch technical terms,
 proper nouns, code, YAML keys, paths, commands, or Quarto syntax (callouts, `{{< >}}`
 shortcodes, `:::` fenced divs, labels). Never change what a sentence technically asserts — if
 a reword would touch meaning, mark it ⚠️ and leave the rewrite to a human.

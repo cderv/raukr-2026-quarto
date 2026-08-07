@@ -21,7 +21,12 @@ state the thing.
 |---|---|---|
 | Website pages (`setup.qmd`, `index.qmd`, lab prose) | **Written.** State it. | Parenthesis / colon / split sentence. No em-dash asides. |
 | Slide **bodies** | Terse, built to be said over. Fragments fine. | A `term — gloss` bullet is fine; no stacked or voice-over asides. |
-| `::: notes` / `::: {.notes}` | Fully spoken. Relaxed. **Exempt.** | Anything goes — this is where the voice-over belongs. |
+| `::: notes` / `::: {.notes}` | **Spoken.** Relaxed wording, but **concise** — a live cue, not a paragraph. | This is where the voice-over belongs. |
+
+The notes exemption is about *register*, not length. A note is read at a glance while presenting, so
+one line per **Say** / **Do** / **Ask** / **Watch for** / **Catch-up** item, no repetition of the
+slide or lab text, and no background explanation. The operational list is
+`.claude/rules/prose-voice.md` § Presenter notes.
 
 ## Christophe's voice — what to do
 
