@@ -22,6 +22,12 @@ usethis::use_course("cderv/raukr-2026-quarto-exercises")   # unpacks main to the
 This course repo is the **source of truth**; the delivery repo is **generated and pushed from here**.
 This rule is the operational short list. When you **edit** labs, follow it; when you **review**, check it.
 
+## Current Day-2 scope
+
+- Project-level preview and the guided `freeze: true` experiment are core.
+- The dashboard is an optional group demo. Publishing is optional and account-dependent.
+- Do not add participant-facing task durations without evidence from rehearsal.
+
 ## The pipeline (one direction only)
 
 ```

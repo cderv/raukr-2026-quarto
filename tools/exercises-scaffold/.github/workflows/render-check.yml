@@ -1,6 +1,4 @@
-# Rot canary for the RaukR 2026 Quarto exercises: render everything a participant renders, and assert
-# the structural invariants the delivery relies on. Runs on push, on PRs, and weekly (between-years
-# drift). This file ships INSIDE the exercises repo (generated there by the course-repo sync).
+# Render the participant materials and check their delivery constraints.
 name: render-check
 
 on:
@@ -20,13 +18,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      # --- structural invariants (the whole delivery rests on these) ---
+      # --- structural invariants ---
       - name: Assert NO _quarto.yml at or above the day starters
         run: |
           set -eu
-          # No project file at the repo root, in day1-intro/, or in day2-projects/ -- that absence is
-          # what makes the nested-project trap impossible. Solutions MAY have their own (they are
-          # sibling folders, never captured).
+          # Project files above the starters would capture their renders.
           for f in _quarto.yml day1-intro/_quarto.yml day2-projects/_quarto.yml; do
             if [ -f "$f" ]; then echo "::error::$f must not exist (nested-project trap)"; exit 1; fi
           done
@@ -35,9 +31,7 @@ jobs:
       - name: Assert the ZIP payload stays tiny (bad-WiFi budget)
         run: |
           set -eu
-          # codeload serves `git archive` (honours .gitattributes export-ignore). Keep it small so 40
-          # concurrent pulls survive venue WiFi. Threshold generous; trips only on a real regression
-          # (a stray _freeze/, an _extensions/ vendor, a committed PDF).
+          # Catch accidentally committed build artifacts or vendored files.
           bytes=$(git archive --format=zip HEAD | wc -c)
           echo "archive: $bytes bytes"
           if [ "$bytes" -gt 2000000 ]; then echo "::error::ZIP is $bytes B (> 2 MB) -- something heavy got committed"; exit 1; fi
@@ -48,8 +42,7 @@ jobs:
         with:
           use-public-rspm: true
 
-      # Install the packages DESCRIPTION declares, like a participant's install.packages() line
-      # (latest versions -- no lockfile ships in the payload).
+      # Test the latest package versions declared in DESCRIPTION.
       - uses: r-lib/actions/setup-r-dependencies@v2
 
       # --- render everything a participant renders ---
@@ -59,8 +52,6 @@ jobs:
       - name: Render Day-1 solution (cited HTML report)
         run: quarto render solutions/day1/penguins-report.qmd
 
-      # The two files participants open directly. Off the course-site render list (so no _freeze/
-      # covers them) -- without these steps a break surfaces first on a participant's laptop.
       - name: Render Day-1 citations starter (the Part-2 fallback document)
         run: quarto render day1-intro/citations-starter.qmd
 
@@ -92,13 +83,9 @@ jobs:
           echo "ok: two self-contained, distinct per-species reports"
 
       - name: Render Day-2 solution (the website project)
-        # Render from the repo root, like the Day-1 steps. This one step covers every page of
-        # the finished project, including reports/, my-report.qmd and the dashboard.
         run: quarto render solutions/day2
 
-      # The Day-2 starter ships with NO _quarto.yml (creating it is the exercise), so there is no
-      # project render to lean on here. Render each page on its own, which is also exactly what a
-      # participant does before they have written the project file.
+      # No project file ships with the Day-2 starter, so render each page directly.
       - name: Render Day-2 starter pages (each stands alone, pre-project)
         run: |
           set -eu

@@ -574,11 +574,11 @@ results even after you edit that page.
 
 ::: {.callout-note appearance="simple" icon=false}
 ## {{< fa circle-check >}} You should see
-Check the label and timestamp after each render. After the first, the analysis page still shows the
-old label, and your proof cell still prints the old time: the build reused `_freeze/` even though
-you edited the source (`auto` would have re-run the page). After the second, the label and timestamp
-both update: a single-file render always executes. After the third, the updated label and timestamp
-remain: the build now reuses the refreshed result.
+Check the label and timestamp after each render:
+
+- **Project render:** both remain unchanged because the build reuses `_freeze/`.
+- **Single-file render:** both update because the page executes.
+- **Final project render:** the updated values remain because the build reuses the refreshed result.
 :::
 
 First, change `freeze` from `auto` to `true` in `_quarto.yml`:

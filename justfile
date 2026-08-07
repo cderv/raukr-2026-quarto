@@ -1,10 +1,6 @@
-# RaukR 2026 Quarto — build orchestrator.
-# `just` with no recipe lists them all. `quarto render` alone is the whole build for now;
-# recipes grow (profiles, publishing) as content lands.
+# RaukR 2026 Quarto build commands.
 
-# Cross-platform: unix uses just's default `sh`; Windows has no `sh` on a stock PATH,
-# so point it at PowerShell (always present — no Git Bash install needed). Almost every
-# recipe just calls the cross-platform `quarto` binary; only `clean` needs an OS variant.
+# Use PowerShell on Windows; recipes must stay cross-platform.
 set windows-shell := ["powershell.exe", "-NoLogo", "-Command"]
 
 # Where each publish target lands (printed once the publish succeeds)
@@ -19,15 +15,9 @@ default:
 deps:
     Rscript -e "renv::restore(prompt = FALSE)"
 
-# `demos` is a POST-dependency (`&&`): it must run after the site render, not before.
-# Only the last comment line becomes the `just --list` description, so keep it one line.
-
 # Render the whole site to _site/, then the demos into _site/demos/
 render: && demos
     quarto render
-
-# Deployed but unlinked — no navbar entry, no link from the lab pages. Built from the generated
-# exercises/ payload, so what is shown on screen is what participants downloaded.
 
 # Render the finished lab documents to _site/demos/ (for showing on screen during the sessions)
 demos:
@@ -44,8 +34,6 @@ exercises:
 # Verify exercises/ is in sync with its sources (regenerate + fail on drift) — same command as CI
 exercises-check:
     Rscript tools/sync-exercises.R --check
-
-# Guards the last hop: exercises-check covers labs/ -> exercises/, this covers exercises/ -> live.
 
 # Verify the DELIVERY repo matches exercises/ (i.e. participants download what this repo ships)
 published-check:
@@ -65,18 +53,10 @@ clean:
 clean:
     Remove-Item -Recurse -Force -ErrorAction SilentlyContinue _site, .quarto, demos-build
 
-# Shared target dispatch (private recipe): just's native conditional, NOT a shebang —
-# the emitted `quarto publish …` line is one cross-platform binary call, so it runs under
-# both sh and PowerShell (see .claude/rules/justfile.md). `--no-render` because `publish`
-# renders first; `error(...)` gives a helpful message instead of an obscure failure.
-# The second line echoes the resulting URL (`echo` exists in both sh and PowerShell);
-# an unknown target aborts on the first line, so it never prints a URL.
+# Keep target selection inside just so it works in both shells.
 _publish target:
     {{ if target == "gh" { "quarto publish gh-pages --no-prompt --no-render" } else if target == "connect" { "quarto publish posit-connect-cloud --no-prompt --no-render" } else { error("Unknown target: '" + target + "' — use 'gh' or 'connect'") } }}
     @echo "Live at {{ if target == "gh" { gh_url } else { connect_url } }}"
-
-#   just publish gh       →  GitHub Pages (gh-pages branch)
-#   just publish connect  →  Posit Connect Cloud
 
 # Render, then publish the whole site to the chosen target
 [confirm("Publish the whole site? This renders, then pushes to the chosen target.")]

@@ -1,41 +1,17 @@
 #!/usr/bin/env Rscript
-# render-demos.R -- render the finished lab documents into _site/demos/ so they can be shown on
-# screen from a URL during the sessions.
-#
-# These pages are deployed but NOT linked from the site (no navbar entry, no lab-page link): they
-# are the instructor's demo material, not a shortcut past the exercises.
-#
-# Sources are the generated `exercises/` payload, not `labs/`, so what appears on screen is what
-# participants downloaded (`just exercises-check` guards that exercises/ matches labs/).
-#
-# Why a script rather than a few `quarto render` lines in the justfile: `--output-dir` only works
-# for PROJECT renders, and the Day-1 files deliberately have no `_quarto.yml` (see
-# .claude/rules/exercises.md -- their whole point is to render standalone). So each Day-1 group is
-# staged into a throwaway project under demos-build/ with a generated `_quarto.yml`. Staging them
-# separately also keeps `_brand.yml` where it belongs: the starters are branded, the Day-1
-# solutions are not, exactly as in the payload.
-#
-# Cross-platform: base R + system2("quarto", ...) only, per .claude/rules/justfile.md.
-#
-# Usage:
-#   Rscript tools/render-demos.R          # render every group
-#   Rscript tools/render-demos.R day2     # render one group by name
+# Render the participant files used for instructor demonstrations.
 
 ROOT <- tryCatch(system2("git", c("rev-parse", "--show-toplevel"), stdout = TRUE),
                  error = function(e) getwd())
 setwd(ROOT)
 
-# Gitignored staging area. NOT dot-prefixed: Quarto skips hidden paths when it collects a
-# project's inputs, so a `.`-named staging dir renders nothing and exits 0. Each subfolder holds a
-# generated `_quarto.yml`, which makes it a separate project the root site render leaves alone.
+# Quarto skips project inputs in dot-prefixed directories.
 BUILD <- "demos-build"
 OUT   <- "_site/demos"
 
-# ---- groups ------------------------------------------------------------------------------------
 # `staged`: files copied into a generated project under demos-build/<name>/.
 # `project`: an existing Quarto project rendered in place.
 groups <- list(
-  # The Day-1 starting points, branded (sample-typst.qmd reads _brand.yml via read_brand_yml()).
   day1 = list(
     stage = c(
       "exercises/day1-intro/citations-starter.qmd",
@@ -46,7 +22,6 @@ groups <- list(
       "exercises/day1-intro/_brand.yml"
     )
   ),
-  # The Day-1 finished documents. No _brand.yml here -- the payload has none either.
   day1_solutions = list(
     stage = c(
       "exercises/solutions/day1/penguins-report.qmd",
@@ -55,18 +30,14 @@ groups <- list(
       "exercises/solutions/day1/apa.csl"
     )
   ),
-  # The finished Day-2 website -- already a project, so it renders where it stands.
   day2 = list(project = "exercises/solutions/day2")
 )
 
-# Output folder per group (also the URL path under /demos/), and its heading on the hub page.
 out_name <- c(day1 = "day1", day1_solutions = "day1-solutions", day2 = "day2-solution")
 out_title <- c(day1           = "Day 1 &mdash; starting points",
                day1_solutions = "Day 1 &mdash; finished documents",
                day2           = "Day 2 &mdash; finished website")
 
-# ---- helpers -----------------------------------------------------------------------------------
-# A relative path from `from` back up to the repo root ("../" per level).
 up_to_root <- function(from) strrep("../", length(strsplit(from, "/", fixed = TRUE)[[1]]))
 
 quarto <- function(args) {
@@ -74,7 +45,6 @@ quarto <- function(args) {
   if (status != 0L) stop("quarto render failed: quarto ", paste(args, collapse = " "), call. = FALSE)
 }
 
-# Stage the group's files into a throwaway project and render it.
 render_staged <- function(name, files) {
   dir <- file.path(BUILD, name)
   unlink(dir, recursive = TRUE, force = TRUE)   # clean rebuild so removed files disappear
@@ -97,7 +67,6 @@ render_project <- function(name, dir) {
            sprintf("%s%s/%s", up_to_root(dir), OUT, out_name[[name]])))
 }
 
-# ---- run ---------------------------------------------------------------------------------------
 wanted <- commandArgs(trailingOnly = TRUE)
 if (length(wanted)) {
   unknown <- setdiff(wanted, names(groups))
@@ -115,18 +84,11 @@ for (name in wanted) {
   cat(sprintf("render-demos: %s -> %s/%s\n", name, OUT, out_name[[name]]))
 }
 
-# ---- hub page ----------------------------------------------------------------------------------
-# Without this, /demos/day1/ is a 404 on GitHub Pages: only the Day-2 project produces an
-# index.html, so the other folders have no directory index. One bookmarkable page beats nine URLs.
-# Deliberately plain -- this is build output for the instructor, not a page of the course site.
 links <- character()
 for (name in names(groups)) {
   dir <- file.path(OUT, out_name[[name]])
   if (!dir.exists(dir)) next
-  # Every top-level page, home page first. Linking a site group only at its home page drops the
-  # pages its navbar leaves out on purpose: the Day-2 dashboard is one (building it is optional,
-  # so the reference solution has no navbar entry for it), and it is a page worth opening on
-  # screen. Nested output (the Day-2 reports/) stays out -- list.files is not recursive.
+  # Include optional pages omitted from the navbar, but not nested report pages.
   rel <- sort(list.files(dir, pattern = "\\.(html|pdf)$"))
   rel <- c(intersect("index.html", rel), setdiff(rel, "index.html"))
   links <- c(links,

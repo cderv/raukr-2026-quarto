@@ -67,7 +67,7 @@ move at your own pace.
 ::: notes
 - **Say:** "Two rounds: watch, follow along, then your turn."
 - **Do:** pause on the URL. It is the catch-up path.
-- **Catch-up:** no exercises folder? Setup page on the site, one `use_course()` line, ~2 min.
+- **Catch-up:** no exercises folder? Use the Setup page and help them run `use_course()`.
 :::
 
 # Part 1: Basics {.center}
@@ -203,8 +203,7 @@ that reports numbers from the data, and **callouts**.
 ::: notes
 - **Say:** "Create `day1-intro/my-report.qmd`. We will render as we go."
 - **Watch for:** the setup cell belongs in the document, not the console.
-- **Catch-up:** no `day1-intro/`? Setup page, one `use_course()` line, ~2 min; pair with a
-  neighbor meanwhile.
+- **Catch-up:** no `day1-intro/`? Use the Setup page and pair them with a neighbor meanwhile.
 - **Focus:** Quarto additions, not a Markdown lesson.
 - **Timing:** next four slides, 8–10 min total.
 :::

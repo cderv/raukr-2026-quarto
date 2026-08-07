@@ -16,13 +16,8 @@ lives in the other references.
   or `just publish connect` (Posit Connect Cloud); `publish-only <target>` skips the rebuild. **Must
   stay cross-platform** (participants run it on Windows too) —
   editing rules + the PowerShell/`[unix]`/`[windows]` conventions live in **`.claude/rules/justfile.md`**.
-- **`just demos` renders the finished lab documents into `_site/demos/`** so they can be shown from a
-  URL during the sessions. **<https://cderv.github.io/raukr-2026-quarto/demos/> is the hub page** the
-  script generates (the Day-1 folders have no `index.html` of their own, so a bare folder URL 404s).
-  They are deployed but **unlinked** — no navbar entry, no link from the lab pages, not in the search
-  index or sitemap. `just render` runs it as a post-dependency, so `just publish gh` ships them.
-  `tools/render-demos.R` builds them **from the generated `exercises/` payload**, not from `labs/`, so
-  the screen shows what participants downloaded. `quarto preview` does not include them.
+- **`just demos` builds the unlinked instructor demo pages from `exercises/`;** `just render` runs it
+  after the site build. See `.claude/rules/justfile.md` for the build constraints.
 - **R deps via renv** — `renv::restore()`; explicit snapshot driven by `DESCRIPTION` `Imports:`.
   **`pak` works here** (verified 2026-07-21, pak 0.11.0 — the old "pak KO" note was stale): use it
   for **system-requirement detection/repair** (`pak::sysreqs_check_installed()` /
@@ -120,10 +115,7 @@ editing `_brand.yml` or the theme SCSS).
   `prior-art-inventory`, `typst-render-diagrams` (Typst/fletcher diagram recipe + deploy gotchas),
   `colorblind-safe-palettes` (CVD-safe ggplot palette best-practice + recipes), `house-voice`
   (how Christophe writes + the LLM-tell strip-list; paired with the `prose-voice` rule),
-  `day2-rework-plan` (**applied 2026-08-05**: task-first Day-2 exercises with a hint ladder; kept
-  as the design rationale, with the lab as the truth where the two differ), `lab2-completeness-plan`
-  (**decided, applied in part 2026-08-06**: project-scope preview + a guided `freeze: true`
-  experiment landed, the branded-plot promise trimmed; B/C/E/F declined — see its status note).
+  `day2-rework-plan` (historical design rationale; the current lab is the source of truth).
 - **Rules** → `.claude/rules/`: path-scoped gotchas for `justfile`, `exercises`, `slides`,
   `multi-day-sequencing`, `brand`, plus `prose-voice`.
 - **Skills** → `.claude/skills/`: `quarto-authoring`, `quarto-alt-text`, `brand-yml`, `braid`.
