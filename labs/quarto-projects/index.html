@@ -378,8 +378,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#discuss-together-cache-versus-freeze" id="toc-discuss-together-cache-versus-freeze" class="nav-link" data-scroll-target="#discuss-together-cache-versus-freeze"><span class="header-section-number">2.2</span> Discuss together: <code>cache</code> versus <code>freeze</code></a></li>
   <li><a href="#put-your-day-1-report-on-the-site" id="toc-put-your-day-1-report-on-the-site" class="nav-link" data-scroll-target="#put-your-day-1-report-on-the-site"><span class="header-section-number">2.3</span> Put your Day-1 report on the site</a></li>
   <li><a href="#guided-experiment-freeze-true" id="toc-guided-experiment-freeze-true" class="nav-link" data-scroll-target="#guided-experiment-freeze-true"><span class="header-section-number">2.4</span> Guided experiment: <code>freeze: true</code></a></li>
-  <li><a href="#optional-group-demo-inspect-a-dashboard" id="toc-optional-group-demo-inspect-a-dashboard" class="nav-link" data-scroll-target="#optional-group-demo-inspect-a-dashboard"><span class="header-section-number">2.5</span> Optional group demo: inspect a dashboard</a></li>
-  <li><a href="#put-it-online-optional" id="toc-put-it-online-optional" class="nav-link" data-scroll-target="#put-it-online-optional"><span class="header-section-number">2.6</span> Put it online <em>(optional)</em></a></li>
+  <li><a href="#put-it-online-optional" id="toc-put-it-online-optional" class="nav-link" data-scroll-target="#put-it-online-optional"><span class="header-section-number">2.5</span> Put it online <em>(optional)</em></a></li>
+  <li><a href="#optional-group-demo-inspect-a-dashboard" id="toc-optional-group-demo-inspect-a-dashboard" class="nav-link" data-scroll-target="#optional-group-demo-inspect-a-dashboard"><span class="header-section-number">2.6</span> Optional group demo: inspect a dashboard</a></li>
   </ul></li>
   <li><a href="#troubleshooting" id="toc-troubleshooting" class="nav-link" data-scroll-target="#troubleshooting"><span class="header-section-number">3</span> Troubleshooting</a></li>
   
@@ -882,11 +882,11 @@ Figure&nbsp;1: The analysis page’s figure: body mass by species.
 </div>
 </div>
 <p>If <code>quarto preview</code> is still running, stop it (<code>Ctrl</code> + <code>C</code> in the terminal). Run each render below yourself. To check a page after a render, open the built file (for example <code>_site/analysis.html</code>) directly in your browser and reload it.</p>
-<p><strong>Core tasks:</strong> prove that <code>freeze: auto</code> works, add your Day-1 report to the site, then complete the guided <code>freeze: true</code> experiment. We will compare cache and freeze together. The dashboard demo and publishing are optional.</p>
+<p><strong>Core tasks:</strong> prove that <code>freeze: auto</code> works, add your Day-1 report to the site, then complete the guided <code>freeze: true</code> experiment. We will compare cache and freeze together. Publishing and the dashboard demo are optional.</p>
 
 <div class="no-row-height column-margin column-container"><div class="">
 <p><i class="fa-solid fa-book-open" aria-label="book-open"></i> <strong>Quarto docs</strong></p>
-<p><a href="https://quarto.org/docs/projects/code-execution.html">Project execution</a> · <a href="https://quarto.org/docs/dashboards/layout.html">Dashboard layout</a> · <a href="https://quarto.org/docs/publishing/posit-connect-cloud.html">Posit Connect Cloud</a></p>
+<p><a href="https://quarto.org/docs/projects/code-execution.html">Project execution</a> · <a href="https://quarto.org/docs/publishing/posit-connect-cloud.html">Posit Connect Cloud</a> · <a href="https://quarto.org/docs/dashboards/layout.html">Dashboard layout</a></p>
 </div></div><section id="make-the-build-skip-unchanged-pages" class="level3" data-number="2.1">
 <h3 data-number="2.1" class="anchored" data-anchor-id="make-the-build-skip-unchanged-pages"><span class="header-section-number">2.1</span> Make the build skip unchanged pages</h3>
 <p><strong>Goal.</strong> Right now every <code>quarto render</code> re-runs all the R on every page, even the pages you have not touched. Make Quarto reuse the previous results for a page whose source has not changed. Then <strong>prove</strong> that it worked.</p>
@@ -1132,39 +1132,8 @@ Figure&nbsp;1: The analysis page’s figure: body mass by species.
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> render                <span class="co"># whole project: the refreshed page stays</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>With <code>freeze: true</code>, the workflow is: edit a page, render that file, then build the project without re-running it. Switch back to <code>freeze: auto</code> before you continue and keep that setting for the rest of the lab. Use <code>true</code> when project builds must reuse stored results until you deliberately refresh a page.</p>
 </section>
-<section id="optional-group-demo-inspect-a-dashboard" class="level3" data-number="2.5">
-<h3 data-number="2.5" class="anchored" data-anchor-id="optional-group-demo-inspect-a-dashboard"><span class="header-section-number">2.5</span> Optional group demo: inspect a dashboard</h3>
-<p>This worked example shows how the same analysis becomes a dashboard. Open the <a href="../../labs/quarto-projects/dashboard.html" target="_blank">finished dashboard</a>, then compare it with <code>solutions/day2/dashboard.qmd</code>. You do not need to build it during the workshop.</p>
-<p>Look for four ideas:</p>
-<ul>
-<li><code>format: dashboard</code> changes the output.</li>
-<li>A <code>##</code> heading starts a row and a <code>###</code> heading starts a column.</li>
-<li><code>#| content: valuebox</code> creates a single-number panel from a cell whose result is one number (for example <code>nrow(penguins)</code>).</li>
-<li><code>{.tabset}</code> turns the cells in a column into tabs.</li>
-</ul>
-<p>The overall shape is:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Penguins dashboard"</span></span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span><span class="co"> dashboard</span></span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a><span class="fu">## Row {height="20%"}</span></span>
-<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>(two cells, each with <span class="in">`#| content: valuebox`</span>)</span>
-<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a><span class="fu">## Row {height="80%"}</span></span>
-<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a><span class="fu">### Column</span></span>
-<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a>(the boxplot cell, with a <span class="in">`#| title:`</span>)</span>
-<span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-16"><a href="#cb20-16" aria-hidden="true" tabindex="-1"></a><span class="fu">### Column {.tabset}</span></span>
-<span id="cb20-17"><a href="#cb20-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-18"><a href="#cb20-18" aria-hidden="true" tabindex="-1"></a>(the scatter cell and the table cell: each becomes a tab)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>After the group demo, you can optionally copy <code>analysis.qmd</code> to <code>dashboard.qmd</code> and reproduce one part of the layout.</p>
-</section>
-<section id="put-it-online-optional" class="level3 page-columns page-full" data-number="2.6">
-<h3 data-number="2.6" class="anchored" data-anchor-id="put-it-online-optional"><span class="header-section-number">2.6</span> Put it online <em>(optional)</em></h3>
+<section id="put-it-online-optional" class="level3 page-columns page-full" data-number="2.5">
+<h3 data-number="2.5" class="anchored" data-anchor-id="put-it-online-optional"><span class="header-section-number">2.5</span> Put it online <em>(optional)</em></h3>
 <p><strong>Goal.</strong> Take the <code>_site/</code> folder you have built and put it on a URL you can open on your phone.</p>
 
 <div class="no-row-height column-margin column-container"><div class="">
@@ -1197,12 +1166,43 @@ Figure&nbsp;1: The analysis page’s figure: body mass by species.
 <div id="callout-31" class="callout-31-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>From inside your project folder:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> publish posit-connect-cloud</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> publish posit-connect-cloud</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>No repository is needed. Connect Cloud takes the locally rendered files as they are.</p>
 <p>If you skip this step, the complete site remains in <code>_site/</code>. Nothing downstream depends on publishing.</p>
 </div>
 </div>
 </div>
+</section>
+<section id="optional-group-demo-inspect-a-dashboard" class="level3" data-number="2.6">
+<h3 data-number="2.6" class="anchored" data-anchor-id="optional-group-demo-inspect-a-dashboard"><span class="header-section-number">2.6</span> Optional group demo: inspect a dashboard</h3>
+<p>This worked example shows how the same analysis becomes a dashboard. Open the <a href="../../labs/quarto-projects/dashboard.html" target="_blank">finished dashboard</a>, then compare it with <code>solutions/day2/dashboard.qmd</code>. You do not need to build it during the workshop.</p>
+<p>Look for four ideas:</p>
+<ul>
+<li><code>format: dashboard</code> changes the output.</li>
+<li>A <code>##</code> heading starts a row and a <code>###</code> heading starts a column.</li>
+<li><code>#| content: valuebox</code> creates a single-number panel from a cell whose result is one number (for example <code>nrow(penguins)</code>).</li>
+<li><code>{.tabset}</code> turns the cells in a column into tabs.</li>
+</ul>
+<p>The overall shape is:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Penguins dashboard"</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span><span class="co"> dashboard</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a><span class="fu">## Row {height="20%"}</span></span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>(two cells, each with <span class="in">`#| content: valuebox`</span>)</span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a><span class="fu">## Row {height="80%"}</span></span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a><span class="fu">### Column</span></span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a>(the boxplot cell, with a <span class="in">`#| title:`</span>)</span>
+<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a><span class="fu">### Column {.tabset}</span></span>
+<span id="cb21-17"><a href="#cb21-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-18"><a href="#cb21-18" aria-hidden="true" tabindex="-1"></a>(the scatter cell and the table cell: each becomes a tab)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>After the group demo, you can optionally copy <code>analysis.qmd</code> to <code>dashboard.qmd</code> and reproduce one part of the layout.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
