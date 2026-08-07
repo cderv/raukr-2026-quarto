@@ -155,7 +155,7 @@ source("00-check-setup.R", local = new.env())
 
 It checks R, Quarto, the packages, and the data. It also renders the Day-1 Typst sample (the
 resulting `sample-typst.pdf` is written in `day1-intro/`) and downloads the fonts used in the
-workshop. Every line should read `[ok]`.
+workshop. Every check should read `[ok]`.
 
 ::: {.callout-tip collapse="true"}
 ## Prefer to check by hand?

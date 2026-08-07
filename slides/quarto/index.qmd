@@ -79,7 +79,7 @@ From the top folder of the exercises download:
 source("00-check-setup.R", local = new.env())
 ```
 
-Every line reads `[ok]`, and the last one is `>> All good. You are ready for Day 1.`
+Every check reads `[ok]`, and the last line is `>> All good. You are ready for Day 1.`
 :::
 
 No exercises folder yet? Get it first, then run the check:
