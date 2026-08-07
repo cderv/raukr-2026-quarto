@@ -55,7 +55,7 @@ slides/quarto-projects/   Day 2 — Quarto projects (revealjs deck)
 labs/quarto/              Day 1 lab, with exercise files and demos
 labs/quarto-projects/     Day 2 lab, with a starter and a worked solution
 exercises/                Generated participant files (see below) — never hand-edited
-tools/                    R scripts that generate and publish the exercises repo
+tools/                    R scripts that generate the exercises repo and the demo pages
 _quarto.yml · _brand.yml  Website config and branding
 justfile                  Build entry point
 ```
@@ -86,11 +86,16 @@ and a commit block on a stale `_freeze/`). Useful if you're adapting this worksh
 The [`justfile`](justfile) is the build entry point (run `just` for the list):
 
 ```sh
-just render     # render the whole site to _site/
+just render     # render the whole site to _site/, then the demo documents
 just preview    # live preview with auto-reload
+just demos      # render the finished lab documents to _site/demos/
 just clean      # remove build artifacts
 just publish gh # render, then publish to GitHub Pages (or: just publish connect)
 ```
+
+`just demos` renders the finished lab documents (the Day-1 results and the Day-2 website) via
+`tools/render-demos.R`, so they can be shown from a URL during the sessions. They are deployed
+but not linked from the site, and `just render` runs them, so publishing includes them.
 
 `just publish gh` pushes the rendered `_site/` to the `gh-pages` branch and prints the live URL
 (<https://cderv.github.io/raukr-2026-quarto/>) when it finishes.

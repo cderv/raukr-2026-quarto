@@ -19,7 +19,7 @@ One folder per day for slides and for the lab; shared config and brand at the ro
 _quarto.yml            # project: type: website; output-dir: _site; navbar per day
 _brand.yml             # ONE palette + fonts → site, slides, and R plots (see §5)
 DESCRIPTION            # renv Imports: drive the snapshot
-justfile               # render / preview / clean / publish <target>  (cross-platform)
+justfile               # render / preview / demos / clean / publish <target>  (cross-platform)
 index.qmd  setup.qmd   # landing + participant setup/install-check page
 slides/
   day1-<slug>/index.qmd   # format: revealjs
@@ -134,6 +134,13 @@ Two traps worth pre-empting when you build day N (both in the rule, §7–§8):
 - **`justfile` orchestrates** (`render` / `preview` / `clean` / `publish <target>`).
   Keep it **cross-platform** — participants run it on Windows too
   (`.claude/rules/justfile.md`).
+- **Deploy the finished lab documents as unlinked demo pages** (`demos` recipe, run as a
+  post-dependency of `render`). During a session the presenter wants the finished result on
+  screen, and a URL beats a local render. Two constraints shape it: `--output-dir` only works
+  for **project** renders, so a lab file that deliberately ships without a `_quarto.yml` has to
+  be staged into a throwaway project first; and that staging folder must **not** start with a
+  dot, because Quarto skips hidden paths when it collects project inputs (it renders nothing and
+  exits 0). Generate a hub page too — a folder with no `index.html` is a 404 on GitHub Pages.
 - **`_freeze/` is versioned.** After editing an executable `.qmd`, re-render it and
   stage `_freeze/`; commit it so CI (and colleagues) rebuild the site with **no R at
   all**. `execute: freeze: auto` in `_quarto.yml` is the sane default.
@@ -194,7 +201,7 @@ Triage findings by severity and fix the blockers before moving on.
 - [ ] `_quarto.yml` (website, `output-dir`, navbar with a Slides + Lab entry per day).
 - [ ] `_brand.yml` at the root (palette + fonts); wire the R side with `brand.yml`. Keep it
       **ASCII-only** — `read_brand_yml()` empties the palette on non-ASCII under a `C` locale (§5).
-- [ ] `justfile` (render / preview / clean / publish); confirm it runs on Windows.
+- [ ] `justfile` (render / preview / demos / clean / publish); confirm it runs on Windows.
 - [ ] `DESCRIPTION` `Imports:` + `renv::snapshot()`; commit `renv.lock`.
 - [ ] `theme.scss` for slide tweaks (consecutive-code-block spacing, etc.).
 - [ ] One `slides/dayN-*/index.qmd` + `labs/dayN-*/index.qmd` pair per day, from §2.

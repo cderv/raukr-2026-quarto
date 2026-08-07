@@ -259,6 +259,9 @@ the CORE/DEMO/MENTION/STORE triage that acts on it lives in `topic-store.md`.
 
 - **Course site:** <https://cderv.github.io/raukr-2026-quarto/> — deployed from the `gh-pages`
   branch of `cderv/raukr-2026-quarto` by `just publish gh`. Declared in `_quarto.yml` as `site-url`.
+- **Demo documents (for showing on screen):** <https://cderv.github.io/raukr-2026-quarto/demos/> —
+  the finished lab documents, rendered by `just demos` and shipped with the site. Deployed but
+  unlinked: no navbar entry, no link from the lab pages, absent from the search index and sitemap.
 - **Participant exercises:** <https://github.com/cderv/raukr-2026-quarto-exercises> — what
   `usethis::use_course()` downloads, generated from `labs/` (see `.claude/rules/exercises.md`).
 

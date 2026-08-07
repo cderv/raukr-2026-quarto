@@ -102,8 +102,11 @@ Run it before any session, and after any `labs/**` change you thought was finish
   and the solutions (`penguins-report.qmd`, `penguins-by-species.qmd`). They stay under
   `labs/quarto/` **only as sync source**; the exercises-repo CI validates them, not the course site.
   **Don't re-add them to `render:`** (you'd re-introduce a build the delivery repo already owns).
-  Adding a sixth takes two edits, not one: the sync manifest, **and** a render step in the scaffold's
-  `render-check.yml`. Miss the second and nothing validates the file at all.
+  Adding a sixth takes **three** edits, not one: the sync manifest, a render step in the scaffold's
+  `render-check.yml`, **and** — when the file is one a participant is meant to end up with — the
+  `groups` manifest in `tools/render-demos.R`. Miss the second and nothing validates the file at all;
+  miss the third and the demo hub silently drops it (nothing checks for that either). Note the demos
+  are *not* the site `render:` list: they render as their own projects, so this is not a way back in.
 - Keep the payload **tiny** (no `_freeze/`, `_extensions/`, `slides/` in `exercises/`) — 40 laptops pull
   it over venue Wi-Fi. The exercises-repo CI has a zip-size budget that trips on a stray heavy file.
 

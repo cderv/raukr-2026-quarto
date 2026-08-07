@@ -33,11 +33,11 @@ cmd). The `justfile` must work there with **zero setup** — no Git Bash install
    ```just
    [unix]
    clean:
-       rm -rf _site .quarto
+       rm -rf _site .quarto demos-build
 
    [windows]
    clean:
-       Remove-Item -Recurse -Force -ErrorAction SilentlyContinue _site, .quarto
+       Remove-Item -Recurse -Force -ErrorAction SilentlyContinue _site, .quarto, demos-build
    ```
 
 3. **Script recipes (multi-line shell logic): use per-OS shebang variants, not a single recipe.**
@@ -62,5 +62,14 @@ cmd). The `justfile` must work there with **zero setup** — no Git Bash install
    Better still: if two script bodies want shared logic, push it into an R script or a `quarto` call
    both variants invoke — bash and PowerShell aren't the same language, there's no DRY shortcut.
 
-4. **Sanity check before committing a `justfile` change:** `just --list` and `just --dry-run <recipe>`
-   here (Unix) at minimum. Windows can't be tested in the sandbox — reason about it via the rules above.
+4. **Only the LAST comment line above a recipe becomes its `just --list` description.** A multi-line
+   comment therefore lists a fragment from the middle of a sentence. Put the detail in a comment
+   block, leave a blank line, then a single-line description directly above the recipe.
+
+5. **Ordering: `recipe: pre-deps && post-deps`.** Dependencies before `&&` run *before* the recipe
+   body, those after it run *after*. `render: && demos` is the case here — the demos must land in
+   `_site/` once the site render is done, not before it.
+
+6. **Sanity check before committing a `justfile` change:** `just --list` and `just --dry-run <recipe>`
+   here (Unix) at minimum — `--list` also catches the truncated-description mistake above. Windows
+   can't be tested in the sandbox — reason about it via the rules above.

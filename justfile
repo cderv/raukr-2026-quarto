@@ -45,8 +45,9 @@ exercises:
 exercises-check:
     Rscript tools/sync-exercises.R --check
 
-# Verify the DELIVERY repo matches exercises/ (i.e. participants download what this repo ships).
 # Guards the last hop: exercises-check covers labs/ -> exercises/, this covers exercises/ -> live.
+
+# Verify the DELIVERY repo matches exercises/ (i.e. participants download what this repo ships)
 published-check:
     Rscript tools/publish-exercises.R --check
 
@@ -74,8 +75,10 @@ _publish target:
     {{ if target == "gh" { "quarto publish gh-pages --no-prompt --no-render" } else if target == "connect" { "quarto publish posit-connect-cloud --no-prompt --no-render" } else { error("Unknown target: '" + target + "' — use 'gh' or 'connect'") } }}
     @echo "Live at {{ if target == "gh" { gh_url } else { connect_url } }}"
 
-# Publish the whole site: just publish gh       →  GitHub Pages (gh-pages branch)
-#                         just publish connect  →  Posit Connect Cloud
+#   just publish gh       →  GitHub Pages (gh-pages branch)
+#   just publish connect  →  Posit Connect Cloud
+
+# Render, then publish the whole site to the chosen target
 [confirm("Publish the whole site? This renders, then pushes to the chosen target.")]
 publish target: render (_publish target)
 
