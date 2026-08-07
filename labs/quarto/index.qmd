@@ -359,7 +359,7 @@ it as **`my-report.qmd`** in that same `day1-intro/` folder (next to `references
 5. Render to HTML and confirm both citations resolve, to *(Gorman et al., 2014)* and
    *(Horst et al., 2020)*, with a reference list holding both entries.
 6. Switch the output to **Typst** and render a branded PDF. The branding comes from `_brand.yml`,
-   which Quarto only picks up when it sits next to your `.qmd`, so keep `my-report.qmd` in
+   which Quarto reads next to the document you render, so keep `my-report.qmd` in
    `day1-intro/`. You may see `unknown font family` warnings on the first render. See Troubleshooting
    if the final PDF still uses a serif font. Two routes:
    - **CLI** — leave the header as-is and force the target:
