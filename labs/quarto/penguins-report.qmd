@@ -49,7 +49,7 @@ clusters.
 #| fig-cap: "Bill length versus depth, colored by species."
 #| fig-alt: >-
 #|   Scatter plot of bill depth against bill length for penguins of three species, each drawn in a
-#|   distinct color and shape; the three species form largely separate clusters.
+#|   distinct color and shape. The three species form largely separate clusters.
 ggplot(penguins, aes(bill_len, bill_dep, color = species, shape = species)) +
   geom_point(alpha = 0.8) +
   scale_color_okabe_ito() +

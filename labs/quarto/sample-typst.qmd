@@ -33,7 +33,7 @@ library(prismatic)
 
 brand <- read_brand_yml()
 pal <- function(x) brand_color_pluck(brand, x)
-# clr_darken returns an alpha-channel hex (#RRGGBBAA); truncate to #RRGGBB.
+# clr_darken returns an alpha-channel hex (#RRGGBBAA). Truncate to #RRGGBB.
 tint <- function(x, f) substr(as.character(clr_darken(pal(x), f)), 1, 7)
 
 brand_style <- function(t) {
@@ -113,7 +113,7 @@ summary_tbl |>
 
 ```{r}
 #| label: fig-bill
-#| fig-cap: "Bill length versus depth by species; the single heaviest penguin is labeled."
+#| fig-cap: "Bill length versus depth by species. The single heaviest penguin is labeled."
 #| fig-alt: >-
 #|   Scatter plot of bill depth against bill length for penguins of three species, each drawn in a
 #|   distinct teal shade. The three species form separate clusters. The single heaviest penguin in

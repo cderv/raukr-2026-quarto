@@ -30,7 +30,7 @@ cat("##", params$species, "at a glance\n")
 #| label: fig-bill
 #| echo: false
 #| fig-cap: !expr paste0("Bill length versus depth for ", params$species, " penguins.")
-#| fig-alt: !expr paste0("Scatter plot of bill depth against bill length for ", params$species, " penguins; each point is one bird.")
+#| fig-alt: !expr paste0("Scatter plot of bill depth against bill length for ", params$species, " penguins. Each point is one bird.")
 ggplot(one, aes(bill_len, bill_dep)) +
   geom_point(alpha = 0.8) +
   labs(x = "Bill length (mm)", y = "Bill depth (mm)") +

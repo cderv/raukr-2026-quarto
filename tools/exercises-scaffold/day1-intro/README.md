@@ -10,7 +10,7 @@ parts of the day. The other files are used later, each at the lab step that name
   only if you did not finish Part 1: save a copy as `my-report.qmd` and continue from there.
 - `parameters-starter.qmd` — the starter for the Bonus challenge (parameters).
 - `sample-typst.qmd` — a more advanced branded Typst PDF example with additional R styling. The
-  setup check renders it once; open the PDF to see the result.
+  setup check renders it once. Open the PDF to see the result.
 - `references.bib`, `apa.csl`, `_brand.yml` — support files your documents point at. Keep them next
   to your `.qmd`.
 

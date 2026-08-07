@@ -141,7 +141,7 @@ Clicking Analysis moves you to the other page, which carries this figure:
 #| fig-height: 3.2
 #| fig-cap: "The analysis page's figure: body mass by species."
 #| fig-alt: >-
-#|   Boxplot of penguin body mass in grams for Adelie, Chinstrap and Gentoo species; Gentoo is
+#|   Boxplot of penguin body mass in grams for Adelie, Chinstrap and Gentoo species. Gentoo is
 #|   clearly the heaviest, Adelie and Chinstrap overlap.
 ggplot(penguins, aes(species, body_mass, fill = species)) +
   geom_boxplot(show.legend = FALSE) +

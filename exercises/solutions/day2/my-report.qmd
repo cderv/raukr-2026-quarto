@@ -23,7 +23,7 @@ so a `format: typst` left over from the Day-1 payoff would keep building a PDF i
 ```{r}
 #| label: fig-bill
 #| fig-cap: "Bill depth against bill length, by species."
-#| fig-alt: "Scatterplot of bill depth versus bill length in millimeters, colored by species; the three species form separate clusters."
+#| fig-alt: "Scatterplot of bill depth versus bill length in millimeters, colored by species. The three species form separate clusters."
 ggplot(penguins, aes(bill_len, bill_dep, color = species)) +
   geom_point(alpha = 0.8) +
   scale_color_okabe_ito() +

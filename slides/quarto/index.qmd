@@ -179,8 +179,8 @@ Cell options use the `#|` "hash-pipe": one YAML option per line.
 
 ::: {.callout-note title="Follow along"}
 In `day1-intro/`, open **`authoring-starter.qmd`** and save it as **`my-report.qmd`**. It opens with
-this cell: everything we write next assumes it. Need a completed Part-1 report? Open
-`authoring-checkpoint.qmd` in the same folder (the finished version of this document) and keep going.
+this cell: everything we write next assumes it. Need a completed Part-1 report? Save
+`authoring-checkpoint.qmd` (the finished version of this document) as `my-report.qmd` instead.
 :::
 
 ```` {.markdown}
@@ -558,7 +558,8 @@ This is exactly the path from your analysis to a submission, and to your **team-
 ## Citations {#citations}
 
 ::: {.callout-note title="Follow along"}
-Back in your editor: add citations to your Part-1 document (or to `authoring-checkpoint.qmd`).
+Back in your editor: add citations to your **`my-report.qmd`**. Not finished with Part 1? Save
+`authoring-checkpoint.qmd` as `my-report.qmd` first.
 :::
 
 Point the header at a `.bib`, then cite with `@key`:
@@ -694,8 +695,8 @@ typography:
 
 ::: {.callout-tip title="Your turn"}
 Back to the **[Lab](../../labs/quarto/index.qmd#citations-challenge)**, at the **Citations Challenge**: add citations to
-your own Part-1 file (or the completed `authoring-checkpoint.qmd`), then render it as a **branded Typst PDF**. You'll
-finish with a **branded, citable PDF** ready for further publication work.
+your **`my-report.qmd`** (save `authoring-checkpoint.qmd` as `my-report.qmd` if you did not finish Part 1), then render
+it as a **branded Typst PDF**. You'll finish with a **branded, citable PDF** ready for further publication work.
 :::
 
 ::: notes

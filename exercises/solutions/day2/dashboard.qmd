@@ -14,7 +14,7 @@ data(penguins)
 penguins <- penguins |> filter(!is.na(bill_len), !is.na(bill_dep), !is.na(body_mass))
 ```
 
-<!-- `##` starts a row, `###` a column; the heading text ("Row"/"Column") is just a label. -->
+<!-- `##` starts a row, `###` a column. The heading text ("Row"/"Column") is only a label. -->
 ## Row {height="20%"}
 
 ```{r}
@@ -41,11 +41,11 @@ list(
 
 ### Column
 
-<!-- Each code cell becomes a `.card`; its `#| title:` sets the card header. -->
+<!-- Each code cell becomes a `.card`. Its `#| title:` sets the card header. -->
 
 ```{r}
 #| title: "Body mass by species"
-#| fig-alt: "Boxplot of penguin body mass in grams by species; Gentoo is clearly the heaviest, Adelie and Chinstrap overlap around 3,700 g."
+#| fig-alt: "Boxplot of penguin body mass in grams by species. Gentoo is clearly the heaviest, Adelie and Chinstrap overlap around 3,700 g."
 ggplot(penguins, aes(species, body_mass, fill = species)) +
   geom_boxplot(show.legend = FALSE) +
   scale_fill_okabe_ito() +
@@ -56,7 +56,7 @@ ggplot(penguins, aes(species, body_mass, fill = species)) +
 
 ```{r}
 #| title: "Bill scatter"
-#| fig-alt: "Scatterplot of bill depth versus bill length in millimeters, colored by species; the three species form separate clusters."
+#| fig-alt: "Scatterplot of bill depth versus bill length in millimeters, colored by species. The three species form separate clusters."
 ggplot(penguins, aes(bill_len, bill_dep, color = species)) +
   geom_point(alpha = 0.8) +
   scale_color_okabe_ito() +

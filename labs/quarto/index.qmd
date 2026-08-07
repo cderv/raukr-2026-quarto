@@ -210,8 +210,8 @@ tag carries your `alt="…"`. The finished figure looks like this:
 #| fig-height: 3.4
 #| fig-cap: "Target: bill length versus depth by species."
 #| fig-alt: >-
-#|   Scatter plot of bill depth against bill length for three penguin species in distinct colors;
-#|   the species form largely separate clusters.
+#|   Scatter plot of bill depth against bill length for three penguin species in distinct colors.
+#|   The species form largely separate clusters.
 ggplot(penguins, aes(bill_len, bill_dep, color = species, shape = species)) +
   geom_point(alpha = 0.8) +
   scale_color_okabe_ito() +
@@ -237,7 +237,7 @@ On the plot cell, next to the label and caption:
 ```r
 #| fig-alt: >-
 #|   Scatter plot of bill depth against bill length for penguins of three species, each drawn in a
-#|   distinct color and shape; the three species form largely separate clusters.
+#|   distinct color and shape. The three species form largely separate clusters.
 ```
 
 And in the plot itself:
@@ -355,8 +355,8 @@ it as **`my-report.qmd`**, and continue from there. From here on the instruction
      - name: Your Name
        affiliation: Your Lab, Your University
    ```
-5. Render to HTML and confirm the citation resolves to *(Gorman et al., 2014)* with a formatted
-   reference list.
+5. Render to HTML and confirm both citations resolve, to *(Gorman et al., 2014)* and
+   *(Horst et al., 2020)*, with a reference list holding both entries.
 6. Switch the output to **Typst** and render a branded PDF. You may see `unknown font family`
    warnings on the first render. See Troubleshooting if the final PDF still uses a serif font. Two routes:
    - **CLI** — leave the header as-is and force the target:
@@ -372,9 +372,9 @@ it as **`my-report.qmd`**, and continue from there. From here on the instruction
 
 ::: {.callout-note appearance="simple" icon=false}
 ## {{< fa circle-check >}} You should see
-In-text **(Gorman et al., 2014)**, a **References** section formatted in APA, and, in the Typst
-PDF, the same citation and reference list, typeset with the RaukR palette. No `?@gorman2014` or
-`[?]` markers anywhere.
+In-text **(Gorman et al., 2014)** and **(Horst et al., 2020)**, a **References** section formatted in
+APA with both entries, and, in the Typst PDF, the same citations and reference list, typeset with the
+RaukR palette. No `?@gorman2014`, `?@horst2020` or `[?]` markers anywhere.
 
 **Check the branding applied.** An unbranded PDF builds without any error, so check the font
 instead: a branded PDF is set in **Albert Sans**, an unbranded one in Typst's default serif. Serif

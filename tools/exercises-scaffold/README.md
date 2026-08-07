@@ -6,7 +6,7 @@ One download covers **both** days. No Git or GitHub account needed.
 
 > **This folder is generated.** It is assembled from the course repo
 > [`cderv/raukr-2026-quarto`](https://github.com/cderv/raukr-2026-quarto) by a sync script — do not
-> hand-edit it here; edits are overwritten on the next sync. File issues on the course repo.
+> hand-edit it here. Edits are overwritten on the next sync. File issues on the course repo.
 
 ## Get the files
 
@@ -62,8 +62,8 @@ install.packages(c(
 If an attempt goes wrong, get a **fresh folder** (don't extract over your working copy):
 
 - Re-run the `use_course()` line above (with `destdir = "."`) — each download unpacks into its own
-  versioned folder, so your old attempt is untouched; or
-- Unzip the ZIP you kept to a **new** location.
+  versioned folder, so your old attempt is untouched.
+- Or unzip the ZIP you kept to a **new** location.
 
 ## Reuse
 

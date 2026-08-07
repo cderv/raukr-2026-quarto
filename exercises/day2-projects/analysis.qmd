@@ -17,7 +17,7 @@ penguins <- penguins |> filter(!is.na(bill_len), !is.na(bill_dep), !is.na(body_m
 ```{r}
 #| label: fig-mass
 #| fig-cap: "Body mass by species."
-#| fig-alt: "Boxplot of penguin body mass in grams by species; Gentoo is the heaviest, Adelie and Chinstrap overlap."
+#| fig-alt: "Boxplot of penguin body mass in grams by species. Gentoo is the heaviest, Adelie and Chinstrap overlap."
 ggplot(penguins, aes(species, body_mass, fill = species)) +
   geom_boxplot(show.legend = FALSE) +
   scale_fill_okabe_ito() +
