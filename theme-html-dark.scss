@@ -6,6 +6,9 @@ $link-color: #A6CBCF;
 $accent-muted: #A6CBCF;
 // Bootstrap's default rule grey is near-white against ink; no brand role maps to it.
 $border-color: #3A4855;
+// Bootstrap's light-grey hover fill would put near-white menu text on near-white; the navbar
+// dropdown items are invisible on hover and on keyboard focus without this.
+$dropdown-link-hover-bg: #2A3A47;
 
 /*-- scss:rules --*/
 // The lab figures are ggplot PNGs with a white panel; plate them so they read as cards.
