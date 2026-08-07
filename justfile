@@ -3,6 +3,10 @@
 # Use PowerShell on Windows; recipes must stay cross-platform.
 set windows-shell := ["powershell.exe", "-NoLogo", "-Command"]
 
+# R reports its locale in the labs' Session block, so an unpinned build records whoever ran it and
+# the freeze churns from machine to machine. Exported to every recipe on both shells.
+export LC_ALL := "C"
+
 # Where each publish target lands (printed once the publish succeeds)
 gh_url := "https://cderv.github.io/raukr-2026-quarto/"
 connect_url := "https://connect.posit.cloud/cderv/content/019f5c4d-f1c7-0d48-88b9-b10861a493e7"
