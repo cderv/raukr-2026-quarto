@@ -1,0 +1,40 @@
+# RaukR 2026 Quarto -- dark brand
+# The same palette as _brand.yml, written on ink instead of in ink. Keep this file ASCII-only:
+# read_brand_yml() (R side) fails to parse non-ASCII under a C/POSIX locale.
+meta:
+  name: RaukR 2026 - Quarto
+
+color:
+  palette:
+    teal: "#4C979F"
+    teal-light: "#A6CBCF"
+    teal-lighter: "#D1E5E6"
+    ink: "#1c2833"
+    ink-code: "#141c25"
+    paper: "#e8edf0"
+  primary: teal
+  secondary: teal-light
+  foreground: paper
+  background: ink
+
+typography:
+  fonts:
+    - family: Albert Sans
+      source: google
+      weight: [400, 600, 700]
+    - family: Fira Mono
+      source: google
+      weight: [400, 500]
+  base:
+    family: Albert Sans
+    line-height: 1.5
+  headings:
+    family: Albert Sans
+    weight: 600
+  monospace:
+    family: Fira Mono
+    # The `arrow` highlight theme is adaptive and sets no code background, so the light default
+    # would composite to a pale grey over ink and sink every token below AA.
+    background-color: ink-code
+  link:
+    color: teal-light

@@ -1,0 +1,17 @@
+/*-- scss:defaults --*/
+// Layered after theme-html.scss in the dark stack only: the teals that fail WCAG AA on white are
+// the ones that read on ink, so the light overrides invert here. The navbar does not -- #33666B
+// still separates from the page and carries white text, so it stays as the shared default.
+$link-color: #A6CBCF;
+$accent-muted: #A6CBCF;
+// Bootstrap's default rule grey is near-white against ink; no brand role maps to it.
+$border-color: #3A4855;
+
+/*-- scss:rules --*/
+// The lab figures are ggplot PNGs with a white panel; plate them so they read as cards.
+.cell-output-display img,
+figure img {
+  background-color: #ffffff;
+  padding: 0.5rem;
+  border-radius: 0.25rem;
+}

@@ -1,6 +1,10 @@
 project:
   type: website
   output-dir: _site
+  # A dark brand is what enables the site's light/dark toggle.
+  brand:
+    light: _brand.yml
+    dark: _brand-dark.yml
   render:
     - index.qmd
     - setup.qmd
@@ -42,7 +46,11 @@ website:
 
 format:
   html:
-    theme: [default, theme-html.scss]
+    # Light first: it is the fallback for readers without JavaScript.
+    theme:
+      light: [default, theme-html.scss]
+      dark: [default, theme-html.scss, theme-html-dark.scss]
+    respect-user-color-scheme: true
     toc: true
     toc-location: right
     toc-depth: 4

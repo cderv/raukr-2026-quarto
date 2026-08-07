@@ -60,13 +60,27 @@ it ships a single light sheet):
   leaves uncolored while `arrow-dark` bolds them cyan (#00e0e0) (quarto-cli **#14299**). Symptom:
   `quarto` in a ```` ```sh ```` block renders **bold cyan on white**.
 
-**Fix** (in `theme-html.scss`, until upstream lands): force the leaking classes back to body ink.
+**Fix** (in `theme-html.scss`, until upstream lands): force the leaking classes back to body ink,
+**scoped so it cannot reach dark mode**.
 ```scss
-code span.ex, code span.bu { color: inherit; font-weight: inherit; }
+body:not(.quarto-dark) code span.ex,
+body:not(.quarto-dark) code span.bu { color: inherit; font-weight: inherit; }
 ```
 Don't add `.wa` — `arrow-light` *does* color it (`#5E5E5E`), so overriding it would be wrong.
-**Verify** with computed styles (Chromium): the command word must be body ink (`#003B4F`), not
-`rgb(0,224,224)`. (Diagnosed 2026-07-21; reported upstream.)
+**Verify** with computed styles (Chromium): the command word must be body ink (`#003B4F`) in light,
+and the dark sheet's `rgb(0,224,224)` in dark. (Diagnosed 2026-07-21; reported upstream.)
+
+**The scope is load-bearing, and `:not()` is the only correct form** (2026-08-07). The leak is a
+*light-only-site* bug: `quarto-html-before-body.ejs` wraps the whole colour-scheme script in
+`<% if (darkMode !== undefined) %>`, so with no dark mode the script is never emitted and nothing
+ever disables the alternate sheet. Add dark mode and `toggleColorMode(false)` disables it for you.
+That leaves two traps:
+
+- **Unscoped** (the old form) also kills the *legitimate* `.ex`/`.bu` colours in dark mode.
+- **`body.quarto-light`** looks like the natural scope and is wrong: both classes are added by that
+  same script, so with JavaScript off neither is present and the guard would not apply — exactly the
+  case that still leaks. `body:not(.quarto-dark)` matches in light, matches with JS off, and stops
+  matching in dark. Verified in Chromium with `javaScriptEnabled: false`.
 
 ## 5. The brand teals fail WCAG AA as text / light surfaces — override in `theme-html.scss`
 
@@ -153,3 +167,46 @@ missed it, an agent that actually rendered caught it immediately.
 **Related wording trap:** `primary` does **not** color headings. `--bs-heading-color` stays `inherit`
 in every configuration above. What turns brand-colored is the **navbar and links**. Don't write "the
 headings turn teal" as a checkpoint — participants will read it as a failure when they got it right.
+
+## 8. Dark mode: the site is two brands, and a shared SCSS layer needs `!default`
+
+Added 2026-08-07. The site runs `project.brand: {light: _brand.yml, dark: _brand-dark.yml}` plus
+`format.html.theme: {light: [default, theme-html.scss], dark: [default, theme-html.scss,
+theme-html-dark.scss]}` and `respect-user-color-scheme: true`.
+
+- **Only `_brand.yml` / `_brand.yaml` (and `_brand/…`) are auto-detected.** There is no
+  `_brand-dark.yml` convention and no dark-SCSS convention — both maps must be written out.
+  The dark palette lives in a *second file* rather than as `{light:, dark:}` roles inside
+  `_brand.yml` for one reason: `tools/sync-exercises.R` byte-copies the root `_brand.yml` into the
+  participant payload, so editing it would change what people download for a site-only change.
+- **The `brand:` pair is what enables dark mode** (`enablesDarkMode` → `darkModeDefault` defined).
+  The `theme:` map is not needed for that; it exists only to give the dark-only SCSS a home.
+- **A layer shared by both stacks must write every dark-overridable value with `!default`.** §7
+  records that later layers win — true, but only for `!default` variables. `scss:defaults` blocks
+  are emitted in *reverse*, so a bare `$x: …;` in the earlier-listed file executes last and silently
+  clobbers the dark layer. (`scss:rules` are *not* reversed, so dark rules still win normally.)
+  Hence `$link-color` / `$navbar-bg` / `$accent-muted` in `theme-html.scss` all carry `!default`.
+- **Set `$navbar-bg`, don't paint `.navbar`.** Bootstrap derives `$navbar-fg` as
+  `theme-contrast($navbar-bg, $navbar-bg)` and `$navbar-hl` from `theme-contrast($link-color,
+  $navbar-bg)`. A raw `background-color` rule leaves both computed against the *un-overridden*
+  `$primary` — survivable in light, a real contrast failure in dark. `#33666B` stays the bar in
+  **both** modes: it clears the ink page (2.32:1) and carries white text (6.45:1).
+- **`arrow` is adaptive, so no `$code-block-bg` is set**, and the light fallback
+  (`rgba(#e9ecef,.65)`) composites to a pale grey over ink that sinks every token to 1.18–2.28:1.
+  Fix from the brand, not the SCSS: `typography.monospace.background-color` in `_brand-dark.yml`.
+- **`$border-color` has no brand role** and stays `#dee2e6` (11.5:1 against ink) — set it in the
+  dark layer or every table rule and `<hr>` glares.
+- **Dashboards can't do dark** (`format: dashboard`): the dark sheet *is* enabled by the toggle, but
+  bslib redefines `--bs-body-bg` after it, so nothing repaints, and `respect-user-color-scheme` does
+  not apply there either. The toggle is hidden on `body.quarto-dashboard` rather than shipped inert.
+  Under investigation as an upstream report.
+- **Revealjs is unaffected**: `formatHasBootstrap` excludes it, and `brandRevealSassLayers` defaults
+  to `brand-mode: light`. Both decks render **byte-identical** — check that with a diff after any
+  brand change, it is the cheapest proof available.
+
+**Verify with axe-core in both schemes**, driving Chromium with `colorScheme: 'light' | 'dark'`
+(and once with `javaScriptEnabled: false`). Quarto ships the harness at
+`$(quarto --paths)/formats/html/axe/axe.min.js`. Target: **0 `color-contrast` violations on every
+page in both modes** — that is the current state. The two ARIA violations that remain
+(`aria-allowed-attr` on callout toggles, `aria-prohibited-attr` on FontAwesome icons) are upstream,
+identical in both modes, and separately tracked.
