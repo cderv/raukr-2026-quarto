@@ -1,0 +1,58 @@
+[
+  {
+    "objectID": "reports/methods.html",
+    "href": "reports/methods.html",
+    "title": "Methods",
+    "section": "",
+    "text": "Show the code\nlibrary(dplyr)\ndata(penguins)\n\n\nMeasurements come from three species at Palmer Station, Antarctica. Each row is one bird: bill length, bill depth, flipper length, and body mass.\nA few birds are missing one or more measurements. We drop those rows before analysing, so every figure and table on this site uses the same set of complete cases.\n\n\nShow the code\npenguins |&gt;\n  filter(!is.na(bill_len), !is.na(bill_dep), !is.na(body_mass)) |&gt;\n  count(species, name = \"complete_rows\") |&gt;\n  knitr::kable()\n\n\n\n\nTable 1: Rows kept per species after dropping incomplete measurements.\n\n\n\n\n\n\nspecies\ncomplete_rows\n\n\n\n\nAdelie\n151\n\n\nChinstrap\n68\n\n\nGentoo\n123"
+  },
+  {
+    "objectID": "my-report.html",
+    "href": "my-report.html",
+    "title": "My report",
+    "section": "",
+    "text": "library(dplyr)\nlibrary(ggplot2)\nlibrary(ggokabeito)   # color-blind-safe (Okabe-Ito) scale, same as Day 1\ndata(penguins)\npenguins &lt;- penguins |&gt; filter(!is.na(bill_len), !is.na(bill_dep), !is.na(body_mass))\n\nThis page stands in for the report you built on Day 1. Copy your own my-report.qmd over this file and re-render: the document you wrote as a standalone PDF becomes one page of a website, with no change to its content.\nOnly the front matter needed a look. A page inside a project inherits format: from _quarto.yml, so a format: typst left over from the Day-1 payoff would keep building a PDF instead of a page.\n\nggplot(penguins, aes(bill_len, bill_dep, color = species)) +\n  geom_point(alpha = 0.8) +\n  scale_color_okabe_ito() +\n  labs(x = \"Bill length (mm)\", y = \"Bill depth (mm)\", color = NULL)\n\n\n\n\n\n\n\nFigure 1: Bill depth against bill length, by species.\n\n\n\n\n\nFigure 1 still resolves, because the reference and its figure share one page."
+  },
+  {
+    "objectID": "analysis.html",
+    "href": "analysis.html",
+    "title": "Analysis",
+    "section": "",
+    "text": "library(dplyr)\nlibrary(ggplot2)\nlibrary(ggokabeito)   # color-blind-safe (Okabe-Ito) scale, same as Day 1\ndata(penguins)\npenguins &lt;- penguins |&gt; filter(!is.na(bill_len), !is.na(bill_dep), !is.na(body_mass))"
+  },
+  {
+    "objectID": "analysis.html#body-mass-by-species",
+    "href": "analysis.html#body-mass-by-species",
+    "title": "Analysis",
+    "section": "Body mass by species",
+    "text": "Body mass by species\n\nggplot(penguins, aes(species, body_mass, fill = species)) +\n  geom_boxplot(show.legend = FALSE) +\n  scale_fill_okabe_ito() +\n  labs(x = NULL, y = \"Body mass (g)\")\n\n\n\n\n\n\n\nFigure 1: Body mass by species.\n\n\n\n\n\nFigure 1 shows that Gentoo penguins are clearly the heaviest of the three species."
+  },
+  {
+    "objectID": "analysis.html#mean-measurements",
+    "href": "analysis.html#mean-measurements",
+    "title": "Analysis",
+    "section": "Mean measurements",
+    "text": "Mean measurements\n\npenguins |&gt;\n  summarise(\n    bill_len = mean(bill_len),\n    bill_dep = mean(bill_dep),\n    body_mass = mean(body_mass),\n    .by = species\n  ) |&gt;\n  knitr::kable(digits = 1)\n\n\n\nTable 1: Mean measurements by species.\n\n\n\n\n\n\nspecies\nbill_len\nbill_dep\nbody_mass\n\n\n\n\nAdelie\n38.8\n18.3\n3700.7\n\n\nGentoo\n47.5\n15.0\n5076.0\n\n\nChinstrap\n48.8\n18.4\n3733.1"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Penguin Lab",
+    "section": "",
+    "text": "Welcome. This is a small site about the Palmer penguins: three species measured at Palmer Station, Antarctica, shipped in base R as datasets::penguins (R &gt;= 4.5).\nHead to the analysis for the figures and a summary table."
+  },
+  {
+    "objectID": "index.html#reports",
+    "href": "index.html#reports",
+    "title": "Penguin Lab",
+    "section": "Reports",
+    "text": "Reports\nQuarto builds this index from the reports/ folder, so a new page there shows up here on the next render with nothing to edit.\n\n\n   \n    \n    \n      Order By\n      Default\n      \n        Title\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\nTitle\n\n\n\nDescription\n\n\n\n\n\n\n\n\nData notes\n\n\nWhere the data comes from, and what is missing.\n\n\n\n\n\n\nMethods\n\n\nHow the penguins were measured, and what we drop before analysing.\n\n\n\n\n\n\nNo matching items\n\n\nThis is the finished Day-2 project: the .qmd pages from day2-projects/, plus the _quarto.yml, the _brand.yml, the reports/_metadata.yml, and the freeze setting that turn them into a navigable, branded, reproducible website. Open it to compare, or use it as the ready starting point for whichever part you did not finish."
+  },
+  {
+    "objectID": "reports/data-notes.html",
+    "href": "reports/data-notes.html",
+    "title": "Data notes",
+    "section": "",
+    "text": "Show the code\nlibrary(dplyr)\ndata(penguins)\n\n\nThe data ships with base R as datasets::penguins (R &gt;= 4.5), so there is nothing to download. It is the Palmer Station penguin survey, the same data used in the analysis page.\nHere is what is missing, by column:\n\n\nShow the code\npenguins |&gt;\n  summarise(across(c(bill_len, bill_dep, body_mass), \\(x) sum(is.na(x)))) |&gt;\n  knitr::kable()\n\n\n\n\nTable 1: Missing values per measurement column.\n\n\n\n\n\n\nbill_len\nbill_dep\nbody_mass\n\n\n\n\n2\n2\n2\n\n\n\n\n\n\n\n\nThe counts are small, which is why dropping incomplete rows costs us very little."
+  }
+]
