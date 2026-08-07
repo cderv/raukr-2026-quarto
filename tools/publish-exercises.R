@@ -41,7 +41,8 @@ git <- function(..., dir = NULL, check = TRUE) {
   st   <- attr(out, "status")
   if (check && !is.null(st) && st != 0L)
     stop("git ", paste(a, collapse = " "), " failed:\n", paste(out, collapse = "\n"), call. = FALSE)
-  out
+  # Invisible because Rscript auto-prints top-level values: a bare git() would echo its capture.
+  invisible(out)
 }
 
 ROOT <- tryCatch(git("rev-parse", "--show-toplevel"), error = function(e) getwd())
