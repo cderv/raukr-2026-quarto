@@ -52,7 +52,15 @@ cderv/raukr-2026-quarto-exercises @ main   ← what use_course() + the /main/ do
    drift from a path alone. A course-repo
    drift-guard CI (`.github/workflows/exercises-sync.yml` = `just exercises-check`) fails and names the
    drifted file if you forget — `exercises/` must always match its sources.
-3. **Publish when ready:** `just publish-exercises` mirrors `exercises/` onto the delivery repo's `main`
+3. **The site demos read `exercises/` too.** `tools/render-demos.R` (`just demos`, run automatically by
+   `just render`) renders the finished documents into `_site/demos/` for showing on screen —
+   deliberately from the payload, so the screen matches what participants downloaded. So a re-sync you
+   skip also leaves the demos stale. The Day-1 groups are staged into throwaway projects under
+   `demos-build/` because the payload ships no `_quarto.yml` there and `--output-dir` only works for
+   project renders; the Day-2 solution already is a project and renders where it stands. Never name
+   that staging dir with a leading dot — Quarto skips hidden paths when collecting project inputs, so
+   it renders nothing and exits 0.
+4. **Publish when ready:** `just publish-exercises` mirrors `exercises/` onto the delivery repo's `main`
    as one commit and pushes (temp-clone → copy → commit → push; ships **only** `exercises/` content, so
    `.claude/` and site scaffolding never leak). The delivery repo's `render-check.yml` CI then renders
    both solutions + the Typst PDF and asserts the structural invariants below.

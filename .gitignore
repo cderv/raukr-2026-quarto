@@ -71,6 +71,11 @@
 /raukr-2025/
 /raukr-2026/
 
+# --- demo staging (tools/render-demos.R) ---
+# Throwaway Quarto projects assembled from exercises/ so the Day-1 documents (which ship without a
+# _quarto.yml on purpose) can be rendered with --output-dir into _site/demos/. Fully regenerable.
+/demos-build/
+
 # --- generated exercises tree (tools/sync-exercises.R) ---
 # The committed exercises/ is content only; the sync strips render output and renders happen in
 # throwaway copies. Ignore any in-place render churn so it can't be committed or trip the drift-guard.

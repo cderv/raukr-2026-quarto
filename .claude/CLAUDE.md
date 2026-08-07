@@ -16,6 +16,13 @@ lives in the other references.
   or `just publish connect` (Posit Connect Cloud); `publish-only <target>` skips the rebuild. **Must
   stay cross-platform** (participants run it on Windows too) —
   editing rules + the PowerShell/`[unix]`/`[windows]` conventions live in **`.claude/rules/justfile.md`**.
+- **`just demos` renders the finished lab documents into `_site/demos/`** so they can be shown from a
+  URL during the sessions. **<https://cderv.github.io/raukr-2026-quarto/demos/> is the hub page** the
+  script generates (the Day-1 folders have no `index.html` of their own, so a bare folder URL 404s).
+  They are deployed but **unlinked** — no navbar entry, no link from the lab pages, not in the search
+  index or sitemap. `just render` runs it as a post-dependency, so `just publish gh` ships them.
+  `tools/render-demos.R` builds them **from the generated `exercises/` payload**, not from `labs/`, so
+  the screen shows what participants downloaded. `quarto preview` does not include them.
 - **R deps via renv** — `renv::restore()`; explicit snapshot driven by `DESCRIPTION` `Imports:`.
   **`pak` works here** (verified 2026-07-21, pak 0.11.0 — the old "pak KO" note was stale): use it
   for **system-requirement detection/repair** (`pak::sysreqs_check_installed()` /

@@ -19,9 +19,19 @@ default:
 deps:
     Rscript -e "renv::restore(prompt = FALSE)"
 
-# Render the whole site to _site/
-render:
+# `demos` is a POST-dependency (`&&`): it must run after the site render, not before.
+# Only the last comment line becomes the `just --list` description, so keep it one line.
+
+# Render the whole site to _site/, then the demos into _site/demos/
+render: && demos
     quarto render
+
+# Deployed but unlinked — no navbar entry, no link from the lab pages. Built from the generated
+# exercises/ payload, so what is shown on screen is what participants downloaded.
+
+# Render the finished lab documents to _site/demos/ (for showing on screen during the sessions)
+demos:
+    Rscript tools/render-demos.R
 
 # Live preview with auto-reload
 preview:
@@ -48,11 +58,11 @@ publish-exercises repo="https://github.com/cderv/raukr-2026-quarto-exercises.git
 # Remove build artifacts
 [unix]
 clean:
-    rm -rf _site .quarto
+    rm -rf _site .quarto demos-build
 
 [windows]
 clean:
-    Remove-Item -Recurse -Force -ErrorAction SilentlyContinue _site, .quarto
+    Remove-Item -Recurse -Force -ErrorAction SilentlyContinue _site, .quarto, demos-build
 
 # Shared target dispatch (private recipe): just's native conditional, NOT a shebang —
 # the emitted `quarto publish …` line is one cross-platform binary call, so it runs under
