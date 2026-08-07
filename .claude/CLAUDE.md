@@ -36,7 +36,7 @@ lives in the other references.
   write path — never hand-edit `exercises/`), and `just publish-exercises` mirrors it onto that repo's
   `main`. So **editing `labs/**` means: re-render + re-sync + commit `exercises/`** (a course-repo
   drift-guard CI enforces the match). The full model, structural invariants (no `_quarto.yml` above the
-  day starters; sibling solutions; the five Day-1 files off the site render list), and gotchas are the
+  day starters; sibling solutions; the Day-1 working/reference files off the site render list), and gotchas are the
   path-scoped rule **`.claude/rules/exercises.md`** (auto-surfaced on `labs/**`, `exercises/**`, the
   sync/publish scripts, `setup.qmd`, `_quarto.yml`).
 

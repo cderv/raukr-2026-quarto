@@ -105,12 +105,12 @@ Run it before any session, and after any `labs/**` change you thought was finish
   `day2-projects/` ships **without** a `_quarto.yml` on purpose — **creating it is the Day-2 exercise**.
 - **Solutions are SIBLING folders** (`solutions/day1/`, `solutions/day2/`), never nested inside a day
   folder — a nested solution would be swept into a participant's Day-2 website render.
-- **The five Day-1 working/reference files** are **off the site render list** (`_quarto.yml`
+- **The Day-1 working/reference files** are **off the site render list** (`_quarto.yml`
   `render:`): the participant starters (`citations-starter.qmd`, `sample-typst.qmd`, `parameters-starter.qmd`)
   and the solutions (`penguins-report.qmd`, `penguins-by-species.qmd`). They stay under
   `labs/quarto/` **only as sync source**; the exercises-repo CI validates them, not the course site.
   **Don't re-add them to `render:`** (you'd re-introduce a build the delivery repo already owns).
-  Adding a sixth takes **three** edits, not one: the sync manifest, a render step in the scaffold's
+  Adding another takes **three** edits, not one: the sync manifest, a render step in the scaffold's
   `render-check.yml`, **and** — when the file is one a participant is meant to end up with — the
   `groups` manifest in `tools/render-demos.R`. Miss the second and nothing validates the file at all;
   miss the third and the demo hub silently drops it (nothing checks for that either). Note the demos
@@ -128,10 +128,11 @@ Run it before any session, and after any `labs/**` change you thought was finish
   `knitr`, `rmarkdown`) — `ggokabeito` (the CVD-safe species scale) is easy to miss. Add-a-package =
   edit `tools/exercises-scaffold/DESCRIPTION` (CI installs from it), the install lines in
   `setup.qmd`, **and** the scaffold `README.md` package line, then re-sync.
-- **Download buttons** (three, in `labs/quarto/index.qmd`) point at
-  `raw.githubusercontent.com/cderv/raukr-2026-quarto-exercises/main/…`. Both repos went **Public on
-  2026-08-03**, so the buttons and `use_course()` now work; they 404 again if either is ever flipped
-  back to Private.
+- **Download buttons** in `labs/quarto/index.qmd` point at
+  `raw.githubusercontent.com/cderv/raukr-2026-quarto-exercises/main/…`. Rename or add a Day-1 file and
+  every affected link moves with it, so grep the URL rather than trusting a remembered count. Both
+  repos went **Public on 2026-08-03**, so the buttons and `use_course()` now work; they 404 again if
+  either is ever flipped back to Private.
 - **Commits to the delivery repo carry the instructor's git identity** (Christophe), not Claude — set
   `git config user.email/name` before publishing; `publish-exercises.R` inherits it.
 
