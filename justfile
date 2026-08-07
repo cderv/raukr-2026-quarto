@@ -35,8 +35,11 @@ exercises:
 exercises-check:
     Rscript tools/sync-exercises.R --check
 
+# Re-syncs first, like publish-exercises does, so `just render` demo artifacts left inside
+# exercises/solutions/day2/ are not reported as drift.
+#
 # Verify the DELIVERY repo matches exercises/ (i.e. participants download what this repo ships)
-published-check:
+published-check: exercises
     Rscript tools/publish-exercises.R --check
 
 # Sync + publish exercises/ to the participant repo's main (pass a URL to retarget a new year)
