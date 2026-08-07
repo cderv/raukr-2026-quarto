@@ -196,6 +196,17 @@ before it ships, because they catch different failures:
 
 Triage findings by severity and fix the blockers before moving on.
 
+**Split the lenses by what they read.** Technique and Language belong on the source, where syntax and
+wording live. Pedagogy and any "do the lab for real" agent belong on the **rendered site**, and the
+difference is not cosmetic: in source a Hint and its Solution are plain text, so an agent has read
+every answer before it attempts anything and can neither get stuck nor tell you whether a step is
+answerable. On the built page those callouts are collapsed. Two defect classes are invisible from
+source alone — anything that only exists after a render (a cell that echoes code nobody introduced),
+and anything about what a reader meets first. The portable recipe, including the traps that each cost
+an hour (`file://` leaves the page looking right while its JS never runs; a click below the fold
+reports success and does nothing; parallel agents need distinct browser sessions), is
+`reviewing-the-live-site.md`, with `.claude/scripts/site-serve.sh` as the server.
+
 ## 7. Spin-up checklist
 
 - [ ] `_quarto.yml` (website, `output-dir`, navbar with a Slides + Lab entry per day).
@@ -213,4 +224,7 @@ Triage findings by severity and fix the blockers before moving on.
       **labs** with the duplication lens (rule §9): keep beneficial reps, cut only same
       task / same outcome / no new dimension.
 - [ ] Render everything, stage `_freeze/`, fit-check changed slides.
-- [ ] Review through the four lenses (§6); triage; fix the blockers.
+- [ ] Review through the four lenses (§6); triage; fix the blockers. Point the pedagogy lens and the
+      lab-doing agent at the **rendered** site, not the source (§6).
+- [ ] Publish the participant materials **and** check the published copy matches what the repo
+      ships — the last hop is the one that silently rots.

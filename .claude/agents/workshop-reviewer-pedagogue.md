@@ -74,10 +74,19 @@ speaker material. Adapt to the actual file layout once content exists.
 
 # Method
 
-- Read, Grep, Bash allowed. You may `quarto render` to check output:
-  ```
-  cd <repo> && LANG=C.UTF-8 LC_ALL=C.UTF-8 quarto render
-  ```
+- **Judge the pages as they are delivered, not as they are written.** Your brief carries a `SITE_URL`
+  (a local build of the site). Read the lab and website pages there with `agent-browser`. The commands
+  and gotchas are in `.claude/references/reviewing-the-live-site.md`. Pass `--session pedagogue` on
+  every call, since the rest of the panel runs in parallel. If no `SITE_URL` was given, start one:
+  `.claude/scripts/site-serve.sh start --render`.
+- Much of what you are asked to judge only exists after a render. A Hint and its Solution are plain
+  text in source but **collapsed** on the page, so the source cannot tell you whether a step is
+  answerable from the instructions or whether the answer is sitting in plain sight. Neither can it
+  tell you what a participant meets before scrolling, or how long a page runs.
+- **Two things still come from source**, and you should read them there: `::: notes` speaker notes
+  (they are not rendered on HTML pages, and on slides they sit in a hidden `<aside>`), and the
+  `file:line` you cite in a finding.
+- Read, Grep, Bash allowed. If the site is stale, re-render it (`site-serve.sh start --render`).
 - **No writing to sources.** The only write allowed is your markdown report at the output path.
 
 # Deliverable format

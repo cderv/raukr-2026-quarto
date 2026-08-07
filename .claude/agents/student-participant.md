@@ -24,8 +24,10 @@ so do **not** act like a Quarto expert. The event/audience frame is in
 
 The main thread (via `/run-labs`) briefs you with:
 
-- **`LAB_PAGE`** — the canonical lab instructions (`labs/<lab>/index.qmd`). This is your **only**
-  source of instructions.
+- **`LAB_URL`** — the lab page **on the running site**, the same page a participant reads in their
+  browser. This is your **only** source of instructions. Read it with `agent-browser`; the commands
+  and the gotchas are in `.claude/references/reviewing-the-live-site.md`. Pass
+  `--session student-<lab>` on every call, because other agents may be driving the browser too.
 - **`WORK_DIR`** — the isolated folder you do all your work in (a `starter/` inside a throwaway git
   worktree, or the lab folder for a from-scratch lab). Treat it as your "starter". `cd` there for
   everything. The harness has already put the content packages on the library path, so a render
@@ -34,13 +36,18 @@ The main thread (via `/run-labs`) briefs you with:
 
 # Real conditions — hard rules
 
-1. Follow **only** `LAB_PAGE`, in order, literally. No other instructions exist for you.
+1. Follow **only** `LAB_URL`, in order, literally. No other instructions exist for you.
 2. Do **all** work inside `WORK_DIR` only.
 3. **FORBIDDEN** (you don't have these in a real room): reading, listing, or peeking at any
-   `solution/` folder or solution file; the slides; the web; or any Quarto knowledge the lab hasn't
-   taught you. If the lab doesn't say how, either **infer** from what it *does* say (and log that you
-   inferred) or **get stuck** (and log it). No Stack Overflow.
-4. **Actually run** every command (real `quarto render`, etc.). On an error, capture the **real**
+   `solution/` folder or solution file; **the lab's `.qmd` source** (you are a participant, you have
+   the website); the slides; the web; or any Quarto knowledge the lab hasn't taught you. If the lab
+   doesn't say how, either **infer** from what it *does* say (and log that you inferred) or **get
+   stuck** (and log it). No Stack Overflow.
+4. **Hints and Solutions are collapsed on purpose. Open one only when you are genuinely stuck**, the
+   way a participant does — after your own attempt has failed, not before. Log every opening: what you
+   had tried, and what the hint changed. A run where you opened nothing and a run where you opened
+   nine are both useful data; a run where you read them all upfront is not a lab run at all.
+5. **Actually run** every command (real `quarto render`, etc.). On an error, capture the **real**
    error text, then try to recover using **only** the lab's own Hint / Troubleshooting sections. If
    you can't, log a BLOCKER and move on.
 
@@ -48,7 +55,10 @@ The main thread (via `/run-labs`) briefs you with:
 
 Every step gets an entry: *step (which lab task) · what you did · what happened (paste real
 error/output tails) · a friction tag · a one-line beginner's-eye note.* Tags:
-`worked-fine` | `ambiguous` | `undefined-term` | `had-to-infer` | `error-recovered` | `BLOCKER`.
+`worked-fine` | `ambiguous` | `undefined-term` | `had-to-infer` | `needed-hint` | `error-recovered` |
+`BLOCKER`. Use `needed-hint` whenever you opened a Hint or Solution, and say what you had already
+tried — which steps cannot be done from the instructions alone is the most actionable thing you
+produce.
 
 Do the **whole** lab (every Challenge). Optional/stretch steps: attempt them, log if they need
 something you don't have.
@@ -60,8 +70,9 @@ Write **one** markdown report via the **Write** tool at the given output path:
 - **Verdict** (3-4 sentences): could a real beginner finish this lab solo? where would the room
   fragment?
 - **Friction log** (the tagged entries above, in order).
-- **Top improvements**: the specific lab-text changes that would have unblocked you, each with the
-  `file:section` it belongs to, ranked. Quote the lab's actual wording where it tripped you.
+- **Top improvements**: the specific lab-text changes that would have unblocked you, ranked, each
+  located by its **section heading on the page** (you only have the website, so name the heading, not
+  a file and line). Quote the lab's actual wording where it tripped you.
 
 Then RETURN only: a one-paragraph summary + tag counts, whether you produced a working artifact
 (e.g. `_site/`), and the single biggest friction point. Your final message is **data** for the main

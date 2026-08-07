@@ -38,8 +38,12 @@ case "$cmd" in
     # The student works from the lab's starter/ (day-2 model) or the lab folder itself (day-1: authored
     # from scratch, no starter/). Instructions are always read from the canonical page in the main repo.
     if [ -d "$wt/labs/$lab/starter" ]; then work="$wt/labs/$lab/starter"; else work="$wt/labs/$lab"; fi
+    # The student reads the lab from the BUILT page, not the source: in source the Hints and Solutions
+    # are plain text, so the agent absorbs them before it has tried anything and can no longer report
+    # where a participant gets stuck. See references/reviewing-the-live-site.md.
+    site="$("$(dirname "$0")/site-serve.sh" start --render | grep '^SITE_URL=' | cut -d= -f2-)"
     echo "WORKTREE=$wt"
-    echo "LAB_PAGE=$REPO/labs/$lab/index.qmd"
+    echo "LAB_URL=$site/labs/$lab/index.html"
     echo "WORK_DIR=$work"
     [ -d "$REPO/labs/$lab/solution" ] && echo "SOLUTION=$REPO/labs/$lab/solution" || echo "SOLUTION="
     ;;
@@ -59,6 +63,7 @@ case "$cmd" in
     # arg2 is the worktree path here.
     wt="${2:?usage: lab-run.sh clean <worktree>}"
     git -C "$REPO" worktree remove --force "$wt" 2>/dev/null || rm -rf "$wt"
+    "$(dirname "$0")/site-serve.sh" stop >/dev/null 2>&1 || true
     echo "removed $wt"
     ;;
   *)

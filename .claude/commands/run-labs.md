@@ -19,18 +19,20 @@ beginner hits. This is the executing complement to `/start-workshop` (which *rea
    tree and won't be in the worktree).
 
 2. **Isolate — per lab.** Run `.claude/scripts/lab-run.sh setup <lab>` and capture the printed
-   `WORKTREE` / `LAB_PAGE` / `WORK_DIR` / `SOLUTION`. The script creates a throwaway git worktree
+   `WORKTREE` / `LAB_URL` / `WORK_DIR` / `SOLUTION`. It renders and serves the site, so `LAB_URL` is
+   the lab page as a participant reads it (hints and solutions collapsed, not spread open like the
+   source). The script creates a throwaway git worktree
    (real repo checkout: full lab structure, committed `_freeze/`, the `solution/`) and pre-installs
    the content packages into the default R library so a render that fails on a *missing package* is a
    genuine finding, not an environment gap.
 
 3. **Fan out the student(s).** Launch one **`student-participant`** agent per lab (in parallel — one
-   message, multiple Agent calls, if running `all`). Brief each with **only**: its `LAB_PAGE`, its
+   message, multiple Agent calls, if running `all`). Brief each with **only**: its `LAB_URL`, its
    `WORK_DIR`, and the report output path
    `.claude/reviews/review-YYYY-MM-DD-labrun-<lab>.md`. The agent's own definition carries the
-   persona + hard rules (follow only the lab page; forbidden solution/slides/web; run every render for
-   real; log friction). It **writes its own report** and returns a one-line summary — do not ask for
-   the body.
+   persona + hard rules (follow only the lab page; forbidden solution/source/slides/web; open a Hint
+   only when genuinely stuck and log it; run every render for real; log friction). It **writes its own
+   report** and returns a one-line summary — do not ask for the body.
 
 4. **Diff vs solution.** For each finished run, `.claude/scripts/lab-run.sh diff <lab> <WORK_DIR>` —
    compare the student's produced `_quarto.yml` / `_brand.yml` / pages against `solution/`. A clean

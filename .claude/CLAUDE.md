@@ -132,6 +132,10 @@ editing `_brand.yml` or the theme SCSS).
 - **Agents** → `.claude/agents/`: the four `workshop-reviewer-*` lenses (technique / pedagogue /
   beginner / language) and `student-participant`, which actually walks a lab and reports friction.
   **Commands:** `/start-workshop` (fan out the panel), `/run-labs` (drive the student agent).
+  The **pedagogue and the student read the rendered site**, not the `.qmd` (in source the Hints and
+  Solutions are open, so neither can judge what a participant actually meets):
+  `.claude/scripts/site-serve.sh start --render` serves the build, and the agent-browser recipe plus
+  the traps that cost an hour each are in **`.claude/references/reviewing-the-live-site.md`**.
 - **Upstream issues** → `.claude/upstream-issues/`: Quarto bug reports reduced from this material,
   drafted here before filing against `quarto-dev/quarto-cli`.
 

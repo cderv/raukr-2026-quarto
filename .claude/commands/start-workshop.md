@@ -22,10 +22,16 @@ review filename as `review-YYYY-MM-DD[-tag]-[type].md`.
    and list the fixes already applied since then, so
    each reviewer is told what **NOT** to re-flag.
 
-2. **Fan out the panel — in parallel, one message, multiple Agent calls.** Launch these four
+2. **Serve the site.** The `pedagogue` reviews rendered pages, not source, so it needs a site to read:
+   `.claude/scripts/site-serve.sh start --render`, pass the printed `SITE_URL`, and `site-serve.sh stop`
+   when the cycle ends. `--render` matters, because a stale build makes every finding describe content
+   you already changed. (The deployed site is not an option here, and
+   `.claude/references/reviewing-the-live-site.md` says why.)
+
+3. **Fan out the panel — in parallel, one message, multiple Agent calls.** Launch these four
    subagents concurrently. Give each the **same briefing**: the reference commit, the
    "fixes since last review — do NOT re-flag" list, the known session specifics (format,
-   length, blocks, presenters), and its exact output path.
+   length, blocks, presenters), the `SITE_URL`, and its exact output path.
 
    | agent | output path |
    |---|---|
@@ -41,12 +47,12 @@ review filename as `review-YYYY-MM-DD[-tag]-[type].md`.
    > they will flag what can't yet be judged. Skip a reviewer only if its scope literally
    > doesn't exist yet (e.g. no prose → language reviewer has little to do).
 
-3. **Collect & triage.** Once all reports are written, read them and produce a consolidated
+4. **Collect & triage.** Once all reports are written, read them and produce a consolidated
    triage for me: the union of 🔴 P0 / 🟠 P1 / 🟡 P2 across reviewers, de-duplicated, with
    `file:line`. Recommend what to fix now (P0/P1) vs defer (P2). **Do not auto-fix** — wait
    for my go-ahead unless I tell you otherwise.
 
-4. **Report discipline.** Reviews are **immutable snapshots**: never edit a past review —
+5. **Report discipline.** Reviews are **immutable snapshots**: never edit a past review —
    a re-review the same day gets a new file with a `bis`/`ter` tag. `.claude/reviews/` is
    local-only (gitignored) — the durable record of what changed is the commit message, and
    any lasting gotcha belongs in the matching `.claude/rules/` file.
