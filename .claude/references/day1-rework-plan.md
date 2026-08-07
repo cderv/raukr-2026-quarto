@@ -59,6 +59,21 @@ authoring-starter.qmd  +  all Day-1 tasks    =  solutions/day1/penguins-report.q
 The third is the first two composed, and it is the one a participant who finishes both parts should
 be able to check themselves. Today none of the three holds.
 
+**"Equals" means functional and source-structure equivalence, not byte-for-byte identity.** Every
+piece of tasked content is present, and the document behaves the same: the same cross-references
+resolve, the same cells carry the same options, the same citations render, the same output is
+produced. A participant's file is *not* wrong for differing in these ways:
+
+- **`author:` values** — personalised, as Part-2 task 4 asks. The reference carries a placeholder.
+- **Which Typst route was taken** — the CLI route (`quarto render … --to typst`) leaves the header
+  saying `format: html`; the editor route changes the header to `format: typst`. Both are taught,
+  both are correct, and the header therefore has two valid states at the end of Part 2.
+- **Cosmetic latitude in prose the participant writes** — their alt text and their citation sentence
+  will not be word-for-word the reference's. What must match is that the alt text exists, is
+  non-empty, and describes the plot.
+
+Anything outside that list is a divergence and belongs in decision 6's table.
+
 ## Governing rule — file roles, not file counts
 
 Every file has one clearly named purpose, and no two files claim the same scope. Duplication is not
@@ -84,12 +99,22 @@ start."* A file whose README has to deny its own name is misnamed.
 | `penguins-by-species.qmd` | complete | none — read-only | `parameters-starter.qmd` + the bonus tasks (its own equation) | `solutions/day1/` |
 | `references.bib`, `apa.csl` (solution copies) | complete | none | unchanged, so the solution renders standalone | `solutions/day1/` |
 
-## Scope guard — this changes guidance, not content
+## Scope guard — the task set and the tiers are not under review
 
-The task list is not under review. Every Day-1 task stays, at the tier it has today: the figure, the
-table, the margin element, the accessibility work, the equation. What changes is **where the syntax
-lives** (the doc link and the participant's own lookup, not the task text) and **what the participant
-starts from** (a working document, not an empty file).
+**Nothing is cut and nothing is re-tiered.** Every Day-1 task stays, at the tier it has today: the
+figure, the table, the margin element, the accessibility work, the equation. The learning scope is
+unchanged. What changes is **where the syntax lives** (the doc link and the participant's own lookup,
+not the task text) and **what the participant starts from** (a working document, not an empty file).
+
+**Narrowly scoped additions are allowed where convergence requires them**, and only there. Decision 6
+makes three, each closing a gap rather than widening the exercise:
+
+- Part-2 task 2 extends to cite the package the prose already credits (`@horst2020`);
+- the bonus gains TODO 3c for the closing line that today's solution changes untasked;
+- the bonus starter gains the Session appendix that today's solution has and the starter lacks.
+
+The test for any further addition is the same: does an equation fail without it? If not, it is out of
+scope for this plan.
 
 The Day-2 plan's core/stretch re-tiering is *not* inherited. Importing it here turns a guidance fix
 into a content review, and a time budget then makes cuts look necessary. It was tried on 2026-08-07
@@ -187,6 +212,25 @@ already names three of these; the rest are the ones a rename reaches that an add
    are not a way back in — they render as their own throwaway projects.
 8. `tools/exercises-scaffold/00-check-setup.R` — only if the setup check should render the new file.
    It currently renders `sample-typst.qmd` on every participant's machine before the workshop.
+
+**The vendored culmen image is its own set of edits**, not a side effect of moving the figure. It is
+the first binary asset in the Day-1 payload, so:
+
+- add it to the `files` manifest in `tools/sync-exercises.R`;
+- add it to the `day1` staging group in `tools/render-demos.R` — the group stages an explicit file
+  list, so an asset the `.qmd` references but the list omits renders as a broken image;
+- verify the path is relative to `sample-typst.qmd` and survives *both* locations it renders from
+  (`day1-intro/` in the payload, and the staged throwaway project under `demos-build/`);
+- re-check the payload against the exercises-repo **zip-size budget**. If it trips, drop the figure
+  rather than shipping a heavier download — 40 laptops pull this over venue Wi-Fi.
+
+## A note on `.worktrees/`
+
+Not present in this checkout, and not in `.gitignore`. `.claude/scripts/lab-run.sh` creates real git
+worktrees for `student-participant` runs and removes them itself (`git worktree remove --force`), so
+one appearing mid-session belongs to a lab run in progress. **Leave it alone** — do not delete it, do
+not commit it, and if a stray one persists, add it to `.gitignore` rather than removing user-owned
+data. `git worktree list` shows whether it is live.
 
 ## Build order
 
