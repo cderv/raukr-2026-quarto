@@ -91,7 +91,7 @@ usethis::use_course("cderv/raukr-2026-quarto-exercises")
 Any `[FAIL]` line: raise your hand. The fix is on the [Setup page](../../setup.qmd).
 
 ::: notes
-- **Do:** ~10 min. Ask for hands: who has every line `[ok]`?
+- **Do:** ~10 min. Ask for hands: who has `[ok]` for every check?
 - **Watch for:** `[FAIL] quarto not found`, and missing `knitr`/`rmarkdown` (the two that stop a render).
 - **Do:** send failures to a helper and start Part 1 on time. They catch up from the Setup page.
 - **Say:** the last check renders the Typst sample, which downloads the workshop fonts. It takes a moment.

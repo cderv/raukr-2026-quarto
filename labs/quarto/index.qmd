@@ -252,8 +252,8 @@ Naming both `color` and `shape` in `labs()` merges them into a single legend.
 ::: {.callout-tip icon=false}
 ## {{< fa universal-access >}} Optional accessibility check
 Your figure now has alt text and redundant color/shape encoding. To check the whole page, Quarto can
-run axe-core in the browser
-([HTML Accessibility](https://quarto.org/docs/output-formats/html-accessibility.html)).
+run axe-core in the browser. See
+[HTML Accessibility](https://quarto.org/docs/output-formats/html-accessibility.html).
 
 Your header still has `format: html` on one line. The option belongs under that format, so expand it
 into a block:
