@@ -100,6 +100,13 @@ generated or vendored comments directly.
 distil only current constraints into the matching scoped rule. Do not retain rejected alternatives,
 bench estimates, review transcripts, or implementation logs.
 
+**Commit messages are short. The reasoning lives in the strand.** Most commits here are a subject
+line alone. Add a body only for the why a reader cannot get from the diff, and keep it to a few
+lines. Do not write the investigation: which review found the defect, how it was verified, what was
+tried first, or which fix turned out to be wrong. That material belongs in the strand, where it can
+be corrected when it proves wrong. A pushed commit message cannot. Say what changed and why, not
+how you came to know it. And never cite the strand id (see Publishing).
+
 The **slide-craft gotchas** — fit-check every changed slide (`.claude/scripts/slide-shot.mjs`),
 `.center`-slide layout, `code-line-numbers`, `filename`, consecutive-code-block spacing, `echo: fenced`
 to show a cell's `#|` options — are the path-scoped rule **`.claude/rules/slides.md`**
