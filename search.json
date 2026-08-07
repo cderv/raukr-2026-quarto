@@ -4,7 +4,7 @@
     "href": "labs/quarto-projects/index.html",
     "title": "Quarto projects — Lab",
     "section": "",
-    "text": "library(dplyr)\nlibrary(ggplot2)\nlibrary(ggokabeito)   # color-blind-safe (Okabe-Ito) scale, same as Day 1\ndata(penguins)\npenguins &lt;- penguins |&gt; filter(!is.na(bill_len), !is.na(bill_dep), !is.na(body_mass))\nStarting point. Open your day2-projects/ folder from the exercises download (double-click day2-projects.Rproj, see the Setup page). It holds four content pages that already render on their own but are not yet a project:\nRender one page to confirm it works: quarto render analysis.qmd creates analysis.html next to its source. A finished reference is in solutions/day2/."
+    "text": "NoteScope\n\n\n\nTurn a set of .qmd files into a navigable, branded website. Then use freeze for reproducible builds and render the site to a publishable folder. Publishing online is optional. Everything uses base-R datasets::penguins (R ≥ 4.5).\nBefore you start: work through the Setup page if you haven’t. Its 00-check-setup.R confirms R, Quarto, and the packages this lab uses.\nStarting point. Open your day2-projects/ folder from the exercises download (double-click day2-projects.Rproj, see the Setup page). It holds four content pages that already render on their own but are not yet a project:\nRender one page to confirm it works: quarto render analysis.qmd creates analysis.html next to its source. A finished reference is in solutions/day2/."
   },
   {
     "objectID": "labs/quarto-projects/index.html#website-challenge",
