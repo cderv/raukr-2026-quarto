@@ -1,6 +1,6 @@
 ---
 title: "Methods"
-description: "How the penguins were measured, and what we drop before analysing."
+description: "How the penguins were measured, and what we drop before analyzing."
 ---
 
 ```{r}
@@ -13,7 +13,7 @@ data(penguins)
 Measurements come from three species at Palmer Station, Antarctica. Each row is one bird: bill
 length, bill depth, flipper length, and body mass.
 
-A few birds are missing one or more measurements. We drop those rows before analysing, so every
+A few birds are missing one or more measurements. We drop those rows before analyzing, so every
 figure and table on this site uses the same set of complete cases.
 
 ```{r}

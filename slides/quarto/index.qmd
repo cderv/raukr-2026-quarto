@@ -43,7 +43,7 @@ After this session you will be able to:
 - lay out a document with the article grid and margin content.
 - make it **accessible** with alt text, color-blind-safe colors, and a built-in contrast check.
 - cite your sources from a `.bib` file in the style a journal asks for.
-- turn it into a **branded Typst PDF** — no LaTeX.
+- turn it into a **branded Typst PDF** (no LaTeX required).
 
 By the end, you will have a **polished PDF report**.
 
@@ -56,10 +56,10 @@ By the end, you will have a **polished PDF report**.
 
 Two rounds, each the same shape (**watch → follow along → your turn**):
 
-- some slides I talk through. A **Follow along** callout opens each hands-on stretch and an
+- Some slides I talk through. A **Follow along** callout opens each hands-on stretch and an
   **Eyes up** callout closes it.
-- each round ends with a **hands-on Challenge** in the lab (solutions are folded in for self-checking).
-- a **break** sits between the two rounds.
+- Each round ends with a **hands-on Challenge** in the lab (solutions are folded in for self-checking).
+- A **break** sits between the two rounds.
 
 Slides and lab live at <https://cderv.github.io/raukr-2026-quarto/>. Open them on your own screen and
 move at your own pace.
@@ -252,7 +252,7 @@ penguins |>
   gt() |> fmt_number(bill, decimals = 1)
 ```
 
-Then refer to it in prose with `@tbl-summary` (same mechanic as figures).
+Then refer to it in prose with `@tbl-summary` (the same mechanism as figures).
 
 **Learn more:** [Cross-references](https://quarto.org/docs/authoring/cross-references.html)
 
@@ -319,7 +319,7 @@ It renders with the live count: "We measured **`{r} nrow(penguins)`** penguins."
 
 . . .
 
-The number updates when the data does. **Reproducible by construction.**
+The number updates when the data changes.
 
 **Learn more:** [Inline code](https://quarto.org/docs/computations/inline-code.html)
 
@@ -331,8 +331,8 @@ The number updates when the data does. **Reproducible by construction.**
 ## Layouts: body, margin, and beyond {#layouts}
 
 ::: {.callout-warning title="Eyes up — not a live *Follow along*"}
-The live build is done. The next few slides are concept, no need to type along. Your document is
-ready for the Challenge.
+The live build is done. The next slides cover layout concepts. Your document is ready for the
+Challenge.
 :::
 
 The **article-layout model** puts content in the **body**, the **margin**, or a zone **wider than
@@ -401,7 +401,7 @@ format:
 
 ## One source → many formats {#document-types}
 
-One key in the header picks the output. The content stays put:
+One key in the header picks the output. The content does not change:
 
 :::: {.columns}
 ::: {.column width="50%"}
@@ -479,7 +479,7 @@ unchanged documents. We'll see it in Day 2.*
 
 ## Running & editing {#running}
 
-Drive Quarto from the CLI, in whatever editor you like:
+Run Quarto from the CLI, in whatever editor you like:
 
 ``` bash
 quarto preview report.qmd   # live-reloading preview
@@ -525,7 +525,7 @@ then render it to HTML. We break at **15:00** and resume at **15:30**.
 :::
 
 *You can now author a figure, a cross-referenced table, and margin layout. After the break we cite
-it and ship a branded PDF.*
+it and produce a branded PDF.*
 
 ::: notes
 - **Say:** "Work on the Authoring Challenge until the break at 15:00. We resume at 15:30.
@@ -553,7 +553,7 @@ make it a **branded, citable article**, add two things:
 
 . . .
 
-This is exactly the path from your analysis to a submission, and to your **team-project** write-up.
+This is exactly the path from your analysis to a submission, and to your **team project** write-up.
 
 ## Citations {#citations}
 
@@ -638,7 +638,7 @@ LaTeX toolchain.
 format: typst
 ```
 
-That is the whole switch. Then re-render:
+That is the only change. Then re-render:
 
 ``` bash
 quarto render report.qmd
@@ -647,7 +647,7 @@ quarto render report.qmd
 The header already says which format, so nothing else is needed. To get the PDF *without* touching
 the header, ask for it on the command line instead: `quarto render report.qmd --to typst`.
 
-::: {.callout-note title="Pre-flight"}
+::: {.callout-note title="Version check"}
 Typst is bundled from Quarto **1.4+**. We require **≥ 1.9** for margin and article layout. Check once with `quarto --version`.
 :::
 
@@ -694,9 +694,9 @@ typography:
 ## Your turn {#your-turn-2}
 
 ::: {.callout-tip title="Your turn"}
-Back to the **[Lab](../../labs/quarto/index.qmd#citations-challenge)**, at the **Citations Challenge**: add citations to
-your **`my-report.qmd`** (save `authoring-checkpoint.qmd` as `my-report.qmd` if you did not finish Part 1), then render
-it as a **branded Typst PDF**. You'll finish with a **branded, citable PDF** ready for further publication work.
+Return to the **Citations Challenge** in the **[Lab](../../labs/quarto/index.qmd#citations-challenge)**.
+Add citations to **`my-report.qmd`** (save `authoring-checkpoint.qmd` as `my-report.qmd` if you did
+not finish Part 1), then render it as a **branded Typst PDF**.
 :::
 
 ::: notes
@@ -713,7 +713,7 @@ You can now:
 - lay it out with the article grid and margin content.
 - make it accessible with alt text, color-blind-safe colors, and a built-in `axe` check.
 - cite it with a `.bib` and CSL, and give it a real title block.
-- render it as a **branded Typst PDF** — no LaTeX.
+- render it as a **branded Typst PDF**.
 
 . . .
 

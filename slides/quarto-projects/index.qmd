@@ -35,8 +35,8 @@ Yesterday: one `.qmd` → a branded PDF. Today, the other axis: **one file to ma
 - **build** a navigable, **branded website** with within-page cross-references.
 - make its builds **reproducible**, produce a **publishable folder**, and optionally put it online.
 
-By the end: the same penguins data, a set of pages (**including yesterday's report**) grown into a
-**website your team can publish**.
+By the end, the same penguins data and yesterday's report will form a **website your team can
+publish**.
 
 ::: notes
 - **Say:** "Yesterday: one `.qmd` to a branded PDF. Today: many files, one project, then publish."
@@ -62,7 +62,7 @@ From one file to a whole site.
 
 ::: {.callout-note title="Follow along"}
 Open your **`day2-projects/`** folder from the exercises download: from here we build one project
-together. Fallen behind at any point? `solutions/day2/` holds the finished project.
+together. If you fall behind, `solutions/day2/` contains the finished project.
 :::
 
 One `.qmd` renders alone. A **project** is a folder Quarto treats as one unit (shared config, one
@@ -102,8 +102,8 @@ Quarto uses the **nearest `_quarto.yml`** up the tree as the project root: you a
 
 ## Directory metadata: `_metadata.yml` {#metadata}
 
-Yesterday a header set the defaults and a cell overrode them. `_metadata.yml` is that **same idea,
-one scope wider**: options for every page in a **folder**, so you don't repeat them in each header:
+Yesterday a header set the defaults and a cell overrode them. `_metadata.yml` applies the **same
+principle** to every page in a **folder**, so you do not repeat the options in each header:
 
 ``` {.yaml filename="analysis/_metadata.yml"}
 # applies to every .qmd in analysis/
@@ -115,8 +115,8 @@ format:
     code-fold: true
 ```
 
-Same narrow-wins rule, now across files: **document header** > `_metadata.yml` > `_quarto.yml`.
-Set defaults wide, override narrow.
+The same precedence rule now applies across files: **document header** > `_metadata.yml` >
+`_quarto.yml`. Set broad defaults, then override them at the document or folder level.
 
 ::: aside
 Today's lab includes a `reports/` subfolder. You will add `reports/_metadata.yml` so its options apply
@@ -152,7 +152,7 @@ website:
 
 . . .
 
-`contents: auto` even builds the sidebar from the folder, so you don't hand-list pages.
+`contents: auto` builds the sidebar from the folder, so you do not need to list every page.
 
 ::: {.aside}
 **Listings** turn a folder of pages into an auto-generated index (a blog, a gallery of reports) via
@@ -172,7 +172,7 @@ website:
 ## Cross-references across a project {#xrefs}
 
 ::: {.callout-warning title="Eyes up — not a live *Follow along*"}
-The next few slides are concept, no need to type along.
+The live build is done. The next slides explain project cross-references.
 :::
 
 Within **one page**, `@fig-`, `@tbl-`, `@eq-` resolve to a numbered, linked reference, exactly as
@@ -196,11 +196,8 @@ one unit with global numbering. A **website** keeps per-page numbering.
 [Book cross-references](https://quarto.org/docs/books/book-crossrefs.html)
 
 ::: notes
-- **Before session:** confirm that a website does not resolve a cross-page `@fig-` reference.
-- **If asked — does `@sec-` need `number-sections: true`?** No. The reference resolves either way
-  (verified, Quarto 1.10). The option adds the number on the heading, which is why the docs pair
-  them. This site sets it in `_quarto.yml`, so a demo here shows numbers a participant's own bare
-  document will not.
+- **Before session:** confirm that website pages do not resolve cross-page `@fig-` references.
+- **If asked:** `@sec-` resolves without `number-sections`; the option only numbers the heading.
 :::
 
 ## One brand → the whole project: `_brand.yml` {#brand}
@@ -248,12 +245,12 @@ typography:
 
 ::: {.callout-tip title="Your turn — until the break at 15:00"}
 Head to the **[Lab](../../labs/quarto-projects/index.qmd#website-challenge)** and the **Website
-Challenge**: turn a set of `.qmd` into a navigable, **branded website**: `_quarto.yml`, a navbar, and
+Challenge**: turn a set of `.qmd` files into a navigable, **branded website**: `_quarto.yml`, a navbar, and
 the shared brand. We break at **15:00** and resume at **15:30**.
 :::
 
 You can now structure files into a branded, navigable **website**. After the break we make its builds
-reproducible and **ship** it.
+reproducible and prepare it for publication.
 
 ::: notes
 - **Say:** "Website Challenge: project, navigation, brand, folder options, then an optional listing.
@@ -280,7 +277,7 @@ Make builds reproducible, then prepare the project for publication.
 Back in your project's `_quarto.yml`.
 :::
 
-**freeze** was one line in Day 1. Compute can be slow: you don't want every prose edit to re-run a
+**freeze** was one line in Day 1. Computations can be slow: you don't want every prose edit to re-run a
 20-minute model fit. Two tools, easily confused:
 
 ::: {.incremental}
@@ -288,7 +285,8 @@ Back in your project's `_quarto.yml`.
   Per-**cell**, kept until that cell's code changes, and it works in a **single document**.
 - **`freeze`**: **Quarto's** switch for when a document re-executes.
   **Project-only**: rendering one file always runs it. Results live in `_freeze/`, refreshed only
-  when its source changes. Commit it and **CI** *(the automated build)* rebuilds with **no R at all**.
+  when its source changes. Once every page has frozen results, **CI** *(the automated build)* can
+  rebuild those pages without R.
 :::
 
 . . .
@@ -325,25 +323,21 @@ quarto render analysis.qmd     # runs the code, rewrites _freeze/ — commit it 
 
 . . .
 
-The loop: **edit a page → render that one file → commit `_freeze/`**. Once every page has been
-frozen once, the project build and **CI** stay **R-free**. That's exactly how **quarto.org** itself
-is built.
+With `freeze: true`, the workflow is: **edit a page → render that one file → commit `_freeze/`**.
+Once every page has been frozen, the project build and **CI** can reuse those results without R.
+This is how **quarto.org** is built.
 
 . . .
 
-`freeze: auto` instead lets the *build* recompute a page whose source changed. Convenient, but
-`true` keeps the trigger in your hands.
+`freeze: auto` instead lets the *build* recompute a page whose source changed. With `true`, you
+decide when to recompute each page.
 
 ::: notes
 - **Say:** "With `true`, only a direct document render recomputes the page."
-- **Precision — don't say "never runs R".** A page with no `_freeze/` entry still executes, and so
-  does a brand-new page added to the project (checked on Quarto 1.10). What `true` buys is that an
-  **edited** page is not recomputed by the build. "R-free" is the steady state, once every page has
-  been frozen once.
+- **Watch for:** a page with no `_freeze/` entry and a new page still execute.
 - **Do:** edit `analysis.qmd`; render that file; show `_freeze/` change. Then render the project.
 - **Contrast:** `auto` recomputes changed pages; `true` requires manual refresh.
 - **Example:** quarto.org uses `true` and commits `_freeze/`.
-- **Lab:** a guided experiment walks this loop on their own project.
 :::
 
 ## Reproducibility has two parts {#renv}
@@ -375,7 +369,7 @@ Together: a colleague (or CI) rebuilds the *same* site, with or without re-runni
 
 ## Publishing {#publishing}
 
-The hands-on part is small: **render, then point a host at `output-dir`.**
+Publishing has two steps: **render the project, then point a host at `output-dir`.**
 
 ``` bash
 quarto render              # builds the whole project into _site/
@@ -392,8 +386,8 @@ quarto publish posit-connect-cloud
 The first run opens a browser to sign in, then uploads the folder you just built.
 
 ::: {.callout-tip title="Your turn — optional, if we have time"}
-Publish your site and open it on your phone. The lab has the steps. Everyone still leaves with
-`_site/`, which is the deliverable either way.
+Publish your site and open it on your phone. The lab has the steps. If you skip publishing, you
+still have the complete `_site/` folder.
 :::
 
 ::: notes
@@ -406,8 +400,9 @@ Publish your site and open it on your phone. The lab has the steps. Everyone sti
 ## Your turn {#your-turn-2}
 
 ::: {.callout-tip title="Your turn"}
-Back to the **[Lab](../../labs/quarto-projects/index.qmd#ship-it-challenge)**, the **Reproducible Build
-Challenge**: make the build skip unchanged pages, bring **yesterday's report** onto the site, then run
+Return to the **Reproducible Build Challenge** in the
+**[Lab](../../labs/quarto-projects/index.qmd#reproducible-build-challenge)**. Make the build skip unchanged
+pages, bring **yesterday's report** onto the site, then run
 the guided `freeze: true` experiment. The result is a publishable `_site/` folder. The
 dashboard demo and publishing are optional.
 :::
@@ -433,8 +428,8 @@ You can now:
 
 . . .
 
-**You've built the two axes:** one document to a branded PDF (Day 1), one folder to a site ready to
-publish (Day 2), with yesterday's report now a page of it. Everything your **team project** needs.
+**You've built the two axes:** one document to a branded PDF (Day 1), then one folder to a site ready
+to publish (Day 2). Yesterday's report is now a page of that site.
 
 ::: notes
 - **Close with:** "Yesterday's document is now a page of today's site."
@@ -445,8 +440,8 @@ publish (Day 2), with yesterday's report now a page of it. Everything your **tea
 Extra topics:
 
 ::: {.incremental}
-- **Book versus website**: mostly the same machinery. Pick a **book** when you need one linear read with
-  global numbering, a **website** otherwise. *(1 decision, not a new toolset.)*
+- **Book versus website**: choose a **book** for ordered chapters with global numbering. Choose a
+  **website** for independent pages.
 - **Interactivity**: an **htmlwidget** (`plotly`, `leaflet`) is pure R and self-contained.
   **[OJS](https://quarto.org/docs/interactive/ojs/)** *(Observable JS, a browser-side, non-R path)*
   and **[Shinylive](https://quarto-ext.github.io/shinylive/)** *(Shiny running in the browser,

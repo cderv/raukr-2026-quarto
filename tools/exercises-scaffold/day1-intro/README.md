@@ -14,5 +14,5 @@ parts of the day. The other files are used later, each at the lab step that name
 - `references.bib`, `apa.csl`, `_brand.yml` — support files your documents point at. Keep them next
   to your `.qmd`.
 
-The reports use inline R in the prose (`` `{r} nrow(penguins)` ``), which reports a number straight
-from the data. You do not have to write any, but that is what those backticks are.
+The reports contain inline R expressions such as `` `{r} nrow(penguins)` ``. These expressions
+insert values computed from the data. You do not need to add any during the core challenges.

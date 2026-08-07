@@ -21,8 +21,8 @@ penguins <- penguins |> filter(!is.na(bill_len), !is.na(bill_dep), !is.na(body_m
 
 ::: {.callout-note}
 ## Scope
-Turn a set of `.qmd` files into a navigable, **branded website**. Then use **freeze** for
-reproducible builds and render the site to a publishable folder. Publishing online is optional.
+Turn a set of `.qmd` files into a navigable, **branded website**. Then use **freeze** to reuse
+computed results and render the site to a publishable folder. Publishing online is optional.
 Everything uses base-R `datasets::penguins` (R ≥ 4.5).
 
 **Before you start:** work through the **[Setup page](../../setup.qmd)** if you haven't. Its
@@ -37,7 +37,7 @@ their own but are **not yet a project**:
 - `index.qmd` — a home page
 - `analysis.qmd` — a penguins analysis with a figure and a table
 - `reports/methods.qmd` and `reports/data-notes.qmd` — two short supporting pages, in their own
-  folder because you will treat that folder differently later on
+  folder because you will treat that folder differently later
 
 Render one page to confirm it works: `quarto render analysis.qmd` creates `analysis.html` next to
 its source. A finished reference is in **`solutions/day2/`**.
@@ -63,7 +63,7 @@ Use **`solutions/day2/`** to compare your work or complete missed steps.
 **Goal.** Make Quarto treat `day2-projects/` as one project, so that a single command builds every
 page in it into an output folder.
 
-This stanza declares a project. Where it goes, and how you then build the folder, is the work:
+This stanza declares a project. Decide where to put it, then build the folder:
 
 ```yaml
 project:
@@ -83,16 +83,12 @@ new `day2-projects/_site/` folder instead of next to each `.qmd`. Before this st
 
 ::: {.callout-tip collapse="true"}
 ## Hint
-**Ask yourself:**
-
-You have folders above `day2-projects/` and files inside it. Which one does Quarto look at to decide
+You have folders above `day2-projects/` and files inside it. Where does Quarto look to decide
 where a project starts, and in which direction does it search?
 
-**Mechanism:**
-
 Quarto walks **up** from the file being rendered and stops at the **nearest** `_quarto.yml`. That
-file marks the project root. Nothing sits above `day2-projects/` in your download, so a `_quarto.yml`
-placed inside it makes that folder the project and nothing else can claim your pages.
+file marks the project root. A `_quarto.yml` inside `day2-projects/` therefore makes that folder the
+project root.
 
 A `quarto render` with **no file argument** builds the whole project. `quarto render index.qmd`
 still builds just the one page.
@@ -121,10 +117,10 @@ quarto render
 analysis pages without editing the URL.
 
 Add `index.qmd` (Home) and `analysis.qmd` (Analysis) to the navigation. Give the site the title
-**Penguin Lab**, and use the ready-made **cosmo** theme so it does not look like raw HTML.
+**Penguin Lab**, and apply the ready-made **cosmo** theme.
 
-A second top-level key, `website:`, sits next to `project:` and configures the site itself. Filling
-it in is the work:
+A second top-level key, `website:`, sits next to `project:` and configures the site itself. Complete
+this block:
 
 ```yaml
 website:
@@ -166,12 +162,8 @@ ggplot(penguins, aes(species, body_mass, fill = species)) +
 
 ::: {.callout-tip collapse="true"}
 ## Hint
-**Ask yourself:**
-
 The theme has nothing to do with navigation. Where do format options live in a `.qmd` header, and
 what would the same key look like one level up, in `_quarto.yml`?
-
-**Mechanism:**
 
 `_quarto.yml` takes a `format:` key exactly as a document header does, and what you put there applies
 to every page in the project. `theme:` is an HTML format option, so it sits under `format: html:`.
@@ -219,13 +211,13 @@ Swap the `navbar:` block for this, re-render, and compare:
     contents: auto
 ```
 
-`contents: auto` builds the menu from the files it finds, so you never list pages by hand. It is the
+`contents: auto` builds the menu from the files it finds, so you do not need to list every page. It is the
 right choice for a site that grows. A navbar is the right choice when you want to control exactly
 what appears and in what order. Put the navbar back before you carry on, or keep both.
 :::
 
 ::: {.callout-note}
-## Linking pages, and what does not carry across
+## Linking pages and what does not carry across
 The Day-1 rules now meet a multi-page site.
 
 `index.qmd` already links to the analysis with a plain Markdown link, `[analysis](analysis.qmd)`.
@@ -238,7 +230,7 @@ the reference and table share one page.
 
 ### Brand it
 
-**Goal.** Give the site one shared palette and typeface from a `_brand.yml`, the same file you met on
+**Goal.** Give the site one shared palette and typeface from a `_brand.yml`, the same file you used on
 Day 1.
 
 ::: {.column-margin}
@@ -278,14 +270,11 @@ but the navbar and links remain blue.
 something with your `cosmo`. If two layers both define a primary color, which one would you expect to
 end up on the page?
 
-**Mechanism:**
-
 `brand` is a theme **layer**, and it is the layer that reads your `_brand.yml`. A bare
 `theme: cosmo` expands to `[brand, cosmo]`, and **later layers win**. Quarto applies cosmo's palette
 after the brand palette, so the site uses cosmo blue.
 
-The fonts come through whichever way round you write it, which is exactly what makes this look like
-it worked.
+The fonts apply in either order, which can make the incorrect order look successful.
 :::
 
 ::: {.callout-note collapse="true"}
@@ -298,7 +287,7 @@ format:
     theme: [cosmo, brand]
 ```
 
-Dropping `theme:` altogether works too: with no named theme to fight, the brand is all there is.
+Dropping `theme:` altogether works too: with no named theme, the brand layer supplies the theme.
 :::
 
 ### Scope options to one folder
@@ -354,7 +343,7 @@ Docs: [Website listings](https://quarto.org/docs/websites/website-listings.html)
 ::: {.callout-note appearance="simple" icon=false}
 ## {{< fa circle-check >}} You should see
 A table on the home page with one row per page in `reports/`, showing each title and its description
-(both pages already carry a `description:` in their front matter). Add a third page to `reports/`,
+(both pages already carry a `description:` in their YAML header). Add a third page to `reports/`,
 re-render, and it appears in the table on its own.
 :::
 
@@ -363,7 +352,7 @@ re-render, and it appears in the table on its own.
 This is a property of one page, not of the whole site. So where does its configuration go, and how
 does the page say *which* documents to index?
 
-A `listing:` key in the **front matter of `index.qmd`** points at a folder with `contents:`. Give it
+A `listing:` key in the **YAML header of `index.qmd`** points at a folder with `contents:`. Give it
 an `id:`, then place the result where you want it on the page with an empty div carrying that id:
 
 ```markdown
@@ -376,7 +365,7 @@ Without the `id:` and the div, the listing renders at the bottom of the page.
 
 ::: {.callout-note collapse="true"}
 ## Solution
-In the front matter of `day2-projects/index.qmd`:
+In the YAML header of `day2-projects/index.qmd`:
 
 ```{.yaml filename="day2-projects/index.qmd"}
 ---
@@ -400,24 +389,24 @@ Then, in the body, where you want the table:
 ```
 :::
 
-## Reproducible Build Challenge {#ship-it-challenge}
+## Reproducible Build Challenge {#reproducible-build-challenge}
 
 > **Goal:** make the project's builds **reproducible**, bring your own work onto the site, and render
 > it all to a publishable `_site/` folder.
 
 ::: {.callout-note}
 ## Starting point
-Keep going with your Website Challenge `day2-projects/`. If you didn't finish it, open the ready-made
+Continue in the `day2-projects/` folder from the Website Challenge. If you didn't finish it, open the ready-made
 **`solutions/day2/`** project (a complete Part-1 site) and do the steps below in there.
 :::
 
-If `quarto preview` is still running, stop it (`Ctrl` + `C` in the terminal). The freeze steps below
-use renders that you start yourself. To check a page after a render, open the built file (for
+If `quarto preview` is still running, stop it (`Ctrl` + `C` in the terminal). Run each render below
+yourself. To check a page after a render, open the built file (for
 example `_site/analysis.html`) directly in your browser and reload it.
 
-**Core tasks:** prove that freeze works, then add your Day-1 report to the site. If time is short,
-stop after those two. The guided `freeze: true` experiment completes the core. We will compare
-cache and freeze together. The dashboard demo and publishing are optional.
+**Core tasks:** prove that `freeze: auto` works, add your Day-1 report to the site, then complete the
+guided `freeze: true` experiment. We will compare cache and freeze together. The dashboard demo and
+publishing are optional.
 
 ::: {.column-margin}
 {{< fa book-open >}} **Quarto docs**
@@ -433,7 +422,7 @@ cache and freeze together. The dashboard demo and publishing are optional.
 touched. Make Quarto reuse the previous results for a page whose source has not changed. Then
 **prove** that it worked.
 
-Prove that the code did not run again. Use a value that changes on every execution.
+Add a value that changes on every execution so the page shows whether the code ran again.
 
 ::: {.callout-note appearance="simple" icon=false}
 ## {{< fa circle-check >}} You should see
@@ -444,13 +433,9 @@ had run, and is not. Then edit the code on one page only and render again. Only 
 
 ::: {.callout-tip collapse="true"}
 ## Hint
-**Ask yourself:**
-
-Two questions, one for each half. For the setting: this is about *executing* code across the whole
-project, so which top-level key would carry it? For the proof: what could a cell print that is
+This is about *executing* code across the whole project, so which top-level key carries the setting?
+What could a cell print that is
 **guaranteed** to differ between two runs a minute apart?
-
-**Mechanism:**
 
 An `execute:` key at the top level of `_quarto.yml` carries execution options for the project. The one
 you want is `freeze`, and `auto` means "re-execute only when this document's own source changes".
@@ -468,7 +453,7 @@ execute:
   freeze: auto
 ```
 
-For the visible tell, add a cell to `analysis.qmd`:
+For the visible check, add a cell to `analysis.qmd`:
 
 ```r
 cat(format(Sys.time()))
@@ -486,7 +471,7 @@ changes.
 :::
 
 ::: {.callout-note}
-## Why this matters beyond the wait
+## Why keep `_freeze/`?
 The results now live in `_freeze/`, inside your project. Keep that folder. For documents with current
 frozen results, the next project render reads those results instead of re-running the analysis. This
 also lets another machine build those pages without running their R code. `_freeze/` is part of the
@@ -498,7 +483,7 @@ project, not a temporary folder to delete.
 **Goal.** You have now met two things that both avoid re-running code. Explain how they differ and
 when to use each one.
 
-`cache: true` came up on the slides earlier today. You have just used `freeze: auto`. Both skip
+The slides introduced `cache: true` earlier today. You have just used `freeze: auto`. Both skip
 work. They are not the same mechanism, and only one of them solves the problem you just solved.
 
 ::: {.callout-note appearance="simple" icon=false}
@@ -516,15 +501,15 @@ work. They are not the same mechanism, and only one of them solves the problem y
 Where does each one write its results, and would that location normally be committed? Those answers
 explain their different purposes.
 
-**`cache`** is knitr's chunk cache. It works *inside* one document, keyed on the chunk, and it is
-about not re-running an expensive chunk while you iterate on that document. Its cache directory is
-local scratch, and it is not something you ship.
+**`cache`** is knitr's chunk cache. It works *inside* one document, keyed on the chunk, and avoids
+re-running an expensive chunk while you iterate on that document. Its cache directory is local and
+is not normally committed or published.
 
 **`freeze`** is a *project* policy. It stores each document's rendered results under `_freeze/`, which
 you **do** commit, so a later build (including one on a machine with no R) reuses them.
 
-So: `cache` for a slow chunk you are iterating on. `freeze` for making the project buildable without
-re-running the science. `freeze: true` goes further than `auto`: a project build reuses a page's
+Use `cache` for a slow chunk you are iterating on. Use `freeze` to make the project buildable without
+re-running the analysis. `freeze: true` goes further than `auto`: a project build reuses a page's
 stored results even after you edit it, so you decide when to refresh by rendering that page on its
 own.
 :::
@@ -540,7 +525,7 @@ On Day 1, you built one document. Now add it to the project.
 ::: {.callout-note appearance="simple" icon=false}
 ## {{< fa circle-check >}} You should see
 Your Day-1 report opens as a page of the site, reachable from the navigation, styled like the rest of
-it. Its content is unchanged: the front matter is the only part you edited.
+it. Its content is unchanged: the YAML header is the only part you edited.
 :::
 
 ::: {.callout-tip collapse="true"}
@@ -549,12 +534,12 @@ Your Day-1 document may still declare its own `format:`. Inside a project, where
 from now, and what happens if a page insists on its own?
 
 Copy the `.qmd` into `day2-projects/`, together with `references.bib` and `apa.csl` from
-`day1-intro/` (the front matter points at them by relative path), add an entry for it in the
+`day1-intro/` (the YAML header points at them by relative path), add an entry for it in the
 `navbar:` list, and re-render.
 
 A page in a project inherits `format:` from `_quarto.yml`. If your file still carries the
 `format: typst` from the Day-1 exercise, it keeps building a PDF instead of a page. Drop that key and
-it builds as HTML like its neighbours. (The shipped `penguins-report.qmd` declares `format: html`,
+it builds as HTML like its neighbors. (The included `penguins-report.qmd` declares `format: html`,
 which is the same key to drop.)
 
 Didn't finish Day 1, or do not have the file? Use `solutions/day1/penguins-report.qmd` from
@@ -564,7 +549,7 @@ your exercises download instead.
 ::: {.callout-note collapse="true"}
 ## Solution
 Copy your `my-report.qmd` into `day2-projects/`, together with `references.bib` and `apa.csl` from
-`day1-intro/` (the report cites through them). Drop any `format:` block from its front matter,
+`day1-intro/` (the report cites through them). Drop any `format:` block from its YAML header,
 and add it to the navbar:
 
 ```{.yaml filename="day2-projects/_quarto.yml"}
@@ -618,14 +603,15 @@ quarto render                # whole project: the refreshed page stays
 ```
 
 With `freeze: true`, the workflow is: edit a page, render that file, then build the project without
-re-running it. Switch back to `freeze: auto` before you continue. It is the setting to keep here.
+re-running it. Switch back to `freeze: auto` before you continue and keep that setting for the rest
+of the lab.
 Use `true` when project builds must reuse stored results until you deliberately refresh a page.
 
 ### Optional group demo: inspect a dashboard
 
-If time permits, we will inspect this worked example together. You do not need to build a dashboard
-during the workshop. We will open the [finished dashboard](dashboard.qmd){target="_blank"}, then
-compare it with `solutions/day2/dashboard.qmd` to see how the same analysis becomes a dashboard.
+This worked example shows how the same analysis becomes a dashboard. Open the
+[finished dashboard](dashboard.qmd){target="_blank"}, then compare it with
+`solutions/day2/dashboard.qmd`. You do not need to build it during the workshop.
 
 Look for four ideas:
 
@@ -661,7 +647,7 @@ format: dashboard
 After the group demo, you can optionally copy `analysis.qmd` to `dashboard.qmd` and reproduce one
 part of the layout.
 
-### Put it online *(optional, and a good place to stop)*
+### Put it online *(optional)*
 
 **Goal.** Take the `_site/` folder you have built and put it on a URL you can open on your phone.
 
@@ -677,8 +663,8 @@ Connect Cloud account before the workshop, one command puts the site online.
 
 ::: {.callout-note appearance="simple" icon=false}
 ## {{< fa circle-check >}} You should see
-A browser opens once to sign you in. Then the contents of `_site/` upload, and you get back a URL
-that serves your site.
+A browser opens once to sign you in. Then the contents of `_site/` upload, and Connect Cloud returns
+a URL for the site.
 :::
 
 ::: {.callout-note collapse="true"}
@@ -691,8 +677,8 @@ quarto publish posit-connect-cloud
 
 No repository is needed. Connect Cloud takes the locally rendered files as they are.
 
-No account, or the sign-in is blocked on your machine? You still have `_site/`, which was the actual
-deliverable. Nothing downstream depends on this step.
+If you skip this step, the complete site remains in `_site/`. Nothing downstream depends on
+publishing.
 :::
 
 ::: {.callout-note}
@@ -729,7 +715,7 @@ produced them.
 - **Freeze didn't skip the cell?** Under `freeze: auto` it skips only when the source is **unchanged**
   since the last build: any edit (prose or code) re-runs that page. Delete `_freeze/` to force a
   clean rebuild.
-- **A page won't update?** That is `freeze: true` doing its job: a project render reuses the stored
+- **A page won't update?** This is expected with `freeze: true`: a project render reuses the stored
   results even after an edit. Render that file directly, or switch back to `freeze: auto`.
 - **Missing package?** `install.packages("<name>")` (or `renv::restore()`) and render again.
 :::

@@ -56,7 +56,7 @@ ggplot(penguins, aes(species, body_mass, fill = species)) +
 
 ```{r}
 #| title: "Bill scatter"
-#| fig-alt: "Scatterplot of bill depth versus bill length in millimeters, colored by species. The three species form separate clusters."
+#| fig-alt: "Scatter plot of bill depth versus bill length in millimeters, colored by species. The three species form separate clusters."
 ggplot(penguins, aes(bill_len, bill_dep, color = species)) +
   geom_point(alpha = 0.8) +
   scale_color_okabe_ito() +

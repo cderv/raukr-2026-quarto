@@ -9,7 +9,7 @@ listing:
 ---
 
 Welcome. This is a small site about the **Palmer penguins**: three species measured at Palmer
-Station, Antarctica, shipped in base R as `datasets::penguins` (R >= 4.5).
+Station, Antarctica, included in base R as `datasets::penguins` (R ≥ 4.5).
 
 Head to the **[analysis](analysis.qmd)** for the figures and a summary table.
 

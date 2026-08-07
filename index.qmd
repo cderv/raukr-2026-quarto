@@ -1,16 +1,16 @@
 ---
 title: "RaukR 2026 · Quarto"
-subtitle: "Two sessions on Quarto — Advanced R for Bioinformatics, Visby"
+subtitle: "Two Quarto sessions for Advanced R for Bioinformatics in Visby"
 toc: false
 number-sections: false
 ---
 
 Two afternoon sessions at [RaukR 2026](https://nbisweden.github.io/raukr-2026/) on writing and
 publishing with **Quarto**. You already write R and have used R Markdown or Quarto before. These
-sessions show what Quarto is as a *system*, and how to go from a single document to a whole project
+sessions show how Quarto works as a *system* and how to go from a single document to a whole project
 you can publish.
 
-## Programme
+## Program
 
 | Day | Session | Slides | Lab |
 |-----|---------|--------|-----|
@@ -21,7 +21,7 @@ Each session has **two parts with a break**, and each part ends with hands-on wo
 
 ## Before you arrive
 
-See **[Setup](setup.qmd)** for what to install (R ≥ 4.5, Quarto ≥ 1.9, a handful of packages).
+See **[Setup](setup.qmd)** for what to install (R ≥ 4.5, Quarto ≥ 1.9, and nine R packages).
 
 ## License
 

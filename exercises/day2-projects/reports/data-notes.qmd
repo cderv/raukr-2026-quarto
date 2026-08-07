@@ -10,7 +10,7 @@ library(dplyr)
 data(penguins)
 ```
 
-The data ships with base R as `datasets::penguins` (R >= 4.5), so there is nothing to download. It
+The data are included in base R as `datasets::penguins` (R ≥ 4.5), so there is nothing to download. It
 is the Palmer Station penguin survey, the same data used in the analysis page.
 
 Here is what is missing, by column:
@@ -23,4 +23,4 @@ penguins |>
   knitr::kable()
 ```
 
-The counts are small, which is why dropping incomplete rows costs us very little.
+Dropping incomplete rows removes only a few observations.

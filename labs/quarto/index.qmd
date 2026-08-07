@@ -11,10 +11,9 @@ format:
 ::: {.callout-note}
 ## Scope
 Build one penguins document with the authoring extras, then **cite it** and render it as a
-**branded Typst PDF**. Two challenges, one document: each is its own hands-on part, with a break
-between them. This is your **manuscript / team-project path**, the same route from
-an analysis to a submittable write-up. Everything runs on **base-R `datasets::penguins`** (R ≥ 4.5),
-so there's no data to download.
+**branded Typst PDF**. You will use one document for two challenges, with a break between them.
+The result follows the same path from an analysis to a submission-ready report. Everything runs on
+**base-R `datasets::penguins`** (R ≥ 4.5), so there is no data to download.
 
 **Before you start:** work through the **[Setup page](../../setup.qmd)** if you haven't. Its
 `00-check-setup.R` confirms R, Quarto, and the packages this lab uses.
@@ -40,7 +39,7 @@ penguins <- penguins |> filter(!is.na(bill_len), !is.na(bill_dep))
 ```
 
 ::: {.callout-tip collapse="true"}
-## Coming from R Markdown? (optional, 2-minute aside)
+## Coming from R Markdown? (optional)
 You do **not** need to convert anything to work natively in Quarto. Start with `.qmd` directly.
 But if you have an `.Rmd` you want to bring over:
 
@@ -48,7 +47,7 @@ But if you have an `.Rmd` you want to bring over:
 - cell options move from the chunk header to the `#|` "hash-pipe" (one YAML option per line).
 - `knitr::convert_chunk_header("doc.Rmd", output = "doc.qmd")` does the mechanical part.
 
-That's the whole migration. The rest of this lab is native `.qmd`.
+The rest of this lab uses native `.qmd`.
 :::
 
 ## Authoring Challenge
@@ -88,10 +87,9 @@ link.
 
 ::: {.callout-tip collapse="true"}
 ## Hint
-**Ask yourself:** how does Quarto learn that this cell is a figure worth numbering, and what to call
-it in the text?
+Which cell options tell Quarto to number this figure, and how do you refer to it in the text?
 
-**Mechanism:** a cell becomes cross-referenceable when its label starts with a known prefix (`fig-`
+A cell becomes cross-referenceable when its label starts with a known prefix (`fig-`
 for a figure) and is unique in the document. The caption is a second cell option. Label, caption and
 the `@fig-something` reference work together: a reference with no matching label renders as
 `?@fig-something`.
@@ -116,7 +114,7 @@ clusters.
 
 ### Cross-reference the table
 
-**Goal.** Same mechanic on the summary table under **Mean measurements**: a numbered, captioned
+**Goal.** Apply the same method to the summary table under **Mean measurements**: a numbered, captioned
 **Table 1**, introduced by a sentence that links to it. The `gt` call is already written.
 
 Docs: [Cross-references for tables](https://quarto.org/docs/authoring/cross-references.html#tables).
@@ -129,10 +127,10 @@ introducing it with a live **Table 1** link.
 
 ::: {.callout-tip collapse="true"}
 ## Hint
-**Ask yourself:** figures and tables are numbered in separate sequences, so which label tells Quarto
-this one is a table?
+Figures and tables are numbered in separate sequences. Which label prefix tells Quarto this one is
+a table?
 
-**Mechanism:** `#| label: tbl-summary` and `#| tbl-cap:` on the cell, `@tbl-summary` in the prose.
+Use `#| label: tbl-summary` and `#| tbl-cap:` on the cell, then `@tbl-summary` in the prose.
 The prefix decides both the sequence and the word ("Figure", "Table") Quarto prints.
 :::
 
@@ -167,10 +165,9 @@ the main text column unchanged in width.
 
 ::: {.callout-tip collapse="true"}
 ## Hint
-**Ask yourself:** the R does not change, so where do you tell Quarto that this output belongs
-somewhere else on the page?
+The R code does not change. Where do you tell Quarto that its output belongs elsewhere on the page?
 
-**Mechanism:** `#| column: margin` on the cell. That option also takes `body`, `body-outset`, `page`
+Add `#| column: margin` to the cell. That option also takes `body`, `body-outset`, `page`
 and `screen`. For prose rather than cell output, use a `::: {.column-margin}` div.
 :::
 
@@ -221,11 +218,10 @@ ggplot(penguins, aes(bill_len, bill_dep, color = species, shape = species)) +
 
 ::: {.callout-tip collapse="true"}
 ## Hint
-**Ask yourself:** someone who cannot separate your three colors needs a second way to tell the
-species apart. What else can `aes()` map? And where would a *description* of the plot go, when
-everything else about this figure is a cell option?
+Someone who cannot separate the three colors needs a second way to tell the species apart. What else
+can `aes()` map? Where does the plot description go when the other figure settings are cell options?
 
-**Mechanism:** map `shape = species` alongside `color = species` in `aes()`, and add
+Map `shape = species` alongside `color = species` in `aes()`, and add
 `scale_color_okabe_ito()`. The description is the cell option `#| fig-alt:`. It is not the caption:
 the alt text stands in for the image, so it describes what the plot *shows*, not what it *is*.
 :::
@@ -280,10 +276,9 @@ linking to that number.
 
 ::: {.callout-tip collapse="true"}
 ## Hint
-**Ask yourself:** display math is not a cell, so the label cannot be a cell option. Where else could
-it attach?
+Display math is not a cell, so the label cannot be a cell option. Where can you attach it?
 
-**Mechanism:** the label is an attribute on the closing `$$`, written `{#eq-ratio}`. The `eq-` prefix
+The label is an attribute on the closing `$$`, written `{#eq-ratio}`. The `eq-` prefix
 makes it a numbered equation, and `@eq-ratio` links to it like `@fig-` and `@tbl-`.
 :::
 
@@ -317,11 +312,14 @@ anywhere. If you did the stretch step, you also have a numbered **Equation 1**.
 
 ::: {.callout-note}
 ## Starting point
-If you finished the Authoring Challenge, keep going in your own **`my-report.qmd`**. Otherwise open
-**`day1-intro/authoring-checkpoint.qmd`** (the same report with Part 1 already done), save a copy of
-it as **`my-report.qmd`** in that same `day1-intro/` folder (next to `references.bib` / `apa.csl` /
-`_brand.yml`, which the steps below resolve by name), and continue from there. From here on the instructions say
-`my-report.qmd`, whichever route you took.
+If you finished the Authoring Challenge, continue in **`my-report.qmd`**. Otherwise:
+
+1. Open **`day1-intro/authoring-checkpoint.qmd`** (the completed Part-1 report).
+2. Save a copy as **`my-report.qmd`** in `day1-intro/`, next to `references.bib`, `apa.csl`, and
+   `_brand.yml`.
+3. Continue in that copy.
+
+The instructions below use `my-report.qmd` for both routes.
 :::
 
 :::: {.callout-note icon=false}
@@ -356,7 +354,7 @@ it as **`my-report.qmd`** in that same `day1-intro/` folder (next to `references
      - name: Your Name
        affiliation: Your Lab, Your University
    ```
-5. Render to HTML and confirm both citations resolve, to *(Gorman et al., 2014)* and
+5. Render to HTML and confirm that both citations resolve as *(Gorman et al., 2014)* and
    *(Horst et al., 2020)*, with a reference list holding both entries.
 6. Switch the output to **Typst** and render a branded PDF. The branding comes from `_brand.yml`,
    which Quarto reads next to the document you render, so keep `my-report.qmd` in
@@ -390,12 +388,12 @@ headings mean `_brand.yml` isn't next to your `.qmd` (see Troubleshooting).
 - `csl:` sets the style (here APA). Swap the file to restyle every citation at once.
 - Typst reads the `.bib` itself, so keep bibliography fields plain (avoid LaTeX macros like
   `\emph{}` in titles).
-- On the first Typst render, Quarto downloads the brand's Google fonts. Give it a moment and a
-  network connection.
+- The first Typst render requires a network connection while Quarto downloads the brand's Google
+  fonts.
 :::
 
 :::: {.callout-note collapse="true"}
-## Solution: the header and the cite
+## Solution: the header and citations
 
 In the YAML header:
 
@@ -440,11 +438,12 @@ table and plot in R and sets Typst page options. Those additions are outside thi
 ## Bonus — one report per species (optional) {#sec-parameters}
 
 > **Goal:** turn a report into a *parameterized* one: a single source that renders a **separate
-> report per species** by passing the species in at render time. This is the "one QC report per
-> sample / one summary per cohort" pattern. Fully optional, so skip it if you're short on time.
+> report per species** by passing the species at render time. This section is optional. Skip it if
+> time is short.
 
 A **parameter** is a value declared in the YAML that your code can read as `params$…`. Change the
-value at render time and the *same document* produces a different report. No copy-paste.
+value at render time and the *same document* produces a different report. You do not need separate
+source files.
 
 ::: {.callout-note}
 ## Starting point

@@ -35,7 +35,7 @@ Slides and labs remain available at <https://cderv.github.io/raukr-2026-quarto/>
   Quarto extension, or RStudio.
 
 ::: {.callout-warning collapse="true"}
-## On RStudio? The Render button may not use the Quarto you just checked
+## Using RStudio? The Render button may use a different Quarto
 RStudio can use a **different Quarto** from the one on your PATH. Day 1 requires Quarto ≥ 1.9.
 
 The `quarto` R package has a one-line check for exactly this:
@@ -94,10 +94,9 @@ Choose where the materials go: set your R working directory to that folder, then
 usethis::use_course("cderv/raukr-2026-quarto-exercises", destdir = ".")
 ```
 
-`use_course()` unpacks a versioned folder named after the repository (for example
-`cderv-raukr-2026-quarto-exercises-d11a9fb/`, the suffix changes with each update) and opens it.
-That is the **top folder** the steps below refer to. Keep the downloaded ZIP when
-prompted: you can use it to reset the exercises.
+`use_course()` unpacks and opens a versioned folder. Its name includes a suffix that changes with
+each update (for example `cderv-raukr-2026-quarto-exercises-d11a9fb/`). This is the **top folder**
+used below. Keep the downloaded ZIP when prompted: you can use it to reset the exercises.
 
 ::: {.callout-important}
 ## In the session, open the day folder — not the top folder
