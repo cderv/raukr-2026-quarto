@@ -28,7 +28,7 @@ ensure_pkgs() {
 
 case "$cmd" in
   setup)
-    # lab = quarto | quarto-projects  → prints WORKTREE / LAB_PAGE / WORK_DIR / SOLUTION for the caller.
+    # lab = quarto | quarto-projects  → prints WORKTREE / LAB_URL / WORK_DIR / SOLUTION for the caller.
     [ -n "$lab" ] || { echo "usage: lab-run.sh setup <lab>" >&2; exit 1; }
     ensure_pkgs >&2
     mkdir -p "$SCRATCH"
