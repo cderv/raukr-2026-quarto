@@ -11,7 +11,7 @@
 # Why a script rather than a few `quarto render` lines in the justfile: `--output-dir` only works
 # for PROJECT renders, and the Day-1 files deliberately have no `_quarto.yml` (see
 # .claude/rules/exercises.md -- their whole point is to render standalone). So each Day-1 group is
-# staged into a throwaway project under .demos-build/ with a generated `_quarto.yml`. Staging them
+# staged into a throwaway project under demos-build/ with a generated `_quarto.yml`. Staging them
 # separately also keeps `_brand.yml` where it belongs: the starters are branded, the Day-1
 # solutions are not, exactly as in the payload.
 #
@@ -32,7 +32,7 @@ BUILD <- "demos-build"
 OUT   <- "_site/demos"
 
 # ---- groups ------------------------------------------------------------------------------------
-# `staged`: files copied into a generated project under .demos-build/<name>/.
+# `staged`: files copied into a generated project under demos-build/<name>/.
 # `project`: an existing Quarto project rendered in place.
 groups <- list(
   # The Day-1 starting points, branded (sample-typst.qmd reads _brand.yml via read_brand_yml()).
@@ -123,12 +123,12 @@ links <- character()
 for (name in names(groups)) {
   dir <- file.path(OUT, out_name[[name]])
   if (!dir.exists(dir)) next
-  # A group that builds a whole site is linked once, at its home page.
-  rel <- if (file.exists(file.path(dir, "index.html"))) {
-    "index.html"
-  } else {
-    sort(list.files(dir, pattern = "\\.(html|pdf)$"))
-  }
+  # Every top-level page, home page first. Linking a site group only at its home page drops the
+  # pages its navbar leaves out on purpose: the Day-2 dashboard is one (building it is optional,
+  # so the reference solution has no navbar entry for it), and it is a page worth opening on
+  # screen. Nested output (the Day-2 reports/) stays out -- list.files is not recursive.
+  rel <- sort(list.files(dir, pattern = "\\.(html|pdf)$"))
+  rel <- c(intersect("index.html", rel), setdiff(rel, "index.html"))
   links <- c(links,
              sprintf("<h2>%s</h2>", out_title[[name]]),
              "<ul>",
