@@ -35,6 +35,9 @@
 # Rendered HTML written next to source when a single .qmd is rendered outside the project
 # (the site build puts pages in _site/). HTML is always generated here, never a source.
 **/*.html
+# Typst PDFs written next to their source under labs/ (00-check-setup.R and the exercises-repo CI
+# both render sample-typst.qmd, so verifying that file recreates the PDF every time).
+/labs/**/*.pdf
 
 # --- R ---
 .Rproj.user/

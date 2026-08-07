@@ -292,8 +292,8 @@ Dropping `theme:` altogether works too: with no named theme, the brand layer sup
 
 ### Scope options to one folder
 
-**Goal.** Fold the code on the two pages in `reports/`, and only there. The home and analysis pages
-keep showing their code as before.
+**Goal.** Fold the code on the two pages in `reports/`, and only there, behind a toggle labelled
+**Show the code**. The home and analysis pages keep showing their code as before.
 
 You have not looked at `day2-projects/reports/` yet. It holds two short pages, `methods.qmd` and
 `data-notes.qmd`, each with a small code cell.
@@ -520,7 +520,8 @@ own.
 
 **Goal.** Take the report you wrote yesterday and make it a page of this website.
 
-On Day 1, you built one document. Now add it to the project.
+On Day 1, you built one document. Now add it to the project. Didn't finish Day 1, or do not have the
+file? Use `solutions/day1/penguins-report.qmd` from your exercises download instead.
 
 ::: {.callout-note appearance="simple" icon=false}
 ## {{< fa circle-check >}} You should see
@@ -541,9 +542,6 @@ A page in a project inherits `format:` from `_quarto.yml`. If your file still ca
 `format: typst` from the Day-1 exercise, it keeps building a PDF instead of a page. Drop that key and
 it builds as HTML like its neighbors. (The included `penguins-report.qmd` declares `format: html`,
 which is the same key to drop.)
-
-Didn't finish Day 1, or do not have the file? Use `solutions/day1/penguins-report.qmd` from
-your exercises download instead.
 :::
 
 ::: {.callout-note collapse="true"}
