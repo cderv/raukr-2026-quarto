@@ -1,6 +1,11 @@
 /*-- scss:defaults --*/
+// Shared by the light and dark layers, so every value the dark layer overrides needs !default.
 // Keep links WCAG AA-compliant, including on inline-code backgrounds.
-$link-color: #33666B;
+$link-color: #33666B !default;
+// Set as a variable, not a rule, so Quarto derives the navbar foreground from the bar it paints.
+$navbar-bg: #33666B !default;
+// Captions, asides and details summaries, where the base teal is below WCAG AA.
+$accent-muted: #33666B !default;
 
 /*-- scss:rules --*/
 // Preserve a sans-serif fallback when the web font is unavailable.
@@ -22,23 +27,28 @@ h1, h2, h3, h4, h5, h6,
   font-family: #{$brand-sans} !important;
 }
 
-// Prevent dark syntax-highlighting styles from leaking into the light theme.
-code span.ex, code span.bu {
+// Quarto only disables the leaking dark highlight sheet once its JS runs, and the body carries no
+// colour-scheme class until then, so gate this on "not dark" rather than on .quarto-light.
+body:not(.quarto-dark) code span.ex,
+body:not(.quarto-dark) code span.bu {
   color: inherit;
   font-weight: inherit;
 }
 
-// Use a darker brand colour where the base palette does not meet WCAG AA.
-$teal-dark: darken($primary, 15%);
+// Dashboards load the dark sheet but bslib redefines --bs-body-bg after it, so the toggle cannot
+// change anything there. Hide the control rather than ship one that does nothing.
+body.quarto-dashboard .quarto-color-scheme-toggle {
+  display: none;
+}
 
-.navbar { background-color: $teal-dark; }
-
-// Match Quarto's specific margin-caption selectors.
+// Match Quarto's specific margin-caption selectors. The section number carried by a numbered
+// heading and its TOC entry is painted from the same muted role, so it belongs here too.
 caption,
 .figure-caption, .subfigure-caption, .table-caption, figcaption,
 .margin-caption, div.aside, aside, .column-margin,
-.column-margin figcaption, .column-margin caption {
-  color: $teal-dark;
+.column-margin figcaption, .column-margin caption,
+.header-section-number {
+  color: $accent-muted;
 }
 
 // Avoid stacking Quarto's inline-code background on nested block code.
@@ -50,5 +60,5 @@ td pre > code.sourceCode {
 
 // Quarto's default details summary colour does not meet WCAG AA.
 details > summary {
-  color: $teal-dark;
+  color: $accent-muted;
 }
