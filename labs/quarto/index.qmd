@@ -62,12 +62,6 @@ branding resolve later). Render it once to confirm it works, then re-render afte
 The starter is already a working report, but it has no numbering, captions, cross-references, or alt
 text. Most steps require no R changes. The accessibility step makes two small changes to the plot.
 
-::: {.column-margin}
-{{< fa book-open >}} **Quarto docs**
-
-[Cross-references](https://quarto.org/docs/authoring/cross-references.html) · [Article layout](https://quarto.org/docs/authoring/article-layout.html) · [Accessibility](https://quarto.org/docs/output-formats/html-accessibility.html)
-:::
-
 Missing the download? Take the source directly:
 
 <a class="btn btn-primary btn-sm" href="https://raw.githubusercontent.com/cderv/raukr-2026-quarto-exercises/main/day1-intro/authoring-starter.qmd" role="button" target="_blank">{{< fa download >}} authoring-starter.qmd</a>
@@ -77,7 +71,11 @@ Missing the download? Take the source directly:
 **Goal.** Turn the scatter plot into a **numbered figure with a caption**, and refer to that number
 from the prose. Two edits: an option on the **cell**, and a reference in the **body text** above it.
 
-Docs: [Cross-references](https://quarto.org/docs/authoring/cross-references.html).
+::: {.column-margin}
+{{< fa book-open >}} **Quarto docs**
+
+[Cross-references](https://quarto.org/docs/authoring/cross-references.html)
+:::
 
 ::: {.callout-note appearance="simple" icon=false}
 ## {{< fa circle-check >}} You should see
@@ -117,7 +115,11 @@ clusters.
 **Goal.** Apply the same method to the summary table under **Mean measurements**: a numbered, captioned
 **Table 1**, introduced by a sentence that links to it. The `gt` call is already written.
 
-Docs: [Cross-references for tables](https://quarto.org/docs/authoring/cross-references.html#tables).
+::: {.column-margin}
+{{< fa book-open >}} **Quarto docs**
+
+[Cross-references for tables](https://quarto.org/docs/authoring/cross-references.html#tables)
+:::
 
 ::: {.callout-note appearance="simple" icon=false}
 ## {{< fa circle-check >}} You should see
@@ -155,7 +157,11 @@ And above it:
 **Goal.** Put the species-counts table in the **right margin**, beside the paragraph that mentions
 it, instead of in the main text column.
 
-Docs: [Article layout](https://quarto.org/docs/authoring/article-layout.html).
+::: {.column-margin}
+{{< fa book-open >}} **Quarto docs**
+
+[Article layout](https://quarto.org/docs/authoring/article-layout.html)
+:::
 
 ::: {.callout-note appearance="simple" icon=false}
 ## {{< fa circle-check >}} You should see
@@ -189,8 +195,11 @@ The plot separates species by **color alone**, in ggplot2's default palette, whi
 color-blind-safe. This is the one step that edits the R: two changes to the plot, one option on the
 cell. `ggokabeito` is already loaded in the setup cell.
 
-Docs: [HTML accessibility](https://quarto.org/docs/output-formats/html-accessibility.html) ·
-[Figure alt text](https://quarto.org/docs/authoring/figures.html#alt-text).
+::: {.column-margin}
+{{< fa book-open >}} **Quarto docs**
+
+[HTML accessibility](https://quarto.org/docs/output-formats/html-accessibility.html) · [Figure alt text](https://quarto.org/docs/authoring/figures.html#alt-text)
+:::
 
 ::: {.callout-note appearance="simple" icon=false}
 ## {{< fa circle-check >}} You should see
@@ -280,7 +289,11 @@ equation**, and refer to it from the prose.
 One caution: inside `$$…$$`, `bill_len` can render as a subscript, so escape the underscore as
 `bill\_len`.
 
-Docs: [Equations](https://quarto.org/docs/authoring/cross-references.html#equations).
+::: {.column-margin}
+{{< fa book-open >}} **Quarto docs**
+
+[Equations](https://quarto.org/docs/authoring/cross-references.html#equations)
+:::
 
 ::: {.callout-note appearance="simple" icon=false}
 ## {{< fa circle-check >}} You should see

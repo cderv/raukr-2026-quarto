@@ -338,7 +338,11 @@ Re-render the project. Nothing else changes.
 **Goal.** Put a table of the `reports/` pages on the home page, built by Quarto rather than typed by
 you, so that adding a page there shows up without editing `index.qmd`.
 
-Docs: [Website listings](https://quarto.org/docs/websites/website-listings.html).
+::: {.column-margin}
+{{< fa book-open >}} **Quarto docs**
+
+[Website listings](https://quarto.org/docs/websites/website-listings.html)
+:::
 
 ::: {.callout-note appearance="simple" icon=false}
 ## {{< fa circle-check >}} You should see
