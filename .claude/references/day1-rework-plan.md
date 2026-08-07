@@ -1,9 +1,9 @@
 # Day-1 rework plan — a starter for the Authoring Challenge, and one role per file
 
-Status: **three decisions made 2026-08-07, one open.** Written 2026-08-07 after a lab review found that Day-1 Part 1
+Status: **decided 2026-08-07, awaiting approval to build.** Written 2026-08-07 after a lab review found that Day-1 Part 1
 hands over the syntax it is meant to teach, and that neither of the two files the lab calls a
-reference is reachable from its tasks. Nothing here is applied. The two items in § Still open
-have to be settled before any lab file is edited; after that, the lab is the truth wherever the two
+reference is reachable from its tasks. Nothing here is applied. Every decision below is
+settled; what remains is approval, then the build. After that, the lab is the truth wherever the two
 differ.
 
 This finishes a job that was scoped and left half-done. `day2-rework-plan.md` § The problem in one
@@ -34,7 +34,7 @@ a per-file manifest that any new or renamed Day-1 file has to be added to. Desig
 
 ## The problem in one line
 
-Every exercise should satisfy **starter + tasks, applied literally, equals solution**. Day 2 passes
+Every exercise should satisfy its convergence equation (below), applied literally. Day 2 passes
 on every step. Day-1 Part 1 has no starter and supplies the exact code in tasks 2-6, so 45 minutes
 of budget buys about 15 minutes of transcription. Day-1 Part 2 has a starter and a named solution
 that are two unrelated documents, so a participant self-checking has nothing to check against.
@@ -44,6 +44,20 @@ that are two unrelated documents, so a participant self-checking has nothing to 
 Give participants **working R code** and ask them to add the **Quarto authoring features**. The R is
 not the learning target and never was; the cross-reference, the caption, the margin, the alt text
 are. This is the one thing not up for decision below.
+
+## The three convergence equations
+
+Every claim in this plan reduces to these. Use the applicable one; never write the ambiguous
+"starter + tasks".
+
+```
+authoring-starter.qmd  +  Part-1 tasks       =  authoring-checkpoint.qmd
+authoring-checkpoint.qmd  +  Part-2 tasks    =  solutions/day1/penguins-report.qmd
+authoring-starter.qmd  +  all Day-1 tasks    =  solutions/day1/penguins-report.qmd
+```
+
+The third is the first two composed, and it is the one a participant who finishes both parts should
+be able to check themselves. Today none of the three holds.
 
 ## Governing rule — file roles, not file counts
 
@@ -59,15 +73,15 @@ start."* A file whose README has to deny its own name is misnamed.
 
 | file | starting state | participant edits | final scope | delivery location |
 |---|---|---|---|---|
-| `authoring-starter.qmd` *(new)* | setup cell, prose, working `gt` + `ggplot` — no labels, captions or alt text | all Part-1 tasks | the Part-1 target | `day1-intro/` |
-| `authoring-checkpoint.qmd` *(rename of `citations-starter.qmd`)* | complete Part-1 report | none — read-only fallback | **must equal** what Part 1 produces, equation included | `day1-intro/` |
-| `my-report.qmd` | saved from the starter | Parts 1 and 2 | the participant's own copy of the Part-1 target | not shipped |
-| `parameters-starter.qmd` | TODO 1/2/3a/3b | bonus tasks 1-3 | unchanged | `day1-intro/` |
-| `sample-typst.qmd` | complete | none — read-only | gains the showcase material moved out of the solution | `day1-intro/` |
+| `authoring-starter.qmd` *(new)* | setup cell, prose, working `gt` + `ggplot` — no labels, captions or alt text, plain `color = species` | all Part-1 tasks | left-hand side of equation 1 | `day1-intro/` |
+| `authoring-checkpoint.qmd` *(rename of `citations-starter.qmd`)* | complete Part-1 report | none — read-only; copied to `my-report.qmd` by anyone who did not finish Part 1 | **equation 1's right-hand side**, equation included | `day1-intro/` |
+| `my-report.qmd` | saved from the starter at task 1 | Parts 1 **and** 2 | the participant's complete Day-1 report — their equivalent of `penguins-report.qmd` | not shipped |
+| `parameters-starter.qmd` | TODO 1/2/3a/3b, plus a new 3c and the Session appendix | bonus tasks | left-hand side of the bonus equation | `day1-intro/` |
+| `sample-typst.qmd` | complete | none — read-only | gains `fig-culmen` (image vendored) and carries the axis disclaimer | `day1-intro/` |
 | `_brand.yml`, `references.bib`, `apa.csl` | complete | none | unchanged | `day1-intro/` |
 | `day1-intro/README.md` | complete | none | must match the roles above | `day1-intro/` |
-| `penguins-report.qmd` | complete | none — read-only | exactly what starter + tasks produce | `solutions/day1/` |
-| `penguins-by-species.qmd` | complete | none — read-only | bonus reference; two un-tasked deltas to settle | `solutions/day1/` |
+| `penguins-report.qmd` | complete | none — read-only | the right-hand side of equation 3 | `solutions/day1/` |
+| `penguins-by-species.qmd` | complete | none — read-only | `parameters-starter.qmd` + the bonus tasks (its own equation) | `solutions/day1/` |
 | `references.bib`, `apa.csl` (solution copies) | complete | none | unchanged, so the solution renders standalone | `solutions/day1/` |
 
 ## Scope guard — this changes guidance, not content
@@ -89,44 +103,68 @@ own evidence, not a side effect of this one.
 and it retires the name whose own README has to say "despite the name, it is not where you start".
 The rename propagates to every touchpoint in § Delivery consequences.
 
-**2. Part-2 entry point — decided.** Part 2 starts from `authoring-checkpoint.qmd`, and the
-checkpoint must be **the same document Part 1 produces**, not a parallel one. That equality is the
-fix: today's starter is a different report from the Part-1 target, which is why nothing a participant
+**2. Part-2 entry point — decided.** A participant who finished Part 1 **continues in their own
+`my-report.qmd`**. They never abandon it. `authoring-checkpoint.qmd` is the fallback for those who did
+not finish, and they **save a copy of it as `my-report.qmd`** before starting Part 2 — so from task 1
+of Part 2 onward there is exactly one filename in the lab's instructions, whichever route a
+participant took.
+
+The checkpoint must be **the document Part 1 produces**, per equation 1. That equality is the fix:
+today's fallback is a different report from the Part-1 target, which is why nothing a participant
 builds can be checked against anything shipped.
 
-**3. The Day-1 reference — decided.** `solutions/day1/penguins-report.qmd` becomes exactly what
-starter + tasks produce. The showcase material it currently carries beyond the tasks (the `fig-culmen`
-figure, the `gt` formatting stack) moves into `sample-typst.qmd`, which already exists as the branded
-showcase and is already rendered by `00-check-setup.R`. Nothing is deleted — it relocates to the file
-whose role is to go further. This also removes the remote-image render risk from the file the lab
-offers as a download.
+**3. The Day-1 reference — decided.** `solutions/day1/penguins-report.qmd` becomes exactly the
+right-hand side of equation 3.
 
-## Still open
+- The **`fig-culmen` figure relocates** to `sample-typst.qmd`, which already exists as the branded
+  showcase and is already rendered by `00-check-setup.R`. Nothing is deleted; it moves to the file
+  whose role is to go further, and the remote-image render risk leaves the file the lab offers as a
+  download.
+- The **`gt` formatting needs no relocation.** `sample-typst.qmd` already demonstrates richer table
+  work than `penguins-report.qmd` does (`theme_brand_gt`, `opt_table_font`, `opt_row_striping`, a
+  `cells_title` style). So the reference's table simply becomes the one the task produces, and the
+  showcase of what `gt` can do stays where it already lives.
 
-**A. What the starter ships already applied.** The principle is that participants add Quarto
-features, not R. The accessibility task straddles that line: `#| fig-alt:` is a Quarto cell option,
-but `shape = species` and `scale_color_okabe_ito()` are edits to the `ggplot` call. Decide whether the
-starter ships those two already applied (task keeps only the alt text), or ships the plot without them
-and the task keeps all three (accepting one small R edit, for accessibility). Either way the task
-stays — this is about the starter's contents, not the task list.
+**4. The accessibility task keeps all three parts — decided.** The starter ships the scatter plot
+with a plain `color = species` and the default palette. The participant adds `shape = species`,
+`scale_color_okabe_ito()` and `#| fig-alt:`, exactly as today.
 
-**B. How the remaining gap is disclaimed.** Decision 3 closes most of it, but `sample-typst.qmd`
-will now go further than ever, so it needs a note saying **by axis** how — not a list. The current
-disclaimer at `labs/quarto/index.qmd:155` enumerates three items, and by enumerating it certifies
-everything it omits: a reader sees no mention of table formatting and concludes the formatted table
-is the target. The rr2026 correction states the axis instead ("the correction also brands tables and
-plots in R; for this exercise only the YAML steps count") and that is the model.
+This is a deliberate exception to "participants add Quarto features, not R", and the reason is that
+the alternative erases the lesson. Ship the plot already CVD-safe and redundantly encoded, and the
+task shrinks to writing alt text, the "You should see" has nothing to show, and nobody learns *why*
+a second channel matters — the workshop carries `ggokabeito` as a dependency for precisely this
+moment. Two lines of R, deliberately, in the one task where the R edit *is* the teaching.
 
-Divergences decision 3 does **not** resolve, each currently silent:
+Everywhere else the principle holds: the `gt` call, the `ggplot` call and the data wrangling arrive
+finished.
 
-- the `gt` stack in the reference (`tab_header`, `tab_spanner`, `opt_stylize`) against the three-line
-  snippet the task supplies, and against the differently-formatted table in the checkpoint file
-- `fig-cap-location: margin`, `fig-width`, `warning: false` on the figure cell
-- inline R in prose, taught on a slide and never in the lab
-- the `fig-culmen` figure, which fetches its image over the network
-- `@horst2020`, cited twice and asked for nowhere
-- the `author:` block Part-2 task 4 requires and the reference does not have
-- in the bonus solution: the closing line gains `params$species`, and a Session appendix appears
+**5. The disclaimer describes `sample-typst.qmd` only — decided.** The enumerating note at
+`labs/quarto/index.qmd:155` goes: by naming three items it certifies everything it omits, which is how
+a reader concludes the formatted table is the target. Its replacement attaches to `sample-typst.qmd`
+and names an **axis**: that file styles R output *in R* (`theme_brand_gt`, `theme_brand_ggplot2`) and
+sets Typst format options, neither of which the lab asks for; for the exercise, the YAML and the cell
+options are what count. That is the rr2026 model, and it stays true as the file grows.
+
+It does **not** cover `penguins-report.qmd`. Under decision 3 that file has nothing left to excuse —
+see decision 6.
+
+**6. Every divergence is classified, none is disclaimed — decided.** Decision 3 makes
+`penguins-report.qmd` equal to equation 3, so a leftover un-tasked addition there is a defect, not
+something a note can excuse. Each one resolves in exactly one of three ways: **given** (it ships in
+the starter, so it is never un-tasked), **tasked** (a task introduces it), or **moved** (it becomes
+showcase material in `sample-typst.qmd`).
+
+| divergence | resolution |
+|---|---|
+| the `gt` formatting (`tab_header`, `tab_spanner`, `opt_stylize`) versus the three-line snippet in task 3 | **given** — with a starter, tasks stop supplying R at all. The starter ships one finished `gt` call; the task adds `#\| label:`, `#\| tbl-cap:` and the `@tbl-summary` reference. The snippet disappears and the checkpoint/reference disagreement dissolves with it. |
+| `fig-width`, `warning: false` on the figure cell | **given** — plumbing, not teaching. Ships in the starter. |
+| `fig-cap-location: margin` on the figure cell | **removed** — the margin task targets the counts table. Two margin mechanics in one document with only one of them asked for is what made this confusing. |
+| inline R in prose (`nrow`, `combine_words`) | **given** — ships in the starter's prose, and `day1-intro/README.md` names it so nobody meets it cold. It stays taught on the slide and practised in the bonus. |
+| the `fig-culmen` figure | **moved** to `sample-typst.qmd`, and **vendor the image** into the payload rather than fetching it. That file is rendered by `00-check-setup.R` on every participant's machine, so a remote fetch there is worse than in a solution. If the zip-size budget objects, drop the figure instead. |
+| `@horst2020` | one of its two uses is the `fig-culmen` caption and **moves** with the figure. The prose use becomes **tasked**: Part-2 task 2 already says to cite the data source, and it extends to citing the package the prose credits. |
+| the missing `author:` block | **tasked** — Part-2 task 4 already asks for it, so the reference gains it. This is the one divergence that is an omission rather than an addition. |
+| bonus: the closing line gains `params$species` | **tasked** — a TODO 3c in `parameters-starter.qmd`, so the bonus satisfies its own convergence equation. |
+| bonus: the Session appendix | **given** — ships in `parameters-starter.qmd`. |
 
 ## Delivery consequences
 
@@ -143,9 +181,10 @@ already names three of these; the rest are the ones a rename reaches that an add
 5. `tools/exercises-scaffold/README.md` — the top-level folder table.
 6. `labs/quarto/index.qmd` — **all affected download links**, not a fixed count. Renaming or adding
    starter/checkpoint files changes how many there are.
-7. `_quarto.yml` — a **negative** edit: the new files must stay **off** the site render list, or the
-   course site re-acquires a build the delivery repo already owns. The demos are not a way back in;
-   they render as their own throwaway projects.
+7. `_quarto.yml` — a **verification, not an edit**. Confirm every new or renamed Day-1
+   working/reference file is absent from the site `render:` list; adding one re-acquires a build the
+   delivery repo already owns. Only edit the file if an existing entry has to be *removed*. The demos
+   are not a way back in — they render as their own throwaway projects.
 8. `tools/exercises-scaffold/00-check-setup.R` — only if the setup check should render the new file.
    It currently renders `sample-typst.qmd` on every participant's machine before the workshop.
 
@@ -153,11 +192,11 @@ already names three of these; the rest are the ones a rename reaches that an add
 
 1. Comment hygiene first, as its own commit. It is independent and touches Day-2 files, so it must
    not land inside the redesign diff.
-2. Settle § Still open, record the answers here, get approval. No lab file is edited before this.
+2. Get approval on this note. No lab file or delivery file is edited before that.
 3. Wire delivery (§ Delivery consequences) alongside the file that needs it, not after.
 4. Build Part 1: starter, task-first rewrite, per-step doc links, acceptance test stated before the
    work, folded solution ladder.
-5. Reconcile the reference files against decision 3 and item B.
+5. Reconcile the reference files against decisions 3 and 6.
 
 ## Verification
 
