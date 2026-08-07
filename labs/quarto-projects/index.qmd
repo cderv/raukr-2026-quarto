@@ -41,7 +41,7 @@ their own but are **not yet a project**:
 
 Render one page to confirm it works: `quarto render analysis.qmd` creates `analysis.html` next to
 its source. A finished reference is in **`solutions/day2/`**. You can also
-[see it rendered](../../demos/day2-solution/).
+[open the finished website](../../demos/day2-solution/).
 
 ## Website Challenge
 
