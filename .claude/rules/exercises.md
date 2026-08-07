@@ -27,6 +27,8 @@ This rule is the operational short list. When you **edit** labs, follow it; when
 - Project-level preview and the guided `freeze: true` experiment are core.
 - The dashboard is an optional group demo. Publishing is optional and account-dependent.
 - Do not add participant-facing task durations without evidence from rehearsal.
+- Structure challenge steps as a goal, an observable **You should see** checkpoint, then collapsed
+  hints and a solution. Do not expose the complete answer before the participant can try.
 
 ## The pipeline (one direction only)
 

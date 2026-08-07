@@ -14,8 +14,8 @@ paths:
 
 Operational short list for participant-facing prose. Full profile + before/after examples:
 `.claude/references/house-voice.md`. One principle: **written prose states; the presenter's voice
-lives in `::: notes`.** If a line reads like something you'd *say to soften or sell* the point, it's
-spoken register leaking onto the page.
+lives in `::: notes`.** Notes can sound spoken, but they are not exempt from concision. If a line
+reads like something you'd *say to soften or sell* the point, it belongs in notes or nowhere.
 
 ## Do
 
@@ -26,6 +26,14 @@ spoken register leaking onto the page.
 - **Plain warm words** — name the tool; "benefit from" not "leverage"; `handy`/`nice`/`fresh`, not hype.
   Gloss jargon inline `(i.e. …)` or by analogy (`Like git, …`).
 - **Bold surgical and semantic** — the one load-bearing concept, never decoration.
+
+## Presenter notes
+
+- Keep notes glanceable in presenter mode: normally one line per **Say**, **Do**, **Ask**,
+  **Watch for**, or **Catch-up** item.
+- Do not repeat the slide or lab text. Record only the prompt, action, or warning needed live.
+- Split unrelated actions into separate bullets. Remove narration and background explanation.
+- Add a duration only when a rehearsal supports it.
 
 ## Don't (the tells that keep re-introducing the problem)
 

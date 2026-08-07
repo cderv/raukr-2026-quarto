@@ -86,14 +86,19 @@ em-dashes, plain warm words) and strip the LLM tells that keep re-introducing sp
 (stacked em-dash asides, voice-over tails, reassurance narration) — is the path-scoped rule
 **`.claude/rules/prose-voice.md`** (auto-surfaced on prose `.qmd`), with the full profile +
 before/after in **`.claude/references/house-voice.md`**. One principle: written prose *states*; the
-presenter's voice belongs in `::: notes` (fully spoken, exempt). Slide bodies stay terse.
+presenter's voice belongs in `::: notes`. Notes may be conversational, but they must remain
+glanceable in presenter mode. Slide bodies stay terse.
 
-**Comments are local explanations, not authoring notes.** Keep a comment only when adjacent code
-cannot express an important constraint. Prefer one sentence that explains the current reason. Do
-not record editing history, investigation steps, verification logs, teaching plans, commit-style
-summaries, or information already stated in prose or documentation. In participant files, retain
+**Comments are local explanations, not authoring notes.** Default to no comment. File headers and
+local comments are one sentence unless a complex constraint genuinely needs more. Do not record
+history, investigation, verification, teaching plans, commit-style summaries, or information held
+elsewhere. Before committing, inspect every added comment in the diff. In participant files, retain
 exercise TODOs, accessibility text, and narrow explanations of surprising code. Do not modify
-generated or vendored comments.
+generated or vendored comments directly.
+
+**Applied plans do not become permanent project history.** Delete working plans after use, or
+distil only current constraints into the matching scoped rule. Do not retain rejected alternatives,
+bench estimates, review transcripts, or implementation logs.
 
 The **slide-craft gotchas** — fit-check every changed slide (`.claude/scripts/slide-shot.mjs`),
 `.center`-slide layout, `code-line-numbers`, `filename`, consecutive-code-block spacing, `echo: fenced`
@@ -114,8 +119,7 @@ editing `_brand.yml` or the theme SCSS).
   for a new multi-day workshop), `sandbox-setup` (environment), `quarto-doc-sources`,
   `prior-art-inventory`, `typst-render-diagrams` (Typst/fletcher diagram recipe + deploy gotchas),
   `colorblind-safe-palettes` (CVD-safe ggplot palette best-practice + recipes), `house-voice`
-  (how Christophe writes + the LLM-tell strip-list; paired with the `prose-voice` rule),
-  `day2-rework-plan` (historical design rationale; the current lab is the source of truth).
+  (how Christophe writes + the LLM-tell strip-list; paired with the `prose-voice` rule).
 - **Rules** → `.claude/rules/`: path-scoped gotchas for `justfile`, `exercises`, `slides`,
   `multi-day-sequencing`, `brand`, plus `prose-voice`.
 - **Skills** → `.claude/skills/`: `quarto-authoring`, `quarto-alt-text`, `brand-yml`, `braid`.
