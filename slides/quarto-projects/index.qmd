@@ -243,10 +243,10 @@ typography:
 
 ## Your turn {#your-turn-1}
 
-::: {.callout-tip title="Your turn — until the break at 15:00"}
+::: {.callout-tip title="Your turn"}
 Head to the **[Lab](../../labs/quarto-projects/index.qmd#website-challenge)** and the **Website
 Challenge**: turn a set of `.qmd` files into a navigable, **branded website**: `_quarto.yml`, a navbar, and
-the shared brand. We break at **15:00** and resume at **15:30**.
+the shared brand. 
 :::
 
 You can now structure files into a branded, navigable **website**. After the break we make its builds
