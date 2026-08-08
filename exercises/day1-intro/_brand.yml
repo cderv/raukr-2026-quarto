@@ -15,7 +15,10 @@ color:
     ink: "#1c2833"
     code-blue: "#496985"
   primary: teal
-  secondary: teal-light
+  # Quarto maps `secondary` onto Bootstrap's muted-*text* colour as well as the accent, so this has
+  # to clear AA on white: teal-light did not, and painted captions, margin content and `<details>`
+  # summaries at 1.74:1.
+  secondary: link-teal
   foreground: ink
   background: "#ffffff"
   # Link color lives under typography.link.color (below) -- the brand color roles don't include
