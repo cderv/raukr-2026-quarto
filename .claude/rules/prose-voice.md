@@ -121,7 +121,7 @@ click away at exactly the moment someone is stuck.
 rg -n --glob '*.qmd' --glob '!_*.qmd' -- '—|--' setup.qmd index.qmd labs slides   # em-dashes
 rg -n --glob '*.qmd' -- ' [?!]'                                                    # French spacing
 rg -niE '\b(leverage|utilize|facilitate|streamline|seamless|robust)\b' --glob '*.qmd'
-rg -niE '\b(stanza|snippet)\b' --glob '*.qmd' setup.qmd index.qmd labs slides   # say "block" / "key"
+rg -niE '\bstanza\b' --glob '*.qmd' setup.qmd index.qmd labs slides   # say "block" / "key"
 # One-off vocabulary: a word used once where a synonym carries the rest of the repo is the tell.
 # Compare counts before adding a noun -- e.g. block(9) vs stanza(1) is how the stanza slipped in.
 # Cross-day pointers -- judge each in context (a real callback is fine, a narrated one is not)

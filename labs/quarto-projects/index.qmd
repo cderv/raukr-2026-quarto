@@ -64,8 +64,7 @@ Use **`solutions/day2/`** to compare your work or complete missed steps.
 **Goal.** Make Quarto treat `day2-projects/` as one project, so that a single command builds every
 page in it into an output folder.
 
-This block declares a project. It goes in a `_quarto.yml` at the top of `day2-projects/`, above the
-`reports/` folder:
+This block declares a project. Save it as `day2-projects/_quarto.yml`, alongside `reports/`:
 
 ```{.yaml filename="day2-projects/_quarto.yml"}
 project:
@@ -73,7 +72,7 @@ project:
   output-dir: _site
 ```
 
-Then build the folder: run `quarto render` from inside `day2-projects/`, with no file argument.
+Then build the project: from inside `day2-projects/`, run `quarto render` with no file argument.
 
 (`_site` is already the default output folder for a website. We write it explicitly here so the
 publishable folder is visible in the configuration.)
@@ -88,8 +87,8 @@ new `day2-projects/_site/` folder instead of next to each `.qmd`. Before this st
 ::: {.callout-tip collapse="true"}
 ## Hint
 Quarto walks **up** from the file being rendered and stops at the **nearest** `_quarto.yml`. That
-file marks the project root. A `_quarto.yml` inside `day2-projects/` scopes the project to that
-folder and nothing above it.
+file marks the project root. Putting `_quarto.yml` in `day2-projects/` makes that folder the project
+root.
 
 `quarto render index.qmd` still builds just the one page.
 :::
@@ -255,16 +254,15 @@ typography:
     family: Albert Sans
 ```
 
-Then look at `theme:`. It takes a **list** of layers, and where two layers disagree the later one
-wins. `brand` is one of those layers, so its position decides whether the brand's teal or cosmo's
-blue reaches the navbar.
+Then look at `theme:`. It takes a **list** of layers. When two layers set the same option, the later
+layer wins. The position of `brand` determines whether the navbar uses the brand teal or cosmo blue.
 
 ::: {.callout-note appearance="simple" icon=false}
 ## {{< fa circle-check >}} You should see
 After adding `_brand.yml`, the **font changes** but the navbar and links remain cosmo blue. This is
 expected. After correcting the theme order, the navbar and links become teal.
 
-The wrong order renders with no error and looks the same as before the fix. Check the navbar color,
+The incorrect order renders without an error, but the navbar remains blue. Check the navbar color,
 not the log.
 :::
 
@@ -300,9 +298,9 @@ Dropping `theme:` altogether works too: with no named theme, the brand layer sup
 You have not looked at `day2-projects/reports/` yet. It holds two short pages, `methods.qmd` and
 `data-notes.qmd`, each with a small code cell.
 
-A `_metadata.yml` file applies options to every document in its folder, which is how you reach those
-two pages without editing either of them. It takes the same document options you would write in
-`_quarto.yml`. The difference is where they apply.
+A `_metadata.yml` file applies options to every document in its folder. Put one in `reports/` to
+configure both pages without editing either file. It takes the same document options you would write
+in `_quarto.yml`. The difference is where they apply.
 
 You need two options. `code-fold` gives you the toggle, and a second option sets its label. The
 default label is `Code`, and the checkpoint asks for **Show the code**.
@@ -321,8 +319,8 @@ four `.qmd` files to get this.
 
 ::: {.callout-tip collapse="true"}
 ## Hint
-Quarto merges the folder file on top of the project defaults, so you write only what differs, and it
-reaches that folder and everything below it.
+Quarto merges `reports/_metadata.yml` on top of the project defaults, so you write only what differs.
+Its options apply to `reports/` and its subfolders.
 
 The second option is `code-summary`: it sets the text on the toggle.
 :::
@@ -353,7 +351,7 @@ you, so that adding a page there shows up without editing `index.qmd`.
 :::
 
 A `listing:` key in the **YAML header of `index.qmd`** builds the table, and `contents:` names the
-folder it indexes. Where the table lands on the page is a separate choice.
+folder it indexes. Where the table appears on the page is a separate choice.
 
 ::: {.callout-note appearance="simple" icon=false}
 ## {{< fa circle-check >}} You should see
@@ -455,7 +453,7 @@ had run, and is not. Then edit the code on one page only and render again. Only 
 ## Hint
 What could a cell print that is **guaranteed** to differ between two runs a minute apart?
 
-`freeze` takes `auto`, which means "re-execute only when this document's own source changes".
+Set `freeze: auto` to re-execute a document only when its source changes.
 
 For the proof: print the current time. If the value on the page is identical across two renders, the
 code that produced it did not run.
@@ -501,7 +499,7 @@ project, not a temporary folder to delete.
 when to use each one.
 
 The slides introduced **cache** earlier today. It is a cell option (`#| cache: true`) that stores
-that one cell's results in a knitr cache folder beside the document. You have just used
+the results from that cell in a knitr cache folder beside the document. You have just used
 `freeze: auto`. Both skip work. They are not the same mechanism, and only one of them solves the
 problem you just solved.
 
