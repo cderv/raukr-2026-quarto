@@ -534,7 +534,7 @@ task is to make the species an input to the document. A complete reference is av
 
 ::: {.callout-tip}
 ## Optional: dynamic headings and standalone files
-Make the `## Species at a glance` heading name the species. Inline code works in a heading:
+Replace `Species` in the heading with inline code so it shows the selected species:
 
 ```markdown
 ## `{{r}} params$species` at a glance
