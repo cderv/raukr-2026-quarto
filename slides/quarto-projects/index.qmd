@@ -129,7 +129,7 @@ pages at the project root.
 - **Do not re-teach:** widen the rule only.
 :::
 
-## Websites: pages and navigation {#websites}
+## Websites: pages and navigation {#websites .aside-flow}
 
 You already set `type: website`, which makes the folder a **site**: its pages share one navbar and
 sidebar. You describe that navigation once, and Quarto builds it:
