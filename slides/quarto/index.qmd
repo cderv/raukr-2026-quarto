@@ -549,10 +549,10 @@ Screenshot from the [Quarto documentation](https://quarto.org/docs/tools/positro
 
 ## Your turn {#your-turn-1}
 
-::: {.callout-tip title="Your turn — until the break at 15:00"}
+::: {.callout-tip title="Your turn"}
 Head to the **[Lab](../../labs/quarto/index.qmd#authoring-challenge)** and start at the **Authoring
 Challenge**: author a penguins document with a figure, a cross-referenced table, and margin layout,
-then render it to HTML. We break at **15:00** and resume at **15:30**.
+then render it to HTML.
 :::
 
 *You can now author a figure, a cross-referenced table, and margin layout. After the break we cite
