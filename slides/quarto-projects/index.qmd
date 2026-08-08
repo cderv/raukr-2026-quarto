@@ -291,8 +291,7 @@ Back in your project's `_quarto.yml`.
 
 . . .
 
-``` yaml
-# _quarto.yml
+``` {.yaml filename="_quarto.yml"}
 execute:
   freeze: auto        # re-execute a document only when its source changes
 ```
