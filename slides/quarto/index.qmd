@@ -48,8 +48,8 @@ After this session you will be able to:
 By the end, you will have a **polished PDF report**.
 
 ::: notes
-- **Say:** "You know R Markdown or Quarto. Today we take one `.qmd` from source to a branded PDF
-  with citations."
+- **Say:** "You know R Markdown or Quarto. Today we turn one `.qmd` into a branded PDF with
+  citations."
 :::
 
 ## How today works
