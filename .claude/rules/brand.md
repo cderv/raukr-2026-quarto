@@ -93,6 +93,18 @@ everywhere) — override the specific roles in `theme-html.scss`:
   "Goal:" boxes) with it → **~1.74:1**. Override those selectors to a darker teal. Watch specificity:
   Bootstrap's `.blockquote` (class) beats a bare `blockquote`, and `.column-margin figcaption`
   (descendant) beats a bare `figcaption` — match them or the override loses.
+  **The SCSS override does not reach the participant payload, so the role itself now carries an
+  AA-safe value** (2026-08-08): `secondary: link-teal` (`#33666B`) in `_brand.yml`, matching what
+  `theme-html.scss` already paints those selectors with. `tools/sync-exercises.R` byte-copies
+  `_brand.yml` into the participant payload, which has no `theme-html.scss`. Before this change, its
+  Day-1 render produced **10** `color-contrast` violations in captions, the `column: margin` kable,
+  and `<details><summary>` on the page used by the lab's optional axe check. Quarto maps
+  `color.secondary` onto **both** Bootstrap roles — `--bs-secondary` (accent) *and*
+  `--bs-secondary-color` (the secondary **text** colour, normally `rgba($body-color, .75)`) — so the
+  role has to clear AA as text, whatever it is used for as an accent. `_brand-dark.yml` keeps
+  `teal-light`: on ink it is the value the dark layer already uses for `$accent-muted`.
+  **Don't delete the role instead** — R and dashboards resolve it by name (`pal("secondary")`, a
+  valuebox `color = "secondary"`), and dropping it fails the render rather than falling back.
 - **`$primary` (teal `#4C979F`) as the navbar background** under near-white text → **3.33:1**. Darken
   *only the bar* (`.navbar { background-color: … }`), not the palette.
 - One derived shade covers both: `$teal-dark: darken($primary, 15%)` = **`#33666B`** (~6.4:1 on white).
