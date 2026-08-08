@@ -389,7 +389,8 @@ still have the complete `_site/` folder.
 ::: notes
 - **Do:** run `quarto publish posit-connect-cloud` and show browser sign-in.
 - **Say:** "`_site/` is the deliverable. This command puts it on a URL."
-- **Say:** "`publish` renders by default. `--no-render` sends the folder you already built."
+- **Say:** "`quarto publish` renders by default. Add `--no-render` to send the `_site/` folder you
+  already built."
 - **Mention:** free Posit account required; skipping loses nothing.
 - **If asked:** scheduled and repository builds are also available.
 :::
