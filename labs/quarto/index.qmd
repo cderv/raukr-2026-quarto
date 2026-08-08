@@ -368,9 +368,9 @@ The instructions below use `my-report.qmd` for both routes.
 [Citations](https://quarto.org/docs/authoring/citations.html) · [Typst](https://quarto.org/docs/output-formats/typst.html) · [Conditional content](https://quarto.org/docs/authoring/conditional.html) · [Brand](https://quarto.org/docs/authoring/brand.html)
 :::
 
-1. Point the document header at the shared bibliography and citation style. `citeproc: true` gives
-   the citations to Quarto. Typst processes them itself by default, and it ignores the `#refs` div
-   from step 3:
+1. Point the document header at the shared bibliography and citation style. Add `citeproc: true` so
+   Quarto processes the citations and places the reference list in the `#refs` div from step 3.
+   Without it, Typst processes the citations and ignores that div:
    ```yaml
    bibliography: references.bib
    csl: apa.csl
@@ -420,7 +420,7 @@ The instructions below use `my-report.qmd` for both routes.
 
    ## Session {.appendix .unnumbered}
 
-   (the <details> block, unchanged)
+   <!-- Keep the existing <details> block here. -->
 
    :::
    ```
@@ -434,8 +434,8 @@ APA with both entries, and the same citations in the Typst PDF, typeset with the
 `?@gorman2014`, `?@horst2020` or `[?]` markers anywhere.
 
 The entries sit inside the `::: {#refs}` div in both formats, under your own **References** heading.
-The PDF ends there, with no Session appendix after it. The HTML still has the appendix, with the
-Session block folded away.
+The PDF ends there, with no Session appendix after it. The HTML still includes the appendix, with
+the Session block collapsed.
 
 **Check the branding applied.** An unbranded PDF builds without any error, so check the **title and
 headings**. A branded PDF uses **Albert Sans**. An unbranded PDF uses Typst's default serif. Table 1
@@ -487,7 +487,7 @@ The Session appendix, kept out of the PDF:
 
 ## Session {.appendix .unnumbered}
 
-(the <details> block, unchanged)
+<!-- Keep the existing <details> block here. -->
 
 :::
 ```
