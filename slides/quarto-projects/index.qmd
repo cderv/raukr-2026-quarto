@@ -435,27 +435,24 @@ to publish (Day 2). Yesterday's report is now a page of that site.
 - **Close with:** "Yesterday's document is now a page of today's site."
 :::
 
-## Demos (if time) {#demos}
+## Demos {#demos}
 
-Extra topics:
-
-::: {.incremental}
-- **Dashboard**: the same analysis as a one-page dashboard (`format: dashboard`), with valueboxes,
-  cards, and a tabbed panel. The
-  [finished dashboard](../../labs/quarto-projects/dashboard.qmd) is in the lab.
-- **Interactivity**: an **htmlwidget** (`plotly`, `leaflet`) is pure R and self-contained.
-  Beyond R: **[OJS](https://quarto.org/docs/interactive/ojs/)** *(Observable JS, browser-side)* and
-  **[Shinylive](https://quarto-ext.github.io/shinylive/)** *(Shiny running in the browser,
-  no server)*.
-:::
+- **Dashboard**: the same analysis as a dashboard (`format: dashboard`), with valueboxes, cards, and
+  a tabset (`{.tabset}`). The
+  [finished dashboard](../../labs/quarto-projects/dashboard.qmd){preview-link="false"} is in the lab.
+- **Interactivity**: an **htmlwidget** (`plotly`, `leaflet`) is written in R and runs in the browser.
+  Beyond widgets: **[OJS](https://quarto.org/docs/interactive/ojs/)** *(Observable JS, browser-side)*
+  and **[Shinylive](https://quarto-ext.github.io/shinylive/)** *(your Shiny app in the browser via
+  WebAssembly, no server)*.
 
 **Learn more:** [Dashboards](https://quarto.org/docs/dashboards/) ·
-[Books](https://quarto.org/docs/books/)
+[Interactive documents](https://quarto.org/docs/interactive/)
 
 ::: notes
 - **Timing:** cut from the bottom if fewer than 5 minutes remain.
-- **Do:** open the dashboard and name the valueboxes, boxplot card, and tabbed panel.
-- **Say:** "Same analysis, different format. You do not build this today."
+- **Before session:** pre-open the dashboard in a tab and check it is in light mode.
+- **Say:** "Every panel here is a cell you already wrote today. Same brand, nothing added."
+- **Watch for:** the OJS and Shinylive links are for the reader, do not click them live.
 :::
 
 ## Thank you! {.center}
