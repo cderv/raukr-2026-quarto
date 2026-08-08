@@ -419,8 +419,8 @@ APA with both entries, and the same citations in the Typst PDF, typeset with the
 
 The two formats place the list differently, and the PDF is the surprising one. Typst builds the
 bibliography itself and always puts it last, so `::: {#refs}` positions the list in HTML only. In the
-PDF the heading you added stays empty and the entries appear at the very end, after the Session
-appendix.
+PDF the heading you added stays empty and the entries appear at the very end, under a
+**Bibliography** heading Typst adds itself, after the Session appendix.
 
 **Check the branding applied.** An unbranded PDF builds without any error, so check the font
 instead. Look at the **title and headings**: **Albert Sans** in a branded PDF, Typst's default serif
@@ -590,9 +590,9 @@ your work or render it with different `-P species:` values. You can also take th
   unique, and the `@ref` must match it.
 - **A citation shows `?@gorman2014` or `[?]`?** The `@key` doesn't match a key in `references.bib`,
   or `bibliography:` isn't set.
-- **The PDF's References section is empty and the entries are at the end?** That is Typst working as
-  designed, not a mistake in your file. It builds the bibliography itself and places it last, so the
-  `::: {#refs}` div only moves the list in HTML.
+- **The PDF's References section is empty and the entries are at the end under "Bibliography"?**
+  That is Typst working as designed, not a mistake in your file. It builds the bibliography itself
+  and places it last, so the `::: {#refs}` div only moves the list in HTML.
 - **`references.bib` not found, although the download has it?** Your `.qmd` is probably not in
   `day1-intro/` (saved to the top folder, for example). Move it next to `references.bib` /
   `apa.csl` / `_brand.yml` and render again.
