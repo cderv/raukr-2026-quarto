@@ -96,9 +96,9 @@ everywhere) — override the specific roles in `theme-html.scss`:
   **The SCSS override does not reach the participant payload, so the role itself now carries an
   AA-safe value** (2026-08-08): `secondary: link-teal` (`#33666B`) in `_brand.yml`, matching what
   `theme-html.scss` already paints those selectors with. `tools/sync-exercises.R` byte-copies
-  `_brand.yml` into the payload, which has no `theme-html.scss` to override in, so a participant's own
-  Day-1 render carried **10** `color-contrast` violations (captions, the `column: margin` kable,
-  `<details><summary>`) on the very page the lab's optional axe step tells them to check. Quarto maps
+  `_brand.yml` into the participant payload, which has no `theme-html.scss`. Before this change, its
+  Day-1 render produced **10** `color-contrast` violations in captions, the `column: margin` kable,
+  and `<details><summary>` on the page used by the lab's optional axe check. Quarto maps
   `color.secondary` onto **both** Bootstrap roles — `--bs-secondary` (accent) *and*
   `--bs-secondary-color` (the secondary **text** colour, normally `rgba($body-color, .75)`) — so the
   role has to clear AA as text, whatever it is used for as an accent. `_brand-dark.yml` keeps

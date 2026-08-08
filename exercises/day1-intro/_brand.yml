@@ -15,9 +15,7 @@ color:
     ink: "#1c2833"
     code-blue: "#496985"
   primary: teal
-  # Quarto maps `secondary` onto Bootstrap's muted-*text* colour as well as the accent, so this has
-  # to clear AA on white: teal-light did not, and painted captions, margin content and `<details>`
-  # summaries at 1.74:1.
+  # Use an AA-safe value because Quarto also applies secondary to muted text.
   secondary: link-teal
   foreground: ink
   background: "#ffffff"
