@@ -1,8 +1,4 @@
-# RaukR 2026 Quarto -- brand
-# Reconstructs the RaukR house look (teal / Albert Sans / Fira Mono) at project level, so a file
-# renders right both here and if folded into the NBIS site. No logo block yet (assets are TODO).
-# Keep this file ASCII-only: read_brand_yml() (R side, used in labs/quarto/sample-typst.qmd) fails
-# to parse non-ASCII here under a C/POSIX locale, silently emptying the palette (renders break).
+# Keep this file ASCII-only: read_brand_yml() can fail under a C/POSIX locale.
 meta:
   name: RaukR 2026 - Quarto
 
@@ -11,15 +7,14 @@ color:
     teal: "#4C979F"
     teal-light: "#A6CBCF"
     teal-lighter: "#D1E5E6"
-    link-teal: "#33666B"   # AA on white (~6.4:1) AND on the grey code bg (~5.5:1, for inline-code links); was #3C7C83 (4.8:1 on white but ~4.3:1 on code bg) and #79B1B7 (~2.4:1, failed AA)
+    link-teal: "#33666B"   # WCAG AA on white and code backgrounds.
     ink: "#1c2833"
     code-blue: "#496985"
   primary: teal
   secondary: teal-light
   foreground: ink
   background: "#ffffff"
-  # Link color lives under typography.link.color (below) -- the brand color roles don't include
-  # `link`, and the R `brand.yml` package rejects it there. Keeping the palette entry `link-teal`.
+  # Link color belongs under typography.link. Brand color roles have no link key.
 
 typography:
   fonts:

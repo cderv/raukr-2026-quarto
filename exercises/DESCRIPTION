@@ -1,15 +1,9 @@
 Package: raukrquartoexercises
 Type: Project
-Title: RaukR 2026 Quarto Sessions -- Exercise Dependencies
+Title: RaukR 2026 Quarto Exercise Dependencies
 Version: 0.0.0.9000
-Description: Not a real R package -- this DESCRIPTION declares the R packages the
-    RaukR 2026 Quarto EXERCISES depend on. The delivery CI installs from it, and it
-    is the participant-facing dependency contract; it is generated from / kept in
-    sync with the course repo. knitr + rmarkdown are the
-    render engine (Quarto's knitr engine); ggplot2 / dplyr / gt are the content
-    packages; ggokabeito supplies the colour-blind-safe species scale; brand.yml /
-    ggrepel / prismatic drive the R-side _brand.yml styling of the branded Typst
-    payoff (day1-intro/sample-typst.qmd).
+Description: Declares the R packages required to render the RaukR 2026
+    Quarto exercises.
 Depends: R (>= 4.5)
 Imports:
     knitr,
