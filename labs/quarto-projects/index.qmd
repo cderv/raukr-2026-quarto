@@ -64,7 +64,7 @@ Use **`solutions/day2/`** to compare your work or complete missed steps.
 **Goal.** Make Quarto treat `day2-projects/` as one project, so that a single command builds every
 page in it into an output folder.
 
-This stanza declares a project. It goes in a `_quarto.yml` at the top of `day2-projects/`, above the
+This block declares a project. It goes in a `_quarto.yml` at the top of `day2-projects/`, above the
 `reports/` folder:
 
 ```{.yaml filename="day2-projects/_quarto.yml"}

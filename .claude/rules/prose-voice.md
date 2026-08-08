@@ -41,6 +41,9 @@ reads like something you'd *say to soften or sell* the point, it belongs in note
   splitting subject from verb (`The way — X, Y, Z — is …`) or a dramatic trailing `— punch.`
   Replace with `(…)`, a `:`, or a full stop + new sentence. (A plain `term — gloss` slide bullet is OK.)
 - **No `;` semicolons** — split or parenthesise. Sentence bullets end with periods, not semicolons.
+- **One name per thing.** A YAML fragment is a **block**, or name the **key**. Never a *stanza*
+  (borrowed config jargon, and not a French cognate either, so it reads as not-his-voice). Before
+  introducing a noun for something the material already names, grep for the name in use.
 - **No participial voice-over tail** (`…, making it easy to X`, `…, so you never have to think about it`).
 - **No reassurance narration** (`(don't worry)`, `so nothing surprises you`, `no magic here`).
 - **No corporate verbs** (leverage/utilize/facilitate/streamline) or **vague intensifiers**
@@ -118,6 +121,9 @@ click away at exactly the moment someone is stuck.
 rg -n --glob '*.qmd' --glob '!_*.qmd' -- '—|--' setup.qmd index.qmd labs slides   # em-dashes
 rg -n --glob '*.qmd' -- ' [?!]'                                                    # French spacing
 rg -niE '\b(leverage|utilize|facilitate|streamline|seamless|robust)\b' --glob '*.qmd'
+rg -niE '\b(stanza|snippet)\b' --glob '*.qmd' setup.qmd index.qmd labs slides   # say "block" / "key"
+# One-off vocabulary: a word used once where a synonym carries the rest of the repo is the tell.
+# Compare counts before adding a noun -- e.g. block(9) vs stanza(1) is how the stanza slipped in.
 # Cross-day pointers -- judge each in context (a real callback is fine, a narrated one is not)
 rg -niE '\b(story|saga|chapter|teas(e|ed|er)|foreshadow\w*|yesterday|tomorrow)\b' --glob '*.qmd' slides labs
 ```
