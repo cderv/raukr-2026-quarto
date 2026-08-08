@@ -52,9 +52,8 @@ jobs:
       - name: Render Day-1 solution (cited HTML report)
         run: quarto render solutions/day1/penguins-report.qmd
 
-      # The lab has participants re-render this same document to Typst, where `citeproc: true` and
-      # the HTML-only Session appendix are what make the PDF come out right. A PDF that merely
-      # builds proves neither, so read the text back.
+      # Inspect the Typst output to confirm that citeproc places the references and the Session
+      # appendix stays in HTML.
       - name: Render Day-1 solution to Typst (cited PDF, no Session appendix)
         run: |
           set -eu
@@ -73,17 +72,16 @@ jobs:
               exit 1
             fi
           done
-          # Without citeproc the entries still print, but under a Typst-made "Bibliography" heading,
-          # leaving the document's own References section empty.
+          # Without citeproc, Typst adds a Bibliography section and leaves References empty.
           if grep -qE "^[[:space:]]*Bibliography[[:space:]]*$" _report.txt; then
-            echo "::error::Typst typeset its own Bibliography -- citeproc: true is not in effect"
+            echo "::error::Typst added its own Bibliography: citeproc is not active"
             exit 1
           fi
           if grep -qi "sessionInfo" _report.txt; then
-            echo "::error::Session appendix leaked into the PDF -- the HTML-only wrapper failed"
+            echo "::error::PDF includes the Session appendix: HTML-only wrapper did not apply"
             exit 1
           fi
-          echo "ok: references placed, Session appendix absent"
+          echo "ok: References populated and Session appendix absent"
 
       - name: Render Day-1 authoring starter (the Part-1 starting point)
         run: quarto render day1-intro/authoring-starter.qmd
