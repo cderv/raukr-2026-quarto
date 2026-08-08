@@ -105,10 +105,9 @@ Quarto uses the **nearest `_quarto.yml`** up the tree as the project root: you a
 Yesterday a header set the defaults and a cell overrode them. `_metadata.yml` applies the **same
 principle** to every page in a **folder**, so you do not repeat the options in each header:
 
-``` {.yaml filename="analysis/_metadata.yml"}
-# applies to every .qmd in analysis/
+``` {.yaml filename="reports/_metadata.yml"}
+# applies to every .qmd in reports/
 execute:
-  echo: false
   warning: false
 format:
   html:
@@ -119,8 +118,8 @@ The same precedence rule now applies across files: **document header** > `_metad
 `_quarto.yml`. Set broad defaults, then override them at the document or folder level.
 
 ::: aside
-Today's lab includes a `reports/` subfolder. You will add `reports/_metadata.yml` so its options apply
-to the report pages, but not to pages at the project root.
+`reports/` is the subfolder in today's lab. Its options apply to the two pages inside it, not to the
+pages at the project root.
 :::
 
 **Learn more:** [Directory metadata](https://quarto.org/docs/projects/quarto-projects.html#directory-metadata)
