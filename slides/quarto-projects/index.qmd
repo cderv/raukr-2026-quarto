@@ -440,18 +440,22 @@ to publish (Day 2). Yesterday's report is now a page of that site.
 Extra topics:
 
 ::: {.incremental}
-- **Book versus website**: choose a **book** for ordered chapters with global numbering. Choose a
-  **website** for independent pages.
+- **Dashboard**: the same analysis as a one-page dashboard (`format: dashboard`), with valueboxes,
+  cards, and a tabbed panel. The
+  [finished dashboard](../../labs/quarto-projects/dashboard.qmd) is in the lab.
 - **Interactivity**: an **htmlwidget** (`plotly`, `leaflet`) is pure R and self-contained.
-  **[OJS](https://quarto.org/docs/interactive/ojs/)** *(Observable JS, a browser-side, non-R path)*
-  and **[Shinylive](https://quarto-ext.github.io/shinylive/)** *(Shiny running in the browser,
-  no server)* are links, not live builds.
+  Beyond R: **[OJS](https://quarto.org/docs/interactive/ojs/)** *(Observable JS, browser-side)* and
+  **[Shinylive](https://quarto-ext.github.io/shinylive/)** *(Shiny running in the browser,
+  no server)*.
 :::
+
+**Learn more:** [Dashboards](https://quarto.org/docs/dashboards/) ·
+[Books](https://quarto.org/docs/books/)
 
 ::: notes
 - **Timing:** cut from the bottom if fewer than 5 minutes remain.
-- **Optional group demo:** open the rendered dashboard from the lab and briefly name the valueboxes,
-  boxplot card, and tabbed panel. Do not ask participants to build it.
+- **Do:** open the dashboard and name the valueboxes, boxplot card, and tabbed panel.
+- **Say:** "Same analysis, different format. You do not build this today."
 :::
 
 ## Thank you! {.center}
