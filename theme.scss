@@ -35,8 +35,8 @@ $code-block-font-size: 0.7em !default;
   position: relative;
   margin-top: 0;
   padding-top: 1em;
-  // The gap above is the separator; the paragraph's own margins only eat frame,
-  // and the brand's 1.5 body leading is loose for two lines of small print.
+  // The top padding separates the aside from the body. Remove paragraph margins
+  // and tighten the line spacing to preserve vertical space.
   > div > p {
     line-height: 1.2;
 

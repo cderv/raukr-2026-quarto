@@ -80,26 +80,24 @@ you must eyeball the screenshot for:**
 ## Websites: pages and navigation {#websites .aside-flow}
 ```
 
-It sets `position: relative` (the same declaration Quarto uses for
-`.slide.scrollable`, which does **not** make the slide scrollable), and tightens
-the aside paragraph — margins zeroed, leading to 1.2 — because both only eat
-frame once the aside is in flow. Use it when the aside is *content* the slide
-needs, not when the body is simply too big: in flow the aside now **counts
-toward `scrollH`**, so a slide that passed at 720 with a floating aside can go
-over once it lands in flow.
+It sets `position: relative`, matching Quarto's `.slide.scrollable`, without
+making the slide scrollable. It also removes paragraph margins and sets the line
+height to 1.2 because the aside now contributes to the slide height. Use it when
+the slide needs the aside as content, not when the body is simply too large. An
+aside in normal flow counts toward `scrollH`, so moving it can reveal overflow.
 
-**`scrollH === clientH` proves it fits, but cannot show how much room is left** —
-`scrollHeight` is floored at `clientHeight`, so 720/720 reads identically at 2 px
-of slack and at 100. To see the real margin, walk `offsetTop`/`offsetHeight` up
-to the `<section>`: those are layout coordinates, already in deck px, and immune
-to both reveal's 0.9 transform and any scroll offset (`getBoundingClientRect`
-is not — it will happily report the same bottom for two different layouts).
-On `#websites` that is a 706 px content bottom, 14 px clear of the frame.
+**`scrollH === clientH` confirms that the slide fits, but does not show the
+remaining space.** `scrollHeight` cannot be smaller than `clientHeight`, so both
+2 px and 100 px of free space produce the same 720/720 result. To measure the
+remaining space, follow `offsetTop` and `offsetHeight` up to the `<section>`.
+These layout coordinates use deck pixels and are unaffected by Reveal's 0.9
+transform or the scroll position. `getBoundingClientRect` does not provide that
+distinction.
 
-Sizing the aside is the lever when it does not fit: leading first (the brand's
-1.5 body leading is loose for small print), then font-size, then the text. Note
-`line-height` on the `<aside>` does nothing — reveal sets it on the `<p>`, so
-target the paragraph. One line holds ~96 characters at `0.7em` in the 1280 frame.
+If the aside does not fit, reduce its line spacing first, then its font size,
+then shorten its text. Set `line-height` on the `<p>`, not the `<aside>`, because Reveal
+sets it on the paragraph. One line holds about 96 characters at `0.7em` in the
+1280 px frame.
 
 ## 2. `.center` slides: keep a footer line in normal flow, not in an `aside`
 
