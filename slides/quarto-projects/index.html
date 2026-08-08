@@ -101,7 +101,7 @@
     code span.vs { color: #20794d; } /* VerbatimString */
     code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
-  <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-ddecf4e991ee432ac6997c84e43689e6.css">
+  <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-da133bd01f065fb0842e4fd86fa02b90.css">
   <link href="../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="../../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="../../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -243,7 +243,7 @@ Christophe Dervieux
 <aside class="notes">
 <ul>
 <li><strong>Say:</strong> “Same rhythm as yesterday: follow along, then your turn.”</li>
-<li><strong>Schedule:</strong> break at 15:00, resume at 15:30. Use clock times, not estimated task durations.</li>
+<li><strong>Schedule:</strong> break at 15:00, resume at 15:30.</li>
 </ul>
 <style type="text/css">
         span.MJX_Assistive_MathML {
@@ -327,15 +327,14 @@ Christophe Dervieux
 <p>Yesterday a header set the defaults and a cell overrode them. <code>_metadata.yml</code> applies the <strong>same principle</strong> to every page in a <strong>folder</strong>, so you do not repeat the options in each header:</p>
 <div class="code-with-filename">
 <div class="code-with-filename-file">
-<pre><strong>analysis/_metadata.yml</strong></pre>
+<pre><strong>reports/_metadata.yml</strong></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2" data-filename="analysis/_metadata.yml"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb2-1"><a aria-label="1"></a><span class="co"># applies to every .qmd in analysis/</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2" data-filename="reports/_metadata.yml"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb2-1"><a aria-label="1"></a><span class="co"># applies to every .qmd in reports/</span></span>
 <span id="cb2-2"><a aria-label="2"></a><span class="fu">execute</span><span class="kw">:</span></span>
-<span id="cb2-3"><a aria-label="3"></a><span class="at">  </span><span class="fu">echo</span><span class="kw">:</span><span class="at"> </span><span class="ch">false</span></span>
-<span id="cb2-4"><a aria-label="4"></a><span class="at">  </span><span class="fu">warning</span><span class="kw">:</span><span class="at"> </span><span class="ch">false</span></span>
-<span id="cb2-5"><a aria-label="5"></a><span class="fu">format</span><span class="kw">:</span></span>
-<span id="cb2-6"><a aria-label="6"></a><span class="at">  </span><span class="fu">html</span><span class="kw">:</span></span>
-<span id="cb2-7"><a aria-label="7"></a><span class="at">    </span><span class="fu">code-fold</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb2-3"><a aria-label="3"></a><span class="at">  </span><span class="fu">warning</span><span class="kw">:</span><span class="at"> </span><span class="ch">false</span></span>
+<span id="cb2-4"><a aria-label="4"></a><span class="fu">format</span><span class="kw">:</span></span>
+<span id="cb2-5"><a aria-label="5"></a><span class="at">  </span><span class="fu">html</span><span class="kw">:</span></span>
+<span id="cb2-6"><a aria-label="6"></a><span class="at">    </span><span class="fu">code-fold</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>The same precedence rule now applies across files: <strong>document header</strong> &gt; <code>_metadata.yml</code> &gt; <code>_quarto.yml</code>. Set broad defaults, then override them at the document or folder level.</p>
 
@@ -357,9 +356,9 @@ Christophe Dervieux
           display:block!important;
       }</style></aside>
 <aside><div>
-<p>Today’s lab includes a <code>reports/</code> subfolder. You will add <code>reports/_metadata.yml</code> so its options apply to the report pages, but not to pages at the project root.</p>
+<p><code>reports/</code> is the subfolder in today’s lab. Its options apply to the two pages inside it, not to the pages at the project root.</p>
 </div></aside></section>
-<section id="websites" class="slide level2">
+<section id="websites" class="slide level2 aside-flow">
 <h2>Websites: pages and navigation</h2>
 <p>You already set <code>type: website</code>, which makes the folder a <strong>site</strong>: its pages share one navbar and sidebar. You describe that navigation once, and Quarto builds it:</p>
 <div class="code-with-filename">
@@ -512,17 +511,17 @@ Christophe Dervieux
 </section>
 <section id="your-turn-1" class="slide level2">
 <h2>Your turn</h2>
-<div title="Your turn — until the break at 15:00">
+<div title="Your turn">
 <div class="callout callout-tip callout-titled callout-style-default">
 <div class="callout-body">
 <div class="callout-title">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<p><strong>Your turn — until the break at 15:00</strong></p>
+<p><strong>Your turn</strong></p>
 </div>
 <div class="callout-content">
-<p>Head to the <strong><a href="../../labs/quarto-projects/index.html#website-challenge">Lab</a></strong> and the <strong>Website Challenge</strong>: turn a set of <code>.qmd</code> files into a navigable, <strong>branded website</strong>: <code>_quarto.yml</code>, a navbar, and the shared brand. We break at <strong>15:00</strong> and resume at <strong>15:30</strong>.</p>
+<p>Head to the <strong><a href="../../labs/quarto-projects/index.html#website-challenge">Lab</a></strong> and the <strong>Website Challenge</strong>: turn a set of <code>.qmd</code> files into a navigable, <strong>branded website</strong>: <code>_quarto.yml</code>, a navbar, and the shared brand.</p>
 </div>
 </div>
 </div>
@@ -593,9 +592,13 @@ Christophe Dervieux
 <li class="fragment"><strong><code>freeze</code></strong>: <strong>Quarto’s</strong> switch for when a document re-executes. <strong>Project-only</strong>: rendering one file always runs it. Results live in <code>_freeze/</code>, refreshed only when its source changes. Once every page has frozen results, <strong>CI</strong> <em>(the automated build)</em> can rebuild those pages without R.</li>
 </ul>
 <div class="fragment">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb6-1"><a aria-label="1"></a><span class="co"># _quarto.yml</span></span>
-<span id="cb6-2"><a aria-label="2"></a><span class="fu">execute</span><span class="kw">:</span></span>
-<span id="cb6-3"><a aria-label="3"></a><span class="at">  </span><span class="fu">freeze</span><span class="kw">:</span><span class="at"> auto</span><span class="co">        # re-execute a document only when its source changes</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>_quarto.yml</strong></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6" data-filename="_quarto.yml"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb6-1"><a aria-label="1"></a><span class="fu">execute</span><span class="kw">:</span></span>
+<span id="cb6-2"><a aria-label="2"></a><span class="at">  </span><span class="fu">freeze</span><span class="kw">:</span><span class="at"> auto</span><span class="co">        # re-execute a document only when its source changes</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
 <p><strong><code>freeze: auto</code></strong> is the setting to adopt. <strong><code>freeze: true</code></strong> hands you full control instead.</p>
 <aside class="notes">
 <ul>
@@ -658,17 +661,13 @@ Christophe Dervieux
 <section id="renv" class="slide level2">
 <h2>Reproducibility has two parts</h2>
 <p><code>freeze</code> pins the <strong>results</strong>. It doesn’t pin <strong>what produced them</strong> (the package versions):</p>
-<div class="columns">
-<div class="column" style="width:50%;">
 <ul>
 <li><strong><code>freeze</code></strong> → <code>_freeze/</code>: do not repeat slow computation.</li>
 <li><strong><code>renv.lock</code></strong> → <em>“pin the packages, so the team rebuilds the same environment.”</em></li>
 </ul>
-</div><div class="column" style="width:50%;">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a aria-label="1"></a>renv<span class="sc">::</span><span class="fu">init</span>()       <span class="co"># once, to start tracking</span></span>
 <span id="cb9-2"><a aria-label="2"></a>renv<span class="sc">::</span><span class="fu">snapshot</span>()   <span class="co"># write renv.lock</span></span>
 <span id="cb9-3"><a aria-label="3"></a>renv<span class="sc">::</span><span class="fu">restore</span>()    <span class="co"># rebuild the same env</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div></div>
 <p>Together: a colleague (or CI) rebuilds the <em>same</em> site, with or without re-running the analysis.</p>
 <p><strong>Learn more:</strong> <a href="https://rstudio.github.io/renv/">renv</a></p>
 <aside class="notes">
@@ -697,7 +696,8 @@ Christophe Dervieux
 <li><strong>Posit Connect Cloud</strong> takes it in one command, with a free account and <strong>no repository</strong>:</li>
 </ul>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a aria-label="1"></a><span class="ex">quarto</span> publish posit-connect-cloud</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>The first run opens a browser to sign in, then uploads the folder you just built.</p>
+<p>The first run opens a browser to sign in, then uploads the site.</p>
+<p><code>quarto publish</code> renders the project first by default. Add <code>--no-render</code> to upload the <code>_site/</code> you already built.</p>
 <div title="Your turn — optional, if we have time">
 <div class="callout callout-tip callout-titled callout-style-default">
 <div class="callout-body">
@@ -717,6 +717,7 @@ Christophe Dervieux
 <ul>
 <li><strong>Do:</strong> run <code>quarto publish posit-connect-cloud</code> and show browser sign-in.</li>
 <li><strong>Say:</strong> “<code>_site/</code> is the deliverable. This command puts it on a URL.”</li>
+<li><strong>Say:</strong> “<code>quarto publish</code> renders by default. Add <code>--no-render</code> to send the <code>_site/</code> folder you already built.”</li>
 <li><strong>Mention:</strong> free Posit account required; skipping loses nothing.</li>
 <li><strong>If asked:</strong> scheduled and repository builds are also available.</li>
 </ul>
