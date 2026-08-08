@@ -434,7 +434,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><code>analysis.qmd</code> — a penguins analysis with a figure and a table</li>
 <li><code>reports/methods.qmd</code> and <code>reports/data-notes.qmd</code> — two short supporting pages, in their own folder because you will treat that folder differently later</li>
 </ul>
-<p>Render one page to confirm it works: <code>quarto render analysis.qmd</code> creates <code>analysis.html</code> next to its source. A finished reference is in <strong><code>solutions/day2/</code></strong>.</p>
+<p>Render one page to confirm it works: <code>quarto render analysis.qmd</code> creates <code>analysis.html</code> next to its source. A finished reference is in <strong><code>solutions/day2/</code></strong>. You can also <a href="../../demos/day2-solution/">open the finished website</a>.</p>
 <section id="website-challenge" class="level2 page-columns page-full" data-number="1">
 <h2 data-number="1" class="anchored" data-anchor-id="website-challenge"><span class="header-section-number">1</span> Website Challenge</h2>
 <blockquote class="blockquote">
@@ -449,10 +449,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="make-it-a-project" class="level3" data-number="1.1">
 <h3 data-number="1.1" class="anchored" data-anchor-id="make-it-a-project"><span class="header-section-number">1.1</span> Make it a project</h3>
 <p><strong>Goal.</strong> Make Quarto treat <code>day2-projects/</code> as one project, so that a single command builds every page in it into an output folder.</p>
-<p>This stanza declares a project. Decide where to put it, then build the folder:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">project</span><span class="kw">:</span></span>
+<p>This block declares a project. Save it as <code>day2-projects/_quarto.yml</code>, alongside <code>reports/</code>:</p>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>day2-projects/_quarto.yml</strong></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" data-filename="day2-projects/_quarto.yml"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">project</span><span class="kw">:</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">type</span><span class="kw">:</span><span class="at"> website</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">output-dir</span><span class="kw">:</span><span class="at"> _site</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Then build the project: from inside <code>day2-projects/</code>, run <code>quarto render</code> with no file argument.</p>
 <p>(<code>_site</code> is already the default output folder for a website. We write it explicitly here so the publishable folder is visible in the configuration.)</p>
 <div class="callout callout-style-simple callout-note no-icon callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -479,9 +485,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <div id="callout-3" class="callout-3-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>You have folders above <code>day2-projects/</code> and files inside it. Where does Quarto look to decide where a project starts, and in which direction does it search?</p>
-<p>Quarto walks <strong>up</strong> from the file being rendered and stops at the <strong>nearest</strong> <code>_quarto.yml</code>. That file marks the project root. A <code>_quarto.yml</code> inside <code>day2-projects/</code> therefore makes that folder the project root.</p>
-<p>A <code>quarto render</code> with <strong>no file argument</strong> builds the whole project. <code>quarto render index.qmd</code> still builds just the one page.</p>
+<p>Quarto walks <strong>up</strong> from the file being rendered and stops at the <strong>nearest</strong> <code>_quarto.yml</code>. That file marks the project root. Putting <code>_quarto.yml</code> in <code>day2-projects/</code> makes that folder the project root.</p>
+<p><code>quarto render index.qmd</code> still builds just the one page.</p>
 </div>
 </div>
 </div>
@@ -610,22 +615,19 @@ Figure&nbsp;1: The analysis page’s figure: body mass by species.
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
 <span class="screen-reader-only">Tip</span>Try the other menu: a sidebar built for you
 </div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-8" class="callout-8-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>Swap the <code>navbar:</code> block for this, re-render, and compare:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">sidebar</span><span class="kw">:</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">contents</span><span class="kw">:</span><span class="at"> auto</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><code>contents: auto</code> builds the menu from the files it finds, so you do not need to list every page. It is the right choice for a site that grows. A navbar is the right choice when you want to control exactly what appears and in what order. Put the navbar back before you carry on, or keep both.</p>
-</div>
 </div>
 </div>
 <div class="callout callout-style-default callout-note callout-titled">
@@ -667,6 +669,7 @@ Figure&nbsp;1: The analysis page’s figure: body mass by species.
 <span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">base</span><span class="kw">:</span></span>
 <span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">family</span><span class="kw">:</span><span class="at"> Albert Sans</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
+<p>Then look at <code>theme:</code>. It takes a <strong>list</strong> of layers. When two layers set the same option, the later layer wins. The position of <code>brand</code> determines whether the navbar uses the brand teal or cosmo blue.</p>
 <div class="callout callout-style-simple callout-note no-icon callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -678,6 +681,7 @@ Figure&nbsp;1: The analysis page’s figure: body mass by species.
 </div>
 <div class="callout-body-container callout-body">
 <p>After adding <code>_brand.yml</code>, the <strong>font changes</strong> but the navbar and links remain cosmo blue. This is expected. After correcting the theme order, the navbar and links become teal.</p>
+<p>The incorrect order renders without an error, but the navbar remains blue. Check the navbar color, not the log.</p>
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
@@ -693,8 +697,7 @@ Figure&nbsp;1: The analysis page’s figure: body mass by species.
 <div id="callout-11" class="callout-11-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>Compare three parts of the rendered site: the body font, the navbar, and the links. The font changes, but the navbar and links remain blue.</p>
-<p><code>theme:</code> takes a <strong>list</strong>, even when you write a single value. So Quarto is already combining something with your <code>cosmo</code>. If two layers both define a primary color, which one would you expect to end up on the page?</p>
-<p><code>brand</code> is a theme <strong>layer</strong>, and it is the layer that reads your <code>_brand.yml</code>. A bare <code>theme: cosmo</code> expands to <code>[brand, cosmo]</code>, and <strong>later layers win</strong>. Quarto applies cosmo’s palette after the brand palette, so the site uses cosmo blue.</p>
+<p>A bare <code>theme: cosmo</code> expands to <code>[brand, cosmo]</code>. Quarto applies cosmo’s palette after the brand palette, so the site uses cosmo blue.</p>
 <p>The fonts apply in either order, which can make the incorrect order look successful.</p>
 </div>
 </div>
@@ -729,6 +732,10 @@ Figure&nbsp;1: The analysis page’s figure: body mass by species.
 <h3 data-number="1.4" class="anchored" data-anchor-id="scope-options-to-one-folder"><span class="header-section-number">1.4</span> Scope options to one folder</h3>
 <p><strong>Goal.</strong> Fold the code on the two pages in <code>reports/</code>, and only there, behind a toggle labeled <strong>Show the code</strong>. The home and analysis pages keep showing their code as before.</p>
 <p>You have not looked at <code>day2-projects/reports/</code> yet. It holds two short pages, <code>methods.qmd</code> and <code>data-notes.qmd</code>, each with a small code cell.</p>
+<p>A <code>_metadata.yml</code> file applies options to every document in its folder. Put one in <code>reports/</code> to configure both pages without editing either file. It takes the same document options you would write in <code>_quarto.yml</code>. The difference is where they apply.</p>
+<p>You need two options. <code>code-fold</code> gives you the toggle, and a second option sets its label. The default label is <code>Code</code>, and the checkpoint asks for <strong>Show the code</strong>.</p>
+<p>Neither page is in the navbar. Use the site search (the magnifier) to open them.</p>
+<p>Docs: <a href="https://quarto.org/docs/projects/quarto-projects.html#directory-metadata">Directory metadata</a> · <a href="https://quarto.org/docs/output-formats/html-code.html#folding-code">Folding code</a>.</p>
 <div class="callout callout-style-simple callout-note no-icon callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -754,9 +761,8 @@ Figure&nbsp;1: The analysis page’s figure: body mass by species.
 </div>
 <div id="callout-14" class="callout-14-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>Project-wide options live in <code>_quarto.yml</code> at the project root. You want the same kind of option, but reaching one folder only. Where would you put a file so that Quarto applies it to that folder and nowhere else?</p>
-<p>A <code>_metadata.yml</code> inside a folder applies to every document in that folder (and below it). Quarto merges it on top of the project defaults, so you write only what differs.</p>
-<p>It takes the same <strong>document</strong> options you would write in <code>_quarto.yml</code>, so what differs is the reach, not the syntax. The option that folds code is <code>code-fold</code>, and <code>code-summary</code> sets the toggle label.</p>
+<p>Quarto merges <code>reports/_metadata.yml</code> on top of the project defaults, so you write only what differs. Its options apply to <code>reports/</code> and its subfolders.</p>
+<p>The second option is <code>code-summary</code>: it sets the text on the toggle.</p>
 </div>
 </div>
 </div>
@@ -793,7 +799,8 @@ Figure&nbsp;1: The analysis page’s figure: body mass by species.
 <div class="no-row-height column-margin column-container"><div class="">
 <p><i class="fa-solid fa-book-open" aria-label="book-open"></i> <strong>Quarto docs</strong></p>
 <p><a href="https://quarto.org/docs/websites/website-listings.html">Website listings</a></p>
-</div></div><div class="callout callout-style-simple callout-note no-icon callout-titled">
+</div></div><p>A <code>listing:</code> key in the <strong>YAML header of <code>index.qmd</code></strong> builds the table, and <code>contents:</code> names the folder it indexes. Where the table appears on the page is a separate choice.</p>
+<div class="callout callout-style-simple callout-note no-icon callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
@@ -803,7 +810,7 @@ Figure&nbsp;1: The analysis page’s figure: body mass by species.
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>A table on the home page with one row per page in <code>reports/</code>, showing each title and its description (both pages already carry a <code>description:</code> in their YAML header). Add a third page to <code>reports/</code>, re-render, and it appears in the table on its own.</p>
+<p>A table on the home page, under a <strong>Reports</strong> heading you add, with one row per page in <code>reports/</code>, showing each title and its description (both pages already carry a <code>description:</code> in their YAML header). Add a third page to <code>reports/</code>, re-render, and it appears in the table on its own.</p>
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
@@ -818,8 +825,7 @@ Figure&nbsp;1: The analysis page’s figure: body mass by species.
 </div>
 <div id="callout-17" class="callout-17-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>This is a property of one page, not of the whole site. So where does its configuration go, and how does the page say <em>which</em> documents to index?</p>
-<p>A <code>listing:</code> key in the <strong>YAML header of <code>index.qmd</code></strong> points at a folder with <code>contents:</code>. Give it an <code>id:</code>, then place the result where you want it on the page with an empty div carrying that id:</p>
+<p>Give the listing an <code>id:</code>, then place the result where you want it on the page with an empty div carrying that id:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>::: {#reports}</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Without the <code>id:</code> and the div, the listing renders at the bottom of the page.</p>
@@ -890,7 +896,15 @@ Figure&nbsp;1: The analysis page’s figure: body mass by species.
 </div></div><section id="make-the-build-skip-unchanged-pages" class="level3" data-number="2.1">
 <h3 data-number="2.1" class="anchored" data-anchor-id="make-the-build-skip-unchanged-pages"><span class="header-section-number">2.1</span> Make the build skip unchanged pages</h3>
 <p><strong>Goal.</strong> Right now every <code>quarto render</code> re-runs all the R on every page, even the pages you have not touched. Make Quarto reuse the previous results for a page whose source has not changed. Then <strong>prove</strong> that it worked.</p>
-<p>Add a value that changes on every execution so the page shows whether the code ran again.</p>
+<p>Execution options for the whole project sit under a top-level <code>execute:</code> key, alongside <code>project:</code> and <code>website:</code>. Complete it:</p>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>day2-projects/_quarto.yml</strong></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14" data-filename="day2-projects/_quarto.yml"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">execute</span><span class="kw">:</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">freeze</span><span class="kw">:</span><span class="at"> ...</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Then add a value that changes on every execution, so the page shows whether the code ran again.</p>
 <div class="callout callout-style-simple callout-note no-icon callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -916,8 +930,8 @@ Figure&nbsp;1: The analysis page’s figure: body mass by species.
 </div>
 <div id="callout-21" class="callout-21-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>This is about <em>executing</em> code across the whole project, so which top-level key carries the setting? What could a cell print that is <strong>guaranteed</strong> to differ between two runs a minute apart?</p>
-<p>An <code>execute:</code> key at the top level of <code>_quarto.yml</code> carries execution options for the project. The one you want is <code>freeze</code>, and <code>auto</code> means “re-execute only when this document’s own source changes”.</p>
+<p>What could a cell print that is <strong>guaranteed</strong> to differ between two runs a minute apart?</p>
+<p>Set <code>freeze: auto</code> to re-execute a document only when its source changes.</p>
 <p>For the proof: print the current time. If the value on the page is identical across two renders, the code that produced it did not run.</p>
 </div>
 </div>
@@ -939,14 +953,14 @@ Figure&nbsp;1: The analysis page’s figure: body mass by species.
 <div class="code-with-filename-file">
 <pre><strong>day2-projects/_quarto.yml</strong></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14" data-filename="day2-projects/_quarto.yml"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">execute</span><span class="kw">:</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">freeze</span><span class="kw">:</span><span class="at"> auto</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15" data-filename="day2-projects/_quarto.yml"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">execute</span><span class="kw">:</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">freeze</span><span class="kw">:</span><span class="at"> auto</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>For the visible check, add a cell to <code>analysis.qmd</code>:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">format</span>(<span class="fu">Sys.time</span>()))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">format</span>(<span class="fu">Sys.time</span>()))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Then, from inside <code>day2-projects/</code>:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> render     <span class="co"># runs the code, writes _freeze/ and _site/</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> render     <span class="co"># no edits: cells are skipped, and the printed time is unchanged</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> render     <span class="co"># runs the code, writes _freeze/ and _site/</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> render     <span class="co"># no edits: cells are skipped, and the printed time is unchanged</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Now change the plot code in <code>analysis.qmd</code> and render again. Only that page runs, and its timestamp changes.</p>
 </div>
 </div>
@@ -968,7 +982,7 @@ Figure&nbsp;1: The analysis page’s figure: body mass by species.
 <section id="discuss-together-cache-versus-freeze" class="level3" data-number="2.2">
 <h3 data-number="2.2" class="anchored" data-anchor-id="discuss-together-cache-versus-freeze"><span class="header-section-number">2.2</span> Discuss together: <code>cache</code> versus <code>freeze</code></h3>
 <p><strong>Goal.</strong> You have now met two things that both avoid re-running code. Explain how they differ and when to use each one.</p>
-<p>The slides introduced <code>cache: true</code> earlier today. You have just used <code>freeze: auto</code>. Both skip work. They are not the same mechanism, and only one of them solves the problem you just solved.</p>
+<p>The slides introduced <strong>cache</strong> earlier today. It is a cell option (<code>#| cache: true</code>) that stores the results from that cell in a knitr cache folder beside the document. You have just used <code>freeze: auto</code>. Both skip work. They are not the same mechanism, and only one of them solves the problem you just solved.</p>
 <div class="callout callout-style-simple callout-note no-icon callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -1031,7 +1045,7 @@ Figure&nbsp;1: The analysis page’s figure: body mass by species.
 <h3 data-number="2.3" class="anchored" data-anchor-id="put-your-day-1-report-on-the-site"><span class="header-section-number">2.3</span> Put your Day-1 report on the site</h3>
 <p><em>This is a core task.</em></p>
 <p><strong>Goal.</strong> Take the report you wrote yesterday and make it a page of this website.</p>
-<p>On Day 1, you built one document. Now add it to the project. If you did not finish Day 1 or do not have the file, use <code>solutions/day1/penguins-report.qmd</code> from your exercises download instead.</p>
+<p>On Day 1, you built one document: <code>my-report.qmd</code> in <code>day1-intro/</code>. Now add it to the project. If you did not finish Day 1 or do not have the file, use <code>solutions/day1/penguins-report.qmd</code> from your exercises download instead.</p>
 <div class="callout callout-style-simple callout-note no-icon callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -1042,7 +1056,7 @@ Figure&nbsp;1: The analysis page’s figure: body mass by species.
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Your Day-1 report opens as a page of the site, reachable from the navigation, styled like the rest of it. Its content is unchanged: the YAML header is the only part you edited.</p>
+<p>Your Day-1 report opens as a page of the site, reachable from the navigation, styled like the rest of it. Its prose and code are untouched: the YAML header is the only part of the file you edited.</p>
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
@@ -1080,15 +1094,15 @@ Figure&nbsp;1: The analysis page’s figure: body mass by species.
 <div class="code-with-filename-file">
 <pre><strong>day2-projects/_quarto.yml</strong></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17" data-filename="day2-projects/_quarto.yml"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">website</span><span class="kw">:</span></span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">navbar</span><span class="kw">:</span></span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">left</span><span class="kw">:</span></span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">href</span><span class="kw">:</span><span class="at"> index.qmd</span></span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">text</span><span class="kw">:</span><span class="at"> Home</span></span>
-<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">href</span><span class="kw">:</span><span class="at"> analysis.qmd</span></span>
-<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">text</span><span class="kw">:</span><span class="at"> Analysis</span></span>
-<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">href</span><span class="kw">:</span><span class="at"> my-report.qmd</span></span>
-<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">text</span><span class="kw">:</span><span class="at"> My report</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18" data-filename="day2-projects/_quarto.yml"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">website</span><span class="kw">:</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">navbar</span><span class="kw">:</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">left</span><span class="kw">:</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">href</span><span class="kw">:</span><span class="at"> index.qmd</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">text</span><span class="kw">:</span><span class="at"> Home</span></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">href</span><span class="kw">:</span><span class="at"> analysis.qmd</span></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">text</span><span class="kw">:</span><span class="at"> Analysis</span></span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">href</span><span class="kw">:</span><span class="at"> my-report.qmd</span></span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">text</span><span class="kw">:</span><span class="at"> My report</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p><code>solutions/day2/my-report.qmd</code> shows the finished page.</p>
 </div>
@@ -1122,14 +1136,14 @@ Figure&nbsp;1: The analysis page’s figure: body mass by species.
 <div class="code-with-filename-file">
 <pre><strong>day2-projects/_quarto.yml</strong></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18" data-filename="day2-projects/_quarto.yml"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">execute</span><span class="kw">:</span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">freeze</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19" data-filename="day2-projects/_quarto.yml"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">execute</span><span class="kw">:</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">freeze</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Then, in <code>analysis.qmd</code>, make a visible edit to the plot code: change the y-axis label to <code>y = "Body mass in grams"</code>.</p>
 <p>Now run the three renders from inside <code>day2-projects/</code>, and reload <code>_site/analysis.html</code> in your browser after each one:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> render                <span class="co"># whole project: your edit does not appear</span></span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> render analysis.qmd   <span class="co"># one file: the page refreshes</span></span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> render                <span class="co"># whole project: the refreshed page stays</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> render                <span class="co"># whole project: your edit does not appear</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> render analysis.qmd   <span class="co"># one file: the page refreshes</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> render                <span class="co"># whole project: the refreshed page stays</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>With <code>freeze: true</code>, the workflow is: edit a page, render that file, then build the project without re-running it. Switch back to <code>freeze: auto</code> before you continue and keep that setting for the rest of the lab. Use <code>true</code> when project builds must reuse stored results until you deliberately refresh a page.</p>
 </section>
 <section id="put-it-online-optional" class="level3 page-columns page-full" data-number="2.5">
@@ -1140,6 +1154,22 @@ Figure&nbsp;1: The analysis page’s figure: body mass by species.
 <p><i class="fa-solid fa-book-open" aria-label="book-open"></i> <strong>Quarto docs</strong></p>
 <p><a href="https://quarto.org/docs/publishing/posit-connect-cloud.html">Publish to Posit Connect Cloud</a></p>
 </div></div><p><code>_site/</code> <strong>is</strong> the core deliverable. Any static host will serve it: an internal server, your department’s pages, or a hosting service. Publishing here is optional. If you made a free Posit Connect Cloud account before the workshop, one command puts the site online.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>The command
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>From inside your project folder:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> publish posit-connect-cloud</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>No repository is needed. Connect Cloud takes the locally rendered files as they are.</p>
+<p>If you skip this step, the complete site remains in <code>_site/</code>. Nothing downstream depends on publishing.</p>
+</div>
+</div>
 <div class="callout callout-style-simple callout-note no-icon callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -1151,25 +1181,6 @@ Figure&nbsp;1: The analysis page’s figure: body mass by species.
 </div>
 <div class="callout-body-container callout-body">
 <p>A browser opens once to sign you in. Then the contents of <code>_site/</code> upload, and Connect Cloud returns a URL for the site.</p>
-</div>
-</div>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-31-contents" aria-controls="callout-31" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>The command
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-31" class="callout-31-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<p>From inside your project folder:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> publish posit-connect-cloud</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>No repository is needed. Connect Cloud takes the locally rendered files as they are.</p>
-<p>If you skip this step, the complete site remains in <code>_site/</code>. Nothing downstream depends on publishing.</p>
-</div>
 </div>
 </div>
 </section>
@@ -1184,24 +1195,24 @@ Figure&nbsp;1: The analysis page’s figure: body mass by species.
 <li><code>{.tabset}</code> turns the cells in a column into tabs.</li>
 </ul>
 <p>The overall shape is:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Penguins dashboard"</span></span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span><span class="co"> dashboard</span></span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a><span class="fu">## Row {height="20%"}</span></span>
-<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>(two cells, each with <span class="in">`#| content: valuebox`</span>)</span>
-<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a><span class="fu">## Row {height="80%"}</span></span>
-<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a><span class="fu">### Column</span></span>
-<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a>(the boxplot cell, with a <span class="in">`#| title:`</span>)</span>
-<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a><span class="fu">### Column {.tabset}</span></span>
-<span id="cb21-17"><a href="#cb21-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-18"><a href="#cb21-18" aria-hidden="true" tabindex="-1"></a>(the scatter cell and the table cell: each becomes a tab)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Penguins dashboard"</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span><span class="co"> dashboard</span></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a><span class="fu">## Row {height="20%"}</span></span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>(two cells, each with <span class="in">`#| content: valuebox`</span>)</span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a><span class="fu">## Row {height="80%"}</span></span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a><span class="fu">### Column</span></span>
+<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a>(the boxplot cell, with a <span class="in">`#| title:`</span>)</span>
+<span id="cb22-15"><a href="#cb22-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-16"><a href="#cb22-16" aria-hidden="true" tabindex="-1"></a><span class="fu">### Column {.tabset}</span></span>
+<span id="cb22-17"><a href="#cb22-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-18"><a href="#cb22-18" aria-hidden="true" tabindex="-1"></a>(the scatter cell and the table cell: each becomes a tab)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>After the group demo, you can optionally copy <code>analysis.qmd</code> to <code>dashboard.qmd</code> and reproduce one part of the layout.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -1256,7 +1267,7 @@ Figure&nbsp;1: The analysis page’s figure: body mass by species.
 Session info
 </summary>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>R version 4.6.1 (2026-06-24 ucrt)
 Platform: x86_64-w64-mingw32/x64
