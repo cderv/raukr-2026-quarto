@@ -67,9 +67,9 @@ steps require no R changes. The accessibility step makes three small changes to 
 Two patterns cover most of the steps below. A cross-reference has two ends: a labeled target, and an
 `@label` in the prose that points at it. The label carries a prefix that sets the kind (`fig-`,
 `tbl-`, `eq-`). For a figure or a table it is a **cell** option (a cell is what R Markdown calls a
-chunk), and those two also take a caption option. An equation is not a cell, so it takes its label
-another way. Layout is a cell option as well. Each step links the docs page that names the options
-and the values they take.
+chunk), and those two also take a caption option. An equation is not a cell, so its label attaches
+to the closing `$$` instead. Layout is a cell option as well. Each step links the docs page that
+names the options and the values they take.
 
 Missing the download? Take the source directly:
 
@@ -215,7 +215,7 @@ cell. `ggokabeito` is already loaded in the setup cell and supplies `scale_*_oka
 ## {{< fa circle-check >}} You should see
 Each species drawn with **its own shape as well as its own color**, in the Okabe-Ito palette (orange,
 blue, green rather than ggplot2's salmon, green and blue), and one legend for both color and shape.
-Two stacked legends mean the shape legend needs the same title as the color legend.
+If you get two stacked legends instead, give the shape legend the same title as the color legend.
 The alt text is not visible on the page: to check it, view the page source and confirm the `<img>`
 tag carries your `alt="…"`. The finished figure looks like this:
 :::
@@ -424,7 +424,7 @@ appendix.
 
 **Check the branding applied.** An unbranded PDF builds without any error, so check the font
 instead. Look at the **title and headings**: **Albert Sans** in a branded PDF, Typst's default serif
-in an unbranded one. Table 1 stays serif either way (the same cause as the font warning above), so
+in an unbranded one. Table 1 stays serif either way (the same `unknown font family` cause), so
 judge the headings, not the table. Serif headings mean `_brand.yml` isn't next to your `.qmd` (see
 Troubleshooting).
 :::
