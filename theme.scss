@@ -35,10 +35,14 @@ $code-block-font-size: 0.7em !default;
   position: relative;
   margin-top: 0;
   padding-top: 1em;
+  // The gap above is the separator; the paragraph's own margins only eat frame,
+  // and the brand's 1.5 body leading is loose for two lines of small print.
+  > div > p {
+    line-height: 1.2;
 
-  // The gap above is the separator; the paragraph's own margins only eat frame.
-  > div > p:first-child { margin-top: 0; }
-  > div > p:last-child { margin-bottom: 0; }
+    &:first-child { margin-top: 0; }
+    &:last-child { margin-bottom: 0; }
+  }
 }
 
 // Separate consecutive code-block wrappers used by Quarto.

@@ -70,9 +70,9 @@ you must eyeball the screenshot for:**
   because asides are absolutely positioned (they don't count toward `scrollH`).
   If a revealed body and an aside fight for the bottom, either cut one (the
   relevance beat often already lives in `::: notes`) or add **`.aside-flow`** to
-  the slide — see § 2b.
+  the slide — see § 1b.
 
-## 2b. `.aside-flow`: put a colliding aside back in normal flow
+## 1b. `.aside-flow`: put a colliding aside back in normal flow
 
 `theme.scss` carries an opt-in slide class that drops the absolute positioning:
 
@@ -80,13 +80,26 @@ you must eyeball the screenshot for:**
 ## Websites: pages and navigation {#websites .aside-flow}
 ```
 
-It mirrors Quarto's own `.slide.scrollable` treatment (`position: relative`) and
-zeroes the aside paragraph's own margins, which only eat frame once the aside is
-in flow. Use it when the aside is *content* the slide needs, not when the body is
-simply too big — in flow the aside now **counts toward `scrollH`**, so re-run the
-fit check: a slide that passed at 720 with a floating aside can go over once it
-lands in flow. `#websites` on the Day-2 deck sits at exactly 720/720 with it, so
-anything added to that slide has to buy its space back.
+It sets `position: relative` (the same declaration Quarto uses for
+`.slide.scrollable`, which does **not** make the slide scrollable), and tightens
+the aside paragraph — margins zeroed, leading to 1.2 — because both only eat
+frame once the aside is in flow. Use it when the aside is *content* the slide
+needs, not when the body is simply too big: in flow the aside now **counts
+toward `scrollH`**, so a slide that passed at 720 with a floating aside can go
+over once it lands in flow.
+
+**`scrollH === clientH` proves it fits, but cannot show how much room is left** —
+`scrollHeight` is floored at `clientHeight`, so 720/720 reads identically at 2 px
+of slack and at 100. To see the real margin, walk `offsetTop`/`offsetHeight` up
+to the `<section>`: those are layout coordinates, already in deck px, and immune
+to both reveal's 0.9 transform and any scroll offset (`getBoundingClientRect`
+is not — it will happily report the same bottom for two different layouts).
+On `#websites` that is a 706 px content bottom, 14 px clear of the frame.
+
+Sizing the aside is the lever when it does not fit: leading first (the brand's
+1.5 body leading is loose for small print), then font-size, then the text. Note
+`line-height` on the `<aside>` does nothing — reveal sets it on the `<p>`, so
+target the paragraph. One line holds ~96 characters at `0.7em` in the 1280 frame.
 
 ## 2. `.center` slides: keep a footer line in normal flow, not in an `aside`
 
