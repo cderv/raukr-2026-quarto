@@ -15,9 +15,9 @@ Build one penguins document with the authoring extras, then **cite it** and rend
 The result follows the same path from an analysis to a submission-ready report. Everything runs on
 **base-R `datasets::penguins`** (R ≥ 4.5), so there is no data to download.
 
-**Before you start:** work through the **[Setup page](../../setup.qmd)** if you haven't. Its
-`00-check-setup.R`, at the top of the exercises download rather than inside `day1-intro/`, confirms
-R, Quarto, and the packages this lab uses.
+**Before you start:** work through the **[Setup page](../../setup.qmd)** if you haven't. The
+`00-check-setup.R` script is at the top of the exercises download (not inside `day1-intro/`). It
+confirms R, Quarto, and the packages this lab uses.
 :::
 
 ::: {.callout-tip appearance="simple"}
@@ -64,12 +64,11 @@ branding resolve later). Render it once to confirm it works, then re-render afte
 The starter is already a working report, but it has no captions, cross-references, or alt text. Most
 steps require no R changes. The accessibility step makes three small changes to the plot.
 
-Two patterns cover most of the steps below. A cross-reference has two ends: a labeled target, and an
-`@label` in the prose that points at it. The label carries a prefix that sets the kind (`fig-`,
-`tbl-`, `eq-`). For a figure or a table it is a **cell** option (a cell is what R Markdown calls a
-chunk), and those two also take a caption option. An equation is not a cell, so its label attaches
-to the closing `$$` instead. Layout is a cell option as well. Each step links the docs page that
-names the options and the values they take.
+Most steps use cell options. A cross-reference has two ends: a labeled target and an `@label` in the
+prose that points at it. For figures and tables, add a cell label with the right prefix (`fig-` or
+`tbl-`) and a caption. (A cell is what R Markdown calls a chunk.) An equation label (`eq-`) attaches
+to the closing `$$` instead. Layout also uses a cell option. Each step links to the relevant
+documentation.
 
 Missing the download? Take the source directly:
 
@@ -165,8 +164,8 @@ And above it:
 ### Move the counts into the margin
 
 **Goal.** Put the species-counts table in the **right margin**, beside the paragraph that mentions
-it, instead of in the main text column. One cell option (`column:`) does this, and the docs list the
-values it takes.
+it, instead of in the main text column. The `column:` cell option controls this. The linked
+documentation lists its values.
 
 ::: {.column-margin}
 {{< fa book-open >}} **Quarto docs**
@@ -376,9 +375,9 @@ The instructions below use `my-report.qmd` for both routes.
    ```
 2. Cite the two sources the opening paragraph already credits, without rewriting it. The sentence
    ending *"…collected at Palmer Station, Antarctica."* takes the data citation before the period
-   (`Antarctica [@gorman2014].`). The next sentence names **palmerpenguins** and then moves on to
-   base R, so `[@horst2020]` goes straight after that package name (`the **palmerpenguins** package
-   [@horst2020] and are now also…`), not at the end. Don't paste a second copy of either sentence.
+   (`Antarctica [@gorman2014].`). In the next sentence, put `[@horst2020]` immediately after
+   **palmerpenguins**. The rest of that sentence concerns base R, so do not put the citation at the
+   end. Don't paste a second copy of either sentence.
 3. Add a **References** section where the list should appear:
    ```markdown
    ## References {.unnumbered}
@@ -417,16 +416,14 @@ In-text **(Gorman et al., 2014)** and **(Horst et al., 2020)**, a **References**
 APA with both entries, and the same citations in the Typst PDF, typeset with the RaukR palette. No
 `?@gorman2014`, `?@horst2020` or `[?]` markers anywhere.
 
-The two formats place the list differently, and the PDF is the surprising one. Typst builds the
-bibliography itself and always puts it last, so `::: {#refs}` positions the list in HTML only. In the
-PDF the heading you added stays empty and the entries appear at the very end, under a
-**Bibliography** heading Typst adds itself, after the Session appendix.
+The formats place the bibliography differently. In HTML, `::: {#refs}` positions it. In the Typst
+PDF, the **References** heading stays empty. Typst puts the entries at the end under its own
+**Bibliography** heading, after the Session appendix.
 
-**Check the branding applied.** An unbranded PDF builds without any error, so check the font
-instead. Look at the **title and headings**: **Albert Sans** in a branded PDF, Typst's default serif
-in an unbranded one. Table 1 stays serif either way (the same `unknown font family` cause), so
-judge the headings, not the table. Serif headings mean `_brand.yml` isn't next to your `.qmd` (see
-Troubleshooting).
+**Check the branding applied.** An unbranded PDF builds without any error, so check the **title and
+headings**. A branded PDF uses **Albert Sans**. An unbranded PDF uses Typst's default serif. Table 1
+remains serif in both because of the `unknown font family` issue described in Troubleshooting. Use
+the headings for this check. Serif headings mean `_brand.yml` isn't next to your `.qmd`.
 :::
 
 ::: {.callout-tip collapse="true"}
@@ -591,18 +588,18 @@ your work or render it with different `-P species:` values. You can also take th
 - **A citation shows `?@gorman2014` or `[?]`?** The `@key` doesn't match a key in `references.bib`,
   or `bibliography:` isn't set.
 - **The PDF's References section is empty and the entries are at the end under "Bibliography"?**
-  That is Typst working as designed, not a mistake in your file. It builds the bibliography itself
-  and places it last, so the `::: {#refs}` div only moves the list in HTML.
+  This is expected with Typst. It builds the bibliography itself and places it last, so the
+  `::: {#refs}` div only moves the list in HTML.
 - **`references.bib` not found, although the download has it?** Your `.qmd` is probably not in
   `day1-intro/` (saved to the top folder, for example). Move it next to `references.bib` /
   `apa.csl` / `_brand.yml` and render again.
 - **Do I need to install Typst?** No. Typst is bundled in Quarto ≥ 1.9, so there's nothing extra to
   install (no LaTeX either). Check `quarto --version`.
 - **Typst PDF looks unbranded / wrong fonts?** An unbranded render succeeds silently, so check the
-  font, not the log: in the **title and headings**, branded is **Albert Sans**, unbranded is Typst's
-  default serif. Table 1 stays serif either way, so don't judge by the table. Confirm
-  `_brand.yml` is in your `day1-intro/` folder (next to the `.qmd`) and you have network on the
-  first render (Quarto fetches the Google fonts once). Missing the file? Download
+  **title and headings**, not the log. A branded PDF uses **Albert Sans**. An unbranded PDF uses
+  Typst's default serif. Table 1 stays serif either way, so don't judge by the table. Confirm
+  `_brand.yml` is in your `day1-intro/` folder (next to the `.qmd`) and you have network on the first
+  render (Quarto fetches the Google fonts once). Missing the file? Download
   [`_brand.yml`](https://raw.githubusercontent.com/cderv/raukr-2026-quarto-exercises/main/day1-intro/_brand.yml)
   into the folder holding your `.qmd`.
 - **Typst prints `unknown font family` warnings?** Harmless: a `gt` table names a generic
