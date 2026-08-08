@@ -52,6 +52,37 @@ jobs:
       - name: Render Day-1 solution (cited HTML report)
         run: quarto render solutions/day1/penguins-report.qmd
 
+      # Inspect the Typst output to confirm that citeproc places the references and the Session
+      # appendix stays in HTML.
+      - name: Render Day-1 solution to Typst (cited PDF, no Session appendix)
+        run: |
+          set -eu
+          command -v pdftotext >/dev/null || sudo apt-get install -y -qq poppler-utils
+          quarto render solutions/day1/penguins-report.qmd --to typst
+          pdf=solutions/day1/penguins-report.pdf
+          test -f "$pdf" || { echo "::error::$pdf not produced"; exit 1; }
+          pdftotext -layout "$pdf" _report.txt
+          # DOIs appear only in the entries, never in an in-text citation, and only the text after
+          # the heading counts -- so this fails on a References section that came out empty.
+          refs=$(awk '/^[[:space:]]*References[[:space:]]*$/ {seen = 1; next} seen' _report.txt |
+                 tr -d '[:space:]')
+          for doi in 10.1371/journal.pone.0090081 10.5281/zenodo.3960218; do
+            if ! printf '%s' "$refs" | grep -qF "$doi"; then
+              echo "::error::$doi is missing from the References section of the PDF"
+              exit 1
+            fi
+          done
+          # Without citeproc, Typst adds a Bibliography section and leaves References empty.
+          if grep -qE "^[[:space:]]*Bibliography[[:space:]]*$" _report.txt; then
+            echo "::error::Typst added its own Bibliography: citeproc is not active"
+            exit 1
+          fi
+          if grep -qi "sessionInfo" _report.txt; then
+            echo "::error::PDF includes the Session appendix: HTML-only wrapper did not apply"
+            exit 1
+          fi
+          echo "ok: References populated and Session appendix absent"
+
       - name: Render Day-1 authoring starter (the Part-1 starting point)
         run: quarto render day1-intro/authoring-starter.qmd
 

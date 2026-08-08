@@ -6,6 +6,7 @@ author:
 format: html
 bibliography: references.bib
 csl: apa.csl
+citeproc: true
 ---
 
 ```{r}
@@ -90,6 +91,8 @@ penguins |>
 ::: {#refs}
 :::
 
+::: {.content-visible when-format="html"}
+
 ## Session {.appendix .unnumbered}
 
 <details>
@@ -101,3 +104,5 @@ sessionInfo()
 ```
 
 </details>
+
+:::

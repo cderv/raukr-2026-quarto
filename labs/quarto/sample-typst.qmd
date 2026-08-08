@@ -7,6 +7,7 @@ author:
 date: last-modified
 bibliography: references.bib
 csl: apa.csl
+citeproc: true
 format:
   typst:
     papersize: a4

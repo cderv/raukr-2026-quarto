@@ -365,13 +365,16 @@ The instructions below use `my-report.qmd` for both routes.
 ::: {.column-margin}
 {{< fa book-open >}} **Quarto docs**
 
-[Citations](https://quarto.org/docs/authoring/citations.html) · [Typst](https://quarto.org/docs/output-formats/typst.html) · [Brand](https://quarto.org/docs/authoring/brand.html)
+[Citations](https://quarto.org/docs/authoring/citations.html) · [Typst](https://quarto.org/docs/output-formats/typst.html) · [Conditional content](https://quarto.org/docs/authoring/conditional.html) · [Brand](https://quarto.org/docs/authoring/brand.html)
 :::
 
-1. Point the document header at the shared bibliography and citation style:
+1. Point the document header at the shared bibliography and citation style. Add `citeproc: true` so
+   Quarto processes the citations and places the reference list in the `#refs` div from step 3.
+   Without it, Typst processes the citations and ignores that div:
    ```yaml
    bibliography: references.bib
    csl: apa.csl
+   citeproc: true
    ```
 2. Cite the two sources the opening paragraph already credits, without rewriting it. The sentence
    ending *"…collected at Palmer Station, Antarctica."* takes the data citation before the period
@@ -408,6 +411,20 @@ The instructions below use `my-report.qmd` for both routes.
      **not** a PDF.
 
    The PDF is written **next to its source** in `day1-intro/`.
+7. Look at the end of the PDF. The **Session** appendix is printed in full, with the `sessionInfo()`
+   call and all of its output. `<details>` is an HTML disclosure widget and Typst has no equivalent,
+   so that block belongs to HTML only. Wrap the whole section (the heading and the `<details>`
+   block) in a conditional div:
+   ```markdown
+   ::: {.content-visible when-format="html"}
+
+   ## Session {.appendix .unnumbered}
+
+   <!-- Keep the existing <details> block here. -->
+
+   :::
+   ```
+   Render to Typst again, then to HTML. The appendix is gone from the PDF and unchanged in the HTML.
 ::::
 
 ::: {.callout-note appearance="simple" icon=false}
@@ -416,9 +433,9 @@ In-text **(Gorman et al., 2014)** and **(Horst et al., 2020)**, a **References**
 APA with both entries, and the same citations in the Typst PDF, typeset with the RaukR palette. No
 `?@gorman2014`, `?@horst2020` or `[?]` markers anywhere.
 
-The formats place the bibliography differently. In HTML, `::: {#refs}` positions it. In the Typst
-PDF, the **References** heading stays empty. Typst puts the entries at the end under its own
-**Bibliography** heading, after the Session appendix.
+The entries sit inside the `::: {#refs}` div in both formats, under your own **References** heading.
+The PDF ends there, with no Session appendix after it. The HTML still includes the appendix, with
+the Session block collapsed.
 
 **Check the branding applied.** An unbranded PDF builds without any error, so check the **title and
 headings**. A branded PDF uses **Albert Sans**. An unbranded PDF uses Typst's default serif. Table 1
@@ -430,8 +447,8 @@ the headings for this check. Serif headings mean `_brand.yml` isn't next to your
 ## Hint
 - The `@key` in `[@gorman2014]` must match a key in `references.bib` **exactly**.
 - `csl:` sets the style (here APA). Swap the file to restyle every citation at once.
-- Typst reads the `.bib` itself, so keep bibliography fields plain (avoid LaTeX macros like
-  `\emph{}` in titles).
+- `content-visible` has an inverse, `content-hidden`. `::: {.content-hidden when-format="typst"}`
+  says the same thing the other way round.
 - The first Typst render requires a network connection while Quarto downloads the brand's Google
   fonts.
 :::
@@ -444,6 +461,7 @@ In the YAML header:
 ``` yaml
 bibliography: references.bib
 csl: apa.csl
+citeproc: true
 ```
 
 In the prose, append each citation to the sentence that credits its source:
@@ -459,6 +477,18 @@ A References section (the list renders inside the `#refs` div):
 ## References {.unnumbered}
 
 ::: {#refs}
+:::
+```
+
+The Session appendix, kept out of the PDF:
+
+``` markdown
+::: {.content-visible when-format="html"}
+
+## Session {.appendix .unnumbered}
+
+<!-- Keep the existing <details> block here. -->
+
 :::
 ```
 
@@ -584,8 +614,8 @@ your work or render it with different `-P species:` values. You can also take th
 - **A citation shows `?@gorman2014` or `[?]`?** The `@key` doesn't match a key in `references.bib`,
   or `bibliography:` isn't set.
 - **The PDF's References section is empty and the entries are at the end under "Bibliography"?**
-  This is expected with Typst. It builds the bibliography itself and places it last, so the
-  `::: {#refs}` div only moves the list in HTML.
+  `citeproc: true` is missing from the header. Without it Typst builds the bibliography itself and
+  places it last, so the `::: {#refs}` div only moves the list in HTML.
 - **`references.bib` not found, although the download has it?** Your `.qmd` is probably not in
   `day1-intro/` (saved to the top folder, for example). Move it next to `references.bib` /
   `apa.csl` / `_brand.yml` and render again.
