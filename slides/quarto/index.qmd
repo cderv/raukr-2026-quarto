@@ -48,8 +48,8 @@ After this session you will be able to:
 By the end, you will have a **polished PDF report**.
 
 ::: notes
-- **Say:** "You know R Markdown or Quarto. Today we take one `.qmd` from source to a citable,
-  branded PDF."
+- **Say:** "You know R Markdown or Quarto. Today we take one `.qmd` from source to a branded PDF
+  with citations."
 :::
 
 ## How today works
@@ -575,7 +575,7 @@ From report to article: cite it, then typeset it.
 ## From report to article {#report-to-article}
 
 You have a clean HTML document. The lab provides a **completed Part-1 report** if you need one. To
-make it a **branded, citable article**, add two things:
+make it a **branded article with citations**, add two things:
 
 ::: {.incremental}
 1. **citations**: a `.bib` file and a citation style.

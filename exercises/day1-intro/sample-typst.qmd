@@ -145,8 +145,8 @@ figure from the running HTML report, now in a branded PDF.
 
 # Conclusion
 
-One `.qmd`, one `_brand.yml`, and `format: typst` give a citable, typeset document, with the RaukR
-palette carried through layout, tables, and figures.
+One `.qmd`, one `_brand.yml`, and `format: typst` give a typeset document with citations, and the
+RaukR palette carried through layout, tables, and figures.
 
 ## References {.unnumbered}
 
