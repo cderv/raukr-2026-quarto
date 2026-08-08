@@ -343,19 +343,14 @@ decide when to recompute each page.
 
 `freeze` pins the **results**. It doesn't pin **what produced them** (the package versions):
 
-:::: {.columns}
-::: {.column width="50%"}
 - **`freeze`** → `_freeze/`: do not repeat slow computation.
 - **`renv.lock`** → *"pin the packages, so the team rebuilds the same environment."*
-:::
-::: {.column width="50%"}
+
 ``` r
 renv::init()       # once, to start tracking
 renv::snapshot()   # write renv.lock
 renv::restore()    # rebuild the same env
 ```
-:::
-::::
 
 Together: a colleague (or CI) rebuilds the *same* site, with or without re-running the analysis.
 
