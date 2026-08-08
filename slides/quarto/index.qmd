@@ -600,6 +600,7 @@ Point the header at a `.bib`, then cite with `@key`:
 ``` yaml
 bibliography: references.bib
 csl: apa.csl
+citeproc: true
 ```
 ``` markdown
 The data come from Palmer Station [@gorman2014].
@@ -619,7 +620,7 @@ renders as: … (Gorman et al., 2014).
 :::
 ::::
 
-The reference list renders at the end automatically, or wherever you drop this div:
+Typst places its own list last. With `citeproc: true` the list goes in this div instead:
 
 ``` markdown
 ::: {#refs}
@@ -635,6 +636,7 @@ The reference list renders at the end automatically, or wherever you drop this d
 - **Say:** "The key creates the citation and reference list. Change the CSL to change the style."
 - **If asked:** CSL means Citation Style Language.
 - **Watch for:** relative `.bib` path; wrong key when `[?]` appears.
+- **Watch for:** an empty References section in the PDF means `citeproc: true` is missing.
 :::
 
 ## A real title block {#authors}
