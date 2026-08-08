@@ -534,15 +534,11 @@ task is to make the species an input to the document. A complete reference is av
 
 ::: {.callout-tip}
 ## Optional: dynamic headings and standalone files
-Replace the static `## Species at a glance` heading with a cell that emits Markdown:
+Make the `## Species at a glance` heading name the species. Inline code works in a heading:
 
-````markdown
-```{{r}}
-#| echo: false
-#| output: asis
-cat("##", params$species, "at a glance\n")
+```markdown
+## `{{r}} params$species` at a glance
 ```
-````
 
 To keep two named reports, render each as a self-contained HTML file:
 
