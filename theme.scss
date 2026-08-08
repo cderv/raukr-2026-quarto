@@ -27,6 +27,20 @@ $code-block-font-size: 0.7em !default;
   background-color: transparent;
 }
 
+// Opt-in per slide (`## Title {#anchor .aside-flow}`): put the aside back in
+// normal flow when a full-height body would collide with its absolute
+// bottom-anchored default. Mirrors Quarto's own `.slide.scrollable` treatment.
+.reveal .slide.aside-flow aside:not(.notes),
+.reveal .slide.aside-flow div.aside {
+  position: relative;
+  margin-top: 0;
+  padding-top: 1em;
+
+  // The gap above is the separator; the paragraph's own margins only eat frame.
+  > div > p:first-child { margin-top: 0; }
+  > div > p:last-child { margin-bottom: 0; }
+}
+
 // Separate consecutive code-block wrappers used by Quarto.
 .reveal {
   $code-wrappers: "div.sourceCode", ".code-copy-outer-scaffold", ".code-with-filename";

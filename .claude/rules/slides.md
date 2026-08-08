@@ -68,8 +68,25 @@ you must eyeball the screenshot for:**
   grows the body as it reveals and can collide with a bottom-anchored
   `::: aside` — invisible at the initial fragment state, and again a false pass
   because asides are absolutely positioned (they don't count toward `scrollH`).
-  If a revealed body and an aside fight for the bottom, cut one (the relevance
-  beat often already lives in `::: notes`).
+  If a revealed body and an aside fight for the bottom, either cut one (the
+  relevance beat often already lives in `::: notes`) or add **`.aside-flow`** to
+  the slide — see § 2b.
+
+## 2b. `.aside-flow`: put a colliding aside back in normal flow
+
+`theme.scss` carries an opt-in slide class that drops the absolute positioning:
+
+```
+## Websites: pages and navigation {#websites .aside-flow}
+```
+
+It mirrors Quarto's own `.slide.scrollable` treatment (`position: relative`) and
+zeroes the aside paragraph's own margins, which only eat frame once the aside is
+in flow. Use it when the aside is *content* the slide needs, not when the body is
+simply too big — in flow the aside now **counts toward `scrollH`**, so re-run the
+fit check: a slide that passed at 720 with a floating aside can go over once it
+lands in flow. `#websites` on the Day-2 deck sits at exactly 720/720 with it, so
+anything added to that slide has to buy its space back.
 
 ## 2. `.center` slides: keep a footer line in normal flow, not in an `aside`
 
