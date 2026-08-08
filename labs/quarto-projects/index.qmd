@@ -73,7 +73,7 @@ project:
   output-dir: _site
 ```
 
-Then build the folder with `quarto render`, run from inside `day2-projects/` with no file argument.
+Then build the folder: run `quarto render` from inside `day2-projects/`, with no file argument.
 
 (`_site` is already the default output folder for a website. We write it explicitly here so the
 publishable folder is visible in the configuration.)
@@ -88,8 +88,8 @@ new `day2-projects/_site/` folder instead of next to each `.qmd`. Before this st
 ::: {.callout-tip collapse="true"}
 ## Hint
 Quarto walks **up** from the file being rendered and stops at the **nearest** `_quarto.yml`. That
-file marks the project root, which is why putting it inside `day2-projects/` scopes the project to
-that folder and not to anything above it.
+file marks the project root. A `_quarto.yml` inside `day2-projects/` scopes the project to that
+folder and nothing above it.
 
 `quarto render index.qmd` still builds just the one page.
 :::
@@ -264,8 +264,8 @@ blue reaches the navbar.
 After adding `_brand.yml`, the **font changes** but the navbar and links remain cosmo blue. This is
 expected. After correcting the theme order, the navbar and links become teal.
 
-The wrong order renders with no error and looks exactly like the un-fixed state, so judge it by the
-navbar color, not by the log.
+The wrong order renders with no error and looks the same as before the fix. Check the navbar color,
+not the log.
 :::
 
 ::: {.callout-tip collapse="true"}
@@ -273,9 +273,8 @@ navbar color, not by the log.
 Compare three parts of the rendered site: the body font, the navbar, and the links. The font changes,
 but the navbar and links remain blue.
 
-`brand` is the layer that reads your `_brand.yml`, and a bare
-`theme: cosmo` expands to `[brand, cosmo]`, and **later layers win**. Quarto applies cosmo's palette
-after the brand palette, so the site uses cosmo blue.
+A bare `theme: cosmo` expands to `[brand, cosmo]`. Quarto applies cosmo's palette after the brand
+palette, so the site uses cosmo blue.
 
 The fonts apply in either order, which can make the incorrect order look successful.
 :::
@@ -303,10 +302,12 @@ You have not looked at `day2-projects/reports/` yet. It holds two short pages, `
 
 A `_metadata.yml` file applies options to every document in its folder, which is how you reach those
 two pages without editing either of them. It takes the same document options you would write in
-`_quarto.yml`, so what differs is the reach, not the syntax.
+`_quarto.yml`. The difference is where they apply.
 
-Two options are involved. `code-fold` gives you the toggle, and a second one sets the label on it.
-The default label is `Code`, so the checkpoint below needs both.
+You need two options. `code-fold` gives you the toggle, and a second option sets its label. The
+default label is `Code`, and the checkpoint asks for **Show the code**.
+
+Neither page is in the navbar. Use the site search (the magnifier) to open them.
 
 Docs: [Directory metadata](https://quarto.org/docs/projects/quarto-projects.html#directory-metadata) ·
 [Folding code](https://quarto.org/docs/output-formats/html-code.html#folding-code).
@@ -323,8 +324,7 @@ four `.qmd` files to get this.
 Quarto merges the folder file on top of the project defaults, so you write only what differs, and it
 reaches that folder and everything below it.
 
-Two options do the work: `code-fold` puts a cell behind a toggle, and `code-summary` sets the label
-on that toggle.
+The second option is `code-summary`: it sets the text on the toggle.
 :::
 
 ::: {.callout-note collapse="true"}
@@ -352,20 +352,20 @@ you, so that adding a page there shows up without editing `index.qmd`.
 [Website listings](https://quarto.org/docs/websites/website-listings.html)
 :::
 
+A `listing:` key in the **YAML header of `index.qmd`** builds the table, and `contents:` names the
+folder it indexes. Where the table lands on the page is a separate choice.
+
 ::: {.callout-note appearance="simple" icon=false}
 ## {{< fa circle-check >}} You should see
-A table on the home page with one row per page in `reports/`, showing each title and its description
-(both pages already carry a `description:` in their YAML header). Add a third page to `reports/`,
-re-render, and it appears in the table on its own.
+A table on the home page, under a **Reports** heading you add, with one row per page in `reports/`,
+showing each title and its description (both pages already carry a `description:` in their YAML
+header). Add a third page to `reports/`, re-render, and it appears in the table on its own.
 :::
 
 ::: {.callout-tip collapse="true"}
 ## Hint
-This is a property of one page, not of the whole site. So where does its configuration go, and how
-does the page say *which* documents to index?
-
-A `listing:` key in the **YAML header of `index.qmd`** points at a folder with `contents:`. Give it
-an `id:`, then place the result where you want it on the page with an empty div carrying that id:
+Give the listing an `id:`, then place the result where you want it on the page with an empty div
+carrying that id:
 
 ```markdown
 ::: {#reports}
@@ -539,7 +539,7 @@ own.
 
 **Goal.** Take the report you wrote yesterday and make it a page of this website.
 
-On Day 1, you built one document. That is `my-report.qmd` in `day1-intro/`. Now add it to the
+On Day 1, you built one document: `my-report.qmd` in `day1-intro/`. Now add it to the
 project. If you did not finish Day 1 or do not have the file, use
 `solutions/day1/penguins-report.qmd` from your exercises download instead.
 
