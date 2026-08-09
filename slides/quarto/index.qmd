@@ -682,7 +682,7 @@ abstract: |
 
 Renders in HTML, PDF, and Typst. Write it once.
 
-**Learn more:** [Title blocks](https://quarto.org/docs/authoring/title-blocks.html)
+**Learn more:** [Authors & Affiliations](https://quarto.org/docs/authoring/front-matter.html#authors-and-affiliations), [Title blocks](https://quarto.org/docs/authoring/title-blocks.html)
 
 ::: notes
 - **Timing:** cut first. Name author, affiliation, ORCID, and abstract verbally.
