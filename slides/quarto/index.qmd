@@ -324,6 +324,13 @@ Base-R `penguins` (R ≥ 4.5) needs no install.
 Base-R `penguins` (R ≥ 4.5) needs no install.
 :::
 
+::: {.callout-tip}
+
+## About dataset 
+
+Base-R `penguins` (R ≥ 4.5) needs no install.
+:::
+
 **Learn more:** [Callouts](https://quarto.org/docs/authoring/callouts.html)
 
 ::: notes
