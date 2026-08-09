@@ -206,8 +206,7 @@ Cell options use the `#|` "hash-pipe": one YAML option per line.
 
 ::: {.callout-note title="Follow along"}
 In `day1-intro/`, open **`authoring-starter.qmd`** and save it as **`my-report.qmd`**. It opens with
-this cell: everything we write next assumes it. Need a completed Part-1 report? Save
-`authoring-checkpoint.qmd` (the finished version of this document) as `my-report.qmd` instead.
+this cell: everything we write next assumes it.
 :::
 
 ```` {.markdown}
