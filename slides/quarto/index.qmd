@@ -253,10 +253,12 @@ ggplot(penguins, aes(bill_len, bill_dep,
 ```
 
 Refer to it in prose with `@fig-bill` → renders as "@fig-bill", a live link. Labels must start
-with `fig-` / `tbl-` / `eq-` to be cross-referenceable.
+with `fig-` / `tbl-` / `eq-` to be cross-referenceable. `#| fig-alt` is the figure's alt text (the description screen readers announce). Add it to every
+figure. 
 
-`#| fig-alt` is the figure's alt text (the description screen readers announce). Add it to every
-figure. (`#| output-location: column` is **slide-only**: a revealjs placement, not article layout.)
+::: {.aside}
+`#| output-location: column` is **slide-only**: a revealjs placement, not article layout.
+:::
 
 ::: notes
 - **Do:** add `label` and `fig-cap`; render and show the number.
@@ -324,8 +326,14 @@ Base-R `penguins` (R ≥ 4.5) needs no install.
 Base-R `penguins` (R ≥ 4.5) needs no install.
 :::
 
+``` markdown
 ::: {.callout-tip}
+## About dataset
+Base-R `penguins` (R ≥ 4.5) needs no install.
+:::
+```
 
+::: {.callout-tip}
 ## About dataset 
 
 Base-R `penguins` (R ≥ 4.5) needs no install.
