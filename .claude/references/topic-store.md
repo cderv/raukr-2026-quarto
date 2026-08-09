@@ -37,7 +37,7 @@
 ## Priority levels
 
 - **CORE** — must be in the live session (slides + demo + exercise)
-- **DEMO** — worth showing live, no dedicated exercise ("Our turn" only)
+- **DEMO** — worth showing live, no dedicated exercise (watch-me only)
 - **MENTION** — one slide or a verbal note, link to resources
 - **STORE** — cut from the live session; keep on the resources page or appendix slides
 
@@ -298,7 +298,7 @@ list, not from the exercise.
 |------|-------|------|---------|
 | 10 | **setup checkpoint** *(new, 2026-07-21)* | My + Your | everyone renders a hello-world; confirm R ≥ 4.5 / Quarto / packages (`knitr`+`rmarkdown`+content pkgs) — **catch broken laptops on day one**, before content |
 | 5 | frame + the "what you'll build" hook (aspiration, not "it's just Rmd+") | My | What Quarto *is*, native `.qmd` |
-| 20 | concept + live demo | My + Our | Markdown as deltas (fast) · Layouts (columns/margin/page) · doc types (1 source → many) |
+| 20 | concept + live demo | My | Markdown as deltas (fast) · Layouts (columns/margin/page) · doc types (1 source → many) |
 | 45 | hands-on | Your | Author a doc **starting at authoring value-adds (Ex4)**, add layout, render HTML |
 | 5 | recap + bridge (pre-load Part-2 framing here) | My | "next: cite it, then ship it as a real PDF" |
 
@@ -307,7 +307,7 @@ list, not from the exercise.
 | ~min | Phase | Mode | Content |
 |------|-------|------|---------|
 | 5 | frame | My | from report to article: cite → typeset |
-| 16 | concept + live demo | My + Our | Citations (`.bib`/`@ref`/CSL) · Typst (ships in Quarto, no LaTeX) · `_brand.yml` styling of the PDF |
+| 16 | concept + live demo | My | Citations (`.bib`/`@ref`/CSL) · Typst (ships in Quarto, no LaTeX) · `_brand.yml` styling of the PDF |
 | 30 | hands-on | Your | **two payoff exercises**: (1) add citations to the Part-1 doc, (2) render it as a branded Typst PDF |
 | 4 | recap | My | "you now have a branded, citable article" |
 
@@ -324,7 +324,7 @@ list, not from the exercise.
 | ~min | Phase | Mode | Content |
 |------|-------|------|---------|
 | 5 | frame + project hook | My | one file → a whole site your team can use |
-| 20 | concept + live demo | My + Our | `_quarto.yml` · website + navbar/sidebar · cross-refs across pages · **`_brand.yml`** (site + slides + R plots, same palette) |
+| 20 | concept + live demo | My | `_quarto.yml` · website + navbar/sidebar · cross-refs across pages · **`_brand.yml`** (site + slides + R plots, same palette) |
 | 50 | hands-on | Your | Turn a set of `.qmd` into a navigable, branded website |
 | 5 | recap + bridge | My | "next: make builds reproducible, then publish" |
 
@@ -333,7 +333,7 @@ list, not from the exercise.
 | ~min | Phase | Mode | Content |
 |------|-------|------|---------|
 | 5 | frame + project hook | My | "this is how your team publishes its project" |
-| 17 | concept + live demo | My + Our | Freeze (motivation-first: don't re-run slow compute) · **watch-me** `publish`/CI on a pre-provisioned repo |
+| 17 | concept + live demo | My | Freeze (motivation-first: don't re-run slow compute) · **watch-me** `publish`/CI on a pre-provisioned repo |
 | 48 | hands-on | Your | **the payoff**: `quarto render` + `output-dir` on your project (publish = watch-me, auth pre-flighted). _(The parameterized-report step once floated for here landed on **Day 1** instead, 2026-07-22.)_ |
 | 15 | recap + questions | My | wrap-up, then Q&A. **Retired 2026-08-09:** the demo tail (Books / Dashboards / an htmlwidget) had its own slide and was cut — it reopened the deck after the arc had closed, and the dashboard is better left as a self-paced lab activity |
 
@@ -362,8 +362,8 @@ runs long, trim a *tour* beat, never the render payoff (rules 1–2).
 
 | ~min | CORE beat | Mode | What lands |
 |------|-----------|------|------------|
-| 5 | **Why a project** — `_quarto.yml` shared config + `output-dir` (+ `_metadata.yml` as a shown slide) | My + Our | one file → whole site; where config lives |
-| 6 | **Website** — pages, navbar/sidebar **navigation**, listings | My + Our | a navigable multi-page site |
+| 5 | **Why a project** — `_quarto.yml` shared config + `output-dir` (+ `_metadata.yml` as a shown slide) | My | one file → whole site; where config lives |
+| 6 | **Website** — pages, navbar/sidebar **navigation**, listings | My | a navigable multi-page site |
 | 3 | **Cross-refs & cross-page nav** *(shock-absorber)* — `@fig-`/`@sec-`/`@tbl-` resolve **within a page**; cross-*page* = links + the navbar/sidebar. ⚠️ numbered `@fig-` across website pages is a **book** feature, *not* a website one — don't demo project-wide `@fig-` live (verify at the machine) | Our | refs resolve on-page; pages linked by nav |
 | 4 | **`_brand.yml`** — one file → site + slides + **R-side plots**; **show the `theme_brand_ggplot2()`/`theme_brand_gt()` call** (the plot renders default grey without it) — *same palette, not the whole brand system* | My | one brand file, three surfaces |
 
@@ -371,8 +371,8 @@ runs long, trim a *tour* beat, never the render payoff (rules 1–2).
 
 | ~min | CORE beat | Mode | What lands |
 |------|-----------|------|------------|
-| 8 | **Freeze & caching** — motivation-first (don't re-run slow compute); `cache` (knitr, per-doc) vs `freeze` (project, results); the live 2-render scenario ("render → edit **prose** → re-render → code didn't re-run"); committed `_freeze/` **+ `freeze: true`** → **CI renders without R**. *Cut-first sub-item:* the **`renv.lock`** slide (pin *what* runs) — drop it before the cache-vs-freeze scenario, which is the load-bearing teach | My + Our | reproducible builds, the two legs |
-| 7 | **Publishing** — `quarto render` + `output-dir` (the hands-on setup); `quarto publish` / GitHub Actions = **watch-me** on a pre-provisioned repo (auth pre-flighted) | My + Our | project → publishable folder; the CI *story* |
+| 8 | **Freeze & caching** — motivation-first (don't re-run slow compute); `cache` (knitr, per-doc) vs `freeze` (project, results); the live 2-render scenario ("render → edit **prose** → re-render → code didn't re-run"); committed `_freeze/` **+ `freeze: true`** → **CI renders without R**. *Cut-first sub-item:* the **`renv.lock`** slide (pin *what* runs) — drop it before the cache-vs-freeze scenario, which is the load-bearing teach | My | reproducible builds, the two legs |
+| 7 | **Publishing** — `quarto render` + `output-dir` (the hands-on setup); `quarto publish` / GitHub Actions = **watch-me** on a pre-provisioned repo (auth pre-flighted) | My | project → publishable folder; the CI *story* |
 
 **Post-payoff tail — retired 2026-08-09.** The tail is now the wrap-up plus questions. Books lives
 in the cross-references callout, dashboards in the lab as an optional self-paced section, and

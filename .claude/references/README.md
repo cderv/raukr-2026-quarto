@@ -20,7 +20,7 @@ not what an older pass said.
 ## Pedagogy
 
 - [workshop-pacing.md](workshop-pacing.md) -- generic hands-on pedagogy (Mine Cetinkaya-Rundel):
-  the three modes (my/our/your turn), time ratios; principles, not this session's programme.
+  the two modes (my/your turn), time ratios; principles, not this session's programme.
 - [multi-day-workshop-scaffold.md](multi-day-workshop-scaffold.md) -- portable skeleton + spin-up
   checklist for bootstrapping the *next* multi-day workshop, distilled from this build.
 

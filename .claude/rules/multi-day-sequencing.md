@@ -33,10 +33,9 @@ The learner already owns the noun; you're extending what it does, not defining i
 ## 2. Trim recurring structural slides to a one-breath recap
 
 Boilerplate that recurs every day — "How today works", the setup rhythm, the
-My/Our/Your cadence — gets its **full** explanation on Day 1 only. On later days,
+watch-then-do cadence — gets its **full** explanation on Day 1 only. On later days,
 shrink it to a "same shape as yesterday" line that keeps just the load-bearing
-part (e.g. the **Follow along** / **Your turn** callout reminder) and drops the
-re-teach. The speaker note becomes *"quick recap, don't re-teach — they saw this
+part (the **Your turn** callout reminder) and drops the re-teach. The speaker note becomes *"quick recap, don't re-teach — they saw this
 yesterday."*
 
 ## 3. Open with a bridge

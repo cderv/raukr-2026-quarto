@@ -8,7 +8,7 @@ and the day-to-day authoring gotchas in the path-scoped rules (`slides.md`,
 checklist**; those are the depth.
 
 Terminology: a **day** (or **session**) is one ~2h block for the same cohort; a
-day splits into two **rounds** (watch → follow along → your turn), with a break
+day splits into two **rounds** (watch → your turn), with a break
 between. Days after the first are **follow-ups** — see `multi-day-sequencing.md`.
 
 ## 1. Directory layout
@@ -62,7 +62,7 @@ format:
 ​```{r}
 #| label: setup
 #| include: false
-# libraries + dataset every follow-along cell assumes
+# libraries + dataset every later cell assumes
 ​```
 
 ## Learning Outcomes
@@ -70,14 +70,14 @@ format:
 # Day N (follow-up): open with a bridge line first — "Yesterday: X. Today: Y."
 
 ## How today works
-# Day 1: full watch → follow along → your turn + Challenge + break explanation.
-# Day N: trim to "same shape as yesterday" + the Follow along / Your turn reminder.
+# Day 1: full watch → your turn + Challenge + break explanation.
+# Day N: trim to "same shape as yesterday" + the Your turn reminder.
 
 # Part 1 — <name> {.center}
 
 ## <teaching slide> {#anchor}
-# ::: {.callout-note title="Follow along"} at the first live-coding slide.
-# Concept-only stretch? ::: {.callout-warning title="Eyes up — not a live Follow along"}.
+# Slides explain, labs try: teach the concept here, leave the procedure to the lab.
+# Check it with the Do:-matches-lab-solution test (project-context.md).
 
 ## Your turn {#your-turn-1}
 # ::: {.callout-tip title="Your turn — regroup in ~N min"} pointing at the lab's

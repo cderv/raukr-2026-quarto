@@ -227,21 +227,20 @@ that when there's nothing to run.
 > under ~60 chars also fits, but shortening real alt text to make a slide fit is
 > the wrong trade on a deck that teaches accessibility.
 
-**A stripped-echo cell is fine under watch-me and is a defect under Follow
-along.** The mode label changes whether the code block is correct. Default echo
-shows the source lines and drops every `#|`, so on a slide the room is told to
-copy from, the options the slide *teaches* are exactly what the copy button
-omits — paste it, write `@fig-bill`, get `?@fig-bill`. That is what made the
-Figures slide a P0 once a Follow-along callout landed two slides above it.
-**Test:** a code block on a Follow-along slide must copy to something that can
-be pasted and rendered as-is. Check the clipboard payload, not the source —
-Quarto's copy button reads the rendered `<code>` element, so what you wrote and
-what a participant gets are different strings.
+**Paste-ability is not a constraint on a slide block (revised 2026-08-09).** This
+section used to say a code block under a Follow-along callout had to copy to
+something pasteable, because the room was told to type it. That mode is retired:
+**slides explain, labs try** (`project-context.md § Content patterns`). A slide
+block is **illustrative**, so it is free to carry whatever makes the concept
+legible — a slide-only `output-location: column`, an elided `...`, a fragment of
+a larger file. Do not shape a slide block around what a participant could paste,
+and do not check the clipboard payload.
 
-**Labs are different:** in a hands-on exercise the participant *types* the options
-themselves, so they already see them — `echo: fenced` is for a **reader who isn't
-writing the code** (a slide, or a non-interactive worked reference). Don't reach
-for it in exercise steps.
+That makes `echo: fenced` *more* clearly right here, for a plainer reason: the
+reader is not writing this code, so the `#|` options are only visible if the cell
+shows them. Which is also why **labs are different** — in a hands-on exercise the
+participant types the options themselves, so they already see them. Don't reach
+for `echo: fenced` in exercise steps.
 
 ## 8. A YAML block on a slide is never validated — render it once yourself
 

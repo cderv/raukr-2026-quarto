@@ -193,30 +193,33 @@ and file citations are in the review that produced them; the essentials:
   `::: notes` as a **localization cue** (e.g. the freeze motivation's "a sequence alignment, a long
   MCMC…"). The cohort *is* life-science, but the material shouldn't be domain-locked.
 - Spelling: **US English** (consistent with Quarto's own `color` etc.); hold it across files.
-- Pacing follows `workshop-pacing.md`: My/Our/Your turn cycle, ~2:1 hands-on-to-talk. For a 2h
+- Pacing follows `workshop-pacing.md`: My/Your turn cycle, ~2:1 hands-on-to-talk. For a 2h
   slot (~110 min effective): ~35–40 min talk+demo, ~60–70 min hands-on.
-- **Mode-marker convention (decided 2026-07-07, panel `review-2026-07-07-convention-*`).** The
-  My/Our/Your-turn rhythm is **facilitation discipline** (it lives in `topic-store.md` § time
-  budget + running-order rules), **not** slide chrome. **Do not build a bespoke
-  `.my-turn`/`.your-turn` CSS class** — it needs project-level SCSS that does not travel and
-  degrades to a silent unstyled div when folded into the NBIS tree (verified). Instead:
-  - **Slides — built-in callouts, only at the ambiguous *transitions*** (no per-slide "My
-    turn" badge — steady-state is inferable and reads as patronizing to this audience):
-    - start of live coding → `::: {.callout-note title="Follow along"}` ("open your editor, type
-      with me"); establish once up front, keep light. **Name the file to create and the catch-up
-      file** — those are the two things a participant cannot infer, and the ones that cost 90
-      seconds of fumbling at the exact moment the presenter starts moving.
-    - **end** of live coding → `::: {.callout-warning title="Eyes up — not a live *Follow along*"}`.
-      The exit is the more failure-prone transition, not the entry: people who found their rhythm
-      keep typing and only discover ten minutes later that they were transcribing a concept slide.
-      An italic body line does not do this job (anyone looking at their editor misses it), and both
-      decks must use the same form.
-    - start of the exercise → `::: {.callout-tip title="Your turn — regroup in ~N min"}` that
-      **points explicitly at the lab's `## … Challenge`** (one vocabulary — the slide word and the
-      lab word must agree; don't split "Your turn" vs "Challenge").
-    - **A Follow-along label makes the code blocks under it load-bearing.** Whatever the callout
-      covers must copy to something paste-and-render-able (`rules/slides.md` §7). Adding the label
-      above a slide that was fine as watch-me is what turns a stripped-echo cell into a defect.
+- **Slides explain, labs try (decided 2026-08-09, supersedes the 2026-07-07 mode-marker
+  convention).** A slide's job is the **concept**: what the mechanism is, why it exists, and what it
+  looks like when it goes wrong. The lab's job is the **procedure**. A slide may show code to
+  *illustrate* an idea. It is never something to transcribe.
+  - **The test — if a slide's `Do:` note matches a lab step's solution, the slide is doing the
+    lab's job.** Move the procedure to the lab and give the slide back to the concept it displaced.
+    This is greppable: read the `::: notes` `Do:` line, then read the matching `## … Challenge`
+    step. The Day-1 citations slide printed the Challenge's first and third steps verbatim and
+    compressed `citeproc`, CSL, and where `.bib` keys come from into a clause each.
+  - **Why the old convention produced that.** It said a Follow-along label makes the code blocks
+    under it **load-bearing** (paste-and-render-able). Read as an authoring instruction, that makes
+    a slide's job "supply a working snippet", so explanation gets crowded out by whatever has to be
+    copyable. The rule did not fail. It succeeded at the wrong goal.
+  - **Retired: `Follow along` and `Eyes up`.** The exit marker only ever existed to close a window
+    that no longer opens. Do not reintroduce a sustained typing mode, and **do not build a bespoke
+    `.my-turn`/`.your-turn` CSS class** — it needs project-level SCSS that does not travel and
+    degrades to a silent unstyled div when folded into the NBIS tree (verified).
+  - **Kept: `Your turn`** — `::: {.callout-tip title="Your turn — regroup in ~N min"}` that
+    **points explicitly at the lab's `## … Challenge`** (one vocabulary — the slide word and the
+    lab word must agree; don't split "Your turn" vs "Challenge"). It marks the slides→lab handoff,
+    which is still a real transition.
+  - **The one narrow exception — a "Do this now" checkpoint.** One command, everyone runs it, with
+    a stated pass condition. Use it only where the participant's *own machine* is the point and
+    watching proves nothing: the Day-1 setup gate, and the first Typst render (which downloads the
+    workshop fonts). A checkpoint has nothing to keep up with, so it has no exit to mismanage.
   - **Objectives:** open with RaukR's native **`## Learning Outcomes`** slide (infinitive verbs);
     **close** with our mirrored **"What you can do now"** wrap-up (their decks lack this — our
     value-add).

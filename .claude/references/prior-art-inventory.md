@@ -235,7 +235,7 @@ across a project.
 **Shape.** Theirs is **one arc** — a single 879-line deck + two labs (`quarto`, `quarto-site`),
 "Quarto" as one lecture slot. Ours is **four ~1h parts over two days** — two decks + two labs, each
 part with its own payoff and a `starter/`+`solution/` scaffold, plus `## Learning Outcomes` open /
-"What you can do now" close and Follow-along/Your-turn mode markers. Even shared topics are paced as
+"What you can do now" close and a Your-turn handoff into each lab. Even shared topics are paced as
 a workshop on our side, a reference tour on theirs.
 
 **They cover / we don't (or demoted).** Parameterized reports (deck `#564` + lab `:471-599`) — **the

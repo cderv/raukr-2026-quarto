@@ -76,8 +76,10 @@ before that has an unrelated history: `git fetch origin && git reset --hard orig
 ## Authoring
 
 Website pages `format: html`, slides `format: revealjs` (avoids the multi-format conflict); always
-add `fig-alt`. The **full RaukR house style** — slide structure, `. . .` incremental, mode-marker
-callouts ("Follow along" / "Your turn"), `## Learning Outcomes` open / "What you can do now" close,
+add `fig-alt`. **Slides explain, labs try** — a slide teaches the concept, the lab carries every
+participant action. The test: if a slide's `Do:` note matches a lab step's solution, the slide is
+doing the lab's job. The **full RaukR house style** — slide structure, `. . .` incremental, the
+"Your turn" handoff callout, `## Learning Outcomes` open / "What you can do now" close,
 lab `code-fold` solution + `<details>` Session block — is in **`project-context.md` § Content
 patterns** (pedagogy rationale: `workshop-pacing.md`).
 

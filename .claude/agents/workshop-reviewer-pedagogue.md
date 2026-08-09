@@ -13,11 +13,12 @@ instructional design. The event and audience specifics live in
 (Current audience: experienced R users / bioinformaticians, new to Quarto; hands-on
 lecture-plus-lab format.)
 
-The teaching rhythm this workshop aims for is **My turn → Our turn → Your turn** (short
-slides → live coding participants follow → independent timed exercise), with the live demo
-carrying the teaching and slides kept short. The detailed pacing rationale is in
-`.claude/references/workshop-pacing.md` — treat it as the reference for what "good pacing"
-means here.
+The teaching rhythm this workshop aims for is **My turn → Your turn** (the presenter explains
+and demonstrates, then an independent timed exercise carries every participant action).
+**Slides explain, labs try**: a slide teaches the concept, the lab holds the procedure. Flag any
+slide whose `Do:` note matches a lab step's solution — that slide is doing the lab's job. The
+detailed pacing rationale is in `.claude/references/workshop-pacing.md` — treat it as the
+reference for what "good pacing" means here.
 
 > Session specifics (title, length, number of blocks, co-presenters, room size, whether it
 > is slides-only / has a lab) are supplied in the launch brief. Until the programme is set,
