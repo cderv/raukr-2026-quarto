@@ -613,55 +613,73 @@ This is exactly the path from your analysis to a submission, and to your **team 
 
 ## Citations {#citations}
 
-::: {.callout-note title="Follow along"}
-Back in your editor: add citations to your **`my-report.qmd`**. Not finished with Part 1? Save
-`authoring-checkpoint.qmd` as `my-report.qmd` first.
-:::
-
+A `.bib` file holds one entry per source. The entry key is what you cite.
 
 :::: {.columns}
-::: {.column width="55%"}
-
-Point the header at a `.bib`, then cite with `@key`:
+::: {.column width="47%"}
+``` {.bibtex filename="references.bib"}
+@article{gorman2014,
+  author = {Gorman, K. B. and ...},
+  year   = {2014}
+}
+```
+Export entries from Zotero, a DOI, or the journal's *Cite* button.
+:::
+::: {.column width="53%"}
+Two header lines point at the file and the style:
 
 ``` yaml
 bibliography: references.bib
 csl: apa.csl
 ```
-``` markdown
-The data come from Palmer Station [@gorman2014].
-```
-renders as: … (Gorman et al., 2014).
-:::
-::: {.column width="45%"}
-`references.bib` is in `day1-intro/` (excerpt):
 
-``` {.bibtex}
-@article{gorman2014,
-  author = {Gorman, K. B. and ...},
-  title  = {Ecological Sexual ...},
-  year   = {2014}
-}
-```
+**CSL** = *Citation Style Language*. Swap the `csl:` file to restyle everything for another journal.
 :::
 ::::
 
-Pandoc's citation processing is the default for HTML (`citeproc: true`). It allows to change place of references using this div:
+. . .
+
+The brackets decide how the citation reads:
+
+| You write | You get |
+|-----------|---------|
+| `[@gorman2014]` | (Gorman et al., 2014) |
+| `@gorman2014` | Gorman et al. (2014) |
+| `[-@gorman2014]` | (2014) |
+
+**Learn more:** [Citations](https://quarto.org/docs/authoring/citations.html)
+
+::: notes
+- **Say:** "The key is the only thing you type. The style file does the rest."
+- **Ask:** "Who already keeps a `.bib` from Zotero?"
+- **If asked:** CSL means Citation Style Language.
+- **Watch for:** a key that does not match an entry renders as `[?]`.
+:::
+
+## Where the reference list goes {#refs-placement}
+
+By default the list goes at the end of the document. Put this div where you want it instead:
 
 ``` markdown
 ::: {#refs}
 :::
 ```
 
-**CSL** = *Citation Style Language*. Swap the `csl:` file to restyle every citation.
+. . .
 
-**Learn more:** [Citations](https://quarto.org/docs/authoring/citations.html)
+Two processors can build that list, and only one of them reads the div:
+
+- **Pandoc citeproc** is the default for HTML. It puts the list in `#refs`.
+- **Typst** builds its own bibliography and always places it last.
+
+For the Typst PDF, add `citeproc: true` so Pandoc processes the citations:
+
+``` yaml
+citeproc: true
+```
 
 ::: notes
-- **Do:** add `bibliography`, `csl`, and `[@gorman2014]`; render.
-- **Say:** "The key creates the citation and reference list. Change the CSL to change the style."
-- **If asked:** CSL means Citation Style Language.
-- **Watch for:** relative `.bib` path; wrong key when `[?]` appears.
+- **Say:** "One div, two processors. Only citeproc reads it."
 - **Watch for:** an empty References section in the PDF means `citeproc: true` is missing.
 :::
 
