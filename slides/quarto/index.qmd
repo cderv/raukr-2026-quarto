@@ -641,8 +641,6 @@ Use brackets to control the citation form:
 | `@gorman2014` | Gorman et al. (2014) |
 | `[-@gorman2014]` | (2014) |
 
-**Learn more:** [Citations](https://quarto.org/docs/authoring/citations.html)
-
 ::: notes
 - **Say:** "Type the entry key in your citation. The CSL file formats the citation and reference-list
   entry."
@@ -672,6 +670,8 @@ For the Typst PDF, add `citeproc: true` so Pandoc processes the citations:
 ``` yaml
 citeproc: true
 ```
+
+**Learn more:** [Citations](https://quarto.org/docs/authoring/citations.html)
 
 ::: notes
 - **Say:** "One div, two processors. Only citeproc reads it."
