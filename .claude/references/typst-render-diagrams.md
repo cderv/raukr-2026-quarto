@@ -1,4 +1,4 @@
-# Diagrams via `typst-render` (fletcher) — recipe & gotchas
+# Diagrams via `typst-render` (fletcher) — recipe and constraints
 
 How we render on-brand vector diagrams in the decks: a `{typst}` code block compiled to **SVG** by
 Quarto's bundled Typst via **[`mcanouil/quarto-typst-render`](https://github.com/mcanouil/quarto-typst-render)**
@@ -17,7 +17,7 @@ for the `_brand.yml` star (`1-quarto-typst.qmd`) and a typst pipeline (`2-projet
    the proxy.
 2. **Filter** — `filters: [typst-render]` in the deck front matter (or `_quarto.yml`).
 3. **knitr passthrough (R engine only)** — `{typst}` collides with knitr's chunk engine
-   (`Unknown language engine 'typst'`) and the source leaks out as prose. Fix = source the shipped
+   (`Unknown language engine 'typst'`) and the source appears as prose. Source the shipped
    resource in a setup chunk:
    ```r
    source(file.path(Sys.getenv("QUARTO_PROJECT_DIR"),
@@ -25,9 +25,9 @@ for the `_brand.yml` star (`1-quarto-typst.qmd`) and a typst pipeline (`2-projet
    ```
    It registers a passthrough knitr engine so `{typst}` reaches the filter. Not needed for the
    jupyter/markdown engines.
-4. **Options syntax — the sharp edge.** Under knitr, `#|` cell options are consumed by knitr and
-   hoisted onto the parent `.cell` div; they **do not reach the filter** (so `alt` silently falls
-   back to the raw Typst *source*). Put filter options as **`//|` comments INSIDE the code block**:
+4. **Options syntax under knitr.** `#|` cell options are consumed by knitr and hoisted onto the
+   parent `.cell` div; they **do not reach the filter**, so `alt` falls back to the raw Typst
+   *source*. Put filter options as **`//|` comments INSIDE the code block**:
    `//| alt:`, `//| align:`, `//| width:`. Keep `#| echo: false` (that one is for knitr — suppresses
    the source echo).
 5. **Package version pin.** fletcher **0.5.8** (→ cetz 0.3.4) works with Quarto 1.9.38's bundled
@@ -52,8 +52,8 @@ for the `_brand.yml` star (`1-quarto-typst.qmd`) and a typst pipeline (`2-projet
 
 ## Fonts
 
-Typst uses **system fonts, not Google web fonts** — `Albert Sans` isn't found at compile time
-(harmless `unknown font family` warning) and falls back. Always give a fallback list:
+Typst uses **system fonts, not Google web fonts**. If `Albert Sans` is unavailable at compile time,
+Typst reports `unknown font family` and uses the fallback. Always give a fallback list:
 `#set text(font: ("Albert Sans", "DejaVu Sans"), …)`. To actually render in the brand font, install
 it and pass `font-path`.
 

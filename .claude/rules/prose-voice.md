@@ -8,6 +8,16 @@ paths:
   - README.md
   - LICENSE.md
   - .claude/**/*.md
+  # Troubleshooting and operational wording also lives in comments.
+  - .claude/**/*.sh
+  - .claude/**/*.mjs
+  - .claude/**/*.yaml
+  - theme*.scss
+  - '**/_brand*.yml'
+  - '**/_quarto.yml'
+  - '**/_metadata.yml'
+  - .github/**/*.yml
+  - justfile
 ---
 
 # Rule — house voice (write like Christophe; strip the machine tells)
@@ -34,6 +44,37 @@ reads like something you'd *say to soften or sell* the point, it belongs in note
 - Do not repeat the slide or lab text. Record only the prompt, action, or warning needed live.
 - Split unrelated actions into separate bullets. Remove narration and background explanation.
 - Add a duration only when a rehearsal supports it.
+
+## Troubleshooting, recovery instructions, and code comments
+
+Apply the same plain-language standard to lab Troubleshooting blocks, setup references, reviewer
+recipes, speaker warnings, and explanatory comments in shell/YAML/SCSS. Technical prose may name the
+mechanism, but it must not dramatize or personify it.
+
+- Lead with the **observable symptom**, then give the **cause** only when it helps, then the exact
+  **action**. A short entry may need only the symptom and action.
+- Describe software behaviour literally. A tool does not *bite*, *fight*, *starve*, *strand* a page,
+  *happily* accept input, *invent* failures, or wear a problem "as a mask". State what fails, what is
+  omitted, what is overridden, or which mode remains active.
+- Do not label a warning **harmless** or an error **bogus**. State its impact: "The warning does not
+  stop the PDF from building" or "The dependency error is misleading."
+- Avoid unexplained shorthand in comments (`seed it`, `stages atomically`, `load-bearing fix`). Name
+  the operation and outcome (`restore it separately`, `renv discards the restore if one package
+  fails`, or `required before either install path`).
+- Prefer headings that name the condition: **Prerequisite**, **Known failure**, **Windows shebang
+  constraint**, or **If rendering fails**. Do not use **Gotcha** as a catch-all heading.
+- Keep comments local. Record what the next command requires or prevents, not the investigation
+  history. Put durable diagnostic detail in a reference file.
+
+Examples from the 2026-08-09 troubleshooting audit:
+
+| Avoid | Write |
+|---|---|
+| `a bogus mutual dependency failure` | `a misleading dependency error involving gt` |
+| `the failed update starves later installs` | `later installs fail because the repository was not indexed` |
+| `the file alone doesn't reach ggplot` | ``_brand.yml` alone does not apply the palette to ggplot figures` |
+| `the toggle strands the page in dark mode` | `the page remains in dark mode with no way to switch back` |
+| `Harmless warning` | `The warning does not stop the PDF from building` |
 
 ## Don't (the tells that keep re-introducing the problem)
 
@@ -126,4 +167,7 @@ rg -niE '\bstanza\b' --glob '*.qmd' setup.qmd index.qmd labs slides   # say "blo
 # Compare counts before adding a noun -- e.g. block(9) vs stanza(1) is how the stanza slipped in.
 # Cross-day pointers -- judge each in context (a real callback is fine, a narrated one is not)
 rg -niE '\b(story|saga|chapter|teas(e|ed|er)|foreshadow\w*|yesterday|tomorrow)\b' --glob '*.qmd' slides labs
+# Troubleshooting/comment metaphors (inspect matches; quoted counterexamples are expected).
+rg -niE '\b(gotcha|bogus|harmless|silently|clobber\w*|starv\w*|strand\w*|happily|fight\w*|bite|bites)\b|sharp edge|worked blind' \
+  --glob '*.qmd' --glob '*.md' --glob '*.sh' --glob '*.scss' --glob '*.yml' --glob '*.yaml'
 ```

@@ -8,7 +8,7 @@ disabled or a step fails. In a normal local session, nothing to do here.
 > **The container is ephemeral**: everything below (packages, `~/.Rprofile`, locale) is lost
 > when the container is reclaimed. It re-runs on each new sandbox.
 
-## 0. Two sandbox gotchas to fix first (or R breaks)
+## 0. Two sandbox prerequisites for R
 
 Neither is in the default image; both block R package installs and reading accented UTF-8
 files. The hook does both — here they are explicitly:
@@ -63,11 +63,11 @@ network policy may block github.com — see the note below):
 - **R → rig** (`rig.r-pkg.org` apt repo + the Posit R-builds CDN, both non-GitHub), CRAN apt as
   fallback. rig installs the **current** R (matches `renv.lock`, which wants **4.6.x**) instead of
   Ubuntu's stale `r-base`. **⚠️ Root cause of the "R 4.3.3" bug:** a broken third-party PPA
-  (`ondrej/php` changed its `Label`) made `apt-get update` **exit 100**, silently starving every
-  downstream install — so the CRAN repo never got indexed and R fell back to Ubuntu universe's
-  **4.3.3**. `apt-get update --allow-releaseinfo-change` fixes it (and lets rig's sysreqs step run).
+  (`ondrej/php` changed its `Label`) made `apt-get update` **exit 100**. The CRAN repo was therefore
+  not indexed, so R fell back to Ubuntu universe's **4.3.3** and later system-package installs
+  failed. `apt-get update --allow-releaseinfo-change` fixes both paths.
   ```bash
-  apt-get update --allow-releaseinfo-change -qq || true   # <- the load-bearing fix
+  apt-get update --allow-releaseinfo-change -qq || true   # required before either install path
   # rig (preferred): non-GitHub, version-managed, installs current R from the Posit CDN
   curl -fsSL https://rig.r-pkg.org/deb/rig.gpg -o /etc/apt/trusted.gpg.d/rig.gpg
   echo "deb http://rig.r-pkg.org/deb rig main" > /etc/apt/sources.list.d/rig.list
@@ -133,9 +133,9 @@ Two things make this fast and portable:
   URL (`.../cran/__linux__/noble/latest`) to `restore()` so P3M serves **pre-built noble
   binaries** — no `-dev` system libraries, no build chain (only `r-base`). We pass it explicitly
   because renv's automatic PPM→binary rewrite needs a PPM status probe that the **egress proxy
-  blocks**, so without the override renv silently falls back to compiling from source (slow, and
+  blocks**. Without the override, renv compiles from source instead, which is slower and
   it then wants `libcurl4-openssl-dev`, `libxml2-dev`, `libnode-dev`, …). The `__linux__/noble`
-  override sidesteps all of that.
+  override avoids that fallback.
 - **The project `.Rprofile` shadows `~/.Rprofile`.** R reads only one user profile; renv writes a
   project `.Rprofile` (`source("renv/activate.R")`). We prepend `if (file.exists("~/.Rprofile"))
   source("~/.Rprofile")` so the proxy CA bundle + repos are still set before renv fetches. Without
@@ -149,7 +149,7 @@ without them: `there is no package called 'rmarkdown'`) and **ggplot2 / dplyr / 
 
 > ✅ **R ≥ 4.5 for the content dataset — resolved (2026-07-08).** The whole arc uses base-R
 > `datasets::penguins`, which only exists in **R 4.5.0+**. Earlier the sandbox landed **R 4.3.3**
-> (the broken-PPA `apt-get update` bug above starved the CRAN repo), where `data(penguins)` errored
+> (the broken-PPA `apt-get update` error above prevented the CRAN repo from being indexed), where `data(penguins)` errored
 > and `quarto render` of any penguins page failed at the R chunk — even though Quarto + the knitr
 > engine were fine. **Now fixed**: rig installs **R 4.6.1** (matching `renv.lock`), `data(penguins)`
 > resolves with the expected columns, and a penguins → knitr → **Typst PDF** render succeeds end to
@@ -196,7 +196,7 @@ quarto --version && quarto typst --version    # Typst is bundled with Quarto
 
 ## Toolchain — verified working end to end (2026-08-03)
 
-The full stack installs and runs in this sandbox; earlier sessions worked blind because it didn't.
+The full toolchain now installs and runs in this sandbox. Earlier sessions lacked parts of it.
 Running `.claude/hooks/session-start.sh` with `CLAUDE_CODE_REMOTE=true` set installs everything:
 
 | tool | version |
@@ -205,7 +205,7 @@ Running `.claude/hooks/session-start.sh` with `CLAUDE_CODE_REMOTE=true` set inst
 | Quarto | 1.10.18 (Cloudsmith `.deb` path; GitHub releases are proxy-blocked) |
 | just | 1.57.0 (`cargo install`) |
 
-**Gotcha — `renv::restore()` fails on a cold cache** with a spurious circular error:
+**`renv::restore()` can fail on a cold cache** with a misleading circular dependency error:
 `failed to install "bitops", "gt"` reported as *"bitops: dependency failed (gt)"* and
 *"gt: dependency failed (bitops)"*. They do not depend on each other. Fix:
 
@@ -213,6 +213,11 @@ Running `.claude/hooks/session-start.sh` with `CLAUDE_CODE_REMOTE=true` set inst
 Rscript -e 'install.packages(c("bitops","gt"))'   # then re-run
 Rscript -e 'renv::restore(prompt = FALSE)'        # -> "No issues found"
 ```
+
+The hook now restores `bitops` separately before the complete restore, so a fresh sandbox should not
+encounter this error. Restore it separately if you are working outside the hook. renv moves packages
+into the project library only after the complete restore succeeds. If one package fails, the others
+are discarded, which is why the library remains nearly empty.
 
 **Rendering a single `.qmd` needs the project library on PATH** if you render outside the project
 root: `export R_LIBS_USER=<repo>/renv/library/linux-ubuntu-noble/R-4.6/x86_64-pc-linux-gnu`.
@@ -232,4 +237,4 @@ preinstalled (`PLAYWRIGHT_BROWSERS_PATH=/opt/pw-browsers`) — never run `playwr
   CORS-blocked on `file://`. `npx http-server -p <port> -s _site` works.
 - **Composite the background stack over white before computing a contrast ratio.** Quarto's code
   background is `rgba(…, .65)`; reading the raw `background-color` gives a too-harsh number and
-  invents failures that aren't there.
+  produces false contrast failures.

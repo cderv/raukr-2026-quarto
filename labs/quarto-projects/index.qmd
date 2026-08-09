@@ -133,6 +133,12 @@ website:
 Each navbar entry pairs an `href:` (the **source** `.qmd`, not the built `.html`) with a `text:`
 label. The theme is not a website option. It is a **format** option, so it goes under `format:`.
 
+::: {.column-margin}
+{{< fa book-open >}} **Quarto docs**
+
+[HTML themes](https://quarto.org/docs/output-formats/html-themes.html#basic-options)
+:::
+
 From this step on, preview the site with `quarto preview` from inside `day2-projects/`. On Day 1 you
 previewed one document. From the project root, the command serves the whole site and
 re-renders a page when you save it.
@@ -309,7 +315,7 @@ A `_metadata.yml` file applies options to every document in its folder. Put one 
 configure both pages without editing either file. It takes the same document options you would write
 in `_quarto.yml`. The difference is where they apply.
 
-You need two options. `code-fold` gives you the toggle, and a second option sets its label. The
+You need two options. `code-fold` gives you the toggle, and `code-summary` sets its label. The
 default label is `Code`, and the checkpoint asks for **Show the code**.
 
 Neither page is in the navbar. Use the site search (the magnifier) to open them.
@@ -325,8 +331,6 @@ four `.qmd` files to get this.
 ## Hint
 Quarto merges `reports/_metadata.yml` on top of the project defaults, so you write only what differs.
 Its options apply to `reports/` and its subfolders.
-
-The second option is `code-summary`: it sets the text on the toggle.
 :::
 
 ::: {.callout-note collapse="true"}
@@ -351,11 +355,18 @@ you, so that adding a page there shows up without editing `index.qmd`.
 ::: {.column-margin}
 {{< fa book-open >}} **Quarto docs**
 
-[Website listings](https://quarto.org/docs/websites/website-listings.html)
+[Website listings](https://quarto.org/docs/websites/website-listings.html):
+[types](https://quarto.org/docs/websites/website-listings.html#listing-types) ·
+[fields](https://quarto.org/docs/websites/website-listings.html#listing-fields) ·
+[placement](https://quarto.org/docs/websites/website-listings.html#listing-location)
 :::
 
 A `listing:` key in the **YAML header of `index.qmd`** builds the table, and `contents:` names the
 folder it indexes. Where the table appears on the page is a separate choice.
+
+If `quarto preview` is still running, stop it (`Ctrl` + `C` in the terminal) before you re-render.
+Otherwise, the running preview may rebuild the page and leave you checking a different result from
+the one produced by `quarto render`.
 
 ::: {.callout-note appearance="simple" icon=false}
 ## {{< fa circle-check >}} You should see
@@ -541,9 +552,9 @@ own.
 
 **Goal.** Take the report you wrote yesterday and make it a page of this website.
 
-On Day 1, you built one document: `my-report.qmd` in `day1-intro/`. Now add it to the
-project. If you did not finish Day 1 or do not have the file, use
-`solutions/day1/penguins-report.qmd` from your exercises download instead.
+On Day 1 you created `my-report.qmd` in `day1-intro/`. Copy it into `day2-projects/`, together with
+`references.bib` and `apa.csl` (the report cites through them), then add it to the project. If you do
+not have that file, take `solutions/day1/penguins-report.qmd` from your download instead.
 
 ::: {.callout-note appearance="simple" icon=false}
 ## {{< fa circle-check >}} You should see
@@ -612,6 +623,9 @@ execute:
 
 Then, in `analysis.qmd`, make a visible edit to the plot code: change the y-axis label to
 `y = "Body mass in grams"`.
+
+Stop `quarto preview` first if it is running (`Ctrl` + `C`). A watching preview re-runs the page when
+you save and refreshes `_freeze/`, so the first render below would show your edit.
 
 Now run the three renders from inside `day2-projects/`, and reload `_site/analysis.html` in your
 browser after each one:
@@ -715,8 +729,7 @@ produced them.
 - **Rendered, but can't find the HTML?** Before you add `_quarto.yml`, a single-page render writes
   the HTML **next to its source** in `day2-projects/`. Once `_quarto.yml` is present, a project render
   collects all pages under `day2-projects/_site/`. Look in those two places. The earlier
-  `analysis.html` and `analysis_files/` next to the sources are leftovers at that point: delete them
-  if you like.
+  `analysis.html` and `analysis_files/` next to the sources are no longer used and can be deleted.
 - **YAML is indentation-sensitive.** If rendering fails *before* any code runs, check `_quarto.yml`
   for stray spaces, tabs, or unmatched quotes.
 - **"No project" / pages don't link?** The `_quarto.yml` must be **inside `day2-projects/`**, and
@@ -724,14 +737,13 @@ produced them.
 - **Brand not applied?** Two causes. The file must be in `day2-projects/` (the project root), and
   `brand` must come **last** in the `theme:` list: `theme: [cosmo, brand]` gives you the palette,
   while `theme: cosmo` on its own keeps cosmo's colors and only the fonts change. Re-render after
-  either fix. For
-  **plots**, the palette needs `library(brand.yml)` + `theme_brand_ggplot2()` (the file alone doesn't
-  reach ggplot).
+  either fix. For **plots**, the palette needs `library(brand.yml)` + `theme_brand_ggplot2()`;
+  `_brand.yml` alone does not apply the palette to ggplot figures.
 - **Render fails with "references.bib not found"?** Your Day-1 report points at `references.bib` and
   `apa.csl` by relative path. Copy both files from `day1-intro/` into `day2-projects/`, next to the
   report, and render again.
-- **A cross-reference shows `?@…`?** The cell label must start `fig-`/`tbl-`/`eq-` and be unique, and
-  remember it only resolves **within one page** on a website.
+- **A cross-reference shows `?@…`?** The cell label must start `fig-`/`tbl-`/`eq-` and be unique.
+  Website cross-references resolve only **within one page**.
 - **Freeze didn't skip the cell?** Under `freeze: auto` it skips only when the source is **unchanged**
   since the last build: any edit (prose or code) re-runs that page. Delete `_freeze/` to force a
   clean rebuild.

@@ -6,16 +6,16 @@ paths:
   - theme.scss
 ---
 
-# Rule — `_brand.yml` (and brand-driven theme) gotchas
+# Rule — `_brand.yml` and brand-driven theme constraints
 
-Non-obvious traps that silently break a render when editing a brand file. The house look and the
+These constraints can cause a render to fail without an explanatory error. The house look and the
 "don't vendor the host school's SCSS — rebuild it here" framing live in `project-context.md` /
-`multi-day-workshop-scaffold.md § 5`; this is the short list of **technical** gotchas. When you
-**edit** `_brand.yml`, apply these; when you **review**, check them. Gotcha § 4 also covers a
+`multi-day-workshop-scaffold.md § 5`; this is the short list of **technical constraints**. When you
+**edit** `_brand.yml`, apply these; when you **review**, check them. Section 4 also covers a
 brand-triggered highlight bug whose *fix* lives in `theme-html.scss` (hence this rule surfaces there
 too).
 
-## 1. ASCII-only — or R-side branding silently breaks under a C locale
+## 1. ASCII-only for R-side branding under a C locale
 
 The R side reads this file with `brand.yml::read_brand_yml()` (here: `labs/quarto/sample-typst.qmd`,
 via `pal()` / `brand_color_pluck()` / `theme_brand_gt()`). Under a **`C`/POSIX locale** — minimal
@@ -70,7 +70,7 @@ Don't add `.wa` — `arrow-light` *does* color it (`#5E5E5E`), so overriding it 
 **Verify** with computed styles (Chromium): the command word must be body ink (`#003B4F`) in light,
 and the dark sheet's `rgb(0,224,224)` in dark. (Diagnosed 2026-07-21; reported upstream.)
 
-**The scope is load-bearing, and `:not()` is the only correct form** (2026-08-07). The leak is a
+**The selector scope is essential, and `:not()` is the required form** (2026-08-07). The leak is a
 *light-only-site* bug: `quarto-html-before-body.ejs` wraps the whole colour-scheme script in
 `<% if (darkMode !== undefined) %>`, so with no dark mode the script is never emitted and nothing
 ever disables the alternate sheet. Add dark mode and `toggleColorMode(false)` disables it for you.
@@ -153,7 +153,7 @@ stock defaults during this pass before it was caught.
 
 ## 7. A named bootswatch `theme:` outranks the brand palette — put `brand` last
 
-`theme: cosmo` (or any named bootswatch) **silently defeats `_brand.yml`'s colors**. Quarto expands a
+`theme: cosmo` (or any named bootswatch) **overrides `_brand.yml`'s colors without a warning**. Quarto expands a
 bare `theme:` to `[brand, cosmo]`, and *later layers win*, so cosmo's `$primary` lands and the brand
 teal survives only as an unconsumed `--brand-teal` custom property.
 
@@ -195,8 +195,8 @@ theme-html-dark.scss]}` and `respect-user-color-scheme: true`.
   The `theme:` map is not needed for that; it exists only to give the dark-only SCSS a home.
 - **A layer shared by both stacks must write every dark-overridable value with `!default`.** §7
   records that later layers win — true, but only for `!default` variables. `scss:defaults` blocks
-  are emitted in *reverse*, so a bare `$x: …;` in the earlier-listed file executes last and silently
-  clobbers the dark layer. (`scss:rules` are *not* reversed, so dark rules still win normally.)
+  are emitted in *reverse*, so a bare `$x: …;` in the earlier-listed file executes last and
+  overrides the dark layer. (`scss:rules` are *not* reversed, so dark rules still win normally.)
   Hence `$link-color` / `$navbar-bg` / `$accent-muted` in `theme-html.scss` all carry `!default`.
 - **Set `$navbar-bg`, don't paint `.navbar`.** Bootstrap derives `$navbar-fg` as
   `theme-contrast($navbar-bg, $navbar-bg)` and `$navbar-hl` from `theme-contrast($link-color,
@@ -211,8 +211,9 @@ theme-html-dark.scss]}` and `respect-user-color-scheme: true`.
 - **Dashboards do dark, and the toggle must stay visible** (`format: dashboard`, verified on Quarto
   1.10.18). A dashboard in a website project reads the site-wide
   `localStorage["quarto-color-scheme"]`, so it opens dark whenever the rest of the site is dark.
-  Hiding `.quarto-color-scheme-toggle` on `body.quarto-dashboard` therefore strands the page with no
-  way back to light. Clicking it on a dark dashboard repaints to light at once, and the choice
+  Hiding `.quarto-color-scheme-toggle` on `body.quarto-dashboard` therefore leaves the page in dark
+  mode with no way to switch back to light. Clicking it on a dark dashboard repaints to light at
+  once, and the choice
   survives a reload. (`respect-user-color-scheme` does *not* reach a dashboard: the OS preference
   alone never flips it.)
 - **The in-place light→dark repaint cannot be measured in this sandbox.** Re-enabling a
@@ -231,14 +232,14 @@ theme-html-dark.scss]}` and `respect-user-color-scheme: true`.
   compiled bundle for the SCSS name finds nothing.
 - **Revealjs is unaffected**: `formatHasBootstrap` excludes it, and `brandRevealSassLayers` defaults
   to `brand-mode: light`. Both decks render **byte-identical** — check that with a diff after any
-  brand change, it is the cheapest proof available.
+  brand change; it is the simplest available check.
 
 **Verify with axe-core in both schemes**, driving Chromium with `colorScheme: 'light' | 'dark'`
 (and once with `javaScriptEnabled: false`). Quarto ships the harness at
 `$(quarto --paths)/formats/html/axe/axe.min.js`. **`colorScheme` does not reach the dashboard** —
-put it in dark with `localStorage.setItem("quarto-color-scheme", "alternate")` in an init script, or
-you sweep the light page twice and call it clean. Target: **0 `color-contrast` violations on every
-page in both modes**. One remains: the closed dashboard tab is `#33666b` on the `#cccecf` tabset
+put it in dark with `localStorage.setItem("quarto-color-scheme", "alternate")` in an init script.
+Otherwise, the audit checks the light page twice and incorrectly reports dark mode as clean. Target:
+**0 `color-contrast` violations on every page in both modes**. One remains: the closed dashboard tab is `#33666b` on the `#cccecf` tabset
 strip, 4.08:1 in **light** only. The two ARIA violations that remain
 (`aria-allowed-attr` on callout toggles, `aria-prohibited-attr` on FontAwesome icons) are upstream,
 identical in both modes, and separately tracked.

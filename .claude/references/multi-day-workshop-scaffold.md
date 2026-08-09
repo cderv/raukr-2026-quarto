@@ -169,7 +169,7 @@ A single root `_brand.yml` carries palette + fonts to the **site**, the **slides
 `theme_brand_gt()`). Introduce it once; on later days remind rather than
 re-introduce. Don't vendor a host school's SCSS — rebuild the look in `_brand.yml`.
 
-Two brand + code caveats bite at HTML render: code **syntax highlighting is not
+Two brand and code constraints affect HTML rendering: code **syntax highlighting is not
 brand-themed** (palette edits won't move token colors), and using `brand` ships a dark
 highlight sheet that **leaks into light mode** (command words go bold cyan) — fixed with a
 small `theme-html.scss` override. Both live in `.claude/rules/brand.md § 4`.

@@ -4,7 +4,7 @@
 #
 # What it does (all guarded, all idempotent, all non-fatal):
 #   1. Set the commit identity so sandbox commits carry the right author.
-#   2. Fix the two sandbox gotchas that otherwise break R (UTF-8 locale; the
+#   2. Apply the two sandbox prerequisites that R requires (UTF-8 locale; the
 #      proxy's self-signed CA that R's curl must be pointed at).
 #   3. Asynchronously install the toolchain: R (CRAN apt), Quarto, just (cargo),
 #      plus the two tools the slide fit-check needs (simple-http-server, agent-browser).
@@ -18,8 +18,8 @@
 #     quarto.org so it's never stale. This is the one step that needs the web
 #     environment's network policy to allow github.com; if it's blocked, Quarto
 #     won't install and you must widen the environment's network policy.
-# Earlier versions scraped GitHub's HTML release pages — fragile and the first
-# thing a proxy blocks. Direct/pinned URLs only, here.
+# Earlier versions parsed GitHub's HTML release pages, which proxy policies often block.
+# Use only direct or pinned URLs here.
 set -euo pipefail
 
 # Only run in remote (Claude Code on the web) environments.
@@ -27,7 +27,7 @@ if [ "${CLAUDE_CODE_REMOTE:-}" != "true" ]; then
   exit 0
 fi
 
-# --- Synchronous, cheap: git identity + locale + CA (R breaks without these) ---
+# --- Synchronous prerequisites: git identity + locale + CA (R requires these) ---
 
 # Commit identity for sandbox commits. Remote-only, so local sessions keep the developer's own
 # global identity untouched.
@@ -83,9 +83,9 @@ echo '{"async": true, "asyncTimeout": 600000}'
 #    arc uses needs R >= 4.5). Prefer **rig** (r-lib): its apt repo + the Posit R-builds CDN it
 #    pulls from are both non-GitHub, and it manages versions cleanly. Fall back to the CRAN apt
 #    repo. ROOT-CAUSE NOTE: a broken third-party PPA (e.g. ondrej/php changing its Label) makes
-#    `apt-get update` exit 100 and silently starves every downstream apt install — that is what
-#    pinned R at Ubuntu's stale 4.3.3 (the CRAN repo never got indexed) and also blocks rig's
-#    sysreqs step. `--allow-releaseinfo-change` makes update resilient and fixes both paths.
+#    `apt-get update` exit 100. Later apt installs then fail because the CRAN repo was not indexed;
+#    R falls back to Ubuntu's 4.3.3 package, and rig cannot install system requirements.
+#    `--allow-releaseinfo-change` lets both paths continue.
 apt-get update --allow-releaseinfo-change -qq 2>/dev/null || true
 r_lt_45() { c=$(R --version 2>/dev/null | sed -n '1s/.*version \([0-9.]*\).*/\1/p'); \
   [ -z "$c" ] || [ "$(printf '%s\n4.5.0\n' "$c" | sort -V | head -1)" != "4.5.0" ]; }
@@ -176,6 +176,13 @@ fi
 #    Add packages by editing DESCRIPTION + `renv::snapshot()`, not here.
 if command -v R >/dev/null 2>&1 && [ -f renv.lock ]; then
   echo "Restoring R packages with renv (P3M binaries)..."
+  # renv discards the entire restore if one package fails. bitops can report a misleading dependency
+  # error involving gt, although it restores successfully on its own. Restore it separately first so
+  # the complete restore can skip it.
+  Rscript -e 'try(renv::restore(packages = "bitops",
+      repos = c(CRAN = "https://packagemanager.posit.co/cran/__linux__/noble/latest"),
+      prompt = FALSE), silent = TRUE)' \
+    || true
   Rscript -e 'renv::restore(repos = c(CRAN = "https://packagemanager.posit.co/cran/__linux__/noble/latest"), prompt = FALSE)' \
     || echo "renv restore failed (non-fatal) — run renv::restore() from an R session in the repo root"
 fi
@@ -195,8 +202,8 @@ if command -v R >/dev/null 2>&1; then
 fi
 
 # 6. Slide fit-check tooling — a static server plus a browser driver. Checking whether a revealjs
-#    slide overflows its 720 px frame means measuring it in a real browser (see rules/slides.md § 1),
-#    and `file://` is not worth fighting, so the deck gets served over http first.
+#    slide overflows its 720 px frame means measuring it in a real browser (see rules/slides.md § 1).
+#    Serve the deck over HTTP because its JavaScript does not run correctly over `file://`.
 #    `.claude/scripts/slide-shot.mjs` is the older path and only works here, because it imports
 #    Playwright from a hardcoded /opt/node22 path; agent-browser is the one that also works on the
 #    instructor's machine, so prefer it and keep the two environments on the same recipe.

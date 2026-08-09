@@ -109,6 +109,23 @@ his own decks. The test: would a precise non-native writer produce this, or is i
 idiom? When unsure, prefer the literal statement.) `::: notes` are spoken cues he adapts live, so a
 relaxed idiom there matters less — but body prose that renders to the page should stay literal.
 
+## Troubleshooting states the symptom and action
+
+Troubleshooting, setup notes, and explanatory code comments use the same literal voice. Dense
+technical language is sometimes necessary. Dramatic or personified language is not. Name the
+observable symptom, include the cause only when it helps the reader choose an action, then state the
+command or edit directly.
+
+- A package manager does not *starve* later installs: later installs fail because a repository was
+  not indexed.
+- A toggle does not *strand* a page: the page remains in dark mode with no way to switch back.
+- A warning is not *harmless*: it either affects the output or it does not stop the requested output
+  from being created.
+- An error is not *bogus*: it is misleading, incomplete, or unrelated to the actual cause.
+
+Comments are not a record of the debugging session. Keep the local requirement beside the command.
+Move durable diagnostic detail to the relevant reference file.
+
 ## Cross-day pointers — name the day, don't narrate it
 
 A pointer to another day is a **fact about the schedule**, so state it. The recurring failure is
