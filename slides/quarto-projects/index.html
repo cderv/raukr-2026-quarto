@@ -238,11 +238,11 @@ Christophe Dervieux
 </section>
 <section id="how-today-works" class="slide level2">
 <h2>How today works</h2>
-<p><strong>Same shape as yesterday</strong>: two rounds of <strong>watch → follow along → your turn</strong>, each ending in a <strong>Challenge</strong> in the lab (solutions folded in), with a <strong>break</strong> between the rounds.</p>
-<p>Watch for the <strong>Follow along</strong> / <strong>Your turn</strong> callouts: they flag every switch.</p>
+<p><strong>Same shape as yesterday</strong>: two rounds of <strong>watch → your turn</strong>, each ending in a <strong>Challenge</strong> in the lab, with a <strong>break</strong> between the rounds.</p>
+<p>The <strong>Your turn</strong> callout flags each switch to the lab.</p>
 <aside class="notes">
 <ul>
-<li><strong>Say:</strong> “Same rhythm as yesterday: follow along, then your turn.”</li>
+<li><strong>Say:</strong> “Same rhythm as yesterday: watch, then you build it.”</li>
 <li><strong>Schedule:</strong> break at 15:00, resume at 15:30.</li>
 </ul>
 <style type="text/css">
@@ -264,49 +264,35 @@ Christophe Dervieux
 </section>
 <section id="why-project" class="slide level2">
 <h2>Why a <em>project</em>?</h2>
-<div title="Follow along">
-<div class="callout callout-note callout-titled callout-style-default">
-<div class="callout-body">
-<div class="callout-title">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<p><strong>Follow along</strong></p>
-</div>
-<div class="callout-content">
-<p>Open your <strong><code>day2-projects/</code></strong> folder from the exercises download: from here we build one project together. If you fall behind, <code>solutions/day2/</code> contains the finished project.</p>
-</div>
-</div>
-</div>
-</div>
-<p>One <code>.qmd</code> renders alone. A <strong>project</strong> is a folder Quarto treats as one unit (shared config, one build, one output folder):</p>
+<p>Quarto identifies the project root by searching <strong>up</strong> from the file being rendered and using the <strong>nearest <code>_quarto.yml</code></strong>.</p>
 <div class="columns">
 <div class="column" style="width:52%;">
 <div class="code-with-filename">
 <div class="code-with-filename-file">
-<pre><strong>_quarto.yml</strong></pre>
+<pre><strong>day2-projects/_quarto.yml</strong></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" data-filename="_quarto.yml"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb1-1"><a aria-label="1"></a><span class="co"># at the project root</span></span>
-<span id="cb1-2"><a aria-label="2"></a><span class="fu">project</span><span class="kw">:</span></span>
-<span id="cb1-3"><a aria-label="3"></a><span class="at">  </span><span class="fu">type</span><span class="kw">:</span><span class="at"> website</span></span>
-<span id="cb1-4"><a aria-label="4"></a><span class="at">  </span><span class="fu">output-dir</span><span class="kw">:</span><span class="at"> _site</span><span class="co"> # everything renders here</span></span>
-<span id="cb1-5"><a aria-label="5"></a><span class="fu">format</span><span class="kw">:</span></span>
-<span id="cb1-6"><a aria-label="6"></a><span class="at">  </span><span class="fu">html</span><span class="kw">:</span></span>
-<span id="cb1-7"><a aria-label="7"></a><span class="at">    </span><span class="fu">toc</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span><span class="co">       # set once, every page gets it</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" data-filename="day2-projects/_quarto.yml"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb1-1"><a aria-label="1"></a><span class="fu">project</span><span class="kw">:</span></span>
+<span id="cb1-2"><a aria-label="2"></a><span class="at">  </span><span class="fu">type</span><span class="kw">:</span><span class="at"> website</span></span>
+<span id="cb1-3"><a aria-label="3"></a><span class="at">  </span><span class="fu">output-dir</span><span class="kw">:</span><span class="at"> _site</span></span>
+<span id="cb1-4"><a aria-label="4"></a><span class="fu">format</span><span class="kw">:</span></span>
+<span id="cb1-5"><a aria-label="5"></a><span class="at">  </span><span class="fu">html</span><span class="kw">:</span></span>
+<span id="cb1-6"><a aria-label="6"></a><span class="at">    </span><span class="fu">toc</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div><div class="column" style="width:48%;">
 <ul>
-<li class="fragment"><code>quarto render</code> builds the <strong>whole</strong> folder, not one file.</li>
-<li class="fragment">Header options set <strong>once</strong> apply to every page.</li>
-<li class="fragment"><strong><code>output-dir</code></strong>: the folder where the built site is written (<code>_site</code> by default). Publish <em>that</em>.</li>
+<li class="fragment">This is the nearest <code>_quarto.yml</code>, so <code>day2-projects/</code> is the project root.</li>
+<li class="fragment"><code>quarto render</code> with no file argument builds <strong>every</strong> page in it.</li>
+<li class="fragment">The <code>format:</code> settings apply to every page.</li>
+<li class="fragment"><strong><code>output-dir</code></strong>: where the built site is written. Publish <em>that</em> folder.</li>
 </ul>
 </div></div>
-
+<div class="fragment">
+<p><strong>Nearest wins.</strong> Quarto ignores any <code>_quarto.yml</code> files above the project root.</p>
 <aside class="notes">
 <ul>
-<li><strong>Say:</strong> “Many files, one project. Open your editor.”</li>
-<li><strong>Do:</strong> add a minimal <code>_quarto.yml</code>; render the whole folder.</li>
-<li><strong>Say:</strong> “This is how the pages of your team project connect.”</li>
+<li><strong>Say:</strong> “Place <code>_quarto.yml</code> in a folder to make that folder the project root.”</li>
+<li><strong>Do:</strong> render once and show the output move from beside the <code>.qmd</code> into <code>_site/</code>.</li>
+<li><strong>Ask:</strong> “Where is the root if a folder above also has a <code>_quarto.yml</code>?” (The nearer one.)</li>
 </ul>
 <style type="text/css">
         span.MJX_Assistive_MathML {
@@ -319,9 +305,8 @@ Christophe Dervieux
           overflow: hidden!important;
           display:block!important;
       }</style></aside>
-<aside><div>
-<p>Quarto uses the <strong>nearest <code>_quarto.yml</code></strong> up the tree as the project root: you add one to <code>day2-projects/</code>, and nothing sits above it, so that folder <em>is</em> your project.</p>
-</div></aside></section>
+</div>
+</section>
 <section id="metadata" class="slide level2">
 <h2>Directory metadata: <code>_metadata.yml</code></h2>
 <p>Yesterday a header set the defaults and a cell overrode them. <code>_metadata.yml</code> applies the <strong>same principle</strong> to every page in a <strong>folder</strong>, so you do not repeat the options in each header:</p>
@@ -360,32 +345,30 @@ Christophe Dervieux
 </div></aside></section>
 <section id="websites" class="slide level2 aside-flow">
 <h2>Websites: pages and navigation</h2>
-<p>You already set <code>type: website</code>, which makes the folder a <strong>site</strong>: its pages share one navbar and sidebar. You describe that navigation once, and Quarto builds it:</p>
+<p>You already set <code>type: website</code>, which makes the folder a <strong>site</strong>. Define the navigation once in <code>_quarto.yml</code>, and Quarto applies it to every page.</p>
 <div class="code-with-filename">
 <div class="code-with-filename-file">
 <pre><strong>_quarto.yml</strong></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3" data-filename="_quarto.yml"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb3-1"><a aria-label="1"></a><span class="fu">website</span><span class="kw">:</span></span>
 <span id="cb3-2"><a aria-label="2"></a><span class="at">  </span><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"Penguin Lab"</span></span>
-<span id="cb3-3"><a aria-label="3"></a><span class="co">  # top bar — one entry per page</span></span>
-<span id="cb3-4"><a aria-label="4"></a><span class="at">  </span><span class="fu">navbar</span><span class="kw">:</span></span>
-<span id="cb3-5"><a aria-label="5"></a><span class="at">    </span><span class="fu">left</span><span class="kw">:</span></span>
-<span id="cb3-6"><a aria-label="6"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">href</span><span class="kw">:</span><span class="at"> index.qmd</span></span>
-<span id="cb3-7"><a aria-label="7"></a><span class="at">        </span><span class="fu">text</span><span class="kw">:</span><span class="at"> Home</span></span>
-<span id="cb3-8"><a aria-label="8"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">href</span><span class="kw">:</span><span class="at"> analysis.qmd</span></span>
-<span id="cb3-9"><a aria-label="9"></a><span class="at">        </span><span class="fu">text</span><span class="kw">:</span><span class="at"> Analysis</span></span>
-<span id="cb3-10"><a aria-label="10"></a><span class="co">  # side menu, built from the files</span></span>
-<span id="cb3-11"><a aria-label="11"></a><span class="at">  </span><span class="fu">sidebar</span><span class="kw">:</span></span>
-<span id="cb3-12"><a aria-label="12"></a><span class="at">    </span><span class="fu">contents</span><span class="kw">:</span><span class="at"> auto</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb3-3"><a aria-label="3"></a><span class="at">  </span><span class="fu">navbar</span><span class="kw">:</span><span class="co">              # list the entries yourself</span></span>
+<span id="cb3-4"><a aria-label="4"></a><span class="at">    </span><span class="fu">left</span><span class="kw">:</span></span>
+<span id="cb3-5"><a aria-label="5"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">href</span><span class="kw">:</span><span class="at"> index.qmd</span></span>
+<span id="cb3-6"><a aria-label="6"></a><span class="at">        </span><span class="fu">text</span><span class="kw">:</span><span class="at"> Home</span></span>
+<span id="cb3-7"><a aria-label="7"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">href</span><span class="kw">:</span><span class="at"> analysis.qmd</span></span>
+<span id="cb3-8"><a aria-label="8"></a><span class="at">        </span><span class="fu">text</span><span class="kw">:</span><span class="at"> Analysis</span></span>
+<span id="cb3-9"><a aria-label="9"></a><span class="at">  </span><span class="fu">sidebar</span><span class="kw">:</span></span>
+<span id="cb3-10"><a aria-label="10"></a><span class="at">    </span><span class="fu">contents</span><span class="kw">:</span><span class="at"> auto</span><span class="co">     # or let Quarto derive them</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="fragment">
-<p><code>contents: auto</code> builds the sidebar from the folder, so you do not need to list every page.</p>
+<p>With <code>contents: auto</code>, Quarto builds the sidebar from the folder structure. Each page’s <code>title:</code> becomes its label, each subfolder becomes a section, and pages appear alphabetically unless they set <code>order:</code>. New pages are included automatically.</p>
 
 <p><strong>Learn more:</strong> <a href="https://quarto.org/docs/websites/">Websites</a> · <a href="https://quarto.org/docs/websites/website-listings.html">Listings</a></p>
 <aside class="notes">
 <ul>
-<li><strong>Do:</strong> add navbar and sidebar; <code>quarto preview</code> to show navigation and the built-in search.</li>
-<li><strong>Say:</strong> “List navbar entries, or let <code>contents: auto</code> build a sidebar.”</li>
+<li><strong>Do:</strong> <code>quarto preview</code> and show the navigation plus the built-in search.</li>
+<li><strong>Say:</strong> “Enumerate the navbar, derive the sidebar. Both live in one file.”</li>
 <li><strong>Next:</strong> independent pages explain the cross-reference rule.</li>
 <li><strong>Watch for:</strong> links are relative to source files, not <code>_site</code>.</li>
 </ul>
@@ -402,25 +385,10 @@ Christophe Dervieux
       }</style></aside>
 </div>
 <aside><div>
-<p><strong>Listings</strong> turn a folder of pages into an auto-generated index (a blog, a gallery of reports) via <code>listing:</code> on a page. One slide’s worth, more in the linked resources.</p>
+<p><strong>Listings</strong> turn a folder of pages into an auto-generated index (a blog, a gallery of reports) via <code>listing:</code> on a page.</p>
 </div></aside></section>
 <section id="xrefs" class="slide level2">
 <h2>Cross-references across a project</h2>
-<div title="Eyes up — not a live *Follow along*">
-<div class="callout callout-warning callout-titled callout-style-default">
-<div class="callout-body">
-<div class="callout-title">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<p><strong>Eyes up — not a live <em>Follow along</em></strong></p>
-</div>
-<div class="callout-content">
-<p>The live build is done. The next slides explain project cross-references.</p>
-</div>
-</div>
-</div>
-</div>
 <p>Within <strong>one page</strong>, <code>@fig-</code>, <code>@tbl-</code>, <code>@eq-</code> resolve to a numbered, linked reference, exactly as on Day 1. (Section headings work the same way with <code>@sec-</code>.)</p>
 <div class="fragment">
 <p>Across <strong>different website pages</strong>, they do <strong>not</strong> auto-number: a website renders each page on its own, so link between pages with ordinary Markdown links and the <strong>navbar/sidebar</strong> instead:</p>
@@ -485,7 +453,7 @@ Christophe Dervieux
 <li>Add a page later? Branded on render, nothing to wire up.</li>
 <li>Need an exception? <code>brand: false</code> opts a page out. <code>brand: other.yml</code> points it elsewhere.</li>
 </ul>
-<p><img data-src="../images/brand-yml-wide-color.svg" alt="" width="300"></p>
+<p><img data-src="../images/brand-yml-wide-color.svg" alt="brand.yml logo" width="300"></p>
 </div></div>
 <p><strong>Learn more:</strong> <a href="https://quarto.org/docs/authoring/brand.html">Quarto brand</a> · <a href="https://posit-dev.github.io/brand-yml/">brand.yml spec</a></p>
 <aside class="notes">
@@ -496,6 +464,7 @@ Christophe Dervieux
 <li><strong>Do not reveal:</strong> theme-layer order; it is the lab exercise.</li>
 <li><strong>Before session:</strong> demo uses <code>[cosmo, brand]</code> or no named theme.</li>
 <li><strong>If asked:</strong> plots need <code>theme_brand_ggplot2()</code>; <code>brand: false</code> opts out.</li>
+<li><strong>If asked (font changes, colors do not):</strong> a bare <code>theme: cosmo</code> expands to <code>[brand, cosmo]</code> and later layers win, so cosmo’s <code>$primary</code> replaces the brand color. The font arrives as <code>--bs-body-font-family</code>, which cosmo does not set, so it survives.</li>
 </ul>
 <style type="text/css">
         span.MJX_Assistive_MathML {
@@ -571,25 +540,10 @@ Christophe Dervieux
 </section>
 <section id="freeze" class="slide level2">
 <h2>Freeze: skip unchanged computations</h2>
-<div title="Follow along">
-<div class="callout callout-note callout-titled callout-style-default">
-<div class="callout-body">
-<div class="callout-title">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<p><strong>Follow along</strong></p>
-</div>
-<div class="callout-content">
-<p>Back in your project’s <code>_quarto.yml</code>.</p>
-</div>
-</div>
-</div>
-</div>
 <p><strong>freeze</strong> was one line in Day 1. Computations can be slow: you don’t want every prose edit to re-run a 20-minute model fit. Two tools, easily confused:</p>
 <ul>
 <li class="fragment"><strong><code>cache</code></strong>: the <strong>compute engine’s</strong> cache, not Quarto’s. It defers to <em>knitr</em> (R) or <em>Jupyter Cache</em>. Per-<strong>cell</strong>, kept until that cell’s code changes, and it works in a <strong>single document</strong>.</li>
-<li class="fragment"><strong><code>freeze</code></strong>: <strong>Quarto’s</strong> switch for when a document re-executes. <strong>Project-only</strong>: rendering one file always runs it. Results live in <code>_freeze/</code>, refreshed only when its source changes. Once every page has frozen results, <strong>CI</strong> <em>(the automated build)</em> can rebuild those pages without R.</li>
+<li class="fragment"><strong><code>freeze</code></strong>: <strong>Quarto’s</strong> switch for when a document re-executes. <strong>Project-only</strong>: rendering one file always runs it. Results live in <code>_freeze/</code>. Once every page has frozen results, <strong>CI</strong> <em>(the automated build)</em> can rebuild those pages without R.</li>
 </ul>
 <div class="fragment">
 <div class="code-with-filename">
@@ -597,14 +551,14 @@ Christophe Dervieux
 <pre><strong>_quarto.yml</strong></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6" data-filename="_quarto.yml"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb6-1"><a aria-label="1"></a><span class="fu">execute</span><span class="kw">:</span></span>
-<span id="cb6-2"><a aria-label="2"></a><span class="at">  </span><span class="fu">freeze</span><span class="kw">:</span><span class="at"> auto</span><span class="co">        # re-execute a document only when its source changes</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb6-2"><a aria-label="2"></a><span class="at">  </span><span class="fu">freeze</span><span class="kw">:</span><span class="at"> auto</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p><strong><code>freeze: auto</code></strong> is the setting to adopt. <strong><code>freeze: true</code></strong> hands you full control instead.</p>
+<p>With <code>freeze: auto</code>, Quarto compares the page’s current source with the source recorded alongside its stored output. If the content is unchanged, Quarto reuses the output. If it changed, Quarto runs the code again. Re-saving an unchanged file does not trigger computation.</p>
 <aside class="notes">
 <ul>
 <li><strong>Say:</strong> “A prose edit should not rerun a 20-minute model.”</li>
 <li><strong>Contrast:</strong> cache = engine, per cell; freeze = Quarto, per document, project only.</li>
-<li><strong>Do:</strong> add <code>freeze: auto</code>; change one page and render.</li>
+<li><strong>Do:</strong> show <code>_freeze/</code> on disk, one folder per page.</li>
 <li><strong>Payoff:</strong> commit <code>_freeze/</code>; CI can build without R.</li>
 <li><strong>Next:</strong> <code>freeze: true</code> gives manual control.</li>
 </ul>
@@ -642,7 +596,7 @@ Christophe Dervieux
 <li><strong>Say:</strong> “With <code>true</code>, only a direct document render recomputes the page.”</li>
 <li><strong>Watch for:</strong> a page with no <code>_freeze/</code> entry and a new page still execute.</li>
 <li><strong>If a render fails</strong> with <code>cannot open file '&lt;name&gt;.qmd'</code>, delete the leftover <code>&lt;name&gt;.knit.md</code> or <code>&lt;name&gt;.rmarkdown</code>, then render again.</li>
-<li><strong>Do:</strong> edit <code>analysis.qmd</code>; render that file; show <code>_freeze/</code> change. Then render the project.</li>
+<li><strong>Do:</strong> open a stored <code>execute-results/html.json</code> and point at the <code>hash</code> field.</li>
 <li><strong>Contrast:</strong> <code>auto</code> recomputes changed pages; <code>true</code> requires manual refresh.</li>
 <li><strong>Example:</strong> quarto.org uses <code>true</code> and commits <code>_freeze/</code>.</li>
 </ul>
@@ -699,14 +653,14 @@ Christophe Dervieux
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a aria-label="1"></a><span class="ex">quarto</span> publish posit-connect-cloud</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>The first run opens a browser to sign in, then uploads the site.</p>
 <p><code>quarto publish</code> renders the project first by default. Add <code>--no-render</code> to upload the <code>_site/</code> you already built.</p>
-<div title="Your turn — optional, if we have time">
+<div title="Optional: publish your site">
 <div class="callout callout-tip callout-titled callout-style-default">
 <div class="callout-body">
 <div class="callout-title">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<p><strong>Your turn — optional, if we have time</strong></p>
+<p><strong>Optional: publish your site</strong></p>
 </div>
 <div class="callout-content">
 <p>Publish your site and open it on your phone. The lab has the steps. If you skip publishing, you still have the complete <code>_site/</code> folder.</p>
