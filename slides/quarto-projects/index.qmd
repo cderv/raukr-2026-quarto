@@ -76,7 +76,7 @@ format:
 :::
 ::: {.column width="48%"}
 ::: {.incremental}
-- No other `_quarto.yml` sits above `day2-projects/`, so this file defines the project root.
+- This is the nearest `_quarto.yml`, so `day2-projects/` is the project root.
 - `quarto render` with no file argument builds **every** page in it.
 - The `format:` settings apply to every page.
 - **`output-dir`**: where the built site is written. Publish *that* folder.
