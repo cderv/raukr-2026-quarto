@@ -618,14 +618,15 @@ Back in your editor: add citations to your **`my-report.qmd`**. Not finished wit
 `authoring-checkpoint.qmd` as `my-report.qmd` first.
 :::
 
-Point the header at a `.bib`, then cite with `@key`:
 
 :::: {.columns}
 ::: {.column width="55%"}
+
+Point the header at a `.bib`, then cite with `@key`:
+
 ``` yaml
 bibliography: references.bib
 csl: apa.csl
-citeproc: true
 ```
 ``` markdown
 The data come from Palmer Station [@gorman2014].
@@ -645,7 +646,7 @@ renders as: … (Gorman et al., 2014).
 :::
 ::::
 
-Typst places its own list last. With `citeproc: true` the list goes in this div instead:
+Pandoc's citation processing is the default for HTML (`citeproc: true`). It allows to change place of references using this div:
 
 ``` markdown
 ::: {#refs}
