@@ -440,7 +440,7 @@ Extra topics:
 ::: {.incremental}
 - **Book versus website**: choose a **book** for ordered chapters with global numbering. Choose a
   **website** for independent pages.
-- **Interactivity**: an **htmlwidget** (`plotly`, `leaflet`) is pure R and self-contained.
+- **Interactivity**: an **htmlwidget** (`plotly`, `leaflet`) is written in R and runs in the browser.
   **[OJS](https://quarto.org/docs/interactive/ojs/)** *(Observable JS, a browser-side, non-R path)*
   and **[Shinylive](https://quarto-ext.github.io/shinylive/)** *(Shiny running in the browser,
   no server)* are links, not live builds.
@@ -449,7 +449,7 @@ Extra topics:
 ::: notes
 - **Timing:** cut from the bottom if fewer than 5 minutes remain.
 - **Optional group demo:** open the rendered dashboard from the lab and briefly name the valueboxes,
-  boxplot card, and tabbed panel. Do not ask participants to build it.
+  boxplot card, and tabset. Do not ask participants to build it.
 :::
 
 ## Thank you! {.center}
