@@ -224,7 +224,7 @@ typography:
 - Add a page later? Branded on render, nothing to wire up.
 - Need an exception? `brand: false` opts a page out. `brand: other.yml` points it elsewhere.
 
-![](../images/brand-yml-wide-color.svg){width="300px" fig-alt=""}
+![](../images/brand-yml-wide-color.svg){width="300px" fig-alt="brand.yml logo"}
 :::
 ::::
 

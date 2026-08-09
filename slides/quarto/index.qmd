@@ -690,7 +690,7 @@ Renders in HTML, PDF, and Typst. Write it once.
 
 ## Typst — modern PDF, no LaTeX {#typst}
 
-**Typst** is a modern typesetting system that is **bundled with Quarto**: nothing to install, no
+**Typst** (<https://typst.app/>) is a modern typesetting system that is **bundled with Quarto**: nothing to install, no
 LaTeX toolchain.
 
 ``` yaml
@@ -703,7 +703,9 @@ That is the only change. Then re-render:
 quarto render report.qmd
 ```
 
-The header already says which format, so nothing else is needed. To get the PDF *without* touching
+The header already says which format, so nothing else is needed. 
+
+To get the PDF *without* touching
 the header, ask for it on the command line instead: `quarto render report.qmd --to typst`.
 
 ::: {.callout-note title="Version check"}
@@ -741,8 +743,14 @@ typography:
 - The R side (`theme_brand_ggplot2()` / `theme_brand_gt()` from the **brand.yml** package) themes
   your **plots and tables** from the *same* palette.
 - Quarto fetches Google fonts for Typst automatically.
+
+![](../images/brand-yml-wide-color.svg){width="300px" fig-alt="brand.yml logo"}
+
 :::
 ::::
+
+**Learn more:** [Quarto brand](https://quarto.org/docs/authoring/brand.html) ·
+[brand.yml spec](https://posit-dev.github.io/brand-yml/)
 
 ::: notes
 - **Do:** add `_brand.yml`; re-render and show color and type changes.
