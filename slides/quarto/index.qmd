@@ -623,7 +623,7 @@ A `.bib` file holds one entry per source. The entry key is what you cite.
   year   = {2014}
 }
 ```
-Export entries from Zotero, a DOI, or the journal's *Cite* button.
+Create or export BibTeX entries with Zotero, a DOI lookup, or the journal's *Cite* button.
 :::
 ::: {.column width="53%"}
 Two header lines point at the file and the style:
@@ -633,13 +633,14 @@ bibliography: references.bib
 csl: apa.csl
 ```
 
-**CSL** = *Citation Style Language*. Swap the `csl:` file to restyle everything for another journal.
+**CSL** = *Citation Style Language*. Change `csl:` to another CSL file to apply that journal's
+citation style.
 :::
 ::::
 
 . . .
 
-The brackets decide how the citation reads:
+Use brackets to control the citation form:
 
 | You write | You get |
 |-----------|---------|
@@ -650,8 +651,9 @@ The brackets decide how the citation reads:
 **Learn more:** [Citations](https://quarto.org/docs/authoring/citations.html)
 
 ::: notes
-- **Say:** "The key is the only thing you type. The style file does the rest."
-- **Ask:** "Who already keeps a `.bib` from Zotero?"
+- **Say:** "Type the entry key in your citation. The CSL file formats the citation and reference-list
+  entry."
+- **Ask:** "Who already manages references with Zotero?"
 - **If asked:** CSL means Citation Style Language.
 - **Watch for:** a key that does not match an entry renders as `[?]`.
 :::
