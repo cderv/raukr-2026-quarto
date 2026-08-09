@@ -25,8 +25,11 @@ node .claude/scripts/slide-shot.mjs <abs path to _site/…/index.html> <anchor-i
 
 **`slide-shot.mjs` only runs in the web sandbox.** It imports Playwright from a hardcoded
 `/opt/node22/…` path, so on a normal machine it dies with `ERR_MODULE_NOT_FOUND` before it opens
-anything. Off-sandbox, use **`agent-browser`** (on the PATH; `npx agent-browser` also works) against a
-locally served copy of the built site. `file://` is not worth fighting:
+anything. **`agent-browser`** is the portable alternative and works **in** the sandbox too, so it is
+the one tool that covers both (it also gives you an accessibility snapshot, which the helper does
+not). It needs one env var here — setup and the proxy gotcha are in
+`.claude/references/reviewing-the-live-site.md`. Point it at a locally served copy of the built site,
+because `file://` is not worth fighting:
 
 ```sh
 simple-http-server.exe --nocache -i -p 8899 _site      # from the repo root

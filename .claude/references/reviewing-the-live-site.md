@@ -4,6 +4,24 @@ How the `student-participant` and `workshop-reviewer-pedagogue` agents read the 
 **built site over HTTP**, not from the `.qmd` source. Everything below was verified against this repo
 on 2026-08-07; the failures are recorded because each one costs an agent a confused half hour.
 
+## Sandbox setup — turn the proxy off first
+
+```bash
+npm install -g agent-browser            # not on the PATH by default; lands in /opt/node22/bin
+export AGENT_BROWSER_PROXY="direct://"  # required in the sandbox
+```
+
+`HTTPS_PROXY` is set in this sandbox and agent-browser routes the **browser** through it. Navigation
+then never commits: `open` fails with a generic `✗ Operation timed out` and the page stays at
+`about:blank`. That reads like a launch failure and is not one (`eval` and `screenshot` keep working
+while navigation hangs, so the browser is up). `env -u HTTPS_PROXY` and the `--proxy direct://` flag
+do the same job.
+
+Verified 2026-08-09. Four things that look like the fix and are not: `--executable-path`
+(unnecessary, `agent-browser install` works here and fetches its own Chrome), `--args "--no-sandbox"`
+(already added automatically when running as root), a simplified `NO_PROXY=localhost,127.0.0.1`, and
+`AGENT_BROWSER_PROXY_BYPASS`.
+
 ## Why the source is the wrong input for these two
 
 A lab page in source shows its Hints and Solutions as plain text, so an agent reads them the instant
@@ -21,14 +39,19 @@ SITE_URL=$(.claude/scripts/site-serve.sh start --render | sed -n 's/^SITE_URL=//
 .claude/scripts/site-serve.sh stop
 ```
 
-**The deployed site is not reachable from the agent browser** (verified 2026-08-07). `curl` reaches
-<https://cderv.github.io/raukr-2026-quarto/> through the sandbox proxy, so it is tempting to assume a
-browser can too. It cannot: every external URL fails with `net::ERR_CONNECTION_RESET`, with or without
-`--proxy`, and the proxy log never records the attempt. `127.0.0.1` is in `NO_PROXY` and connects
-directly, which is why the local build works and is the only target that does.
+Review work targets the **local build**: it is the only one that carries unpublished changes, and
+`SITE_STALE` guards against reviewing a page that no longer matches the source.
 
-Reviewing the published site would need a different mechanism (fetch the HTML with `curl` and serve
-it locally, losing the site's CSS and JS in the process). Nobody has needed it yet.
+**Corrected 2026-08-09 — the deployed site is reachable after all.** This section used to say every
+external URL failed with `net::ERR_CONNECTION_RESET`. That was the proxy defect above wearing a
+different mask. With `AGENT_BROWSER_PROXY` set, the failure becomes
+`net::ERR_CERT_AUTHORITY_INVALID` (the sandbox intercepts TLS) and one flag loads it:
+
+```bash
+agent-browser --ignore-https-errors open "https://cderv.github.io/raukr-2026-quarto/"
+```
+
+Use it only to check what is actually published. It is not the review target.
 
 `SITE_STALE=1` names the sources newer than the build. Reviewing a stale page produces findings about
 content that no longer exists, so treat it as a stop sign. `--render` rebuilds first.
