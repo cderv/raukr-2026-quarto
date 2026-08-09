@@ -60,8 +60,8 @@ From one file to a whole site.
 
 ## Why a *project*? {#why-project}
 
-You never declare a project. Quarto **finds** it: from the file being rendered it walks **up** the
-tree and stops at the **first `_quarto.yml`**. That file marks the root.
+Quarto identifies the project root by searching **up** from the file being rendered and using the
+**nearest `_quarto.yml`**.
 
 :::: {.columns}
 ::: {.column width="52%"}
@@ -76,9 +76,9 @@ format:
 :::
 ::: {.column width="48%"}
 ::: {.incremental}
-- Nothing sits above `day2-projects/`, so that folder **is** the project.
+- No other `_quarto.yml` sits above `day2-projects/`, so this file defines the project root.
 - `quarto render` with no file argument builds **every** page in it.
-- `format:` set here reaches all of them.
+- The `format:` settings apply to every page.
 - **`output-dir`**: where the built site is written. Publish *that* folder.
 :::
 :::
@@ -86,10 +86,10 @@ format:
 
 . . .
 
-**Nearest wins.** A `_quarto.yml` closer to the file hides any that sit further up.
+**Nearest wins.** Quarto ignores any `_quarto.yml` files above the project root.
 
 ::: notes
-- **Say:** "Put the file down and Quarto finds it. That is the whole mechanism."
+- **Say:** "Place `_quarto.yml` in a folder to make that folder the project root."
 - **Do:** render once and show the output move from beside the `.qmd` into `_site/`.
 - **Ask:** "Where is the root if a folder above also has a `_quarto.yml`?" (The nearer one.)
 :::
@@ -125,8 +125,8 @@ pages at the project root.
 
 ## Websites: pages and navigation {#websites .aside-flow}
 
-You already set `type: website`, which makes the folder a **site**. **Navigation is configuration**:
-no page holds a link bar. You describe it once, and every page gets it.
+You already set `type: website`, which makes the folder a **site**. Define the navigation once in
+`_quarto.yml`, and Quarto applies it to every page.
 
 ``` {.yaml filename="_quarto.yml"}
 website:
@@ -143,8 +143,9 @@ website:
 
 . . .
 
-A derived sidebar reads the folder: each page's `title:` becomes its label, a subfolder becomes a
-section, order is alphabetical unless a page sets `order:`. Add a page and the navigation follows.
+With `contents: auto`, Quarto builds the sidebar from the folder structure. Each page's `title:`
+becomes its label, each subfolder becomes a section, and pages appear alphabetically unless they
+set `order:`. New pages are included automatically.
 
 ::: {.aside}
 **Listings** turn a folder of pages into an auto-generated index (a blog, a gallery of reports) via
@@ -282,9 +283,9 @@ execute:
   freeze: auto
 ```
 
-Alongside each page's stored output, Quarto keeps a **hash of that page's source**. The next build
-re-hashes the file: same hash, reuse the stored output. Different hash, run the code again. It
-compares **content**, not timestamps, so re-saving an unchanged file changes nothing.
+With `freeze: auto`, Quarto compares the page's current source with the source recorded alongside
+its stored output. If the content is unchanged, Quarto reuses the output. If it changed, Quarto
+runs the code again. Re-saving an unchanged file does not trigger computation.
 
 ::: notes
 - **Say:** "A prose edit should not rerun a 20-minute model."

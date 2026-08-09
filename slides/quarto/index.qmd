@@ -64,7 +64,7 @@ Slides and lab live at <https://cderv.github.io/raukr-2026-quarto/>. Open them o
 move at your own pace.
 
 ::: notes
-- **Say:** "Watch me first, hands free. You build it in the lab."
+- **Say:** "First, watch the demonstration. Then build it in the lab."
 - **Say:** solutions are folded into the lab, so they can self-check.
 - **Do:** pause on the URL. It is the catch-up path.
 - **Catch-up:** no exercises folder? Use the Setup page and help them run `use_course()`.
