@@ -728,14 +728,17 @@ Figure&nbsp;1: The analysis page’s figure: body mass by species.
 </div>
 </div>
 </section>
-<section id="scope-options-to-one-folder" class="level3" data-number="1.4">
+<section id="scope-options-to-one-folder" class="level3 page-columns page-full" data-number="1.4">
 <h3 data-number="1.4" class="anchored" data-anchor-id="scope-options-to-one-folder"><span class="header-section-number">1.4</span> Scope options to one folder</h3>
 <p><strong>Goal.</strong> Fold the code on the two pages in <code>reports/</code>, and only there, behind a toggle labeled <strong>Show the code</strong>. The home and analysis pages keep showing their code as before.</p>
-<p>You have not looked at <code>day2-projects/reports/</code> yet. It holds two short pages, <code>methods.qmd</code> and <code>data-notes.qmd</code>, each with a small code cell.</p>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p><i class="fa-solid fa-book-open" aria-label="book-open"></i> <strong>Quarto docs</strong></p>
+<p><a href="https://quarto.org/docs/projects/quarto-projects.html#directory-metadata">Directory metadata</a> · <a href="https://quarto.org/docs/output-formats/html-code.html#folding-code">Folding code</a></p>
+</div></div><p>You have not looked at <code>day2-projects/reports/</code> yet. It holds two short pages, <code>methods.qmd</code> and <code>data-notes.qmd</code>, each with a small code cell.</p>
 <p>A <code>_metadata.yml</code> file applies options to every document in its folder. Put one in <code>reports/</code> to configure both pages without editing either file. It takes the same document options you would write in <code>_quarto.yml</code>. The difference is where they apply.</p>
 <p>You need two options. <code>code-fold</code> gives you the toggle, and a second option sets its label. The default label is <code>Code</code>, and the checkpoint asks for <strong>Show the code</strong>.</p>
 <p>Neither page is in the navbar. Use the site search (the magnifier) to open them.</p>
-<p>Docs: <a href="https://quarto.org/docs/projects/quarto-projects.html#directory-metadata">Directory metadata</a> · <a href="https://quarto.org/docs/output-formats/html-code.html#folding-code">Folding code</a>.</p>
 <div class="callout callout-style-simple callout-note no-icon callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
