@@ -333,8 +333,8 @@ decide when to recompute each page.
 ::: notes
 - **Say:** "With `true`, only a direct document render recomputes the page."
 - **Watch for:** a page with no `_freeze/` entry and a new page still execute.
-- **Watch for:** a render failing with `cannot open file '<name>.qmd'`. Delete the leftover
-  `<name>.knit.md` or `<name>.rmarkdown` and render again.
+- **If a render fails** with `cannot open file '<name>.qmd'`, delete the leftover
+  `<name>.knit.md` or `<name>.rmarkdown`, then render again.
 - **Do:** edit `analysis.qmd`; render that file; show `_freeze/` change. Then render the project.
 - **Contrast:** `auto` recomputes changed pages; `true` requires manual refresh.
 - **Example:** quarto.org uses `true` and commits `_freeze/`.
@@ -458,6 +458,6 @@ Questions?
 [Christophe Dervieux · [GitHub `@cderv`](https://github.com/cderv){preview-link="false"} · [cderv@posit.co](mailto:cderv@posit.co)]{style="font-size:0.6em"}
 
 ::: notes
-- **Spare time:** open the lab's dashboard and name the valueboxes, boxplot card, and tabset. Only
-  if questions run out.
+- **If time remains after questions:** open the lab's dashboard and name the valueboxes, boxplot
+  card, and tabset.
 :::

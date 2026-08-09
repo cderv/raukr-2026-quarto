@@ -114,12 +114,12 @@ Run it before any session, and after any `labs/**` change you thought was finish
   Adding another takes **three** edits, not one: the sync manifest, a render step in the scaffold's
   `render-check.yml`, **and** — when the file is one a participant is meant to end up with — the
   `groups` manifest in `tools/render-demos.R`. Miss the second and nothing validates the file at all;
-  miss the third and the demo hub silently drops it (nothing checks for that either). Note the demos
-  are *not* the site `render:` list: they render as their own projects, so this is not a way back in.
+  miss the third and the demo hub omits it without reporting an error. The demos are *not* the site
+  `render:` list: they render as their own projects, so adding one does not add it to the site build.
 - Keep the payload **tiny** (no `_freeze/`, `_extensions/`, `slides/` in `exercises/`) — 40 laptops pull
-  it over venue Wi-Fi. The exercises-repo CI has a zip-size budget that trips on a stray heavy file.
+  it over venue Wi-Fi. The exercises-repo CI fails its zip-size check if an unexpected large file is included.
 
-## Gotchas banked from real runs
+## Problems found during real runs
 
 - **Delivery-repo CI installs packages from `DESCRIPTION`** (`r-lib/actions/setup-r-dependencies`).
   No `renv.lock` ships in the payload (dropped 2026-08-06 — it confused participants, and

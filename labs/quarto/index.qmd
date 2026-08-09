@@ -654,7 +654,7 @@ your work or render it with different `-P species:` values. You can also take th
   `apa.csl` / `_brand.yml` and render again.
 - **Do I need to install Typst?** No. Typst is bundled in Quarto ≥ 1.9, so there's nothing extra to
   install (no LaTeX either). Check `quarto --version`.
-- **Typst PDF looks unbranded / wrong fonts?** An unbranded render succeeds silently, so check the
+- **Typst PDF looks unbranded / wrong fonts?** An unbranded render can succeed without a warning, so check the
   **title and headings**, not the log. A branded PDF uses **Albert Sans**. An unbranded PDF uses
   Typst's default serif. Table 1 stays serif either way, so don't judge by the table. Confirm
   `_brand.yml` is in your `day1-intro/` folder (next to the `.qmd`) and you have network on the first

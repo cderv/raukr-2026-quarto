@@ -75,7 +75,7 @@ The teaching is Christophe's: what belongs in two afternoons, what an experience
 skip, which Quarto claims are safe to make on stage.
 
 Drafting and review were LLM-assisted, session by session and directed throughout. The working
-setup is in the open under `.claude/`: path-scoped gotchas that bite when editing (`rules/`),
+setup is in the open under `.claude/`: path-scoped editing rules (`rules/`),
 reference notes on the Quarto techniques used here (`references/`), a four-lens review panel and
 an agent that walks the labs as a first-time participant (`agents/`, `commands/`), the Quarto bug
 reports this material turned up (`upstream-issues/`), and two Claude Code hooks (sandbox setup,

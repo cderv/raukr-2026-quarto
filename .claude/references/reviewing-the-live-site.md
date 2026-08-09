@@ -2,7 +2,7 @@
 
 How the `student-participant` and `workshop-reviewer-pedagogue` agents read the material: from the
 **built site over HTTP**, not from the `.qmd` source. Everything below was verified against this repo
-on 2026-08-07; the failures are recorded because each one costs an agent a confused half hour.
+on 2026-08-07; the failures are recorded because they are time-consuming to diagnose.
 
 ## Sandbox setup — turn the proxy off first
 
@@ -12,7 +12,7 @@ export AGENT_BROWSER_PROXY="direct://"  # required in the sandbox
 ```
 
 `HTTPS_PROXY` is set in this sandbox and agent-browser routes the **browser** through it. Navigation
-then never commits: `open` fails with a generic `✗ Operation timed out` and the page stays at
+then never completes: `open` fails with a generic `✗ Operation timed out` and the page stays at
 `about:blank`. That reads like a launch failure and is not one (`eval` and `screenshot` keep working
 while navigation hangs, so the browser is up). `env -u HTTPS_PROXY` and the `--proxy direct://` flag
 do the same job.
@@ -43,8 +43,8 @@ Review work targets the **local build**: it is the only one that carries unpubli
 `SITE_STALE` guards against reviewing a page that no longer matches the source.
 
 **Corrected 2026-08-09 — the deployed site is reachable after all.** This section used to say every
-external URL failed with `net::ERR_CONNECTION_RESET`. That was the proxy defect above wearing a
-different mask. With `AGENT_BROWSER_PROXY` set, the failure becomes
+external URL failed with `net::ERR_CONNECTION_RESET`. That was another symptom of the proxy defect
+above. With `AGENT_BROWSER_PROXY` set, the failure becomes
 `net::ERR_CERT_AUTHORITY_INVALID` (the sandbox intercepts TLS) and one flag loads it:
 
 ```bash
@@ -57,7 +57,7 @@ Use it only to check what is actually published. It is not the review target.
 content that no longer exists, so treat it as a stop sign. `--render` rebuilds first.
 
 **HTTP, never `file://`.** Over `file://` the page still looks right, but its JS never runs, so a
-click on a Hint silently does nothing and the reviewer concludes the hint is broken. This is why the
+click on a Hint has no effect and the reviewer concludes the hint is broken. This is why the
 script exists rather than handing the agent an `_site/` path.
 
 ## Read a page
@@ -94,8 +94,8 @@ toggle as a **role-less `<div>`** (an open a11y strand, so it may be fixed upstr
 | `find text "Hint" click` | matches, clicks, nothing expands |
 | `click "<css>"` without scrolling first | reports success, nothing expands |
 
-The same defect is why a screen-reader user cannot operate these hints. An agent hitting it is the
-cheap version of the same finding.
+The same defect prevents a screen-reader user from operating these hints. Encountering it during an
+agent review reproduces the same accessibility problem.
 
 `eval` is the fallback when you need to inspect state rather than click (counting
 `.callout-collapse.show`, say). One caveat: every `eval` in a session shares a single JS context, so a

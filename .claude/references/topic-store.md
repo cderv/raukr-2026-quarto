@@ -335,7 +335,7 @@ list, not from the exercise.
 | 5 | frame + project hook | My | "this is how your team publishes its project" |
 | 17 | concept + live demo | My + Our | Freeze (motivation-first: don't re-run slow compute) · **watch-me** `publish`/CI on a pre-provisioned repo |
 | 48 | hands-on | Your | **the payoff**: `quarto render` + `output-dir` on your project (publish = watch-me, auth pre-flighted). _(The parameterized-report step once floated for here landed on **Day 1** instead, 2026-07-22.)_ |
-| 15 | recap + questions | My | wrap-up, then Q&A. **Retired 2026-08-09:** the demo tail (Books / Dashboards / an htmlwidget) had its own slide and was cut — it reopened the deck after the arc had closed, and the dashboard is better delivered self-paced from the lab |
+| 15 | recap + questions | My | wrap-up, then Q&A. **Retired 2026-08-09:** the demo tail (Books / Dashboards / an htmlwidget) had its own slide and was cut — it reopened the deck after the arc had closed, and the dashboard is better left as a self-paced lab activity |
 
 ---
 

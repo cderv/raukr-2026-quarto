@@ -73,6 +73,13 @@ principle: **written prose states; the presenter's voice lives in `::: notes`.**
   sideways", "hit the ground running", "low-hanging fruit"). Propose the plain, literal statement.
   Near-literal metaphors he actually uses ("batteries included", "under the hood") are fine; `::: notes`
   are spoken cues, so relax there.
+- **Troubleshooting and operational prose.** When reviewing a branch, commit, setup guide, or changed
+  maintainer file, apply the literal-language check to Troubleshooting blocks, recovery instructions,
+  shell/YAML/SCSS comments, and `.claude` references. Flag personified software behaviour (`bites`,
+  `fights`, `starves`, `strands`, `happily accepts`), dramatic judgments (`bogus`, `harmless`), and
+  unexplained shorthand (`seed it`, `stages atomically`, `load-bearing fix`). Require a concrete
+  symptom, an optional useful cause, and an exact action. See `.claude/rules/prose-voice.md`
+  § Troubleshooting.
 
 Then the classic register fixes. Concretely:
 
@@ -136,10 +143,12 @@ so leave idiom, contractions, and voice-over phrasing alone. Do flag a note that
 lab text, narrates background, or runs past one line per **Say** / **Do** / **Ask** / **Watch for** /
 **Catch-up** item (`.claude/rules/prose-voice.md` § Presenter notes).
 
-**Out of scope**: `README.md` (GitHub meta) and `.claude/` internal notes. Don't touch technical terms,
-proper nouns, code, YAML keys, paths, commands, or Quarto syntax (callouts, `{{< >}}`
-shortcodes, `:::` fenced divs, labels). Never change what a sentence technically asserts — if
-a reword would touch meaning, mark it ⚠️ and leave the rewrite to a human.
+**Default workshop-wide review scope excludes** `README.md` (GitHub meta) and `.claude/` internal
+notes. A branch, commit, or repository-wide wording review includes changed README text, maintainer
+guidance, troubleshooting references, and explanatory code comments. Do not alter technical terms,
+proper nouns, code, YAML keys, paths, commands, or Quarto syntax (callouts, `{{< >}}` shortcodes,
+`:::` fenced divs, labels). Never change what a sentence technically asserts. If a reword would
+touch meaning, mark it ⚠️ and leave the rewrite to a human.
 
 # Method
 
@@ -165,6 +174,9 @@ grep -rniE '\b(bioinformatic|genomic|sequenc|alignment|capstone)\w*' --include='
 # Cross-day pointers — judge each in context (a plain callback is fine, a narrated one is not)
 grep -rniE '\b(story|saga|chapter|teas(e|ed|er)|foreshadow\w*|yesterday|tomorrow)\b' \
   --include='*.qmd' slides labs
+# Troubleshooting and comment metaphors (inspect matches; examples in the rules will match too)
+grep -rniE '\b(gotcha|bogus|harmless|silently|clobber[a-z]*|starv[a-z]*|strand[a-z]*|happily|fight[a-z]*|bite|bites)\b|sharp edge|worked blind' \
+  --include='*.qmd' --include='*.md' --include='*.sh' --include='*.scss' --include='*.yml' --include='*.yaml'
 ```
 
 # Deliverable format

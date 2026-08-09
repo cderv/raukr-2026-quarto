@@ -365,7 +365,8 @@ A `listing:` key in the **YAML header of `index.qmd`** builds the table, and `co
 folder it indexes. Where the table appears on the page is a separate choice.
 
 If `quarto preview` is still running, stop it (`Ctrl` + `C` in the terminal) before you re-render.
-Otherwise the preview keeps serving its own build and you compare against a stale page.
+Otherwise, the running preview may rebuild the page and leave you checking a different result from
+the one produced by `quarto render`.
 
 ::: {.callout-note appearance="simple" icon=false}
 ## {{< fa circle-check >}} You should see
@@ -728,8 +729,7 @@ produced them.
 - **Rendered, but can't find the HTML?** Before you add `_quarto.yml`, a single-page render writes
   the HTML **next to its source** in `day2-projects/`. Once `_quarto.yml` is present, a project render
   collects all pages under `day2-projects/_site/`. Look in those two places. The earlier
-  `analysis.html` and `analysis_files/` next to the sources are leftovers at that point: delete them
-  if you like.
+  `analysis.html` and `analysis_files/` next to the sources are no longer used and can be deleted.
 - **YAML is indentation-sensitive.** If rendering fails *before* any code runs, check `_quarto.yml`
   for stray spaces, tabs, or unmatched quotes.
 - **"No project" / pages don't link?** The `_quarto.yml` must be **inside `day2-projects/`**, and
@@ -737,14 +737,13 @@ produced them.
 - **Brand not applied?** Two causes. The file must be in `day2-projects/` (the project root), and
   `brand` must come **last** in the `theme:` list: `theme: [cosmo, brand]` gives you the palette,
   while `theme: cosmo` on its own keeps cosmo's colors and only the fonts change. Re-render after
-  either fix. For
-  **plots**, the palette needs `library(brand.yml)` + `theme_brand_ggplot2()` (the file alone doesn't
-  reach ggplot).
+  either fix. For **plots**, the palette needs `library(brand.yml)` + `theme_brand_ggplot2()`;
+  `_brand.yml` alone does not apply the palette to ggplot figures.
 - **Render fails with "references.bib not found"?** Your Day-1 report points at `references.bib` and
   `apa.csl` by relative path. Copy both files from `day1-intro/` into `day2-projects/`, next to the
   report, and render again.
-- **A cross-reference shows `?@…`?** The cell label must start `fig-`/`tbl-`/`eq-` and be unique, and
-  remember it only resolves **within one page** on a website.
+- **A cross-reference shows `?@…`?** The cell label must start `fig-`/`tbl-`/`eq-` and be unique.
+  Website cross-references resolve only **within one page**.
 - **Freeze didn't skip the cell?** Under `freeze: auto` it skips only when the source is **unchanged**
   since the last build: any edit (prose or code) re-runs that page. Delete `_freeze/` to force a
   clean rebuild.

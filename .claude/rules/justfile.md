@@ -56,7 +56,7 @@ cmd). The `justfile` must work there with **zero setup** — no Git Bash install
        $ErrorActionPreference = "Stop"
        ...
    ```
-   **Windows shebang gotcha:** a shebang containing `/` (e.g. `#!/usr/bin/env bash`) is run through
+   **Windows shebang constraint:** a shebang containing `/` (e.g. `#!/usr/bin/env bash`) is run through
    `cygpath.exe` → requires Git Bash/Cygwin. A **bare** interpreter name (`#!powershell.exe`, `#!pwsh`,
    `#!python`) is executed directly, no cygpath. Windows variants must use the bare form.
    Better still: if two script bodies want shared logic, push it into an R script or a `quarto` call

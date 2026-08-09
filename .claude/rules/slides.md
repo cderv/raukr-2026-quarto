@@ -8,13 +8,13 @@ paths:
 Concrete patterns distilled from content-feedback rounds on the RaukR decks
 (`slides/quarto/`, `slides/quarto-projects/`). The full house style lives in
 `project-context.md § Content patterns`; this file is the short list of
-technical gotchas that keep biting. When you **edit** a slide, apply these; when
+technical constraints that require explicit checks. When you **edit** a slide, apply these; when
 you **review**, check for them.
 
 ## 1. Fit-check every changed slide — overflow is invisible in source
 
-revealjs silently overflows the 720 px-tall frame: a slide with too much content
-just clips, and you cannot see it in the `.qmd`. Layout bugs — the closing-slide
+Revealjs clips content that exceeds the 720 px-tall frame without reporting an error, and you cannot
+see the problem in the `.qmd`. Layout bugs — the closing-slide
 overlap, a too-dense slide — are only caught by looking. After changing a slide,
 render and screenshot it headless at native deck size:
 
@@ -27,9 +27,9 @@ node .claude/scripts/slide-shot.mjs <abs path to _site/…/index.html> <anchor-i
 `/opt/node22/…` path, so on a normal machine it dies with `ERR_MODULE_NOT_FOUND` before it opens
 anything. **`agent-browser`** is the portable alternative and works **in** the sandbox too, so it is
 the one tool that covers both (it also gives you an accessibility snapshot, which the helper does
-not). It needs one env var here — setup and the proxy gotcha are in
-`.claude/references/reviewing-the-live-site.md`. Point it at a locally served copy of the built site,
-because `file://` is not worth fighting:
+not). It needs one environment variable here; setup and proxy details are in
+`.claude/references/reviewing-the-live-site.md`. Point it at a locally served copy of the built site
+because the deck's JavaScript does not run correctly over `file://`:
 
 ```sh
 simple-http-server.exe --nocache -i -p 8899 _site      # from the repo root
@@ -39,14 +39,14 @@ agent-browser wait --fn "window.Reveal && window.Reveal.isReady()"
 agent-browser close
 ```
 
-Two things that bite in that eval: it has **no top-level `await`**, so wrap the whole script in an
-`(async () => { … })()` that returns the result, and `Reveal.slide(…)` needs a short settle before
+The evaluation has two constraints. It has **no top-level `await`**, so wrap the whole script in an
+`(async () => { … })()` that returns the result, and `Reveal.slide(…)` needs a short delay before
 you measure. Reveal reports slide geometry in **deck** coordinates (720), not viewport pixels, so the
 window size does not matter and there is no need to resize anything.
 
 **Force the fragments rather than stepping them.** `Reveal.nextFragment()` reports nothing left to
-advance when a slide was already visited, which silently turns the fragment check into the initial
-state (a false pass, see the second bullet below). Add the `visible` class to every `.fragment` on the
+advance when a slide was already visited, so the fragment check uses the initial state and returns a
+false pass (see the second bullet below). Add the `visible` class to every `.fragment` on the
 slide instead, then measure.
 
 Navigate by **anchor id** (`## Title {#anchor}` → the helper opens `#/anchor`) —
@@ -71,7 +71,7 @@ you must eyeball the screenshot for:**
   grows the body as it reveals and can collide with a bottom-anchored
   `::: aside` — invisible at the initial fragment state, and again a false pass
   because asides are absolutely positioned (they don't count toward `scrollH`).
-  If a revealed body and an aside fight for the bottom, either cut one (the
+  If a revealed body and an aside overlap at the bottom, either cut one (the
   relevance beat often already lives in `::: notes`) or add **`.aside-flow`** to
   the slide — see § 1b.
 
@@ -174,7 +174,7 @@ of the ```` ```{{r}} ```` block escape). Caveat: all of this assumes the documen
 least one executable cell — in a markdown-engine (no-cell) document the braced form renders
 literally and never executes. Rule of thumb: **single brace = executes** (use
 where you want the value), **double brace = literal** (use where you're teaching the
-syntax). Always render-and-look — the wrong one silently prints "342" where you meant to
+syntax). Always render and inspect the result. The wrong brace form prints "342" where you meant to
 show `` `{r} …` ``.
 
 ## 6. Consecutive code blocks need spacing — already in `theme.scss`
@@ -184,9 +184,8 @@ them). `theme.scss` carries an `@each` adjacency rule that gives stacked blocks
 `margin-top`, and it covers **all three** wrappers Quarto emits depending on
 features: `div.sourceCode` (plain), `.code-copy-outer-scaffold`
 (line-numbered / copy button), `.code-with-filename` (filename tab). So: just
-stack the blocks — **don't** hand-insert `<br>`. And any new SCSS that targets
-code blocks must cover all three wrappers, or it will silently miss the
-line-numbered / filename variants.
+stack the blocks — **don't** hand-insert `<br>`. Any new SCSS that targets code blocks must cover all
+three wrappers; otherwise it does not apply to the line-numbered or filename variants.
 
 ## 7. Teaching a cell option? Show it with `#| echo: fenced`
 
@@ -247,8 +246,8 @@ for it in exercise steps.
 ## 8. A YAML block on a slide is never validated — render it once yourself
 
 Slide code blocks are **non-executable display blocks** (`{.yaml}`, `{.bash}`).
-Quarto renders the deck happily whatever is inside them, so a header that would
-fail on a participant's machine ships looking perfect. The fit-check in § 1 will
+Quarto does not validate their contents, so a header that would fail on a participant's machine can
+ship looking correct. The fit-check in § 1 will
 not catch it either: it measures pixels, not syntax.
 
 The case that got through: the Day-1 formats slide taught
@@ -267,10 +266,9 @@ format:
   typst: default
 ```
 
-**The near-miss is worse than the error.** Reaching for a flow mapping instead —
-`format: {html, typst}` — raises **no error at all** and silently renders HTML
-only, so the deck looks right, the render looks right, and the participant just
-never gets their PDF. And an empty block mapping is rejected a third way:
+**A flow mapping is invalid for this purpose.** `format: {html, typst}` raises no error and renders
+HTML only, so the deck and HTML output appear correct but the participant receives no PDF. An empty
+block mapping is rejected in a different way:
 
 ```yaml
 format:      # ERROR: Field "typst" has empty value but it must instead be an object
