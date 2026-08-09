@@ -402,7 +402,7 @@ Return to the **Reproducible Build Challenge** in the
 **[Lab](../../labs/quarto-projects/index.qmd#reproducible-build-challenge)**. Make the build skip unchanged
 pages, bring **yesterday's report** onto the site, then run
 the guided `freeze: true` experiment. The result is a publishable `_site/` folder. Publishing
-and the dashboard demo are optional.
+and the dashboard are optional.
 :::
 
 ::: notes
@@ -433,25 +433,6 @@ to publish (Day 2). Yesterday's report is now a page of that site.
 - **Close with:** "Yesterday's document is now a page of today's site."
 :::
 
-## Demos (if time) {#demos}
-
-Extra topics:
-
-::: {.incremental}
-- **Book versus website**: choose a **book** for ordered chapters with global numbering. Choose a
-  **website** for independent pages.
-- **Interactivity**: an **htmlwidget** (`plotly`, `leaflet`) is written in R and runs in the browser.
-  **[OJS](https://quarto.org/docs/interactive/ojs/)** *(Observable JS, a browser-side, non-R path)*
-  and **[Shinylive](https://quarto-ext.github.io/shinylive/)** *(Shiny running in the browser,
-  no server)* are links, not live builds.
-:::
-
-::: notes
-- **Timing:** cut from the bottom if fewer than 5 minutes remain.
-- **Optional group demo:** open the rendered dashboard from the lab and briefly name the valueboxes,
-  boxplot card, and tabset. Do not ask participants to build it.
-:::
-
 ## Thank you! {.center}
 
 Questions?
@@ -466,8 +447,15 @@ Questions?
 **Learn more:** [Projects](https://quarto.org/docs/projects/quarto-projects.html) ·
 [Websites](https://quarto.org/docs/websites/) ·
 [Freeze](https://quarto.org/docs/projects/code-execution.html#freeze) ·
-[Publishing](https://quarto.org/docs/publishing/)
+[Publishing](https://quarto.org/docs/publishing/) ·
+[Dashboards](https://quarto.org/docs/dashboards/) ·
+[Interactive documents](https://quarto.org/docs/interactive/)
 :::
 ::::
 
 [Christophe Dervieux · [GitHub `@cderv`](https://github.com/cderv){preview-link="false"} · [cderv@posit.co](mailto:cderv@posit.co)]{style="font-size:0.6em"}
+
+::: notes
+- **Spare time:** open the lab's dashboard and name the valueboxes, boxplot card, and tabset. Only
+  if questions run out.
+:::

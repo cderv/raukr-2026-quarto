@@ -335,7 +335,7 @@ list, not from the exercise.
 | 5 | frame + project hook | My | "this is how your team publishes its project" |
 | 17 | concept + live demo | My + Our | Freeze (motivation-first: don't re-run slow compute) · **watch-me** `publish`/CI on a pre-provisioned repo |
 | 48 | hands-on | Your | **the payoff**: `quarto render` + `output-dir` on your project (publish = watch-me, auth pre-flighted). _(The parameterized-report step once floated for here landed on **Day 1** instead, 2026-07-22.)_ |
-| 15 | recap + demos (now reliably happen, not just "if time") | My | Books / Dashboards / an htmlwidget — **after** the payoff, cut-able |
+| 15 | recap + questions | My | wrap-up, then Q&A. **Retired 2026-08-09:** the demo tail (Books / Dashboards / an htmlwidget) had its own slide and was cut — it reopened the deck after the arc had closed, and the dashboard is better delivered self-paced from the lab |
 
 ---
 
@@ -374,8 +374,10 @@ runs long, trim a *tour* beat, never the render payoff (rules 1–2).
 | 8 | **Freeze & caching** — motivation-first (don't re-run slow compute); `cache` (knitr, per-doc) vs `freeze` (project, results); the live 2-render scenario ("render → edit **prose** → re-render → code didn't re-run"); committed `_freeze/` **+ `freeze: true`** → **CI renders without R**. *Cut-first sub-item:* the **`renv.lock`** slide (pin *what* runs) — drop it before the cache-vs-freeze scenario, which is the load-bearing teach | My + Our | reproducible builds, the two legs |
 | 7 | **Publishing** — `quarto render` + `output-dir` (the hands-on setup); `quarto publish` / GitHub Actions = **watch-me** on a pre-provisioned repo (auth pre-flighted) | My + Our | project → publishable folder; the CI *story* |
 
-**Post-payoff tail (~5 min recap, cut-able — rule 1):** Books-vs-website decision (1 slide) ·
-Dashboards (static `format: dashboard`) · one htmlwidget (plotly/leaflet). Never before the payoff.
+**Post-payoff tail — retired 2026-08-09.** The tail is now the wrap-up plus questions. Books lives
+in the cross-references callout, dashboards in the lab as an optional self-paced section, and
+dashboards + interactive documents as `Learn more` links on the closing slide. The presenter can
+still open the lab's dashboard if questions run short (a `::: notes` cue on that slide).
 
 **Notes.**
 - **Part 2 opens from the shipped known-good starter** (rule 2), not the learner's possibly-unfinished

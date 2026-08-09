@@ -420,7 +420,7 @@ example `_site/analysis.html`) directly in your browser and reload it.
 
 **Core tasks:** prove that `freeze: auto` works, add your Day-1 report to the site, then complete the
 guided `freeze: true` experiment. We will compare cache and freeze together. Publishing and the
-dashboard demo are optional.
+dashboard are optional.
 
 ::: {.column-margin}
 {{< fa book-open >}} **Quarto docs**
@@ -661,7 +661,7 @@ A browser opens once to sign you in. Then the contents of `_site/` upload, and C
 a URL for the site.
 :::
 
-### Optional group demo: inspect a dashboard
+### Optional: inspect a dashboard
 
 This worked example shows how the same analysis becomes a dashboard. Open the
 [finished dashboard](dashboard.qmd){target="_blank"}, then compare it with
@@ -698,7 +698,7 @@ format: dashboard
 (the scatter cell and the table cell: each becomes a tab)
 ```
 
-After the group demo, you can optionally copy `analysis.qmd` to `dashboard.qmd` and reproduce one
+After looking at it, you can optionally copy `analysis.qmd` to `dashboard.qmd` and reproduce one
 part of the layout.
 
 ::: {.callout-note}
