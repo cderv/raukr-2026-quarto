@@ -365,7 +365,7 @@ The number updates when the data changes.
 - Put the engine name in the braces. `{{python}}` and `{{julia}}` use the same syntax.
 - Keep inline expressions short. Compute complex values in a cell first, then insert one result.
 - Inline code is not evaluated in document metadata such as `title`, or in cell options such as
-  `#| fig-cap`. Use `!expr` for cell options.
+  `#| fig-cap`.
 - Inline results are escaped as text. In R, wrap a value in `I()` to preserve its Markdown
   formatting.
 
