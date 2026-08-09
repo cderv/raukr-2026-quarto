@@ -383,7 +383,7 @@ The first run opens a browser to sign in, then uploads the site.
 `quarto publish` renders the project first by default. Add `--no-render` to upload the `_site/`
 you already built.
 
-::: {.callout-tip title="Your turn — optional, if we have time"}
+::: {.callout-tip title="Your turn"}
 Publish your site and open it on your phone. The lab has the steps. If you skip publishing, you
 still have the complete `_site/` folder.
 :::
