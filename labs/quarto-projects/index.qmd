@@ -372,7 +372,8 @@ the one produced by `quarto render`.
 ## {{< fa circle-check >}} You should see
 A table on the home page, under a **Reports** heading you add, with one row per page in `reports/`,
 showing each title and its description (both pages already carry a `description:` in their YAML
-header). Add a third page to `reports/`, re-render, and it appears in the table on its own.
+header). The table sits directly under that heading, not at the foot of the page. Add a third page to
+`reports/`, re-render, and it appears in the table on its own.
 :::
 
 ::: {.callout-tip collapse="true"}
