@@ -54,25 +54,25 @@ By the end, you will have a **polished PDF report**.
 
 ## How today works
 
-Two rounds, each the same shape (**watch → follow along → your turn**):
+Two rounds, each the same shape (**watch → your turn**):
 
-- Some slides I talk through. A **Follow along** callout opens each hands-on section and an
-  **Eyes up** callout closes it.
-- Each round ends with a **hands-on Challenge** in the lab (solutions are folded in for self-checking).
+- I explain and demonstrate.
+- Each round ends with a **hands-on Challenge** in the lab.
 - A **break** sits between the two rounds.
 
 Slides and lab live at <https://cderv.github.io/raukr-2026-quarto/>. Open them on your own screen and
 move at your own pace.
 
 ::: notes
-- **Say:** "Two rounds: watch, follow along, then your turn."
+- **Say:** "Watch me first, hands free. You build it in the lab."
+- **Say:** solutions are folded into the lab, so they can self-check.
 - **Do:** pause on the URL. It is the catch-up path.
 - **Catch-up:** no exercises folder? Use the Setup page and help them run `use_course()`.
 :::
 
 ## Setup checkpoint {#setup-check}
 
-::: {.callout-note title="Follow along"}
+::: {.callout-note title="Do this now"}
 From the top folder of your downloaded exercises:
 
 ``` r
@@ -204,10 +204,8 @@ Cell options use the `#|` "hash-pipe": one YAML option per line.
 
 ## Markdown and content: what changes {#markdown-content}
 
-::: {.callout-note title="Follow along"}
-In `day1-intro/`, open **`authoring-starter.qmd`** and save it as **`my-report.qmd`**. It opens with
-this cell: everything we write next assumes it.
-:::
+The lab's starter (`day1-intro/authoring-starter.qmd`) opens with this cell. Everything on the next
+slides assumes it:
 
 ```` {.markdown}
 ```{{r}}
@@ -381,11 +379,6 @@ The number updates when the data changes.
 :::
 
 ## Layouts: body, margin, and beyond {#layouts}
-
-::: {.callout-warning title="Eyes up — not a live *Follow along*"}
-The live build is done. The next slides cover layout concepts. Your document is ready for the
-Challenge.
-:::
 
 The **article-layout model** puts content in the **body**, the **margin**, or a zone **wider than
 the body** (in the paged formats: HTML, LaTeX, Typst):
@@ -773,7 +766,8 @@ typography:
 [brand.yml spec](https://posit-dev.github.io/brand-yml/)
 
 ::: notes
-- **Do:** add `_brand.yml`; re-render and show color and type changes.
+- **Do:** show the PDF before and after `_brand.yml`, and point out the color and type change.
+- **Say:** the file already ships in `day1-intro/`. Quarto reads it next to the document.
 - **Say:** "The same palette can reach plots and tables. Tomorrow it brands a whole project."
 - **Watch for:** plots need `theme_brand_*`; first font render needs network.
 :::

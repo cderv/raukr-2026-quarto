@@ -44,13 +44,13 @@ publish**.
 
 ## How today works
 
-**Same shape as yesterday**: two rounds of **watch → follow along → your turn**, each ending in a
-**Challenge** in the lab (solutions folded in), with a **break** between the rounds.
+**Same shape as yesterday**: two rounds of **watch → your turn**, each ending in a
+**Challenge** in the lab, with a **break** between the rounds.
 
-Watch for the **Follow along** / **Your turn** callouts: they flag every switch.
+The **Your turn** callout flags each switch to the lab.
 
 ::: notes
-- **Say:** "Same rhythm as yesterday: follow along, then your turn."
+- **Say:** "Same rhythm as yesterday: watch, then you build it."
 - **Schedule:** break at 15:00, resume at 15:30.
 :::
 
@@ -59,11 +59,6 @@ Watch for the **Follow along** / **Your turn** callouts: they flag every switch.
 From one file to a whole site.
 
 ## Why a *project*? {#why-project}
-
-::: {.callout-note title="Follow along"}
-Open your **`day2-projects/`** folder from the exercises download: from here we build one project
-together. If you fall behind, `solutions/day2/` contains the finished project.
-:::
 
 One `.qmd` renders alone. A **project** is a folder Quarto treats as one unit (shared config, one
 build, one output folder):
@@ -170,10 +165,6 @@ website:
 
 ## Cross-references across a project {#xrefs}
 
-::: {.callout-warning title="Eyes up — not a live *Follow along*"}
-The live build is done. The next slides explain project cross-references.
-:::
-
 Within **one page**, `@fig-`, `@tbl-`, `@eq-` resolve to a numbered, linked reference, exactly as
 on Day 1. (Section headings work the same way with `@sec-`.)
 
@@ -274,10 +265,6 @@ Make builds reproducible, then prepare the project for publication.
 :::
 
 ## Freeze: skip unchanged computations {#freeze}
-
-::: {.callout-note title="Follow along"}
-Back in your project's `_quarto.yml`.
-:::
 
 **freeze** was one line in Day 1. Computations can be slow: you don't want every prose edit to re-run a
 20-minute model fit. Two tools, easily confused:
