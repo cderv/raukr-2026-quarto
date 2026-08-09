@@ -87,7 +87,7 @@ from the prose. Two edits: an option on the **cell**, and a reference in the **b
 
 ::: {.callout-note appearance="simple" icon=false}
 ## {{< fa circle-check >}} You should see
-A caption **Figure 1: …** under the plot, and the sentence above it opening with a live **Figure 1**
+A caption **Figure 1: …** under the plot, and a sentence above it containing a live **Figure 1**
 link.
 :::
 
@@ -175,8 +175,8 @@ documentation lists its values.
 
 ::: {.callout-note appearance="simple" icon=false}
 ## {{< fa circle-check >}} You should see
-The counts table in the right-hand margin, level with "The species are not evenly represented:", and
-the main text column unchanged in width.
+The counts table in the right-hand margin, beside the counts cell, and the main text column unchanged
+in width.
 :::
 
 ::: {.callout-tip collapse="true"}
@@ -333,7 +333,7 @@ $$ {#eq-ratio}
 ::: {.callout-note appearance="simple" icon=false}
 ## {{< fa circle-check >}} Checkpoint: the whole document
 A numbered **Figure 1** (the bill scatter, three separate clusters), a numbered **Table 1**, and the
-counts in the right margin. `@fig-bill` and `@tbl-summary` render as live links, with no `?@` markers
+counts in the right margin. Your figure and table references render as live links, with no `?@` markers
 anywhere. If you completed the optional step, you also have a numbered **Equation 1**.
 :::
 
@@ -357,10 +357,12 @@ If you finished the Authoring Challenge, continue in **`my-report.qmd`**. Otherw
 3. Continue in that copy.
 
 The instructions below use `my-report.qmd` for both routes.
-:::
 
-:::: {.callout-note icon=false}
-## {{< fa clipboard-list >}} Tasks
+Missing the download? Take the sources directly:
+
+<a class="btn btn-primary btn-sm" href="https://raw.githubusercontent.com/cderv/raukr-2026-quarto-exercises/main/day1-intro/references.bib" role="button" target="_blank">{{< fa download >}} references.bib</a>
+<a class="btn btn-primary btn-sm" href="https://raw.githubusercontent.com/cderv/raukr-2026-quarto-exercises/main/day1-intro/apa.csl" role="button" target="_blank">{{< fa download >}} apa.csl</a>
+:::
 
 ::: {.column-margin}
 {{< fa book-open >}} **Quarto docs**
@@ -368,64 +370,90 @@ The instructions below use `my-report.qmd` for both routes.
 [Citations](https://quarto.org/docs/authoring/citations.html) · [Typst](https://quarto.org/docs/output-formats/typst.html) · [Conditional content](https://quarto.org/docs/authoring/conditional.html) · [Brand](https://quarto.org/docs/authoring/brand.html)
 :::
 
-1. Point the document header at the shared bibliography and citation style. Add `citeproc: true` so
-   Quarto processes the citations and places the reference list in the `#refs` div from step 3.
-   Without it, Typst processes the citations and ignores that div:
-   ```yaml
-   bibliography: references.bib
-   csl: apa.csl
-   citeproc: true
-   ```
-2. Cite the two sources the opening paragraph already credits, without rewriting it. The sentence
-   ending *"…collected at Palmer Station, Antarctica."* takes the data citation before the period
-   (`Antarctica [@gorman2014].`). In the next sentence, put `[@horst2020]` immediately after
-   **palmerpenguins**. The rest of that sentence concerns base R, so do not put the citation at the
-   end. Don't paste a second copy of either sentence.
-3. Add a **References** section where the list should appear:
-   ```markdown
-   ## References {.unnumbered}
+### Add the bibliography and citation style
 
-   ::: {#refs}
-   :::
-   ```
-4. Give it a real **title block** so the PDF reads as a paper. **Replace** your document's
-   `author:` line (or add one) with:
-   ```yaml
-   author:
-     - name: Your Name
-       affiliation: Your Lab, Your University
-   ```
-5. Render to HTML and confirm that both citations resolve as *(Gorman et al., 2014)* and
-   *(Horst et al., 2020)*, with a reference list holding both entries.
-6. Switch the output to **Typst** and render a branded PDF. The branding comes from `_brand.yml`,
-   which Quarto reads next to the document you render, so keep `my-report.qmd` in
-   `day1-intro/`. You may see `unknown font family` warnings on the first render. See Troubleshooting
-   if the final PDF still uses a serif font. Two routes:
-   - **CLI** — leave the header as-is and force the target:
-     ```bash
-     quarto render my-report.qmd --to typst
-     ```
-   - **From the editor** — set `format: typst` in the YAML header first, *then* render (RStudio's
-     **Render** button, or **Quarto: Render Document** in Positron and VS Code). The editor renders
-     whatever `format:` is declared, so while the header still says `format: html` you get HTML,
-     **not** a PDF.
+Point the document header at the shared bibliography and citation style. Add `citeproc: true` so
+Quarto processes the citations and places the reference list in the `#refs` div you add below.
+Without it, Typst processes the citations and ignores that div:
 
-   The PDF is written **next to its source** in `day1-intro/`.
-7. Look at the end of the PDF. The **Session** appendix is printed in full, with the `sessionInfo()`
-   call and all of its output. `<details>` is an HTML disclosure widget and Typst has no equivalent,
-   so that block belongs to HTML only. Wrap the whole section (the heading and the `<details>`
-   block) in a conditional div:
-   ```markdown
-   ::: {.content-visible when-format="html"}
+```yaml
+bibliography: references.bib
+csl: apa.csl
+citeproc: true
+```
 
-   ## Session {.appendix .unnumbered}
+### Cite the two sources
 
-   <!-- Keep the existing <details> block here. -->
+Cite the two sources the opening paragraph already credits, without rewriting it. The sentence
+ending *"…collected at Palmer Station, Antarctica."* takes the data citation before the period
+(`Antarctica [@gorman2014].`). In the next sentence, put `[@horst2020]` immediately after
+**palmerpenguins**. The rest of that sentence concerns base R, so do not put the citation at the
+end. Don't paste a second copy of either sentence.
 
-   :::
-   ```
-   Render to Typst again, then to HTML. The appendix is gone from the PDF and unchanged in the HTML.
-::::
+### Add the References section
+
+Add a **References** section where the list should appear:
+
+```markdown
+## References {.unnumbered}
+
+::: {#refs}
+:::
+```
+
+### Give it a title block
+
+Give it a real **title block** so the PDF reads as a paper. **Replace** your document's
+`author:` line (or add one) with:
+
+```yaml
+author:
+  - name: Your Name
+    affiliation: Your Lab, Your University
+```
+
+### Render to HTML and check the citations
+
+Render to HTML and confirm that both citations resolve as *(Gorman et al., 2014)* and
+*(Horst et al., 2020)*, with a reference list holding both entries.
+
+### Render a branded PDF with Typst
+
+Switch the output to **Typst** and render a branded PDF. The branding comes from `_brand.yml`,
+which Quarto reads next to the document you render, so keep `my-report.qmd` in
+`day1-intro/`. You may see `unknown font family` warnings on the first render. See Troubleshooting
+if the final PDF still uses a serif font. Two routes:
+
+- **CLI** — leave the header as-is and force the target:
+  ```bash
+  quarto render my-report.qmd --to typst
+  ```
+- **From the editor** — set `format: typst` in the YAML header first, *then* render (RStudio's
+  **Render** button, or **Quarto: Render Document** in Positron and VS Code). The editor renders
+  whatever `format:` is declared, so while the header still says `format: html` you get HTML,
+  **not** a PDF.
+
+The PDF is written **next to its source** in `day1-intro/`.
+
+### Keep the Session appendix out of the PDF
+
+Look at the end of the PDF. The **Session** appendix is printed in full, with the `sessionInfo()`
+call and all of its output. `<details>` is an HTML disclosure widget and Typst has no equivalent,
+so that block belongs to HTML only. Wrap the whole section (the heading and the `<details>`
+block) in a conditional div:
+
+```markdown
+::: {.content-visible when-format="html"}
+
+## Session {.appendix .unnumbered}
+
+<!-- Keep the existing <details> block here. -->
+
+:::
+```
+
+Render to Typst again, then to HTML. On the editor route, set `format:` back to `html` for that
+second render. The appendix is gone from the PDF and unchanged in the HTML.
 
 ::: {.callout-note appearance="simple" icon=false}
 ## {{< fa circle-check >}} You should see
@@ -524,6 +552,10 @@ source files.
 Open **`day1-intro/parameters-starter.qmd`**. It contains the report structure, data, and plot. Your
 task is to make the species an input to the document. A complete reference is available at
 **`solutions/day1/penguins-by-species.qmd`**.
+
+Missing the download? Take the source directly:
+
+<a class="btn btn-primary btn-sm" href="https://raw.githubusercontent.com/cderv/raukr-2026-quarto-exercises/main/day1-intro/parameters-starter.qmd" role="button" target="_blank">{{< fa download >}} parameters-starter.qmd</a>
 :::
 
 :::: {.callout-note icon=false}
@@ -632,7 +664,7 @@ your work or render it with different `-P species:` values. You can also take th
   `sans-serif` in its font stack, and Typst doesn't recognize that as a family. The PDF still
   builds, branding included.
 - **Prefer to stay in HTML first?** Render HTML, get it right, *then* switch to `format: typst`.
-  The content is the same.
+  The content is the same. Set the key back to `html` to render HTML again.
 :::
 
 ## Session {.appendix .unnumbered}

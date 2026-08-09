@@ -333,6 +333,8 @@ decide when to recompute each page.
 ::: notes
 - **Say:** "With `true`, only a direct document render recomputes the page."
 - **Watch for:** a page with no `_freeze/` entry and a new page still execute.
+- **Watch for:** a render failing with `cannot open file '<name>.qmd'`. Delete the leftover
+  `<name>.knit.md` or `<name>.rmarkdown` and render again.
 - **Do:** edit `analysis.qmd`; render that file; show `_freeze/` change. Then render the project.
 - **Contrast:** `auto` recomputes changed pages; `true` requires manual refresh.
 - **Example:** quarto.org uses `true` and commits `_freeze/`.
