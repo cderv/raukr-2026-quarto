@@ -238,6 +238,9 @@ typography:
 - **Do not reveal:** theme-layer order; it is the lab exercise.
 - **Before session:** demo uses `[cosmo, brand]` or no named theme.
 - **If asked:** plots need `theme_brand_ggplot2()`; `brand: false` opts out.
+- **If asked (font changes, colors do not):** a bare `theme: cosmo` expands to `[brand, cosmo]` and
+  later layers win, so cosmo's `$primary` replaces the brand color. The font arrives as
+  `--bs-body-font-family`, which cosmo does not set, so it survives.
 :::
 
 ## Your turn {#your-turn-1}
