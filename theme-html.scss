@@ -35,12 +35,6 @@ body:not(.quarto-dark) code span.bu {
   font-weight: inherit;
 }
 
-// Dashboards load the dark sheet but bslib redefines --bs-body-bg after it, so the toggle cannot
-// change anything there. Hide the control rather than ship one that does nothing.
-body.quarto-dashboard .quarto-color-scheme-toggle {
-  display: none;
-}
-
 // Match Quarto's specific margin-caption selectors. The section number carried by a numbered
 // heading and its TOC entry is painted from the same muted role, so it belongs here too.
 caption,

@@ -208,17 +208,37 @@ theme-html-dark.scss]}` and `respect-user-color-scheme: true`.
   Fix from the brand, not the SCSS: `typography.monospace.background-color` in `_brand-dark.yml`.
 - **`$border-color` has no brand role** and stays `#dee2e6` (11.5:1 against ink) — set it in the
   dark layer or every table rule and `<hr>` glares.
-- **Dashboards can't do dark** (`format: dashboard`): the dark sheet *is* enabled by the toggle, but
-  bslib redefines `--bs-body-bg` after it, so nothing repaints, and `respect-user-color-scheme` does
-  not apply there either. The toggle is hidden on `body.quarto-dashboard` rather than shipped inert.
-  Under investigation as an upstream report.
+- **Dashboards do dark, and the toggle must stay visible** (`format: dashboard`, verified on Quarto
+  1.10.18). A dashboard in a website project reads the site-wide
+  `localStorage["quarto-color-scheme"]`, so it opens dark whenever the rest of the site is dark.
+  Hiding `.quarto-color-scheme-toggle` on `body.quarto-dashboard` therefore strands the page with no
+  way back to light. Clicking it on a dark dashboard repaints to light at once, and the choice
+  survives a reload. (`respect-user-color-scheme` does *not* reach a dashboard: the OS preference
+  alone never flips it.)
+- **The in-place light→dark repaint cannot be measured in this sandbox.** Re-enabling a
+  `rel="disabled-stylesheet"` link never attaches the sheet under sandbox Chromium, headless or
+  headed — on the plain lab pages too, not just the dashboard. So "the toggle does nothing" is what
+  the harness reports for **every** page here, and it is not evidence about dashboards. Test that
+  direction in a real browser, or by loading the page with the sentinel already set.
+- **A dashboard cannot be pinned to one scheme from `_quarto.yml`.** `project: brand: dark:` wins over
+  every format-level override (`format: dashboard: brand:` / `brand: false` / `brand-mode:` / an
+  explicit `theme:` pair) and over a directory `_metadata.yml`. Only document front matter overrides
+  it, and its paths resolve **relative to the document** — which is why `dashboard.qmd` cannot carry
+  one: it ships verbatim to `exercises/solutions/day2/`.
+- **`$body-emphasis-color` has no brand role** and stays black outside Bootstrap's own
+  `[data-bs-theme=dark]` block, so `$nav-tabs-link-active-color` puts the open dashboard tab at
+  1.4:1. Set it in the dark layer. Its CSS variable is `--bs-emphasis-color`, so grepping the
+  compiled bundle for the SCSS name finds nothing.
 - **Revealjs is unaffected**: `formatHasBootstrap` excludes it, and `brandRevealSassLayers` defaults
   to `brand-mode: light`. Both decks render **byte-identical** — check that with a diff after any
   brand change, it is the cheapest proof available.
 
 **Verify with axe-core in both schemes**, driving Chromium with `colorScheme: 'light' | 'dark'`
 (and once with `javaScriptEnabled: false`). Quarto ships the harness at
-`$(quarto --paths)/formats/html/axe/axe.min.js`. Target: **0 `color-contrast` violations on every
-page in both modes** — that is the current state. The two ARIA violations that remain
+`$(quarto --paths)/formats/html/axe/axe.min.js`. **`colorScheme` does not reach the dashboard** —
+put it in dark with `localStorage.setItem("quarto-color-scheme", "alternate")` in an init script, or
+you sweep the light page twice and call it clean. Target: **0 `color-contrast` violations on every
+page in both modes**. One remains: the closed dashboard tab is `#33666b` on the `#cccecf` tabset
+strip, 4.08:1 in **light** only. The two ARIA violations that remain
 (`aria-allowed-attr` on callout toggles, `aria-prohibited-attr` on FontAwesome icons) are upstream,
 identical in both modes, and separately tracked.

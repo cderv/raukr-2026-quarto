@@ -9,6 +9,9 @@ $border-color: #3A4855;
 // Bootstrap's light-grey hover fill would put near-white menu text on near-white; the navbar
 // dropdown items are invisible on hover and on keyboard focus without this.
 $dropdown-link-hover-bg: #2A3A47;
+// Bootstrap keeps $body-emphasis-color at black outside its own [data-bs-theme=dark] block and the
+// brand maps no role to it, so $nav-tabs-link-active-color puts the open dashboard tab at 1.4:1.
+$body-emphasis-color: #e8edf0;
 
 /*-- scss:rules --*/
 // The lab figures are ggplot PNGs with a white panel; plate them so they read as cards.
