@@ -456,6 +456,6 @@ Questions?
 [Christophe Dervieux · [GitHub `@cderv`](https://github.com/cderv){preview-link="false"} · [cderv@posit.co](mailto:cderv@posit.co)]{style="font-size:0.6em"}
 
 ::: notes
-- **Spare time:** open the lab's dashboard and name the valueboxes, boxplot card, and tabset. Only
-  if questions run out.
+- **If time remains after questions:** open the lab's dashboard and name the valueboxes, boxplot
+  card, and tabset.
 :::

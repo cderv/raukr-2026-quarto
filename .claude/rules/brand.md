@@ -222,9 +222,9 @@ theme-html-dark.scss]}` and `respect-user-color-scheme: true`.
   direction in a real browser, or by loading the page with the sentinel already set.
 - **A dashboard cannot be pinned to one scheme from `_quarto.yml`.** `project: brand: dark:` wins over
   every format-level override (`format: dashboard: brand:` / `brand: false` / `brand-mode:` / an
-  explicit `theme:` pair) and over a directory `_metadata.yml`. Only document front matter overrides
-  it, and its paths resolve **relative to the document** — which is why `dashboard.qmd` cannot carry
-  one: it ships verbatim to `exercises/solutions/day2/`.
+  explicit `theme:` pair) and over a directory `_metadata.yml`. Only document front matter can
+  override it, and its paths resolve **relative to the document**. `dashboard.qmd` cannot use that
+  override because it ships verbatim to `exercises/solutions/day2/`.
 - **`$body-emphasis-color` has no brand role** and stays black outside Bootstrap's own
   `[data-bs-theme=dark]` block, so `$nav-tabs-link-active-color` puts the open dashboard tab at
   1.4:1. Set it in the dark layer. Its CSS variable is `--bs-emphasis-color`, so grepping the

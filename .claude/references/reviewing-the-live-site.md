@@ -12,7 +12,7 @@ export AGENT_BROWSER_PROXY="direct://"  # required in the sandbox
 ```
 
 `HTTPS_PROXY` is set in this sandbox and agent-browser routes the **browser** through it. Navigation
-then never commits: `open` fails with a generic `✗ Operation timed out` and the page stays at
+then never completes: `open` fails with a generic `✗ Operation timed out` and the page stays at
 `about:blank`. That reads like a launch failure and is not one (`eval` and `screenshot` keep working
 while navigation hangs, so the browser is up). `env -u HTTPS_PROXY` and the `--proxy direct://` flag
 do the same job.
@@ -43,8 +43,8 @@ Review work targets the **local build**: it is the only one that carries unpubli
 `SITE_STALE` guards against reviewing a page that no longer matches the source.
 
 **Corrected 2026-08-09 — the deployed site is reachable after all.** This section used to say every
-external URL failed with `net::ERR_CONNECTION_RESET`. That was the proxy defect above wearing a
-different mask. With `AGENT_BROWSER_PROXY` set, the failure becomes
+external URL failed with `net::ERR_CONNECTION_RESET`. That was another symptom of the proxy defect
+above. With `AGENT_BROWSER_PROXY` set, the failure becomes
 `net::ERR_CERT_AUTHORITY_INVALID` (the sandbox intercepts TLS) and one flag loads it:
 
 ```bash
