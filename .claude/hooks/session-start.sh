@@ -176,6 +176,12 @@ fi
 #    Add packages by editing DESCRIPTION + `renv::snapshot()`, not here.
 if command -v R >/dev/null 2>&1 && [ -f renv.lock ]; then
   echo "Restoring R packages with renv (P3M binaries)..."
+  # renv stages atomically, so one package failing discards the whole restore. bitops fails inside
+  # that transaction (reported as a bogus mutual "dependency failed" with gt) while installing fine
+  # on its own, so seed it first and let restore skip it.
+  Rscript -e 'if (!requireNamespace("bitops", quietly = TRUE))
+      try(install.packages("bitops", repos = "https://packagemanager.posit.co/cran/__linux__/noble/latest"), silent = TRUE)' \
+    || true
   Rscript -e 'renv::restore(repos = c(CRAN = "https://packagemanager.posit.co/cran/__linux__/noble/latest"), prompt = FALSE)' \
     || echo "renv restore failed (non-fatal) — run renv::restore() from an R session in the repo root"
 fi

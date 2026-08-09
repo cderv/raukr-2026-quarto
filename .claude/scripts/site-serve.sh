@@ -29,7 +29,9 @@ case "$cmd" in
   start)
     if [ "$render" = 1 ] || [ ! -f "$REPO/_site/index.html" ]; then
       echo "rendering the site..." >&2
-      ( cd "$REPO" && quarto render >&2 )
+      # `just render`, not `quarto render`: the demos step runs after the site build, and a bare
+      # site render deletes _site/demos/, so reviewers get a 404 on every demo link.
+      ( cd "$REPO" && just render >&2 )
     fi
 
     stale=0

@@ -214,6 +214,10 @@ Rscript -e 'install.packages(c("bitops","gt"))'   # then re-run
 Rscript -e 'renv::restore(prompt = FALSE)'        # -> "No issues found"
 ```
 
+The hook now seeds `bitops` before the restore, so a fresh sandbox should not hit this. Do it by hand
+if you are restoring outside the hook. renv stages atomically, so the one failure discards every
+other package it just installed, which is why the symptom is a library with almost nothing in it.
+
 **Rendering a single `.qmd` needs the project library on PATH** if you render outside the project
 root: `export R_LIBS_USER=<repo>/renv/library/linux-ubuntu-noble/R-4.6/x86_64-pc-linux-gnu`.
 Without it Quarto reports "The knitr package is not available" even though the project is restored.
