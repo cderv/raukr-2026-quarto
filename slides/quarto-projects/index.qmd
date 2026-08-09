@@ -60,39 +60,38 @@ From one file to a whole site.
 
 ## Why a *project*? {#why-project}
 
-One `.qmd` renders alone. A **project** is a folder Quarto treats as one unit (shared config, one
-build, one output folder):
+You never declare a project. Quarto **finds** it: from the file being rendered it walks **up** the
+tree and stops at the **first `_quarto.yml`**. That file marks the root.
 
 :::: {.columns}
 ::: {.column width="52%"}
-``` {.yaml filename="_quarto.yml"}
-# at the project root
+``` {.yaml filename="day2-projects/_quarto.yml"}
 project:
   type: website
-  output-dir: _site # everything renders here
+  output-dir: _site
 format:
   html:
-    toc: true       # set once, every page gets it
+    toc: true
 ```
 :::
 ::: {.column width="48%"}
 ::: {.incremental}
-- `quarto render` builds the **whole** folder, not one file.
-- Header options set **once** apply to every page.
-- **`output-dir`**: the folder where the built site is written (`_site` by default). Publish *that*.
+- Nothing sits above `day2-projects/`, so that folder **is** the project.
+- `quarto render` with no file argument builds **every** page in it.
+- `format:` set here reaches all of them.
+- **`output-dir`**: where the built site is written. Publish *that* folder.
 :::
 :::
 ::::
 
-::: aside
-Quarto uses the **nearest `_quarto.yml`** up the tree as the project root: you add one to
-`day2-projects/`, and nothing sits above it, so that folder *is* your project.
-:::
+. . .
+
+**Nearest wins.** A `_quarto.yml` closer to the file hides any that sit further up.
 
 ::: notes
-- **Say:** "Many files, one project. Open your editor."
-- **Do:** add a minimal `_quarto.yml`; render the whole folder.
-- **Say:** "This is how the pages of your team project connect."
+- **Say:** "Put the file down and Quarto finds it. That is the whole mechanism."
+- **Do:** render once and show the output move from beside the `.qmd` into `_site/`.
+- **Ask:** "Where is the root if a folder above also has a `_quarto.yml`?" (The nearer one.)
 :::
 
 ## Directory metadata: `_metadata.yml` {#metadata}
@@ -126,39 +125,38 @@ pages at the project root.
 
 ## Websites: pages and navigation {#websites .aside-flow}
 
-You already set `type: website`, which makes the folder a **site**: its pages share one navbar and
-sidebar. You describe that navigation once, and Quarto builds it:
+You already set `type: website`, which makes the folder a **site**. **Navigation is configuration**:
+no page holds a link bar. You describe it once, and every page gets it.
 
 ``` {.yaml filename="_quarto.yml"}
 website:
   title: "Penguin Lab"
-  # top bar — one entry per page
-  navbar:
+  navbar:              # list the entries yourself
     left:
       - href: index.qmd
         text: Home
       - href: analysis.qmd
         text: Analysis
-  # side menu, built from the files
   sidebar:
-    contents: auto
+    contents: auto     # or let Quarto derive them
 ```
 
 . . .
 
-`contents: auto` builds the sidebar from the folder, so you do not need to list every page.
+A derived sidebar reads the folder: each page's `title:` becomes its label, a subfolder becomes a
+section, order is alphabetical unless a page sets `order:`. Add a page and the navigation follows.
 
 ::: {.aside}
 **Listings** turn a folder of pages into an auto-generated index (a blog, a gallery of reports) via
-`listing:` on a page. One slide's worth, more in the linked resources.
+`listing:` on a page.
 :::
 
 **Learn more:** [Websites](https://quarto.org/docs/websites/) ·
 [Listings](https://quarto.org/docs/websites/website-listings.html)
 
 ::: notes
-- **Do:** add navbar and sidebar; `quarto preview` to show navigation and the built-in search.
-- **Say:** "List navbar entries, or let `contents: auto` build a sidebar."
+- **Do:** `quarto preview` and show the navigation plus the built-in search.
+- **Say:** "Enumerate the navbar, derive the sidebar. Both live in one file."
 - **Next:** independent pages explain the cross-reference rule.
 - **Watch for:** links are relative to source files, not `_site`.
 :::
@@ -273,24 +271,25 @@ Make builds reproducible, then prepare the project for publication.
 - **`cache`**: the **compute engine's** cache, not Quarto's. It defers to *knitr* (R) or *Jupyter Cache*.
   Per-**cell**, kept until that cell's code changes, and it works in a **single document**.
 - **`freeze`**: **Quarto's** switch for when a document re-executes.
-  **Project-only**: rendering one file always runs it. Results live in `_freeze/`, refreshed only
-  when its source changes. Once every page has frozen results, **CI** *(the automated build)* can
-  rebuild those pages without R.
+  **Project-only**: rendering one file always runs it. Results live in `_freeze/`. Once every page
+  has frozen results, **CI** *(the automated build)* can rebuild those pages without R.
 :::
 
 . . .
 
 ``` {.yaml filename="_quarto.yml"}
 execute:
-  freeze: auto        # re-execute a document only when its source changes
+  freeze: auto
 ```
 
-**`freeze: auto`** is the setting to adopt. **`freeze: true`** hands you full control instead.
+Alongside each page's stored output, Quarto keeps a **hash of that page's source**. The next build
+re-hashes the file: same hash, reuse the stored output. Different hash, run the code again. It
+compares **content**, not timestamps, so re-saving an unchanged file changes nothing.
 
 ::: notes
 - **Say:** "A prose edit should not rerun a 20-minute model."
 - **Contrast:** cache = engine, per cell; freeze = Quarto, per document, project only.
-- **Do:** add `freeze: auto`; change one page and render.
+- **Do:** show `_freeze/` on disk, one folder per page.
 - **Payoff:** commit `_freeze/`; CI can build without R.
 - **Next:** `freeze: true` gives manual control.
 :::
@@ -325,7 +324,7 @@ decide when to recompute each page.
 - **Watch for:** a page with no `_freeze/` entry and a new page still execute.
 - **If a render fails** with `cannot open file '<name>.qmd'`, delete the leftover
   `<name>.knit.md` or `<name>.rmarkdown`, then render again.
-- **Do:** edit `analysis.qmd`; render that file; show `_freeze/` change. Then render the project.
+- **Do:** open a stored `execute-results/html.json` and point at the `hash` field.
 - **Contrast:** `auto` recomputes changed pages; `true` requires manual refresh.
 - **Example:** quarto.org uses `true` and commits `_freeze/`.
 :::

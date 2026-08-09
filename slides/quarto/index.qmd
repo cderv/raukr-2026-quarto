@@ -259,7 +259,7 @@ figure.
 :::
 
 ::: notes
-- **Do:** add `label` and `fig-cap`; render and show the number.
+- **Do:** show the rendered figure number, then `@fig-bill` resolving to it.
 - **Say:** "Use `@fig-bill` for a live reference."
 - **Watch for:** labels must start with `fig-`, `tbl-`, or `eq-`.
 - **Point out:** `output-location: column` is revealjs-only placement.
@@ -283,7 +283,7 @@ Then refer to it in prose with `@tbl-summary` (the same mechanism as figures).
 **Learn more:** [Cross-references](https://quarto.org/docs/authoring/cross-references.html)
 
 ::: notes
-- **Do:** add `tbl-summary`; render and show the number.
+- **Do:** show that `tbl-` behaves exactly like `fig-`, with its own counter.
 - **Say:** "Same mechanism as figures."
 - **Timing:** keep this; cut Math first if needed.
 :::
