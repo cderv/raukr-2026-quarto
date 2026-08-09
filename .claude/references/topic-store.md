@@ -25,8 +25,8 @@
 > - **Dataset locked:** base-R `datasets::penguins` (R ≥ 4.5, zero-install) — see
 >   `project-context.md` § Technical stack.
 > - **Layouts sharpened** to the organizer's five terms (scope note under the Day-1 CORE table).
-> - **Convention decided:** mode markers = built-in callouts at
->   the two transitions, no bespoke class (rule 9 + `project-context.md` § Content patterns).
+> - **Convention decided:** mode markers = built-in callouts, no bespoke class
+>   (rule 9 + `project-context.md` § Content patterns).
 > - **Coverage audit** → § *Coverage-audit deltas* below.
 > - **Build-gap audit:** Day-1 ~80% / Day-2 ~60% reuse; only 4
 >   true build-fresh items; Day-2 deck base exists (Block 2 correction). See `prior-art-inventory.md`.
@@ -364,7 +364,7 @@ runs long, trim a *tour* beat, never the render payoff (rules 1–2).
 |------|-----------|------|------------|
 | 5 | **Why a project** — `_quarto.yml` shared config + `output-dir` (+ `_metadata.yml` as a shown slide) | My | one file → whole site; where config lives |
 | 6 | **Website** — pages, navbar/sidebar **navigation**, listings | My | a navigable multi-page site |
-| 3 | **Cross-refs & cross-page nav** *(shock-absorber)* — `@fig-`/`@sec-`/`@tbl-` resolve **within a page**; cross-*page* = links + the navbar/sidebar. ⚠️ numbered `@fig-` across website pages is a **book** feature, *not* a website one — don't demo project-wide `@fig-` live (verify at the machine) | Our | refs resolve on-page; pages linked by nav |
+| 3 | **Cross-refs & cross-page nav** *(shock-absorber)* — `@fig-`/`@sec-`/`@tbl-` resolve **within a page**; cross-*page* = links + the navbar/sidebar. ⚠️ numbered `@fig-` across website pages is a **book** feature, *not* a website one — don't demo project-wide `@fig-` live (verify at the machine) | My | refs resolve on-page; pages linked by nav |
 | 4 | **`_brand.yml`** — one file → site + slides + **R-side plots**; **show the `theme_brand_ggplot2()`/`theme_brand_gt()` call** (the plot renders default grey without it) — *same palette, not the whole brand system* | My | one brand file, three surfaces |
 
 **Part 2 — scale & ship (concept+demo ~15 min ceiling; publish is watch-me, the payoff is the render):**
@@ -419,8 +419,9 @@ Bake these into every part as it's authored:
 8. **"Why do I care" tie-ins for the new stuff.** Parameters → "re-run the report per
    sample/cohort"; Dashboards → "share results with a collaborator who won't open R"; website → "lab
    site / your team project" (beginner P2-3). *(Keep tie-ins generic — reusability, `project-context.md`.)*
-9. **Mode markers are built-in callouts at the two transitions only** (decided 2026-07-07;
-   full spec in `project-context.md` § Content patterns). No
-   per-slide "My turn" badge, no bespoke CSS class. `## Learning Outcomes` open / "What you can do
+9. **One mode marker: the slides→lab handoff** — a built-in `Your turn` callout pointing at the
+   lab's `## … Challenge` (full spec in `project-context.md` § Content patterns). The only other
+   marked moment is a narrow "Do this now" checkpoint, where the participant's own machine is the
+   point. No per-slide "My turn" badge, no bespoke CSS class. `## Learning Outcomes` open / "What you can do
    now" close; labs use `## … Challenge` + collapsible hint/solution. One vocabulary: the "Your
    turn" slide points at the lab's Challenge by the same name; countdown stays presenter-side.

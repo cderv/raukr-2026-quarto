@@ -48,7 +48,7 @@ The main thread briefs you with:
 5. **Autonomy / feedback loop** — a participant who makes a mistake at step N, can they
    self-correct without flagging the instructor? Are common errors anticipated in presenter
    notes?
-6. **My/Our/Your-turn rhythm** — is it announced up front and actually followed?
+6. **My/Your-turn rhythm** — is it announced up front and actually followed?
 7. **Narrative coherence** — is there a through-line, visible and traced end to end?
 8. **In-room support** — do presenter notes / speaker docs give roaming helpers useful
    pointers: anticipated traps, where the solution is, fallbacks?
