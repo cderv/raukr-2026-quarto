@@ -83,9 +83,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-d4913cc10dbf14b0802418f97812b735.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-17361f9cebf7fb635e55ea08cd04ba34.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark-d75dcb064f492e799e37e2ab7798086a.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../../site_libs/bootstrap/bootstrap-17361f9cebf7fb635e55ea08cd04ba34.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-bad09f59d6c24943f736e87914f443f2.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-7c8aa66264fb3a7dded5cdd0db571959.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-bad09f59d6c24943f736e87914f443f2.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <link href="../../site_libs/quarto-contrib/fontawesome6-1.2.0/all.min.css" rel="stylesheet">
 <link href="../../site_libs/quarto-contrib/fontawesome6-1.2.0/latex-fontsize.css" rel="stylesheet">
 <script src="../../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
@@ -379,7 +379,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#put-your-day-1-report-on-the-site" id="toc-put-your-day-1-report-on-the-site" class="nav-link" data-scroll-target="#put-your-day-1-report-on-the-site"><span class="header-section-number">2.3</span> Put your Day-1 report on the site</a></li>
   <li><a href="#guided-experiment-freeze-true" id="toc-guided-experiment-freeze-true" class="nav-link" data-scroll-target="#guided-experiment-freeze-true"><span class="header-section-number">2.4</span> Guided experiment: <code>freeze: true</code></a></li>
   <li><a href="#put-it-online-optional" id="toc-put-it-online-optional" class="nav-link" data-scroll-target="#put-it-online-optional"><span class="header-section-number">2.5</span> Put it online <em>(optional)</em></a></li>
-  <li><a href="#optional-group-demo-inspect-a-dashboard" id="toc-optional-group-demo-inspect-a-dashboard" class="nav-link" data-scroll-target="#optional-group-demo-inspect-a-dashboard"><span class="header-section-number">2.6</span> Optional group demo: inspect a dashboard</a></li>
+  <li><a href="#optional-inspect-a-dashboard" id="toc-optional-inspect-a-dashboard" class="nav-link" data-scroll-target="#optional-inspect-a-dashboard"><span class="header-section-number">2.6</span> Optional: inspect a dashboard</a></li>
   </ul></li>
   <li><a href="#troubleshooting" id="toc-troubleshooting" class="nav-link" data-scroll-target="#troubleshooting"><span class="header-section-number">3</span> Troubleshooting</a></li>
   
@@ -517,7 +517,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="build-the-navigation" class="level3" data-number="1.2">
+<section id="build-the-navigation" class="level3 page-columns page-full" data-number="1.2">
 <h3 data-number="1.2" class="anchored" data-anchor-id="build-the-navigation"><span class="header-section-number">1.2</span> Build the navigation</h3>
 <p><strong>Goal.</strong> Give the site a title and a top navigation bar, so a reader can move between the home and analysis pages without editing the URL.</p>
 <p>Add <code>index.qmd</code> (Home) and <code>analysis.qmd</code> (Analysis) to the navigation. Give the site the title <strong>Penguin Lab</strong>, and apply the ready-made <strong>cosmo</strong> theme.</p>
@@ -529,7 +529,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">href</span><span class="kw">:</span><span class="at"> ...</span></span>
 <span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">text</span><span class="kw">:</span><span class="at"> ...</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Each navbar entry pairs an <code>href:</code> (the <strong>source</strong> <code>.qmd</code>, not the built <code>.html</code>) with a <code>text:</code> label. The theme is not a website option. It is a <strong>format</strong> option, so it goes under <code>format:</code>.</p>
-<p>From this step on, preview the site with <code>quarto preview</code> from inside <code>day2-projects/</code>. On Day 1 you previewed one document. From the project root, the command serves the whole site and re-renders a page when you save it.</p>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p><i class="fa-solid fa-book-open" aria-label="book-open"></i> <strong>Quarto docs</strong></p>
+<p><a href="https://quarto.org/docs/output-formats/html-themes.html#basic-options">HTML themes</a></p>
+</div></div><p>From this step on, preview the site with <code>quarto preview</code> from inside <code>day2-projects/</code>. On Day 1 you previewed one document. From the project root, the command serves the whole site and re-renders a page when you save it.</p>
 <div class="callout callout-style-simple callout-note no-icon callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -737,7 +741,7 @@ Figure&nbsp;1: The analysis page’s figure: body mass by species.
 <p><a href="https://quarto.org/docs/projects/quarto-projects.html#directory-metadata">Directory metadata</a> · <a href="https://quarto.org/docs/output-formats/html-code.html#folding-code">Folding code</a></p>
 </div></div><p>You have not looked at <code>day2-projects/reports/</code> yet. It holds two short pages, <code>methods.qmd</code> and <code>data-notes.qmd</code>, each with a small code cell.</p>
 <p>A <code>_metadata.yml</code> file applies options to every document in its folder. Put one in <code>reports/</code> to configure both pages without editing either file. It takes the same document options you would write in <code>_quarto.yml</code>. The difference is where they apply.</p>
-<p>You need two options. <code>code-fold</code> gives you the toggle, and a second option sets its label. The default label is <code>Code</code>, and the checkpoint asks for <strong>Show the code</strong>.</p>
+<p>You need two options. <code>code-fold</code> gives you the toggle, and <code>code-summary</code> sets its label. The default label is <code>Code</code>, and the checkpoint asks for <strong>Show the code</strong>.</p>
 <p>Neither page is in the navbar. Use the site search (the magnifier) to open them.</p>
 <div class="callout callout-style-simple callout-note no-icon callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -765,7 +769,6 @@ Figure&nbsp;1: The analysis page’s figure: body mass by species.
 <div id="callout-14" class="callout-14-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>Quarto merges <code>reports/_metadata.yml</code> on top of the project defaults, so you write only what differs. Its options apply to <code>reports/</code> and its subfolders.</p>
-<p>The second option is <code>code-summary</code>: it sets the text on the toggle.</p>
 </div>
 </div>
 </div>
@@ -801,8 +804,9 @@ Figure&nbsp;1: The analysis page’s figure: body mass by species.
 
 <div class="no-row-height column-margin column-container"><div class="">
 <p><i class="fa-solid fa-book-open" aria-label="book-open"></i> <strong>Quarto docs</strong></p>
-<p><a href="https://quarto.org/docs/websites/website-listings.html">Website listings</a></p>
+<p><a href="https://quarto.org/docs/websites/website-listings.html">Website listings</a>: <a href="https://quarto.org/docs/websites/website-listings.html#listing-types">types</a> · <a href="https://quarto.org/docs/websites/website-listings.html#listing-fields">fields</a> · <a href="https://quarto.org/docs/websites/website-listings.html#listing-location">placement</a></p>
 </div></div><p>A <code>listing:</code> key in the <strong>YAML header of <code>index.qmd</code></strong> builds the table, and <code>contents:</code> names the folder it indexes. Where the table appears on the page is a separate choice.</p>
+<p>If <code>quarto preview</code> is still running, stop it (<code>Ctrl</code> + <code>C</code> in the terminal) before you re-render. Otherwise, the running preview may rebuild the page and leave you checking a different result from the one produced by <code>quarto render</code>.</p>
 <div class="callout callout-style-simple callout-note no-icon callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -891,7 +895,7 @@ Figure&nbsp;1: The analysis page’s figure: body mass by species.
 </div>
 </div>
 <p>If <code>quarto preview</code> is still running, stop it (<code>Ctrl</code> + <code>C</code> in the terminal). Run each render below yourself. To check a page after a render, open the built file (for example <code>_site/analysis.html</code>) directly in your browser and reload it.</p>
-<p><strong>Core tasks:</strong> prove that <code>freeze: auto</code> works, add your Day-1 report to the site, then complete the guided <code>freeze: true</code> experiment. We will compare cache and freeze together. Publishing and the dashboard demo are optional.</p>
+<p><strong>Core tasks:</strong> prove that <code>freeze: auto</code> works, add your Day-1 report to the site, then complete the guided <code>freeze: true</code> experiment. We will compare cache and freeze together. Publishing and the dashboard are optional.</p>
 
 <div class="no-row-height column-margin column-container"><div class="">
 <p><i class="fa-solid fa-book-open" aria-label="book-open"></i> <strong>Quarto docs</strong></p>
@@ -1048,7 +1052,7 @@ Figure&nbsp;1: The analysis page’s figure: body mass by species.
 <h3 data-number="2.3" class="anchored" data-anchor-id="put-your-day-1-report-on-the-site"><span class="header-section-number">2.3</span> Put your Day-1 report on the site</h3>
 <p><em>This is a core task.</em></p>
 <p><strong>Goal.</strong> Take the report you wrote yesterday and make it a page of this website.</p>
-<p>On Day 1, you built one document: <code>my-report.qmd</code> in <code>day1-intro/</code>. Now add it to the project. If you did not finish Day 1 or do not have the file, use <code>solutions/day1/penguins-report.qmd</code> from your exercises download instead.</p>
+<p>On Day 1 you created <code>my-report.qmd</code> in <code>day1-intro/</code>. Copy it into <code>day2-projects/</code>, together with <code>references.bib</code> and <code>apa.csl</code> (the report cites through them), then add it to the project. If you do not have that file, take <code>solutions/day1/penguins-report.qmd</code> from your download instead.</p>
 <div class="callout callout-style-simple callout-note no-icon callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -1143,6 +1147,7 @@ Figure&nbsp;1: The analysis page’s figure: body mass by species.
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">freeze</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Then, in <code>analysis.qmd</code>, make a visible edit to the plot code: change the y-axis label to <code>y = "Body mass in grams"</code>.</p>
+<p>Stop <code>quarto preview</code> first if it is running (<code>Ctrl</code> + <code>C</code>). A watching preview re-runs the page when you save and refreshes <code>_freeze/</code>, so the first render below would show your edit.</p>
 <p>Now run the three renders from inside <code>day2-projects/</code>, and reload <code>_site/analysis.html</code> in your browser after each one:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> render                <span class="co"># whole project: your edit does not appear</span></span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> render analysis.qmd   <span class="co"># one file: the page refreshes</span></span>
@@ -1187,8 +1192,8 @@ Figure&nbsp;1: The analysis page’s figure: body mass by species.
 </div>
 </div>
 </section>
-<section id="optional-group-demo-inspect-a-dashboard" class="level3" data-number="2.6">
-<h3 data-number="2.6" class="anchored" data-anchor-id="optional-group-demo-inspect-a-dashboard"><span class="header-section-number">2.6</span> Optional group demo: inspect a dashboard</h3>
+<section id="optional-inspect-a-dashboard" class="level3" data-number="2.6">
+<h3 data-number="2.6" class="anchored" data-anchor-id="optional-inspect-a-dashboard"><span class="header-section-number">2.6</span> Optional: inspect a dashboard</h3>
 <p>This worked example shows how the same analysis becomes a dashboard. Open the <a href="../../labs/quarto-projects/dashboard.html" target="_blank">finished dashboard</a>, then compare it with <code>solutions/day2/dashboard.qmd</code>. You do not need to build it during the workshop.</p>
 <p>Look for four ideas:</p>
 <ul>
@@ -1216,7 +1221,7 @@ Figure&nbsp;1: The analysis page’s figure: body mass by species.
 <span id="cb22-16"><a href="#cb22-16" aria-hidden="true" tabindex="-1"></a><span class="fu">### Column {.tabset}</span></span>
 <span id="cb22-17"><a href="#cb22-17" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb22-18"><a href="#cb22-18" aria-hidden="true" tabindex="-1"></a>(the scatter cell and the table cell: each becomes a tab)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>After the group demo, you can optionally copy <code>analysis.qmd</code> to <code>dashboard.qmd</code> and reproduce one part of the layout.</p>
+<p>After looking at it, you can optionally copy <code>analysis.qmd</code> to <code>dashboard.qmd</code> and reproduce one part of the layout.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -1247,12 +1252,12 @@ Figure&nbsp;1: The analysis page’s figure: body mass by species.
 <div id="callout-33" class="callout-33-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ul>
-<li><strong>Rendered, but can’t find the HTML?</strong> Before you add <code>_quarto.yml</code>, a single-page render writes the HTML <strong>next to its source</strong> in <code>day2-projects/</code>. Once <code>_quarto.yml</code> is present, a project render collects all pages under <code>day2-projects/_site/</code>. Look in those two places. The earlier <code>analysis.html</code> and <code>analysis_files/</code> next to the sources are leftovers at that point: delete them if you like.</li>
+<li><strong>Rendered, but can’t find the HTML?</strong> Before you add <code>_quarto.yml</code>, a single-page render writes the HTML <strong>next to its source</strong> in <code>day2-projects/</code>. Once <code>_quarto.yml</code> is present, a project render collects all pages under <code>day2-projects/_site/</code>. Look in those two places. The earlier <code>analysis.html</code> and <code>analysis_files/</code> next to the sources are no longer used and can be deleted.</li>
 <li><strong>YAML is indentation-sensitive.</strong> If rendering fails <em>before</em> any code runs, check <code>_quarto.yml</code> for stray spaces, tabs, or unmatched quotes.</li>
 <li><strong>“No project” / pages don’t link?</strong> The <code>_quarto.yml</code> must be <strong>inside <code>day2-projects/</code></strong>, and <code>href:</code> paths are relative to the source folder, <strong>not</strong> <code>_site/</code>.</li>
-<li><strong>Brand not applied?</strong> Two causes. The file must be in <code>day2-projects/</code> (the project root), and <code>brand</code> must come <strong>last</strong> in the <code>theme:</code> list: <code>theme: [cosmo, brand]</code> gives you the palette, while <code>theme: cosmo</code> on its own keeps cosmo’s colors and only the fonts change. Re-render after either fix. For <strong>plots</strong>, the palette needs <code>library(brand.yml)</code> + <code>theme_brand_ggplot2()</code> (the file alone doesn’t reach ggplot).</li>
+<li><strong>Brand not applied?</strong> Two causes. The file must be in <code>day2-projects/</code> (the project root), and <code>brand</code> must come <strong>last</strong> in the <code>theme:</code> list: <code>theme: [cosmo, brand]</code> gives you the palette, while <code>theme: cosmo</code> on its own keeps cosmo’s colors and only the fonts change. Re-render after either fix. For <strong>plots</strong>, the palette needs <code>library(brand.yml)</code> + <code>theme_brand_ggplot2()</code>; <code>_brand.yml</code> alone does not apply the palette to ggplot figures.</li>
 <li><strong>Render fails with “references.bib not found”?</strong> Your Day-1 report points at <code>references.bib</code> and <code>apa.csl</code> by relative path. Copy both files from <code>day1-intro/</code> into <code>day2-projects/</code>, next to the report, and render again.</li>
-<li><strong>A cross-reference shows <code>?@…</code>?</strong> The cell label must start <code>fig-</code>/<code>tbl-</code>/<code>eq-</code> and be unique, and remember it only resolves <strong>within one page</strong> on a website.</li>
+<li><strong>A cross-reference shows <code>?@…</code>?</strong> The cell label must start <code>fig-</code>/<code>tbl-</code>/<code>eq-</code> and be unique. Website cross-references resolve only <strong>within one page</strong>.</li>
 <li><strong>Freeze didn’t skip the cell?</strong> Under <code>freeze: auto</code> it skips only when the source is <strong>unchanged</strong> since the last build: any edit (prose or code) re-runs that page. Delete <code>_freeze/</code> to force a clean rebuild.</li>
 <li><strong>A page won’t update?</strong> This is expected with <code>freeze: true</code>: a project render reuses the stored results even after an edit. Render that file directly, or switch back to <code>freeze: auto</code>.</li>
 <li><strong>Missing package?</strong> <code>install.packages("&lt;name&gt;")</code> (or <code>renv::restore()</code>) and render again.</li>

@@ -641,6 +641,7 @@ Christophe Dervieux
 <ul>
 <li><strong>Say:</strong> “With <code>true</code>, only a direct document render recomputes the page.”</li>
 <li><strong>Watch for:</strong> a page with no <code>_freeze/</code> entry and a new page still execute.</li>
+<li><strong>If a render fails</strong> with <code>cannot open file '&lt;name&gt;.qmd'</code>, delete the leftover <code>&lt;name&gt;.knit.md</code> or <code>&lt;name&gt;.rmarkdown</code>, then render again.</li>
 <li><strong>Do:</strong> edit <code>analysis.qmd</code>; render that file; show <code>_freeze/</code> change. Then render the project.</li>
 <li><strong>Contrast:</strong> <code>auto</code> recomputes changed pages; <code>true</code> requires manual refresh.</li>
 <li><strong>Example:</strong> quarto.org uses <code>true</code> and commits <code>_freeze/</code>.</li>
@@ -745,7 +746,7 @@ Christophe Dervieux
 <p><strong>Your turn</strong></p>
 </div>
 <div class="callout-content">
-<p>Return to the <strong>Reproducible Build Challenge</strong> in the <strong><a href="../../labs/quarto-projects/index.html#reproducible-build-challenge">Lab</a></strong>. Make the build skip unchanged pages, bring <strong>yesterday’s report</strong> onto the site, then run the guided <code>freeze: true</code> experiment. The result is a publishable <code>_site/</code> folder. Publishing and the dashboard demo are optional.</p>
+<p>Return to the <strong>Reproducible Build Challenge</strong> in the <strong><a href="../../labs/quarto-projects/index.html#reproducible-build-challenge">Lab</a></strong>. Make the build skip unchanged pages, bring <strong>yesterday’s report</strong> onto the site, then run the guided <code>freeze: true</code> experiment. The result is a publishable <code>_site/</code> folder. Publishing and the dashboard are optional.</p>
 </div>
 </div>
 </div>
@@ -798,17 +799,20 @@ Christophe Dervieux
       }</style></aside>
 </div>
 </section>
-<section id="demos" class="slide level2">
-<h2>Demos (if time)</h2>
-<p>Extra topics:</p>
-<ul>
-<li class="fragment"><strong>Book versus website</strong>: choose a <strong>book</strong> for ordered chapters with global numbering. Choose a <strong>website</strong> for independent pages.</li>
-<li class="fragment"><strong>Interactivity</strong>: an <strong>htmlwidget</strong> (<code>plotly</code>, <code>leaflet</code>) is pure R and self-contained. <strong><a href="https://quarto.org/docs/interactive/ojs/">OJS</a></strong> <em>(Observable JS, a browser-side, non-R path)</em> and <strong><a href="https://quarto-ext.github.io/shinylive/">Shinylive</a></strong> <em>(Shiny running in the browser, no server)</em> are links, not live builds.</li>
-</ul>
+<section id="thank-you" class="slide level2 center">
+<h2>Thank you!</h2>
+<p>Questions?</p>
+<div class="columns">
+<div class="column" style="width:28%;">
+<p><img data-src="../images/site-qr.svg" alt="QR code for the workshop site, https://cderv.github.io/raukr-2026-quarto/" width="210"></p>
+</div><div class="column" style="width:72%;">
+<p><strong>Slides + lab:</strong> <a href="https://cderv.github.io/raukr-2026-quarto/" class="uri">https://cderv.github.io/raukr-2026-quarto/</a></p>
+<p><strong>Learn more:</strong> <a href="https://quarto.org/docs/projects/quarto-projects.html">Projects</a> · <a href="https://quarto.org/docs/websites/">Websites</a> · <a href="https://quarto.org/docs/projects/code-execution.html#freeze">Freeze</a> · <a href="https://quarto.org/docs/publishing/">Publishing</a> · <a href="https://quarto.org/docs/dashboards/">Dashboards</a> · <a href="https://quarto.org/docs/interactive/">Interactive documents</a></p>
+</div></div>
+<p><span style="font-size:0.6em">Christophe Dervieux · <a href="https://github.com/cderv" data-preview-link="false">GitHub <code>@cderv</code></a> · <a href="mailto:cderv@posit.co">cderv@posit.co</a></span></p>
 <aside class="notes">
 <ul>
-<li><strong>Timing:</strong> cut from the bottom if fewer than 5 minutes remain.</li>
-<li><strong>Optional group demo:</strong> open the rendered dashboard from the lab and briefly name the valueboxes, boxplot card, and tabbed panel. Do not ask participants to build it.</li>
+<li><strong>If time remains after questions:</strong> open the lab’s dashboard and name the valueboxes, boxplot card, and tabset.</li>
 </ul>
 <style type="text/css">
         span.MJX_Assistive_MathML {
@@ -821,18 +825,6 @@ Christophe Dervieux
           overflow: hidden!important;
           display:block!important;
       }</style></aside>
-</section>
-<section id="thank-you" class="slide level2 center">
-<h2>Thank you!</h2>
-<p>Questions?</p>
-<div class="columns">
-<div class="column" style="width:28%;">
-<p><img data-src="../images/site-qr.svg" alt="QR code for the workshop site, https://cderv.github.io/raukr-2026-quarto/" width="210"></p>
-</div><div class="column" style="width:72%;">
-<p><strong>Slides + lab:</strong> <a href="https://cderv.github.io/raukr-2026-quarto/" class="uri">https://cderv.github.io/raukr-2026-quarto/</a></p>
-<p><strong>Learn more:</strong> <a href="https://quarto.org/docs/projects/quarto-projects.html">Projects</a> · <a href="https://quarto.org/docs/websites/">Websites</a> · <a href="https://quarto.org/docs/projects/code-execution.html#freeze">Freeze</a> · <a href="https://quarto.org/docs/publishing/">Publishing</a></p>
-</div></div>
-<p><span style="font-size:0.6em">Christophe Dervieux · <a href="https://github.com/cderv" data-preview-link="false">GitHub <code>@cderv</code></a> · <a href="mailto:cderv@posit.co">cderv@posit.co</a></span></p>
 
 
 </section></section>

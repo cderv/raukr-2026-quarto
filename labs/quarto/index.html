@@ -83,9 +83,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-d4913cc10dbf14b0802418f97812b735.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-17361f9cebf7fb635e55ea08cd04ba34.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark-d75dcb064f492e799e37e2ab7798086a.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../../site_libs/bootstrap/bootstrap-17361f9cebf7fb635e55ea08cd04ba34.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-bad09f59d6c24943f736e87914f443f2.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-7c8aa66264fb3a7dded5cdd0db571959.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-bad09f59d6c24943f736e87914f443f2.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <link href="../../site_libs/quarto-contrib/fontawesome6-1.2.0/all.min.css" rel="stylesheet">
 <link href="../../site_libs/quarto-contrib/fontawesome6-1.2.0/latex-fontsize.css" rel="stylesheet">
 <script src="../../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
@@ -372,7 +372,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#make-the-figure-accessible" id="toc-make-the-figure-accessible" class="nav-link" data-scroll-target="#make-the-figure-accessible"><span class="header-section-number">1.4</span> Make the figure accessible</a></li>
   <li><a href="#add-a-numbered-equation-optional" id="toc-add-a-numbered-equation-optional" class="nav-link" data-scroll-target="#add-a-numbered-equation-optional"><span class="header-section-number">1.5</span> Add a numbered equation <em>(optional)</em></a></li>
   </ul></li>
-  <li><a href="#citations-challenge" id="toc-citations-challenge" class="nav-link" data-scroll-target="#citations-challenge"><span class="header-section-number">2</span> Citations Challenge</a></li>
+  <li><a href="#citations-challenge" id="toc-citations-challenge" class="nav-link" data-scroll-target="#citations-challenge"><span class="header-section-number">2</span> Citations Challenge</a>
+  <ul>
+  <li><a href="#add-the-bibliography-and-citation-style" id="toc-add-the-bibliography-and-citation-style" class="nav-link" data-scroll-target="#add-the-bibliography-and-citation-style"><span class="header-section-number">2.1</span> Add the bibliography and citation style</a></li>
+  <li><a href="#cite-the-two-sources" id="toc-cite-the-two-sources" class="nav-link" data-scroll-target="#cite-the-two-sources"><span class="header-section-number">2.2</span> Cite the two sources</a></li>
+  <li><a href="#add-the-references-section" id="toc-add-the-references-section" class="nav-link" data-scroll-target="#add-the-references-section"><span class="header-section-number">2.3</span> Add the References section</a></li>
+  <li><a href="#give-it-a-title-block" id="toc-give-it-a-title-block" class="nav-link" data-scroll-target="#give-it-a-title-block"><span class="header-section-number">2.4</span> Give it a title block</a></li>
+  <li><a href="#render-to-html-and-check-the-citations" id="toc-render-to-html-and-check-the-citations" class="nav-link" data-scroll-target="#render-to-html-and-check-the-citations"><span class="header-section-number">2.5</span> Render to HTML and check the citations</a></li>
+  <li><a href="#render-a-branded-pdf-with-typst" id="toc-render-a-branded-pdf-with-typst" class="nav-link" data-scroll-target="#render-a-branded-pdf-with-typst"><span class="header-section-number">2.6</span> Render a branded PDF with Typst</a></li>
+  <li><a href="#keep-the-session-appendix-out-of-the-pdf" id="toc-keep-the-session-appendix-out-of-the-pdf" class="nav-link" data-scroll-target="#keep-the-session-appendix-out-of-the-pdf"><span class="header-section-number">2.7</span> Keep the Session appendix out of the PDF</a></li>
+  </ul></li>
   <li><a href="#sec-parameters" id="toc-sec-parameters" class="nav-link" data-scroll-target="#sec-parameters"><span class="header-section-number">3</span> Bonus — one report per species (optional)</a></li>
   <li><a href="#troubleshooting" id="toc-troubleshooting" class="nav-link" data-scroll-target="#troubleshooting"><span class="header-section-number">4</span> Troubleshooting</a></li>
   
@@ -480,7 +489,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>A caption <strong>Figure 1: …</strong> under the plot, and the sentence above it opening with a live <strong>Figure 1</strong> link.</p>
+<p>A caption <strong>Figure 1: …</strong> under the plot, and a sentence above it containing a live <strong>Figure 1</strong> link.</p>
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
@@ -597,7 +606,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>The counts table in the right-hand margin, level with “The species are not evenly represented:”, and the main text column unchanged in width.</p>
+<p>The counts table in the right-hand margin, beside the counts cell, and the main text column unchanged in width.</p>
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
@@ -801,7 +810,7 @@ Figure&nbsp;1: Target: bill length versus depth by species.
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>A numbered <strong>Figure 1</strong> (the bill scatter, three separate clusters), a numbered <strong>Table 1</strong>, and the counts in the right margin. <code>@fig-bill</code> and <code>@tbl-summary</code> render as live links, with no <code>?@</code> markers anywhere. If you completed the optional step, you also have a numbered <strong>Equation 1</strong>.</p>
+<p>A numbered <strong>Figure 1</strong> (the bill scatter, three separate clusters), a numbered <strong>Table 1</strong>, and the counts in the right margin. Your figure and table references render as live links, with no <code>?@</code> markers anywhere. If you completed the optional step, you also have a numbered <strong>Equation 1</strong>.</p>
 </div>
 </div>
 <p><strong><code>authoring-checkpoint.qmd</code> is this same report with every step above applied.</strong> It is already in <code>day1-intro/</code>. Compare your work against it, or, if you did not finish, save a copy of it as <code>my-report.qmd</code> and continue into Part 2 from there. You can also take the source:</p>
@@ -830,43 +839,57 @@ Figure&nbsp;1: Target: bill length versus depth by species.
 <li>Continue in that copy.</li>
 </ol>
 <p>The instructions below use <code>my-report.qmd</code> for both routes.</p>
+<p>Missing the download? Take the sources directly:</p>
+<p><a class="btn btn-primary btn-sm" href="https://raw.githubusercontent.com/cderv/raukr-2026-quarto-exercises/main/day1-intro/references.bib" role="button" target="_blank"><i class="fa-solid fa-download" aria-label="download"></i> references.bib</a> <a class="btn btn-primary btn-sm" href="https://raw.githubusercontent.com/cderv/raukr-2026-quarto-exercises/main/day1-intro/apa.csl" role="button" target="_blank"><i class="fa-solid fa-download" aria-label="download"></i> apa.csl</a> <a class="btn btn-primary btn-sm" href="https://raw.githubusercontent.com/cderv/raukr-2026-quarto-exercises/main/day1-intro/_brand.yml" role="button" target="_blank"><i class="fa-solid fa-download" aria-label="download"></i> _brand.yml</a></p>
 </div>
 </div>
-<div class="callout callout-style-default callout-note no-icon callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span><i class="fa-solid fa-clipboard-list" aria-label="clipboard-list"></i> Tasks
-</div>
-</div>
-<div class="callout-body-container callout-body">
 
-<ol type="1">
-<li><p>Point the document header at the shared bibliography and citation style. Add <code>citeproc: true</code> so Quarto processes the citations and places the reference list in the <code>#refs</code> div from step 3. Without it, Typst processes the citations and ignores that div:</p>
+<div class="no-row-height column-margin column-container"><div class="">
+<p><i class="fa-solid fa-book-open" aria-label="book-open"></i> <strong>Quarto docs</strong></p>
+<p><a href="https://quarto.org/docs/authoring/citations.html">Citations</a> · <a href="https://quarto.org/docs/output-formats/typst.html">Typst</a> · <a href="https://quarto.org/docs/authoring/conditional.html">Conditional content</a> · <a href="https://quarto.org/docs/authoring/brand.html">Brand</a></p>
+</div></div><section id="add-the-bibliography-and-citation-style" class="level3" data-number="2.1">
+<h3 data-number="2.1" class="anchored" data-anchor-id="add-the-bibliography-and-citation-style"><span class="header-section-number">2.1</span> Add the bibliography and citation style</h3>
+<p>Point the document header at the shared bibliography and citation style. Add <code>citeproc: true</code> so Quarto processes the citations and places the reference list in the <code>#refs</code> div you add below. Without it, Typst processes the citations and ignores that div:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bibliography</span><span class="kw">:</span><span class="at"> references.bib</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">csl</span><span class="kw">:</span><span class="at"> apa.csl</span></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="fu">citeproc</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
-<li><p>Cite the two sources the opening paragraph already credits, without rewriting it. The sentence ending <em>“…collected at Palmer Station, Antarctica.”</em> takes the data citation before the period (<code>Antarctica [@gorman2014].</code>). In the next sentence, put <code>[@horst2020]</code> immediately after <strong>palmerpenguins</strong>. The rest of that sentence concerns base R, so do not put the citation at the end. Don’t paste a second copy of either sentence.</p></li>
-<li><p>Add a <strong>References</strong> section where the list should appear:</p>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="fu">citeproc</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="cite-the-two-sources" class="level3" data-number="2.2">
+<h3 data-number="2.2" class="anchored" data-anchor-id="cite-the-two-sources"><span class="header-section-number">2.2</span> Cite the two sources</h3>
+<p>Cite the two sources the opening paragraph already credits, without rewriting it. The sentence ending <em>“…collected at Palmer Station, Antarctica.”</em> takes the data citation before the period (<code>Antarctica [@gorman2014].</code>). In the next sentence, put <code>[@horst2020]</code> immediately after <strong>palmerpenguins</strong>. The rest of that sentence concerns base R, so do not put the citation at the end. Don’t paste a second copy of either sentence.</p>
+</section>
+<section id="add-the-references-section" class="level3" data-number="2.3">
+<h3 data-number="2.3" class="anchored" data-anchor-id="add-the-references-section"><span class="header-section-number">2.3</span> Add the References section</h3>
+<p>Add a <strong>References</strong> section where the list should appear:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">## References {.unnumbered}</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>::: {#refs}</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
-<li><p>Give it a real <strong>title block</strong> so the PDF reads as a paper. <strong>Replace</strong> your document’s <code>author:</code> line (or add one) with:</p>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="give-it-a-title-block" class="level3" data-number="2.4">
+<h3 data-number="2.4" class="anchored" data-anchor-id="give-it-a-title-block"><span class="header-section-number">2.4</span> Give it a title block</h3>
+<p>Give it a real <strong>title block</strong> so the PDF reads as a paper. <strong>Replace</strong> your document’s <code>author:</code> line (or add one) with:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">author</span><span class="kw">:</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Your Name</span></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">affiliation</span><span class="kw">:</span><span class="at"> Your Lab, Your University</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
-<li><p>Render to HTML and confirm that both citations resolve as <em>(Gorman et al., 2014)</em> and <em>(Horst et al., 2020)</em>, with a reference list holding both entries.</p></li>
-<li><p>Switch the output to <strong>Typst</strong> and render a branded PDF. The branding comes from <code>_brand.yml</code>, which Quarto reads next to the document you render, so keep <code>my-report.qmd</code> in <code>day1-intro/</code>. You may see <code>unknown font family</code> warnings on the first render. See Troubleshooting if the final PDF still uses a serif font. Two routes:</p>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">affiliation</span><span class="kw">:</span><span class="at"> Your Lab, Your University</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="render-to-html-and-check-the-citations" class="level3" data-number="2.5">
+<h3 data-number="2.5" class="anchored" data-anchor-id="render-to-html-and-check-the-citations"><span class="header-section-number">2.5</span> Render to HTML and check the citations</h3>
+<p>Render to HTML and confirm that both citations resolve as <em>(Gorman et al., 2014)</em> and <em>(Horst et al., 2020)</em>, with a reference list holding both entries.</p>
+</section>
+<section id="render-a-branded-pdf-with-typst" class="level3" data-number="2.6">
+<h3 data-number="2.6" class="anchored" data-anchor-id="render-a-branded-pdf-with-typst"><span class="header-section-number">2.6</span> Render a branded PDF with Typst</h3>
+<p>Switch the output to <strong>Typst</strong> and render a branded PDF. The branding comes from <code>_brand.yml</code>, which Quarto reads next to the document you render, so keep <code>my-report.qmd</code> in <code>day1-intro/</code>. You may see <code>unknown font family</code> warnings on the first render. See Troubleshooting if the final PDF still uses a serif font. Two routes:</p>
 <ul>
 <li><p><strong>CLI</strong> — leave the header as-is and force the target:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> render my-report.qmd <span class="at">--to</span> typst</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
 <li><p><strong>From the editor</strong> — set <code>format: typst</code> in the YAML header first, <em>then</em> render (RStudio’s <strong>Render</strong> button, or <strong>Quarto: Render Document</strong> in Positron and VS Code). The editor renders whatever <code>format:</code> is declared, so while the header still says <code>format: html</code> you get HTML, <strong>not</strong> a PDF.</p></li>
 </ul>
-<p>The PDF is written <strong>next to its source</strong> in <code>day1-intro/</code>.</p></li>
-<li><p>Look at the end of the PDF. The <strong>Session</strong> appendix is printed in full, with the <code>sessionInfo()</code> call and all of its output. <code>&lt;details&gt;</code> is an HTML disclosure widget and Typst has no equivalent, so that block belongs to HTML only. Wrap the whole section (the heading and the <code>&lt;details&gt;</code> block) in a conditional div:</p>
+<p>The PDF is written <strong>next to its source</strong> in <code>day1-intro/</code>.</p>
+</section>
+<section id="keep-the-session-appendix-out-of-the-pdf" class="level3" data-number="2.7">
+<h3 data-number="2.7" class="anchored" data-anchor-id="keep-the-session-appendix-out-of-the-pdf"><span class="header-section-number">2.7</span> Keep the Session appendix out of the PDF</h3>
+<p>Look at the end of the PDF. The <strong>Session</strong> appendix is printed in full, with the <code>sessionInfo()</code> call and all of its output. <code>&lt;details&gt;</code> is an HTML disclosure widget and Typst has no equivalent, so that block belongs to HTML only. Wrap the whole section (the heading and the <code>&lt;details&gt;</code> block) in a conditional div:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>::: {.content-visible when-format="html"}</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="fu">## Session {.appendix .unnumbered}</span></span>
@@ -874,14 +897,8 @@ Figure&nbsp;1: Target: bill length versus depth by species.
 <span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- Keep the existing &lt;details&gt; block here. --&gt;</span></span>
 <span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Render to Typst again, then to HTML. The appendix is gone from the PDF and unchanged in the HTML.</p></li>
-</ol>
-</div>
-</div>
-<div class="no-row-height column-margin column-container"><div class="callout-margin-content">
-<p><i class="fa-solid fa-book-open" aria-label="book-open"></i> <strong>Quarto docs</strong></p>
-<p><a href="https://quarto.org/docs/authoring/citations.html">Citations</a> · <a href="https://quarto.org/docs/output-formats/typst.html">Typst</a> · <a href="https://quarto.org/docs/authoring/conditional.html">Conditional content</a> · <a href="https://quarto.org/docs/authoring/brand.html">Brand</a></p>
-</div></div><div class="callout callout-style-simple callout-note no-icon callout-titled">
+<p>Render to Typst again, then to HTML. On the editor route, set <code>format:</code> back to <code>html</code> for that second render. The appendix is gone from the PDF and unchanged in the HTML.</p>
+<div class="callout callout-style-simple callout-note no-icon callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
@@ -897,7 +914,7 @@ Figure&nbsp;1: Target: bill length versus depth by species.
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-23-contents" aria-controls="callout-23" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-22-contents" aria-controls="callout-22" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -906,7 +923,7 @@ Figure&nbsp;1: Target: bill length versus depth by species.
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-23" class="callout-23-contents callout-collapse collapse">
+<div id="callout-22" class="callout-22-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ul>
 <li>The <code>@key</code> in <code>[@gorman2014]</code> must match a key in <code>references.bib</code> <strong>exactly</strong>.</li>
@@ -918,7 +935,7 @@ Figure&nbsp;1: Target: bill length versus depth by species.
 </div>
 </div>
 <div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-24-contents" aria-controls="callout-24" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-23-contents" aria-controls="callout-23" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -927,7 +944,7 @@ Figure&nbsp;1: Target: bill length versus depth by species.
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-24" class="callout-24-contents callout-collapse collapse">
+<div id="callout-23" class="callout-23-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>In the YAML header:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bibliography</span><span class="kw">:</span><span class="at"> references.bib</span></span>
@@ -959,6 +976,7 @@ Figure&nbsp;1: Target: bill length versus depth by species.
 <p><a class="btn btn-primary btn-sm" href="https://raw.githubusercontent.com/cderv/raukr-2026-quarto-exercises/main/solutions/day1/penguins-report.qmd" role="button" target="_blank"><i class="fa-solid fa-download" aria-label="download"></i> penguins-report.qmd</a></p>
 <p>For a more advanced branded PDF example, render <code>day1-intro/sample-typst.qmd</code>. It also styles its table and plot in R and sets Typst page options. Those additions are outside this exercise.</p>
 </section>
+</section>
 <section id="sec-parameters" class="level2 page-columns page-full" data-number="3">
 <h2 data-number="3" class="anchored" data-anchor-id="sec-parameters"><span class="header-section-number">3</span> Bonus — one report per species (optional)</h2>
 <blockquote class="blockquote">
@@ -976,6 +994,8 @@ Figure&nbsp;1: Target: bill length versus depth by species.
 </div>
 <div class="callout-body-container callout-body">
 <p>Open <strong><code>day1-intro/parameters-starter.qmd</code></strong>. It contains the report structure, data, and plot. Your task is to make the species an input to the document. A complete reference is available at <strong><code>solutions/day1/penguins-by-species.qmd</code></strong>.</p>
+<p>Missing the download? Take the source directly:</p>
+<p><a class="btn btn-primary btn-sm" href="https://raw.githubusercontent.com/cderv/raukr-2026-quarto-exercises/main/day1-intro/parameters-starter.qmd" role="button" target="_blank"><i class="fa-solid fa-download" aria-label="download"></i> parameters-starter.qmd</a></p>
 </div>
 </div>
 <div class="callout callout-style-default callout-note no-icon callout-titled">
@@ -1039,7 +1059,7 @@ Figure&nbsp;1: Target: bill length versus depth by species.
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-29-contents" aria-controls="callout-29" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-28-contents" aria-controls="callout-28" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1048,7 +1068,7 @@ Figure&nbsp;1: Target: bill length versus depth by species.
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-29" class="callout-29-contents callout-collapse collapse">
+<div id="callout-28" class="callout-28-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ul>
 <li>Parameters <strong>must have defaults</strong>: <code>params$species</code> has to resolve when no <code>-P</code> is passed.</li>
@@ -1064,7 +1084,7 @@ Figure&nbsp;1: Target: bill length versus depth by species.
 <section id="troubleshooting" class="level2" data-number="4">
 <h2 data-number="4" class="anchored" data-anchor-id="troubleshooting"><span class="header-section-number">4</span> Troubleshooting</h2>
 <div class="callout callout-style-default callout-tip no-icon callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-30-contents" aria-controls="callout-30" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-29-contents" aria-controls="callout-29" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
@@ -1073,7 +1093,7 @@ Figure&nbsp;1: Target: bill length versus depth by species.
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-30" class="callout-30-contents callout-collapse collapse">
+<div id="callout-29" class="callout-29-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ul>
 <li><strong>YAML is indentation-sensitive.</strong> If rendering fails <em>before</em> any code runs, check the YAML header for stray spaces, tabs, or unmatched quotes.</li>
@@ -1084,9 +1104,9 @@ Figure&nbsp;1: Target: bill length versus depth by species.
 <li><strong>The PDF’s References section is empty and the entries are at the end under “Bibliography”?</strong> <code>citeproc: true</code> is missing from the header. Without it Typst builds the bibliography itself and places it last, so the <code>::: {#refs}</code> div only moves the list in HTML.</li>
 <li><strong><code>references.bib</code> not found, although the download has it?</strong> Your <code>.qmd</code> is probably not in <code>day1-intro/</code> (saved to the top folder, for example). Move it next to <code>references.bib</code> / <code>apa.csl</code> / <code>_brand.yml</code> and render again.</li>
 <li><strong>Do I need to install Typst?</strong> No.&nbsp;Typst is bundled in Quarto ≥ 1.9, so there’s nothing extra to install (no LaTeX either). Check <code>quarto --version</code>.</li>
-<li><strong>Typst PDF looks unbranded / wrong fonts?</strong> An unbranded render succeeds silently, so check the <strong>title and headings</strong>, not the log. A branded PDF uses <strong>Albert Sans</strong>. An unbranded PDF uses Typst’s default serif. Table 1 stays serif either way, so don’t judge by the table. Confirm <code>_brand.yml</code> is in your <code>day1-intro/</code> folder (next to the <code>.qmd</code>) and you have network on the first render (Quarto fetches the Google fonts once). Missing the file? Download <a href="https://raw.githubusercontent.com/cderv/raukr-2026-quarto-exercises/main/day1-intro/_brand.yml"><code>_brand.yml</code></a> into the folder holding your <code>.qmd</code>.</li>
-<li><strong>Typst prints <code>unknown font family</code> warnings?</strong> Harmless: a <code>gt</code> table names a generic <code>sans-serif</code> in its font stack, and Typst doesn’t recognize that as a family. The PDF still builds, branding included.</li>
-<li><strong>Prefer to stay in HTML first?</strong> Render HTML, get it right, <em>then</em> switch to <code>format: typst</code>. The content is the same.</li>
+<li><strong>Typst PDF looks unbranded / wrong fonts?</strong> An unbranded render can succeed without a warning, so check the <strong>title and headings</strong>, not the log. A branded PDF uses <strong>Albert Sans</strong>. An unbranded PDF uses Typst’s default serif. Table 1 stays serif either way, so don’t judge by the table. Confirm <code>_brand.yml</code> is in your <code>day1-intro/</code> folder (next to the <code>.qmd</code>) and you have network on the first render (Quarto fetches the Google fonts once). Missing the file? Download <a href="https://raw.githubusercontent.com/cderv/raukr-2026-quarto-exercises/main/day1-intro/_brand.yml"><code>_brand.yml</code></a> into the folder holding your <code>.qmd</code>.</li>
+<li><strong>Typst prints <code>unknown font family</code> warnings?</strong> A <code>gt</code> table names a generic <code>sans-serif</code> in its font stack, and Typst doesn’t recognize that as a family. The warning does not stop the PDF from building or applying the brand.</li>
+<li><strong>Prefer to stay in HTML first?</strong> Render HTML and check the content, <em>then</em> switch to <code>format: typst</code>. The content is the same. Set the key back to <code>html</code> to render HTML again.</li>
 </ul>
 </div>
 </div>
