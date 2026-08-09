@@ -362,6 +362,7 @@ Missing the download? Take the sources directly:
 
 <a class="btn btn-primary btn-sm" href="https://raw.githubusercontent.com/cderv/raukr-2026-quarto-exercises/main/day1-intro/references.bib" role="button" target="_blank">{{< fa download >}} references.bib</a>
 <a class="btn btn-primary btn-sm" href="https://raw.githubusercontent.com/cderv/raukr-2026-quarto-exercises/main/day1-intro/apa.csl" role="button" target="_blank">{{< fa download >}} apa.csl</a>
+<a class="btn btn-primary btn-sm" href="https://raw.githubusercontent.com/cderv/raukr-2026-quarto-exercises/main/day1-intro/_brand.yml" role="button" target="_blank">{{< fa download >}} _brand.yml</a>
 :::
 
 ::: {.column-margin}
@@ -660,10 +661,10 @@ your work or render it with different `-P species:` values. You can also take th
   render (Quarto fetches the Google fonts once). Missing the file? Download
   [`_brand.yml`](https://raw.githubusercontent.com/cderv/raukr-2026-quarto-exercises/main/day1-intro/_brand.yml)
   into the folder holding your `.qmd`.
-- **Typst prints `unknown font family` warnings?** Harmless: a `gt` table names a generic
-  `sans-serif` in its font stack, and Typst doesn't recognize that as a family. The PDF still
-  builds, branding included.
-- **Prefer to stay in HTML first?** Render HTML, get it right, *then* switch to `format: typst`.
+- **Typst prints `unknown font family` warnings?** A `gt` table names a generic `sans-serif` in its
+  font stack, and Typst doesn't recognize that as a family. The warning does not stop the PDF from
+  building or applying the brand.
+- **Prefer to stay in HTML first?** Render HTML and check the content, *then* switch to `format: typst`.
   The content is the same. Set the key back to `html` to render HTML again.
 :::
 
