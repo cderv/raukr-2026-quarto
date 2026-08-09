@@ -348,11 +348,19 @@ It renders with the live count: "We measured **`{r} nrow(penguins)`** penguins."
 
 The number updates when the data changes.
 
+. . .
+
+- The engine name sits in the braces, so `{{python}}` and `{{julia}}` work the same way.
+- Keep the expression simple: one value, computed in a cell.
+- It does not run inside YAML (a title, a `#| fig-cap`). Cell options take `!expr` instead.
+- The value arrives as text, so Markdown in it is escaped. Wrap it in `I()` to keep the formatting.
+
 **Learn more:** [Inline code](https://quarto.org/docs/computations/inline-code.html)
 
 ::: notes
 - **Do:** show inline `nrow(penguins)`.
 - **Say:** "The number updates with the data."
+- **Watch for:** inline code in a caption prints the literal text, it does not compute.
 :::
 
 ## Layouts: body, margin, and beyond {#layouts}
