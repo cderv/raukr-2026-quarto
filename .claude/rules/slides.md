@@ -38,7 +38,7 @@ not). It needs one environment variable in the sandbox; setup and proxy details 
 because the deck's JavaScript does not run correctly over `file://`:
 
 ```sh
-simple-http-server.exe --nocache -i -p 8899 _site      # from the repo root
+simple-http-server --nocache -i -p 8899 _site          # from the repo root
 agent-browser open "http://localhost:8899/slides/<deck>/index.html"
 agent-browser wait --fn "window.Reveal && window.Reveal.isReady()"
 # then pipe a heredoc to `agent-browser eval --stdin` that walks the anchors
