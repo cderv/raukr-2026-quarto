@@ -125,7 +125,7 @@ pages at the project root.
 
 ## Websites: pages and navigation {#websites .aside-flow}
 
-You already set `type: website`, which makes the folder a **site**. Define the navigation once in
+`type: website` makes the folder a **site**. Define the navigation once in
 `_quarto.yml`, and Quarto applies it to every page.
 
 ``` {.yaml filename="_quarto.yml"}
@@ -325,7 +325,6 @@ decide when to recompute each page.
 - **Watch for:** a page with no `_freeze/` entry and a new page still execute.
 - **If a render fails** with `cannot open file '<name>.qmd'`, delete the leftover
   `<name>.knit.md` or `<name>.rmarkdown`, then render again.
-- **Do:** open a stored `execute-results/html.json` and point at the `hash` field.
 - **Contrast:** `auto` recomputes changed pages; `true` requires manual refresh.
 - **Example:** quarto.org uses `true` and commits `_freeze/`.
 :::
@@ -370,8 +369,8 @@ quarto publish posit-connect-cloud
 
 The first run opens a browser to sign in, then uploads the site.
 
-`quarto publish` renders the project first by default. Add `--no-render` to upload the `_site/`
-you already built.
+`quarto publish` renders the project first by default. Add `--no-render` to upload the existing
+`_site/`.
 
 ::: {.callout-tip title="Optional: publish your site"}
 Publish your site and open it on your phone. The lab has the steps. If you skip publishing, you

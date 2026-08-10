@@ -28,7 +28,8 @@ groups <- list(
       "exercises/solutions/day1/penguins-report.qmd",
       "exercises/solutions/day1/penguins-by-species.qmd",
       "exercises/solutions/day1/references.bib",
-      "exercises/solutions/day1/apa.csl"
+      "exercises/solutions/day1/apa.csl",
+      "exercises/solutions/day1/_brand.yml"
     )
   ),
   day2 = list(project = "exercises/solutions/day2")

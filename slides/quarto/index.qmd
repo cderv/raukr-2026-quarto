@@ -58,6 +58,7 @@ Two rounds, each the same shape (**watch → your turn**):
 
 - I explain and demonstrate.
 - Each round ends with a **hands-on Challenge** in the lab.
+- A **Your turn** callout marks each switch to the lab.
 - A **break** sits between the two rounds.
 
 Slides and lab live at <https://cderv.github.io/raukr-2026-quarto/>. Open them on your own screen and
@@ -225,9 +226,7 @@ captions, **cross-references** (`@fig-bill`, `@tbl-summary`, `@eq-ratio`), **mat
 that reports numbers from the data, and **callouts**.
 
 ::: notes
-- **Say:** "Save the starter as `day1-intro/my-report.qmd`. We will render as we go."
-- **Watch for:** the setup cell belongs in the document, not the console.
-- **Catch-up:** no `day1-intro/`? Use the Setup page and pair them with a neighbor meanwhile.
+- **Say:** "This cell is the lab starter. You write it in the lab, not now."
 - **Focus:** Quarto additions, not a Markdown lesson.
 :::
 
@@ -419,7 +418,7 @@ penguins |> count(species, name = "n") |> knitr::kable()
 
 Accessibility is a few habits layered on what you already write:
 
-- **Alt text**: you already add `#| fig-alt:` to every figure. It is what a screen reader announces.
+- **Alt text**: add `#| fig-alt:` to every figure. It is what a screen reader announces.
 - **Color-blind-safe colors**: the default palette is not safe. Pick one that is:
   [Okabe-Ito](https://jfly.uni-koeln.de/color/) is the common choice in science
   ([`scale_color_okabe_ito()`](https://malcolmbarrett.github.io/ggokabeito/)), viridis suits
@@ -580,6 +579,8 @@ it and produce a branded PDF.*
 - **Say:** "Work on the Authoring Challenge until the break at 15:00. We resume at 15:30.
   Ask us if you get stuck."
 - **Watch for:** wrong label prefix; duplicate labels; `#|` options not at the top of a cell.
+- **Watch for:** the setup cell belongs in the document, not the console.
+- **Catch-up:** no `day1-intro/`? Use the Setup page and pair them with a neighbor.
 :::
 
 # Part 2: Citations → Typst {.center}
@@ -733,7 +734,7 @@ Typst is bundled from Quarto **1.4+**. We require **≥ 1.9** for margin and art
 
 ## Branding the PDF — `_brand.yml` {#brand}
 
-One `_brand.yml` carries your palette + fonts to the **Typst PDF** you just built, and to the
+One `_brand.yml` carries your palette + fonts to a **Typst PDF**, and to the
 **plots and tables** inside it:
 
 :::: {.columns}

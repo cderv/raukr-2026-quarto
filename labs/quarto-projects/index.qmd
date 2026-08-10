@@ -140,7 +140,7 @@ label. The theme is not a website option. It is a **format** option, so it goes 
 :::
 
 From this step on, preview the site with `quarto preview` from inside `day2-projects/`. On Day 1 you
-previewed one document. From the project root, the command serves the whole site and
+rendered one document at a time. From the project root, the command serves the whole site and
 re-renders a page when you save it.
 
 ::: {.callout-note appearance="simple" icon=false}
