@@ -26,6 +26,9 @@ your editor, or make it your working directory in R (see the
 [Setup page](../../setup.qmd#get-the-materials)). Everything you render is written next to
 your files. Start with the supplied `authoring-starter.qmd`. The lab introduces the other files when
 you need them. The folder README lists them all.
+
+The folder also holds a `_brand.yml`. Quarto applies it to anything you render there, so your HTML
+already carries the RaukR font and colors. Part 2 uses the same file for the PDF.
 :::
 
 ```{r}
@@ -58,8 +61,8 @@ The rest of this lab uses native `.qmd`.
 > **margin** element, rendered to HTML.
 
 **Starting point.** Open **`day1-intro/authoring-starter.qmd`** and save it as **`my-report.qmd`**,
-in that same folder (next to `references.bib` / `apa.csl` / `_brand.yml`, so Part 2's paths and
-branding resolve later). Render it once to confirm it works, then re-render after every step below.
+in that same folder (next to `references.bib` / `apa.csl` / `_brand.yml`, so Part 2's paths resolve
+later). Render it once to confirm it works, then re-render after every step below.
 
 The starter is already a working report, but it has no captions, cross-references, or alt text. Most
 steps require no R changes. The accessibility step makes three small changes to the plot.
