@@ -177,8 +177,8 @@ fi
 if command -v R >/dev/null 2>&1 && [ -f renv.lock ]; then
   echo "Restoring R packages with renv (P3M binaries)..."
   # renv discards the entire restore if one package fails. bitops can report a misleading dependency
-  # error involving gt. renv::restore() reports that error for bitops alone too, so install the
-  # binary directly first and let the complete restore skip it.
+  # error involving gt. renv::restore() also reports it for bitops alone. Install the binary
+  # directly before the complete restore so renv skips it.
   Rscript -e 'try(renv::install("bitops",
       repos = c(CRAN = "https://packagemanager.posit.co/cran/__linux__/noble/latest"),
       prompt = FALSE), silent = TRUE)' \

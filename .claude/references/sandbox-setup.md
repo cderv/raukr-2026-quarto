@@ -218,10 +218,10 @@ Rscript -e 'renv::install("bitops", repos = c(CRAN = "https://packagemanager.pos
 Rscript -e 'renv::restore(repos = c(CRAN = "https://packagemanager.posit.co/cran/__linux__/noble/latest"), prompt = FALSE)'
 ```
 
-The hook restores `bitops` separately before the complete restore, but the error still reaches a
-session whose library is empty (2026-08-10, `pak` and `renv` were the only packages present). renv
-moves packages into the project library only after the complete restore succeeds. If one package
-fails, the others are discarded, which is why the library remains nearly empty.
+The hook installs `bitops` separately before the complete restore. This step is needed when the
+library is empty (2026-08-10, only `pak` and `renv` were present). renv moves packages into the
+project library only after the complete restore succeeds. If one package fails, the others are
+discarded, which is why the library remains nearly empty.
 
 **Rendering a single `.qmd` needs the project library on PATH** if you render outside the project
 root: `export R_LIBS_USER=<repo>/renv/library/linux-ubuntu-noble/R-4.6/x86_64-pc-linux-gnu`.

@@ -58,7 +58,7 @@ From one file to a whole site.
 
 ## Why a *project*? {#why-project}
 
-A **project** is a folder with a `_quarto.yml` in it, no matter how simple. That file alone gives you:
+A **project** is any folder that contains a `_quarto.yml`. That file gives you:
 
 :::: {.columns}
 ::: {.column width="42%"}
@@ -87,13 +87,13 @@ day2-projects/
 
 . . .
 
-`type:` picks what Quarto builds on top. `default` is a plain folder of documents. `website` and
-`book` add navigation and cross-chapter numbering.
+`type:` selects the features Quarto adds. `default` is a plain folder of documents. `website` adds
+navigation. `book` also adds cross-chapter numbering.
 
 ::: notes
-- **Say:** "All of this comes from the folder having a `_quarto.yml`, not from the type."
-- **Do:** run `quarto create project` and show the type list.
-- **Ask:** "What do you repeat in every header today?"
+- **Say:** "These features do not depend on `type:`."
+- **Do:** run `quarto create project` and show the available project types.
+- **Ask:** "Which settings have you repeated in document headers so far?"
 - **Watch for:** `quarto render` in a folder with no `_quarto.yml` produces nothing and no error.
 - **Next:** we use `website` for the rest of the day.
 :::
@@ -117,7 +117,7 @@ format:
 ::: {.column width="48%"}
 ::: {.incremental}
 - This is the nearest `_quarto.yml`, so `day2-projects/` is the project root.
-- Everything under `format:` applies to every page in it.
+- Everything under `format:` applies to every page in the project.
 - `output-dir`: where the built site is written. Publish *that* folder.
 :::
 :::
