@@ -405,6 +405,32 @@ and the dashboard are optional.
 - **Catch-up:** `solutions/day2/`; fast finishers publish, then inspect the dashboard.
 :::
 
+## Extending Quarto {#extensions}
+
+**Extensions** are community add-ons for what Quarto does not ship natively: shortcodes, filters,
+custom formats, and revealjs plugins.
+
+``` bash
+quarto add quarto-ext/fontawesome           # icon shortcodes
+quarto use template quarto-journals/plos    # start an article in a journal format
+```
+
+They install into **`_extensions/`** next to `_quarto.yml`, so they belong to the project, not to
+your machine. Commit that folder like you commit `_freeze/`, and the next person renders the same
+thing.
+
+**Learn more:** [Quarto extension listing](https://quarto.org/docs/extensions/) ·
+[m.canouil.dev/quarto-extensions](https://m.canouil.dev/quarto-extensions/) (a searchable,
+community-maintained catalog)
+
+::: notes
+- **Say:** "Before you write a Lua filter, look in the listings. Someone has probably done it."
+- **Do:** open the searchable listing and filter by Formats.
+- **Watch for:** `quarto add` must run inside the project folder.
+- **If asked:** `quarto add` prompts for confirmation and installs from a GitHub repository or an
+  archive URL.
+:::
+
 ## What you can do now {#wrap-up}
 
 You can now:
