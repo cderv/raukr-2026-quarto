@@ -73,7 +73,12 @@ move at your own pace.
 
 ## Setup checkpoint {#setup-check}
 
-::: {.callout-note title="Do this now"}
+No exercises folder yet? Get it first, then run the check:
+
+``` r
+usethis::use_course("cderv/raukr-2026-quarto-exercises")
+```
+
 From the top folder of your downloaded exercises:
 
 ``` r
@@ -81,15 +86,10 @@ source("00-check-setup.R", local = new.env())
 ```
 
 Every check reads `[ok]`, and the last line is `>> All good. You are ready for Day 1.`
-:::
 
-No exercises folder yet? Get it first, then run the check:
+Any `[FAIL]` line: raise your hand. 
 
-``` r
-usethis::use_course("cderv/raukr-2026-quarto-exercises")
-```
-
-Any `[FAIL]` line: raise your hand. The fix is on the [Setup page](../../setup.qmd).
+Details on the [Setup page](../../setup.qmd).
 
 ::: notes
 - **Do:** ~10 min. Ask for hands: who has `[ok]` for every check?
