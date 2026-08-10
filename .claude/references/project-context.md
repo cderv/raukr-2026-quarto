@@ -222,7 +222,10 @@ and file citations are in the review that produced them; the essentials:
     workshop fonts). A checkpoint has nothing to keep up with, so it has no exit to mismanage.
   - **Objectives:** open with RaukR's native **`## Learning Outcomes`** slide (infinitive verbs);
     **close** with our mirrored **"What you can do now"** wrap-up (their decks lack this — our
-    value-add).
+    value-add). **Both stay generic.** They name the capability, not the feature list, so adding a
+    lab step does not mean adding a noun to them. A reviewer will suggest otherwise (2026-08-10: a
+    review flagged that the outcome slides did not mention the listing, the nouns went in, and they
+    came straight back out). Only a change in what the day *lets someone do* moves these lines.
   - **Labs — adopt the RaukR idiom wholesale:** `## <Name> Challenge` heading + scope
     `callout-note` at top + `::: {.callout-tip collapse="true"}` **hint** then a folded
     `#| code-fold: true` / `#| eval: false` **solution** + `<details>` Session block. Day-2

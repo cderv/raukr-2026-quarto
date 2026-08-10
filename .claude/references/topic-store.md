@@ -180,21 +180,25 @@ the tour, never the hands-on.
 | Topic | Notes |
 |-------|-------|
 | `_metadata.yml` | directory metadata — **promoted to a shown slide** in the `_quarto.yml` CORE beat (load-bearing for the NBIS fold-in; coverage projects GAP 2). _(new)_ |
-| Profiles | `--profile`, `_quarto-<p>.yml` — one slide/link, don't demo _(new)_ |
-| Books | **demoted DEMO→MENTION** (coverage projects): ~90% shared machinery with Websites; teach only the **book-vs-website decision** (1 slide) + typst-2026 book as the resources link _(new)_ |
+| Profiles | **BUILT 2026-08-09** as `#profiles` in Part 2, before Publishing. One slide, no demo _(built)_ |
+| Books | **demoted DEMO→MENTION** (coverage projects): ~90% shared machinery with Websites. **BUILT 2026-08-09** in two places: the project-types row on `#project-types`, and the book-vs-website decision in the callout on `#xrefs` (kept at the point of need). `#project-types` sits directly after `#why-project`, which owns the type overview, so it gives the choosing criterion only and must not re-introduce `type:` _(built)_ |
 | ~~Parameters~~ | **superseded** — landed on **Day 1** as an optional lab bonus 2026-07-22, not here. See the Day-1 table above _(resolved)_ |
 | Shinylive | interactive-app teaser — link + a pre-built cached example at most, never a live build (technique P1-4) _(new)_ |
 | renv / reproducible env | **added** (coverage projects GAP 1) — one slide inside the Freeze CORE beat: `renv.lock` = the 2nd reproducibility leg (pin *what* runs) _(new)_ |
-| Website tools | **added** (coverage projects) — one bundled slide: drafts · search-is-free · redirects; social cards/404 → resources _(new)_ |
+| Website tools | **Built then retired 2026-08-10.** The bundled slide lasted one day. Once `draft:` was cut (below), what remained was search (already demoed on `#websites`), dark mode (already shown on `#real-config`), and `resources:` — one line, now a sentence on `#real-config`. The original triage was right that these ride inside a CORE beat rather than getting their own slide. Social cards/404 stay on the resources page. `llms-txt:` was considered and left out _(folded)_ |
+| ~~Drafts (`draft:` / `draft-mode:`)~~ | **Cut 2026-08-10** from both the deck and the lab. It was a slide bullet plus an optional lab step and a solution page. Not worth the room in this tutorial. Note if it ever returns: **`draft-mode: visible` publishes drafts normally** — `unlinked` is the value that renders them in full while keeping them out of navigation, search, and listings _(cut)_ |
+| ~~Dark mode as a lab step~~ | **Cut 2026-08-10.** Building a second `_brand.yml` is copying a hex palette, and the one Quarto idea in it (`project: brand:` taking a light/dark mapping) is a single key. The step also had to warn that ggplot colours do not follow, which is a caveat about the thing it just taught. **The two-line `brand:` mapping stays on `#real-config`** as part of a real config the presenter demos with one click, which is the right depth for it _(cut from lab, kept on slide)_ |
 | Using extensions | Day 2 slide: `quarto add`, `quarto use template`, the project-local `_extensions/` folder, and the official and community extension catalogs. |
-| Other publish targets | Quarto Pub, Connect Cloud — links |
+| Other publish targets | **BUILT 2026-08-09** as `#publish-targets` in Part 2: the provider list, `_publish.yml`, and copy-`_site/`-to-your-own-server. **`quarto-pub` removed 2026-08-10** — quartopub.com has already stopped new account creation and stops accepting content on **2026-12-31**, so a participant could not use it even during the workshop ([Posit migration notice](https://posit.co/blog/migrating-connect-cloud-posits-unified-publishing-solution)). Connect Cloud is the replacement, and is what the lab already uses. Because the list is now shorter than the real `quarto publish --help`, the slide no longer presents it as captured output and the reason sits in `::: notes` _(built)_ |
+| Project types | **added + BUILT 2026-08-09**, then **narrowed 2026-08-10** to `website` vs `book` only. `default` and `manuscript` were on the slide for one day and came off: this tutorial builds a website, and a book is the one other type a life-science audience plausibly reaches for. The slide is now the website-vs-book **decision**, which is what the original triage asked for. **`blog` is not a type** (`type: blog` is rejected: "Unsupported project type blog") even though the `quarto create project` prompt offers it, because a blog is a website with a listing. `confluence` is a real type but out of scope _(built)_ |
+| `render:` and a real config | **added + BUILT 2026-08-09** as `#real-config` in Part 1: this repo's own `project:` block, walked with `code-line-numbers`. `render:` plus `!` exclusion is the takeaway _(built)_ |
 
 ### STORE _(confirmed 2026-07-07)_
 
 | Topic | Why cut |
 |-------|---------|
-| Manuscripts | scholarly `manuscript` project — too complex for the slot (Christophe); mention/link at most |
-| Blog plumbing (about templates, social) | nice-to-have from the site lab → resources |
+| Manuscripts | scholarly `manuscript` project — too complex for the slot (Christophe). A 1-line signpost was added to `#project-types` on 2026-08-09 and **removed again 2026-08-10**: the slide is now website-vs-book only. Stays out |
+| Blog plumbing (about templates, social cards, 404) | nice-to-have from the site lab → resources. **Reversal attempted and undone:** an About-page step was added 2026-08-09 and **cut 2026-08-10**. It was a *document* option in a session about projects, its navbar edit repeated the navigation step two steps earlier (rule 9 duplication), and "write a couple of sentences" is where a room dawdles. This row was right the first time |
 | Deep Bootswatch theming | superseded by `_brand.yml` in our story |
 
 ---
@@ -317,25 +321,46 @@ list, not from the exercise.
 > above: cut from the list, not from the exercise. Concept comes down to 16, hands-on goes to 30, sum
 > unchanged, and the slide now matches the plan. Note this part is the one place we announce the full
 > budgeted time — both Day-2 parts deliberately announce ~45 against 50/48, so an overrunning demo
-> comes out of the gap rather than out of the hands-on.
+> comes out of the gap rather than out of the hands-on. **Updated 2026-08-09:** Day-2 Part 1 is now
+> budgeted 46, so the announced ~45 no longer sits below it by a useful margin. The absorber for that
+> part is the two optional lab steps, which a room under pressure simply does not reach.
 
 **Day 2 · Part 1 — build & structure a project** *(90 min)*
 
 | ~min | Phase | Mode | Content |
 |------|-------|------|---------|
 | 5 | frame + project hook | My | one file → a whole site your team can use |
-| 20 | concept + live demo | My | `_quarto.yml` · website + navbar/sidebar · cross-refs across pages · **`_brand.yml`** (site + slides + R plots, same palette) |
+| 20 | concept + live demo | My | `_quarto.yml` · **website vs book** · website + navbar/sidebar · **a real config (`render:`)** · cross-refs across pages · **`_brand.yml`** |
 | 50 | hands-on | Your | Turn a set of `.qmd` into a navigable, branded website |
 | 5 | recap + bridge | My | "next: make builds reproducible, then publish" |
+
+> **Rebalanced 2026-08-09, settled 2026-08-10.** Two slide additions survived review
+> (`#project-types`, `#real-config`), so concept stays at its original **20**.
+>
+> **The hands-on half is estimated, never rehearsed.** Roughly 22 min of keyboard time against a
+> 50-min budget, and that figure justified adding six things of which four were cut again within two
+> days (drafts, dark mode, the About page, the website-tools slide). A room of 40 on venue wifi, with
+> YAML indentation errors and Windows laptops, is slower than any desk estimate. Do not re-derive the
+> gap from a fresh estimate: only a rehearsal or a live run should move this. If the part does need
+> more hands-on weight, the minutes belong in the **lab**, not in new slides.
 
 **Day 2 · Part 2 — scale & ship (publish is the payoff)** *(90 min)*
 
 | ~min | Phase | Mode | Content |
 |------|-------|------|---------|
 | 5 | frame + project hook | My | "this is how your team publishes its project" |
-| 17 | concept + live demo | My | Freeze (motivation-first: don't re-run slow compute) · **watch-me** `publish`/CI on a pre-provisioned repo |
+| 19 | concept + live demo | My | Freeze (motivation-first: don't re-run slow compute) · **profiles** · **watch-me** `publish`/CI on a pre-provisioned repo · **the other publish targets** |
 | 48 | hands-on | Your | **the payoff**: `quarto render` + `output-dir` on your project (publish = watch-me, auth pre-flighted). _(The parameterized-report step once floated for here landed on **Day 1** instead, 2026-07-22.)_ |
-| 15 | recap + questions | My | wrap-up, then Q&A. **Retired 2026-08-09:** the demo tail (Books / Dashboards / an htmlwidget) had its own slide and was cut — it reopened the deck after the arc had closed, and the dashboard is better left as a self-paced lab activity |
+| 13 | recap + questions | My | wrap-up, then Q&A. **Retired 2026-08-09:** the demo tail (Books / Dashboards / an htmlwidget) had its own slide and was cut — it reopened the deck after the arc had closed, and the dashboard is better left as a self-paced lab activity |
+
+> **Rebalanced 2026-08-09.** Two slides went in (`#profiles`, `#publish-targets`), so concept goes
+> 17 → 19. The 48-min hands-on is the payoff and does not move, so the 2 min come out of the Q&A
+> tail, which was the most generous line in the table. The part still sums to 85 in an 85-min
+> effective slot, so the shock-absorber for this part remains the `renv.lock` slide inside Freeze.
+>
+> **`#extensions` landed 2026-08-10**, in the wrap-up rather than the concept block, so it takes
+> its minute from the same Q&A tail. That tail has now paid for three additions and is the thinnest
+> line in the part.
 
 ---
 
@@ -357,6 +382,16 @@ runs long, trim a *tour* beat, never the render payoff (rules 1–2).
 > post-payoff demo tail (now reliably happens, ~15 min, not "if time"). _(The **parameterized-report
 > exercise** once floated as a Day-2 Part-2 step landed instead on **Day 1** as an optional lab bonus,
 > 2026-07-22.)_
+
+> **Ceilings 2026-08-10: Part 1 stays at 20, Part 2 goes to 19** (§ Time budget). Five standalone
+> MENTION slides were added on 2026-08-09 against the note below that says MENTION items should ride
+> inside a CORE beat. One was folded back the next day (`#website-tools`) and one was narrowed
+> (`#project-types`), which is the note being right. Part 2 keeps two additions (`#profiles`,
+> `#publish-targets`) and pays 2 min for them. **Cut-first under time pressure is now `#profiles`,
+> then `#publish-targets`**, both pure tour beats — not the `renv.lock` slide, which is a coverage-gap
+> fix. `#extensions` (added 2026-08-10, in the wrap-up) is a third tour beat and belongs in the same
+> cut list. The lesson worth keeping: when a part is running short, the minutes belong in the **lab**,
+> not in new slides.
 
 **Part 1 — build & structure (concept+demo ~18 min ceiling):**
 
@@ -387,6 +422,9 @@ still open the lab's dashboard if questions run short (a `::: notes` cue on that
 - **MENTION one-slide items ride inside their CORE beat**, not as separate timed beats: Parameters
   (CLI framing), website-tools (drafts / search-is-free / redirects), Using-extensions, Profiles —
   fold into the nearest beat or the resources page; they don't consume the beat budget.
+  **Tested 2026-08-09/10:** website-tools and Profiles were built as standalone slides anyway.
+  website-tools was folded back into `#real-config` a day later, which is this note being right.
+  Profiles stayed. Using-extensions is still unbuilt and should follow the original rule.
 
 ---
 

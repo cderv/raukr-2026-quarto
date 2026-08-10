@@ -98,6 +98,24 @@ navigation. `book` also adds cross-chapter numbering.
 - **Next:** we use `website` for the rest of the day.
 :::
 
+## Website or book? {#project-types}
+
+Both build a browsable site. The question is how the pages are read:
+
+| `type:` | Pick it when |
+|---------|--------------|
+| `website` | each page stands on its own. Navigation, search, listings. Today's build. |
+| `book` | the pages read **in order**, as chapters, and you also want one PDF or EPUB. |
+
+**Learn more:** [Books](https://quarto.org/docs/books/)
+
+::: notes
+- **Say:** "One `type:` line. Ordered chapters means book, everything else means website."
+- **If asked:** a blog is a website with a listing on its home page, not a third type.
+- **If asked:** the numbering consequence comes back on the cross-references slide.
+- **Do not demo:** a book is a pointer today.
+:::
+
 ## Where the project starts {#project-root}
 
 Quarto identifies the project root by searching **up** from the file being rendered and using the
@@ -215,7 +233,7 @@ own, so link between pages with ordinary Markdown links and the **navbar/sidebar
 See the [analysis page](analysis.qmd) for the model.
 ```
 
-::: {.callout-note title="Project-wide numbering is a *book*"}
+::: {.callout-note title="This is what picks `book` for you"}
 If you need "Figure 3.2" to resolve *across* chapters, that's `type: book`: Quarto renders a book as
 one unit with global numbering. A **website** keeps per-page numbering.
 :::
@@ -272,6 +290,35 @@ typography:
   `--bs-body-font-family`, which cosmo does not set, so it survives.
 :::
 
+## What that grows into {#real-config}
+
+The site you are reading this on is a Quarto project. Same `project:` key, two more entries under it:
+
+``` {.yaml filename="_quarto.yml" code-line-numbers="|4-6|7-11"}
+project:
+  type: website
+  output-dir: _site
+  brand:                    # one light, one dark
+    light: _brand.yml
+    dark: _brand-dark.yml
+  render:                   # only these become pages
+    - index.qmd
+    - setup.qmd
+    - slides/*/index.qmd
+    - labs/*/index.qmd
+```
+
+**`render:`** is the one to remember. Without it Quarto renders every `.qmd` under the root. A
+leading `!` excludes instead (`- "!drafts/*.qmd"`). A third key, **`resources:`**, copies files
+Quarto does not find on its own (a spreadsheet, a `_redirects` file) into `_site/`.
+
+::: notes
+- **Say:** "Nothing new here, just more of it. The real file is longer."
+- **Do:** click the dark-mode toggle on this site to show where `brand:` lands.
+- **If asked:** `render:` is why the participant `.qmd` files in this repo are not site pages.
+- **If asked:** site search is on by default, so there is no key for it.
+:::
+
 ## Your turn {#your-turn-1}
 
 ::: {.callout-tip title="Your turn"}
@@ -325,6 +372,8 @@ execute:
 With `freeze: auto`, Quarto compares the page's current source with the source recorded alongside
 its stored output. If the content is unchanged, Quarto reuses the output. If it changed, Quarto
 runs the code again. Re-saving an unchanged file does not trigger computation.
+
+It is an ordinary option, so a `_metadata.yml` can set it for one folder only.
 
 ::: notes
 - **Say:** "A prose edit should not rerun a 20-minute model."
@@ -390,6 +439,34 @@ Together: a colleague (or CI) rebuilds the *same* site, with or without re-runni
 - **Timing:** drop this first if short.
 :::
 
+## One project, several builds {#profiles}
+
+A **profile** is an overlay on `_quarto.yml`. The file name gives the profile its name, and
+`--profile` switches it on:
+
+``` {.yaml filename="_quarto-internal.yml"}
+website:
+  title: "Penguin Lab (internal)"
+project:
+  render:
+    - "*.qmd"
+    - "drafts/*.qmd"
+```
+
+``` bash
+quarto render --profile internal
+```
+
+Quarto reads `_quarto.yml`, then merges the profile on top.
+
+**Learn more:** [Project profiles](https://quarto.org/docs/projects/profiles.html)
+
+::: notes
+- **Say:** "Same project, two outputs. The difference lives in a second config file."
+- **Do not demo:** one slide, then move on.
+- **If asked:** `QUARTO_PROFILE` sets it by environment variable, which is how CI picks a build.
+:::
+
 ## Publishing {#publishing}
 
 Publishing has two steps: **render the project, then point a host at `output-dir`.**
@@ -423,6 +500,31 @@ still have the complete `_site/` folder.
   already built."
 - **Mention:** free Posit account required; skipping loses nothing.
 - **If asked:** scheduled and repository builds are also available.
+:::
+
+## The other destinations {#publish-targets}
+
+Connect Cloud is one provider of several:
+
+``` {.default}
+ - GitHub Pages (gh-pages)
+ - Posit Connect (connect)
+ - Posit Connect Cloud (posit-connect-cloud)
+ - Netlify (netlify)
+ - Confluence (confluence)
+ - Hugging Face Spaces (huggingface)
+```
+
+Each one asks for the account interactively the first time, then records the destination in a
+`_publish.yml` you can commit. `quarto publish --help` lists them on your own machine.
+
+**Learn more:** [Publishing](https://quarto.org/docs/publishing/)
+
+::: notes
+- **Say:** "Your institution's own server is still the `_site/` copy from the previous slide."
+- **If asked:** `gh-pages` needs a repository and a GitHub account, which is why we do not use it here.
+- **If asked why `--help` shows one more:** Quarto Pub stopped taking new accounts and stops
+  accepting content on 2026-12-31. Connect Cloud is its replacement.
 :::
 
 ## Your turn {#your-turn-2}
