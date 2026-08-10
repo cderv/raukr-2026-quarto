@@ -58,6 +58,48 @@ From one file to a whole site.
 
 ## Why a *project*? {#why-project}
 
+A **project** is a folder with a `_quarto.yml` in it, no matter how simple. That file alone gives you:
+
+:::: {.columns}
+::: {.column width="42%"}
+``` {.yaml filename="_quarto.yml"}
+project:
+  type: default
+```
+
+``` {.default code-line-numbers="false"}
+day2-projects/
+|-- _quarto.yml   <- makes it a project
+|-- index.qmd
+|-- analysis.qmd
+`-- reports/
+```
+:::
+::: {.column width="58%"}
+::: {.incremental}
+- **One command** for the whole folder: `quarto render`, no file argument.
+- **One place** for shared YAML, instead of the same header in every file.
+- `output-dir`: the built files are written to one folder you can publish.
+- `freeze`: a build can reuse stored results (Part 2).
+:::
+:::
+::::
+
+. . .
+
+`type:` picks what Quarto builds on top. `default` is a plain folder of documents. `website` and
+`book` add navigation and cross-chapter numbering.
+
+::: notes
+- **Say:** "All of this comes from the folder having a `_quarto.yml`, not from the type."
+- **Do:** run `quarto create project` and show the type list.
+- **Ask:** "What do you repeat in every header today?"
+- **Watch for:** `quarto render` in a folder with no `_quarto.yml` produces nothing and no error.
+- **Next:** we use `website` for the rest of the day.
+:::
+
+## Where the project starts {#project-root}
+
 Quarto identifies the project root by searching **up** from the file being rendered and using the
 **nearest `_quarto.yml`**.
 
@@ -75,8 +117,7 @@ format:
 ::: {.column width="48%"}
 ::: {.incremental}
 - This is the nearest `_quarto.yml`, so `day2-projects/` is the project root.
-- `quarto render` with no file argument builds **every** page in it.
-- The `format:` settings apply to every page.
+- Everything under `format:` applies to every page in it.
 - `output-dir`: where the built site is written. Publish *that* folder.
 :::
 :::
