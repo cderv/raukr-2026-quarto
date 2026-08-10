@@ -407,8 +407,8 @@ and the dashboard are optional.
 
 ## Extending Quarto {#extensions}
 
-**Extensions** are community add-ons for what Quarto does not ship natively: shortcodes, filters,
-custom formats, and revealjs plugins.
+**Extensions** add features that Quarto does not include by default: shortcodes, filters, custom
+formats, and revealjs plugins.
 
 ``` bash
 quarto add quarto-ext/fontawesome           # icon shortcodes
@@ -416,8 +416,8 @@ quarto use template quarto-journals/plos    # start an article in a journal form
 ```
 
 They install into **`_extensions/`** next to `_quarto.yml`, so they belong to the project, not to
-your machine. Commit that folder like you commit `_freeze/`, and the next person renders the same
-thing.
+your machine. Commit the folder, as you do `_freeze/`, so other contributors use the same extensions
+when they render the project.
 
 **Learn more:** [Quarto extension listing](https://quarto.org/docs/extensions/) ·
 [m.canouil.dev/quarto-extensions](https://m.canouil.dev/quarto-extensions/) (a searchable,
@@ -425,7 +425,7 @@ community-maintained catalog)
 
 ::: notes
 - **Say:** "Before you write a Lua filter, look in the listings. Someone has probably done it."
-- **Do:** open the searchable listing and filter by Formats.
+- **Do:** open the community catalog and filter by Formats.
 - **Watch for:** `quarto add` must run inside the project folder.
 - **If asked:** `quarto add` prompts for confirmation and installs from a GitHub repository or an
   archive URL.

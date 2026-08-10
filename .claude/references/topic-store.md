@@ -186,7 +186,7 @@ the tour, never the hands-on.
 | Shinylive | interactive-app teaser — link + a pre-built cached example at most, never a live build (technique P1-4) _(new)_ |
 | renv / reproducible env | **added** (coverage projects GAP 1) — one slide inside the Freeze CORE beat: `renv.lock` = the 2nd reproducibility leg (pin *what* runs) _(new)_ |
 | Website tools | **added** (coverage projects) — one bundled slide: drafts · search-is-free · redirects; social cards/404 → resources _(new)_ |
-| Using extensions | **BUILT 2026-08-10** as the Day-2 `## Extending Quarto {#extensions}` slide, between the Part-2 "Your turn" and the wrap-up: `quarto add` / `quarto use template`, `_extensions/` is project-local and committed like `_freeze/`, plus both listings (quarto.org and the community catalog). Sits in the 15-min recap window, so it costs nothing from the ~15-min concept+demo ceiling _(built)_ |
+| Using extensions | Day 2 slide: `quarto add`, `quarto use template`, the project-local `_extensions/` folder, and the official and community extension catalogs. |
 | Other publish targets | Quarto Pub, Connect Cloud — links |
 
 ### STORE _(confirmed 2026-07-07)_
