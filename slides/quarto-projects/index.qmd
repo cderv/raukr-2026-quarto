@@ -43,7 +43,7 @@ By the end, the same penguins data and yesterday's report will form a **website 
 
 ## How today works
 
-Same shape as yesterday: two rounds of **watch → your turn**, each ending in a challenge in the lab, with a break between the rounds.
+Same shape as yesterday: two rounds of **watch → your turn**, with a break between them. Each round ends with a challenge in the lab.
 
 The **Your turn** callout slide flags each switch to the lab.
 
@@ -163,7 +163,7 @@ set `order:`. New pages are included automatically.
 ## Cross-references across a project {#xrefs}
 
 Within **one page**, `@fig-`, `@tbl-`, `@eq-` resolve to a numbered, linked reference, exactly as
-on Day 1. Website project allows to reference Section headings and it work the same way with `@sec-` prefix.
+on Day 1. Section headings work the same way with the `@sec-` prefix.
 
 . . .
 
