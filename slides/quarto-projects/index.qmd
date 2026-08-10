@@ -191,8 +191,8 @@ one unit with global numbering. A **website** keeps per-page numbering.
 
 ## One brand → the whole project: `_brand.yml` {#brand}
 
-Yesterday `_brand.yml` sat next to your report, so Quarto found it there (that is why your HTML
-changed too, not only the PDF). At the **project root** it is auto-discovered for **every page**:
+Yesterday `_brand.yml` sat next to your report. At the **project root**, Quarto auto-discovers it for
+**every page**:
 
 :::: {.columns}
 ::: {.column width="54%"}
@@ -222,9 +222,7 @@ typography:
 [brand.yml spec](https://posit-dev.github.io/brand-yml/)
 
 ::: notes
-- **Focus:** one root `_brand.yml` covers every page of the project.
-- **Say:** the file sat in `day1-intro/` from the start, so it styled your HTML yesterday too, not
-  only the PDF. Yesterday's lab framed it as a Typst thing.
+- **Say:** it styled your HTML yesterday too, not only the PDF. Yesterday's lab framed it as a Typst thing.
 - **Do:** show the site before/after adding `_brand.yml`.
 - **Say:** "Brand once at the project root, not once per page."
 - **Do not reveal:** theme-layer order; it is the lab exercise.

@@ -41,7 +41,9 @@ reads like something you'd *say to soften or sell* the point, it belongs in note
 
 - Keep notes glanceable in presenter mode: normally one line per **Say**, **Do**, **Ask**,
   **Watch for**, or **Catch-up** item.
-- Do not repeat the slide or lab text. Record only the prompt, action, or warning needed live.
+- **The split is two-way.** Notes do not repeat the slide, and the slide does not carry the notes'
+  explanation. Record only the prompt, action, or warning needed live. When the same point sits in
+  both, cut it from the slide and keep it in the notes.
 - Split unrelated actions into separate bullets. Remove narration and background explanation.
 - Add a duration only when a rehearsal supports it.
 
@@ -81,6 +83,12 @@ Examples from the 2026-08-09 troubleshooting audit:
 - **Em-dash asides — #1 offender.** No mid-sentence `—`/`--` interjection, *especially* two dashes
   splitting subject from verb (`The way — X, Y, Z — is …`) or a dramatic trailing `— punch.`
   Replace with `(…)`, a `:`, or a full stop + new sentence. (A plain `term — gloss` slide bullet is OK.)
+- **On a slide body, no explaining parenthesis.** The line above sends you to `(…)`, which is right in
+  a lab or in notes. On a **slide**, an aside that explains, corrects, or justifies is what you *say*,
+  so it belongs in `::: notes`. The test: if the clause would also fit in the notes, it goes only
+  there. A short gloss (`(i.e. …)`) and a `term — gloss` bullet still stand. (2026-08-10: a Day-2
+  brand slide read `(that is why your HTML changed too, not only the PDF)` while the note beneath it
+  said the same thing.)
 - **No `;` semicolons** — split or parenthesise. Sentence bullets end with periods, not semicolons.
 - **One name per thing.** A YAML fragment is a **block**, or name the **key**. Never a *stanza*
   (borrowed config jargon, and not a French cognate either, so it reads as not-his-voice). Before

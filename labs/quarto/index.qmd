@@ -28,7 +28,7 @@ your files. Start with the supplied `authoring-starter.qmd`. The lab introduces 
 you need them. The folder README lists them all.
 
 The folder also holds a `_brand.yml`. Quarto applies it to anything you render there, so your HTML
-already carries the RaukR font and colors. Part 2 uses the same file for the PDF.
+carries the RaukR font and colors from the first render.
 :::
 
 ```{r}

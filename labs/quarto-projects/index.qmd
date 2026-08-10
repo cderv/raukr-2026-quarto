@@ -235,9 +235,8 @@ the reference and table share one page.
 
 ### Brand it
 
-**Goal.** Give the site one shared palette and typeface from a `_brand.yml`. Yesterday the file sat
-next to your report and Quarto found it there. Here you put it at the project root, where it covers
-every page.
+**Goal.** Give the site one shared palette and typeface from a `_brand.yml`. Yesterday it sat next to
+your report. Here it sits at the project root, where it covers every page.
 
 ::: {.column-margin}
 {{< fa book-open >}} **Quarto docs**

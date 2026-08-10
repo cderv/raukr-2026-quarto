@@ -305,3 +305,9 @@ Notes must be readable at a glance in revealjs presenter mode: short **Say**, **
 slide. Keep the transition, demo action, essential trap, and fallback. Remove edit history,
 verification narratives, and explanations already visible elsewhere. Put durable authoring knowledge
 in a rule, not in presenter notes.
+
+**The split is two-way**, and the second direction is the one that gets missed. These notes carry what
+you *say*; the slide carries what the room *reads*. So an explanation, a correction, or a
+justification does not belong in the slide body either — most often it arrives as a parenthesis.
+**After changing a slide, read its body and its `::: notes` side by side: anything said twice comes
+off the slide.** Do this with the fit-check in § 1, on the same pass.
