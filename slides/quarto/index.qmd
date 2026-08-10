@@ -243,9 +243,9 @@ A labeled code cell becomes a numbered, referenceable figure:
 #| label: fig-bill
 #| fig-cap: "Bill length versus depth, by species."
 #| fig-alt: >-
-#|   Scatter plot of bill depth against bill 
-#|    length for three penguin species, 
-#|    forming clusters.
+#|   Scatter plot of bill depth against bill
+#|   length for three penguin species,
+#|   forming clusters.
 #| output-location: column
 ggplot(penguins, aes(bill_len, bill_dep,
                      color = species)) +
