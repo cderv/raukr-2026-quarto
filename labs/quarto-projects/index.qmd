@@ -48,8 +48,7 @@ its source. A finished reference is in **`solutions/day2/`**. You can also
 > **Goal:** turn the `day2-projects/` pages into a navigable, **branded website** that renders locally to a
 > `_site/` folder.
 
-Complete the four core steps below. The listing is optional. Each step includes a checkpoint,
-a hint, and a solution.
+Complete the six steps below. Each one includes a checkpoint, a hint, and a solution.
 
 ::: {.column-margin}
 {{< fa book-open >}} **Quarto docs**
@@ -345,9 +344,74 @@ code-summary: "Show the code"
 Re-render the project. Nothing else changes.
 :::
 
-### Index the reports *(optional)*
+### Split a page across two files
 
-*Only start this after the four core steps work.*
+**Goal.** Move the table section of `analysis.qmd` into its own file and pull it back in at render
+time, so that a long page can be written in pieces.
+
+::: {.column-margin}
+{{< fa book-open >}} **Quarto docs**
+
+[Includes](https://quarto.org/docs/authoring/includes.html)
+:::
+
+`analysis.qmd` has two sections. Cut the whole **Mean measurements** section, heading and code cell
+together, into a new file `day2-projects/_means.qmd`. That file needs no YAML header: it is a
+fragment, not a page. Then put it back where it was with the `include` shortcode:
+
+```{.markdown filename="day2-projects/analysis.qmd"}
+{{{< include _means.qmd >}}}
+```
+
+The leading underscore matters. It is why Quarto does not also build `_means.qmd` as a page of its
+own.
+
+::: {.callout-note appearance="simple" icon=false}
+## {{< fa circle-check >}} You should see
+The analysis page is unchanged: same two sections, same table, and `@tbl-means` still resolves to
+*Table 1*. But the page's source is now two files, and `_site/` gained no `_means.html`. The
+included fragment behaves as if you had typed it in place, which is why the cross-reference still
+works.
+:::
+
+::: {.callout-tip collapse="true"}
+## Hint
+The shortcode goes on a line of its own, with a blank line above and below it. The path is relative
+to the file doing the including.
+
+Move the code cell as it is. Do not copy the `setup` cell: the included fragment runs as part of
+`analysis.qmd`, so `penguins` and the loaded packages are already there.
+:::
+
+::: {.callout-note collapse="true"}
+## Solution
+Create `day2-projects/_means.qmd` with the section you cut:
+
+````{.markdown filename="day2-projects/_means.qmd"}
+## Mean measurements
+
+```{r}
+#| label: tbl-means
+#| tbl-cap: "Mean measurements by species."
+penguins |>
+  summarise(
+    bill_len = mean(bill_len),
+    bill_dep = mean(bill_dep),
+    body_mass = mean(body_mass),
+    .by = species
+  ) |>
+  knitr::kable(digits = 1)
+```
+````
+
+Then, at the end of `day2-projects/analysis.qmd`:
+
+```{.markdown filename="day2-projects/analysis.qmd"}
+{{{< include _means.qmd >}}}
+```
+:::
+
+### Index the reports
 
 **Goal.** Put a table of the `reports/` pages on the home page, built by Quarto rather than typed by
 you, so that adding a page there shows up without editing `index.qmd`.
@@ -751,9 +815,15 @@ produced them.
   report, and render again.
 - **A cross-reference shows `?@…`?** The cell label must start `fig-`/`tbl-`/`eq-` and be unique.
   Website cross-references resolve only **within one page**.
-- **Freeze didn't skip the cell?** Under `freeze: auto` it skips only when the source is **unchanged**
-  since the last build: any edit (prose or code) re-runs that page. Delete `_freeze/` to force a
-  clean rebuild.
+- **Freeze didn't skip the cell?** Under `freeze: auto` it skips only when the page's own source is
+  **unchanged** since the last build: any edit to that file (prose or code) re-runs it. Delete
+  `_freeze/` to force a clean rebuild.
+- **Edited an included `_*.qmd` and the page did not change?** A project render under `freeze: auto`
+  does not notice the edit, because freeze tracks the including page and not the files it pulls in.
+  This is a known Quarto issue
+  ([quarto-cli#6793](https://github.com/quarto-dev/quarto-cli/issues/6793)), not something you
+  configured wrong. Render the including page directly (`quarto render analysis.qmd`), or delete
+  `_freeze/`.
 - **A page won't update?** This is expected with `freeze: true`: a project render reuses the stored
   results even after an edit. Render that file directly, or switch back to `freeze: auto`.
 - **Missing package?** `install.packages("<name>")` (or `renv::restore()`) and render again.

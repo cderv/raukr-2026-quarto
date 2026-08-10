@@ -111,7 +111,8 @@ Both build a browsable site. The question is how the pages are read:
 
 ::: notes
 - **Say:** "One `type:` line. Ordered chapters means book, everything else means website."
-- **If asked:** a blog is a website with a listing on its home page, not a third type.
+- **If asked:** a blog is a website with a listing on its home page, not a third type. They build
+  the listing in the lab.
 - **If asked:** the numbering consequence comes back on the cross-references slide.
 - **Do not demo:** a book is a pointer today.
 :::
@@ -206,7 +207,7 @@ set `order:`. New pages are included automatically.
 
 ::: {.aside}
 **Listings** turn a folder of pages into an auto-generated index (a blog, a gallery of reports) via
-`listing:` on a page.
+`listing:` on a page. You build one in the lab.
 :::
 
 **Learn more:** [Websites](https://quarto.org/docs/websites/) ·
@@ -331,8 +332,8 @@ You can now structure files into a branded, navigable **website**. After the bre
 reproducible and prepare it for publication.
 
 ::: notes
-- **Say:** "Website Challenge: project, navigation, brand, folder options, then an optional listing.
-  Work until the break at 15:00; we resume at 15:30."
+- **Say:** "Website Challenge: project, navigation, brand, folder options, an include split, then
+  the listing. Work until the break at 15:00, and we resume at 15:30."
 - **Ask:** "Where did the HTML move?"
 - **Ask:** "The font changed but the navbar did not. Why?"
 - **Ask:** "You edited no `.qmd`; where did the option come from?"

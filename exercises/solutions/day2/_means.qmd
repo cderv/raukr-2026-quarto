@@ -1,0 +1,14 @@
+## Mean measurements
+
+```{r}
+#| label: tbl-means
+#| tbl-cap: "Mean measurements by species."
+penguins |>
+  summarise(
+    bill_len = mean(bill_len),
+    bill_dep = mean(bill_dep),
+    body_mass = mean(body_mass),
+    .by = species
+  ) |>
+  knitr::kable(digits = 1)
+```

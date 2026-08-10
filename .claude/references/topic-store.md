@@ -334,15 +334,20 @@ list, not from the exercise.
 | 50 | hands-on | Your | Turn a set of `.qmd` into a navigable, branded website |
 | 5 | recap + bridge | My | "next: make builds reproducible, then publish" |
 
-> **Rebalanced 2026-08-09, settled 2026-08-10.** Two slide additions survived review
-> (`#project-types`, `#real-config`), so concept stays at its original **20**.
+> **Rebalanced 2026-08-09, settled 2026-08-10.** Part 1 was 20 concept / 50 hands-on and the hands-on
+> half looked short: four small YAML edits, *estimated* at roughly 22 min of keyboard time against a
+> 50-min budget. The fix landed in the **lab**, which gained two core steps that survived review
+> (the `{{< include >}}` split, and the listing promoted from optional to core). On the slide side
+> two additions survived (`#project-types`, `#real-config`), so concept stays at its original **20**.
 >
-> **The hands-on half is estimated, never rehearsed.** Roughly 22 min of keyboard time against a
-> 50-min budget, and that figure justified adding six things of which four were cut again within two
-> days (drafts, dark mode, the About page, the website-tools slide). A room of 40 on venue wifi, with
-> YAML indentation errors and Windows laptops, is slower than any desk estimate. Do not re-derive the
-> gap from a fresh estimate: only a rehearsal or a live run should move this. If the part does need
-> more hands-on weight, the minutes belong in the **lab**, not in new slides.
+> **Read the 22-min figure with suspicion.** It was an estimate, never a rehearsal, and it justified
+> adding six things of which four were cut again within two days (drafts, dark mode, the About page,
+> the website-tools slide). A room of 40 on venue wifi, with YAML indentation errors and Windows
+> laptops, is slower than any desk estimate. **The Part-1 challenge is now six core steps and no
+> optional tier**, and that is settled: a `render:`-exclusion step was proposed as a replacement and
+> **declined 2026-08-10**. Do not re-propose one, and do not re-derive the gap from a fresh estimate.
+> Only a rehearsal or a live run should move this. Part 2 keeps its two optionals (publish, the
+> dashboard).
 
 **Day 2 · Part 2 — scale & ship (publish is the payoff)** *(90 min)*
 

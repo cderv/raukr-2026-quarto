@@ -50,6 +50,14 @@ A structural change can expose answers even when the prose is unchanged.
 
 ## Current Day-2 scope
 
+- The Website Challenge is **six core steps and no optional tier**: make it a project, build the
+  navigation, brand it, scope options to one folder, split a page with `{{< include >}}`, index the
+  reports. Settled 2026-08-10 after drafts, dark mode and an About page were each added and cut.
+- **The `{{< include >}}` split stays core.** A review recommended demoting it to optional, on the
+  grounds that it teaches document authoring inside a projects session and that it meets
+  `freeze: auto` badly (see the upstream bug below). Kept anyway: splitting a long page across files
+  is what a team writing one report together actually needs, and the freeze interaction has a
+  Troubleshooting entry.
 - Project-level preview and the guided `freeze: true` experiment are core.
 - The dashboard is an optional group demo. Publishing is optional and account-dependent.
 - Do not add participant-facing task durations without evidence from rehearsal.
@@ -146,6 +154,15 @@ Run it before any session, and after any `labs/**` change you thought was finish
   it over venue Wi-Fi. The exercises-repo CI fails its zip-size check if an unexpected large file is included.
 
 ## Problems found during real runs
+
+- **`{{< include >}}` does not compose with `freeze: auto`.** Editing an included `_*.qmd` does not
+  invalidate the including page's frozen result, so a project render keeps serving the old content.
+  Upstream bug, open with milestone Future:
+  [quarto-cli#6793](https://github.com/quarto-dev/quarto-cli/issues/6793). It matters here because
+  the Day-2 lab has participants split `analysis.qmd` in Part 1 and then turn on `freeze: auto` in
+  Part 2, so the two steps meet. The lab's Troubleshooting block carries the symptom and the
+  workaround (render the including page directly, or delete `_freeze/`). Re-check the issue before
+  each edition: if it is fixed, drop that entry.
 
 - **Delivery-repo CI installs packages from `DESCRIPTION`** (`r-lib/actions/setup-r-dependencies`).
   No `renv.lock` ships in the payload (dropped 2026-08-06 — it confused participants, and
