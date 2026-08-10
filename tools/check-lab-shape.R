@@ -84,13 +84,20 @@ check_lab <- function(path) {
       span <- lines[from:to]
       step <- sub("^### ", "", lines[[from]])
 
-      marker      <- regmatches(span, regexpr("(?<=<!-- lab-shape: )[a-z]+", span, perl = TRUE))
-      marker      <- if (length(marker)) marker[[1L]] else ""
+      declared    <- regmatches(span, regexpr("(?<=<!-- lab-shape: )\\S+", span, perl = TRUE))
+      declared    <- if (length(declared)) declared[[1L]] else ""
+      known       <- declared %in% c("walkthrough", "reading")
+      # A misspelled marker must not waive the guard, so only a known one counts.
+      marker      <- if (known) declared else ""
       checkpoint  <- any(grepl("You should (see|be able)", span))
       folded      <- any(grepl('collapse="true"', span, fixed = TRUE)) &&
                      any(grepl("^#{2,3} (Hint|Solution)", span))
 
       missing <- character()
+      if (declared != "" && !known) {
+        missing <- c(missing, sprintf("unknown `lab-shape` marker `%s`, expected `walkthrough` or `reading`",
+                                      declared))
+      }
       if (!checkpoint && marker != "reading") {
         missing <- c(missing, "no `You should see` checkpoint")
       }

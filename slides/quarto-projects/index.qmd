@@ -222,7 +222,7 @@ typography:
 [brand.yml spec](https://posit-dev.github.io/brand-yml/)
 
 ::: notes
-- **Say:** it styled your HTML yesterday too, not only the PDF. Yesterday's lab framed it as a Typst thing.
+- **Say:** it styled your HTML yesterday too, not only the PDF.
 - **Do:** show the site before/after adding `_brand.yml`.
 - **Say:** "Brand once at the project root, not once per page."
 - **Do not reveal:** theme-layer order; it is the lab exercise.
