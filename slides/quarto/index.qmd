@@ -325,13 +325,13 @@ Base-R `penguins` (R ≥ 4.5) needs no install.
 
 ``` markdown
 ::: {.callout-note}
-## About dataset
+## About the dataset
 Base-R `penguins` (R ≥ 4.5) needs no install.
 :::
 ```
 
 ::: {.callout-note}
-## About dataset
+## About the dataset
 
 Base-R `penguins` (R ≥ 4.5) needs no install.
 :::
