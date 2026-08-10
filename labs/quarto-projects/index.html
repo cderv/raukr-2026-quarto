@@ -652,7 +652,7 @@ Figure&nbsp;1: The analysis page’s figure: body mass by species.
 </section>
 <section id="brand-it" class="level3 page-columns page-full" data-number="1.3">
 <h3 data-number="1.3" class="anchored" data-anchor-id="brand-it"><span class="header-section-number">1.3</span> Brand it</h3>
-<p><strong>Goal.</strong> Give the site one shared palette and typeface from a <code>_brand.yml</code>, the same file you used on Day 1.</p>
+<p><strong>Goal.</strong> Give the site one shared palette and typeface from a <code>_brand.yml</code>. Yesterday it sat next to your report. Here it sits at the project root, where it covers every page.</p>
 
 <div class="no-row-height column-margin column-container"><div class="">
 <p><i class="fa-solid fa-book-open" aria-label="book-open"></i> <strong>Quarto docs</strong></p>
@@ -1118,6 +1118,7 @@ Figure&nbsp;1: The analysis page’s figure: body mass by species.
 </section>
 <section id="guided-experiment-freeze-true" class="level3" data-number="2.4">
 <h3 data-number="2.4" class="anchored" data-anchor-id="guided-experiment-freeze-true"><span class="header-section-number">2.4</span> Guided experiment: <code>freeze: true</code></h3>
+<!-- lab-shape: walkthrough -->
 <p><em>This step completes the core tasks. It is guided: run the commands as written.</em></p>
 <p><strong>Goal.</strong> See what <code>freeze: true</code> changes compared to <code>auto</code>: the build reuses a page’s stored results even after you edit that page.</p>
 <div class="callout callout-style-simple callout-note no-icon callout-titled">
@@ -1156,6 +1157,7 @@ Figure&nbsp;1: The analysis page’s figure: body mass by species.
 </section>
 <section id="put-it-online-optional" class="level3 page-columns page-full" data-number="2.5">
 <h3 data-number="2.5" class="anchored" data-anchor-id="put-it-online-optional"><span class="header-section-number">2.5</span> Put it online <em>(optional)</em></h3>
+<!-- lab-shape: walkthrough -->
 <p><strong>Goal.</strong> Take the <code>_site/</code> folder you have built and put it on a URL you can open on your phone.</p>
 
 <div class="no-row-height column-margin column-container"><div class="">
@@ -1194,6 +1196,7 @@ Figure&nbsp;1: The analysis page’s figure: body mass by species.
 </section>
 <section id="optional-inspect-a-dashboard" class="level3" data-number="2.6">
 <h3 data-number="2.6" class="anchored" data-anchor-id="optional-inspect-a-dashboard"><span class="header-section-number">2.6</span> Optional: inspect a dashboard</h3>
+<!-- lab-shape: reading -->
 <p>This worked example shows how the same analysis becomes a dashboard. Open the <a href="../../labs/quarto-projects/dashboard.html" target="_blank">finished dashboard</a>, then compare it with <code>solutions/day2/dashboard.qmd</code>. You do not need to build it during the workshop.</p>
 <p>Look for four ideas:</p>
 <ul>
@@ -1277,19 +1280,19 @@ Session info
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>R version 4.6.1 (2026-06-24 ucrt)
-Platform: x86_64-w64-mingw32/x64
-Running under: Windows 11 x64 (build 26200)
+<pre><code>R version 4.6.1 (2026-06-24)
+Platform: x86_64-pc-linux-gnu
+Running under: Ubuntu 24.04.4 LTS
 
 Matrix products: default
-  LAPACK version 3.12.1
+BLAS:   /usr/lib/x86_64-linux-gnu/openblas-pthread/libblas.so.3 
+LAPACK: /usr/lib/x86_64-linux-gnu/openblas-pthread/libopenblasp-r0.3.26.so;  LAPACK version 3.12.0
 
 locale:
 [1] C
-system code page: 65001
 
-time zone: Europe/Paris
-tzcode source: internal
+time zone: Etc/UTC
+tzcode source: system (glibc)
 
 attached base packages:
 [1] stats     graphics  grDevices datasets  utils     methods   base     
@@ -1305,8 +1308,8 @@ loaded via a namespace (and not attached):
 [17] tibble_3.3.1       fastmap_1.2.0      yaml_2.3.12        lifecycle_1.0.5   
 [21] compiler_4.6.1     RColorBrewer_1.1-3 htmlwidgets_1.6.4  pkgconfig_2.0.3   
 [25] farver_2.1.2       digest_0.6.39      R6_2.6.1           tidyselect_1.2.1  
-[29] pillar_1.11.1      magrittr_2.0.5     withr_3.0.3        tools_4.6.1       
-[33] gtable_0.3.6      </code></pre>
+[29] pillar_1.11.1      parallel_4.6.1     magrittr_2.0.5     withr_3.0.3       
+[33] tools_4.6.1        gtable_0.3.6      </code></pre>
 </div>
 </div>
 </details>
