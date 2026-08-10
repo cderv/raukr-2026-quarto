@@ -203,7 +203,7 @@ ggplot(penguins, aes(bill_len, bill_dep, color = species)) +
 
 Cell options use the `#|` "hash-pipe": one YAML option per line.
 
-## Quick pause - Following along {#following-along}
+## Lab starter checkpoint {#following-along}
 
 The lab's starter (`day1-intro/authoring-starter.qmd`) opens with this cell. Everything on the next
 slides assumes it:
@@ -223,14 +223,14 @@ penguins <- penguins |> filter(!is.na(bill_len), !is.na(bill_dep))
 
 ## Markdown and content: what changes {#markdown-content}
 
-You probably already know Markdown. If not, let's look at [Markdown Basics](https://quarto.org/docs/authoring/markdown-basics.html).
+If Markdown is new to you, see [Markdown Basics](https://quarto.org/docs/authoring/markdown-basics.html).
 
-Quarto adds some research-writing pieces: **figures** and **tables** with
+Quarto adds research-writing features: **figures** and **tables** with
 captions, **cross-references** (`@fig-bill`, `@tbl-summary`, `@eq-ratio`), **math**, **inline code**
-that reports numbers from the data, and **callouts**. And more.
+that reports numbers from the data, and **callouts**.
 
 ::: notes
-- **Say:** "Do you know Markdown ? And here is what Quarto adds"
+- **Say:** "Markdown handles the prose. Quarto adds the research-writing features."
 - **Focus:** Quarto additions, not a Markdown lesson.
 :::
 
@@ -507,7 +507,8 @@ summary(penguins$body_mass)
 
 The YAML header sets the defaults. A cell's option in `#|` wins.
 
-`execute` config is cross-language. For R specific, R Markdown's configuration and `knitr::opts_chunk$set()` move into the header under `knitr`
+`execute` options work across languages. For R-specific `knitr` options, put the equivalent settings
+under `knitr:` in the YAML header:
 
 ```yaml
 knitr:
@@ -539,9 +540,10 @@ quarto render  report.qmd   # one-off render
   see is what you mean*) is built into the **RStudio IDE**, and comes to **Positron and VS Code**
   through the **Quarto extension**.
 
-### Parametrized report
+### Parameterized reports
 
-The same `quarto render` also takes **`-P name:value`**: override a document *parameter* to get one report per sample or species from a single source using Rmarkdown parametrized report. *(Optional bonus in today's lab.)*
+`quarto render` also accepts **`-P name:value`**. Use it to override a document *parameter* and
+produce one report per sample or species from a single source. *(Optional bonus in today's lab.)*
 
 ::: notes
 - **Do:** run `quarto preview`; edit and show reload. Contrast with `quarto render`.
@@ -607,10 +609,6 @@ make it a **branded article with citations**, add two things:
 1. **citations**: a `.bib` file and a citation style.
 2. **a typeset PDF** — via **Typst**, bundled in Quarto.
 :::
-
-. . .
-
-This is exactly the path from your analysis to a submission, and to your **team project** write-up.
 
 ## Citations {#citations}
 

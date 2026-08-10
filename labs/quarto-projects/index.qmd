@@ -139,9 +139,9 @@ label. The theme is not a website option. It is a **format** option, so it goes 
 [HTML themes](https://quarto.org/docs/output-formats/html-themes.html#basic-options)
 :::
 
-From this step on, preview the site with `quarto preview` from inside `day2-projects/`. On Day 1 you
-rendered one document at a time. From the project root, the command serves the whole site and
-re-renders a page when you save it.
+From this step on, preview the site with `quarto preview` from inside `day2-projects/`. On Day 1,
+`quarto preview` served one document. From the project root, it serves the whole site and re-renders
+a page when you save it.
 
 ::: {.callout-note appearance="simple" icon=false}
 ## {{< fa circle-check >}} You should see

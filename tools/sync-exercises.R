@@ -42,7 +42,7 @@ files <- c(
   "labs/quarto/penguins-by-species.qmd"  = "solutions/day1/penguins-by-species.qmd",
   "labs/quarto/references.bib"           = "solutions/day1/references.bib",
   "labs/quarto/apa.csl"                  = "solutions/day1/apa.csl",
-  # Brand too: the report is "every step applied", and the Typst step produces a *branded* PDF.
+  # Copy the brand as well: the completed report includes every step, including a branded Typst PDF.
   "_brand.yml"                           = "solutions/day1/_brand.yml",
   # The dashboard is BOTH a site page (it stays on the root render list, and the deck links to it)
   # and the reference solution for the Day-2 dashboard step, so it ships from where it already lives
