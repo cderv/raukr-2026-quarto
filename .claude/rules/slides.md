@@ -16,18 +16,24 @@ you **review**, check for them.
 Revealjs clips content that exceeds the 720 px-tall frame without reporting an error, and you cannot
 see the problem in the `.qmd`. Layout bugs — the closing-slide
 overlap, a too-dense slide — are only caught by looking. After changing a slide,
-render and screenshot it headless at native deck size:
+render and screenshot it headless at native deck size.
+
+**Pick the tool by where you are running.** `slide-shot.mjs` works **only in the claude.ai/code web
+sandbox**: it imports Playwright from a hardcoded `/opt/node22/…` path (Chromium at
+`/opt/pw-browsers`). On a local checkout (Windows, macOS, Linux alike) it exits with
+`ERR_MODULE_NOT_FOUND` before it opens anything, and no flag switches that path. **Working locally,
+use `agent-browser`** (second recipe below).
+
+In the sandbox:
 
 ```
 quarto render slides/quarto/index.qmd
 node .claude/scripts/slide-shot.mjs <abs path to _site/…/index.html> <anchor-id> out.png
 ```
 
-**`slide-shot.mjs` only runs in the web sandbox.** It imports Playwright from a hardcoded
-`/opt/node22/…` path, so on a normal machine it dies with `ERR_MODULE_NOT_FOUND` before it opens
-anything. **`agent-browser`** is the portable alternative and works **in** the sandbox too, so it is
+**`agent-browser`** is the portable alternative and works **in** the sandbox too, so it is
 the one tool that covers both (it also gives you an accessibility snapshot, which the helper does
-not). It needs one environment variable here; setup and proxy details are in
+not). It needs one environment variable in the sandbox; setup and proxy details are in
 `.claude/references/reviewing-the-live-site.md`. Point it at a locally served copy of the built site
 because the deck's JavaScript does not run correctly over `file://`:
 
@@ -50,12 +56,11 @@ false pass (see the second bullet below). Add the `visible` class to every `.fra
 slide instead, then measure.
 
 Navigate by **anchor id** (`## Title {#anchor}` → the helper opens `#/anchor`) —
-robust, because raw slide indices drift as slides are added or moved. Use an
+robust, because raw slide indices drift as slides are added or moved. `slide-shot.mjs` takes an
 **absolute** `file://` path to the built HTML. The helper prints
 `{scrollH, clientH}`: **pass = `scrollH === clientH`** (both 720 for a full
 slide; equal-and-smaller for a `.center` slide). `scrollH > clientH` = overflow
-→ split the slide or trim it. (Sandbox specifics: the helper imports the
-preinstalled Playwright at `/opt/node22/…` and Chromium at `/opt/pw-browsers`.)
+→ split the slide or trim it.
 
 **`scrollH`/`clientH` is a *vertical* check — it passes falsely on two failures
 you must eyeball the screenshot for:**
