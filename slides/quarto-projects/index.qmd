@@ -516,15 +516,17 @@ Connect Cloud is one provider of several:
  - Hugging Face Spaces (huggingface)
 ```
 
-Most providers ask you to sign in on the first run, then record the destination in a `_publish.yml`
-file you can commit. `gh-pages` is the exception: it publishes from the current Git repository, with
-your Git credentials. `quarto publish --help` lists them on your own machine.
+When you publish to most providers for the first time, Quarto asks you to sign in and records the
+destination in a `_publish.yml` file you can commit. `gh-pages` works differently: it publishes from
+the current Git repository with your Git credentials. `quarto publish --help` lists the providers
+available on your machine.
 
 **Learn more:** [Publishing](https://quarto.org/docs/publishing/)
 
 ::: notes
 - **Say:** "Your institution's own server is still the `_site/` copy from the previous slide."
-- **If asked:** we do not use `gh-pages` here because it needs a repository and a GitHub account.
+- **If asked:** we do not use `gh-pages` here because publishing requires a Git repository and a
+  GitHub account.
 - **If asked why `--help` shows one more:** Quarto Pub stopped taking new accounts and stops
   accepting content on 2026-12-31. Connect Cloud is its replacement.
 :::
