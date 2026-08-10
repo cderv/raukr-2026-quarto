@@ -1,0 +1,14 @@
+# Challenge steps that break the shape guard and are accepted until the next edition.
+# One `path::challenge::step` per line; `tools/check-lab-shape.R` reports these without failing,
+# and still fails on any step not listed here.
+#
+# This list may only shrink. Day-1 Part 2 states its answers in the step prose instead of a
+# collapsed Solution. Fixing it means restructuring the section, which changes a page the 2026
+# cohort already worked through, so it is deferred to the next edition.
+
+labs/quarto/index.qmd::Citations Challenge::Add the bibliography and citation style
+labs/quarto/index.qmd::Citations Challenge::Cite the two sources
+labs/quarto/index.qmd::Citations Challenge::Add the References section
+labs/quarto/index.qmd::Citations Challenge::Give it a title block
+labs/quarto/index.qmd::Citations Challenge::Render to HTML and check the citations
+labs/quarto/index.qmd::Citations Challenge::Render a branded PDF with Typst

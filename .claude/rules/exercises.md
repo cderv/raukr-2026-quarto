@@ -38,6 +38,13 @@ Mark steps that intentionally use a different structure:
 
 Run `just lab-shape-check` after any lab edit.
 
+`tools/lab-shape-baseline.txt` holds the steps that break this and are accepted until the next
+edition, keyed by `path::challenge::step`. The check reports them and still passes, so a step listed
+there is a deferred fix, not a compliant one. It fails on any step that is not listed, and fails
+again when a listed step stops failing, so the list can only shrink. Do not add a step to it to
+silence a fresh break: a marker declares intent, the baseline defers work. Day-1 Part 2 is on it
+because restructuring the section would change a page the 2026 cohort already worked through.
+
 After converting list items to headings or callouts to sections, re-check every resulting step.
 A structural change can expose answers even when the prose is unchanged.
 

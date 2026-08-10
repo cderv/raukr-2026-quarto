@@ -5,12 +5,17 @@
 # one collapsed Hint or Solution. A `walkthrough` marker keeps the checkpoint but waives the fold.
 # A `reading` marker waives both requirements.
 #
+# Steps listed in tools/lab-shape-baseline.txt are reported without failing, so the guard can run
+# against material that already breaks it. Any step not listed still fails.
+#
 # Usage:
 #   Rscript tools/check-lab-shape.R    # report invalid steps and exit with status 1
 
 ROOT <- tryCatch(system2("git", c("rev-parse", "--show-toplevel"), stdout = TRUE),
                  error = function(e) getwd())
 setwd(ROOT)
+
+BASELINE <- "tools/lab-shape-baseline.txt"
 
 # Globbed, so a lab added later is checked without editing this script.
 LABS <- Sys.glob("labs/*/index.qmd")
@@ -63,7 +68,7 @@ check_lab <- function(path) {
 
   h2 <- which(kind == "h2")
   h3 <- which(kind == "h3")
-  problems <- character()
+  problems <- NULL
 
   for (start in h2) {
     title <- trimws(sub("\\{.*\\}$", "", sub("^## ", "", lines[[start]])))
@@ -107,24 +112,54 @@ check_lab <- function(path) {
       }
 
       if (length(missing)) {
-        problems <- c(problems, sprintf("%s:%d  %s / %s\n    %s",
-                                        path, from, title, step,
-                                        paste(missing, collapse = "\n    ")))
+        problems <- rbind(problems, data.frame(
+          # Keyed by title, not line number, so the baseline survives edits above it.
+          key  = sprintf("%s::%s::%s", path, title, step),
+          text = sprintf("%s:%d  %s / %s\n    %s", path, from, title, step,
+                         paste(missing, collapse = "\n    "))
+        ))
       }
     }
   }
   problems
 }
 
-problems <- unlist(lapply(LABS, check_lab))
+problems <- do.call(rbind, lapply(LABS, check_lab))
+if (is.null(problems)) problems <- data.frame(key = character(), text = character())
 
-if (length(problems)) {
-  cat("Challenge steps that do not let a participant try before the answer:\n\n")
-  cat(paste(problems, collapse = "\n\n"), "\n\n", sep = "")
-  cat("Give the step a checkpoint and a collapsed Hint/Solution, or declare what it is:\n",
-      "`<!-- lab-shape: walkthrough -->` to be followed as written, `<!-- lab-shape: reading -->`\n",
-      "for a worked example with nothing to do.\n", sep = "")
-  quit(status = 1L)
+baseline <- if (file.exists(BASELINE)) {
+  lines <- trimws(readLines(BASELINE, warn = FALSE))
+  lines[nzchar(lines) & !startsWith(lines, "#")]
+} else {
+  character()
 }
 
-cat("Lab shape OK: every challenge step offers a try before the answer.\n")
+new    <- problems[!problems$key %in% baseline, , drop = FALSE]
+known  <- problems[problems$key %in% baseline, , drop = FALSE]
+# A baseline entry matching nothing means the step was fixed or renamed. Either way the line goes.
+stale  <- setdiff(baseline, problems$key)
+failed <- FALSE
+
+if (nrow(new)) {
+  failed <- TRUE
+  cat("Challenge steps that do not let a participant try before the answer:\n\n")
+  cat(paste(new$text, collapse = "\n\n"), "\n\n", sep = "")
+  cat("Give the step a checkpoint and a collapsed Hint/Solution, or declare what it is:\n",
+      "`<!-- lab-shape: walkthrough -->` to be followed as written, `<!-- lab-shape: reading -->`\n",
+      "for a worked example with nothing to do.\n\n", sep = "")
+}
+
+if (length(stale)) {
+  failed <- TRUE
+  cat("Baseline entries that no longer match a failing step. Delete them from ", BASELINE, ":\n",
+      paste0("  ", stale, collapse = "\n"), "\n\n", sep = "")
+}
+
+if (failed) quit(status = 1L)
+
+if (nrow(known)) {
+  cat("Lab shape OK, with ", nrow(known), " known gap(s) held in ", BASELINE, ":\n",
+      paste0("  ", known$key, collapse = "\n"), "\n", sep = "")
+} else {
+  cat("Lab shape OK: every challenge step offers a try before the answer.\n")
+}
