@@ -203,7 +203,7 @@ ggplot(penguins, aes(bill_len, bill_dep, color = species)) +
 
 Cell options use the `#|` "hash-pipe": one YAML option per line.
 
-## Markdown and content: what changes {#markdown-content}
+## Quick pause - Following along {#following-along}
 
 The lab's starter (`day1-intro/authoring-starter.qmd`) opens with this cell. Everything on the next
 slides assumes it:
@@ -221,12 +221,16 @@ penguins <- penguins |> filter(!is.na(bill_len), !is.na(bill_dep))
 ```
 ````
 
-You already know Markdown. Quarto adds the research-writing pieces: **figures** and **tables** with
+## Markdown and content: what changes {#markdown-content}
+
+You probably already know Markdown. If not, let's look at [Markdown Basics](https://quarto.org/docs/authoring/markdown-basics.html).
+
+Quarto adds some research-writing pieces: **figures** and **tables** with
 captions, **cross-references** (`@fig-bill`, `@tbl-summary`, `@eq-ratio`), **math**, **inline code**
-that reports numbers from the data, and **callouts**.
+that reports numbers from the data, and **callouts**. And more.
 
 ::: notes
-- **Say:** "This cell is the lab starter. You write it in the lab, not now."
+- **Say:** "Do you know Markdown ? And here is what Quarto adds"
 - **Focus:** Quarto additions, not a Markdown lesson.
 :::
 
