@@ -345,7 +345,7 @@ Christophe Dervieux
 </div></aside></section>
 <section id="websites" class="slide level2 aside-flow">
 <h2>Websites: pages and navigation</h2>
-<p>You already set <code>type: website</code>, which makes the folder a <strong>site</strong>. Define the navigation once in <code>_quarto.yml</code>, and Quarto applies it to every page.</p>
+<p><code>type: website</code> makes the folder a <strong>site</strong>. Define the navigation once in <code>_quarto.yml</code>, and Quarto applies it to every page.</p>
 <div class="code-with-filename">
 <div class="code-with-filename-file">
 <pre><strong>_quarto.yml</strong></pre>
@@ -596,7 +596,6 @@ Christophe Dervieux
 <li><strong>Say:</strong> “With <code>true</code>, only a direct document render recomputes the page.”</li>
 <li><strong>Watch for:</strong> a page with no <code>_freeze/</code> entry and a new page still execute.</li>
 <li><strong>If a render fails</strong> with <code>cannot open file '&lt;name&gt;.qmd'</code>, delete the leftover <code>&lt;name&gt;.knit.md</code> or <code>&lt;name&gt;.rmarkdown</code>, then render again.</li>
-<li><strong>Do:</strong> open a stored <code>execute-results/html.json</code> and point at the <code>hash</code> field.</li>
 <li><strong>Contrast:</strong> <code>auto</code> recomputes changed pages; <code>true</code> requires manual refresh.</li>
 <li><strong>Example:</strong> quarto.org uses <code>true</code> and commits <code>_freeze/</code>.</li>
 </ul>
@@ -652,7 +651,7 @@ Christophe Dervieux
 </ul>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a aria-label="1"></a><span class="ex">quarto</span> publish posit-connect-cloud</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>The first run opens a browser to sign in, then uploads the site.</p>
-<p><code>quarto publish</code> renders the project first by default. Add <code>--no-render</code> to upload the <code>_site/</code> you already built.</p>
+<p><code>quarto publish</code> renders the project first by default. Add <code>--no-render</code> to upload the existing <code>_site/</code>.</p>
 <div title="Optional: publish your site">
 <div class="callout callout-tip callout-titled callout-style-default">
 <div class="callout-body">
