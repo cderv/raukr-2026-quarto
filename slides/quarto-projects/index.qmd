@@ -224,7 +224,7 @@ one unit with global numbering. A **website** keeps per-page numbering.
 [Book cross-references](https://quarto.org/docs/books/book-crossrefs.html)
 
 ::: notes
-- **Before session:** confirm that website pages do not resolve cross-page `@fig-` references.
+- **Show:** an unresolved cross-page reference renders as `?@fig-name` and warns at build time.
 - **If asked:** `@sec-` resolves without `number-sections`; the option only numbers the heading.
 :::
 
