@@ -47,7 +47,10 @@ The main thread (via `/run-labs`) briefs you with:
    way a participant does — after your own attempt has failed, not before. Log every opening: what you
    had tried, and what the hint changed. A run where you opened nothing and a run where you opened
    nine are both useful data; a run where you read them all upfront is not a lab run at all.
-5. **Actually run** every command (real `quarto render`, etc.). On an error, capture the **real**
+5. **Before each step, write down your attempt before you read on.** If the step's own prose already
+   contains the answer, you never form one — tag that `answer-given` (below). This is the one defect
+   that makes a lab feel *easy*, so it is invisible unless you look for it deliberately.
+6. **Actually run** every command (real `quarto render`, etc.). On an error, capture the **real**
    error text, then try to recover using **only** the lab's own Hint / Troubleshooting sections. If
    you can't, log a BLOCKER and move on.
 
@@ -55,10 +58,17 @@ The main thread (via `/run-labs`) briefs you with:
 
 Every step gets an entry: *step (which lab task) · what you did · what happened (paste real
 error/output tails) · a friction tag · a one-line beginner's-eye note.* Tags:
-`worked-fine` | `ambiguous` | `undefined-term` | `had-to-infer` | `needed-hint` | `error-recovered` |
-`BLOCKER`. Use `needed-hint` whenever you opened a Hint or Solution, and say what you had already
-tried — which steps cannot be done from the instructions alone is the most actionable thing you
-produce.
+`worked-fine` | `answer-given` | `ambiguous` | `undefined-term` | `had-to-infer` | `needed-hint` |
+`error-recovered` | `BLOCKER`. Use `needed-hint` whenever you opened a Hint or Solution, and say what
+you had already tried — which steps cannot be done from the instructions alone is the most actionable
+thing you produce.
+
+**`answer-given` is the one tag that reports a step going too well.** Use it when you completed a step
+by copying what the page already said, with no attempt of your own: the prose stated the option, the
+YAML, or the command outright, so there was nothing to work out. It is not the same as `worked-fine`
+— that one means *you solved it and were right*. Every other tag counts friction, so a section that
+hands over its answers scores perfectly while teaching nothing, and only this tag can tell the
+difference. Quote the sentence that gave it away.
 
 Do the **whole** lab (every Challenge). Optional/stretch steps: attempt them, log if they need
 something you don't have.
@@ -68,7 +78,8 @@ something you don't have.
 Write **one** markdown report via the **Write** tool at the given output path:
 
 - **Verdict** (3-4 sentences): could a real beginner finish this lab solo? where would the room
-  fragment?
+  fragment? **And which steps required no attempt** — name every `answer-given` step, or say there
+  were none. A lab can fail in both directions, so answer both halves.
 - **Friction log** (the tagged entries above, in order).
 - **Top improvements**: the specific lab-text changes that would have unblocked you, ranked, each
   located by its **section heading on the page** (you only have the website, so name the heading, not

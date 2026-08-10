@@ -56,7 +56,15 @@ The main thread briefs you with:
    not *about* them? Titles or framing that describe the audience in the third person ("Layouts
    for a research audience", "content for beginners") read as detached and generic — prefer
    naming the topic or addressing the participant directly. Slide titles are the usual offender.
-10. **Multi-day sequencing** (only if the workshop spans more than one day/session for the **same
+10. **A step the participant gets to attempt** — for every `###` step inside a `## … Challenge`, can
+    it be attempted before its answer is visible? Flag any step whose own prose states the option, the
+    YAML or the command outright, and any step missing its **You should see** checkpoint or its
+    collapsed Hint/Solution. The invariant and its two declared exceptions (`walkthrough`, `reading`)
+    are in `.claude/rules/exercises.md § Challenge step shape`; `just lab-shape-check` reports the
+    mechanical half, so spend your reading on what it cannot judge — whether the step's prose *narrows*
+    the answer to one obvious keystroke, and whether the challenge is consistent step to step. A
+    section that reads as effortless is the symptom: check it hasn't simply given itself away.
+11. **Multi-day sequencing** (only if the workshop spans more than one day/session for the **same
     cohort**) — later days must read as **follow-ups**, not fresh starts. Review against
     `.claude/rules/multi-day-sequencing.md`. Check: the opening **bridges** from the prior day;
     recurring structural slides ("How today works") are trimmed to a **recap**, not re-taught; a

@@ -34,8 +34,10 @@ lives in the other references.
   download via `usethis::use_course(...)` — no git, no account. **`labs/` is the source of truth;**
   `just exercises` regenerates the committed `exercises/` payload (`tools/sync-exercises.R`, the only
   write path — never hand-edit `exercises/`), and `just publish-exercises` mirrors it onto that repo's
-  `main`. So **editing `labs/**` means: re-render + re-sync + commit `exercises/`** (a course-repo
-  drift-guard CI enforces the match). The full model, structural invariants (no `_quarto.yml` above the
+  `main`. So **editing `labs/**` means: `just lab-shape-check` + re-render + re-sync + commit
+  `exercises/`** (two CI guards enforce the shape and the match). The shape check is the one that
+  catches a structural edit turning an exercise into a walkthrough — the Day-1 Part-2 failure.
+  The full model, structural invariants (no `_quarto.yml` above the
   day starters; sibling solutions; the Day-1 working/reference files off the site render list), and gotchas are the
   path-scoped rule **`.claude/rules/exercises.md`** (auto-surfaced on `labs/**`, `exercises/**`, the
   sync/publish scripts, `setup.qmd`, `_quarto.yml`).

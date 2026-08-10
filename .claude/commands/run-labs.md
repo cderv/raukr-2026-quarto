@@ -44,6 +44,11 @@ beginner hits. This is the executing complement to `/start-workshop` (which *rea
    `file:section`. Recommend lab-text fixes, and list the concrete defects worth filing as issues.
    **Do not auto-fix** — wait for go-ahead unless told otherwise.
 
+   **Read the `answer-given` steps as findings too, not as good news.** Every other tag counts
+   friction, so a section that states its own answers produces the cleanest run in the report while
+   teaching the least. A stretch of `worked-fine` with no hint opened is worth one look at the page
+   before you call it healthy — and `just lab-shape-check` answers the mechanical half in a second.
+
 6. **Clean up.** `.claude/scripts/lab-run.sh clean <WORKTREE>` for each (removes the worktree +
    its render churn).
 

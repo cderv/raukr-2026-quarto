@@ -40,6 +40,10 @@ exercises:
 exercises-check:
     Rscript tools/sync-exercises.R --check
 
+# Verify every challenge step offers a try before the answer (checkpoint + collapsed hint/solution)
+lab-shape-check:
+    Rscript tools/check-lab-shape.R
+
 # Re-syncs first, like publish-exercises does, so `just render` demo artifacts left inside
 # exercises/solutions/day2/ are not reported as drift.
 #

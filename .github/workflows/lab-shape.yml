@@ -1,0 +1,30 @@
+# Shape-guard: every challenge step in the labs must offer a try before the answer. A structural
+# edit can break this without touching the guidance -- promoting a numbered task list to `###`
+# headings gives a section the silhouette of a challenge while its steps still state their answers.
+# Same command locally and in CI (no `just` on the runner). Base R only, so setup-r alone is enough.
+name: lab-shape
+
+on:
+  push:
+    paths:
+      - "labs/**"
+      - "tools/check-lab-shape.R"
+  pull_request:
+    paths:
+      - "labs/**"
+      - "tools/check-lab-shape.R"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  shape-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: r-lib/actions/setup-r@v2
+        with:
+          use-public-rspm: true
+      - name: Challenge steps let participants try before the answer
+        run: Rscript tools/check-lab-shape.R

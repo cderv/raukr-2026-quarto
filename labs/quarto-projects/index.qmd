@@ -601,6 +601,8 @@ website:
 
 ### Guided experiment: `freeze: true`
 
+<!-- lab-shape: walkthrough -->
+
 *This step completes the core tasks. It is guided: run the commands as written.*
 
 **Goal.** See what `freeze: true` changes compared to `auto`: the build reuses a page's stored
@@ -644,6 +646,8 @@ Use `true` when project builds must reuse stored results until you deliberately 
 
 ### Put it online *(optional)*
 
+<!-- lab-shape: walkthrough -->
+
 **Goal.** Take the `_site/` folder you have built and put it on a URL you can open on your phone.
 
 ::: {.column-margin}
@@ -677,6 +681,8 @@ a URL for the site.
 :::
 
 ### Optional: inspect a dashboard
+
+<!-- lab-shape: reading -->
 
 This worked example shows how the same analysis becomes a dashboard. Open the
 [finished dashboard](dashboard.qmd){target="_blank"}, then compare it with

@@ -22,13 +22,36 @@ usethis::use_course("cderv/raukr-2026-quarto-exercises")   # unpacks main to the
 This course repo is the **source of truth**; the delivery repo is **generated and pushed from here**.
 This rule is the operational short list. When you **edit** labs, follow it; when you **review**, check it.
 
+## Challenge step shape — both labs, every day
+
+**A participant must be able to attempt a step before its answer is visible.** Inside a
+`## … Challenge`, every `###` step is a goal, an observable **You should see** checkpoint, then a
+**collapsed** Hint and Solution. Do not state the answer in the step's own prose.
+
+Two steps are not exercises and say so under their heading, so the intent is on the page rather than
+inferred from what is missing:
+
+- `<!-- lab-shape: walkthrough -->` — the participant runs commands as written (the guided
+  `freeze: true` experiment). Keep the checkpoint, drop the fold.
+- `<!-- lab-shape: reading -->` — a worked example with nothing to do (the dashboard). Neither applies.
+
+`just lab-shape-check` (`tools/check-lab-shape.R`, CI: `lab-shape.yml`) enforces this. Run it after
+any lab edit.
+
+**A structural edit can break the shape without touching a word of the guidance.** Day-1 Part 2 was
+one numbered Tasks callout — a coherent walkthrough, answers inline, closed by a single checkpoint,
+Hint and Solution. A fix for a real navigation problem (no TOC entry points) promoted the seven list
+items to seven `###` headings and changed nothing else. The section then had a challenge's
+silhouette and a walkthrough's content, and the one trailing Hint/Solution now sat after seven steps
+that each already gave their answer. It went to the room that way. So: **when a change converts a
+list to headings, or a callout to sections, re-check the section against the pattern it now
+resembles** — the shape a reader infers changed even though the words did not.
+
 ## Current Day-2 scope
 
 - Project-level preview and the guided `freeze: true` experiment are core.
 - The dashboard is an optional group demo. Publishing is optional and account-dependent.
 - Do not add participant-facing task durations without evidence from rehearsal.
-- Structure challenge steps as a goal, an observable **You should see** checkpoint, then collapsed
-  hints and a solution. Do not expose the complete answer before the participant can try.
 
 ## The pipeline (one direction only)
 
@@ -51,16 +74,18 @@ cderv/raukr-2026-quarto-exercises @ main   ← what use_course() + the /main/ do
 
 ## When you touch labs (or `_brand.yml`, or the scaffold) — the checklist
 
-1. **Re-render executable `.qmd`** you changed and stage `_freeze/` (the normal freeze discipline; the
+1. **Check the step shape:** `just lab-shape-check` (see *Challenge step shape* above). It costs a
+   second and catches a structural edit that quietly turned an exercise into a walkthrough.
+2. **Re-render executable `.qmd`** you changed and stage `_freeze/` (the normal freeze discipline; the
    `check-freeze.sh` commit hook blocks a stale freeze). Lab index pages have a freeze too.
-2. **Re-sync:** `just exercises` (regenerates `exercises/`), then **commit any changed files under
+3. **Re-sync:** `just exercises` (regenerates `exercises/`), then **commit any changed files under
    `exercises/`**. The sync is manifest-driven: the two lab guide pages (`labs/quarto/index.qmd` and
    `labs/quarto-projects/index.qmd`) are site pages and are not copied into the payload, so an edit to
    either can legitimately produce no generated diff. Inspect `tools/sync-exercises.R` before claiming
    drift from a path alone. A course-repo
    drift-guard CI (`.github/workflows/exercises-sync.yml` = `just exercises-check`) fails and names the
    drifted file if you forget — `exercises/` must always match its sources.
-3. **The site demos read `exercises/` too.** `tools/render-demos.R` (`just demos`, run automatically by
+4. **The site demos read `exercises/` too.** `tools/render-demos.R` (`just demos`, run automatically by
    `just render`) renders the finished documents into `_site/demos/` for showing on screen —
    deliberately from the payload, so the screen matches what participants downloaded. So a re-sync you
    skip also leaves the demos stale. The Day-1 groups are staged into throwaway projects under
@@ -68,7 +93,7 @@ cderv/raukr-2026-quarto-exercises @ main   ← what use_course() + the /main/ do
    project renders; the Day-2 solution already is a project and renders where it stands. Never name
    that staging dir with a leading dot — Quarto skips hidden paths when collecting project inputs, so
    it renders nothing and exits 0.
-4. **Publish when ready:** `just publish-exercises` mirrors `exercises/` onto the delivery repo's `main`
+5. **Publish when ready:** `just publish-exercises` mirrors `exercises/` onto the delivery repo's `main`
    as one commit and pushes (temp-clone → copy → commit → push; ships **only** `exercises/` content, so
    `.claude/` and site scaffolding never leak). The delivery repo's `render-check.yml` CI then renders
    both solutions + the Typst PDF and asserts the structural invariants below.
