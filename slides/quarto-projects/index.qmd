@@ -233,7 +233,7 @@ own, so link between pages with ordinary Markdown links and the **navbar/sidebar
 See the [analysis page](analysis.qmd) for the model.
 ```
 
-::: {.callout-note title="This is what picks `book` for you"}
+::: {.callout-note title="Choose `book` for project-wide numbering"}
 If you need "Figure 3.2" to resolve *across* chapters, that's `type: book`: Quarto renders a book as
 one unit with global numbering. A **website** keeps per-page numbering.
 :::
@@ -290,9 +290,10 @@ typography:
   `--bs-body-font-family`, which cosmo does not set, so it survives.
 :::
 
-## What that grows into {#real-config}
+## A real project configuration {#real-config}
 
-The site you are reading this on is a Quarto project. Same `project:` key, two more entries under it:
+The site you are reading this on is a Quarto project. It uses the same `project:` key, with two more
+entries:
 
 ``` {.yaml filename="_quarto.yml" code-line-numbers="|4-6|7-11"}
 project:
@@ -308,8 +309,8 @@ project:
     - labs/*/index.qmd
 ```
 
-**`render:`** is the one to remember. Without it Quarto renders every `.qmd` under the root. A
-leading `!` excludes instead (`- "!drafts/*.qmd"`). A third key, **`resources:`**, copies files
+**`render:`** limits which `.qmd` files Quarto renders. Without it Quarto renders every `.qmd` under
+the root. A leading `!` excludes instead (`- "!drafts/*.qmd"`). A third key, **`resources:`**, copies files
 Quarto does not find on its own (a spreadsheet, a `_redirects` file) into `_site/`.
 
 ::: notes
@@ -515,8 +516,9 @@ Connect Cloud is one provider of several:
  - Hugging Face Spaces (huggingface)
 ```
 
-Each one asks for the account interactively the first time, then records the destination in a
-`_publish.yml` you can commit. `quarto publish --help` lists them on your own machine.
+The first time you publish to a provider, Quarto prompts you to sign in. It then records the
+destination in a `_publish.yml` file you can commit. `quarto publish --help` lists them on your own
+machine.
 
 **Learn more:** [Publishing](https://quarto.org/docs/publishing/)
 

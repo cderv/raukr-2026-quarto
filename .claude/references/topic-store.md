@@ -334,15 +334,9 @@ list, not from the exercise.
 | 50 | hands-on | Your | Turn a set of `.qmd` into a navigable, branded website |
 | 5 | recap + bridge | My | "next: make builds reproducible, then publish" |
 
-> **Rebalanced 2026-08-09, settled 2026-08-10.** Two slide additions survived review
-> (`#project-types`, `#real-config`), so concept stays at its original **20**.
->
-> **The hands-on half is estimated, never rehearsed.** Roughly 22 min of keyboard time against a
-> 50-min budget, and that figure justified adding six things of which four were cut again within two
-> days (drafts, dark mode, the About page, the website-tools slide). A room of 40 on venue wifi, with
-> YAML indentation errors and Windows laptops, is slower than any desk estimate. Do not re-derive the
-> gap from a fresh estimate: only a rehearsal or a live run should move this. If the part does need
-> more hands-on weight, the minutes belong in the **lab**, not in new slides.
+> **Part 1 timing:** keep concept at **20 min** and hands-on at **50 min**. The hands-on estimate has
+> not been rehearsed, so only a rehearsal or a live run should change it. Optional lab steps absorb
+> timing variation. If the part needs more hands-on weight, add it to the **lab**, not the slides.
 
 **Day 2 · Part 2 — scale & ship (publish is the payoff)** *(90 min)*
 
