@@ -102,6 +102,23 @@ LANG=C.UTF-8 LC_ALL=C.UTF-8 quarto render
 If an R package error occurs, report it but don't block the whole report — the execution
 environment may differ from a participant's.
 
+# Before you file a finding — verify the premise, not just the mechanism
+
+A finding has two halves: **"X is broken"** and **"X actually happens here."** A reproduction
+proves only the first. If you constructed the input yourself, you have tested the tool, not this
+material.
+
+1. **Name the trigger**: what a participant does, or what the toolchain emits, that reaches this
+   defect. One sentence.
+2. **Verify the trigger occurs** from the material or from real tool output — never from an input
+   you invented to make the failure appear. A reproduction built from the repo's own files (this
+   cycle: hashing the actual sources against the stored `_freeze/` entries) carries its premise
+   with it. One built from a hand-written string does not.
+3. **Before claiming something is missing or wrong**, check `.claude/references/` and
+   `.claude/rules/` — some apparent defects are documented deliberate exceptions.
+4. Cannot establish the trigger? **Downgrade it and say the premise is unverified**, or drop it. A
+   verified sub-fact under an unverified premise reads as more solid than it is.
+
 # Deliverable format
 
 - **Overall verdict** (3-5 technical sentences)

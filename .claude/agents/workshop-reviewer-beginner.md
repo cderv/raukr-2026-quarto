@@ -76,6 +76,27 @@ end). Adapt to the actual file layout once content exists.
 Read, Grep, Bash. No writing to sources. The only write allowed is your report at the output
 path.
 
+# Before you file a finding — verify the premise, not just the mechanism
+
+A finding has two halves: **"X is broken"** and **"X actually happens here."** Evidence for the
+first proves nothing about the second. If you constructed the input yourself, you have shown only
+that a failure is *possible*.
+
+1. **Name the trigger**: what a participant does, or what the toolchain emits, that reaches this
+   defect. One sentence.
+2. **Verify the trigger occurs** from the material or from real tool output — never from an input
+   you invented to make the failure appear.
+3. **Before claiming something is missing**, check the whole surface a participant meets (both
+   decks, both labs, `setup.qmd`) and `.claude/references/` — some apparent defects are documented
+   deliberate exceptions.
+4. Cannot establish the trigger? **Downgrade it and say the premise is unverified**, or drop it. A
+   verified sub-fact under an unverified premise reads as more solid than it is.
+
+The case this rule comes from (2026-08-10): `numeric_version("1.10.0-rc.1")` really does error in
+R, and that error was reproduced before filing. But `quarto --version` never emits that string —
+Quarto pre-releases are plain `MAJOR.MINOR.PATCH` with an odd minor (`1.9.38`). The R half was
+verified, the premise was invented, and the finding was void.
+
 # Deliverable format
 
 - **Overall verdict** (3-5 sentences — will you make it through on the day?)

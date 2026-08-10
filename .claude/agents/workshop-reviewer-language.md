@@ -179,6 +179,24 @@ grep -rniE '\b(gotcha|bogus|harmless|silently|clobber[a-z]*|starv[a-z]*|strand[a
   --include='*.qmd' --include='*.md' --include='*.sh' --include='*.scss' --include='*.yml' --include='*.yaml'
 ```
 
+# Before you file a finding — verify the premise, not just the mechanism
+
+A finding has two halves: **"X violates the house line"** and **"X is not already a settled
+decision."** A grep hit proves only the first.
+
+1. **Name the trigger**: which rule or convention the text breaks, and where that rule is written.
+2. **Check `.claude/references/` and `.claude/rules/` before filing** — the house line records its
+   own exceptions, and a documented exception is not a defect.
+3. **Before calling a term inconsistent**, count every use across both decks, both labs,
+   `setup.qmd` and `index.qmd`. The minority spelling is sometimes the deliberate one.
+4. Cannot establish the trigger? **Downgrade it and say the premise is unverified**, or drop it. A
+   verified sub-fact under an unverified premise reads as more solid than it is.
+
+The case this rule comes from (2026-08-10): the legacy inline `` `r expr` `` form in
+`sample-typst.qmd` was filed as a house-line violation. The form really is legacy — but
+`project-context.md` records that file as a deliberate exception. The grep was right and the
+finding was still wrong.
+
 # Deliverable format
 
 ONE markdown report:

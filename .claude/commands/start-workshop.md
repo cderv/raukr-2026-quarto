@@ -52,6 +52,14 @@ review filename as `review-YYYY-MM-DD[-tag]-[type].md`.
    `file:line`. Recommend what to fix now (P0/P1) vs defer (P2). **Do not auto-fix** — wait
    for my go-ahead unless I tell you otherwise.
 
+   **Check the premise of every finding you promote.** A reviewer can verify that something
+   breaks without verifying that it happens here — a reproduction from a hand-written input, an
+   absence claim from one file, a grep hit against a documented exception. Each agent is told to
+   check this, and each cycle so far has still produced a few. For anything you put in the
+   fix-now list, confirm the trigger exists in the material before it reaches me. Do not repeat a
+   reviewer's confidence you have not checked; say which findings you verified and which you are
+   relaying.
+
 5. **Report discipline.** Reviews are **immutable snapshots**: never edit a past review —
    a re-review the same day gets a new file with a `bis`/`ter` tag. `.claude/reviews/` is
    local-only (gitignored) — the durable record of what changed is the commit message, and
