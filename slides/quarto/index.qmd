@@ -295,14 +295,14 @@ Display math with a label is cross-referenceable too:
 
 ``` markdown
 $$
-\text{ratio} = \frac{\text{bill\_len}}{\text{bill\_dep}}
+\text{ratio} = \frac{\text{bill_len}}{\text{bill_dep}}
 $$ {#eq-ratio}
 ```
 
 renders as @eq-ratio below:
 
 $$
-\text{ratio} = \frac{\text{bill\_len}}{\text{bill\_dep}}
+\text{ratio} = \frac{\text{bill_len}}{\text{bill_dep}}
 $$ {#eq-ratio}
 
 ::: notes
