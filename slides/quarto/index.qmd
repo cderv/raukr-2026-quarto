@@ -326,14 +326,14 @@ Base-R `penguins` (R ≥ 4.5) needs no install.
 :::
 
 ``` markdown
-::: {.callout-tip}
+::: {.callout-note}
 ## About dataset
 Base-R `penguins` (R ≥ 4.5) needs no install.
 :::
 ```
 
-::: {.callout-tip}
-## About dataset 
+::: {.callout-note}
+## About dataset
 
 Base-R `penguins` (R ≥ 4.5) needs no install.
 :::
@@ -406,8 +406,6 @@ A cell's `#| column: margin` drops its output (figure or table, caption and all)
 penguins |> count(species, name = "n") |> knitr::kable()
 ```
 ````
-
-*In the lab you'll use **margin** layout. The rest are in the Quarto docs below.*
 
 **Learn more:** [Article Layout](https://quarto.org/docs/authoring/article-layout.html) ·
 [Margin content](https://quarto.org/docs/authoring/article-layout.html#margin-content)
