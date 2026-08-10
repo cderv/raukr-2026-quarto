@@ -243,8 +243,9 @@ A labeled code cell becomes a numbered, referenceable figure:
 #| label: fig-bill
 #| fig-cap: "Bill length versus depth, by species."
 #| fig-alt: >-
-#|   Scatter plot of bill depth against bill length
-#|   for three penguin species, forming clusters.
+#|   Scatter plot of bill depth against bill 
+#|    length for three penguin species, 
+#|    forming clusters.
 #| output-location: column
 ggplot(penguins, aes(bill_len, bill_dep,
                      color = species)) +
@@ -254,12 +255,9 @@ ggplot(penguins, aes(bill_len, bill_dep,
 ```
 
 Refer to it in prose with `@fig-bill` → renders as "@fig-bill", a live link. Labels must start
-with `fig-` / `tbl-` / `eq-` to be cross-referenceable. `#| fig-alt` is the figure's alt text (the description screen readers announce). Add it to every
-figure. 
+with `fig-` / `tbl-` / `eq-` to be cross-referenceable. `#| fig-alt` is the figure's alt text (the description screen readers announce). Add it to every figure. 
 
-::: {.aside}
 `#| output-location: column` is **slide-only**: a revealjs placement, not article layout.
-:::
 
 ::: notes
 - **Do:** show the rendered figure number, then `@fig-bill` resolving to it.
