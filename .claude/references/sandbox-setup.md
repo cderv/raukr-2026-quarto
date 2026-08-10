@@ -207,17 +207,21 @@ Running `.claude/hooks/session-start.sh` with `CLAUDE_CODE_REMOTE=true` set inst
 
 **`renv::restore()` can fail on a cold cache** with a misleading circular dependency error:
 `failed to install "bitops", "gt"` reported as *"bitops: dependency failed (gt)"* and
-*"gt: dependency failed (bitops)"*. They do not depend on each other. Fix:
+*"gt: dependency failed (bitops)"*. They do not depend on each other.
+
+**`renv::restore(packages = "bitops")` does not fix it** (verified 2026-08-10): the single-package
+restore reports the same error. Use `renv::install()`, which installs the binary directly, then run
+the complete restore:
 
 ```sh
-Rscript -e 'install.packages(c("bitops","gt"))'   # then re-run
-Rscript -e 'renv::restore(prompt = FALSE)'        # -> "No issues found"
+Rscript -e 'renv::install("bitops", repos = c(CRAN = "https://packagemanager.posit.co/cran/__linux__/noble/latest"), prompt = FALSE)'
+Rscript -e 'renv::restore(repos = c(CRAN = "https://packagemanager.posit.co/cran/__linux__/noble/latest"), prompt = FALSE)'
 ```
 
-The hook now restores `bitops` separately before the complete restore, so a fresh sandbox should not
-encounter this error. Restore it separately if you are working outside the hook. renv moves packages
-into the project library only after the complete restore succeeds. If one package fails, the others
-are discarded, which is why the library remains nearly empty.
+The hook restores `bitops` separately before the complete restore, but the error still reaches a
+session whose library is empty (2026-08-10, `pak` and `renv` were the only packages present). renv
+moves packages into the project library only after the complete restore succeeds. If one package
+fails, the others are discarded, which is why the library remains nearly empty.
 
 **Rendering a single `.qmd` needs the project library on PATH** if you render outside the project
 root: `export R_LIBS_USER=<repo>/renv/library/linux-ubuntu-noble/R-4.6/x86_64-pc-linux-gnu`.
