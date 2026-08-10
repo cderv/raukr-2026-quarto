@@ -1,7 +1,7 @@
 # Day 1 — your working folder
 
-You start from `authoring-starter.qmd` and save it as `my-report.qmd`. That copy is yours for both
-parts of the day. The other files are used later, each at the lab step that names it:
+Start with `authoring-starter.qmd` and save it as `my-report.qmd`. Use that copy for both parts of the
+day. The lab introduces the other files when you need them:
 
 - `authoring-starter.qmd` — where you start. A working report with no cross-references, no captions
   and no alt text yet: the Authoring Challenge adds them. Save it as `my-report.qmd` first, so you

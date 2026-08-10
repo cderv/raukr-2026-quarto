@@ -17,12 +17,12 @@ In R, set your working directory to the folder where you want the materials. The
 usethis::use_course("cderv/raukr-2026-quarto-exercises", destdir = ".")
 ```
 
-Answer **No** when it offers to delete the ZIP — keep it as your reset button (see below). No R?
+Answer **No** when it offers to delete the ZIP. Keep it so you can reset the files (see below). No R?
 Download the ZIP in a browser from the green **Code ▸ Download ZIP** button and unzip it.
 
 ## Open the right folder
 
-Work from the day folder for the session — **not** this top folder:
+Work from the day folder for the session:
 
 - **Day 1** → `day1-intro/`
 - **Day 2** → `day2-projects/`
@@ -30,8 +30,7 @@ Work from the day folder for the session — **not** this top folder:
 Use *File ▸ Open Folder…* in Positron or VS Code, or double-click the `.Rproj` inside the folder in
 RStudio. Either route opens the day folder as your workspace.
 
-Each day folder is self-contained (its own working directory and assets), so rendered files are
-written next to their sources. There is no project above them to capture the output.
+Each day folder is self-contained. Rendered files are written next to their source files.
 
 ## Check your setup (do this once, before Day 1)
 
@@ -63,7 +62,7 @@ install.packages(c(
 
 If an attempt goes wrong, get a **fresh folder** (don't extract over your working copy):
 
-- Re-run the `use_course()` line above (with `destdir = "."`) — each download unpacks into its own
+- Re-run the `use_course()` line above (with `destdir = "."`). Each download unpacks into its own
   versioned folder, so your old attempt is untouched.
 - Or unzip the ZIP you kept to a **new** location.
 

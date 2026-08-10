@@ -1,6 +1,4 @@
-# RaukR 2026 Quarto -- dark brand
-# The same palette as _brand.yml, written on ink instead of in ink. Keep this file ASCII-only:
-# read_brand_yml() (R side) fails to parse non-ASCII under a C/POSIX locale.
+# Dark variant of the RaukR brand. Keep this file ASCII only for C/POSIX locale compatibility.
 meta:
   name: RaukR 2026 - Quarto
 
@@ -33,8 +31,7 @@ typography:
     weight: 600
   monospace:
     family: Fira Mono
-    # The `arrow` highlight theme is adaptive and sets no code background, so the light default
-    # would composite to a pale grey over ink and sink every token below AA.
+    # Use a dark code background so the adaptive arrow theme meets WCAG AA contrast.
     background-color: ink-code
   link:
     color: teal-light

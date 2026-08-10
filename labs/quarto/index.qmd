@@ -24,8 +24,8 @@ confirms R, Quarto, and the packages this lab uses.
 You are working in the **`day1-intro/`** folder from the exercises download. Open that folder in
 your editor, or make it your working directory in R (see the
 [Setup page](../../setup.qmd#get-the-materials)). Everything you render is written next to
-your files. You start from a file that is already there, `authoring-starter.qmd`, and the other files
-are used later, each at the step that names it (the folder's README lists them).
+your files. Start with the supplied `authoring-starter.qmd`. The lab introduces the other files when
+you need them. The folder README lists them all.
 :::
 
 ```{r}
@@ -226,8 +226,8 @@ tag carries your `alt="…"`. The finished figure looks like this:
 #| fig-height: 3.4
 #| fig-cap: "Target: bill length versus depth by species."
 #| fig-alt: >-
-#|   Scatter plot of bill depth against bill length for three penguin species in distinct colors.
-#|   The species form largely separate clusters.
+#|   Scatter plot of bill depth against bill length for three penguin species. Each species uses a
+#|   distinct color and point shape. The points form three largely separate clusters.
 ggplot(penguins, aes(bill_len, bill_dep, color = species, shape = species)) +
   geom_point(alpha = 0.8) +
   scale_color_okabe_ito() +
@@ -242,7 +242,8 @@ can `aes()` map? Where does the plot description go when the other figure settin
 
 Map `shape = species` alongside `color = species` in `aes()`, and add
 `scale_color_okabe_ito()`. The description is the cell option `#| fig-alt:`. It is not the caption:
-the alt text stands in for the image, so it describes what the plot *shows*, not what it *is*.
+alt text conveys the information in the image, so describe what the plot *shows* rather than merely
+naming the plot type.
 :::
 
 ::: {.callout-note collapse="true"}
@@ -331,13 +332,13 @@ $$ {#eq-ratio}
 :::
 
 ::: {.callout-note appearance="simple" icon=false}
-## {{< fa circle-check >}} Checkpoint: the whole document
+## {{< fa circle-check >}} You should see
 A numbered **Figure 1** (the bill scatter, three separate clusters), a numbered **Table 1**, and the
 counts in the right margin. Your figure and table references render as live links, with no `?@` markers
 anywhere. If you completed the optional step, you also have a numbered **Equation 1**.
 :::
 
-**`authoring-checkpoint.qmd` is this same report with every step above applied.** It is already in
+`authoring-checkpoint.qmd` is this same report with every step above applied. It is already in
 `day1-intro/`. Compare your work against it, or, if you did not finish, save a copy of it as
 `my-report.qmd` and continue into Part 2 from there. You can also take the source:
 
@@ -385,11 +386,10 @@ citeproc: true
 
 ### Cite the two sources
 
-Cite the two sources the opening paragraph already credits, without rewriting it. The sentence
-ending *"…collected at Palmer Station, Antarctica."* takes the data citation before the period
-(`Antarctica [@gorman2014].`). In the next sentence, put `[@horst2020]` immediately after
-**palmerpenguins**. The rest of that sentence concerns base R, so do not put the citation at the
-end. Don't paste a second copy of either sentence.
+Add `[@gorman2014]` before the period in the sentence ending *"…collected at Palmer Station,
+Antarctica."* Add `[@horst2020]` immediately after **palmerpenguins** in the next sentence. The rest
+of that sentence describes base R, so keep the citation beside the package name. Do not duplicate
+either sentence.
 
 ### Add the References section
 
@@ -420,16 +420,15 @@ Render to HTML and confirm that both citations resolve as *(Gorman et al., 2014)
 
 ### Render a branded PDF with Typst
 
-Switch the output to **Typst** and render a branded PDF. The branding comes from `_brand.yml`,
-which Quarto reads next to the document you render, so keep `my-report.qmd` in
-`day1-intro/`. You may see `unknown font family` warnings on the first render. See Troubleshooting
-if the final PDF still uses a serif font. Two routes:
+Render a branded PDF with **Typst**. Keep `my-report.qmd` in `day1-intro/` so Quarto can find the
+supplied `_brand.yml`. You may see `unknown font family` warnings on the first render. See
+Troubleshooting if the final PDF still uses a serif font. Choose one route:
 
-- **CLI** — leave the header as-is and force the target:
+- **CLI:** keep `format: html` in the header and run:
   ```bash
   quarto render my-report.qmd --to typst
   ```
-- **From the editor** — set `format: typst` in the YAML header first, *then* render (RStudio's
+- **Editor:** change the header to `format: typst`, then render (RStudio's
   **Render** button, or **Quarto: Render Document** in Positron and VS Code). The editor renders
   whatever `format:` is declared, so while the header still says `format: html` you get HTML,
   **not** a PDF.
@@ -466,7 +465,7 @@ The entries sit inside the `::: {#refs}` div in both formats, under your own **R
 The PDF ends there, with no Session appendix after it. The HTML still includes the appendix, with
 the Session block collapsed.
 
-**Check the branding applied.** An unbranded PDF builds without any error, so check the **title and
+**Check that the branding is applied.** An unbranded PDF builds without any error, so check the **title and
 headings**. A branded PDF uses **Albert Sans**. An unbranded PDF uses Typst's default serif. Table 1
 remains serif in both because of the `unknown font family` issue described in Troubleshooting. Use
 the headings for this check. Serif headings mean `_brand.yml` isn't next to your `.qmd`.
@@ -530,7 +529,7 @@ quarto render my-report.qmd --to typst
 or set `format: typst` in the header and render from the editor.
 ::::
 
-**`solutions/day1/penguins-report.qmd` is the complete Day-1 report:** the starter with every step of
+`solutions/day1/penguins-report.qmd` is the complete Day-1 report: the starter with every step of
 both challenges applied. Try the challenge first, then open it to compare, or take the source:
 
 <a class="btn btn-primary btn-sm" href="https://raw.githubusercontent.com/cderv/raukr-2026-quarto-exercises/main/solutions/day1/penguins-report.qmd" role="button" target="_blank">{{< fa download >}} penguins-report.qmd</a>
@@ -617,7 +616,7 @@ plot inside its HTML file, so the reports do not share a figure-support folder.
 ::: {.callout-note appearance="simple" icon=false}
 ## {{< fa circle-check >}} You should see
 Rendering with `-P species:Adelie` gives a report whose sentences, figure caption, alt text, point
-count, and plot are all about Adelie. Nothing says Gentoo. Rendering without `-P` produces the
+count, and plot are all about Adelie. No text or plot data refer to Gentoo. Rendering without `-P` produces the
 Gentoo report. If you completed the optional task, the heading also names the selected species.
 :::
 
@@ -628,7 +627,7 @@ Gentoo report. If you completed the optional task, the heading also names the se
 - The plot must use the filtered object `one`, not the full `penguins` data.
 :::
 
-**The complete, runnable solution is `solutions/day1/penguins-by-species.qmd`.** Open it to compare
+The complete, runnable solution is `solutions/day1/penguins-by-species.qmd`. Open it to compare
 your work or render it with different `-P species:` values. You can also take the source:
 
 <a class="btn btn-primary btn-sm" href="https://raw.githubusercontent.com/cderv/raukr-2026-quarto-exercises/main/solutions/day1/penguins-by-species.qmd" role="button" target="_blank">{{< fa download >}} penguins-by-species.qmd</a>
@@ -640,10 +639,9 @@ your work or render it with different `-P species:` values. You can also take th
 - **YAML is indentation-sensitive.** If rendering fails *before* any code runs, check the YAML
   header for stray spaces, tabs, or unmatched quotes.
 - **Missing package?** `install.packages("<name>")` (or `renv::restore()`) and render again.
-- **A figure doesn't appear?** Check the path is relative to the `.qmd` and the filename matches
-  exactly (case included).
-- **A cross-reference shows `?@…`?** The cell label must start with `fig-`/`tbl-`/`eq-` and be
-  unique, and the `@ref` must match it.
+- **A cross-reference shows `?@…`?** For a figure or table, confirm that the cell label starts with
+  `fig-` or `tbl-`. For an equation, confirm that `{#eq-…}` follows the closing `$$`. Then make sure
+  the `@ref` matches the label exactly.
 - **A citation shows `?@gorman2014` or `[?]`?** The `@key` doesn't match a key in `references.bib`,
   or `bibliography:` isn't set.
 - **The PDF's References section is empty and the entries are at the end under "Bibliography"?**
@@ -664,8 +662,6 @@ your work or render it with different `-P species:` values. You can also take th
 - **Typst prints `unknown font family` warnings?** A `gt` table names a generic `sans-serif` in its
   font stack, and Typst doesn't recognize that as a family. The warning does not stop the PDF from
   building or applying the brand.
-- **Prefer to stay in HTML first?** Render HTML and check the content, *then* switch to `format: typst`.
-  The content is the same. Set the key back to `html` to render HTML again.
 :::
 
 ## Session {.appendix .unnumbered}

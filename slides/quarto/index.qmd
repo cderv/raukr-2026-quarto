@@ -11,14 +11,12 @@ format:
     incremental: false
     echo: true
     slide-number: true
-    # auto, not true: previews the "Learn more" targets in an overlay while presenting
-    # (fullscreen), and still opens a real tab for anyone reading the deck on the site.
+    # Preview links in an overlay during fullscreen presentations.
     preview-links: auto
 filters:
   - typst-render
 typst-render:
-  # Emit compiled SVGs into a published folder, NOT the gitignored .quarto/ cache — otherwise the
-  # images 404 once the site is deployed (learned from tuto-quarto-typst-rr-2026).
+  # Store compiled SVGs in a published folder so deployed slides can load them.
   output-directory: typst-figures
 ---
 
@@ -45,7 +43,7 @@ After this session you will be able to:
 - cite your sources from a `.bib` file in the style a journal asks for.
 - turn it into a **branded Typst PDF** (no LaTeX required).
 
-By the end, you will have a **polished PDF report**.
+By the end, you will have a **branded PDF report with citations**.
 
 ::: notes
 - **Say:** "You know R Markdown or Quarto. Today we turn one `.qmd` into a branded PDF with
@@ -85,9 +83,10 @@ From the top folder of your downloaded exercises:
 source("00-check-setup.R", local = new.env())
 ```
 
-Every check reads `[ok]`, and the last line is `>> All good. You are ready for Day 1.`
+Every check should read `[ok]`, and the last line should be
+`>> All good. You are ready for Day 1.`
 
-Any `[FAIL]` line: raise your hand. 
+If any line reads `[FAIL]`, raise your hand.
 
 Details on the [Setup page](../../setup.qmd).
 
@@ -185,7 +184,7 @@ Three parts: a YAML header, Markdown prose, and executable code cells.
 
 ```` {.markdown code-line-numbers="|1-4|6|8-13"}
 ---
-title: "A penguin story"
+title: "A penguin report"
 format: html
 ---
 
@@ -205,8 +204,7 @@ Cell options use the `#|` "hash-pipe": one YAML option per line.
 
 ## Lab starter checkpoint {#following-along}
 
-The lab's starter (`day1-intro/authoring-starter.qmd`) opens with this cell. Everything on the next
-slides assumes it:
+The supplied starter (`day1-intro/authoring-starter.qmd`) already contains this setup cell:
 
 ```` {.markdown}
 ```{{r}}
@@ -286,7 +284,7 @@ Then refer to it in prose with `@tbl-summary` (the same mechanism as figures).
 ::: notes
 - **Do:** show that `tbl-` behaves exactly like `fig-`, with its own counter.
 - **Say:** "Same mechanism as figures."
-- **Timing:** keep this; cut Math first if needed.
+- **Timing:** keep Tables. Cut Math first if needed.
 :::
 
 ## Math {#math}
@@ -299,7 +297,7 @@ $$
 $$ {#eq-ratio}
 ```
 
-renders as @eq-ratio below:
+This renders as @eq-ratio below:
 
 $$
 \text{ratio} = \frac{\text{bill_len}}{\text{bill_dep}}
@@ -397,7 +395,7 @@ the body** (in the paged formats: HTML, LaTeX, Typst):
 
 ## Put output in the margin {#margin-layout}
 
-A cell's `#| column: margin` drops its output (figure or table, caption and all) into the margin:
+A cell's `#| column: margin` places its output (figure or table, caption and all) in the margin:
 
 ```` {.markdown}
 ```{{r}}
@@ -416,14 +414,15 @@ penguins |> count(species, name = "n") |> knitr::kable()
 
 ## Make it accessible {#accessibility}
 
-Accessibility is a few habits layered on what you already write:
+Accessibility starts with a few practices:
 
 - **Alt text**: add `#| fig-alt:` to every figure. It is what a screen reader announces.
-- **Color-blind-safe colors**: the default palette is not safe. Pick one that is:
-  [Okabe-Ito](https://jfly.uni-koeln.de/color/) is the common choice in science
-  ([`scale_color_okabe_ito()`](https://malcolmbarrett.github.io/ggokabeito/)), viridis suits
+- **Color-blind-safe colors**: choose a suitable palette. [Okabe-Ito](https://jfly.uni-koeln.de/color/)
+  is a common choice for discrete scales in science
+  ([`scale_color_okabe_ito()`](https://malcolmbarrett.github.io/ggokabeito/)). Viridis suits
   continuous scales. Encode by shape or label too, not color alone.
-- **Check contrast**: WCAG wants 4.5:1 on text. Quarto's built-in `axe` runs axe-core on the
+- **Check contrast**: WCAG AA requires a contrast ratio of at least 4.5:1 for normal text. Quarto's
+  built-in `axe` runs axe-core on the
   rendered page:
 
 ```{.yaml}
@@ -445,7 +444,7 @@ format:
 
 ## One source → many formats {#document-types}
 
-One key in the header picks the output. The content does not change:
+One `format:` key selects the output. Shared content can render to more than one format:
 
 :::: {.columns}
 ::: {.column width="50%"}
@@ -453,7 +452,7 @@ One key in the header picks the output. The content does not change:
 format:                   # render several at once
   html: default
   typst: default
-toc: true                 # shared — applies to both
+toc: true                 # shared: applies to both
 ```
 
 ```{.yaml code-line-numbers="false"}
@@ -523,7 +522,7 @@ knitr:
 [Cell options](https://quarto.org/docs/reference/cells/cells-knitr.html)
 
 ::: notes
-- **Do:** set header `echo: false`; override one cell with `#| echo: true`.
+- **Do:** set header `echo: false`. Override one cell with `#| echo: true`.
 - **Say:** "Defaults in YAML, local overrides in the cell. Dashes, and lowercase `false`."
 :::
 
@@ -546,10 +545,10 @@ quarto render  report.qmd   # one-off render
 produce one report per sample or species from a single source. *(Optional bonus in today's lab.)*
 
 ::: notes
-- **Do:** run `quarto preview`; edit and show reload. Contrast with `quarto render`.
+- **Do:** run `quarto preview`. Edit the document and show the reload. Contrast with `quarto render`.
 - **Say:** "Use any editor: RStudio, Positron, or VS Code."
-- **Optional:** mention `-P`; the lab bonus uses it.
-- **Timing:** brief; cut parameters first.
+- **Optional:** mention `-P`. The lab bonus uses it.
+- **Timing:** keep this brief. Cut parameters first.
 :::
 
 ## Quarto in Positron {#positron}
@@ -587,7 +586,9 @@ it and produce a branded PDF.*
 ::: notes
 - **Say:** "Work on the Authoring Challenge until the break at 15:00. We resume at 15:30.
   Ask us if you get stuck."
-- **Watch for:** wrong label prefix; duplicate labels; `#|` options not at the top of a cell.
+- **Watch for:** a wrong label prefix.
+- **Watch for:** duplicate labels.
+- **Watch for:** `#|` options that are not at the top of a cell.
 - **Watch for:** the setup cell belongs in the document, not the console.
 - **Catch-up:** no `day1-intro/`? Use the Setup page and pair them with a neighbor.
 :::
@@ -699,7 +700,7 @@ abstract: |
   Using base-R `penguins`, we show bill shape separates species...
 ```
 
-Renders in HTML, PDF, and Typst. Write it once.
+The same metadata renders in HTML and a Typst PDF.
 
 **Learn more:** [Authors & Affiliations](https://quarto.org/docs/authoring/front-matter.html#authors-and-affiliations), [Title blocks](https://quarto.org/docs/authoring/title-blocks.html)
 
@@ -722,7 +723,7 @@ That is the only change. Then re-render:
 quarto render report.qmd
 ```
 
-The header already says which format, so nothing else is needed. 
+The header selects the output format.
 
 To get the PDF *without* touching
 the header, ask for it on the command line instead: `quarto render report.qmd --to typst`.
@@ -763,7 +764,7 @@ typography:
   your **plots and tables** from the *same* palette.
 - Quarto fetches Google fonts for Typst automatically.
 
-![](../images/brand-yml-wide-color.svg){width="300px" fig-alt="brand.yml logo"}
+![](../images/brand-yml-wide-color.svg){width="300px" fig-alt="Brand YAML logo: a multicolor circular icon beside the words BRAND YAML."}
 
 :::
 ::::
@@ -773,9 +774,10 @@ typography:
 
 ::: notes
 - **Do:** show the PDF before and after `_brand.yml`, and point out the color and type change.
-- **Say:** the file already ships in `day1-intro/`. Quarto reads it next to the document.
+- **Say:** the file is already included in `day1-intro/`. Quarto reads it next to the document.
 - **Say:** "The same palette can reach plots and tables. Tomorrow it brands a whole project."
-- **Watch for:** plots need `theme_brand_*`; first font render needs network.
+- **Watch for:** plots need `theme_brand_*`.
+- **Watch for:** the first font render needs network access.
 :::
 
 ## Your turn {#your-turn-2}
@@ -788,8 +790,10 @@ not finish Part 1), then render it as a **branded Typst PDF**.
 
 ::: notes
 - **Say:** "Add the bibliography, then render a branded Typst PDF."
-- **Watch for:** exact citation key; first font download; PDF lands beside its source; a
-  `my-report.qmd` created outside `day1-intro/` (bib and brand not found).
+- **Watch for:** an incorrect citation key.
+- **Watch for:** the first font download.
+- **Watch for:** the PDF being written beside its source.
+- **Watch for:** a `my-report.qmd` created outside `day1-intro/` (bibliography and brand not found).
 :::
 
 ## What you can do now {#wrap-up}

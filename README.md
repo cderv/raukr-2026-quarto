@@ -1,36 +1,34 @@
 # RaukR 2026 · Quarto
 
-> Two Quarto sessions at [**RaukR 2026**](https://nbisweden.github.io/raukr-2026/) — the *Advanced
-> R for Bioinformatics* summer school (Visby, Gotland; NBIS / SciLifeLab / Uppsala University),
-> **10–11 Aug 2026**.
+> Two Quarto sessions at the [**RaukR 2026**](https://nbisweden.github.io/raukr-2026/) *Advanced R
+> for Bioinformatics* summer school in Visby, Gotland (10–11 Aug 2026).
 
-Two afternoon sessions on writing and publishing with **Quarto**, for an audience that already
-writes R and has met R Markdown or Quarto. The angle is *what Quarto is as a system*, and how to go
-from a single document to a whole project you can publish — not "what is a code chunk".
+Two afternoon sessions on writing and publishing with **Quarto**, for people who already write R and
+have used R Markdown or Quarto. The sessions cover Quarto as a system, from one document to a
+publishable project.
 
-- **Instructor:** Christophe Dervieux ([Posit](https://posit.co/) — R Markdown / Quarto)
-- **Day 1 · Mon 10 Aug — Introduction to Quarto:** the single document — authoring, layout, and the
-  modern output story (including Typst).
-- **Day 2 · Tue 11 Aug — Quarto projects:** beyond one file — websites, config, publishing, tips & tricks.
+- **Instructor:** Christophe Dervieux ([Posit](https://posit.co/), R Markdown and Quarto)
+- **Day 1 · Mon 10 Aug · Introduction to Quarto:** authoring, layout, and output formats, including
+  Typst.
+- **Day 2 · Tue 11 Aug · Quarto projects:** websites, configuration, publishing, and practical
+  techniques.
 
-Each day is **two parts with a gap** (150 min on Day 1, 180 on Day 2), and each part reaches a
-hands-on payoff. The running
-example is the base-R `penguins` dataset (R ≥ 4.5), used in every example across both days.
+Each day has two parts with a break (150 min on Day 1, 180 on Day 2). Each part ends with hands-on
+work. Both days use the base-R `penguins` dataset (R ≥ 4.5).
 
 ## The site
 
 The site is live at **<https://cderv.github.io/raukr-2026-quarto/>**.
 
-This repository is a [Quarto website](https://quarto.org/docs/websites/) project; the rendered
-slides, labs, and setup page are its output, published to the `gh-pages` branch with
+This repository is a [Quarto website](https://quarto.org/docs/websites/) project. The rendered
+slides, labs, and setup page are published to the `gh-pages` branch with
 `just publish gh`. The material is still being authored, so pages may change up to the school.
 
 ## Before you arrive
 
 The sessions are hands-on, so come with a working toolchain: **R ≥ 4.5**, **Quarto ≥ 1.9**
 (the Typst article layout used on Day 1 landed in 1.9), and an editor with Quarto support ([Positron](https://positron.posit.co/),
-VS Code, or RStudio). Typst (the modern PDF path used on Day 1) ships *inside* Quarto, so there is
-nothing extra to install.
+VS Code, or RStudio). Typst (the PDF system used on Day 1) is bundled with Quarto.
 
 Full instructions, including how to recreate the exact R environment, are on the **Setup** page
 (`setup.qmd`, rendered on the site above). This repo pins its R dependencies with [renv](https://rstudio.github.io/renv/):
@@ -43,8 +41,8 @@ renv::restore()   # recreate the environment from renv.lock
 
 | Day | Session | Slides | Lab |
 |-----|---------|--------|-----|
-| **Mon 10 Aug** | Introduction to Quarto — authoring, layout, and the output story (including Typst) | `slides/quarto/` | `labs/quarto/` |
-| **Tue 11 Aug** | Quarto projects — websites, config, publishing, tips & tricks | `slides/quarto-projects/` | `labs/quarto-projects/` |
+| **Mon 10 Aug** | Introduction to Quarto: authoring, layout, and output formats (including Typst) | `slides/quarto/` | `labs/quarto/` |
+| **Tue 11 Aug** | Quarto projects: websites, configuration, publishing, practical techniques | `slides/quarto-projects/` | `labs/quarto-projects/` |
 
 ## What's in this repo
 
@@ -54,7 +52,7 @@ slides/quarto/            Day 1 — Introduction to Quarto (revealjs deck)
 slides/quarto-projects/   Day 2 — Quarto projects (revealjs deck)
 labs/quarto/              Day 1 lab, with exercise files and demos
 labs/quarto-projects/     Day 2 lab, with a starter and a worked solution
-exercises/                Generated participant files (see below) — never hand-edited
+exercises/                Generated participant files (see below). Do not edit directly
 tools/                    R scripts that generate the exercises repo and the demo pages
 _quarto.yml · _brand.yml  Website config and branding
 justfile                  Build entry point
@@ -118,5 +116,5 @@ See [`LICENSE.md`](LICENSE.md):
 - **Content** — text, slides, exercises, pages, figures: [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
 - **Code** — scripts, build config, authoring tooling: [MIT](LICENSE.md#mit-license-code).
 
-This content is authored so it can later be folded into the NBIS RaukR site; how that material
-relates to this one (CC BY-NC-SA, referenced not vendored) is covered in [`LICENSE.md`](LICENSE.md).
+This content can later be included in the NBIS RaukR site. Its relationship to that material
+(CC BY-NC-SA, referenced rather than vendored) is covered in [`LICENSE.md`](LICENSE.md).

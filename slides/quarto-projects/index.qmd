@@ -214,7 +214,7 @@ typography:
 - Add a page later? Branded on render, nothing to wire up.
 - Need an exception? `brand: false` opts a page out. `brand: other.yml` points it elsewhere.
 
-![](../images/brand-yml-wide-color.svg){width="300px" fig-alt="brand.yml logo"}
+![](../images/brand-yml-wide-color.svg){width="300px" fig-alt="Brand YAML logo: a multicolor circular icon beside the words BRAND YAML."}
 :::
 ::::
 
@@ -265,8 +265,8 @@ Make builds reproducible, then prepare the project for publication.
 
 ## Freeze: skip unchanged computations {#freeze}
 
-**freeze** was one line in Day 1. Computations can be slow: you don't want every prose edit to re-run a
-20-minute model fit. Two tools, easily confused:
+Computations can be slow: you do not want every prose edit to re-run a 20-minute model fit. Two tools
+are easy to confuse:
 
 ::: {.incremental}
 - **`cache`**: the **compute engine's** cache, not Quarto's. It defers to *knitr* (R) or *Jupyter Cache*.

@@ -11,16 +11,16 @@ You need R, Quarto, and an editor. If you already render Quarto documents from R
 Complete these four steps:
 
 1. [**Install**](#software) R ≥ 4.5, Quarto ≥ 1.9, and an editor.
-2. [**Get the materials**](#get-the-materials) — one line of R, no git or GitHub account needed.
-3. [**Install the R packages**](#r-packages) — one `install.packages()` line.
-4. [**Check it works**](#check-your-setup) — run the check script from the top folder.
+2. [**Get the materials**](#get-the-materials): one line of R, with no git or GitHub account needed.
+3. [**Install the R packages**](#r-packages): one `install.packages()` line.
+4. [**Check it works**](#check-your-setup): run the check script from the top folder.
 
 Complete steps 2–4 **before the workshop** so we can start with Quarto.
 :::
 
 **Optional, for Day 2.** The last step of Day 2 puts your site online with Posit Connect Cloud. If
-you want to try it, create a free account at <https://connect.posit.cloud> beforehand. Nothing else
-depends on it: everyone leaves with the built site folder either way.
+you want to try it, create a free account at <https://connect.posit.cloud> beforehand. Publishing is
+optional. The Day 2 project still builds a local `_site/` folder without an account.
 
 Slides and labs remain available at <https://cderv.github.io/raukr-2026-quarto/>.
 
@@ -57,12 +57,12 @@ from the Terminal with `quarto render <file>`.
 :::
 
 ::: {.callout-tip}
-Typst (the modern PDF path we use on Day 1) ships **inside** Quarto, so there is nothing extra to
-install and no LaTeX to set up.
+Typst (the PDF system used on Day 1) is bundled with Quarto. You do not need a separate Typst or
+LaTeX installation.
 :::
 
 ::: {.callout-warning collapse="true"}
-## Stuck on R < 4.5? (dataset fallback)
+## Using R earlier than 4.5? (dataset fallback)
 The exercises assume base R's `penguins`. If you cannot use R ≥ 4.5, install
 [`palmerpenguins`](https://allisonhorst.github.io/palmerpenguins/) and rename its columns to the
 base-R names the material uses, so every snippet works unchanged:
@@ -94,22 +94,24 @@ Choose where the materials go: set your R working directory to that folder, then
 usethis::use_course("cderv/raukr-2026-quarto-exercises", destdir = ".")
 ```
 
-`use_course()` unpacks a versioned folder and opens it (in RStudio or Positron; from a plain R
-console it sets your working directory to it instead). Its name includes a suffix that changes with
+`use_course()` unpacks a versioned folder and opens it in RStudio or Positron. From a plain R
+console, it sets your working directory to that folder instead. Its name includes a suffix that changes with
 each update (for example `cderv-raukr-2026-quarto-exercises-d11a9fb/`). This is the **top folder**
 used below. Keep the downloaded ZIP when prompted: you can use it to reset the exercises.
 
 ::: {.callout-important}
-## In the session, open the day folder — not the top folder
+## In the session, open the day folder
 When a session starts, work from that day's folder inside the download:
 
 - **Day 1** → **`day1-intro/`**
 - **Day 2** → **`day2-projects/`**
 
+Do not open the top folder as your workspace.
+
 How you get there depends on your editor:
 
-- **Positron** or **VS Code** — *File ▸ Open Folder…*, then pick the day folder.
-- **RStudio** — double-click the `.Rproj` file inside it (`day1-intro.Rproj`, `day2-projects.Rproj`).
+- **Positron** or **VS Code**: select *File ▸ Open Folder…*, then pick the day folder.
+- **RStudio**: double-click the `.Rproj` file inside it (`day1-intro.Rproj`, `day2-projects.Rproj`).
 
 Either route opens the day folder as your workspace. Quarto then resolves the files next to your
 document (`_brand.yml`, `references.bib`) and writes rendered output there.

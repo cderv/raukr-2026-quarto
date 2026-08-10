@@ -75,7 +75,7 @@ The base-R `penguins` dataset records body measurements for `r nrow(penguins)` p
 species collected at Palmer Station, Antarctica [@gorman2014]. It reached the R community first
 through the **palmerpenguins** package [@horst2020]. Here we ask a simple question: **does bill
 shape tell the species apart?** We render the answer as a branded PDF with **Typst**, a modern
-typesetting system that ships inside Quarto, so there is no LaTeX involved.
+typesetting system bundled with Quarto that does not require LaTeX.
 
 # Species at a glance
 
@@ -106,9 +106,9 @@ summary_tbl |>
   brand_style()
 ```
 
-`r summary_tbl$species[which.max(summary_tbl$body_mass)]` is the heaviest on average, at
-`r format(round(max(summary_tbl$body_mass)), big.mark = " ")` g, the
-`#highlight(fill: rgb("#D1E5E6"))[large-bodied]`{=typst} species of the three.
+Of the three species, `r summary_tbl$species[which.max(summary_tbl$body_mass)]` has the
+`#highlight(fill: rgb("#D1E5E6"))[highest mean body mass]`{=typst}
+(`r format(round(max(summary_tbl$body_mass)), big.mark = " ")` g).
 
 # Bill length versus depth
 
@@ -117,8 +117,8 @@ summary_tbl |>
 #| fig-cap: "Bill length versus depth by species. The single heaviest penguin is labeled."
 #| fig-alt: >-
 #|   Scatter plot of bill depth against bill length for penguins of three species, each drawn in a
-#|   distinct teal shade. The three species form separate clusters. The single heaviest penguin in
-#|   the dataset is highlighted and labeled with its species.
+#|   distinct teal shade and point shape. The three species form separate clusters. The single
+#|   heaviest penguin in the dataset is highlighted and labeled with its species.
 heaviest <- penguins |> slice_max(body_mass, n = 1)
 
 ggplot(penguins, aes(x = bill_len, y = bill_dep, color = species, shape = species)) +
@@ -140,13 +140,13 @@ ggplot(penguins, aes(x = bill_len, y = bill_dep, color = species, shape = specie
   theme_brand_ggplot2(brand)
 ```
 
-The three species separate cleanly in bill shape. This is the manuscript-ready version of the same
-figure from the running HTML report, now in a branded PDF.
+The three species separate cleanly in bill shape. This is the same figure from the HTML report, now
+shown in the branded PDF.
 
 # Conclusion
 
-One `.qmd`, one `_brand.yml`, and `format: typst` give a typeset document with citations, and carry
-the RaukR palette through layout, tables, and figures.
+One `.qmd`, one `_brand.yml`, and `format: typst` give a typeset document with citations. They apply
+the RaukR typography and palette to the document, tables, and figures.
 
 ## References {.unnumbered}
 

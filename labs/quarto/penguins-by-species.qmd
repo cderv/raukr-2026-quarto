@@ -16,9 +16,8 @@ one <- penguins |>
   filter(species == params$species, !is.na(bill_len), !is.na(bill_dep))
 ```
 
-This report covers **`{r} params$species`** penguins only. It was built by passing `species` as a
-**parameter**, so the *same* source file renders one report per species. Change the parameter, not
-the document.
+This report covers **`{r} params$species`** penguins only. Passing `species` as a **parameter** lets
+the same source file render one report per species.
 
 ## `{r} params$species` at a glance
 
