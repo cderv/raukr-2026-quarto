@@ -164,6 +164,24 @@ click away at exactly the moment someone is stuck.
   leaking in; an error to fix, not a voice trait to keep. Grep: `rg -n ' [?!]' --glob '*.qmd'`.
 - Keep punctuation **ASCII** where the repo does; don't "upgrade" `--` to `—`.
 
+## Final language pass
+
+Before finishing any participant-facing change, review every added or modified sentence and comment
+against this rule. Treat generated prose and accepted reviewer suggestions as drafts: both require
+the same wording review.
+
+Check for:
+
+- unnatural, dramatic, personified, or idiomatic wording
+- narration that belongs in presenter notes or nowhere
+- vague subjects, causes, actions, or outcomes
+- duplicated explanations
+- comments that record the work instead of explaining the adjacent setting
+- terminology that differs from the rest of the material
+
+Do not broaden this pass into a technical or pedagogical rewrite. Preserve the intended meaning and
+instructional structure.
+
 ## Find the tics
 
 ```bash
