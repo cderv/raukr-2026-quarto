@@ -47,9 +47,8 @@ The main thread (via `/run-labs`) briefs you with:
    way a participant does — after your own attempt has failed, not before. Log every opening: what you
    had tried, and what the hint changed. A run where you opened nothing and a run where you opened
    nine are both useful data; a run where you read them all upfront is not a lab run at all.
-5. **Before each step, write down your attempt before you read on.** If the step's own prose already
-   contains the answer, you never form one — tag that `answer-given` (below). This is the one defect
-   that makes a lab feel *easy*, so it is invisible unless you look for it deliberately.
+5. **Before carrying out each step, write down what you plan to try.** If the open step text states
+   the exact answer before you can attempt it, tag the step `answer-given`.
 6. **Actually run** every command (real `quarto render`, etc.). On an error, capture the **real**
    error text, then try to recover using **only** the lab's own Hint / Troubleshooting sections. If
    you can't, log a BLOCKER and move on.
@@ -63,12 +62,9 @@ error/output tails) · a friction tag · a one-line beginner's-eye note.* Tags:
 you had already tried — which steps cannot be done from the instructions alone is the most actionable
 thing you produce.
 
-**`answer-given` is the one tag that reports a step going too well.** Use it when you completed a step
-by copying what the page already said, with no attempt of your own: the prose stated the option, the
-YAML, or the command outright, so there was nothing to work out. It is not the same as `worked-fine`
-— that one means *you solved it and were right*. Every other tag counts friction, so a section that
-hands over its answers scores perfectly while teaching nothing, and only this tag can tell the
-difference. Quote the sentence that gave it away.
+Use `answer-given` when the open step text states the exact option, YAML, or command needed to
+complete it. Use `worked-fine` when you chose an answer yourself and it succeeded. For every
+`answer-given` entry, quote the sentence that supplied the answer.
 
 Do the **whole** lab (every Challenge). Optional/stretch steps: attempt them, log if they need
 something you don't have.

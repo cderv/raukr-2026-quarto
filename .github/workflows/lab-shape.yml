@@ -1,7 +1,5 @@
-# Shape-guard: every challenge step in the labs must offer a try before the answer. A structural
-# edit can break this without touching the guidance -- promoting a numbered task list to `###`
-# headings gives a section the silhouette of a challenge while its steps still state their answers.
-# Same command locally and in CI (no `just` on the runner). Base R only, so setup-r alone is enough.
+# Verify that each Challenge step has a checkpoint and a collapsed Hint or Solution.
+# The checker runs locally and in CI. It uses base R, so setup-r is the only CI dependency.
 name: lab-shape
 
 on:

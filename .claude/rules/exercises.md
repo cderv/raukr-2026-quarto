@@ -25,27 +25,21 @@ This rule is the operational short list. When you **edit** labs, follow it; when
 ## Challenge step shape — both labs, every day
 
 **A participant must be able to attempt a step before its answer is visible.** Inside a
-`## … Challenge`, every `###` step is a goal, an observable **You should see** checkpoint, then a
-**collapsed** Hint and Solution. Do not state the answer in the step's own prose.
+`## … Challenge`, every `###` exercise step states a goal, gives an observable **You should see**
+checkpoint, and provides at least one collapsed Hint or Solution. Do not state the exact option,
+YAML, or command in the step's open prose.
 
-Two steps are not exercises and say so under their heading, so the intent is on the page rather than
-inferred from what is missing:
+Mark steps that intentionally use a different structure:
 
-- `<!-- lab-shape: walkthrough -->` — the participant runs commands as written (the guided
-  `freeze: true` experiment). Keep the checkpoint, drop the fold.
-- `<!-- lab-shape: reading -->` — a worked example with nothing to do (the dashboard). Neither applies.
+- `<!-- lab-shape: walkthrough -->`: the participant follows the commands as written. Keep the
+  checkpoint, but a collapsed Hint or Solution is not required.
+- `<!-- lab-shape: reading -->`: a worked example with no participant action. Neither requirement
+  applies.
 
-`just lab-shape-check` (`tools/check-lab-shape.R`, CI: `lab-shape.yml`) enforces this. Run it after
-any lab edit.
+Run `just lab-shape-check` after any lab edit.
 
-**A structural edit can break the shape without touching a word of the guidance.** Day-1 Part 2 was
-one numbered Tasks callout — a coherent walkthrough, answers inline, closed by a single checkpoint,
-Hint and Solution. A fix for a real navigation problem (no TOC entry points) promoted the seven list
-items to seven `###` headings and changed nothing else. The section then had a challenge's
-silhouette and a walkthrough's content, and the one trailing Hint/Solution now sat after seven steps
-that each already gave their answer. It went to the room that way. So: **when a change converts a
-list to headings, or a callout to sections, re-check the section against the pattern it now
-resembles** — the shape a reader infers changed even though the words did not.
+After converting list items to headings or callouts to sections, re-check every resulting step.
+A structural change can expose answers even when the prose is unchanged.
 
 ## Current Day-2 scope
 

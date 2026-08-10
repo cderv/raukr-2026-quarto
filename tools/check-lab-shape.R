@@ -1,18 +1,12 @@
 #!/usr/bin/env Rscript
-# check-lab-shape.R -- assert every challenge step lets a participant try before showing the answer.
+# check-lab-shape.R -- check the structure of every Challenge step.
 #
-# The invariant is in .claude/rules/exercises.md ("Challenge step shape"): inside a `## ... Challenge`
-# section, each `###` step carries an observable checkpoint and a collapsed Hint or Solution. Two
-# markers under a heading declare a step that is not an exercise: `<!-- lab-shape: walkthrough -->`
-# (the participant follows written commands, so the checkpoint stays but the fold is waived) and
-# `<!-- lab-shape: reading -->` (a worked example with nothing to do, so neither applies).
-#
-# This exists because a structural edit can break the shape without touching a word of the guidance:
-# promoting a numbered Tasks list to `###` headings gives a section the silhouette of a challenge
-# while its steps still state their own answers.
+# Inside a `## ... Challenge`, each `###` exercise step needs an observable checkpoint and at least
+# one collapsed Hint or Solution. A `walkthrough` marker keeps the checkpoint but waives the fold.
+# A `reading` marker waives both requirements.
 #
 # Usage:
-#   Rscript tools/check-lab-shape.R    # names every step that breaks the shape, exits 1 on any
+#   Rscript tools/check-lab-shape.R    # report invalid steps and exit with status 1
 
 ROOT <- tryCatch(system2("git", c("rev-parse", "--show-toplevel"), stdout = TRUE),
                  error = function(e) getwd())
