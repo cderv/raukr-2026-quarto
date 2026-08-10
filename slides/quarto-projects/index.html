@@ -453,7 +453,7 @@ Christophe Dervieux
 <li>Add a page later? Branded on render, nothing to wire up.</li>
 <li>Need an exception? <code>brand: false</code> opts a page out. <code>brand: other.yml</code> points it elsewhere.</li>
 </ul>
-<p><img data-src="../images/brand-yml-wide-color.svg" alt="brand.yml logo" width="300"></p>
+<p><img data-src="../images/brand-yml-wide-color.svg" alt="Brand YAML logo: a multicolor circular icon beside the words BRAND YAML." width="300"></p>
 </div></div>
 <p><strong>Learn more:</strong> <a href="https://quarto.org/docs/authoring/brand.html">Quarto brand</a> · <a href="https://posit-dev.github.io/brand-yml/">brand.yml spec</a></p>
 <aside class="notes">
@@ -540,7 +540,7 @@ Christophe Dervieux
 </section>
 <section id="freeze" class="slide level2">
 <h2>Freeze: skip unchanged computations</h2>
-<p><strong>freeze</strong> was one line in Day 1. Computations can be slow: you don’t want every prose edit to re-run a 20-minute model fit. Two tools, easily confused:</p>
+<p>Computations can be slow: you do not want every prose edit to re-run a 20-minute model fit. Two tools are easy to confuse:</p>
 <ul>
 <li class="fragment"><strong><code>cache</code></strong>: the <strong>compute engine’s</strong> cache, not Quarto’s. It defers to <em>knitr</em> (R) or <em>Jupyter Cache</em>. Per-<strong>cell</strong>, kept until that cell’s code changes, and it works in a <strong>single document</strong>.</li>
 <li class="fragment"><strong><code>freeze</code></strong>: <strong>Quarto’s</strong> switch for when a document re-executes. <strong>Project-only</strong>: rendering one file always runs it. Results live in <code>_freeze/</code>. Once every page has frozen results, <strong>CI</strong> <em>(the automated build)</em> can rebuild those pages without R.</li>

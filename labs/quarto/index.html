@@ -436,7 +436,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <i class="callout-icon"></i>
 </div>
 <div class="callout-body-container">
-<p>You are working in the <strong><code>day1-intro/</code></strong> folder from the exercises download. Open that folder in your editor, or make it your working directory in R (see the <a href="../../setup.html#get-the-materials">Setup page</a>). Everything you render is written next to your files. You start from a file that is already there, <code>authoring-starter.qmd</code>, and the other files are used later, each at the step that names it (the folder’s README lists them).</p>
+<p>You are working in the <strong><code>day1-intro/</code></strong> folder from the exercises download. Open that folder in your editor, or make it your working directory in R (see the <a href="../../setup.html#get-the-materials">Setup page</a>). Everything you render is written next to your files. Start with the supplied <code>authoring-starter.qmd</code>. The lab introduces the other files when you need them. The folder README lists them all.</p>
 </div>
 </div>
 </div>
@@ -666,10 +666,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-target" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Scatter plot of bill depth against bill length for three penguin species in distinct colors. The species form largely separate clusters.">
+<div id="fig-target" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Scatter plot of bill depth against bill length for three penguin species. Each species uses a distinct color and point shape. The points form three largely separate clusters.">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-target-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="index_files/figure-html/fig-target-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Figure&nbsp;1: Target: bill length versus depth by species."><img src="index_files/figure-html/fig-target-1.png" class="img-fluid figure-img" alt="Scatter plot of bill depth against bill length for three penguin species in distinct colors. The species form largely separate clusters." width="576"></a>
+<a href="index_files/figure-html/fig-target-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Figure&nbsp;1: Target: bill length versus depth by species."><img src="index_files/figure-html/fig-target-1.png" class="img-fluid figure-img" alt="Scatter plot of bill depth against bill length for three penguin species. Each species uses a distinct color and point shape. The points form three largely separate clusters." width="576"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-target-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;1: Target: bill length versus depth by species.
@@ -691,7 +691,7 @@ Figure&nbsp;1: Target: bill length versus depth by species.
 <div id="callout-13" class="callout-13-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>Someone who cannot separate the three colors needs a second way to tell the species apart. What else can <code>aes()</code> map? Where does the plot description go when the other figure settings are cell options?</p>
-<p>Map <code>shape = species</code> alongside <code>color = species</code> in <code>aes()</code>, and add <code>scale_color_okabe_ito()</code>. The description is the cell option <code>#| fig-alt:</code>. It is not the caption: the alt text stands in for the image, so it describes what the plot <em>shows</em>, not what it <em>is</em>.</p>
+<p>Map <code>shape = species</code> alongside <code>color = species</code> in <code>aes()</code>, and add <code>scale_color_okabe_ito()</code>. The description is the cell option <code>#| fig-alt:</code>. It is not the caption: alt text conveys the information in the image, so describe what the plot <em>shows</em> rather than merely naming the plot type.</p>
 </div>
 </div>
 </div>
@@ -806,14 +806,14 @@ Figure&nbsp;1: Target: bill length versus depth by species.
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span><i class="fa-solid fa-circle-check" aria-label="circle-check"></i> Checkpoint: the whole document
+<span class="screen-reader-only">Note</span><i class="fa-solid fa-circle-check" aria-label="circle-check"></i> You should see
 </div>
 </div>
 <div class="callout-body-container callout-body">
 <p>A numbered <strong>Figure 1</strong> (the bill scatter, three separate clusters), a numbered <strong>Table 1</strong>, and the counts in the right margin. Your figure and table references render as live links, with no <code>?@</code> markers anywhere. If you completed the optional step, you also have a numbered <strong>Equation 1</strong>.</p>
 </div>
 </div>
-<p><strong><code>authoring-checkpoint.qmd</code> is this same report with every step above applied.</strong> It is already in <code>day1-intro/</code>. Compare your work against it, or, if you did not finish, save a copy of it as <code>my-report.qmd</code> and continue into Part 2 from there. You can also take the source:</p>
+<p><code>authoring-checkpoint.qmd</code> is this same report with every step above applied. It is already in <code>day1-intro/</code>. Compare your work against it, or, if you did not finish, save a copy of it as <code>my-report.qmd</code> and continue into Part 2 from there. You can also take the source:</p>
 <p><a class="btn btn-primary btn-sm" href="https://raw.githubusercontent.com/cderv/raukr-2026-quarto-exercises/main/day1-intro/authoring-checkpoint.qmd" role="button" target="_blank"><i class="fa-solid fa-download" aria-label="download"></i> authoring-checkpoint.qmd</a></p>
 </section>
 </section>
@@ -856,7 +856,7 @@ Figure&nbsp;1: Target: bill length versus depth by species.
 </section>
 <section id="cite-the-two-sources" class="level3" data-number="2.2">
 <h3 data-number="2.2" class="anchored" data-anchor-id="cite-the-two-sources"><span class="header-section-number">2.2</span> Cite the two sources</h3>
-<p>Cite the two sources the opening paragraph already credits, without rewriting it. The sentence ending <em>“…collected at Palmer Station, Antarctica.”</em> takes the data citation before the period (<code>Antarctica [@gorman2014].</code>). In the next sentence, put <code>[@horst2020]</code> immediately after <strong>palmerpenguins</strong>. The rest of that sentence concerns base R, so do not put the citation at the end. Don’t paste a second copy of either sentence.</p>
+<p>Add <code>[@gorman2014]</code> before the period in the sentence ending <em>“…collected at Palmer Station, Antarctica.”</em> Add <code>[@horst2020]</code> immediately after <strong>palmerpenguins</strong> in the next sentence. The rest of that sentence describes base R, so keep the citation beside the package name. Do not duplicate either sentence.</p>
 </section>
 <section id="add-the-references-section" class="level3" data-number="2.3">
 <h3 data-number="2.3" class="anchored" data-anchor-id="add-the-references-section"><span class="header-section-number">2.3</span> Add the References section</h3>
@@ -879,11 +879,11 @@ Figure&nbsp;1: Target: bill length versus depth by species.
 </section>
 <section id="render-a-branded-pdf-with-typst" class="level3" data-number="2.6">
 <h3 data-number="2.6" class="anchored" data-anchor-id="render-a-branded-pdf-with-typst"><span class="header-section-number">2.6</span> Render a branded PDF with Typst</h3>
-<p>Switch the output to <strong>Typst</strong> and render a branded PDF. The branding comes from <code>_brand.yml</code>, which Quarto reads next to the document you render, so keep <code>my-report.qmd</code> in <code>day1-intro/</code>. You may see <code>unknown font family</code> warnings on the first render. See Troubleshooting if the final PDF still uses a serif font. Two routes:</p>
+<p>Render a branded PDF with <strong>Typst</strong>. Keep <code>my-report.qmd</code> in <code>day1-intro/</code> so Quarto can find the supplied <code>_brand.yml</code>. You may see <code>unknown font family</code> warnings on the first render. See Troubleshooting if the final PDF still uses a serif font. Choose one route:</p>
 <ul>
-<li><p><strong>CLI</strong> — leave the header as-is and force the target:</p>
+<li><p><strong>CLI:</strong> keep <code>format: html</code> in the header and run:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> render my-report.qmd <span class="at">--to</span> typst</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
-<li><p><strong>From the editor</strong> — set <code>format: typst</code> in the YAML header first, <em>then</em> render (RStudio’s <strong>Render</strong> button, or <strong>Quarto: Render Document</strong> in Positron and VS Code). The editor renders whatever <code>format:</code> is declared, so while the header still says <code>format: html</code> you get HTML, <strong>not</strong> a PDF.</p></li>
+<li><p><strong>Editor:</strong> change the header to <code>format: typst</code>, then render (RStudio’s <strong>Render</strong> button, or <strong>Quarto: Render Document</strong> in Positron and VS Code). The editor renders whatever <code>format:</code> is declared, so while the header still says <code>format: html</code> you get HTML, <strong>not</strong> a PDF.</p></li>
 </ul>
 <p>The PDF is written <strong>next to its source</strong> in <code>day1-intro/</code>.</p>
 </section>
@@ -910,7 +910,7 @@ Figure&nbsp;1: Target: bill length versus depth by species.
 <div class="callout-body-container callout-body">
 <p>In-text <strong>(Gorman et al., 2014)</strong> and <strong>(Horst et al., 2020)</strong>, a <strong>References</strong> section formatted in APA with both entries, and the same citations in the Typst PDF, typeset with the RaukR palette. No <code>?@gorman2014</code>, <code>?@horst2020</code> or <code>[?]</code> markers anywhere.</p>
 <p>The entries sit inside the <code>::: {#refs}</code> div in both formats, under your own <strong>References</strong> heading. The PDF ends there, with no Session appendix after it. The HTML still includes the appendix, with the Session block collapsed.</p>
-<p><strong>Check the branding applied.</strong> An unbranded PDF builds without any error, so check the <strong>title and headings</strong>. A branded PDF uses <strong>Albert Sans</strong>. An unbranded PDF uses Typst’s default serif. Table 1 remains serif in both because of the <code>unknown font family</code> issue described in Troubleshooting. Use the headings for this check. Serif headings mean <code>_brand.yml</code> isn’t next to your <code>.qmd</code>.</p>
+<p><strong>Check that the branding is applied.</strong> An unbranded PDF builds without any error, so check the <strong>title and headings</strong>. A branded PDF uses <strong>Albert Sans</strong>. An unbranded PDF uses Typst’s default serif. Table 1 remains serif in both because of the <code>unknown font family</code> issue described in Troubleshooting. Use the headings for this check. Serif headings mean <code>_brand.yml</code> isn’t next to your <code>.qmd</code>.</p>
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
@@ -972,7 +972,7 @@ Figure&nbsp;1: Target: bill length versus depth by species.
 </div>
 </div>
 </div>
-<p><strong><code>solutions/day1/penguins-report.qmd</code> is the complete Day-1 report:</strong> the starter with every step of both challenges applied. Try the challenge first, then open it to compare, or take the source:</p>
+<p><code>solutions/day1/penguins-report.qmd</code> is the complete Day-1 report: the starter with every step of both challenges applied. Try the challenge first, then open it to compare, or take the source:</p>
 <p><a class="btn btn-primary btn-sm" href="https://raw.githubusercontent.com/cderv/raukr-2026-quarto-exercises/main/solutions/day1/penguins-report.qmd" role="button" target="_blank"><i class="fa-solid fa-download" aria-label="download"></i> penguins-report.qmd</a></p>
 <p>For a more advanced branded PDF example, render <code>day1-intro/sample-typst.qmd</code>. It also styles its table and plot in R and sets Typst page options. Those additions are outside this exercise.</p>
 </section>
@@ -1055,7 +1055,7 @@ Figure&nbsp;1: Target: bill length versus depth by species.
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Rendering with <code>-P species:Adelie</code> gives a report whose sentences, figure caption, alt text, point count, and plot are all about Adelie. Nothing says Gentoo. Rendering without <code>-P</code> produces the Gentoo report. If you completed the optional task, the heading also names the selected species.</p>
+<p>Rendering with <code>-P species:Adelie</code> gives a report whose sentences, figure caption, alt text, point count, and plot are all about Adelie. No text or plot data refer to Gentoo. Rendering without <code>-P</code> produces the Gentoo report. If you completed the optional task, the heading also names the selected species.</p>
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
@@ -1078,7 +1078,7 @@ Figure&nbsp;1: Target: bill length versus depth by species.
 </div>
 </div>
 </div>
-<p><strong>The complete, runnable solution is <code>solutions/day1/penguins-by-species.qmd</code>.</strong> Open it to compare your work or render it with different <code>-P species:</code> values. You can also take the source:</p>
+<p>The complete, runnable solution is <code>solutions/day1/penguins-by-species.qmd</code>. Open it to compare your work or render it with different <code>-P species:</code> values. You can also take the source:</p>
 <p><a class="btn btn-primary btn-sm" href="https://raw.githubusercontent.com/cderv/raukr-2026-quarto-exercises/main/solutions/day1/penguins-by-species.qmd" role="button" target="_blank"><i class="fa-solid fa-download" aria-label="download"></i> penguins-by-species.qmd</a></p>
 </section>
 <section id="troubleshooting" class="level2" data-number="4">
@@ -1098,15 +1098,13 @@ Figure&nbsp;1: Target: bill length versus depth by species.
 <ul>
 <li><strong>YAML is indentation-sensitive.</strong> If rendering fails <em>before</em> any code runs, check the YAML header for stray spaces, tabs, or unmatched quotes.</li>
 <li><strong>Missing package?</strong> <code>install.packages("&lt;name&gt;")</code> (or <code>renv::restore()</code>) and render again.</li>
-<li><strong>A figure doesn’t appear?</strong> Check the path is relative to the <code>.qmd</code> and the filename matches exactly (case included).</li>
-<li><strong>A cross-reference shows <code>?@…</code>?</strong> The cell label must start with <code>fig-</code>/<code>tbl-</code>/<code>eq-</code> and be unique, and the <code>@ref</code> must match it.</li>
+<li><strong>A cross-reference shows <code>?@…</code>?</strong> For a figure or table, confirm that the cell label starts with <code>fig-</code> or <code>tbl-</code>. For an equation, confirm that <code>{#eq-…}</code> follows the closing <code>$$</code>. Then make sure the <code>@ref</code> matches the label exactly.</li>
 <li><strong>A citation shows <code>?@gorman2014</code> or <code>[?]</code>?</strong> The <code>@key</code> doesn’t match a key in <code>references.bib</code>, or <code>bibliography:</code> isn’t set.</li>
 <li><strong>The PDF’s References section is empty and the entries are at the end under “Bibliography”?</strong> <code>citeproc: true</code> is missing from the header. Without it Typst builds the bibliography itself and places it last, so the <code>::: {#refs}</code> div only moves the list in HTML.</li>
 <li><strong><code>references.bib</code> not found, although the download has it?</strong> Your <code>.qmd</code> is probably not in <code>day1-intro/</code> (saved to the top folder, for example). Move it next to <code>references.bib</code> / <code>apa.csl</code> / <code>_brand.yml</code> and render again.</li>
 <li><strong>Do I need to install Typst?</strong> No.&nbsp;Typst is bundled in Quarto ≥ 1.9, so there’s nothing extra to install (no LaTeX either). Check <code>quarto --version</code>.</li>
 <li><strong>Typst PDF looks unbranded / wrong fonts?</strong> An unbranded render can succeed without a warning, so check the <strong>title and headings</strong>, not the log. A branded PDF uses <strong>Albert Sans</strong>. An unbranded PDF uses Typst’s default serif. Table 1 stays serif either way, so don’t judge by the table. Confirm <code>_brand.yml</code> is in your <code>day1-intro/</code> folder (next to the <code>.qmd</code>) and you have network on the first render (Quarto fetches the Google fonts once). Missing the file? Download <a href="https://raw.githubusercontent.com/cderv/raukr-2026-quarto-exercises/main/day1-intro/_brand.yml"><code>_brand.yml</code></a> into the folder holding your <code>.qmd</code>.</li>
 <li><strong>Typst prints <code>unknown font family</code> warnings?</strong> A <code>gt</code> table names a generic <code>sans-serif</code> in its font stack, and Typst doesn’t recognize that as a family. The warning does not stop the PDF from building or applying the brand.</li>
-<li><strong>Prefer to stay in HTML first?</strong> Render HTML and check the content, <em>then</em> switch to <code>format: typst</code>. The content is the same. Set the key back to <code>html</code> to render HTML again.</li>
 </ul>
 </div>
 </div>

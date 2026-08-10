@@ -221,7 +221,7 @@ Christophe Dervieux
 <li>cite your sources from a <code>.bib</code> file in the style a journal asks for.</li>
 <li>turn it into a <strong>branded Typst PDF</strong> (no LaTeX required).</li>
 </ul>
-<p>By the end, you will have a <strong>polished PDF report</strong>.</p>
+<p>By the end, you will have a <strong>branded PDF report with citations</strong>.</p>
 <aside class="notes">
 <ul>
 <li><strong>Say:</strong> “You know R Markdown or Quarto. Today we turn one <code>.qmd</code> into a branded PDF with citations.”</li>
@@ -273,8 +273,8 @@ Christophe Dervieux
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a aria-label="1"></a>usethis<span class="sc">::</span><span class="fu">use_course</span>(<span class="st">"cderv/raukr-2026-quarto-exercises"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>From the top folder of your downloaded exercises:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a aria-label="1"></a><span class="fu">source</span>(<span class="st">"00-check-setup.R"</span>, <span class="at">local =</span> <span class="fu">new.env</span>())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Every check reads <code>[ok]</code>, and the last line is <code>&gt;&gt; All good. You are ready for Day 1.</code></p>
-<p>Any <code>[FAIL]</code> line: raise your hand.</p>
+<p>Every check should read <code>[ok]</code>, and the last line should be <code>&gt;&gt; All good. You are ready for Day 1.</code></p>
+<p>If any line reads <code>[FAIL]</code>, raise your hand.</p>
 <p>Details on the <a href="../../setup.html">Setup page</a>.</p>
 <aside class="notes">
 <ul>
@@ -354,7 +354,7 @@ Christophe Dervieux
 <h2>Anatomy of a <code>.qmd</code></h2>
 <p>Three parts: a YAML header, Markdown prose, and executable code cells.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3" data-code-line-numbers="|1-4|6|8-13"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb3-1"><a aria-label="1"></a><span class="co">---</span></span>
-<span id="cb3-2"><a aria-label="2"></a><span class="an">title:</span><span class="co"> "A penguin story"</span></span>
+<span id="cb3-2"><a aria-label="2"></a><span class="an">title:</span><span class="co"> "A penguin report"</span></span>
 <span id="cb3-3"><a aria-label="3"></a><span class="an">format:</span><span class="co"> html</span></span>
 <span id="cb3-4"><a aria-label="4"></a><span class="co">---</span></span>
 <span id="cb3-5"><a aria-label="5"></a></span>
@@ -372,7 +372,7 @@ Christophe Dervieux
 </section>
 <section id="following-along" class="slide level2">
 <h2>Lab starter checkpoint</h2>
-<p>The lab’s starter (<code>day1-intro/authoring-starter.qmd</code>) opens with this cell. Everything on the next slides assumes it:</p>
+<p>The supplied starter (<code>day1-intro/authoring-starter.qmd</code>) already contains this setup cell:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb4-1"><a aria-label="1"></a><span class="in">```{r}</span></span>
 <span id="cb4-2"><a aria-label="2"></a><span class="co">#| label: setup</span></span>
 <span id="cb4-3"><a aria-label="3"></a><span class="co">#| message: false</span></span>
@@ -477,23 +477,23 @@ Table&nbsp;1: Mean bill length per species.
 </figcaption>
 <div aria-describedby="tbl-summary-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div id="vffhngzwux" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#vffhngzwux table {
+<div id="rwumjjprhq" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#rwumjjprhq table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#vffhngzwux thead, #vffhngzwux tbody, #vffhngzwux tfoot, #vffhngzwux tr, #vffhngzwux td, #vffhngzwux th {
+#rwumjjprhq thead, #rwumjjprhq tbody, #rwumjjprhq tfoot, #rwumjjprhq tr, #rwumjjprhq td, #rwumjjprhq th {
   border-style: none;
 }
 
-#vffhngzwux p {
+#rwumjjprhq p {
   margin: 0;
   padding: 0;
 }
 
-#vffhngzwux .gt_table {
+#rwumjjprhq .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -519,12 +519,12 @@ Table&nbsp;1: Mean bill length per species.
   border-left-color: #D3D3D3;
 }
 
-#vffhngzwux .gt_caption {
+#rwumjjprhq .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#vffhngzwux .gt_title {
+#rwumjjprhq .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -536,7 +536,7 @@ Table&nbsp;1: Mean bill length per species.
   border-bottom-width: 0;
 }
 
-#vffhngzwux .gt_subtitle {
+#rwumjjprhq .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -548,7 +548,7 @@ Table&nbsp;1: Mean bill length per species.
   border-top-width: 0;
 }
 
-#vffhngzwux .gt_heading {
+#rwumjjprhq .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -560,13 +560,13 @@ Table&nbsp;1: Mean bill length per species.
   border-right-color: #D3D3D3;
 }
 
-#vffhngzwux .gt_bottom_border {
+#rwumjjprhq .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#vffhngzwux .gt_col_headings {
+#rwumjjprhq .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -581,7 +581,7 @@ Table&nbsp;1: Mean bill length per species.
   border-right-color: #D3D3D3;
 }
 
-#vffhngzwux .gt_col_heading {
+#rwumjjprhq .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -601,7 +601,7 @@ Table&nbsp;1: Mean bill length per species.
   overflow-x: hidden;
 }
 
-#vffhngzwux .gt_column_spanner_outer {
+#rwumjjprhq .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -613,15 +613,15 @@ Table&nbsp;1: Mean bill length per species.
   padding-right: 4px;
 }
 
-#vffhngzwux .gt_column_spanner_outer:first-child {
+#rwumjjprhq .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#vffhngzwux .gt_column_spanner_outer:last-child {
+#rwumjjprhq .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#vffhngzwux .gt_column_spanner {
+#rwumjjprhq .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -633,11 +633,11 @@ Table&nbsp;1: Mean bill length per species.
   width: 100%;
 }
 
-#vffhngzwux .gt_spanner_row {
+#rwumjjprhq .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#vffhngzwux .gt_group_heading {
+#rwumjjprhq .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -663,7 +663,7 @@ Table&nbsp;1: Mean bill length per species.
   text-align: left;
 }
 
-#vffhngzwux .gt_empty_group_heading {
+#rwumjjprhq .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -678,15 +678,15 @@ Table&nbsp;1: Mean bill length per species.
   vertical-align: middle;
 }
 
-#vffhngzwux .gt_from_md > :first-child {
+#rwumjjprhq .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#vffhngzwux .gt_from_md > :last-child {
+#rwumjjprhq .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#vffhngzwux .gt_row {
+#rwumjjprhq .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -705,7 +705,7 @@ Table&nbsp;1: Mean bill length per species.
   overflow-x: hidden;
 }
 
-#vffhngzwux .gt_stub {
+#rwumjjprhq .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -718,7 +718,7 @@ Table&nbsp;1: Mean bill length per species.
   padding-right: 5px;
 }
 
-#vffhngzwux .gt_stub_row_group {
+#rwumjjprhq .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -732,15 +732,15 @@ Table&nbsp;1: Mean bill length per species.
   vertical-align: top;
 }
 
-#vffhngzwux .gt_row_group_first td {
+#rwumjjprhq .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#vffhngzwux .gt_row_group_first th {
+#rwumjjprhq .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#vffhngzwux .gt_summary_row {
+#rwumjjprhq .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -750,16 +750,16 @@ Table&nbsp;1: Mean bill length per species.
   padding-right: 5px;
 }
 
-#vffhngzwux .gt_first_summary_row {
+#rwumjjprhq .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#vffhngzwux .gt_first_summary_row.thick {
+#rwumjjprhq .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#vffhngzwux .gt_last_summary_row {
+#rwumjjprhq .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -769,7 +769,7 @@ Table&nbsp;1: Mean bill length per species.
   border-bottom-color: #D3D3D3;
 }
 
-#vffhngzwux .gt_grand_summary_row {
+#rwumjjprhq .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -779,7 +779,7 @@ Table&nbsp;1: Mean bill length per species.
   padding-right: 5px;
 }
 
-#vffhngzwux .gt_first_grand_summary_row {
+#rwumjjprhq .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -789,7 +789,7 @@ Table&nbsp;1: Mean bill length per species.
   border-top-color: #D3D3D3;
 }
 
-#vffhngzwux .gt_last_grand_summary_row_top {
+#rwumjjprhq .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -799,11 +799,11 @@ Table&nbsp;1: Mean bill length per species.
   border-bottom-color: #D3D3D3;
 }
 
-#vffhngzwux .gt_striped {
+#rwumjjprhq .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#vffhngzwux .gt_table_body {
+#rwumjjprhq .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -812,7 +812,7 @@ Table&nbsp;1: Mean bill length per species.
   border-bottom-color: #D3D3D3;
 }
 
-#vffhngzwux .gt_footnotes {
+#rwumjjprhq .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -826,7 +826,7 @@ Table&nbsp;1: Mean bill length per species.
   border-right-color: #D3D3D3;
 }
 
-#vffhngzwux .gt_footnote {
+#rwumjjprhq .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -835,7 +835,7 @@ Table&nbsp;1: Mean bill length per species.
   padding-right: 5px;
 }
 
-#vffhngzwux .gt_sourcenotes {
+#rwumjjprhq .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -849,7 +849,7 @@ Table&nbsp;1: Mean bill length per species.
   border-right-color: #D3D3D3;
 }
 
-#vffhngzwux .gt_sourcenote {
+#rwumjjprhq .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -857,72 +857,72 @@ Table&nbsp;1: Mean bill length per species.
   padding-right: 5px;
 }
 
-#vffhngzwux .gt_left {
+#rwumjjprhq .gt_left {
   text-align: left;
 }
 
-#vffhngzwux .gt_center {
+#rwumjjprhq .gt_center {
   text-align: center;
 }
 
-#vffhngzwux .gt_right {
+#rwumjjprhq .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#vffhngzwux .gt_font_normal {
+#rwumjjprhq .gt_font_normal {
   font-weight: normal;
 }
 
-#vffhngzwux .gt_font_bold {
+#rwumjjprhq .gt_font_bold {
   font-weight: bold;
 }
 
-#vffhngzwux .gt_font_italic {
+#rwumjjprhq .gt_font_italic {
   font-style: italic;
 }
 
-#vffhngzwux .gt_super {
+#rwumjjprhq .gt_super {
   font-size: 65%;
 }
 
-#vffhngzwux .gt_footnote_marks {
+#rwumjjprhq .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#vffhngzwux .gt_asterisk {
+#rwumjjprhq .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#vffhngzwux .gt_indent_1 {
+#rwumjjprhq .gt_indent_1 {
   text-indent: 5px;
 }
 
-#vffhngzwux .gt_indent_2 {
+#rwumjjprhq .gt_indent_2 {
   text-indent: 10px;
 }
 
-#vffhngzwux .gt_indent_3 {
+#rwumjjprhq .gt_indent_3 {
   text-indent: 15px;
 }
 
-#vffhngzwux .gt_indent_4 {
+#rwumjjprhq .gt_indent_4 {
   text-indent: 20px;
 }
 
-#vffhngzwux .gt_indent_5 {
+#rwumjjprhq .gt_indent_5 {
   text-indent: 25px;
 }
 
-#vffhngzwux .katex-display {
+#rwumjjprhq .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#vffhngzwux div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#rwumjjprhq div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -962,7 +962,7 @@ Table&nbsp;1: Mean bill length per species.
 <ul>
 <li><strong>Do:</strong> show that <code>tbl-</code> behaves exactly like <code>fig-</code>, with its own counter.</li>
 <li><strong>Say:</strong> “Same mechanism as figures.”</li>
-<li><strong>Timing:</strong> keep this; cut Math first if needed.</li>
+<li><strong>Timing:</strong> keep Tables. Cut Math first if needed.</li>
 </ul>
 <style type="text/css">
         span.MJX_Assistive_MathML {
@@ -982,7 +982,7 @@ Table&nbsp;1: Mean bill length per species.
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb7-1"><a aria-label="1"></a>$$</span>
 <span id="cb7-2"><a aria-label="2"></a>\text{ratio} = \frac{\text{bill_len}}{\text{bill_dep}}</span>
 <span id="cb7-3"><a aria-label="3"></a>$$ {#eq-ratio}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>renders as <a href="#/eq-ratio" class="quarto-xref">Equation&nbsp;1</a> below:</p>
+<p>This renders as <a href="#/eq-ratio" class="quarto-xref">Equation&nbsp;1</a> below:</p>
 <p><span id="eq-ratio"><span class="math display">\[
 \text{ratio} = \frac{\text{bill_len}}{\text{bill_dep}}
 \tag{1}\]</span></span></p>
@@ -1024,7 +1024,7 @@ Table&nbsp;1: Mean bill length per species.
 </div>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb9-1"><a aria-label="1"></a>::: {.callout-note}</span>
-<span id="cb9-2"><a aria-label="2"></a><span class="fu">## About dataset</span></span>
+<span id="cb9-2"><a aria-label="2"></a><span class="fu">## About the dataset</span></span>
 <span id="cb9-3"><a aria-label="3"></a>Base-R <span class="in">`penguins`</span> (R ≥ 4.5) needs no install.</span>
 <span id="cb9-4"><a aria-label="4"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="callout callout-note callout-titled callout-style-default">
@@ -1033,7 +1033,7 @@ Table&nbsp;1: Mean bill length per species.
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<p><strong>About dataset</strong></p>
+<p><strong>About the dataset</strong></p>
 </div>
 <div class="callout-content">
 <p>Base-R <code>penguins</code> (R ≥ 4.5) needs no install.</p>
@@ -1123,7 +1123,7 @@ Table&nbsp;1: Mean bill length per species.
 </section>
 <section id="margin-layout" class="slide level2">
 <h2>Put output in the margin</h2>
-<p>A cell’s <code>#| column: margin</code> drops its output (figure or table, caption and all) into the margin:</p>
+<p>A cell’s <code>#| column: margin</code> places its output (figure or table, caption and all) in the margin:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb11-1"><a aria-label="1"></a><span class="in">```{r}</span></span>
 <span id="cb11-2"><a aria-label="2"></a><span class="co">#| label: counts</span></span>
 <span id="cb11-3"><a aria-label="3"></a><span class="co">#| column: margin</span></span>
@@ -1148,11 +1148,11 @@ Table&nbsp;1: Mean bill length per species.
 </section>
 <section id="accessibility" class="slide level2">
 <h2>Make it accessible</h2>
-<p>Accessibility is a few habits layered on what you already write:</p>
+<p>Accessibility starts with a few practices:</p>
 <ul>
 <li><strong>Alt text</strong>: add <code>#| fig-alt:</code> to every figure. It is what a screen reader announces.</li>
-<li><strong>Color-blind-safe colors</strong>: the default palette is not safe. Pick one that is: <a href="https://jfly.uni-koeln.de/color/">Okabe-Ito</a> is the common choice in science (<a href="https://malcolmbarrett.github.io/ggokabeito/"><code>scale_color_okabe_ito()</code></a>), viridis suits continuous scales. Encode by shape or label too, not color alone.</li>
-<li><strong>Check contrast</strong>: WCAG wants 4.5:1 on text. Quarto’s built-in <code>axe</code> runs axe-core on the rendered page:</li>
+<li><strong>Color-blind-safe colors</strong>: choose a suitable palette. <a href="https://jfly.uni-koeln.de/color/">Okabe-Ito</a> is a common choice for discrete scales in science (<a href="https://malcolmbarrett.github.io/ggokabeito/"><code>scale_color_okabe_ito()</code></a>). Viridis suits continuous scales. Encode by shape or label too, not color alone.</li>
+<li><strong>Check contrast</strong>: WCAG AA requires a contrast ratio of at least 4.5:1 for normal text. Quarto’s built-in <code>axe</code> runs axe-core on the rendered page:</li>
 </ul>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb12-1"><a aria-label="1"></a><span class="fu">format</span><span class="kw">:</span></span>
 <span id="cb12-2"><a aria-label="2"></a><span class="at">  </span><span class="fu">html</span><span class="kw">:</span></span>
@@ -1181,13 +1181,13 @@ Table&nbsp;1: Mean bill length per species.
 </section>
 <section id="document-types" class="slide level2">
 <h2>One source → many formats</h2>
-<p>One key in the header picks the output. The content does not change:</p>
+<p>One <code>format:</code> key selects the output. Shared content can render to more than one format:</p>
 <div class="columns">
 <div class="column" style="width:50%;">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb13-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span><span class="co">                   # render several at once</span></span>
 <span id="cb13-2"><a aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">html</span><span class="kw">:</span><span class="at"> default</span></span>
 <span id="cb13-3"><a aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">typst</span><span class="kw">:</span><span class="at"> default</span></span>
-<span id="cb13-4"><a aria-hidden="true" tabindex="-1"></a><span class="fu">toc</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span><span class="co">                 # shared — applies to both</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb13-4"><a aria-hidden="true" tabindex="-1"></a><span class="fu">toc</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span><span class="co">                 # shared: applies to both</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb14-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span><span class="co">                   # …or set options per format</span></span>
 <span id="cb14-2"><a aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">html</span><span class="kw">:</span></span>
 <span id="cb14-3"><a aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">toc</span><span class="kw">:</span><span class="at"> </span><span class="ch">false</span></span>
@@ -1233,7 +1233,7 @@ Table&nbsp;1: Mean bill length per species.
 <p><strong>Learn more:</strong> <a href="https://quarto.org/docs/computations/execution-options.html">Execution options</a> · <a href="https://quarto.org/docs/reference/cells/cells-knitr.html">Cell options</a></p>
 <aside class="notes">
 <ul>
-<li><strong>Do:</strong> set header <code>echo: false</code>; override one cell with <code>#| echo: true</code>.</li>
+<li><strong>Do:</strong> set header <code>echo: false</code>. Override one cell with <code>#| echo: true</code>.</li>
 <li><strong>Say:</strong> “Defaults in YAML, local overrides in the cell. Dashes, and lowercase <code>false</code>.”</li>
 </ul>
 <style type="text/css">
@@ -1260,10 +1260,10 @@ Table&nbsp;1: Mean bill length per species.
 <p><code>quarto render</code> also accepts <strong><code>-P name:value</code></strong>. Use it to override a document <em>parameter</em> and produce one report per sample or species from a single source. <em>(Optional bonus in today’s lab.)</em></p>
 <aside class="notes">
 <ul>
-<li><strong>Do:</strong> run <code>quarto preview</code>; edit and show reload. Contrast with <code>quarto render</code>.</li>
+<li><strong>Do:</strong> run <code>quarto preview</code>. Edit the document and show the reload. Contrast with <code>quarto render</code>.</li>
 <li><strong>Say:</strong> “Use any editor: RStudio, Positron, or VS Code.”</li>
-<li><strong>Optional:</strong> mention <code>-P</code>; the lab bonus uses it.</li>
-<li><strong>Timing:</strong> brief; cut parameters first.</li>
+<li><strong>Optional:</strong> mention <code>-P</code>. The lab bonus uses it.</li>
+<li><strong>Timing:</strong> keep this brief. Cut parameters first.</li>
 </ul>
 <style type="text/css">
         span.MJX_Assistive_MathML {
@@ -1329,7 +1329,9 @@ Table&nbsp;1: Mean bill length per species.
 <aside class="notes">
 <ul>
 <li><strong>Say:</strong> “Work on the Authoring Challenge until the break at 15:00. We resume at 15:30. Ask us if you get stuck.”</li>
-<li><strong>Watch for:</strong> wrong label prefix; duplicate labels; <code>#|</code> options not at the top of a cell.</li>
+<li><strong>Watch for:</strong> a wrong label prefix.</li>
+<li><strong>Watch for:</strong> duplicate labels.</li>
+<li><strong>Watch for:</strong> <code>#|</code> options that are not at the top of a cell.</li>
 <li><strong>Watch for:</strong> the setup cell belongs in the document, not the console.</li>
 <li><strong>Catch-up:</strong> no <code>day1-intro/</code>? Use the Setup page and pair them with a neighbor.</li>
 </ul>
@@ -1481,7 +1483,7 @@ Table&nbsp;1: Mean bill length per species.
 <span id="cb24-6"><a aria-label="6"></a><span class="at">    </span><span class="fu">orcid</span><span class="kw">:</span><span class="at"> 0000-0003-4474-2498</span></span>
 <span id="cb24-7"><a aria-label="7"></a><span class="fu">abstract</span><span class="kw">: </span><span class="ch">|</span></span>
 <span id="cb24-8"><a aria-label="8"></a>  Using base-R `penguins`, we show bill shape separates species...</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Renders in HTML, PDF, and Typst. Write it once.</p>
+<p>The same metadata renders in HTML and a Typst PDF.</p>
 <p><strong>Learn more:</strong> <a href="https://quarto.org/docs/authoring/front-matter.html#authors-and-affiliations">Authors &amp; Affiliations</a>, <a href="https://quarto.org/docs/authoring/title-blocks.html">Title blocks</a></p>
 <aside class="notes">
 <ul>
@@ -1505,7 +1507,7 @@ Table&nbsp;1: Mean bill length per species.
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb25-1"><a aria-label="1"></a><span class="fu">format</span><span class="kw">:</span><span class="at"> typst</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>That is the only change. Then re-render:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb26"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb26-1"><a aria-label="1"></a><span class="ex">quarto</span> render report.qmd</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>The header already says which format, so nothing else is needed.</p>
+<p>The header selects the output format.</p>
 <p>To get the PDF <em>without</em> touching the header, ask for it on the command line instead: <code>quarto render report.qmd --to typst</code>.</p>
 <div title="Version check">
 <div class="callout callout-note callout-titled callout-style-default">
@@ -1566,15 +1568,16 @@ Table&nbsp;1: Mean bill length per species.
 <li>The R side (<code>theme_brand_ggplot2()</code> / <code>theme_brand_gt()</code> from the <strong>brand.yml</strong> package) themes your <strong>plots and tables</strong> from the <em>same</em> palette.</li>
 <li>Quarto fetches Google fonts for Typst automatically.</li>
 </ul>
-<p><img data-src="../images/brand-yml-wide-color.svg" alt="brand.yml logo" width="300"></p>
+<p><img data-src="../images/brand-yml-wide-color.svg" alt="Brand YAML logo: a multicolor circular icon beside the words BRAND YAML." width="300"></p>
 </div></div>
 <p><strong>Learn more:</strong> <a href="https://quarto.org/docs/authoring/brand.html">Quarto brand</a> · <a href="https://posit-dev.github.io/brand-yml/">brand.yml spec</a></p>
 <aside class="notes">
 <ul>
 <li><strong>Do:</strong> show the PDF before and after <code>_brand.yml</code>, and point out the color and type change.</li>
-<li><strong>Say:</strong> the file already ships in <code>day1-intro/</code>. Quarto reads it next to the document.</li>
+<li><strong>Say:</strong> the file is already included in <code>day1-intro/</code>. Quarto reads it next to the document.</li>
 <li><strong>Say:</strong> “The same palette can reach plots and tables. Tomorrow it brands a whole project.”</li>
-<li><strong>Watch for:</strong> plots need <code>theme_brand_*</code>; first font render needs network.</li>
+<li><strong>Watch for:</strong> plots need <code>theme_brand_*</code>.</li>
+<li><strong>Watch for:</strong> the first font render needs network access.</li>
 </ul>
 <style type="text/css">
         span.MJX_Assistive_MathML {
@@ -1608,7 +1611,10 @@ Table&nbsp;1: Mean bill length per species.
 <aside class="notes">
 <ul>
 <li><strong>Say:</strong> “Add the bibliography, then render a branded Typst PDF.”</li>
-<li><strong>Watch for:</strong> exact citation key; first font download; PDF lands beside its source; a <code>my-report.qmd</code> created outside <code>day1-intro/</code> (bib and brand not found).</li>
+<li><strong>Watch for:</strong> an incorrect citation key.</li>
+<li><strong>Watch for:</strong> the first font download.</li>
+<li><strong>Watch for:</strong> the PDF being written beside its source.</li>
+<li><strong>Watch for:</strong> a <code>my-report.qmd</code> created outside <code>day1-intro/</code> (bibliography and brand not found).</li>
 </ul>
 <style type="text/css">
         span.MJX_Assistive_MathML {

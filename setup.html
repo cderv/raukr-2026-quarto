@@ -404,14 +404,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Complete these four steps:</p>
 <ol type="1">
 <li><a href="#software"><strong>Install</strong></a> R ≥ 4.5, Quarto ≥ 1.9, and an editor.</li>
-<li><a href="#get-the-materials"><strong>Get the materials</strong></a> — one line of R, no git or GitHub account needed.</li>
-<li><a href="#r-packages"><strong>Install the R packages</strong></a> — one <code>install.packages()</code> line.</li>
-<li><a href="#check-your-setup"><strong>Check it works</strong></a> — run the check script from the top folder.</li>
+<li><a href="#get-the-materials"><strong>Get the materials</strong></a>: one line of R, with no git or GitHub account needed.</li>
+<li><a href="#r-packages"><strong>Install the R packages</strong></a>: one <code>install.packages()</code> line.</li>
+<li><a href="#check-your-setup"><strong>Check it works</strong></a>: run the check script from the top folder.</li>
 </ol>
 <p>Complete steps 2–4 <strong>before the workshop</strong> so we can start with Quarto.</p>
 </div>
 </div>
-<p><strong>Optional, for Day 2.</strong> The last step of Day 2 puts your site online with Posit Connect Cloud. If you want to try it, create a free account at <a href="https://connect.posit.cloud" class="uri">https://connect.posit.cloud</a> beforehand. Nothing else depends on it: everyone leaves with the built site folder either way.</p>
+<p><strong>Optional, for Day 2.</strong> The last step of Day 2 puts your site online with Posit Connect Cloud. If you want to try it, create a free account at <a href="https://connect.posit.cloud" class="uri">https://connect.posit.cloud</a> beforehand. Publishing is optional. The Day 2 project still builds a local <code>_site/</code> folder without an account.</p>
 <p>Slides and labs remain available at <a href="https://cderv.github.io/raukr-2026-quarto/" class="uri">https://cderv.github.io/raukr-2026-quarto/</a>.</p>
 <section id="software" class="level2">
 <h2 class="anchored" data-anchor-id="software">Software</h2>
@@ -453,7 +453,7 @@ Tip
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Typst (the modern PDF path we use on Day 1) ships <strong>inside</strong> Quarto, so there is nothing extra to install and no LaTeX to set up.</p>
+<p>Typst (the PDF system used on Day 1) is bundled with Quarto. You do not need a separate Typst or LaTeX installation.</p>
 </div>
 </div>
 <div class="callout callout-style-default callout-warning callout-titled">
@@ -462,7 +462,7 @@ Tip
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Warning</span>Stuck on R &lt; 4.5? (dataset fallback)
+<span class="screen-reader-only">Warning</span>Using R earlier than 4.5? (dataset fallback)
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
@@ -489,14 +489,14 @@ Tip
 <p>Choose where the materials go: set your R working directory to that folder, then run:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages("usethis")   # once, if you don't have it</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">use_course</span>(<span class="st">"cderv/raukr-2026-quarto-exercises"</span>, <span class="at">destdir =</span> <span class="st">"."</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p><code>use_course()</code> unpacks a versioned folder and opens it (in RStudio or Positron; from a plain R console it sets your working directory to it instead). Its name includes a suffix that changes with each update (for example <code>cderv-raukr-2026-quarto-exercises-d11a9fb/</code>). This is the <strong>top folder</strong> used below. Keep the downloaded ZIP when prompted: you can use it to reset the exercises.</p>
+<p><code>use_course()</code> unpacks a versioned folder and opens it in RStudio or Positron. From a plain R console, it sets your working directory to that folder instead. Its name includes a suffix that changes with each update (for example <code>cderv-raukr-2026-quarto-exercises-d11a9fb/</code>). This is the <strong>top folder</strong> used below. Keep the downloaded ZIP when prompted: you can use it to reset the exercises.</p>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Important</span>In the session, open the day folder — not the top folder
+<span class="screen-reader-only">Important</span>In the session, open the day folder
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -505,10 +505,11 @@ Tip
 <li><strong>Day 1</strong> → <strong><code>day1-intro/</code></strong></li>
 <li><strong>Day 2</strong> → <strong><code>day2-projects/</code></strong></li>
 </ul>
+<p>Do not open the top folder as your workspace.</p>
 <p>How you get there depends on your editor:</p>
 <ul>
-<li><strong>Positron</strong> or <strong>VS Code</strong> — <em>File ▸ Open Folder…</em>, then pick the day folder.</li>
-<li><strong>RStudio</strong> — double-click the <code>.Rproj</code> file inside it (<code>day1-intro.Rproj</code>, <code>day2-projects.Rproj</code>).</li>
+<li><strong>Positron</strong> or <strong>VS Code</strong>: select <em>File ▸ Open Folder…</em>, then pick the day folder.</li>
+<li><strong>RStudio</strong>: double-click the <code>.Rproj</code> file inside it (<code>day1-intro.Rproj</code>, <code>day2-projects.Rproj</code>).</li>
 </ul>
 <p>Either route opens the day folder as your workspace. Quarto then resolves the files next to your document (<code>_brand.yml</code>, <code>references.bib</code>) and writes rendered output there.</p>
 <p>One download covers both days. Reference answers are in <code>solutions/day1/</code> and <code>solutions/day2/</code>.</p>
