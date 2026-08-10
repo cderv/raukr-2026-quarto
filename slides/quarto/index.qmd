@@ -483,8 +483,6 @@ Only in HTML.
 
 ## Execution: set once, override per cell {#execution}
 
-R Markdown's `knitr::opts_chunk$set()` moves into the header. Set defaults once, override per cell:
-
 :::: {.columns}
 ::: {.column width="52%"}
 Header — defaults for every cell:
@@ -507,10 +505,18 @@ summary(penguins$body_mass)
 :::
 ::::
 
-The header sets the defaults. A cell's `#|` wins.
+The YAML header sets the defaults. A cell's option in `#|` wins.
 
-*`freeze` commits computed results to `_freeze/` so a project re-render (or CI without R) skips
-unchanged documents. We'll see it in Day 2.*
+`execute` config is cross-language. For R specific, R Markdown's configuration and `knitr::opts_chunk$set()` move into the header under `knitr`
+
+```yaml
+knitr:
+  opts_chunk: 
+    collapse: true
+    comment: "#>" 
+    R.options:
+      knitr.graphics.auto_pdf: true
+```
 
 **Learn more:** [Execution options](https://quarto.org/docs/computations/execution-options.html) ·
 [Cell options](https://quarto.org/docs/reference/cells/cells-knitr.html)
@@ -518,7 +524,6 @@ unchanged documents. We'll see it in Day 2.*
 ::: notes
 - **Do:** set header `echo: false`; override one cell with `#| echo: true`.
 - **Say:** "Defaults in YAML, local overrides in the cell. Dashes, and lowercase `false`."
-- **Mention only:** freeze returns on Day 2.
 :::
 
 ## Running & editing {#running}
