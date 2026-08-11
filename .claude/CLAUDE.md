@@ -38,9 +38,8 @@ Both this repository and the exercise repository are public.
 - Describe roles and artifacts, not named people, when recording assessments or prior-art findings.
 - Before changing repository visibility, enumerate and audit every remote ref with
   `git ls-remote origin`; checking one branch is insufficient.
-- History was rewritten on 2026-08-03. A clone made before that date has an unrelated history.
-  Recover it with `git fetch origin && git reset --hard origin/main`. Do not `git pull`: it refuses
-  to merge, and that refusal is the safety net.
+- If a clone made before 2026-08-03 reports unrelated histories, follow
+  `.claude/references/history-rewrite.md`. Do not reset a worktree with uncommitted changes.
 
 ## Authoring
 
@@ -56,6 +55,9 @@ Both this repository and the exercise repository are public.
   transcripts, or commit summaries in source comments.
 - Delete completed working plans. Promote only durable constraints to a scoped rule or reference.
 - Keep commit messages short. Add a body only when the reason is not clear from the diff.
+- For a broad rewrite of `.claude` instructions, include a deletion ledger in the commit body. Map
+  each removed constraint to its new location or explain why it was dropped. Test runnable commands
+  before removing them.
 
 ## Scoped guidance
 

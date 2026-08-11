@@ -1,6 +1,7 @@
 ---
 paths:
   - .claude/commands/**/*.md
+  - .claude/references/**/*.md
   - .claude/upstream-issues/**/*.md
   - .claude/**/*.sh
   - .claude/**/*.mjs
@@ -17,9 +18,9 @@ paths:
 
 # Maintainer prose and configuration comments
 
-Use plain, literal language in operational documentation and comments. Preserve technical terms,
-commands, paths, and configuration keys. Participant-facing conventions such as direct address and
-presenter-note routing do not apply here.
+When editing a matching file, use plain, literal language in operational documentation and comments.
+Preserve technical terms, commands, paths, and configuration keys. Participant-facing conventions
+such as direct address and presenter-note routing do not apply here.
 
 ## Instructions and troubleshooting
 
