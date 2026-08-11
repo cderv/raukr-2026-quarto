@@ -3,6 +3,8 @@ paths:
   - .claude/**/*.md
   - .claude/**/*.sh
   - .claude/**/*.mjs
+  - .claude/**/*.py
+  - .claude/**/*.R
   - .claude/**/*.yml
   - .claude/**/*.yaml
   - theme*.scss
