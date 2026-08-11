@@ -38,8 +38,9 @@ Both this repository and the exercise repository are public.
 - Describe roles and artifacts, not named people, when recording assessments or prior-art findings.
 - Before changing repository visibility, enumerate and audit every remote ref with
   `git ls-remote origin`; checking one branch is insufficient.
-- If a clone made before 2026-08-03 reports unrelated histories, follow
-  `.claude/references/history-rewrite.md`. Do not reset a worktree with uncommitted changes.
+- If `git pull` reports unrelated histories, or `git merge-base main origin/main` finds no common
+  ancestor after fetching, follow `.claude/references/history-rewrite.md`. Do not reset a worktree
+  with uncommitted changes.
 
 ## Authoring
 
@@ -53,6 +54,8 @@ Both this repository and the exercise repository are public.
 - Follow `.claude/rules/prose-voice.md` for participant prose and presenter notes.
 - Comments explain the adjacent code or setting. Do not record investigation history, plans, review
   transcripts, or commit summaries in source comments.
+- Treat frontmatter, path globs, tool lists, and other machine-read fields as configuration. Do not
+  change them during a prose-only pass. Make behavioral changes separately and explain their effect.
 - Delete completed working plans. Promote only durable constraints to a scoped rule or reference.
 - Keep commit messages short. Add a body only when the reason is not clear from the diff.
 - For a broad rewrite of `.claude` instructions, include a deletion ledger in the commit body. Map
