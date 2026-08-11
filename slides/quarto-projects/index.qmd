@@ -310,8 +310,9 @@ project:
 ```
 
 **`render:`** limits which `.qmd` files Quarto renders. Without it Quarto renders every `.qmd` under
-the root. A leading `!` excludes instead (`- "!drafts/*.qmd"`). A third key, **`resources:`**, copies files
-Quarto does not find on its own (a spreadsheet, a `_redirects` file) into `_site/`.
+the root. A leading `!` excludes matches from the patterns above it: `- "*.qmd"` then
+`- "!drafts/*.qmd"`. An exclusion on its own renders nothing. A third key, **`resources:`**, copies
+files Quarto does not find on its own (a spreadsheet, a `_redirects` file) into `_site/`.
 
 ::: notes
 - **Say:** "Nothing new here, just more of it. The real file is longer."
@@ -507,7 +508,7 @@ still have the complete `_site/` folder.
 
 Connect Cloud is one provider of several:
 
-``` {.default}
+``` {.default code-line-numbers="false"}
  - GitHub Pages (gh-pages)
  - Posit Connect (connect)
  - Posit Connect Cloud (posit-connect-cloud)
