@@ -238,8 +238,8 @@ Christophe Dervieux
 </section>
 <section id="how-today-works" class="slide level2">
 <h2>How today works</h2>
-<p>Same shape as yesterday: two rounds of <strong>watch → your turn</strong>, with a break between them. Each round ends with a challenge in the lab.</p>
-<p>The <strong>Your turn</strong> callout slide flags each switch to the lab.</p>
+<p>Same shape as yesterday: two rounds of <strong>watch → your turn</strong>, with a break between them. Each round ends with a <strong>Challenge</strong> in the lab.</p>
+<p>A <strong>Your turn</strong> slide flags each switch to the lab.</p>
 <aside class="notes">
 <ul>
 <li><strong>Say:</strong> “Same rhythm as yesterday: watch, then you build it.”</li>
@@ -274,7 +274,7 @@ Christophe Dervieux
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" data-filename="_quarto.yml"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb1-1"><a aria-label="1"></a><span class="fu">project</span><span class="kw">:</span></span>
 <span id="cb1-2"><a aria-label="2"></a><span class="at">  </span><span class="fu">type</span><span class="kw">:</span><span class="at"> default</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb2-1"><a aria-hidden="true" tabindex="-1"></a>day2-projects/</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb2-1"><a aria-hidden="true" tabindex="-1"></a>my-project/</span>
 <span id="cb2-2"><a aria-hidden="true" tabindex="-1"></a>|-- _quarto.yml   &lt;- makes it a project</span>
 <span id="cb2-3"><a aria-hidden="true" tabindex="-1"></a>|-- index.qmd</span>
 <span id="cb2-4"><a aria-hidden="true" tabindex="-1"></a>|-- analysis.qmd</span>
@@ -283,16 +283,16 @@ Christophe Dervieux
 <ul>
 <li class="fragment"><strong>One command</strong> for the whole folder: <code>quarto render</code>, no file argument.</li>
 <li class="fragment"><strong>One place</strong> for shared YAML, instead of the same header in every file.</li>
-<li class="fragment"><code>output-dir</code>: the built files are written to one folder you can publish.</li>
+<li class="fragment"><strong>One output folder</strong> you can publish.</li>
 <li class="fragment"><code>freeze</code>: a build can reuse stored results (Part 2).</li>
 </ul>
 </div></div>
 <div class="fragment">
-<p><code>type:</code> selects the features Quarto adds. <code>default</code> is a plain folder of documents. <code>website</code> adds navigation. <code>book</code> also adds cross-chapter numbering.</p>
+<p><code>type:</code> selects the features Quarto adds. <code>default</code> is a plain folder of documents. <code>website</code> adds navigation. <code>book</code> treats the pages as one ordered document.</p>
 <aside class="notes">
 <ul>
-<li><strong>Say:</strong> “These features do not depend on <code>type:</code>.”</li>
-<li><strong>Do:</strong> run <code>quarto create project</code> and show the available project types.</li>
+<li><strong>Say:</strong> “The four features above work for any <code>type:</code>.”</li>
+<li><strong>Do:</strong> run <code>quarto create project</code> to show the project types, then Ctrl-C. It would go on to create a folder.</li>
 <li><strong>Ask:</strong> “Which settings have you repeated in document headers so far?”</li>
 <li><strong>Watch for:</strong> <code>quarto render</code> in a folder with no <code>_quarto.yml</code> produces nothing and no error.</li>
 <li><strong>Next:</strong> we use <code>website</code> for the rest of the day.</li>
@@ -327,7 +327,7 @@ Christophe Dervieux
 <tbody>
 <tr class="odd">
 <td><code>website</code></td>
-<td>each page stands on its own. Navigation, search, listings. Today’s build.</td>
+<td>each page stands on its own. You get navigation, search, and listings. Today’s build.</td>
 </tr>
 <tr class="even">
 <td><code>book</code></td>
@@ -335,13 +335,14 @@ Christophe Dervieux
 </tr>
 </tbody>
 </table>
+<p><code>quarto create project</code> scaffolds either one and asks which type you want.</p>
 <p><strong>Learn more:</strong> <a href="https://quarto.org/docs/books/">Books</a></p>
 <aside class="notes">
 <ul>
-<li><strong>Say:</strong> “One <code>type:</code> line. Ordered chapters means book, everything else means website.”</li>
+<li><strong>Say:</strong> “One <code>type:</code> line. Ordered chapters mean book, everything else means website.”</li>
 <li><strong>If asked:</strong> a blog is a website with a listing on its home page, not a third type.</li>
 <li><strong>If asked:</strong> the numbering consequence comes back on the cross-references slide.</li>
-<li><strong>Do not demo:</strong> a book is a pointer today.</li>
+<li><strong>Do not demo:</strong> we only point at books today.</li>
 </ul>
 <style type="text/css">
         span.MJX_Assistive_MathML {
@@ -384,7 +385,8 @@ Christophe Dervieux
 <ul>
 <li><strong>Say:</strong> “Place <code>_quarto.yml</code> in a folder to make that folder the project root.”</li>
 <li><strong>Do:</strong> render once and show the output move from beside the <code>.qmd</code> into <code>_site/</code>.</li>
-<li><strong>Ask:</strong> “Where is the root if a folder above also has a <code>_quarto.yml</code>?” (The nearer one.)</li>
+<li><strong>Ask:</strong> “Where is the root if a folder above also has a <code>_quarto.yml</code>?” (The nearer <code>_quarto.yml</code>.)</li>
+<li><strong>Watch for:</strong> a project inside another project. Rendering from the outer folder builds the inner pages under the outer config.</li>
 </ul>
 <style type="text/css">
         span.MJX_Assistive_MathML {
@@ -443,7 +445,7 @@ Christophe Dervieux
 <pre><strong>_quarto.yml</strong></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5" data-filename="_quarto.yml"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb5-1"><a aria-label="1"></a><span class="fu">website</span><span class="kw">:</span></span>
-<span id="cb5-2"><a aria-label="2"></a><span class="at">  </span><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"Penguin Lab"</span></span>
+<span id="cb5-2"><a aria-label="2"></a><span class="at">  </span><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"My Project"</span></span>
 <span id="cb5-3"><a aria-label="3"></a><span class="at">  </span><span class="fu">navbar</span><span class="kw">:</span><span class="co">              # list the entries yourself</span></span>
 <span id="cb5-4"><a aria-label="4"></a><span class="at">    </span><span class="fu">left</span><span class="kw">:</span></span>
 <span id="cb5-5"><a aria-label="5"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">href</span><span class="kw">:</span><span class="at"> index.qmd</span></span>
@@ -503,7 +505,7 @@ Christophe Dervieux
 <p><strong>Learn more:</strong> <a href="https://quarto.org/docs/authoring/cross-references.html">Cross-references</a> · <a href="https://quarto.org/docs/books/book-crossrefs.html">Book cross-references</a></p>
 <aside class="notes">
 <ul>
-<li><strong>Show:</strong> an unresolved cross-page reference renders as <code>?@fig-name</code> and warns at build time.</li>
+<li><strong>Do:</strong> an unresolved cross-page reference renders as <code>?@fig-name</code> and warns at build time.</li>
 <li><strong>If asked:</strong> <code>@sec-</code> resolves without <code>number-sections</code>; the option only numbers the heading.</li>
 </ul>
 <style type="text/css">
@@ -589,7 +591,7 @@ Christophe Dervieux
 <span id="cb8-10"><a aria-label="10"></a><span class="at">    </span><span class="kw">-</span><span class="at"> slides/*/index.qmd</span></span>
 <span id="cb8-11"><a aria-label="11"></a><span class="at">    </span><span class="kw">-</span><span class="at"> labs/*/index.qmd</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p><strong><code>render:</code></strong> limits which <code>.qmd</code> files Quarto renders. Without it Quarto renders every <code>.qmd</code> under the root. A leading <code>!</code> excludes instead (<code>- "!drafts/*.qmd"</code>). A third key, <strong><code>resources:</code></strong>, copies files Quarto does not find on its own (a spreadsheet, a <code>_redirects</code> file) into <code>_site/</code>.</p>
+<p><code>render:</code> limits which <code>.qmd</code> files Quarto renders. Without it Quarto renders every <code>.qmd</code> under the root. Prefix a file or directory name with <code>_</code> to keep it out of the build: Quarto skips those by default. In a <code>render:</code> list, a leading <code>!</code> removes a match. Put at least one positive include pattern before any exclusions. <code>resources:</code> copies files Quarto does not find on its own (a spreadsheet, a PDF) into <code>_site/</code>.</p>
 <aside class="notes">
 <ul>
 <li><strong>Say:</strong> “Nothing new here, just more of it. The real file is longer.”</li>
@@ -621,7 +623,7 @@ Christophe Dervieux
 <p><strong>Your turn</strong></p>
 </div>
 <div class="callout-content">
-<p>Head to the <strong><a href="../../labs/quarto-projects/index.html#website-challenge">Lab</a></strong> and the <strong>Website Challenge</strong>: turn a set of <code>.qmd</code> files into a navigable, <strong>branded website</strong>: <code>_quarto.yml</code>, a navbar, and the shared brand.</p>
+<p>Head to the <strong><a href="../../labs/quarto-projects/index.html#website-challenge">Lab</a></strong> and the <strong>Website Challenge</strong>: turn a set of <code>.qmd</code> files into a navigable, <strong>branded website</strong>: <code>_quarto.yml</code>, a navbar, the shared brand, and folder options.</p>
 </div>
 </div>
 </div>
@@ -685,7 +687,7 @@ Christophe Dervieux
 <span id="cb9-2"><a aria-label="2"></a><span class="at">  </span><span class="fu">freeze</span><span class="kw">:</span><span class="at"> auto</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>With <code>freeze: auto</code>, Quarto compares the page’s current source with the source recorded alongside its stored output. If the content is unchanged, Quarto reuses the output. If it changed, Quarto runs the code again. Re-saving an unchanged file does not trigger computation.</p>
-<p>It is an ordinary option, so a <code>_metadata.yml</code> can set it for one folder only.</p>
+<p><code>freeze</code> is an ordinary option, so a <code>_metadata.yml</code> can set it for a single folder.</p>
 <aside class="notes">
 <ul>
 <li><strong>Say:</strong> “A prose edit should not rerun a 20-minute model.”</li>
@@ -759,7 +761,6 @@ Christophe Dervieux
 <aside class="notes">
 <ul>
 <li><strong>Say:</strong> “freeze pins results; <code>renv.lock</code> pins package versions.”</li>
-<li><strong>Timing:</strong> drop this first if short.</li>
 </ul>
 <style type="text/css">
         span.MJX_Assistive_MathML {
@@ -775,7 +776,7 @@ Christophe Dervieux
 </section>
 <section id="profiles" class="slide level2">
 <h2>One project, several builds</h2>
-<p>A <strong>profile</strong> is an overlay on <code>_quarto.yml</code>. The file name gives the profile its name, and <code>--profile</code> switches it on:</p>
+<p>A <strong>profile</strong> is an overlay on <code>_quarto.yml</code>. The name comes from the file name, so <code>_quarto-internal.yml</code> is the <code>internal</code> profile:</p>
 <div class="code-with-filename">
 <div class="code-with-filename-file">
 <pre><strong>_quarto-internal.yml</strong></pre>
@@ -784,16 +785,16 @@ Christophe Dervieux
 <span id="cb13-2"><a aria-label="2"></a><span class="at">  </span><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"Penguin Lab (internal)"</span></span>
 <span id="cb13-3"><a aria-label="3"></a><span class="fu">project</span><span class="kw">:</span></span>
 <span id="cb13-4"><a aria-label="4"></a><span class="at">  </span><span class="fu">render</span><span class="kw">:</span></span>
-<span id="cb13-5"><a aria-label="5"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="st">"*.qmd"</span></span>
-<span id="cb13-6"><a aria-label="6"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="st">"drafts/*.qmd"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb13-5"><a aria-label="5"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="st">"drafts/*.qmd"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a aria-label="1"></a><span class="ex">quarto</span> render <span class="at">--profile</span> internal</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Quarto reads <code>_quarto.yml</code>, then merges the profile on top.</p>
+<p>Quarto reads <code>_quarto.yml</code>, then merges the profile on top. List entries are added, so this build is the usual pages plus the drafts.</p>
 <p><strong>Learn more:</strong> <a href="https://quarto.org/docs/projects/profiles.html">Project profiles</a></p>
 <aside class="notes">
 <ul>
 <li><strong>Say:</strong> “Same project, two outputs. The difference lives in a second config file.”</li>
 <li><strong>Do not demo:</strong> one slide, then move on.</li>
+<li><strong>Timing:</strong> cut first if short.</li>
 <li><strong>If asked:</strong> <code>QUARTO_PROFILE</code> sets it by environment variable, which is how CI picks a build.</li>
 </ul>
 <style type="text/css">
@@ -855,21 +856,22 @@ Christophe Dervieux
       }</style></aside>
 </section>
 <section id="publish-targets" class="slide level2">
-<h2>The other destinations</h2>
+<h2>The other providers</h2>
 <p>Connect Cloud is one provider of several:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode numberSource default number-lines code-with-copy"><code class="sourceCode default"><span id="cb17-1"><a aria-label="1"></a> - GitHub Pages (gh-pages)</span>
-<span id="cb17-2"><a aria-label="2"></a> - Posit Connect (connect)</span>
-<span id="cb17-3"><a aria-label="3"></a> - Posit Connect Cloud (posit-connect-cloud)</span>
-<span id="cb17-4"><a aria-label="4"></a> - Netlify (netlify)</span>
-<span id="cb17-5"><a aria-label="5"></a> - Confluence (confluence)</span>
-<span id="cb17-6"><a aria-label="6"></a> - Hugging Face Spaces (huggingface)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>When you publish to most providers for the first time, Quarto asks you to sign in and records the destination in a <code>_publish.yml</code> file you can commit. <code>gh-pages</code> works differently: it publishes from the current Git repository with your Git credentials. <code>quarto publish --help</code> lists the providers available on your machine.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb17-1"><a aria-hidden="true" tabindex="-1"></a> - GitHub Pages (gh-pages)</span>
+<span id="cb17-2"><a aria-hidden="true" tabindex="-1"></a> - Posit Connect (connect)</span>
+<span id="cb17-3"><a aria-hidden="true" tabindex="-1"></a> - Posit Connect Cloud (posit-connect-cloud)</span>
+<span id="cb17-4"><a aria-hidden="true" tabindex="-1"></a> - Netlify (netlify)</span>
+<span id="cb17-5"><a aria-hidden="true" tabindex="-1"></a> - Confluence (confluence)</span>
+<span id="cb17-6"><a aria-hidden="true" tabindex="-1"></a> - Hugging Face Spaces (huggingface)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The first publish to a provider opens a sign-in. Quarto then records where it went in <code>_publish.yml</code>, which you can commit. <code>gh-pages</code> works differently: it publishes from the current Git repository with your Git credentials. Run <code>quarto publish --help</code> for the full list.</p>
 <p><strong>Learn more:</strong> <a href="https://quarto.org/docs/publishing/">Publishing</a></p>
 <aside class="notes">
 <ul>
-<li><strong>Say:</strong> “Your institution’s own server is still the <code>_site/</code> copy from the previous slide.”</li>
+<li><strong>Say:</strong> “For your institution’s own server, you copy <code>_site/</code> there yourself.”</li>
 <li><strong>If asked:</strong> we do not use <code>gh-pages</code> here because publishing requires a Git repository and a GitHub account.</li>
-<li><strong>If asked why <code>--help</code> shows one more:</strong> Quarto Pub stopped taking new accounts and stops accepting content on 2026-12-31. Connect Cloud is its replacement.</li>
+<li><strong>If asked why <code>--help</code> shows one more:</strong> Quarto Pub is retired. Connect Cloud is its replacement.</li>
+<li><strong>Timing:</strong> cut second.</li>
 </ul>
 <style type="text/css">
         span.MJX_Assistive_MathML {
@@ -933,6 +935,7 @@ Christophe Dervieux
 <li><strong>Do:</strong> open the community catalog and filter by Formats.</li>
 <li><strong>Watch for:</strong> <code>quarto add</code> must run inside the project folder.</li>
 <li><strong>If asked:</strong> <code>quarto add</code> prompts for confirmation and installs from a GitHub repository or an archive URL.</li>
+<li><strong>Timing:</strong> cut third.</li>
 </ul>
 <style type="text/css">
         span.MJX_Assistive_MathML {
