@@ -65,6 +65,7 @@ Both this repository and the exercise repository are public.
 - `_brand.yml` and theme SCSS: `.claude/rules/brand.md`
 - Cross-platform `justfile`: `.claude/rules/justfile.md`
 - House voice: `.claude/rules/prose-voice.md` and `.claude/references/house-voice.md`
+- Maintainer prose and configuration comments: `.claude/rules/maintainer-prose.md`
 - Quarto bug reports reduced from this material, drafted before filing upstream:
   `.claude/upstream-issues/`
 

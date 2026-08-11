@@ -4,20 +4,8 @@ paths:
   - index.qmd
   - labs/**/*.qmd
   - slides/**/*.qmd
-  # Repo-facing prose is public too, and drifts out of voice without this.
   - README.md
   - LICENSE.md
-  - .claude/**/*.md
-  # Troubleshooting and operational wording also lives in comments.
-  - .claude/**/*.sh
-  - .claude/**/*.mjs
-  - .claude/**/*.yaml
-  - theme*.scss
-  - '**/_brand*.yml'
-  - '**/_quarto.yml'
-  - '**/_metadata.yml'
-  - .github/**/*.yml
-  - justfile
 ---
 
 # Participant prose and presenter notes
