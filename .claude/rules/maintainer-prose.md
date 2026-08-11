@@ -13,14 +13,16 @@ paths:
   - '**/_metadata.yml'
   - .github/**/*.yml
   - .github/**/*.yaml
+  - tools/*.R
   - justfile
 ---
 
 # Maintainer prose and configuration comments
 
 When editing a matching file, use plain, literal language in operational documentation and comments.
-Preserve technical terms, commands, paths, and configuration keys. Participant-facing conventions
-such as direct address and presenter-note routing do not apply here.
+Preserve technical terms, commands, paths, and configuration keys. Participant slide and lab
+conventions, including presenter-note routing, do not apply here. Direct second person is appropriate
+when addressing an agent or maintainer.
 
 ## Instructions and troubleshooting
 

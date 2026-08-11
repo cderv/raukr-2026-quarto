@@ -4,6 +4,8 @@ paths:
   - index.qmd
   - labs/**/*.qmd
   - slides/**/*.qmd
+  - tools/exercises-scaffold/**/*.md
+  - tools/exercises-scaffold/**/*.R
   - README.md
   - LICENSE.md
 ---
