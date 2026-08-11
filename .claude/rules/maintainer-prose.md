@@ -1,8 +1,6 @@
 ---
 paths:
-  - .claude/commands/**/*.md
-  - .claude/references/**/*.md
-  - .claude/upstream-issues/**/*.md
+  - .claude/**/*.md
   - .claude/**/*.sh
   - .claude/**/*.mjs
   - .claude/**/*.yml
