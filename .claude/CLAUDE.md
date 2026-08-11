@@ -38,6 +38,9 @@ Both this repository and the exercise repository are public.
 - Describe roles and artifacts, not named people, when recording assessments or prior-art findings.
 - Before changing repository visibility, enumerate and audit every remote ref with
   `git ls-remote origin`; checking one branch is insufficient.
+- History was rewritten on 2026-08-03. A clone made before that date has an unrelated history.
+  Recover it with `git fetch origin && git reset --hard origin/main`. Do not `git pull`: it refuses
+  to merge, and that refusal is the safety net.
 
 ## Authoring
 
@@ -62,6 +65,8 @@ Both this repository and the exercise repository are public.
 - `_brand.yml` and theme SCSS: `.claude/rules/brand.md`
 - Cross-platform `justfile`: `.claude/rules/justfile.md`
 - House voice: `.claude/rules/prose-voice.md` and `.claude/references/house-voice.md`
+- Quarto bug reports reduced from this material, drafted before filing upstream:
+  `.claude/upstream-issues/`
 
 Detailed background belongs in `.claude/references/`; repeatable task workflows belong in
 `.claude/skills/` or `.claude/commands/`. Keep scoped rules limited to current, actionable
